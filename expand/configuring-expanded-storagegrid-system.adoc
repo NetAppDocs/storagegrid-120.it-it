@@ -46,17 +46,17 @@ CAUTION: Assicurati che almeno due nodi in ogni sito possano accedere ad almeno 
 .. Se il single sign-on (SSO) è abilitato per il tuo sistema StorageGRID, crea una relying party trust per il nuovo nodo Admin. Non puoi accedere al nodo finché non crei questa relying party trust. Vedi link:../admin/configure-sso.html["Configura single sign-on"].
 .. Se prevedi di utilizzare il servizio Load Balancer sui nodi Admin, puoi aggiungere il nuovo nodo Admin a un gruppo HA. Seleziona *Configuration* > *Network* > *High availability groups* per visualizzare l'elenco dei gruppi HA esistenti e aggiungere il nuovo nodo. Vedi link:../admin/configure-high-availability-group.html["Configura i gruppi ad alta disponibilità"].
 .. Facoltativamente, puoi copiare il database dell'Admin Node dal nodo di amministrazione primario al nodo di amministrazione di espansione se vuoi mantenere coerenti le informazioni sugli attributi e di audit su ciascun Admin Node. Vedi link:copying-admin-node-database.html["Copia il database Admin Node"].
-.. Opzionalmente, copia il database Prometheus dall'Admin Node primario all'Admin Node di espansione se desideri mantenere coerenti le metriche storiche su ciascun Admin Node. Vedi link:copying-prometheus-metrics.html["${post_edited_translations.segment}"].
-.. Facoltativamente, puoi copiare i log di controllo esistenti dal nodo Admin primario al nodo Admin di espansione se vuoi mantenere coerenti le informazioni di log storiche su ciascun nodo Admin. Vedi link:copying-audit-logs.html["${post_edited_translations.segment}"].
+.. Opzionalmente, copia il database Prometheus dall'Admin Node primario all'Admin Node di espansione se desideri mantenere coerenti le metriche storiche su ciascun Admin Node. Vedi link:copying-prometheus-metrics.html["Copia metriche Prometheus"].
+.. Facoltativamente, puoi copiare i log di controllo esistenti dal nodo Admin primario al nodo Admin di espansione se vuoi mantenere coerenti le informazioni di log storiche su ciascun nodo Admin. Vedi link:copying-audit-logs.html["Copia i registri di controllo"].
 
 
-. ${post_edited_translations.segment}
+. Per verificare se i nodi di espansione sono stati aggiunti con una Client Network non attendibile o per modificare se la Client Network di un nodo è non attendibile o attendibile, vai su *Configuration* > *Security* > *Firewall control*.
 +
-Se la Rete Client sul nodo di espansione non è attendibile, le connessioni al nodo sulla Rete Client devono essere effettuate utilizzando un endpoint del bilanciatore del carico. Vedi link:../admin/configuring-load-balancer-endpoints.html["${post_edited_translations.segment}"] e link:../admin/manage-firewall-controls.html["Gestisci i controlli del firewall"].
+Se la Rete Client sul nodo di espansione non è attendibile, le connessioni al nodo sulla Rete Client devono essere effettuate utilizzando un endpoint del bilanciatore del carico. Vedi link:../admin/configuring-load-balancer-endpoints.html["Configura gli endpoint del bilanciatore di carico"] e link:../admin/manage-firewall-controls.html["Gestisci i controlli del firewall"].
 
 . Configura il DNS.
 +
-Se hai specificato le impostazioni DNS separatamente per ciascun nodo della griglia, devi aggiungere impostazioni DNS personalizzate per singolo nodo per i nuovi nodi. Consulta link:../maintain/modifying-dns-configuration-for-single-grid-node.html["${post_edited_translations.segment}"].
+Se hai specificato le impostazioni DNS separatamente per ciascun nodo della griglia, devi aggiungere impostazioni DNS personalizzate per singolo nodo per i nuovi nodi. Consulta link:../maintain/modifying-dns-configuration-for-single-grid-node.html["Modifica la configurazione DNS per un singolo nodo della griglia"].
 
 
 

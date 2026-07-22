@@ -45,7 +45,7 @@ Se l'oggetto sorgente è crittografato utilizzando una chiave fornita dal client
 
 
 
-CAUTION: Le chiavi di crittografia che fornisci non vengono mai memorizzate. Se perdi una chiave di crittografia, perdi anche l'oggetto corrispondente. Prima di usare chiavi fornite dal cliente per proteggere i dati degli oggetti, consulta le considerazioni in link:using-server-side-encryption.html["${post_edited_translations.segment}"].
+CAUTION: Le chiavi di crittografia che fornisci non vengono mai memorizzate. Se perdi una chiave di crittografia, perdi anche l'oggetto corrispondente. Prima di usare chiavi fornite dal cliente per proteggere i dati degli oggetti, consulta le considerazioni in link:using-server-side-encryption.html["Usa la crittografia lato server"].
 
 
 

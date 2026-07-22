@@ -31,7 +31,7 @@ image:tenant_accounts_page.png["Pagina degli account tenant"]
 
 . Individua il tenant account che vuoi modificare.
 +
-${post_edited_translations.segment}
+Utilizza la casella di ricerca per cercare un tenant per nome o tenant ID.
 
 . Seleziona il tenant. Puoi eseguire una delle seguenti operazioni:
 +
@@ -39,18 +39,18 @@ ${post_edited_translations.segment}
 ** Seleziona il nome del tenant per visualizzare la pagina dei dettagli e seleziona *Modifica*.
 
 
-. ${post_edited_translations.segment}
+. Facoltativamente, puoi modificare i valori per questi campi:
 +
 ** *Nome*
 ** *Descrizione*
-** ${post_edited_translations.segment}
+** *Quota di archiviazione*
 
 
 . Seleziona *Continue*.
-. ${post_edited_translations.segment}
+. Seleziona o deseleziona le autorizzazioni per il tenant account.
 +
 ** Se disabiliti i *servizi della piattaforma* per un tenant che li sta già utilizzando, i servizi che ha configurato per i suoi bucket S3 smetteranno di funzionare. Non viene inviato alcun messaggio di errore al tenant. Ad esempio, se il tenant ha configurato la replica CloudMirror per un bucket S3, può comunque archiviare oggetti nel bucket, ma le copie di quegli oggetti non verranno più create nel bucket S3 esterno che ha configurato come endpoint. Vedi link:manage-platform-services-for-tenants.html["Gestisci i servizi della piattaforma per gli account tenant S3"].
-** ${post_edited_translations.segment}
+** Modifica l'impostazione *Usa la tua origine di identità* per decidere se il tenant account userà la propria origine di identità o quella configurata per Grid Manager.
 +
 Se *Usa la propria fonte di identità* è:
 
@@ -60,16 +60,16 @@ Se *Usa la propria fonte di identità* è:
 
 
 ** Seleziona o deseleziona l'autorizzazione *Consenti S3 Select* secondo necessità. Vedi link:manage-s3-select-for-tenant-accounts.html["Gestisci S3 Select per gli account tenant"].
-** ${post_edited_translations.segment}
+** Per rimuovere l'autorizzazione *Usa connessione di federazione grid*:
 +
 ... Seleziona la scheda *Grid federation*.
 ... Seleziona *Rimuovi autorizzazione*.
 
 
-** ${post_edited_translations.segment}
+** Per aggiungere l'autorizzazione *Usa connessione di federazione grid*:
 +
 ... Seleziona la scheda *Grid federation*.
-... ${post_edited_translations.segment}
+... Seleziona la casella di controllo *Usa la connessione di federazione della griglia*.
 ... Facoltativamente, seleziona *Clona utenti e gruppi locali esistenti* per clonarli nella grid remota. Se lo desideri, puoi interrompere la clonazione in corso o riprovare la clonazione se la clonazione di alcuni utenti o gruppi locali non è riuscita dopo il completamento dell'ultima operazione di clonazione.
 
 
@@ -80,7 +80,7 @@ NOTE: Il blocco degli oggetti S3 deve essere abilitato sulla griglia prima che t
 
 +
 ... Seleziona la scheda *Blocco oggetto S3*.
-... ${post_edited_translations.segment}
+... Per *Imposta periodo massimo di conservazione*, inserisci un valore e seleziona il periodo di tempo dal menu a tendina.
 ... Per *Consenti modalità di conformità*, seleziona la casella di controllo.
 
 

@@ -47,7 +47,7 @@ Per modificare una policy:
 
 . Seleziona *ILM* > *Policies*.
 . Seleziona la casella di controllo corrispondente alla policy che vuoi modificare, poi seleziona *Modifica*.
-. Modifica la policy seguendo le istruzioni in link:creating-ilm-policy.html["${post_edited_translations.segment}"].
+. Modifica la policy seguendo le istruzioni in link:creating-ilm-policy.html["Crea le policy ILM"].
 . Simula la policy prima di riattivarla.
 
 
@@ -64,7 +64,7 @@ Per clonare una policy ILM:
 
 . Seleziona *ILM* > *Policies*.
 . Seleziona la casella di controllo corrispondente al criterio che vuoi clonare, poi seleziona *Clona*.
-. Crea una nuova policy partendo dalla policy che hai clonato seguendo le istruzioni in link:creating-ilm-policy.html["${post_edited_translations.segment}"].
+. Crea una nuova policy partendo dalla policy che hai clonato seguendo le istruzioni in link:creating-ilm-policy.html["Crea le policy ILM"].
 
 
 

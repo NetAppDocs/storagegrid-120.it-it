@@ -24,10 +24,10 @@ CAUTION: È possibile accedere ai bucket e agli oggetti S3 appartenenti a un ute
 .Passaggi
 . Seleziona *Gestione accessi* > *Utenti*.
 . Dalla pagina Utenti, seleziona l'utente di cui vuoi gestire le chiavi di accesso S3.
-. ${post_edited_translations.segment}
-. ${post_edited_translations.segment}
+. Dalla pagina Dettagli utente, seleziona *Chiavi di accesso* e poi seleziona la casella di controllo per ogni chiave di accesso che vuoi eliminare.
+. Seleziona *Azioni* > *Elimina la chiave selezionata*.
 . Nella finestra di dialogo di conferma, seleziona *Elimina chiave*.
 +
-${post_edited_translations.segment}
+Un messaggio di conferma appare nell'angolo in alto a destra della pagina.
 
 

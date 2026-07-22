@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: admin network, client network, grid network, access interface, trunk interface 
 summary: StorageGRID supporta fino a tre interfacce di rete per nodo della griglia, permettendoti di configurare la rete per ogni singolo nodo della griglia in base ai tuoi requisiti di sicurezza e accesso. 
 ---
-= ${post_edited_translations.segment}
+= Linee guida per le reti StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -13,21 +13,21 @@ summary: StorageGRID supporta fino a tre interfacce di rete per nodo della grigl
 [role="lead"]
 Puoi usare Grid Manager per configurare e gestire le reti e le connessioni di StorageGRID.
 
-Vedi link:configuring-client-connections.html["${post_edited_translations.segment}"] per scoprire come connettere i client S3.
+Vedi link:configuring-client-connections.html["Configura le connessioni client S3"] per scoprire come connettere i client S3.
 
 
 
 [[default-storagegrid-networks]]
-== ${post_edited_translations.segment}
+== Reti StorageGRID predefinite
 
-${post_edited_translations.segment}
+Per impostazione predefinita, StorageGRID supporta tre interfacce di rete per nodo della griglia, consentendoti di configurare la rete per ogni singolo nodo in base ai requisiti di sicurezza e accesso.
 
 Per ulteriori informazioni sulla topologia di rete, consulta link:../network/index.html["Linee guida di rete"].
 
 
 
 [[grid-network]]
-=== ${post_edited_translations.segment}
+=== Rete Grid
 
 Obbligatorio. La rete Grid viene utilizzata per tutto il traffico interno di StorageGRID. Fornisce connettività tra tutti i nodi della grid, attraverso tutti i siti e le sottoreti.
 
@@ -41,7 +41,7 @@ Opzionale. La Admin Network viene in genere utilizzata per l'amministrazione e l
 
 
 [[client-network]]
-=== ${post_edited_translations.segment}
+=== Rete client
 
 Opzionale. La rete client è una rete aperta, in genere utilizzata per fornire accesso alle applicazioni client S3, così la rete Grid può essere isolata e protetta. La rete client può comunicare con qualsiasi sottorete raggiungibile tramite il gateway locale.
 
@@ -83,7 +83,7 @@ eth2
 * Se il nodo è connesso a un'appliance StorageGRID, vengono utilizzate porte specifiche per ciascuna rete. Per dettagli, consulta le istruzioni di installazione della tua appliance.
 * Il percorso predefinito viene generato automaticamente per ogni nodo. Se eth2 è abilitato, 0.0.0.0/0 utilizza la Client Network su eth2. Se eth2 non è abilitato, 0.0.0.0/0 utilizza la Grid Network su eth0.
 * La rete client non diventa operativa finché il nodo della griglia non si è unito alla griglia
-* ${post_edited_translations.segment}
+* La rete di amministrazione può essere configurata durante la distribuzione dei nodi della griglia per consentire l'accesso all'interfaccia utente di installazione prima che la griglia sia completamente installata.
 
 
 
@@ -98,7 +98,7 @@ Per aggiungere interfacce trunk o di accesso, vedi quanto segue:
 * *VMware (dopo l'installazione del nodo)*: link:../maintain/vmware-adding-trunk-or-access-interfaces-to-node.html["VMware: Aggiungi interfacce trunk o di accesso a un nodo"]
 +
 ** *Linux (prima dell'installazione del nodo)*: link:../swnodes/creating-node-configuration-files.html["Crea i file di configurazione del nodo"]
-** *Linux (dopo l'installazione del nodo)*: link:../maintain/linux-adding-trunk-or-access-interfaces-to-node.html["${post_edited_translations.segment}"]
+** *Linux (dopo l'installazione del nodo)*: link:../maintain/linux-adding-trunk-or-access-interfaces-to-node.html["Aggiungi interfacce trunk o di accesso a un nodo"]
 
 
 

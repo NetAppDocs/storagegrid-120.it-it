@@ -42,7 +42,7 @@ NOTE: Se il single sign-on è abilitato per il tuo sistema StorageGRID e le rely
 
 NOTE: Se necessario, aggiungi la nuova sottorete per i nuovi indirizzi IP.
 
-. L'accesso SSH esterno è bloccato per impostazione predefinita. Se necessario, link:../admin/manage-external-ssh-access.html["${post_edited_translations.segment}"].
+. L'accesso SSH esterno è bloccato per impostazione predefinita. Se necessario, link:../admin/manage-external-ssh-access.html["Consenti temporaneamente l'accesso"].
 . Accedi al nodo amministratore principale:
 +
 .. Inserisci il seguente comando: `ssh admin@_primary_Admin_Node_IP_`
@@ -133,8 +133,8 @@ NOTE: L'intera grid deve essere spenta, così che tutti i nodi siano inattivi co
 
 . Scarica il nuovo pacchetto di ripristino dal Grid Manager.
 +
-.. ${post_edited_translations.segment}
-.. ${post_edited_translations.segment}
+.. Seleziona *Maintenance* > *System* > *Recovery package*.
+.. Inserisci la passphrase di provisioning.
 
 
 . Se hai consentito l'accesso SSH esterno, link:../admin/manage-external-ssh-access.html["blocco accesso"] quando hai finito di modificare gli indirizzi IP.

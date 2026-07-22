@@ -16,7 +16,7 @@ Segui questi passaggi per la risoluzione dei problemi per risolvere gli errori c
 
 
 [[determine-if-an-error-has-occurred]]
-== ${post_edited_translations.segment}
+== Verifica se si è verificato un errore
 
 StorageGRID esegue un semplice controllo di integrità su ogni Cloud Storage Pool leggendo l'oggetto noto `x-ntap-sgws-cloud-pool-uuid` per assicurarsi che il Cloud Storage Pool sia accessibile e funzioni correttamente. Quando StorageGRID rileva un errore sull'endpoint, esegue un controllo di integrità ogni minuto da ciascun Storage Node. Quando l'errore viene risolto, i controlli di integrità si interrompono. Se un controllo di integrità rileva un problema, viene mostrato un messaggio nella colonna Last error della tabella Cloud Storage Pools nella pagina Storage pools.
 

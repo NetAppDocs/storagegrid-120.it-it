@@ -53,13 +53,13 @@ Portatile di servizio:: Il sistema StorageGRID viene installato tramite un compu
 --
 Il computer portatile di servizio deve avere:
 
-* ${post_edited_translations.segment}
-* ${post_edited_translations.segment}
-* link:../admin/web-browser-requirements.html["${post_edited_translations.segment}"]
+* Porta di rete
+* Client SSH (ad esempio, PuTTY)
+* link:../admin/web-browser-requirements.html["Browser web supportati"]
 
 
 --
-${post_edited_translations.segment}::
+Documentazione di StorageGRID::
 +
 --
 * https://library.netapp.com/ecm/ecm_download_file/ECMLP3351267["Note di rilascio"^]. È necessario accedere con il proprio account NetApp o crearne uno per accedere alle note di rilascio.

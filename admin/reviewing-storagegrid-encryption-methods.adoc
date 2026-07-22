@@ -53,9 +53,9 @@ Dispositivi di archiviazione dotati di unità con crittografia completa del disc
 
 
  a| 
-${post_edited_translations.segment}
+Crittografia degli oggetti memorizzati
  a| 
-Abiliti l'opzione link:changing-network-options-object-encryption.html["${post_edited_translations.segment}"] nel Grid Manager. Quando è abilitata, tutti i nuovi oggetti che non sono crittografati a livello di bucket o a livello di oggetto vengono crittografati durante l'ingestione.
+Abiliti l'opzione link:changing-network-options-object-encryption.html["Crittografia degli oggetti memorizzati"] nel Grid Manager. Quando è abilitata, tutti i nuovi oggetti che non sono crittografati a livello di bucket o a livello di oggetto vengono crittografati durante l'ingestione.
  a| 
 Dati degli oggetti S3 appena acquisiti.
 
@@ -87,7 +87,7 @@ Solo dati di oggetti S3 appena acquisiti.
 
 StorageGRID gestisce le chiavi.
 
-link:../s3/using-server-side-encryption.html["${post_edited_translations.segment}"]
+link:../s3/using-server-side-encryption.html["Usa la crittografia lato server"]
 
 
 
@@ -107,7 +107,7 @@ Solo dati di oggetti S3 appena acquisiti.
 
 Le chiavi sono gestite al di fuori di StorageGRID.
 
-link:../s3/using-server-side-encryption.html["${post_edited_translations.segment}"]
+link:../s3/using-server-side-encryption.html["Usa la crittografia lato server"]
 
 
 

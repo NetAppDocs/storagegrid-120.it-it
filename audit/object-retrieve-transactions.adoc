@@ -26,13 +26,13 @@ Non tutti i messaggi di controllo generati durante una transazione di recupero s
 
 
  a| 
-${post_edited_translations.segment}
+SGET
  a| 
 S3 GET
  a| 
 Richiesta fatta per recuperare un oggetto da un bucket.
  a| 
-${post_edited_translations.segment}
+CBID, S3BK, S3KY
  a| 
 link:sget-s3-get.html["SGET: S3 GET"]
 
@@ -68,13 +68,13 @@ Nel seguente messaggio di esempio, il client invia una richiesta GetObject per u
 
 
 [[example-s3-select-on-an-object]]
-== ${post_edited_translations.segment}
+== Esempio: S3 Select su un oggetto
 
 Quando un client S3 esegue una query S3 Select su un oggetto, vengono generati messaggi di audit che vengono salvati nel registro di audit.
 
 Tieni presente che non tutti i messaggi di audit generati durante una transazione sono elencati nell'esempio seguente. Sono elencati solo quelli relativi alla transazione S3 Select (SelectObjectContent).
 
-${post_edited_translations.segment}
+Ogni query genera due messaggi di controllo: uno che autorizza la richiesta S3 Select (il campo S3SR è impostato su "select") e una successiva operazione GET standard che recupera i dati dallo storage durante l'elaborazione.
 
 [listing, subs="specialcharacters,quotes"]
 ----

@@ -38,7 +38,7 @@ CAUTION: Il file del pacchetto di ripristino deve essere protetto perché contie
 Se l'installazione è ancora in corso, viene visualizzata la pagina di stato. Questa pagina indica lo stato di avanzamento dell'installazione per ciascun nodo della griglia.
 
 +
-image:12_gmi_installer_status_page.gif["${post_edited_translations.segment}"]
+image:12_gmi_installer_status_page.gif["Questa immagine è spiegata dal testo circostante."]
 
 +
 Quando tutti i nodi della griglia raggiungono la fase Complete, viene visualizzata la pagina di accesso per il Grid Manager.

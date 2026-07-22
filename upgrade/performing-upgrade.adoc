@@ -190,7 +190,7 @@ Se approvi più di un nodo dello stesso tipo, i nodi verranno aggiornati uno all
 
 
  a| 
-${post_edited_translations.segment}
+Seleziona un singolo nodo da aggiornare
  a| 
 Seleziona il pulsante *Approva* per il nodo
 

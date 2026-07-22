@@ -28,26 +28,26 @@ Nella tabella seguente non sono elencati tutti i messaggi di audit generati dura
  a| 
 SPUT
  a| 
-${post_edited_translations.segment}
+Transazione S3 PUT
  a| 
-${post_edited_translations.segment}
+Una transazione di ingestione S3 PUT è stata completata con successo.
  a| 
-${post_edited_translations.segment}
+CBID, S3BK, S3KY
  a| 
 link:sput-s3-put.html["SPUT: S3 PUT"]
 
 
 
  a| 
-${post_edited_translations.segment}
+ORLM
  a| 
-${post_edited_translations.segment}
+Regole oggetto rispettate
  a| 
 La policy ILM è stata soddisfatta per questo oggetto.
  a| 
-${post_edited_translations.segment}
+CBID
  a| 
-link:orlm-object-rules-met.html["${post_edited_translations.segment}"]
+link:orlm-object-rules-met.html["ORLM: Regole oggetto soddisfatte"]
 
 |===
 
@@ -57,7 +57,7 @@ link:orlm-object-rules-met.html["${post_edited_translations.segment}"]
 
 La serie di messaggi di controllo riportata di seguito è un esempio dei messaggi di controllo generati e salvati nel registro di controllo quando un client S3 inserisce un oggetto in un nodo di storage (servizio LDR).
 
-${post_edited_translations.segment}
+In questo esempio, la policy ILM attiva include la regola ILM "Make 2 Copies".
 
 
 NOTE: Non tutti i messaggi di audit generati durante una transazione sono elencati nell'esempio qui sotto. Sono elencati solo quelli relativi alla transazione di ingestione S3 (SPUT).
@@ -78,7 +78,7 @@ Il messaggio SPUT viene generato per indicare che è stata emessa una transazion
 
 
 [[orlm-object-rules-met]]
-=== ${post_edited_translations.segment}
+=== ORLM: Regole oggetto soddisfatte
 
 Il messaggio ORLM indica che la policy ILM è stata soddisfatta per questo oggetto. Il messaggio include il CBID dell'oggetto e il nome della regola ILM applicata.
 
@@ -94,7 +94,7 @@ Per gli oggetti con codifica di cancellazione, il campo LOCS include l'ID del pr
 ----
 2019-02-23T01:52:54.647537 [AUDT:[CBID(UI64):0xFA8ABE5B5001F7E2][RULE(CSTR):"EC_2_plus_1"][STAT(FC32):DONE][CSIZ(UI64):10000][UUID(CSTR):"E291E456-D11A-4701-8F51-D2F7CC9AFECA"][LOCS(CSTR):"CLEC 1 A471E45D-A400-47C7-86AC-12E77F229831"][RSLT(FC32):SUCS][AVER(UI32):10][ATIM(UI64):1550929974537]\[ATYP\(FC32\):ORLM\][ANID(UI32):12355278][AMID(FC32):ILMX][ATID(UI64):4168559046473725560]]
 ----
-${post_edited_translations.segment}
+Il campo PATH include informazioni sul bucket S3 e sulla chiave.
 
 [listing]
 ----

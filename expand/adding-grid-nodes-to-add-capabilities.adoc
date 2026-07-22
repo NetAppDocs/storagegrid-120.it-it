@@ -19,7 +19,7 @@ Puoi aggiungere uno o più dei seguenti tipi di nodi a uno o più siti esistenti
 
 * Nodi amministrativi non primari
 * Nodi di storage
-* ${post_edited_translations.segment}
+* Nodi gateway
 
 
 Quando ti prepari ad aggiungere nodi alla griglia, tieni presente le seguenti limitazioni:

@@ -16,12 +16,12 @@ Puoi seguire la procedura guidata di configurazione dell'SSO ed entrare in modal
 .Prima di iniziare
 * Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
 * Hai il link:admin-group-permissions.html["Permesso di accesso root"].
-* ${post_edited_translations.segment}
-* ${post_edited_translations.segment}
+* Hai configurato la federazione delle identità per il tuo sistema StorageGRID.
+* Per il tipo di servizio di federazione delle identità *LDAP*, hai selezionato Active Directory o Entra ID, in base al provider di identità SSO che vuoi utilizzare.
 +
 [cols="1a,1a"]
 |===
-| Tipo di servizio LDAP configurato | ${post_edited_translations.segment} 
+| Tipo di servizio LDAP configurato | Opzioni per il provider di identità SSO 
 
 
  a| 
@@ -51,7 +51,7 @@ Quando l'SSO è abilitato e un utente tenta di accedere a un Admin Node, Storage
 
 Per consentire a StorageGRID (il service provider) e al provider di identità SSO di comunicare in modo sicuro sulle richieste di autenticazione degli utenti, devi completare queste attività:
 
-. ${post_edited_translations.segment}
+. Configura le impostazioni in StorageGRID.
 . Usa il software del provider di identità SSO per creare un'attendibilità relying party (AD FS), un'applicazione aziendale (Entra ID) o un Service Provider (PingFederate) per ciascun Admin Node.
 . Torna a StorageGRID per abilitare l'SSO.
 
@@ -78,7 +78,7 @@ NOTE: Se il pulsante Configura impostazioni SSO è disabilitato, conferma di ave
 == Fornisci i dettagli del provider di identità
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Seleziona il *tipo di SSO* dall'elenco a discesa.
 . Se hai selezionato Active Directory come tipo di SSO, inserisci il *Federation service name* per il provider di identità, esattamente come appare in Active Directory Federation Service (AD FS).
 +
 
@@ -94,7 +94,7 @@ Se selezioni questa impostazione, copia il testo del certificato personalizzato 
 ** *Non usare TLS*: Non usare un certificato TLS per proteggere la connessione.
 +
 
-CAUTION: Se modifichi il certificato CA, link:../maintain/starting-or-restarting-service.html["${post_edited_translations.segment}"]e verifica subito che l'SSO in Grid Manager abbia esito positivo.
+CAUTION: Se modifichi il certificato CA, link:../maintain/starting-or-restarting-service.html["riavvia il servizio mgmt-api sugli Admin Nodes"]e verifica subito che l'SSO in Grid Manager abbia esito positivo.
 
 
 
@@ -138,7 +138,7 @@ NOTE: Devi creare un'applicazione aziendale per ciascun nodo Admin nel tuo siste
 
 
 
-.. Segui i passaggi descritti in link:../admin/creating-enterprise-application-entra-id.html["${post_edited_translations.segment}"] per creare un'applicazione aziendale per ciascun Admin Node elencato nella tabella.
+.. Segui i passaggi descritti in link:../admin/creating-enterprise-application-entra-id.html["Crea applicazioni aziendali in Entra ID"] per creare un'applicazione aziendale per ciascun Admin Node elencato nella tabella.
 .. Da Entra ID, copia l'URL dei metadati di federazione per ogni applicazione aziendale. Quindi, incolla questo URL nel campo *Federation metadata URL* corrispondente in StorageGRID.
 .. Dopo aver copiato e incollato un URL dei metadati di federazione per tutti gli Admin Node, seleziona *Salva ed entra in modalità sandbox*.
 
@@ -156,9 +156,9 @@ NOTE: Devi creare una connessione SP per ciascun Admin Node nel tuo sistema Stor
 
 
 
-.. ${post_edited_translations.segment}
+.. Specifica l'URL dei metadati di federazione per ogni Admin Node nel campo *Federation metadata URL*.
 +
-${post_edited_translations.segment}
+Usa il seguente formato:
 
 +
 [listing]
@@ -175,9 +175,9 @@ https://<Federation Service Name>:<port>/pf/federation_metadata.ping?PartnerSpId
 
 
 [[configure-relying-party-trusts-enterprise-applications-or-sp-connections]]
-== ${post_edited_translations.segment}
+== Configura trust di relying party, applicazioni aziendali o connessioni SP
 
-${post_edited_translations.segment}
+Dopo aver salvato la configurazione ed essere entrato in modalità sandbox, puoi completare e testare la configurazione per il tipo di single sign-on selezionato.
 
 StorageGRID può rimanere in modalità sandbox per tutto il tempo necessario. Tuttavia, solo gli utenti federati e gli utenti locali possono accedere.
 
@@ -205,11 +205,11 @@ Per le istruzioni, vai a link:../admin/creating-relying-party-trusts-in-ad-fs.ht
 +
 .. Accedi al nodo.
 .. Seleziona *Configurazione* > *Controllo accessi* > *Single sign-on*.
-.. ${post_edited_translations.segment}
+.. Scarica e salva i metadati SAML per quel nodo.
 
 
-. ${post_edited_translations.segment}
-. Segui i passaggi in link:../admin/creating-enterprise-application-entra-id.html["${post_edited_translations.segment}"] per caricare il file di metadati SAML per ciascun Admin Node nella corrispondente applicazione enterprise Entra ID.
+. Vai al portale di Azure.
+. Segui i passaggi in link:../admin/creating-enterprise-application-entra-id.html["Crea applicazioni aziendali in Entra ID"] per caricare il file di metadati SAML per ciascun Admin Node nella corrispondente applicazione enterprise Entra ID.
 
 
 --
@@ -221,7 +221,7 @@ Per le istruzioni, vai a link:../admin/creating-relying-party-trusts-in-ad-fs.ht
 +
 .. Accedi al nodo.
 .. Seleziona *Configurazione* > *Controllo accessi* > *Single sign-on*.
-.. ${post_edited_translations.segment}
+.. Scarica e salva i metadati SAML per quel nodo.
 
 
 . Vai su PingFederate.
@@ -236,7 +236,7 @@ Devi creare una connessione SP per ogni Admin Node mostrato nella tabella.
 
 
 [[test-ssotest-configuration]]
-== ${post_edited_translations.segment}
+== [[test-sso]]Configurazione di test
 
 Prima di imporre l'utilizzo del single sign-on per l'intero sistema StorageGRID, assicurati che single sign-on e single logout siano configurati correttamente per ciascun Admin Node.
 
@@ -245,19 +245,19 @@ Prima di imporre l'utilizzo del single sign-on per l'intero sistema StorageGRID,
 .Active Directory
 --
 .Passaggi
-. ${post_edited_translations.segment}
+. Dalla pagina Configura SSO, individua il collegamento nella fase Test configuration della setup wizard.
 +
-${post_edited_translations.segment}
+L'URL è derivato dal valore che hai inserito nel campo *Federation service name*.
 
 . Seleziona il link oppure copia e incolla l'URL in un browser per accedere alla pagina di sign-on del tuo identity provider.
-. ${post_edited_translations.segment}
+. Per confermare che puoi utilizzare l'SSO per accedere a StorageGRID, seleziona *Accedi a uno dei seguenti siti*, seleziona l'identificativo della relying party per il tuo Admin Node primario e seleziona *Accedi*.
 . Inserisci il tuo nome utente federato e la tua password.
 +
-** ${post_edited_translations.segment}
+** Se l'accesso e la disconnessione SSO hanno esito positivo, viene visualizzato un messaggio di successo.
 ** Se l'operazione SSO non va a buon fine, viene visualizzato un messaggio di errore. Risolvi il problema, cancella i cookie del browser e riprova.
 
 
-. ${post_edited_translations.segment}
+. Ripeti questi passaggi per verificare la connessione SSO per ogni Admin Node nella tua griglia.
 
 
 --
@@ -265,31 +265,31 @@ ${post_edited_translations.segment}
 --
 .Passaggi
 . Vai alla pagina di single sign-on nel portale Azure.
-. ${post_edited_translations.segment}
-. ${post_edited_translations.segment}
+. Seleziona *Test this application*.
+. Inserisci le credenziali di un utente federato.
 +
-** ${post_edited_translations.segment}
+** Se l'accesso e la disconnessione SSO hanno esito positivo, viene visualizzato un messaggio di successo.
 ** Se l'operazione SSO non va a buon fine, viene visualizzato un messaggio di errore. Risolvi il problema, cancella i cookie del browser e riprova.
 
 
-. ${post_edited_translations.segment}
+. Ripeti questi passaggi per verificare la connessione SSO per ogni Admin Node nella tua griglia.
 
 
 --
 .PingFederate
 --
 .Passaggi
-. ${post_edited_translations.segment}
+. Dalla pagina Configura SSO, seleziona il primo collegamento nel messaggio Sandbox mode.
 +
-${post_edited_translations.segment}
+Seleziona e testa un collegamento alla volta.
 
-. ${post_edited_translations.segment}
+. Inserisci le credenziali di un utente federato.
 +
-** ${post_edited_translations.segment}
+** Se l'accesso e la disconnessione SSO hanno esito positivo, viene visualizzato un messaggio di successo.
 ** Se l'operazione SSO non va a buon fine, viene visualizzato un messaggio di errore. Risolvi il problema, cancella i cookie del browser e riprova.
 
 
-. ${post_edited_translations.segment}
+. Seleziona il collegamento successivo per verificare la connessione single sign-on per ciascun Admin Node nella tua grid.
 +
 Se visualizzi il messaggio "Pagina scaduta", seleziona il pulsante *Indietro* nel tuo browser e inserisci nuovamente le tue credenziali.
 
@@ -302,19 +302,19 @@ Se visualizzi il messaggio "Pagina scaduta", seleziona il pulsante *Indietro* ne
 [[enable-single-sign-on]]
 == Abilita single sign-on
 
-${post_edited_translations.segment}
+Quando hai confermato che puoi usare il single sign-on (SSO) per accedere a ciascun Admin Node, puoi abilitare il single sign-on (SSO) per l'intero sistema StorageGRID.
 
 
 TIP: Quando l'SSO è abilitato, tutti gli utenti devono utilizzare l'SSO per accedere a Grid Manager, Tenant Manager, Grid Management API e Tenant Management API. Gli utenti locali non possono più accedere a StorageGRID.
 
 .Passaggi
-. ${post_edited_translations.segment}
-. ${post_edited_translations.segment}
+. Dalla fase di configurazione del test della setup wizard SSO, seleziona *Abilita SSO*.
+. Esamina il messaggio di avviso e seleziona *Abilita SSO*.
 +
 Il single sign-on è ora abilitato. Viene visualizzata la pagina Single sign-on, che ora include i dettagli per l'SSO che hai appena configurato.
 
 . Per modificare la configurazione, seleziona *Modifica*.
-. ${post_edited_translations.segment}
+. Per disabilitare il single sign-on, seleziona *Disabilita SSO*.
 
 
 

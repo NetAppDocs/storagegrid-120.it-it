@@ -43,7 +43,7 @@ Devi raccogliere informazioni sulla rete VMware creata per StorageGRID Grid Netw
 * Il metodo utilizzato per assegnare gli indirizzi IP, statico o DHCP.
 +
 ** Se usi indirizzi IP statici, ti servono i dettagli di rete per ogni nodo della grid (indirizzo IP, gateway, netmask).
-** Se usi DHCP, l'indirizzo IP del nodo Admin primario sulla Grid Network. Vedi link:how-grid-nodes-discover-primary-admin-node.html["${post_edited_translations.segment}"] per maggiori informazioni.
+** Se usi DHCP, l'indirizzo IP del nodo Admin primario sulla Grid Network. Vedi link:how-grid-nodes-discover-primary-admin-node.html["Come i nodi della griglia scoprono il nodo Admin primario"] per maggiori informazioni.
 
 
 
@@ -59,7 +59,7 @@ Per i nodi che verranno connessi alla rete di amministrazione opzionale di Stora
 * Il metodo utilizzato per assegnare gli indirizzi IP, statico o DHCP.
 +
 ** Se usi indirizzi IP statici, ti servono i dettagli di rete per ogni nodo della grid (indirizzo IP, gateway, netmask).
-** Se usi DHCP, l'indirizzo IP del nodo Admin primario sulla Grid Network. Vedi link:how-grid-nodes-discover-primary-admin-node.html["${post_edited_translations.segment}"] per maggiori informazioni.
+** Se usi DHCP, l'indirizzo IP del nodo Admin primario sulla Grid Network. Vedi link:how-grid-nodes-discover-primary-admin-node.html["Come i nodi della griglia scoprono il nodo Admin primario"] per maggiori informazioni.
 
 
 * L'elenco delle sottoreti esterne (ESL) per la Admin Network.

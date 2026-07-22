@@ -21,9 +21,9 @@ Il componente Storage del servizio LDR analizza continuamente tutte le copie dei
  a| 
 FPTH
  a| 
-${post_edited_translations.segment}
+Percorso del file
  a| 
-${post_edited_translations.segment}
+Il percorso del file della copia inattesa dell'oggetto.
 
 
 

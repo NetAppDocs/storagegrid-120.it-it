@@ -24,23 +24,23 @@ Per impostazione predefinita, la compressione degli oggetti è disabilitata. Se 
 
 NOTE: Se modifichi questa impostazione, ci vorrà circa un minuto per applicare la nuova impostazione. Il valore configurato viene memorizzato nella cache per performance e scalabilità.
 
-${post_edited_translations.segment}
+Prima di abilitare la compressione, tieni presente quanto segue:
 
-* ${post_edited_translations.segment}
+* Non dovresti selezionare *Comprimi oggetti memorizzati* a meno che tu non sappia che i dati memorizzati sono comprimibili.
 * Le applicazioni che salvano oggetti in StorageGRID potrebbero comprimerli prima di salvarli. Se un'applicazione client ha già compresso un oggetto prima di salvarlo in StorageGRID, selezionando questa opzione la dimensione dell'oggetto non verrà ulteriormente ridotta.
 * Non selezionare *Comprimi oggetti memorizzati* se utilizzi NetApp FabricPool con StorageGRID.
 * Se è selezionata l'opzione *Comprimi oggetti archiviati*, le applicazioni client S3 dovrebbero evitare di eseguire operazioni GetObject che specificano un intervallo di byte da restituire. Queste operazioni di "lettura di intervallo" sono inefficienti perché StorageGRID deve effettivamente decomprimere gli oggetti per accedere ai byte richiesti. Le operazioni GetObject che richiedono un piccolo intervallo di byte da un oggetto molto grande sono particolarmente inefficienti; ad esempio, è inefficiente leggere un intervallo di 10 MB da un oggetto compresso di 50 GB.
 +
-${post_edited_translations.segment}
+Se leggi intervalli da oggetti compressi, le richieste del client possono andare in timeout.
 
 +
 
-NOTE: ${post_edited_translations.segment}
+NOTE: Se hai bisogno di comprimere gli oggetti e la tua applicazione client deve utilizzare letture di intervallo, aumenta il timeout di lettura per l'applicazione.
 
 
 
 .Passaggi
 . Seleziona *Configurazione* > *Sistema* > *Impostazioni di storage* > *Object compression*.
-. ${post_edited_translations.segment}
+. Seleziona la casella di controllo *Compressione degli oggetti memorizzati*.
 . Seleziona *Salva*.
 

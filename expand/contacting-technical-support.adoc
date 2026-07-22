@@ -13,10 +13,10 @@ summary: 'Se riscontri errori durante il processo di espansione della griglia ch
 [role="lead"]
 Se riscontri errori durante il processo di espansione della griglia che non riesci a risolvere, o se un'attività della griglia non riesce, raccogli i file di registro e contatta il supporto tecnico.
 
-${post_edited_translations.segment}
+Prima di contattare il supporto tecnico, raccogli i file di registro necessari per facilitare la risoluzione dei problemi.
 
 .Passaggi
-. L'accesso SSH esterno è bloccato per impostazione predefinita. Se necessario, link:../admin/manage-external-ssh-access.html["${post_edited_translations.segment}"].
+. L'accesso SSH esterno è bloccato per impostazione predefinita. Se necessario, link:../admin/manage-external-ssh-access.html["Consenti temporaneamente l'accesso"].
 . Connettiti al nodo di espansione che ha riscontrato problemi:
 +
 .. Inserisci il seguente comando:``ssh -p 8022 admin@_grid_node_IP_``
@@ -35,7 +35,7 @@ Dopo aver effettuato l'accesso come root, il prompt cambia da  `$` a  `#`.
 +
 [cols="1a,2a"]
 |===
-| Piattaforma | ${post_edited_translations.segment} 
+| Piattaforma | Registri 
 
 
  a| 

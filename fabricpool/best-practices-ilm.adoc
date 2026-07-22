@@ -14,7 +14,7 @@ summary: 'Se utilizzi FabricPool per spostare i dati in tier su StorageGRID, dev
 Se utilizzi FabricPool per spostare i dati in tier su StorageGRID, devi comprendere i requisiti per l'utilizzo della gestione del ciclo di vita delle informazioni (ILM) di StorageGRID con i dati FabricPool.
 
 
-CAUTION: FabricPool non è a conoscenza delle regole o delle policy ILM di StorageGRID. Se la policy ILM di StorageGRID è configurata in modo errato, si può verificare una perdita di dati. Per informazioni dettagliate, consulta link:../ilm/what-ilm-rule-is.html["${post_edited_translations.segment}"] e link:../ilm/creating-ilm-policy.html["${post_edited_translations.segment}"].
+CAUTION: FabricPool non è a conoscenza delle regole o delle policy ILM di StorageGRID. Se la policy ILM di StorageGRID è configurata in modo errato, si può verificare una perdita di dati. Per informazioni dettagliate, consulta link:../ilm/what-ilm-rule-is.html["Usa le regole ILM per gestire gli oggetti"] e link:../ilm/creating-ilm-policy.html["Crea le policy ILM"].
 
 
 
@@ -27,7 +27,7 @@ Se configuri StorageGRID manualmente invece di usare il FabricPool setup wizard,
 
 * Puoi usare qualsiasi combinazione di regole di replica e di codifica di cancellazione per proteggere i dati del livello cloud.
 +
-La best practice consigliata è utilizzare la codifica di cancellazione 2+1 all'interno di un sito per una protezione dei dati conveniente. La codifica di cancellazione utilizza più CPU, ma offre una capacità di archiviazione significativamente inferiore rispetto alla replica. Gli schemi 4+1 e 6+1 utilizzano meno capacità rispetto allo schema 2+1. Tuttavia, gli schemi 4+1 e 6+1 sono meno flessibili se devi aggiungere Storage Nodes durante l'espansione della grid. Per dettagli, vedi link:../expand/adding-storage-capacity-for-erasure-coded-objects.html["${post_edited_translations.segment}"].
+La best practice consigliata è utilizzare la codifica di cancellazione 2+1 all'interno di un sito per una protezione dei dati conveniente. La codifica di cancellazione utilizza più CPU, ma offre una capacità di archiviazione significativamente inferiore rispetto alla replica. Gli schemi 4+1 e 6+1 utilizzano meno capacità rispetto allo schema 2+1. Tuttavia, gli schemi 4+1 e 6+1 sono meno flessibili se devi aggiungere Storage Nodes durante l'espansione della grid. Per dettagli, vedi link:../expand/adding-storage-capacity-for-erasure-coded-objects.html["Aggiungi capacità di archiviazione per oggetti codificati a cancellazione"].
 
 * Ogni regola applicata ai dati FabricPool deve utilizzare la codifica di cancellazione oppure deve creare almeno due copie replicate.
 +

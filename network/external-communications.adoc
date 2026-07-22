@@ -25,7 +25,7 @@ Se le policy di rete aziendali limitano l'accesso a una qualsiasi delle porte, p
 
 
 
-NOTE: Il supporto per la rimappatura delle porte è obsoleto e verrà rimosso in una versione futura. Per rimuovere le porte rimappate, consulta link:../maintain/removing-port-remaps.html["Rimuovi le rimappature delle porte sui dispositivi StorageGRID"] o link:../maintain/removing-port-remaps-on-bare-metal-hosts.html["${post_edited_translations.segment}"].
+NOTE: Il supporto per la rimappatura delle porte è obsoleto e verrà rimosso in una versione futura. Per rimuovere le porte rimappate, consulta link:../maintain/removing-port-remaps.html["Rimuovi le rimappature delle porte sui dispositivi StorageGRID"] o link:../maintain/removing-port-remaps-on-bare-metal-hosts.html["Rimuovi le rimappature delle porte sugli host bare metal"].
 
 * link:../swnodes/creating-node-configuration-files.html["Chiavi di rimappatura delle porte per StorageGRID su Red Hat Enterprise Linux"]
 * link:../swnodes/deploying-storagegrid-node-as-virtual-machine.html#vmware-remap-ports["Rimappa le porte per StorageGRID su VMware"]
@@ -265,7 +265,7 @@ Nodi di amministrazione
  a| 
 Utilizzato dai browser web e dai client API di gestione per accedere a Grid Manager e Tenant Manager.
 
-*Nota*: Se chiudi le porte 443 o 8443 di Grid Manager, tutti gli utenti attualmente connessi su una porta bloccata, incluso te, perderanno l'accesso a Grid Manager a meno che il loro indirizzo IP non sia stato aggiunto all'elenco degli indirizzi privilegiati. Consulta link:../admin/configure-firewall-controls.html["${post_edited_translations.segment}"] per configurare gli indirizzi IP privilegiati.
+*Nota*: Se chiudi le porte 443 o 8443 di Grid Manager, tutti gli utenti attualmente connessi su una porta bloccata, incluso te, perderanno l'accesso a Grid Manager a meno che il loro indirizzo IP non sia stato aggiunto all'elenco degli indirizzi privilegiati. Consulta link:../admin/configure-firewall-controls.html["Configura i controlli del firewall"] per configurare gli indirizzi IP privilegiati.
 
 
 
@@ -359,7 +359,7 @@ Nodi di amministrazione
  a| 
 Opzionale. Utilizzato dai browser web e dai client API di gestione per accedere al Grid Manager. Può essere utilizzato per separare le comunicazioni tra Grid Manager e Tenant Manager.
 
-*Nota*: Se chiudi le porte 443 o 8443 di Grid Manager, tutti gli utenti attualmente connessi su una porta bloccata, incluso te, perderanno l'accesso a Grid Manager a meno che il loro indirizzo IP non sia stato aggiunto all'elenco degli indirizzi privilegiati. Consulta link:../admin/configure-firewall-controls.html["${post_edited_translations.segment}"] per configurare gli indirizzi IP privilegiati.
+*Nota*: Se chiudi le porte 443 o 8443 di Grid Manager, tutti gli utenti attualmente connessi su una porta bloccata, incluso te, perderanno l'accesso a Grid Manager a meno che il loro indirizzo IP non sia stato aggiunto all'elenco degli indirizzi privilegiati. Consulta link:../admin/configure-firewall-controls.html["Configura i controlli del firewall"] per configurare gli indirizzi IP privilegiati.
 
 
 

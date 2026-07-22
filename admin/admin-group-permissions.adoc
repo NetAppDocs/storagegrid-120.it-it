@@ -59,16 +59,16 @@ NOTE: Per concedere l'accesso alla pagina Tenant, che contiene l'opzione *Cambia
 Questa autorizzazione consente l'accesso alle seguenti opzioni del menu *ILM*:
 
 * Regole
-* ${post_edited_translations.segment}
+* Politiche
 * Tag dei criteri
 * Pool di storage
 * classi di storage
 * Regioni
-* ${post_edited_translations.segment}
+* Ricerca dei metadati dell'oggetto
 
 
 
-NOTE: ${post_edited_translations.segment}
+NOTE: Gli utenti devono avere l'autorizzazione *Other grid configuration* per gestire i storage grades.
 
 
 
@@ -79,60 +79,60 @@ Gli utenti devono avere l'autorizzazione di manutenzione per usare queste opzion
 
 * *Configurazione* > *Controllo accessi*:
 +
-** ${post_edited_translations.segment}
+** password Grid
 
 
 * *Configurazione* > *Rete*:
 +
-** ${post_edited_translations.segment}
+** nomi di dominio degli endpoint S3
 
 
 * *Manutenzione* > *Attività*:
 +
-** ${post_edited_translations.segment}
+** Dismissione
 ** Espansione
 ** Verifica dell'esistenza dell'oggetto
 ** Recupero
 
 
-* ${post_edited_translations.segment}
+* *Manutenzione* > *Sistema*:
 +
-** ${post_edited_translations.segment}
-** ${post_edited_translations.segment}
+** Pacchetto di recupero
+** Aggiornamento software
 
 
 * *Support* > *Strumenti*:
 +
-** ${post_edited_translations.segment}
+** Registri
 
 
 
 
 Gli utenti che non dispongono dell'autorizzazione di manutenzione possono visualizzare, ma non modificare, queste pagine:
 
-* ${post_edited_translations.segment}
+* *Manutenzione* > *Rete*:
 +
 ** Server DNS
-** ${post_edited_translations.segment}
+** Rete Grid
 ** Server NTP
 
 
-* ${post_edited_translations.segment}
+* *Manutenzione* > *Sistema*:
 +
 ** Licenza
 
 
 * *Configurazione* > *Rete*:
 +
-** ${post_edited_translations.segment}
+** nomi di dominio degli endpoint S3
 
 
-* ${post_edited_translations.segment}
+* *Configurazione* > *Sicurezza*:
 +
 ** Certificati
 
 
-* ${post_edited_translations.segment}
+* *Configurazione* > *Monitoraggio*:
 +
 ** Server di audit e syslog
 
@@ -149,9 +149,9 @@ Questa autorizzazione consente di accedere alle opzioni per la gestione degli av
 
 
 [[metrics-query]]
-== ${post_edited_translations.segment}
+== Query sulle metriche
 
-${post_edited_translations.segment}
+Questa autorizzazione consente l'accesso a:
 
 * *Support* > *Strumenti* > *Metriche* page
 * Query personalizzate delle metriche di Prometheus usando la sezione *Metriche* della Grid Management API
@@ -161,7 +161,7 @@ ${post_edited_translations.segment}
 
 
 [[object-metadata-lookup]]
-== ${post_edited_translations.segment}
+== Ricerca dei metadati dell'oggetto
 
 Questa autorizzazione consente l'accesso alla pagina *ILM* > *Ricerca metadati oggetto*.
 
@@ -170,7 +170,7 @@ Questa autorizzazione consente l'accesso alla pagina *ILM* > *Ricerca metadati o
 [[other-grid-configuration]]
 == Altre configurazioni della griglia
 
-${post_edited_translations.segment}
+Questa autorizzazione consente l'accesso a queste opzioni aggiuntive di configurazione della griglia:
 
 * *ILM*:
 +
@@ -188,7 +188,7 @@ ${post_edited_translations.segment}
 
 
 [[storage-appliance-administrator]]
-== ${post_edited_translations.segment}
+== Amministratore dell'appliance di storage
 
 Questa autorizzazione consente di:
 
@@ -201,9 +201,9 @@ Questa autorizzazione consente di:
 [[tenant-accounts]]
 == Account tenant
 
-${post_edited_translations.segment}
+Questa autorizzazione ti permette di:
 
-* ${post_edited_translations.segment}
+* Accedi alla pagina Tenant, dove puoi creare, modificare e rimuovere account tenant
 * Visualizza le politiche di classificazione del traffico esistenti
-* ${post_edited_translations.segment}
+* Visualizza le schede del dashboard di Grid Manager che contengono i dettagli del tenant
 

@@ -2,7 +2,7 @@
 permalink: admin/kms-considerations-and-requirements.html 
 sidebar: sidebar 
 keywords: Key Management Interoperability Protocol, kmip version, kms requirements, use key management server 
-summary: ${post_edited_translations.segment} 
+summary: 'Prima di configurare un server di gestione delle chiavi (KMS) esterno, devi comprenderne le considerazioni e i requisiti.' 
 ---
 = Requisiti e considerazioni relativi al server di gestione delle chiavi StorageGRID
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: ${post_edited_translations.segment}
 
 
 [role="lead"]
-${post_edited_translations.segment}
+Prima di configurare un server di gestione delle chiavi (KMS) esterno, devi comprenderne le considerazioni e i requisiti.
 
 
 
@@ -29,7 +29,7 @@ http://docs.oasis-open.org/kmip/spec/v1.4/os/kmip-spec-v1.4-os.html["Specifiche 
 
 Le impostazioni del firewall di rete devono consentire a ciascun nodo dell'appliance di comunicare attraverso la porta utilizzata per le comunicazioni Key Management Interoperability Protocol (KMIP). La porta KMIP predefinita è 5696.
 
-${post_edited_translations.segment}
+Devi assicurarti che ogni nodo dell'appliance che utilizza la crittografia del nodo abbia accesso di rete al KMS o al cluster KMS che hai configurato per il sito.
 
 
 
@@ -52,10 +52,10 @@ NOTE: Non puoi abilitare la crittografia dei nodi dopo che un appliance è stato
 
 Puoi usare il KMS configurato per gli appliance e i nodi appliance di StorageGRID.
 
-${post_edited_translations.segment}
+Non puoi usare il KMS configurato per i nodi basati su software (non appliance), inclusi i seguenti:
 
 * Nodi distribuiti come macchine virtuali (VM)
-* ${post_edited_translations.segment}
+* Nodi distribuiti all'interno di motori di container su host Linux
 
 
 I nodi distribuiti su queste altre piattaforme possono utilizzare la crittografia al di fuori di StorageGRID a livello di datastore o disco.
@@ -103,7 +103,7 @@ Quando è disponibile la nuova versione della chiave:
 [[can-i-reuse-an-appliance-node-after-it-has-been-encrypted]]
 == Posso riutilizzare un nodo dell'appliance dopo che è stato crittografato?
 
-Se hai bisogno di installare un'appliance crittografata in un altro sistema StorageGRID, devi prima decommissionare il nodo grid per spostare i dati oggetto su un altro nodo. Quindi, puoi utilizzare StorageGRID Appliance Installer per https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/monitoring-node-encryption-in-maintenance-mode.html["${post_edited_translations.segment}"^]. La cancellazione della configurazione KMS disabilita l'impostazione *Node Encryption* e rimuove l'associazione tra il nodo dell'appliance e la configurazione KMS per il sito StorageGRID.
+Se hai bisogno di installare un'appliance crittografata in un altro sistema StorageGRID, devi prima decommissionare il nodo grid per spostare i dati oggetto su un altro nodo. Quindi, puoi utilizzare StorageGRID Appliance Installer per https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/monitoring-node-encryption-in-maintenance-mode.html["cancella la configurazione KMS"^]. La cancellazione della configurazione KMS disabilita l'impostazione *Node Encryption* e rimuove l'associazione tra il nodo dell'appliance e la configurazione KMS per il sito StorageGRID.
 
 
 NOTE: Senza accesso alla chiave di crittografia KMS, tutti i dati presenti sul dispositivo non sono più accessibili e sono bloccati in modo permanente.

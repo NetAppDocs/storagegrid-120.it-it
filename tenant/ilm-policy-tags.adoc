@@ -24,11 +24,11 @@ NOTE: Evita di riassegnare frequentemente il tag di policy di un bucket. Altrime
 
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Seleziona *Visualizza bucket* dalla dashboard oppure seleziona *STORAGE (S3)* > *Buckets*.
 +
 Viene visualizzata la pagina Bucket. Se necessario, puoi ordinare le informazioni in base a qualsiasi colonna oppure puoi scorrere avanti e indietro l'elenco.
 
-. ${post_edited_translations.segment}
+. Seleziona il nome del bucket a cui vuoi assegnare un tag di policy ILM.
 +
 Puoi anche modificare l'assegnazione del tag della policy ILM per un bucket a cui è già stato assegnato un tag.
 
@@ -37,12 +37,12 @@ Puoi anche modificare l'assegnazione del tag della policy ILM per un bucket a cu
 NOTE: I valori visualizzati per il numero di oggetti e lo spazio utilizzato sono stime. Queste stime sono influenzate dal momento dell'ingestione, dalla connettività di rete e dallo stato dei nodi. Se i bucket hanno il versioning abilitato, le versioni degli oggetti eliminati sono incluse nel conteggio degli oggetti.
 
 . Nella scheda Opzioni bucket, espandi il menu a fisarmonica Tag policy ILM. Questo menu a fisarmonica viene visualizzato solo se l'amministratore della griglia ha abilitato l'utilizzo di tag policy personalizzati.
-. ${post_edited_translations.segment}
+. Leggi la descrizione di ciascun tag di policy per determinare quale tag applicare al bucket.
 +
 
 CAUTION: La modifica del tag della policy ILM per un bucket attiverà una rivalutazione di ILM di tutti gli oggetti nel bucket. Se la nuova policy conserva gli oggetti per un periodo di tempo limitato, gli oggetti più vecchi saranno eliminati.
 
-. ${post_edited_translations.segment}
+. Seleziona il pulsante di opzione per il tag che vuoi assegnare al bucket.
 . Seleziona *Salva modifiche*. Un nuovo tag del bucket S3 verrà impostato sul bucket con la chiave `NTAP-SG-ILM-BUCKET-TAG` e il valore del nome del tag del criterio ILM.
 +
 

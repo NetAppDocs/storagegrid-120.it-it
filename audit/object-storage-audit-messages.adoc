@@ -31,7 +31,7 @@ link:bror-bucket-read-only-request.html["BROR: Richiesta di sola lettura del buc
 
 
  a| 
-${post_edited_translations.segment}
+CBSE
  a| 
 Fine invio oggetto: l'entità sorgente ha completato un'operazione di trasferimento dati da nodo griglia a nodo griglia.
  a| 
@@ -60,35 +60,35 @@ link:cgrr-cross-grid-replication-request.html["CGRR: Richiesta di replica cross-
  a| 
 EBDL
  a| 
-${post_edited_translations.segment}
+Eliminazione del bucket vuoto: lo scanner ILM ha eliminato un oggetto in un bucket che sta eliminando tutti gli oggetti (eseguendo un'operazione di svuotamento del bucket).
  a| 
 link:ebdl-empty-bucket-delete.html["EBDL: Eliminazione del bucket vuoto"]
 
 
 
  a| 
-${post_edited_translations.segment}
+EBKR
  a| 
 Richiesta di svuotamento del bucket: un utente ha inviato una richiesta per attivare o disattivare lo svuotamento del bucket (ovvero per eliminare gli oggetti del bucket o per interrompere l'eliminazione degli oggetti).
  a| 
-link:ebkr-empty-bucket-request.html["${post_edited_translations.segment}"]
+link:ebkr-empty-bucket-request.html["EBKR: Richiesta di bucket vuoto"]
 
 
 
  a| 
 SCMT
  a| 
-${post_edited_translations.segment}
+Object Store Commit: un blocco di contenuto è stato completamente memorizzato e verificato e ora può essere richiesto.
  a| 
 link:scmt-object-store-commit.html["SCMT: Richiesta di commit dell'object store"]
 
 
 
  a| 
-${post_edited_translations.segment}
+SREM
  a| 
-${post_edited_translations.segment}
+Rimozione dall'object store: un blocco di contenuto è stato eliminato da un nodo della griglia e non può più essere richiesto direttamente.
  a| 
-link:srem-object-store-remove.html["${post_edited_translations.segment}"]
+link:srem-object-store-remove.html["SREM: Rimozione dell'Object Store"]
 
 |===

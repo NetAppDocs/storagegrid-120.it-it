@@ -2,7 +2,7 @@
 permalink: audit/data-types.html 
 sidebar: sidebar 
 keywords: storagegrid, audit, message, data, types, UI32, UI64, FC32, IPAD, CSTR, IPAD 
-summary: ${post_edited_translations.segment} 
+summary: Nei messaggi di controllo vengono utilizzati diversi tipi di dati per memorizzare le informazioni. 
 ---
 = Tipi di dati nei messaggi di controllo StorageGRID
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: ${post_edited_translations.segment}
 
 
 [role="lead"]
-${post_edited_translations.segment}
+Nei messaggi di controllo vengono utilizzati diversi tipi di dati per memorizzare le informazioni.
 
 [cols="1a,4a"]
 |===
@@ -47,7 +47,7 @@ Usato per gli indirizzi IP.
 
 
  a| 
-${post_edited_translations.segment}
+CSTR
  a| 
 Un array di caratteri UTF-8 a lunghezza variabile. I caratteri possono essere codificati secondo le seguenti convenzioni:
 

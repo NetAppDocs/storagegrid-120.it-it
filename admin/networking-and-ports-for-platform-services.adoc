@@ -17,15 +17,15 @@ Puoi abilitare i servizi della piattaforma per un account tenant S3 quando crei 
 
 Ad esempio, i tenant potrebbero configurare i seguenti tipi di endpoint di destinazione:
 
-* ${post_edited_translations.segment}
-* ${post_edited_translations.segment}
+* Un cluster Elasticsearch ospitato localmente
+* Un'applicazione locale che supporta la ricezione di messaggi Amazon Simple Notification Service
 * Un cluster Kafka in locale
 * Un endpoint webhook esterno o ospitato localmente che supporta richieste di notifica HTTP POST.
 +
 Questo endpoint può essere ospitato su vari server web, framework o strumenti di elaborazione dati come Fluentd.
 
-* ${post_edited_translations.segment}
-* ${post_edited_translations.segment}
+* Un bucket S3 ospitato localmente sulla stessa o su un'altra istanza di StorageGRID
+* Un endpoint esterno, come un endpoint su Amazon Web Services.
 
 
 Per garantire che i messaggi dei servizi della piattaforma possano essere consegnati, devi configurare la rete o le reti che contengono i nodi di archiviazione ADC. Devi assicurarti che le seguenti porte possano essere utilizzate per inviare i messaggi dei servizi della piattaforma agli endpoint di destinazione.

@@ -26,7 +26,7 @@ Per migliorare la sicurezza del sistema, l'accesso SSH esterno è bloccato per i
 . Seleziona la scheda *Blocca SSH*.
 . Usa l'opzione *Blocca l'accesso SSH in entrata* per gestire l'accesso SSH esterno:
 +
-.. ${post_edited_translations.segment}
+.. Seleziona la casella di controllo per bloccare l'accesso (impostazione predefinita).
 .. Deseleziona la casella di controllo per consentire l'accesso.
 +
 

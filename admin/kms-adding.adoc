@@ -2,7 +2,7 @@
 permalink: admin/kms-adding.html 
 sidebar: sidebar 
 keywords: add kms, key management server 
-summary: ${post_edited_translations.segment} 
+summary: Usi la procedura guidata StorageGRID Key Management Server per aggiungere ogni KMS o cluster KMS. 
 ---
 = Aggiungi un server di gestione delle chiavi in StorageGRID
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: ${post_edited_translations.segment}
 
 
 [role="lead"]
-${post_edited_translations.segment}
+Usi la procedura guidata StorageGRID Key Management Server per aggiungere ogni KMS o cluster KMS.
 
 .Prima di iniziare
 * Hai esaminato il link:kms-considerations-and-requirements.html["Considerazioni e requisiti per l'utilizzo di un key management server"].
@@ -26,7 +26,7 @@ Se possibile, configura prima i server di gestione delle chiavi specifici del si
 
 
 [[step-1-kms-details]]
-== ${post_edited_translations.segment}
+== Passaggio 1: Dettagli KMS
 
 Nel passaggio 1 (Dettagli KMS) della procedura guidata Aggiungi un Key Management Server, fornisci i dettagli relativi al KMS o al cluster KMS.
 
@@ -91,7 +91,7 @@ Il fully qualified domain name o l'indirizzo IP del KMS.
 *Nota:* il campo Subject Alternative Name (SAN) del certificato del server deve includere l'FQDN o l'indirizzo IP che inserisci qui. In caso contrario, StorageGRID non sarà in grado di connettersi al KMS o a tutti i server in un cluster KMS.
 
 |===
-. ${post_edited_translations.segment}
+. Se stai configurando un cluster KMS, seleziona *Aggiungi un altro nome host* per aggiungere un nome host per ogni server del cluster.
 . Seleziona *Continue*.
 
 
@@ -110,7 +110,7 @@ Vengono visualizzati i metadati del certificato del server.
 
 +
 
-NOTE: ${post_edited_translations.segment}
+NOTE: Se hai caricato un pacchetto di certificati, i metadati di ciascun certificato vengono visualizzati in una scheda separata.
 
 . Seleziona *Continue*.
 
@@ -124,7 +124,7 @@ Nel passaggio 3 (Caricamento dei certificati client) della procedura guidata Agg
 
 .Passaggi
 . Dal *Passaggio 3 (Carica i certificati client)*, vai alla posizione del certificato client.
-. ${post_edited_translations.segment}
+. Carica il file del certificato client.
 +
 Vengono visualizzati i metadati del certificato client.
 
@@ -143,9 +143,9 @@ NOTE: Subito dopo che aggiungi un KMS, lo stato del certificato nella pagina Key
 
 . Se viene visualizzato un messaggio di errore quando selezioni *Verifica e salva*, controlla i dettagli del messaggio e poi seleziona *OK*.
 +
-${post_edited_translations.segment}
+Ad esempio, potresti ricevere un errore 422: Unprocessable Entity se un test di connessione non è riuscito.
 
-. ${post_edited_translations.segment}
+. Se devi salvare la configurazione corrente senza testare la connessione esterna, seleziona *Force save*.
 +
 
 CAUTION: Se selezioni *Force save* salvi la configurazione KMS, ma la connessione esterna da ciascuna appliance a quel KMS non viene testata. In caso di problemi con la configurazione, potresti non essere in grado di riavviare i nodi appliance che hanno la crittografia dei nodi abilitata nel sito interessato. Potresti perdere l'accesso ai dati fino alla risoluzione dei problemi.

@@ -19,7 +19,7 @@ Quando un client S3 invia una transazione PUT, viene effettuata una richiesta pe
 
 
  a| 
-${post_edited_translations.segment}
+CBID
  a| 
 Identificatore del blocco di contenuto
  a| 
@@ -30,14 +30,14 @@ L'identificativo univoco del blocco di contenuto richiesto. Se il CBID è sconos
  a| 
 CMPS
  a| 
-${post_edited_translations.segment}
+Impostazioni di conformità
  a| 
 Le impostazioni di conformità utilizzate durante la creazione del bucket, se presenti nella richiesta (troncate ai primi 1024 caratteri).
 
 
 
  a| 
-${post_edited_translations.segment}
+CNCH
  a| 
 Intestazione di controllo della coerenza
  a| 
@@ -57,7 +57,7 @@ L'identificativo univoco del sistema per la connessione TCP/IP.
  a| 
 CSIZ
  a| 
-${post_edited_translations.segment}
+Dimensione del contenuto
  a| 
 La dimensione dell'oggetto recuperato in byte. Le operazioni sui bucket non includono questo campo.
 
@@ -66,7 +66,7 @@ La dimensione dell'oggetto recuperato in byte. Le operazioni sui bucket non incl
  a| 
 GFID
  a| 
-${post_edited_translations.segment}
+ID di connessione alla federazione di griglia
  a| 
 L'ID di connessione della connessione di federazione della griglia associata a una richiesta PUT di replica tra griglie. Incluso solo nei log di controllo sulla griglia di destinazione.
 
@@ -82,9 +82,9 @@ L'ID dell'account del tenant sulla griglia di origine per una richiesta PUT di r
 
 
  a| 
-${post_edited_translations.segment}
+HTRH
  a| 
-${post_edited_translations.segment}
+Intestazione della richiesta HTTP
  a| 
 Elenco dei nomi e dei valori delle intestazioni delle richieste HTTP registrate come selezionato durante la configurazione.
 
@@ -104,7 +104,7 @@ Valore dell'intestazione della richiesta  `x-amz-bucket-object-lock-enabled`, se
 
 
  a| 
-${post_edited_translations.segment}
+LKLH
  a| 
 Legal Hold di Object Lock
  a| 
@@ -115,7 +115,7 @@ Valore dell'intestazione della richiesta  `x-amz-object-lock-legal-hold`, se pre
  a| 
 LKMD
  a| 
-${post_edited_translations.segment}
+Modalità di conservazione del blocco oggetto
  a| 
 Valore dell'intestazione della richiesta  `x-amz-object-lock-mode`, se presente nella richiesta PutObject.
 
@@ -131,18 +131,18 @@ Valore dell'intestazione della richiesta `x-amz-object-lock-retain-until-date`, 
 
 
  a| 
-${post_edited_translations.segment}
+MTME
  a| 
 Ultima modifica
  a| 
-${post_edited_translations.segment}
+Il timestamp Unix, in microsecondi, che indica quando l'oggetto è stato modificato l'ultima volta.
 
 
 
  a| 
 RSLT
  a| 
-${post_edited_translations.segment}
+Codice risultato
  a| 
 Risultato della transazione PUT. Il risultato è sempre:
 
@@ -196,7 +196,7 @@ Il bucket o la sottorisorsa oggetto su cui stai operando, se applicabile.
 
 
  a| 
-${post_edited_translations.segment}
+SACC
  a| 
 Nome account tenant S3 (mittente della richiesta)
  a| 
@@ -207,9 +207,9 @@ Il nome dell'account tenant per l'utente che ha inviato la richiesta. Vuoto per 
  a| 
 SAIP
  a| 
-${post_edited_translations.segment}
+Indirizzo IP (mittente della richiesta)
  a| 
-${post_edited_translations.segment}
+L'indirizzo IP dell'applicazione client che ha effettuato la richiesta.
 
 
 
@@ -247,7 +247,7 @@ URN utente S3 (mittente della richiesta)
  a| 
 L'ID account tenant e il nome utente dell'utente che effettua la richiesta. L'utente può essere un utente locale o un utente LDAP. Per esempio: `urn:sgws:identity::03393893651506583485:root`
 
-${post_edited_translations.segment}
+Vuoto per le richieste anonime.
 
 
 
@@ -288,7 +288,7 @@ L'identificativo dell'oggetto all'interno del sistema StorageGRID.
 
 
  a| 
-${post_edited_translations.segment}
+VSID
  a| 
 ID versione
  a| 
@@ -299,7 +299,7 @@ L'ID di versione di un nuovo oggetto creato in un bucket con versione. Le operaz
  a| 
 VSST
  a| 
-${post_edited_translations.segment}
+Stato della versione
  a| 
 Il nuovo stato di versioning di un bucket. Vengono utilizzati due stati: "abilitato" o "sospeso". Le operazioni sugli oggetti non includono questo campo.
 

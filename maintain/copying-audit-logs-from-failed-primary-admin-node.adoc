@@ -34,7 +34,7 @@ Quando sei connesso come root, il prompt cambia da  `$` a  `#`.
 
 
 . Interrompi il servizio AMS per impedirgli di creare un nuovo file di log:``service ams stop``
-. ${post_edited_translations.segment}
+. Vai alla directory di esportazione degli audit:
 +
 `cd /var/local/audit/export`
 

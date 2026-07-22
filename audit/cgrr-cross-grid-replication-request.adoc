@@ -32,7 +32,7 @@ L'attributo CSIZ è stato introdotto in StorageGRID 11.8. Di conseguenza, le ric
  a| 
 S3AI
  a| 
-${post_edited_translations.segment}
+ID account tenant S3
  a| 
 L'ID del tenant che possiede il bucket da cui viene replicato l'oggetto.
 
@@ -48,7 +48,7 @@ L'ID della connessione di federazione della griglia utilizzata per la replica tr
 
 
  a| 
-${post_edited_translations.segment}
+OPER
  a| 
 Operazione CGR
  a| 
@@ -80,7 +80,7 @@ Il nome della chiave S3, escluso il nome del bucket.
 
 
  a| 
-${post_edited_translations.segment}
+VSID
  a| 
 ID versione
  a| 
@@ -91,7 +91,7 @@ L'ID della versione specifica di un oggetto che veniva replicata.
  a| 
 RSLT
  a| 
-${post_edited_translations.segment}
+Codice risultato
  a| 
 Restituisce successo (SUCS) o errore generale (GERR).
 

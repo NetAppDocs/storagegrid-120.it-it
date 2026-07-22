@@ -57,17 +57,17 @@ Viene visualizzata la pagina dei dettagli del bucket.
 
 
 [[what-happens-when-you-change-bucket-settings]]
-== ${post_edited_translations.segment}
+== Cosa succede quando cambi le impostazioni del bucket
 
-${post_edited_translations.segment}
+I bucket hanno diverse impostazioni che influenzano il comportamento dei bucket e degli oggetti al loro interno.
 
 Le seguenti impostazioni del bucket utilizzano la coerenza *forte* per impostazione predefinita. Se due o più Storage Node non sono disponibili in un sito, o se un sito non è disponibile, eventuali modifiche a queste impostazioni potrebbero non essere disponibili.
 
-* link:deleting-s3-bucket-objects.html["${post_edited_translations.segment}"]
+* link:deleting-s3-bucket-objects.html["Eliminazione in background del bucket vuoto"]
 * link:enabling-or-disabling-last-access-time-updates.html["Ultimo accesso"]
 * link:../s3/create-s3-lifecycle-configuration.html["Ciclo di vita del bucket"]
 * link:../s3/use-access-policies.html["Criteri del bucket"]
-* link:../s3/operations-on-buckets.html["${post_edited_translations.segment}"]
+* link:../s3/operations-on-buckets.html["Tag dei bucket"]
 * link:changing-bucket-versioning.html["Versioning del bucket"]
 * link:using-s3-object-lock.html["Blocco oggetto S3"]
 * link:../admin/reviewing-storagegrid-encryption-methods.html#bucket-encryption-table["Crittografia del bucket"]
@@ -78,10 +78,10 @@ NOTE: Il valore di coerenza per il versioning dei bucket, il blocco degli oggett
 
 Le seguenti impostazioni dei bucket non utilizzano la coerenza forte e presentano una maggiore disponibilità alle modifiche. Le modifiche a queste impostazioni potrebbero richiedere del tempo prima di avere effetto.
 
-* link:considerations-for-platform-services.html["${post_edited_translations.segment}"]
-* link:configuring-cross-origin-resource-sharing-for-buckets-and-objects.html["${post_edited_translations.segment}"]
+* link:considerations-for-platform-services.html["Configurazione dei servizi della piattaforma: Notifica, Replica o integrazione con Search"]
+* link:configuring-cross-origin-resource-sharing-for-buckets-and-objects.html["Configura StorageGRID CORS per bucket e oggetti"]
 * <<change-bucket-consistency,Modifica la coerenza del bucket>>
 
 
 
-TIP: Se la coerenza predefinita utilizzata durante la modifica delle impostazioni del bucket non soddisfa i requisiti dell'applicazione client, puoi modificare la coerenza utilizzando l'intestazione  `Consistency-Control` per link:../s3/put-bucket-consistency-request.html["${post_edited_translations.segment}"] o utilizzando le opzioni  `reducedConsistency` o  `force` in link:understanding-tenant-management-api.html["API di gestione tenant"].
+TIP: Se la coerenza predefinita utilizzata durante la modifica delle impostazioni del bucket non soddisfa i requisiti dell'applicazione client, puoi modificare la coerenza utilizzando l'intestazione  `Consistency-Control` per link:../s3/put-bucket-consistency-request.html["API REST S3"] o utilizzando le opzioni  `reducedConsistency` o  `force` in link:understanding-tenant-management-api.html["API di gestione tenant"].

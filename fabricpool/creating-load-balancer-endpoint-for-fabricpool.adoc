@@ -24,7 +24,7 @@ Per usare il setup wizard di FabricPool per completare questa attività, vai a l
 
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Seleziona *Configurazione* > *Rete* > *Endpoint del bilanciatore di carico*.
 . Seleziona *Create*.
 . Per la fase *Inserisci i dettagli dell'endpoint*, compila i seguenti campi.
 +
@@ -52,7 +52,7 @@ Fornirai questo numero a ONTAP quando associ StorageGRID come tier cloud FabricP
 
 
  a| 
-${post_edited_translations.segment}
+Tipo di client
  a| 
 Seleziona *S3*.
 
@@ -74,7 +74,7 @@ Seleziona *HTTPS*.
 
 
  a| 
-${post_edited_translations.segment}
+Globale (predefinito)
  a| 
 I client possono accedere all'endpoint utilizzando l'indirizzo IP di qualsiasi Gateway Node o Admin Node, l'indirizzo IP virtuale (VIP) di qualsiasi gruppo HA su qualsiasi rete o un FQDN corrispondente.
 
@@ -92,7 +92,7 @@ Gli endpoint con questa modalità di binding possono utilizzare tutti lo stesso 
 
 
  a| 
-${post_edited_translations.segment}
+Interfacce dei nodi
  a| 
 I client devono utilizzare gli indirizzi IP (o i corrispondenti FQDN) delle interfacce dei nodi selezionati per accedere a questo endpoint.
 
@@ -123,7 +123,7 @@ Devi selezionare questa opzione se non hai ancora creato alcun account tenant.
 
 
  a| 
-${post_edited_translations.segment}
+Consenti agli inquilini selezionati
  a| 
 Solo i tenant account selezionati possono utilizzare questo endpoint per accedere ai propri bucket.
 
@@ -152,7 +152,7 @@ Utilizza questa opzione per caricare un certificato server firmato da una CA, la
  a| 
 Genera certificato
  a| 
-Utilizza questa opzione per generare un certificato autofirmato. Consulta link:../admin/configuring-load-balancer-endpoints.html["${post_edited_translations.segment}"] per i dettagli su cosa inserire.
+Utilizza questa opzione per generare un certificato autofirmato. Consulta link:../admin/configuring-load-balancer-endpoints.html["Configura gli endpoint del bilanciatore di carico"] per i dettagli su cosa inserire.
 
 
 

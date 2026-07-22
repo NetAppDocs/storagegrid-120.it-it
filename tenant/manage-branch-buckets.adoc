@@ -24,7 +24,7 @@ Utilizza il Tenant Manager per creare e visualizzare i dettagli dei bucket delle
 Nota le seguenti informazioni sui bucket di ramo:
 
 * Le autorizzazioni per impostare le proprietà di blocco degli oggetti S3 di bucket o oggetti possono essere concesse da link:../s3/use-access-policies.html["criterio del bucket o criterio di gruppo"].
-* ${post_edited_translations.segment}
+* Se sospendi il versioning sul bucket di base, il contenuto del bucket di base non sarà più visibile nei suoi bucket di diramazione.
 
 
 
@@ -33,14 +33,14 @@ CAUTION: Dopo che hai configurato e creato un bucket di filiale, non puoi più m
 
 
 [[create-branch-bucket]]
-== ${post_edited_translations.segment}
+== Crea bucket di branch
 
 .Passaggi
-. ${post_edited_translations.segment}
-. ${post_edited_translations.segment}
-. ${post_edited_translations.segment}
+. Seleziona *Visualizza bucket* dalla dashboard oppure seleziona *STORAGE (S3)* > *Buckets*.
+. Seleziona il bucket da cui vuoi creare un ramo (il "bucket di base").
+. Nella pagina dei dettagli del bucket, seleziona *Filiali* > *Crea bucket di filiale*.
 +
-${post_edited_translations.segment}
+Il pulsante *Crea bucket di ramo* è disabilitato se il bucket di base non ha il versioning abilitato.
 
 
 
@@ -50,7 +50,7 @@ ${post_edited_translations.segment}
 == Inserisci i dettagli
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Inserisci i dettagli per il bucket della branch.
 +
 [cols="1a,3a"]
 |===
@@ -60,16 +60,16 @@ ${post_edited_translations.segment}
  a| 
 Nome del bucket del branch
  a| 
-${post_edited_translations.segment}
+Un nome per il bucket del ramo che rispetti queste regole:
 
 ** Deve essere univoco in ogni sistema StorageGRID (non solo all'interno dell'account del tenant).
 ** Deve essere conforme al DNS.
 ** Devi inserire almeno 3 e non più di 63 caratteri.
-** ${post_edited_translations.segment}
+** Ogni etichetta deve iniziare e terminare con una lettera minuscola o un numero e può utilizzare solo lettere minuscole, numeri e trattini.
 ** Le richieste di tipo virtual hosted non devono contenere punti. I punti causeranno problemi con la verifica del certificato wildcard del server.
 
 
-Per ulteriori informazioni, consultare il https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html["${post_edited_translations.segment}"^].
+Per ulteriori informazioni, consultare il https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html["Documentazione di Amazon Web Services (AWS) sulle regole di denominazione dei bucket"^].
 
 *Nota*: Non puoi cambiare il nome dopo aver creato il bucket del ramo.
 
@@ -173,7 +173,7 @@ Un _periodo di conservazione massimo_, che può variare da 1 giorno a 100 anni, 
 Il limite di capacità rappresenta la capacità massima disponibile per il bucket di filiale. Questo valore rappresenta una quantità logica (dimensione dell'oggetto), non una quantità fisica (dimensione su disco).
 
 +
-Se non viene impostato alcun limite, la capacità del bucket di diramazione è illimitata. Consulta link:../tenant/understanding-tenant-manager-dashboard.html#bucket-capacity-usage["${post_edited_translations.segment}"] per maggiori informazioni.
+Se non viene impostato alcun limite, la capacità del bucket di diramazione è illimitata. Consulta link:../tenant/understanding-tenant-manager-dashboard.html#bucket-capacity-usage["Utilizzo del limite di capacità"] per maggiori informazioni.
 
 +
 

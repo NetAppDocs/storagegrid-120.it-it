@@ -11,22 +11,22 @@ summary: 'Se hai configurato e abilitato il single sign-on (SSO) e usi PingFeder
 
 
 [role="lead"]
-Se hai link:../admin/how-sso-works.html["${post_edited_translations.segment}"] e usi PingFederate come provider SSO, devi inviare una serie di richieste API per ottenere un token di autenticazione valido per la Grid Management API o la Tenant Management API.
+Se hai link:../admin/how-sso-works.html["single sign-on (SSO) configurato e abilitato"] e usi PingFederate come provider SSO, devi inviare una serie di richieste API per ottenere un token di autenticazione valido per la Grid Management API o la Tenant Management API.
 
 
 
 [[sign-in-to-the-api-if-single-sign-on-is-enabled]]
-== ${post_edited_translations.segment}
+== Accedi all'API se il single sign-on è abilitato
 
 Queste istruzioni si applicano se usi PingFederate come provider di identità SSO
 
 .Prima di iniziare
-* ${post_edited_translations.segment}
+* Conosci il nome utente e la password SSO di un utente federato che appartiene a un gruppo di utenti StorageGRID.
 * Se vuoi accedere all'API di gestione dei tenant, devi conoscere l'ID account del tenant.
 
 
 .Informazioni su questa attività
-${post_edited_translations.segment}
+Per ottenere un token di autenticazione, puoi usare uno dei seguenti esempi:
 
 * Lo  `storagegrid-ssoauth.py`script Python, che si trova nella directory dei file di installazione di StorageGRID (`./rpms`per RHEL, `./debs`per Ubuntu o Debian, e `./vsphere`per VMware).
 * Esempio di workflow di richieste curl.
@@ -35,7 +35,7 @@ Il workflow curl potrebbe andare in timeout se lo esegui troppo lentamente. Potr
 
 +
 
-NOTE: ${post_edited_translations.segment}
+NOTE: L'esempio di flusso di lavoro con curl non protegge la password dalla visualizzazione da parte di altri utenti.
 
 +
 Se hai un problema di codifica URL, potresti visualizzare l'errore: `Unsupported SAML version`.
@@ -67,9 +67,9 @@ Il token di autorizzazione di StorageGRID viene fornito nell'output. Ora puoi ut
 
 
 
-. ${post_edited_translations.segment}
+. Se vuoi usare le richieste curl, segui la procedura seguente.
 +
-.. ${post_edited_translations.segment}
+.. Dichiara le variabili necessarie per accedere.
 +
 [source, bash]
 ----
@@ -94,7 +94,7 @@ curl -X POST "https://$STORAGEGRID_ADDRESS/api/v3/authorize-saml" \
   --data "{\"accountId\": \"$TENANTACCOUNTID\"}" | python -m json.tool
 ----
 +
-${post_edited_translations.segment}
+La risposta per questo esempio include un URL firmato codificato in URL, ma non include l'ulteriore livello di codifica JSON.
 
 +
 [listing]

@@ -15,9 +15,9 @@ I gruppi ad alta disponibilità (HA) forniscono connessioni dati ad alta disponi
 
 Puoi raggruppare le interfacce di rete di più nodi Admin e Gateway in un gruppo ad alta disponibilità (HA). Se l'interfaccia attiva nel gruppo HA si guasta, un'interfaccia di backup può gestire il carico di lavoro.
 
-${post_edited_translations.segment}
+Ogni gruppo HA ti dà accesso ai servizi condivisi sui nodi selezionati.
 
-* ${post_edited_translations.segment}
+* I gruppi HA che includono Gateway Nodes, Admin Nodes o entrambi forniscono connessioni dati ad alta disponibilità per i client S3.
 * I gruppi HA che includono solo Admin Node forniscono connessioni ad alta disponibilità al Grid Manager e al Tenant Manager.
 * Un gruppo HA che include solo appliance di servizi e nodi software basati su VMware può fornire connessioni ad alta disponibilità per link:../admin/manage-s3-select-for-tenant-accounts.html["Tenant S3 che usano S3 Select"]. I gruppi HA sono consigliati quando si utilizza S3 Select, ma non obbligatori.
 
@@ -25,15 +25,15 @@ ${post_edited_translations.segment}
 
 
 [[how-do-you-create-an-ha-group]]
-== ${post_edited_translations.segment}
+== Come crei un gruppo HA?
 
 . Selezioni un'interfaccia di rete per uno o più Admin Node o Gateway Node. Puoi usare un'interfaccia Grid Network (eth0), un'interfaccia Client Network (eth2), un'interfaccia VLAN o un'interfaccia di accesso che hai aggiunto al nodo.
 +
 
-NOTE: ${post_edited_translations.segment}
+NOTE: Non puoi aggiungere un'interfaccia a un gruppo HA se ha un indirizzo IP assegnato tramite DHCP.
 
 . Specifica un'interfaccia come interfaccia primaria. L'interfaccia primaria è l'interfaccia attiva a meno che non si verifichi un guasto.
-. ${post_edited_translations.segment}
+. Decidi tu l'ordine di priorità per le interfacce di backup.
 . Puoi assegnare da uno a 10 indirizzi IP virtuali (VIP) al gruppo. Le applicazioni client possono utilizzare uno qualsiasi di questi indirizzi VIP per connettersi a StorageGRID.
 
 
@@ -57,21 +57,21 @@ Per verificare se un nodo è assegnato a un gruppo HA e determinarne lo stato at
 
 Se la scheda *Panoramica* include una voce per i *gruppi HA*, il nodo viene assegnato ai gruppi HA elencati. Il valore che segue il nome del gruppo indica lo stato corrente del nodo nel gruppo HA:
 
-* ${post_edited_translations.segment}
+* *Attivo*: Il gruppo HA è attualmente ospitato su questo nodo.
 * *Backup*: Il gruppo HA non sta attualmente utilizzando questo nodo; questa è un'interfaccia di backup.
 * *Arrestato*: Il gruppo HA non può essere ospitato su questo nodo perché il servizio di High Availability (keepalived) è stato arrestato manualmente.
 * *Errore*: Il gruppo HA non può essere ospitato su questo nodo a causa di uno o più dei seguenti motivi:
 +
-** ${post_edited_translations.segment}
+** Il servizio Load Balancer (nginx-gw) non è in esecuzione sul nodo.
 ** L'interfaccia eth0 o VIP del nodo è inattiva.
-** ${post_edited_translations.segment}
+** Il nodo è inattivo.
 
 
 
 
 In questo esempio, il nodo Admin primario è stato aggiunto a due gruppi HA. Attualmente, questo nodo funge da interfaccia attiva per il gruppo di client Admin e da interfaccia di backup per il gruppo di client FabricPool.
 
-image:ha_group_primary_interface.png["${post_edited_translations.segment}"]
+image:ha_group_primary_interface.png["Interfaccia primaria del gruppo HA"]
 
 
 
@@ -80,13 +80,13 @@ image:ha_group_primary_interface.png["${post_edited_translations.segment}"]
 
 L'interfaccia che attualmente ospita gli indirizzi VIP è l'interfaccia attiva. Se il gruppo HA include più di un'interfaccia e l'interfaccia attiva si guasta, gli indirizzi VIP vengono spostati sulla prima interfaccia di backup disponibile, in ordine di priorità. Se anche questa interfaccia si guasta, gli indirizzi VIP vengono spostati sulla successiva interfaccia di backup disponibile e così via.
 
-${post_edited_translations.segment}
+Il failover può essere attivato per uno qualsiasi di questi motivi:
 
-* ${post_edited_translations.segment}
-* ${post_edited_translations.segment}
+* Il nodo su cui è configurata l'interfaccia si spegne.
+* Il nodo su cui è configurata l'interfaccia perde la connettività con tutti gli altri nodi per almeno 2 minuti.
 * L'interfaccia attiva si disconnette.
 * Il servizio Load Balancer si interrompe.
-* ${post_edited_translations.segment}
+* Il servizio di alta disponibilità si arresta.
 
 
 

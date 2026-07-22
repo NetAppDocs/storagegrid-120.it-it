@@ -129,7 +129,7 @@ I gruppi ad alta disponibilità (HA) consentono di aggiungere indirizzi IP virtu
 
 
 [[grid-network]]
-== ${post_edited_translations.segment}
+== Rete Grid
 
 La rete Grid è obbligatoria. Viene utilizzata per tutto il traffico interno di StorageGRID. La rete Grid fornisce connettività tra tutti i nodi della grid, attraverso tutti i siti e le sottoreti. Tutti i nodi della rete Grid devono poter comunicare con tutti gli altri nodi. La rete Grid può essere composta da più sottoreti. Anche le reti che contengono servizi critici della grid, come NTP, possono essere aggiunte come sottoreti della grid.
 
@@ -177,13 +177,13 @@ Nota i seguenti requisiti e dettagli per il gateway Admin Network:
 
 
 [[client-network]]
-== ${post_edited_translations.segment}
+== Rete client
 
 La rete client è facoltativa. Quando è configurata, viene utilizzata per fornire accesso ai servizi grid alle applicazioni client, come S3. Se prevedi di rendere i dati di StorageGRID accessibili a una risorsa esterna (ad esempio, un pool di storage cloud o il servizio di replica StorageGRID CloudMirror), anche la risorsa esterna può utilizzare la rete client. I nodi grid possono comunicare con qualsiasi sottorete raggiungibile tramite il gateway della rete client.
 
 Puoi scegliere su quali nodi della griglia abilitare la Client Network. Non tutti i nodi devono trovarsi sulla stessa Client Network e i nodi non comunicheranno mai tra loro tramite la Client Network. La Client Network diventa operativa solo al termine dell'installazione della griglia.
 
-Per una maggiore sicurezza, puoi specificare che l'interfaccia Client Network di un nodo sia non attendibile, così la Client Network sarà più restrittiva su quali connessioni sono consentite. Se l'interfaccia Client Network di un nodo è non attendibile, l'interfaccia accetta connessioni outbound come quelle usate dalla replica CloudMirror, ma accetta connessioni inbound solo sulle porte che sono state esplicitamente configurate come endpoint del load balancer. Vedi link:../admin/manage-firewall-controls.html["Gestisci i controlli del firewall"] e link:../admin/configuring-load-balancer-endpoints.html["${post_edited_translations.segment}"].
+Per una maggiore sicurezza, puoi specificare che l'interfaccia Client Network di un nodo sia non attendibile, così la Client Network sarà più restrittiva su quali connessioni sono consentite. Se l'interfaccia Client Network di un nodo è non attendibile, l'interfaccia accetta connessioni outbound come quelle usate dalla replica CloudMirror, ma accetta connessioni inbound solo sulle porte che sono state esplicitamente configurate come endpoint del load balancer. Vedi link:../admin/manage-firewall-controls.html["Gestisci i controlli del firewall"] e link:../admin/configuring-load-balancer-endpoints.html["Configura gli endpoint del bilanciatore di carico"].
 
 Quando usi una Client Network, il traffico client non deve attraversare la Grid Network. Il traffico della Grid Network può essere separato su una rete sicura e non instradabile. I seguenti tipi di nodo sono spesso configurati con una Client Network:
 

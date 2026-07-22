@@ -19,7 +19,7 @@ Questo messaggio viene visualizzato quando un contenuto viene rimosso dallo stor
 
 
  a| 
-${post_edited_translations.segment}
+CBID
  a| 
 Identificatore del blocco di contenuto
  a| 
@@ -30,7 +30,7 @@ L'identificativo univoco del blocco di contenuto eliminato dallo storage persist
  a| 
 RSLT
  a| 
-${post_edited_translations.segment}
+Codice risultato
  a| 
 Indica il risultato delle operazioni di rimozione dei contenuti. L'unico valore definito è:
 

@@ -183,7 +183,7 @@ arn:aws:iam::account_id:federated-group/group_name
 ----
 
 
-${post_edited_translations.segment}
+Altre considerazioni:
 
 * Puoi usare l'asterisco (*) come carattere jolly per trovare zero o più caratteri all'interno della chiave dell'oggetto.
 * I caratteri internazionali, che possono essere specificati nella chiave dell'oggetto, devono essere codificati utilizzando JSON UTF-8 o le sequenze di escape JSON \u. La codifica percentuale non è supportata.
@@ -633,7 +633,7 @@ Sì, autorizzazioni separate per PUT e DELETE
 
 
 [[permissions-that-apply-to-objects]]
-=== ${post_edited_translations.segment}
+=== Autorizzazioni che si applicano agli oggetti
 
 [cols="2a,2a,1a"]
 |===
@@ -844,7 +844,7 @@ Le possibili impostazioni per questa autorizzazione includono:
 * *Consenti*: Il client può sovrascrivere un oggetto. Questa è l'impostazione predefinita.
 * *Nega*: Il client non può sovrascrivere un oggetto. Quando impostato su Nega, il PutOverwriteObject permission funziona come segue:
 +
-** ${post_edited_translations.segment}
+** Se viene trovato un oggetto esistente nello stesso percorso:
 +
 *** I dati dell'oggetto, i metadati definiti dall'utente o i tag degli oggetti S3 non possono essere sovrascritti.
 *** Tutte le operazioni di acquisizione in corso vengono annullate e viene restituito un errore.
@@ -863,7 +863,7 @@ NOTE: Se la policy S3 corrente consente la sovrascrittura e l'autorizzazione Put
 
 
 [[specify-conditions-in-a-policy]]
-== ${post_edited_translations.segment}
+== Specifica le condizioni in una policy
 
 Le condizioni definiscono quando una policy sarà in vigore. Le condizioni sono costituite da operatori e coppie chiave-valore.
 
@@ -894,10 +894,10 @@ Nell'esempio seguente, la condizione IpAddress utilizza la chiave condizione Sou
 Gli operatori condizionali sono classificati come segue:
 
 * Stringa
-* ${post_edited_translations.segment}
+* Numerico
 * Booleano
 * indirizzo IP
-* ${post_edited_translations.segment}
+* Controllo nullo
 
 
 [cols="1a,2a"]
@@ -908,14 +908,14 @@ Gli operatori condizionali sono classificati come segue:
  a| 
 StringEquals
  a| 
-${post_edited_translations.segment}
+Confronta una chiave con un valore stringa in base alla corrispondenza esatta (sensibile alle maiuscole/minuscole).
 
 
 
  a| 
 StringNotEquals
  a| 
-${post_edited_translations.segment}
+Confronta una chiave con un valore stringa in base alla corrispondenza negata (case sensitive).
 
 
 
@@ -929,7 +929,7 @@ Confronta una chiave con un valore stringa in base alla corrispondenza esatta (i
  a| 
 StringNotEqualsIgnoreCase
  a| 
-${post_edited_translations.segment}
+Confronta una chiave con un valore stringa in base alla corrispondenza negata (ignora la distinzione tra maiuscole e minuscole).
 
 
 
@@ -950,14 +950,14 @@ Confronta una chiave con un valore stringa in base alla corrispondenza negata (c
  a| 
 NumericEquals
  a| 
-${post_edited_translations.segment}
+Confronta una chiave con un valore numerico in base alla corrispondenza esatta.
 
 
 
  a| 
 NumericNotEquals
  a| 
-${post_edited_translations.segment}
+Confronta una chiave con un valore numerico in base alla corrispondenza negata.
 
 
 
@@ -990,16 +990,16 @@ Confronta una chiave con un valore numerico in base alla corrispondenza "minore 
 
 
  a| 
-${post_edited_translations.segment}
+Bool
  a| 
-${post_edited_translations.segment}
+Confronta una chiave con un valore booleano in base a una corrispondenza "vero o falso".
 
 
 
  a| 
 IpAddress
  a| 
-${post_edited_translations.segment}
+Confronta una chiave con un indirizzo IP o un intervallo di indirizzi IP.
 
 
 
@@ -1013,7 +1013,7 @@ Confronta una chiave con un indirizzo IP o un intervallo di indirizzi IP in base
  a| 
 Null
  a| 
-${post_edited_translations.segment}
+Verifica se una chiave di condizione è presente nel contesto della richiesta corrente.
 
 
 
@@ -1026,17 +1026,17 @@ Aggiunto in coda a qualsiasi operatore di condizione, eccetto la condizione Null
 
 
 [[supported-condition-keys]]
-=== ${post_edited_translations.segment}
+=== Chiavi di condizione supportate
 
 [cols="1a,1a,2a"]
 |===
-| ${post_edited_translations.segment} | Azioni | Descrizione 
+| Chiavi di condizione | Azioni | Descrizione 
 
 
  a| 
 aws:SourceIp
  a| 
-${post_edited_translations.segment}
+operatori IP
  a| 
 Verrà confrontato con l'indirizzo IP da cui è stata inviata la richiesta. Può essere utilizzato per operazioni su bucket o oggetti.
 
@@ -1047,16 +1047,16 @@ Verrà confrontato con l'indirizzo IP da cui è stata inviata la richiesta. Può
 
 
  a| 
-${post_edited_translations.segment}
+aws:username
  a| 
-${post_edited_translations.segment}
+Risorsa/Identità
  a| 
 Verrà confrontato con il nome utente del mittente da cui è stata inviata la richiesta. Può essere utilizzato per operazioni su bucket o oggetti.
 
 
 
  a| 
-${post_edited_translations.segment}
+s3:delimiter
  a| 
 s3:ListBucket e
 

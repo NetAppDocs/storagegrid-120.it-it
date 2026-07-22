@@ -41,7 +41,7 @@ Eseguire i controlli preliminari prima di iniziare l'aggiornamento ti permette d
  a| 
 Avvia il servizio di aggiornamento
  a| 
-${post_edited_translations.segment}
+Il file del software viene distribuito e il servizio di aggiornamento viene avviato.
  a| 
 3 minuti per nodo della griglia
  a| 

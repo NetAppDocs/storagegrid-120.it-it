@@ -2,7 +2,7 @@
 permalink: admin/changing-browser-session-timeout-interface.html 
 sidebar: sidebar 
 keywords: security, browser inactivity timeout, management API stack track 
-summary: ${post_edited_translations.segment} 
+summary: 'Le impostazioni di sicurezza dell"interfaccia ti permettono di controllare se gli utenti vengono disconnessi in caso di inattività per più tempo rispetto a quello specificato e se una stack trace viene inclusa nelle risposte di errore delle API.' 
 ---
 = Modificare le impostazioni di sicurezza dell'interfaccia StorageGRID
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: ${post_edited_translations.segment}
 
 
 [role="lead"]
-${post_edited_translations.segment}
+Le impostazioni di sicurezza dell'interfaccia ti permettono di controllare se gli utenti vengono disconnessi in caso di inattività per più tempo rispetto a quello specificato e se una stack trace viene inclusa nelle risposte di errore delle API.
 
 .Prima di iniziare
 * Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
@@ -27,14 +27,14 @@ Timeout di inattività del browser:: Indica per quanto tempo il browser di un ut
 Il timeout di inattività del browser è controllato anche dai seguenti:
 
 * Un timer StorageGRID separato e non configurabile, incluso per la sicurezza del sistema. Il token di autenticazione di ciascun utente scade 16 ore dopo l'accesso. Quando l'autenticazione di un utente scade, quell'utente viene disconnesso automaticamente, anche se il timeout di inattività del browser è disabilitato o il valore del timeout del browser non è stato raggiunto. Per rinnovare il token, l'utente deve accedere di nuovo.
-* ${post_edited_translations.segment}
+* Impostazioni di timeout per il provider di identità, supponendo che il single sign-on (SSO) sia abilitato per StorageGRID.
 +
-Se l'SSO è abilitato e il browser dell'utente va in timeout, l'utente deve reinserire le proprie credenziali SSO per accedere nuovamente a StorageGRID. Vedi link:how-sso-works.html["${post_edited_translations.segment}"].
+Se l'SSO è abilitato e il browser dell'utente va in timeout, l'utente deve reinserire le proprie credenziali SSO per accedere nuovamente a StorageGRID. Vedi link:how-sso-works.html["Come funziona l'SSO"].
 
 
 
 --
-${post_edited_translations.segment}:: ${post_edited_translations.segment}
+Stack trace dell'API di gestione:: Controlla se viene restituita una stack trace nelle risposte di errore delle API di Grid Manager e Tenant Manager.
 +
 --
 Questa opzione è disabilitata per impostazione predefinita, ma potresti voler abilitare questa funzionalità per un ambiente di test. In generale, dovresti lasciare la traccia dello stack disabilitata negli ambienti di produzione per evitare di rivelare dettagli interni del software quando si verificano errori API.
@@ -44,25 +44,25 @@ Questa opzione è disabilitata per impostazione predefinita, ma potresti voler a
 
 .Passaggi
 . Seleziona *Configurazione* > *Sicurezza* > *Impostazioni di sicurezza*.
-. ${post_edited_translations.segment}
-. ${post_edited_translations.segment}
+. Seleziona la scheda *Interfaccia*.
+. Per modificare l'impostazione del timeout di inattività del browser:
 +
 .. Espandi la fisarmonica.
 .. Per modificare il periodo di timeout, specifica un valore compreso tra 60 secondi e 7 giorni. Il timeout predefinito è di 15 minuti.
-.. ${post_edited_translations.segment}
+.. Per disattivare questa funzione, deseleziona la casella di controllo.
 .. Seleziona *Salva*.
 +
-${post_edited_translations.segment}
+La nuova impostazione non ha effetto sugli utenti attualmente connessi. Gli utenti devono accedere di nuovo o aggiornare il browser perché la nuova impostazione di timeout abbia effetto.
 
 
 
-. ${post_edited_translations.segment}
+. Per modificare l'impostazione della traccia dello stack della Management API:
 +
 .. Espandi la fisarmonica.
 .. Seleziona la casella di controllo per restituire una traccia dello stack nelle risposte di errore delle API di Grid Manager e Tenant Manager.
 +
 
-CAUTION: ${post_edited_translations.segment}
+CAUTION: Lascia la traccia dello stack disabilitata negli ambienti di produzione per evitare di rivelare dettagli interni del software quando si verificano errori API.
 
 .. Seleziona *Salva*.
 

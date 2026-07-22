@@ -19,7 +19,7 @@ CAUTION: L'utilizzo di un indirizzo IP per un domain name dell'endpoint non è s
 .Prima di iniziare
 * Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
 * Hai link:../admin/admin-group-permissions.html["autorizzazioni di accesso specifiche"].
-* ${post_edited_translations.segment}
+* Hai confermato che non è in corso alcun aggiornamento della grid.
 +
 
 CAUTION: Non apportare modifiche alla domain name configuration durante un aggiornamento della griglia.
@@ -27,10 +27,10 @@ CAUTION: Non apportare modifiche alla domain name configuration durante un aggio
 
 
 .Informazioni su questa attività
-${post_edited_translations.segment}
+Per consentire ai client di utilizzare i nomi di dominio degli endpoint S3, devi eseguire tutte le seguenti operazioni:
 
 * Usa Grid Manager per aggiungere i domain name degli endpoint S3 al sistema StorageGRID.
-* Assicurati che link:../admin/configuring-administrator-client-certificates.html["${post_edited_translations.segment}"] sia firmato per tutti i domain name richiesti dal client.
+* Assicurati che link:../admin/configuring-administrator-client-certificates.html["certificato che il client usa per le connessioni HTTPS a StorageGRID"] sia firmato per tutti i domain name richiesti dal client.
 +
 Ad esempio, se l'endpoint è `s3.company.com`, devi assicurarti che il certificato utilizzato per le connessioni HTTPS includa l'endpoint `s3.company.com` e il Subject Alternative Name (SAN) wildcard dell'endpoint: `*.s3.company.com`.
 
@@ -41,10 +41,10 @@ NOTE: I client possono connettersi a StorageGRID utilizzando l'indirizzo IP di u
 
 
 
-${post_edited_translations.segment}
+I client che utilizzano connessioni HTTPS (consigliate) alla grid possono utilizzare uno di questi certificati:
 
 * I client che si connettono a un endpoint del bilanciatore di carico possono utilizzare un certificato personalizzato per tale endpoint. Ogni endpoint del bilanciatore di carico può essere configurato per riconoscere diversi domain name degli endpoint S3.
-* ${post_edited_translations.segment}
+* I client che si connettono a un endpoint di bilanciamento del carico o direttamente a un Storage Node possono personalizzare il certificato API S3 globale per includere tutti i domain name degli endpoint S3 richiesti.
 
 
 
@@ -65,7 +65,7 @@ NOTE: Se non aggiungi i nomi di dominio degli endpoint S3 e l'elenco è vuoto, i
 ** Se i client si connettono a un endpoint di load balancer che utilizza il certificato API S3 globale o direttamente ai Storage Node, link:../admin/use-s3-setup-wizard-steps.html["aggiorna il certificato API S3 globale"].
 
 
-. ${post_edited_translations.segment}
+. Aggiungi i record DNS necessari per garantire che le richieste del domain name dell'endpoint possano essere risolte.
 
 
 .Risultato
@@ -82,7 +82,7 @@ Se cambi un nome utilizzato dalle applicazioni S3, le richieste in stile virtual
 . Seleziona *Configuration* > *Network* > *S3 endpoint domain names*.
 . Seleziona il campo domain name che vuoi modificare ed effettua le modifiche necessarie.
 . Seleziona *Salva*.
-. ${post_edited_translations.segment}
+. Seleziona *Sì* per confermare la modifica.
 
 
 
@@ -95,11 +95,11 @@ Se rimuovi un nome utilizzato dalle applicazioni S3, le richieste in stile virtu
 .Passaggi
 . Seleziona *Configuration* > *Network* > *S3 endpoint domain names*.
 . Seleziona l'icona di eliminazione image:icon-x-to-remove.png["icona di eliminazione"] accanto al domain name.
-. ${post_edited_translations.segment}
+. Seleziona *Sì* per confermare l'eliminazione.
 
 
 .Informazioni correlate
-* link:../s3/index.html["${post_edited_translations.segment}"]
-* link:viewing-ip-addresses.html["${post_edited_translations.segment}"]
+* link:../s3/index.html["Usa l'API REST di S3"]
+* link:viewing-ip-addresses.html["Visualizza gli indirizzi IP"]
 * link:configure-high-availability-group.html["Configura i gruppi ad alta disponibilità"]
 

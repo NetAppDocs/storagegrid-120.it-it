@@ -16,21 +16,21 @@ Se si verifica un problema durante l'aggiornamento, potresti essere in grado di 
 
 
 [[upgrade-does-not-complete]]
-== ${post_edited_translations.segment}
+== L'upgrade non si completa
 
-${post_edited_translations.segment}
+Le sezioni seguenti descrivono come ripristinare il sistema in situazioni in cui l'aggiornamento è fallito parzialmente.
 
 
 
 [[upgrade-precheck-errors]]
-=== ${post_edited_translations.segment}
+=== Errori di precheck dell'upgrade
 
 Per individuare e risolvere i problemi, puoi eseguire manualmente i controlli preliminari dell'aggiornamento prima di iniziare l'aggiornamento vero e proprio. La maggior parte degli errori dei controlli preliminari fornisce informazioni su come risolvere il problema.
 
 
 
 [[provisioning-failures]]
-=== ${post_edited_translations.segment}
+=== Errori di provisioning
 
 Se il processo di provisioning automatico non va a buon fine, contatta il supporto tecnico.
 

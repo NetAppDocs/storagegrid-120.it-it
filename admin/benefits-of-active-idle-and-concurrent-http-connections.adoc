@@ -17,13 +17,13 @@ Puoi identificare i vantaggi in termini di prestazioni per i seguenti tipi di co
 
 * Connessioni HTTP inattive
 * Connessioni HTTP attive
-* ${post_edited_translations.segment}
+* Connessioni HTTP simultanee
 
 
 
 
 [[benefits-of-keeping-idle-http-connections-open]]
-== ${post_edited_translations.segment}
+== Vantaggi di mantenere aperte le connessioni HTTP inattive
 
 Mantieni aperte le connessioni HTTP quando le applicazioni client sono inattive per consentire transazioni successive. Mantieni aperta una connessione HTTP inattiva per un massimo di 10 minuti. StorageGRID potrebbe chiudere automaticamente una connessione HTTP aperta e inattiva per più di 10 minuti.
 
@@ -44,20 +44,20 @@ Decidi per quanto tempo mantenere aperta una connessione inattiva, bilanciando i
 [[benefits-of-active-http-connections]]
 == Vantaggi delle connessioni HTTP attive
 
-${post_edited_translations.segment}
+Per le connessioni dirette ai Storage Nodes, dovresti limitare la durata di una connessione HTTP attiva a un massimo di 10 minuti, anche se la connessione HTTP esegue continuamente transazioni.
 
 Determinare la durata massima per cui una connessione deve rimanere aperta rappresenta un compromesso tra i vantaggi della persistenza della connessione e l'allocazione ideale della connessione alle risorse interne del sistema.
 
 Per le connessioni client ai nodi di storage, la limitazione delle connessioni HTTP attive offre i seguenti vantaggi:
 
-* ${post_edited_translations.segment}
+* Consente un bilanciamento ottimale del carico in tutto il sistema StorageGRID.
 +
 Nel tempo, una connessione HTTP potrebbe non essere più ottimale man mano che cambiano i requisiti di bilanciamento del carico. Il sistema offre il miglior bilanciamento del carico quando le applicazioni client stabiliscono una connessione HTTP separata per ogni transazione, ma questo metodo annulla i vantaggi significativi associati alle connessioni persistenti.
 
 * Consente alle applicazioni client di indirizzare le transazioni HTTP verso i servizi LDR che dispongono di spazio disponibile.
 * Consente di avviare le procedure di manutenzione.
 +
-${post_edited_translations.segment}
+Alcune procedure di manutenzione iniziano solo dopo che tutte le connessioni HTTP in corso sono state completate.
 
 
 
@@ -66,13 +66,13 @@ Per le connessioni client al servizio di bilanciamento del carico, limitare la d
 
 
 [[benefits-of-concurrent-http-connections]]
-== ${post_edited_translations.segment}
+== Vantaggi delle connessioni HTTP simultanee
 
 Dovresti mantenere aperte più connessioni TCP/IP verso il sistema StorageGRID per consentire il parallelismo, che aumenta le prestazioni. Il numero ottimale di connessioni parallele dipende da una varietà di fattori.
 
 Le connessioni HTTP simultanee offrono i seguenti vantaggi:
 
-* ${post_edited_translations.segment}
+* Latenza ridotta
 +
 Le transazioni possono iniziare immediatamente invece di aspettare che altre transazioni siano completate.
 
@@ -88,7 +88,7 @@ La topologia di ciascun sistema StorageGRID ha un throughput di picco diverso pe
 
 I sistemi StorageGRID spesso supportano più applicazioni client. Tienilo presente quando determini il numero massimo di connessioni simultanee. Se l'applicazione client è costituita da più entità software che stabiliscono ciascuna connessioni al sistema StorageGRID, somma tutte le connessioni delle varie entità. Potrebbe essere necessario regolare il numero massimo di connessioni simultanee nelle seguenti situazioni:
 
-* ${post_edited_translations.segment}
+* La topologia del sistema StorageGRID influisce sul numero massimo di transazioni e connessioni simultanee che il sistema può supportare.
 * Le applicazioni client che interagiscono con il sistema StorageGRID su una rete con larghezza di banda limitata potrebbero dover ridurre il grado di concorrenza per garantire che le singole transazioni vengano completate in tempi ragionevoli.
 * Quando molte applicazioni client condividono il sistema StorageGRID, potresti dover ridurre il grado di concorrenza per evitare di superare i limiti del sistema.
 

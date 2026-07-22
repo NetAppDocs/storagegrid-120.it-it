@@ -20,7 +20,7 @@ Prima di utilizzare l'ora dell'ultimo accesso in una regola ILM, valuta le segue
 +
 Tieni conto di questa latenza quando crei regole ILM basate sull'ora dell'ultimo accesso ed evita posizionamenti che utilizzano periodi di tempo brevi (meno di un mese).
 
-* Quando usi l'ora dell'ultimo accesso come filtro avanzato o come tempo di riferimento, devi abilitare gli aggiornamenti dell'ora dell'ultimo accesso per i bucket S3. Puoi usare link:../tenant/enabling-or-disabling-last-access-time-updates.html["${post_edited_translations.segment}"] o link:../s3/put-bucket-last-access-time-request.html["API di gestione tenant"].
+* Quando usi l'ora dell'ultimo accesso come filtro avanzato o come tempo di riferimento, devi abilitare gli aggiornamenti dell'ora dell'ultimo accesso per i bucket S3. Puoi usare link:../tenant/enabling-or-disabling-last-access-time-updates.html["Tenant Manager"] o link:../s3/put-bucket-last-access-time-request.html["API di gestione tenant"].
 +
 
 NOTE: Gli aggiornamenti dell'ora dell'ultimo accesso sono disabilitati per impostazione predefinita per i bucket S3.

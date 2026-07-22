@@ -900,28 +900,28 @@ La configurazione per il server di gestione delle chiavi esiste ma non è stato 
 
 
  a| 
-${post_edited_translations.segment}
+Errore di connettività KMS
  a| 
 Un nodo dell'appliance non riesce a connettersi al key management server per il suo sito.
 
 
 
  a| 
-${post_edited_translations.segment}
+Nome chiave di crittografia KMS non trovato
  a| 
 Il server di gestione delle chiavi configurato non dispone di una chiave di crittografia che corrisponde al nome fornito.
 
 
 
  a| 
-${post_edited_translations.segment}
+Rotazione della chiave di crittografia KMS non riuscita
  a| 
 Tutti i volumi dell'appliance sono stati decrittografati correttamente, ma uno o più volumi non sono riusciti a ruotare alla chiave più recente.
 
 
 
  a| 
-${post_edited_translations.segment}
+KMS non è configurato
  a| 
 Non esiste un server di gestione delle chiavi per questo sito.
 

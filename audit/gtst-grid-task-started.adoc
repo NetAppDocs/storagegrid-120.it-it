@@ -19,7 +19,7 @@ Questo messaggio di audit indica che il servizio CMN ha iniziato a elaborare il 
 
 
  a| 
-${post_edited_translations.segment}
+TSID
  a| 
 ID attività
  a| 

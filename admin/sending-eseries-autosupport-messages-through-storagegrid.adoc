@@ -31,7 +31,7 @@ NOTE: Devi avere il firmware SANtricity 8.70 o superiore per accedere a SANtrici
 .Informazioni su questa attività
 I pacchetti AutoSupport E-Series contengono dettagli sull'hardware di storage e sono più specifici di altri pacchetti AutoSupport inviati dal sistema StorageGRID.
 
-Puoi configurare un indirizzo proxy server speciale in SANtricity System Manager per trasmettere i pacchetti AutoSupport attraverso un StorageGRID Admin Node senza utilizzare la porta di gestione dell'appliance. I pacchetti AutoSupport trasmessi in questo modo vengono inviati dal link:../primer/what-admin-node-is.html["Nodo amministratore mittente preferito"] e utilizzano qualsiasi link:../admin/configuring-admin-proxy-settings.html["${post_edited_translations.segment}"] che sia stato configurato nel Grid Manager.
+Puoi configurare un indirizzo proxy server speciale in SANtricity System Manager per trasmettere i pacchetti AutoSupport attraverso un StorageGRID Admin Node senza utilizzare la porta di gestione dell'appliance. I pacchetti AutoSupport trasmessi in questo modo vengono inviati dal link:../primer/what-admin-node-is.html["Nodo amministratore mittente preferito"] e utilizzano qualsiasi link:../admin/configuring-admin-proxy-settings.html["impostazioni proxy admin"] che sia stato configurato nel Grid Manager.
 
 
 NOTE: Questa procedura serve solo per configurare un proxy server StorageGRID per i pacchetti AutoSupport di E-Series. Per ulteriori dettagli sulla configurazione di E-Series AutoSupport, consulta la  https://docs.netapp.com/us-en/e-series-family/index.html["Documentazione di NetApp E-Series e SANtricity"^].
@@ -41,7 +41,7 @@ NOTE: Questa procedura serve solo per configurare un proxy server StorageGRID pe
 . Dall'elenco di nodi a sinistra, seleziona il nodo dell'appliance di archiviazione che vuoi configurare.
 . Seleziona *SANtricity System Manager*.
 +
-${post_edited_translations.segment}
+Viene visualizzata la home page di SANtricity System Manager.
 
 +
 image:autosupport_santricity_home_page.png["Home page di AutoSupport SANtricity"]
@@ -60,7 +60,7 @@ Viene visualizzata la pagina Configure AutoSupport Delivery Method.
 +
 image:autosupport_configure_delivery_santricity.png["AutoSupport configura il metodo di consegna AutoSupport SANtricity"]
 
-. ${post_edited_translations.segment}
+. Seleziona *HTTPS* come metodo di consegna.
 +
 
 NOTE: Il certificato che abilita HTTPS è preinstallato.

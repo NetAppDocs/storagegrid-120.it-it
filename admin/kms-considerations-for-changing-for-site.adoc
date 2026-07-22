@@ -17,7 +17,7 @@ Se modifichi il KMS utilizzato per un sito, devi assicurarti che i nodi applianc
 
 Ad esempio:
 
-. ${post_edited_translations.segment}
+. Inizialmente configuri un KMS predefinito che si applica a tutti i siti che non hanno un KMS dedicato.
 . Quando il KMS viene salvato, tutti i nodi appliance che hanno l'impostazione *Node Encryption* abilitata si connettono al KMS e richiedono la chiave di crittografia. Questa chiave viene utilizzata per crittografare i nodi appliance in tutti i siti. Questa stessa chiave deve essere utilizzata anche per decrittografare tali appliance.
 +
 image:kms_default_key.png["Chiave predefinita KMS"]

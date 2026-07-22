@@ -15,7 +15,7 @@ Se usi valori personalizzati per le filigrane del volume di storage, potresti do
 
 Nelle versioni precedenti, i tre link:../admin/what-storage-volume-watermarks-are.html["watermark del volume di storage"] erano impostazioni globali &#8212; gli stessi valori si applicavano a ogni volume di storage su ciascun Storage Node. A partire da StorageGRID 11.6, il software può ottimizzare questi watermark per ciascun volume di storage, in base alle dimensioni dello Storage Node e alla capacità relativa del volume.
 
-${post_edited_translations.segment}
+Quando esegui l'aggiornamento a StorageGRID 11.6 o versioni successive, le filigrane ottimizzate di sola lettura e di lettura/scrittura vengono applicate automaticamente a tutti i volumi di archiviazione, a meno che non sia vera una delle seguenti condizioni:
 
 * Il sistema è quasi saturo e non sarebbe in grado di accettare nuovi dati se venissero applicati watermark ottimizzati. In questo caso, StorageGRID non modificherà le impostazioni del watermark.
 * In precedenza hai impostato uno dei watermark del volume di storage su un valore personalizzato. StorageGRID non sovrascriverà le impostazioni personalizzate del watermark con valori ottimizzati. Tuttavia, StorageGRID potrebbe attivare l'avviso *Low read-only watermark override* se il valore personalizzato per il watermark soft di sola lettura del volume di storage è troppo basso.
@@ -24,7 +24,7 @@ ${post_edited_translations.segment}
 
 
 [[understand-the-alert]]
-== ${post_edited_translations.segment}
+== Capisci l'allerta
 
 Se usi valori personalizzati per le filigrane del volume di storage, l'avviso *Low read-only watermark override* potrebbe essere attivato per uno o più Storage Nodes.
 
@@ -51,14 +51,14 @@ Volume 1
 
 
  a| 
-${post_edited_translations.segment}
+Volume 2
  a| 
 11 GB
 
 
 
  a| 
-${post_edited_translations.segment}
+Volume 3
  a| 
 15 GB
 
@@ -109,9 +109,9 @@ image:nodes_page_object_data_used_with_alert.png["Pagina dei nodi che mostra i d
 StorageGRID utilizza due metriche Prometheus per mostrare i valori ottimizzati che ha calcolato per il watermark soft di sola lettura del volume di storage. Puoi visualizzare i valori minimi e massimi ottimizzati per ciascun Storage Node nella tua grid.
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Seleziona *Support* > *Tools* > *Metrics*.
 . Nella sezione Prometheus, seleziona il collegamento per accedere all'interfaccia utente di Prometheus.
-. ${post_edited_translations.segment}
+. Per vedere il livello minimo consigliato di watermark soft read-only, inserisci la seguente metrica di Prometheus e seleziona *Esegui*:
 +
 `storagegrid_storage_volume_minimum_optimized_soft_readonly_watermark`
 
@@ -123,7 +123,7 @@ L'ultima colonna mostra il valore minimo ottimizzato del watermark soft di sola 
 `storagegrid_storage_volume_maximum_optimized_soft_readonly_watermark`
 
 +
-${post_edited_translations.segment}
+L'ultima colonna mostra il valore massimo ottimizzato della soft read-only watermark per tutti i volumi di archiviazione su ciascun Storage Node.
 
 . [[maximum_optimized_value]]Nota il valore massimo ottimizzato per ciascun Storage Node.
 

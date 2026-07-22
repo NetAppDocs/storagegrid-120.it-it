@@ -14,18 +14,18 @@ summary: Devi aggiornare le informazioni sulla licenza per il tuo sistema Storag
 Devi aggiornare le informazioni sulla licenza per il tuo sistema StorageGRID ogni volta che i termini della licenza cambiano. Ad esempio, devi aggiornare le informazioni sulla licenza se acquisti capacità di storage aggiuntiva per la tua grid.
 
 .Prima di iniziare
-* ${post_edited_translations.segment}
+* Hai un nuovo file di licenza da applicare al tuo sistema StorageGRID.
 * Hai link:admin-group-permissions.html["autorizzazioni di accesso specifiche"].
-* ${post_edited_translations.segment}
+* Hai la passphrase di provisioning.
 
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Seleziona *Manutenzione* > *Sistema* > *Licenza*.
 . Nella sezione Aggiorna licenza, seleziona *Sfoglia*.
 . Individua e seleziona il nuovo file di licenza (`.txt`).
 +
 Il nuovo file di licenza viene convalidato e visualizzato.
 
-. ${post_edited_translations.segment}
+. Inserisci la passphrase di provisioning.
 . Seleziona *Salva*.
 

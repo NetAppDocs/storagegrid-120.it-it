@@ -46,7 +46,7 @@ link:recovering-from-admin-node-failures.html["Recupera dai guasti del nodo ammi
 
 
  a| 
-${post_edited_translations.segment}
+Nodo gateway
  a| 
 link:replacing-gateway-node.html["Ripristina dopo i guasti del nodo gateway"]
 

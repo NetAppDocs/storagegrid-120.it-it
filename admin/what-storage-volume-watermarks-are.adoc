@@ -13,7 +13,7 @@ summary: StorageGRID utilizza tre livelli di soglia per il volume di storage per
 [role="lead"]
 StorageGRID utilizza tre livelli di soglia per il volume di storage per garantire che i nodi di storage vengano commutati in modo sicuro in modalità di sola lettura prima che lo spazio disponibile diventi criticamente insufficiente e per consentire ai nodi di storage che sono stati commutati in modalità di sola lettura di tornare in modalità di lettura e scrittura.
 
-image:storage_volume_watermarks.png["${post_edited_translations.segment}"]
+image:storage_volume_watermarks.png["Filigrane del volume di storage"]
 
 
 NOTE: I watermark dei volumi di storage si applicano solo allo spazio utilizzato per i dati oggetto replicati e con erasure coding. Per informazioni sullo spazio riservato ai metadati degli oggetti sul volume 0, vai a link:managing-object-metadata-storage.html["Gestisci l'archiviazione dei metadati degli oggetti"].
@@ -21,7 +21,7 @@ NOTE: I watermark dei volumi di storage si applicano solo allo spazio utilizzato
 
 
 [[what-is-the-soft-read-only-watermark]]
-== ${post_edited_translations.segment}
+== Cos'è la soft read-only watermark?
 
 La *filigrana di sola lettura soft del volume di storage* è la prima filigrana che indica che lo spazio utilizzabile di uno Storage Node per i dati degli oggetti si sta esaurendo.
 
@@ -74,16 +74,16 @@ Puoi visualizzare le impostazioni correnti della filigrana e i valori ottimizzat
 Puoi visualizzare le impostazioni correnti della filigrana di storage in Grid Manager.
 
 .Passaggi
-. ${post_edited_translations.segment}
-. ${post_edited_translations.segment}
+. Seleziona *Support* > *Other* > *Storage watermarks*.
+. Nella pagina Filigrane di Storage, cerca la casella di controllo Usa valori ottimizzati.
 +
-** ${post_edited_translations.segment}
+** Se la casella di controllo è selezionata, tutte e tre le filigrane sono ottimizzate per ogni volume di storage su ogni Storage Node, in base alle dimensioni dello Storage Node e alla capacità relativa del volume.
 +
 Questa è l'impostazione predefinita e consigliata. Non modificare questi valori. Facoltativamente, puoi <<view-optimized-storage-watermarks,Visualizza le watermarks di storage ottimizzate>>.
 
-** Se la casella di controllo Use optimized values è deselezionata, vengono utilizzati watermark personalizzati (non ottimizzati). L'uso di impostazioni di watermark personalizzate non è consigliato. Usa le istruzioni per link:../troubleshoot/troubleshoot-low-watermark-alert.html["${post_edited_translations.segment}"] per determinare se puoi o devi regolare le impostazioni.
+** Se la casella di controllo Use optimized values è deselezionata, vengono utilizzati watermark personalizzati (non ottimizzati). L'uso di impostazioni di watermark personalizzate non è consigliato. Usa le istruzioni per link:../troubleshoot/troubleshoot-low-watermark-alert.html["Risoluzione dei problemi degli avvisi di override della low read-only watermark"] per determinare se puoi o devi regolare le impostazioni.
 +
-${post_edited_translations.segment}
+Quando specifichi le impostazioni personalizzate della filigrana, devi inserire valori maggiori di 0.
 
 
 
@@ -96,9 +96,9 @@ ${post_edited_translations.segment}
 
 StorageGRID utilizza due metriche Prometheus per mostrare i valori ottimizzati che ha calcolato per il watermark soft di sola lettura del volume di storage. Puoi visualizzare i valori minimi e massimi ottimizzati per ciascun Storage Node nella tua grid.
 
-. ${post_edited_translations.segment}
+. Seleziona *Support* > *Tools* > *Metrics*.
 . Nella sezione Prometheus, seleziona il collegamento per accedere all'interfaccia utente di Prometheus.
-. ${post_edited_translations.segment}
+. Per vedere il livello minimo consigliato di watermark soft read-only, inserisci la seguente metrica di Prometheus e seleziona *Esegui*:
 +
 `storagegrid_storage_volume_minimum_optimized_soft_readonly_watermark`
 
@@ -110,6 +110,6 @@ L'ultima colonna mostra il valore minimo ottimizzato del watermark soft di sola 
 `storagegrid_storage_volume_maximum_optimized_soft_readonly_watermark`
 
 +
-${post_edited_translations.segment}
+L'ultima colonna mostra il valore massimo ottimizzato della soft read-only watermark per tutti i volumi di archiviazione su ciascun Storage Node.
 
 

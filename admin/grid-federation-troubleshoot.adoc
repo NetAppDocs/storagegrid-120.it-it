@@ -49,7 +49,7 @@ Questo avviso indica che la connessione di federazione tra le griglie non funzio
 È stato attivato l'avviso *Scadenza del certificato di federazione della griglia*.
 
 .Dettagli
-${post_edited_translations.segment}
+Questo avviso indica che uno o più certificati di federazione della griglia stanno per scadere.
 
 .Azioni consigliate
 Consulta le istruzioni per la rotazione dei certificati di connessione in link:grid-federation-manage-connection.html["Gestisci le connessioni della federazione di griglia"].
@@ -60,7 +60,7 @@ Consulta le istruzioni per la rotazione dei certificati di connessione in link:g
 === Errore durante la modifica di una connessione di federazione di grid
 
 .Problema
-${post_edited_translations.segment}
+Quando modifichi una connessione di federazione di griglia, visualizzi il seguente messaggio di avviso quando selezioni *Salva e verifica*: "Impossibile creare un file di configurazione candidato su uno o più nodi."
 
 .Dettagli
 Quando modifichi una connessione di federazione di griglia, StorageGRID tenta di salvare un file di "configurazione candidata" su tutti i nodi Admin della prima griglia. Viene visualizzato un messaggio di avviso se questo file non può essere salvato su tutti i nodi Admin, ad esempio perché un nodo Admin è offline.
@@ -134,10 +134,10 @@ image:grid-federation-last-error.png["Screenshot che mostra un messaggio nella c
 Per ciascuna connessione di federazione della griglia, la colonna *Ultimo errore* mostra l'errore più recente che si è verificato, se presente, durante la replica dei dati di un tenant sull'altra griglia. Questa colonna mostra solo l'ultimo errore di replica tra griglie che si è verificato; gli errori precedenti che potrebbero essersi verificati non vengono mostrati. Un errore in questa colonna potrebbe verificarsi per uno dei seguenti motivi:
 
 * La versione dell'oggetto sorgente non è stata trovata.
-* ${post_edited_translations.segment}
+* Il bucket di origine non è stato trovato.
 * Il bucket di destinazione è stato eliminato.
 * Il bucket di destinazione è stato ricreato da un account diverso.
-* ${post_edited_translations.segment}
+* Il bucket di destinazione ha il versioning sospeso.
 * Il bucket di destinazione è stato ricreato dallo stesso account, ma ora non è più versionato.
 * L'oggetto di origine presenta impostazioni di S3 Object Lock non conformi alle impostazioni di conservazione a livello di tenant della griglia di destinazione.
 * L'oggetto di origine ha impostazioni di S3 Object Lock e S3 Object Lock è disabilitato sul bucket di destinazione.
@@ -148,9 +148,9 @@ Se nella colonna *Ultimo errore* compare un messaggio di errore, segui questi pa
 
 . Rivedi il testo del messaggio.
 . Esegui le azioni consigliate. Ad esempio, se il versioning è stato sospeso sul bucket di destinazione per la replica tra griglie, riattiva il versioning per quel bucket.
-. ${post_edited_translations.segment}
+. Seleziona la connessione o l'account tenant dalla tabella.
 . Seleziona *Cancella errore*.
-. ${post_edited_translations.segment}
+. Seleziona *Sì* per cancellare il messaggio e aggiornare lo stato del sistema.
 . Attendi 5-6 minuti e poi inserisci un nuovo oggetto nel bucket. Verifica che il messaggio di errore non si ripresenti.
 +
 
@@ -169,7 +169,7 @@ TIP: Dopo che hai risolto l'errore, potrebbe comparire un nuovo *Ultimo errore* 
 === Avviso di errore permanente della replica cross-grid
 
 .Problema
-${post_edited_translations.segment}
+È stato attivato l'avviso di *errore permanente di replica tra griglie*.
 
 .Dettagli
 Questo avviso indica che gli oggetti tenant non possono essere replicati tra i bucket su due griglie per un motivo che richiede il tuo intervento per essere risolto. Questo avviso è in genere causato da una modifica al bucket di origine o a quello di destinazione.
@@ -179,10 +179,10 @@ Questo avviso indica che gli oggetti tenant non possono essere replicati tra i b
 . Vai su *Configurazione* > *Sistema* > *Grid federation* e individua il nome della connessione indicato nell'avviso.
 . Nella scheda Inquilini autorizzati, guarda la colonna *Ultimo errore* per individuare quali account tenant presentano errori.
 . Per saperne di più sull'errore, vedi le istruzioni in link:../monitor/grid-federation-monitor-connections.html["Monitora le connessioni della federazione di grid"] per esaminare le metriche di replica cross-grid.
-. ${post_edited_translations.segment}
+. Per ciascun tenant account interessato:
 +
 .. Vedi le istruzioni in link:../monitor/monitoring-tenant-activity.html["Monitora l'attività del tenant"] per confermare che il tenant non ha superato la sua quota sulla grid di destinazione per la replica cross-grid.
-.. ${post_edited_translations.segment}
+.. Se necessario, aumenta la quota del tenant sulla grid di destinazione per consentire il salvataggio di nuovi oggetti.
 
 
 . Per ogni tenant interessato, accedi a Tenant Manager su entrambe le griglie, così puoi confrontare l'elenco dei bucket.
@@ -196,8 +196,8 @@ Questo avviso indica che gli oggetti tenant non possono essere replicati tra i b
 . Per confermare che il problema sia stato risolto, vedi le istruzioni in link:../monitor/grid-federation-monitor-connections.html["Monitora le connessioni della federazione di grid"] per esaminare le metriche di replica cross-grid, oppure esegui questi passaggi:
 +
 .. Torna alla pagina della federazione Grid.
-.. ${post_edited_translations.segment}
-.. ${post_edited_translations.segment}
+.. Seleziona il tenant interessato e seleziona *Cancella errore* nella colonna *Ultimo errore*.
+.. Seleziona *Sì* per cancellare il messaggio e aggiornare lo stato del sistema.
 .. Attendi 5-6 minuti e poi inserisci un nuovo oggetto nel bucket. Verifica che il messaggio di errore non si ripresenti.
 +
 
@@ -218,7 +218,7 @@ NOTE: Potrebbe essere necessario fino a un giorno prima che l'avviso scompaia do
 === Avviso di risorsa di replica cross-grid non disponibile
 
 .Problema
-${post_edited_translations.segment}
+È stato attivato l'avviso *Risorsa di replica cross-grid non disponibile*.
 
 .Dettagli
 Questo avviso indica che le richieste di replica cross-grid sono in sospeso perché una risorsa non è disponibile. Ad esempio, potrebbe esserci un errore di rete.
@@ -227,7 +227,7 @@ Questo avviso indica che le richieste di replica cross-grid sono in sospeso perc
 . Monitora l'avviso per vedere se il problema si risolve da solo.
 . Se il problema persiste, verifica se una delle due griglie presenta un avviso di *Errore di connessione alla federazione della griglia* per la stessa connessione o un avviso di *Impossibile comunicare con il nodo* per un nodo. Questo avviso potrebbe risolversi quando risolvi quegli avvisi.
 . Per saperne di più sull'errore, vedi le istruzioni in link:../monitor/grid-federation-monitor-connections.html["Monitora le connessioni della federazione di grid"] per esaminare le metriche di replica cross-grid.
-. ${post_edited_translations.segment}
+. Se non riesci a risolvere l'avviso, contatta il supporto tecnico.
 
 
-${post_edited_translations.segment}
+La replica tra griglie procederà normalmente una volta risolto il problema.

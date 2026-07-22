@@ -31,7 +31,7 @@ Nello specifico, dovresti utilizzare certificati server personalizzati invece di
 Vedi link:../admin/using-storagegrid-security-certificates.html["Gestisci i certificati di sicurezza"] per dettagli e istruzioni.
 
 
-NOTE: StorageGRID gestisce separatamente i certificati utilizzati per gli endpoint del bilanciatore di carico. Per configurare i certificati del bilanciatore di carico, vedi link:../admin/configuring-load-balancer-endpoints.html["${post_edited_translations.segment}"].
+NOTE: StorageGRID gestisce separatamente i certificati utilizzati per gli endpoint del bilanciatore di carico. Per configurare i certificati del bilanciatore di carico, vedi link:../admin/configuring-load-balancer-endpoints.html["Configura gli endpoint del bilanciatore di carico"].
 
 Quando usi certificati server personalizzati, segui queste linee guida:
 

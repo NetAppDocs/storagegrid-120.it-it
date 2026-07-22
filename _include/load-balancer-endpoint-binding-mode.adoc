@@ -8,7 +8,7 @@
 
 
  a| 
-${post_edited_translations.segment}
+Globale (predefinito)
  a| 
 I client possono accedere all'endpoint utilizzando l'indirizzo IP di qualsiasi Gateway Node o Admin Node, l'indirizzo IP virtuale (VIP) di qualsiasi gruppo HA su qualsiasi rete o un FQDN corrispondente.
 
@@ -26,7 +26,7 @@ Gli endpoint con questa modalità di binding possono utilizzare tutti lo stesso 
 
 
  a| 
-${post_edited_translations.segment}
+Interfacce dei nodi
  a| 
 I client devono utilizzare gli indirizzi IP (o i corrispondenti FQDN) delle interfacce dei nodi selezionati per accedere a questo endpoint.
 

@@ -20,14 +20,14 @@ L'avviso *Errore permanente di replica tra griglie* indica che gli oggetti tenan
 [[determine-if-any-objects-failed-to-be-replicated]]
 == Verifica se qualche oggetto non è stato replicato
 
-Per determinare se alcuni oggetti o indicatori di eliminazione non sono stati replicati all'altra griglia, puoi cercare i messaggi link:../audit/cgrr-cross-grid-replication-request.html["${post_edited_translations.segment}"] nel registro di controllo. Questo messaggio viene aggiunto al registro quando StorageGRID non riesce a replicare un oggetto, un oggetto multipart o un indicatore di eliminazione nel bucket di destinazione.
+Per determinare se alcuni oggetti o indicatori di eliminazione non sono stati replicati all'altra griglia, puoi cercare i messaggi link:../audit/cgrr-cross-grid-replication-request.html["CGRR (Richiesta di replica tra griglie)"] nel registro di controllo. Questo messaggio viene aggiunto al registro quando StorageGRID non riesce a replicare un oggetto, un oggetto multipart o un indicatore di eliminazione nel bucket di destinazione.
 
 Puoi usare lo link:../audit/using-audit-explain-tool.html["strumento audit-explain"] per tradurre i risultati in un formato più facile da leggere.
 
 .Prima di iniziare
-* ${post_edited_translations.segment}
+* Hai il permesso di accesso root.
 * Hai il file  `Passwords.txt`.
-* ${post_edited_translations.segment}
+* Conosci l'indirizzo IP del nodo Admin primario.
 
 
 .Passaggi
@@ -42,7 +42,7 @@ Quando sei connesso come root, il prompt cambia da  `$` a  `#`.
 
 
 
-. ${post_edited_translations.segment}
+. Cerca i messaggi CGRR nel file audit.log e usa lo strumento audit-explain per formattare i risultati.
 +
 Ad esempio, questo comando cerca tutti i messaggi CGRR degli ultimi 30 minuti e utilizza lo strumento audit-explain.
 
@@ -75,12 +75,12 @@ Il nome della richiesta
 
 
 | tenant  a| 
-${post_edited_translations.segment}
+ID account del tenant
 
 
 
-| ${post_edited_translations.segment}  a| 
-${post_edited_translations.segment}
+| connessione  a| 
+L'ID della connessione alla federazione di griglia
 
 
 
@@ -88,7 +88,7 @@ ${post_edited_translations.segment}
 Il tipo di operazione di replica che si stava tentando di eseguire:
 
 ** replica oggetto
-** ${post_edited_translations.segment}
+** replica del marcatore di eliminazione
 ** replicare oggetto multipart
 
 
@@ -128,19 +128,19 @@ Dopo aver generato un elenco di oggetti e marcatori di eliminazione che non sono
 
 .Passaggi
 . Dalla parte superiore di Grid Manager, seleziona l'icona di aiuto e seleziona *API documentation*.
-. ${post_edited_translations.segment}
+. Seleziona *Vai alla documentazione API privata*.
 +
 
 NOTE: Gli endpoint API di StorageGRID contrassegnati come "Private" sono soggetti a modifiche senza preavviso. Inoltre, gli endpoint privati di StorageGRID ignorano la versione dell'API della richiesta.
 
-. ${post_edited_translations.segment}
+. Nella sezione *cross-grid-replication-advanced*, seleziona il seguente endpoint:
 +
 `POST /private/cross-grid-replication-retry-failed`
 
-. ${post_edited_translations.segment}
+. Seleziona *Prova*.
 . Nella casella di testo *body*, sostituisci la voce di esempio per *versionID* con un ID di versione dal file audit.log che corrisponde a una richiesta di replica cross-grid non riuscita.
 +
-${post_edited_translations.segment}
+Assicurati di mantenere le virgolette doppie attorno alla stringa.
 
 . Seleziona *Esegui*.
 . Conferma che il codice di risposta del server sia *204*, a indicare che l'oggetto o il marcatore di eliminazione è stato contrassegnato come in attesa di replica cross-grid verso l'altra grid.
@@ -166,13 +166,13 @@ Puoi monitorare le operazioni di ripetizione in due modi:
 +
 [cols="1a,2a"]
 |===
-| Griglia | ${post_edited_translations.segment} 
+| Griglia | Stato della replica 
 
 
  a| 
 Fonte
  a| 
-** ${post_edited_translations.segment}
+** *COMPLETATO*: La replica è riuscita.
 ** *IN SOSPESO*: L'oggetto non è ancora stato replicato.
 ** *ERRORE*: La replica non è riuscita a causa di un errore permanente. Devi risolvere l'errore.
 
@@ -193,14 +193,14 @@ Destinazione
 +
 `GET /private/cross-grid-replication-object-status/{id}`
 
-. ${post_edited_translations.segment}
+. Seleziona *Prova*.
 . Nella sezione Parameter, inserisci l'ID versione che hai utilizzato nella richiesta  `cross-grid-replication-retry-failed`.
 . Seleziona *Esegui*.
-. ${post_edited_translations.segment}
+. Conferma che il codice di risposta del server sia *200*.
 . Esamina lo stato della replica, che sarà uno dei seguenti:
 +
 ** *IN SOSPESO*: L'oggetto non è ancora stato replicato.
-** ${post_edited_translations.segment}
+** *COMPLETATO*: La replica è riuscita.
 ** *FALLITO*: la replica è fallita con un errore permanente. Un utente deve risolvere l'errore.
 
 

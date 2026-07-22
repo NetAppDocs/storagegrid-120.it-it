@@ -46,7 +46,7 @@ Per spostare un nodo da un host a un altro, il servizio host di StorageGRID deve
 
 Supponiamo, ad esempio, che StorageGRID NodeA in esecuzione su Host1 sia stato configurato con le seguenti mappature di interfaccia:
 
-image:eth0_bond.gif["${post_edited_translations.segment}"]
+image:eth0_bond.gif["Questa immagine è spiegata dal testo circostante."]
 
 La parte sinistra delle frecce corrisponde alle interfacce tradizionali viste dall'interno di un container StorageGRID (ovvero, le interfacce Grid, Admin e Client Network, rispettivamente). La parte destra delle frecce corrisponde alle effettive interfacce host che forniscono queste reti, cioè tre interfacce VLAN subordinate allo stesso bond di interfacce fisiche.
 

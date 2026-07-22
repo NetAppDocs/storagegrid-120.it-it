@@ -13,12 +13,12 @@ summary: 'La cartella condivisa di audit contiene il file audit.log attivo e tut
 [role="lead"]
 La cartella di controllo contiene il file attivo `audit.log` e tutti i file di log di controllo compressi. Puoi accedere ai file di log di controllo direttamente dalla riga di comando dell'Admin Node.
 
-Il file `audit.log` rimane vuoto a meno che non configuri StorageGRID per *Admin Nodes/local nodes* o *Admin Node and external syslog server*. Per ulteriori informazioni, consulta link:../monitor/configure-log-management.html#select-log-location["${post_edited_translations.segment}"].
+Il file `audit.log` rimane vuoto a meno che non configuri StorageGRID per *Admin Nodes/local nodes* o *Admin Node and external syslog server*. Per ulteriori informazioni, consulta link:../monitor/configure-log-management.html#select-log-location["Seleziona la posizione del file di log"].
 
 .Prima di iniziare
 * Hai link:../admin/admin-group-permissions.html["autorizzazioni di accesso specifiche"].
 * Devi avere il file `Passwords.txt`.
-* ${post_edited_translations.segment}
+* Devi conoscere l'indirizzo IP di un Admin Node.
 
 
 .Passaggi
@@ -37,5 +37,5 @@ Quando sei connesso come root, il prompt cambia da  `$` a  `#`.
 +
 `cd  /var/local/audit/export/`
 
-. ${post_edited_translations.segment}
+. Visualizza il file di log di audit corrente o uno salvato, a seconda delle necessità.
 

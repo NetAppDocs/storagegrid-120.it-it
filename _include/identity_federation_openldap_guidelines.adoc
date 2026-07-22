@@ -19,7 +19,7 @@ Le sovrapposizioni memberof e refint devono essere abilitate. Per ulteriori info
 [[indexing]]
 === Indicizzazione
 
-${post_edited_translations.segment}
+Devi configurare i seguenti attributi OpenLDAP con le parole chiave di indice specificate:
 
 * `olcDbIndex: objectClass eq`
 * `olcDbIndex: uid eq,pres,sub`

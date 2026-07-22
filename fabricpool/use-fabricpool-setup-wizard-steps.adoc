@@ -76,7 +76,7 @@ Un nome visualizzato univoco per questo gruppo HA.
 
 
  a| 
-${post_edited_translations.segment}
+Descrizione (facoltativa)
  a| 
 La descrizione di questo gruppo HA.
 
@@ -108,7 +108,7 @@ Se il gruppo HA include più di un'interfaccia e l'interfaccia attiva si guasta,
  a| 
 CIDR della sottorete
  a| 
-${post_edited_translations.segment}
+L'indirizzo della subnet VIP in notazione CIDR: un indirizzo IPv4 seguito da una barra e dalla lunghezza della subnet (0-32).
 
 L'indirizzo di rete non deve avere alcun bit host impostato. Ad esempio, `192.16.0.0/22`.
 
@@ -187,7 +187,7 @@ La porta StorageGRID che vuoi usare per il bilanciamento del carico. Questo camp
 
 
  a| 
-${post_edited_translations.segment}
+Tipo di client
  a| 
 Deve essere *S3*.
 
@@ -209,7 +209,7 @@ Seleziona *HTTPS*.
 
 
  a| 
-${post_edited_translations.segment}
+Globale (predefinito)
  a| 
 I client possono accedere all'endpoint utilizzando l'indirizzo IP di qualsiasi Gateway Node o Admin Node, l'indirizzo IP virtuale (VIP) di qualsiasi gruppo HA su qualsiasi rete o un FQDN corrispondente.
 
@@ -227,7 +227,7 @@ Gli endpoint con questa modalità di binding possono utilizzare tutti lo stesso 
 
 
  a| 
-${post_edited_translations.segment}
+Interfacce dei nodi
  a| 
 I client devono utilizzare gli indirizzi IP (o i corrispondenti FQDN) delle interfacce dei nodi selezionati per accedere a questo endpoint.
 
@@ -258,7 +258,7 @@ Devi selezionare questa opzione se stai usando la FabricPool setup wizard per un
 
 
  a| 
-${post_edited_translations.segment}
+Consenti agli inquilini selezionati
  a| 
 Solo i tenant account selezionati possono utilizzare questo endpoint per accedere ai propri bucket.
 
@@ -287,7 +287,7 @@ Utilizza questa opzione per caricare un certificato server firmato da una CA, la
  a| 
 Genera certificato
  a| 
-Utilizza questa opzione per generare un certificato autofirmato. Consulta link:../admin/configuring-load-balancer-endpoints.html["${post_edited_translations.segment}"] per i dettagli su cosa inserire.
+Utilizza questa opzione per generare un certificato autofirmato. Consulta link:../admin/configuring-load-balancer-endpoints.html["Configura gli endpoint del bilanciatore di carico"] per i dettagli su cosa inserire.
 
 
 
@@ -373,7 +373,7 @@ Crea un nuovo tenant e un nuovo bucket oppure seleziona un tenant esistente.
 +
 [cols="1a,3a"]
 |===
-| Opzione | ${post_edited_translations.segment} 
+| Opzione | Fai questo 
 
 
  a| 
@@ -437,7 +437,7 @@ NOTE: Non selezionare un bucket con S3 Object Lock abilitato per l'utilizzo con 
 Durante questa fase, scarichi un file che puoi utilizzare per inserire valori in ONTAP System Manager.
 
 .Passaggi
-. Facoltativamente, seleziona l'icona di copia (image:icon_tenant_copy_url.png["${post_edited_translations.segment}"]) per copiare negli appunti sia l'ID della chiave di accesso che la chiave di accesso segreta.
+. Facoltativamente, seleziona l'icona di copia (image:icon_tenant_copy_url.png["icona copia"]) per copiare negli appunti sia l'ID della chiave di accesso che la chiave di accesso segreta.
 +
 Questi valori sono inclusi nel file scaricato, ma potresti volerli salvare separatamente.
 
@@ -624,6 +624,6 @@ Dopo aver completato la procedura guidata FabricPool, esegui questi passaggi agg
 
 .Passaggi
 . Vai a link:configure-ontap.html["Configura ONTAP System Manager"] per inserire i valori salvati e completare la parte ONTAP della connessione. Devi aggiungere StorageGRID come cloud tier, collegare il cloud tier a un tier locale per creare un FabricPool e impostare le policy di tiering dei volumi.
-. Vai su link:configure-dns-server.html["${post_edited_translations.segment}"] e assicurati che il DNS includa un record per associare il nome del server StorageGRID (fully qualified domain name) a ciascun indirizzo IP StorageGRID che utilizzerai.
+. Vai su link:configure-dns-server.html["Configura il DNS server"] e assicurati che il DNS includa un record per associare il nome del server StorageGRID (fully qualified domain name) a ciascun indirizzo IP StorageGRID che utilizzerai.
 . Vai su link:other-best-practices-for-storagegrid-and-fabricpool.html["Altre best practice per StorageGRID e FabricPool"] per scoprire le best practice per i log di audit di StorageGRID e altre opzioni di configurazione globali.
 

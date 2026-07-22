@@ -26,25 +26,25 @@ Risultato
 Risultato della richiesta di aggiornamento:
 
 * SUCS: Operazione riuscita
-* ${post_edited_translations.segment}
-* ${post_edited_translations.segment}
+* SUNV: Servizio non disponibile
+* GERR: Altro guasto
 
 
 
 
  a| 
-${post_edited_translations.segment}
+GNID
  a| 
 ID nodo
  a| 
-${post_edited_translations.segment}
+L'ID del nodo del servizio che ha avviato la richiesta di aggiornamento.
 
 
 
  a| 
 GNTP
  a| 
-${post_edited_translations.segment}
+Tipo di dispositivo
  a| 
 Il tipo di dispositivo del nodo della griglia (ad esempio, BLDR per un servizio LDR).
 
@@ -60,11 +60,11 @@ La stringa che identifica la versione del modello del dispositivo del nodo della
 
 
  a| 
-${post_edited_translations.segment}
+GNGP
  a| 
 Gruppo
  a| 
-${post_edited_translations.segment}
+Il gruppo a cui appartiene il nodo della griglia (nel contesto dei costi dei collegamenti e della classificazione delle query di servizio).
 
 
 
@@ -73,7 +73,7 @@ GNIA
  a| 
 Indirizzo IP
  a| 
-${post_edited_translations.segment}
+Indirizzo IP del nodo della griglia.
 
 |===
-${post_edited_translations.segment}
+Questo messaggio viene generato ogni volta che un nodo della griglia aggiorna la propria voce nel Grid Nodes Bundle.

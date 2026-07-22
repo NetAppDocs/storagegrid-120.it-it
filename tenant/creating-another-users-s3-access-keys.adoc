@@ -2,7 +2,7 @@
 permalink: tenant/creating-another-users-s3-access-keys.html 
 sidebar: sidebar 
 keywords: how to create other user S3 access key 
-summary: ${post_edited_translations.segment} 
+summary: Se utilizzi un tenant S3 e hai le autorizzazioni appropriate, puoi creare chiavi di accesso S3 per altri utenti, come ad esempio applicazioni che devono accedere a bucket e oggetti. 
 ---
 = Crea le chiavi di accesso S3 di un altro utente in StorageGRID
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: ${post_edited_translations.segment}
 
 
 [role="lead"]
-${post_edited_translations.segment}
+Se utilizzi un tenant S3 e hai le autorizzazioni appropriate, puoi creare chiavi di accesso S3 per altri utenti, come ad esempio applicazioni che devono accedere a bucket e oggetti.
 
 .Prima di iniziare
 * Hai effettuato l'accesso al Tenant Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
@@ -36,7 +36,7 @@ CAUTION: È possibile accedere ai bucket e agli oggetti S3 appartenenti a un ute
 +
 Viene visualizzata la pagina dei dettagli dell'utente.
 
-. ${post_edited_translations.segment}
+. Seleziona *Chiavi di accesso*, quindi seleziona *Crea chiave*.
 . Esegui una delle seguenti operazioni:
 +
 ** Seleziona *Non impostare una data di scadenza* per creare una chiave che non scade. (Predefinito)
@@ -58,7 +58,7 @@ CAUTION: Non chiudere questa finestra di dialogo finché non hai copiato o scari
 
 . Seleziona *Fine*.
 +
-${post_edited_translations.segment}
+La nuova chiave è elencata nella scheda Chiavi di accesso della pagina dei dettagli utente.
 
-. Se il tuo account tenant dispone dell'autorizzazione *Usa connessione di federazione della griglia*, puoi facoltativamente utilizzare l'API di gestione dei tenant per clonare manualmente le chiavi di accesso S3 dal tenant sulla griglia di origine al tenant sulla griglia di destinazione. Vedi link:grid-federation-clone-keys-with-api.html["${post_edited_translations.segment}"].
+. Se il tuo account tenant dispone dell'autorizzazione *Usa connessione di federazione della griglia*, puoi facoltativamente utilizzare l'API di gestione dei tenant per clonare manualmente le chiavi di accesso S3 dal tenant sulla griglia di origine al tenant sulla griglia di destinazione. Vedi link:grid-federation-clone-keys-with-api.html["Clona le chiavi di accesso S3 utilizzando l'API"].
 

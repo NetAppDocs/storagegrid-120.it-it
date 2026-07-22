@@ -23,10 +23,10 @@ Queste istruzioni si applicano solo ai sistemi StorageGRID che includono almeno 
 .Informazioni su questa attività
 *Ora dell'ultimo accesso* è una delle opzioni disponibili per l'istruzione di posizionamento *Ora di riferimento* per una regola ILM. L'impostazione dell'Ora di riferimento per una regola su Ora dell'ultimo accesso consente agli amministratori della griglia di specificare che gli oggetti vengano collocati in determinate posizioni di storage in base a quando sono stati recuperati l'ultima volta (letti o visualizzati).
 
-${post_edited_translations.segment}
+Ad esempio, per garantire che gli oggetti visualizzati di recente rimangano su uno storage più veloce, un amministratore della griglia può creare una regola ILM specificando quanto segue:
 
-* ${post_edited_translations.segment}
-* ${post_edited_translations.segment}
+* Gli oggetti recuperati nell'ultimo mese devono rimanere sui nodi di archiviazione locali.
+* Gli oggetti che non sono stati recuperati nell'ultimo mese dovrebbero essere spostati in una posizione remota.
 
 
 Per impostazione predefinita, gli aggiornamenti all'ora dell'ultimo accesso sono disabilitati. Se il tuo sistema StorageGRID include una regola ILM che utilizza l'opzione *Ora dell'ultimo accesso* e desideri che questa opzione si applichi agli oggetti in questo bucket, devi abilitare gli aggiornamenti all'ora dell'ultimo accesso per i bucket S3 specificati in tale regola.
@@ -34,13 +34,13 @@ Per impostazione predefinita, gli aggiornamenti all'ora dell'ultimo accesso sono
 
 CAUTION: L'aggiornamento dell'ora dell'ultimo accesso quando un oggetto viene recuperato può ridurre le prestazioni di StorageGRID, soprattutto per gli oggetti di piccole dimensioni.
 
-${post_edited_translations.segment}
+L'aggiornamento dell'ora dell'ultimo accesso ha un impatto sulle prestazioni perché StorageGRID deve eseguire questi passaggi aggiuntivi ogni volta che vengono recuperati gli oggetti:
 
 * Aggiorna gli oggetti con nuovi timestamp
-* ${post_edited_translations.segment}
+* Aggiungi gli oggetti alla coda ILM, così possono essere rivalutati rispetto alle regole e alla policy ILM attuali
 
 
-${post_edited_translations.segment}
+La tabella riassume il comportamento applicato a tutti gli oggetti nel bucket quando l'ora dell'ultimo accesso è disabilitata o abilitata.
 
 [cols="1a,1a,1a,1a,1a"]
 |===
@@ -138,7 +138,7 @@ Sì, per l'oggetto assemblato
 
 |===
 .Passaggi
-. ${post_edited_translations.segment}
+. Seleziona *Visualizza bucket* dalla dashboard oppure seleziona *STORAGE (S3)* > *Buckets*.
 . Seleziona il nome del bucket dalla tabella.
 +
 Viene visualizzata la pagina dei dettagli del bucket.

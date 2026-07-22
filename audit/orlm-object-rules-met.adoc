@@ -31,7 +31,7 @@ Campo ID del bucket. Utilizzato per operazioni interne. Viene visualizzato solo 
 
 
  a| 
-${post_edited_translations.segment}
+CBID
  a| 
 Identificatore del blocco di contenuto
  a| 
@@ -59,7 +59,7 @@ CLEC: per gli oggetti con codifica di cancellazione, l'ID del profilo di codific
 
 CLDI: per gli oggetti replicati, l'ID del nodo LDR e l'ID del volume della posizione dell'oggetto.
 
-${post_edited_translations.segment}
+CLNL: ID del nodo ARC della posizione dell'oggetto se i dati dell'oggetto sono archiviati.
 
 
 
@@ -84,7 +84,7 @@ SUCS: L'operazione ILM è stata un successo.
 
 
  a| 
-${post_edited_translations.segment}
+REGOLA
  a| 
 Etichetta delle regole
  a| 
@@ -104,24 +104,24 @@ UUID del container per l'oggetto segmentato. Questo valore è disponibile solo s
  a| 
 SGCB
  a| 
-${post_edited_translations.segment}
+CBID del container
  a| 
 CBID del container per l'oggetto segmentato. Questo valore è disponibile solo per oggetti segmentati e multipart.
 
 
 
  a| 
-${post_edited_translations.segment}
+STAT
  a| 
 Stato
  a| 
 Lo stato dell'operazione ILM.
 
-${post_edited_translations.segment}
+FATTO: Le operazioni ILM sull'oggetto sono completate.
 
 DFER: L'oggetto è stato contrassegnato per una futura rivalutazione dell'ILM.
 
-${post_edited_translations.segment}
+PRGD: L'oggetto è stato eliminato dal sistema StorageGRID.
 
 NLOC: I dati dell'oggetto non sono più reperibili nel sistema StorageGRID. Questo stato potrebbe indicare che tutte le copie dei dati dell'oggetto sono mancanti o danneggiate.
 
@@ -137,7 +137,7 @@ L'identificativo dell'oggetto all'interno del sistema StorageGRID.
 
 
  a| 
-${post_edited_translations.segment}
+VSID
  a| 
 ID versione
  a| 
@@ -147,12 +147,12 @@ L'ID di versione di un nuovo oggetto creato in un bucket con versione. Le operaz
 Il messaggio di controllo ORLM può essere emesso più di una volta per un singolo oggetto. Ad esempio, viene emesso ogni volta che si verifica uno dei seguenti eventi:
 
 * Le regole ILM per l'oggetto sono soddisfatte per sempre.
-* ${post_edited_translations.segment}
+* Le regole ILM per l'oggetto sono soddisfatte per quest'epoca.
 * Le regole ILM hanno eliminato l'oggetto.
 * Il processo di verifica in background rileva che una copia dei dati di un oggetto replicato è danneggiata. Il sistema StorageGRID esegue una valutazione ILM per sostituire l'oggetto danneggiato.
 
 
 .Informazioni correlate
 * link:object-ingest-transactions.html["Transazioni di ingestione degli oggetti"]
-* link:object-delete-transactions.html["${post_edited_translations.segment}"]
+* link:object-delete-transactions.html["Transazioni di eliminazione degli oggetti"]
 

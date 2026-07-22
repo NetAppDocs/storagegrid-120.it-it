@@ -197,7 +197,7 @@ AutoSupport package dagli appliance E-Series possono essere inclusi in StorageGR
 
 StorageGRID AutoSupport non segnala problemi hardware, come guasti ai moduli DIMM o alle schede di interfaccia verso gli host (HIC). Tuttavia, alcuni guasti ai componenti potrebbero attivare link:../monitor/alerts-reference.html["avvisi hardware"]. Per gli appliance StorageGRID dotati di un controller di gestione della scheda madre (BMC), puoi configurare e-mail e trap SNMP per segnalare i guasti hardware:
 
-* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/setting-up-email-notifications-for-alerts.html["${post_edited_translations.segment}"^]
+* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/setting-up-email-notifications-for-alerts.html["Configura le notifiche e-mail per gli avvisi BMC"^]
 * https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/configuring-snmp-settings-for-bmc.html["Configura le impostazioni SNMP per BMC"^]
 
 

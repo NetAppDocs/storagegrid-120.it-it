@@ -98,7 +98,7 @@ Conoscendo meglio il carico di lavoro, puoi ottenere stime più accurate. Per i 
 
 
  a| 
-${post_edited_translations.segment}
+SACC
  a| 
 Nome account tenant S3 (mittente della richiesta)
  a| 
@@ -199,7 +199,7 @@ Conoscendo meglio il carico di lavoro, è possibile ottenere stime più accurate
 
 
  a| 
-${post_edited_translations.segment}
+SACC
  a| 
 Nome account tenant S3 (mittente della richiesta)
  a| 

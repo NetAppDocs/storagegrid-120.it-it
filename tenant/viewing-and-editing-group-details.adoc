@@ -19,7 +19,7 @@ Quando visualizzi i dettagli di un gruppo, puoi modificarne il nome visualizzato
 
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Seleziona *Gestione accessi* > *Gruppi*.
 . Seleziona il nome del gruppo di cui vuoi vedere o modificare i dettagli.
 +
 In alternativa, puoi selezionare *Azioni* > *Visualizza dettagli del gruppo*.

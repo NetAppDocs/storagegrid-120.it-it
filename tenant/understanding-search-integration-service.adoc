@@ -17,7 +17,7 @@ Il servizio di integrazione della ricerca è un servizio StorageGRID personalizz
 
 Ad esempio, potresti configurare i tuoi bucket in modo che inviino i metadati degli oggetti S3 a un servizio Elasticsearch remoto. Potresti quindi utilizzare Elasticsearch per eseguire ricerche tra i bucket e condurre analisi sofisticate dei modelli presenti nei metadati degli oggetti.
 
-${post_edited_translations.segment}
+Sebbene l'integrazione con Elasticsearch possa essere configurata su un bucket con S3 Object Lock abilitato, i metadati S3 Object Lock (inclusi Retain Until Date e Legal Hold status) degli oggetti non saranno inclusi nei metadati inviati a Elasticsearch.
 
 
 NOTE: Poiché il servizio di integrazione della ricerca causa l'invio dei metadati dell'oggetto a una destinazione, il suo XML di configurazione viene definito "XML di configurazione delle notifiche dei _metadati_." Questo XML di configurazione è diverso dall'"XML di configurazione delle notifiche" utilizzato per abilitare le notifiche degli _eventi_.
@@ -37,24 +37,24 @@ NOTE: Per i tag e i metadati utente, StorageGRID trasmette date e numeri a Elast
 
 
 [[search-notifications]]
-== ${post_edited_translations.segment}
+== Notifiche di ricerca
 
-${post_edited_translations.segment}
+Le notifiche relative ai metadati vengono generate e messe in coda per la consegna ogni volta che:
 
-* ${post_edited_translations.segment}
+* Viene creato un oggetto.
 * Un oggetto viene eliminato, anche quando gli oggetti vengono eliminati a seguito dell'operazione della policy ILM della griglia.
 * I metadati o i tag dell'oggetto vengono aggiunti, aggiornati o eliminati. L'insieme completo di metadati e tag viene sempre inviato al momento dell'aggiornamento -- non solo i valori modificati.
 
 
 Dopo aver aggiunto l'XML di configurazione delle notifiche dei metadati a un bucket, le notifiche vengono inviate per tutti i nuovi oggetti che crei e per tutti gli oggetti che modifichi aggiornandone i dati, i metadati utente o i tag. Tuttavia, le notifiche non vengono inviate per gli oggetti già presenti nel bucket. Per garantire che i metadati dell'oggetto per tutti gli oggetti nel bucket vengano inviati alla destinazione, dovresti eseguire una delle seguenti operazioni:
 
-* ${post_edited_translations.segment}
+* Configura il servizio di integrazione della ricerca immediatamente dopo aver creato il bucket e prima di aggiungere qualsiasi oggetto.
 * Esegui un'azione su tutti gli oggetti già presenti nel bucket che attiverà l'invio di un messaggio di notifica dei metadati alla destinazione.
 
 
 
 
 [[search-integration-service-and-elasticsearch]]
-== ${post_edited_translations.segment}
+== Servizio di integrazione della ricerca e Elasticsearch
 
 Il servizio di integrazione della ricerca di StorageGRID supporta un cluster Elasticsearch come destinazione. Come per gli altri servizi della piattaforma, la destinazione viene specificata nell'endpoint il cui URN è utilizzato nell'XML di configurazione del servizio. Utilizza il https://imt.netapp.com/matrix/#welcome["Tool NetApp Interoperability Matrix"^] per determinare le versioni supportate di Elasticsearch.

@@ -2,7 +2,7 @@
 permalink: admin/grid-management-api-versioning.html 
 sidebar: sidebar 
 keywords: grid management api, api versioning 
-summary: ${post_edited_translations.segment} 
+summary: 'L"API di gestione della griglia utilizza il versioning per supportare aggiornamenti non disruptivi.' 
 ---
 = Versioning dell'API Grid Management in StorageGRID
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: ${post_edited_translations.segment}
 
 
 [role="lead"]
-${post_edited_translations.segment}
+L'API di gestione della griglia utilizza il versioning per supportare aggiornamenti non disruptivi.
 
 Ad esempio, questo URL di richiesta specifica la versione 4 dell'API.
 
@@ -23,11 +23,11 @@ L'esempio seguente illustra come la versione dell'API viene incrementata in base
 
 [cols="1a,1a,1a"]
 |===
-| ${post_edited_translations.segment} | Vecchia versione | ${post_edited_translations.segment} 
+| Tipo di modifica all'API | Vecchia versione | Nuova versione 
 
 
  a| 
-${post_edited_translations.segment}
+Compatibile con le versioni precedenti
  a| 
 2,1
  a| 

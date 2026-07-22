@@ -14,7 +14,7 @@ summary: Se un nodo di archiviazione include meno di 16 volumi di archiviazione,
 Se un nodo di archiviazione include meno di 16 volumi di archiviazione, puoi aumentarne la capacità utilizzando VMware vSphere per aggiungere volumi.
 
 .Prima di iniziare
-* Hai accesso a link:../swnodes/index.html["${post_edited_translations.segment}"].
+* Hai accesso a link:../swnodes/index.html["Istruzioni per installare StorageGRID per le implementazioni VMware"].
 * Hai il file  `Passwords.txt`.
 * Hai link:../admin/admin-group-permissions.html["autorizzazioni di accesso specifiche"].
 
@@ -51,15 +51,15 @@ NOTE: Non usare *Spegni* o *Ripristina* per riavviare la macchina virtuale.
 ... Inserisci la password indicata nel `Passwords.txt` file. Quando effettui l'accesso come root, il prompt cambia da `$` a `#`.
 
 
-.. ${post_edited_translations.segment}
+.. Configura i nuovi volumi di storage:
 +
 `sudo add_rangedbs.rb`
 
 +
-${post_edited_translations.segment}
+Questo script individua eventuali nuovi volumi di storage e ti chiede di formattarli.
 
 .. Digita *y* per accettare la formattazione.
-.. ${post_edited_translations.segment}
+.. Se alcuni dei volumi sono già stati formattati, decidi se vuoi riformattarli.
 +
 *** Digita *y* per riformattare.
 *** Inserisci *n* per saltare la riformattazione.
@@ -89,13 +89,13 @@ Lo stato viene aggiornato automaticamente.
 . Verifica che il nodo di archiviazione sia online:
 +
 .. Accedi al Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
-.. ${post_edited_translations.segment}
-.. ${post_edited_translations.segment}
+.. Seleziona *Nodes* > *_Storage Node_* > *Tasks*.
+.. Se l'elenco a discesa *Stato di archiviazione* è impostato su Sola lettura o Offline, seleziona *Online*.
 .. Seleziona *Salva*.
 
 
 . Per vedere i nuovi object store, seleziona *Storage*.
-. ${post_edited_translations.segment}
+. Visualizza i dettagli nella tabella *Volumi*.
 
 
 .Risultato

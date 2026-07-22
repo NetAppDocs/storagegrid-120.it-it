@@ -39,7 +39,7 @@ Contiene il JSON che rappresenta la configurazione corrente di Empty Bucket.
  a| 
 S3AI
  a| 
-${post_edited_translations.segment}
+ID account tenant S3
  a| 
 L'ID account tenant dell'utente che ha inviato la richiesta. Un valore vuoto indica accesso anonimo.
 

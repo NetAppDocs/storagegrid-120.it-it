@@ -2,7 +2,7 @@
 permalink: admin/enable-cross-origin-resource-sharing-for-management-interface.html 
 sidebar: sidebar 
 keywords: how to configure cross-origin resource sharing, cors, management, api, domain 
-summary: ${post_edited_translations.segment} 
+summary: 'Puoi abilitare la condivisione delle risorse tra origini diverse (CORS) per le richieste API di gestione a StorageGRID, se vuoi che i dati in StorageGRID siano accessibili tramite le API di gestione da un altro dominio.' 
 ---
 = Abilita StorageGRID CORS per un'interfaccia di gestione
 :allow-uri-read: 
@@ -25,10 +25,10 @@ Le richieste Management API (mgmt-api) con  `application/json` o  `multipart/for
 
 .Passaggi
 . In Grid Manager, vai su *CONFIGURAZIONE* > *Rete* > *Impostazioni CORS dell'interfaccia di gestione*.
-. ${post_edited_translations.segment}
+. Seleziona *Grid Manager*, *Tenant Manager* o entrambe le opzioni.
 +
 ** *Grid Manager*: Abilita CORS per le richieste API di gestione della griglia tra domini diversi.
-** ${post_edited_translations.segment}
+** *Tenant Manager*: Abilita CORS per le richieste API di gestione del tenant tra domini diversi.
 
 
 . Inserisci l'URL dell'altro dominio nel campo *Domini*.
@@ -39,4 +39,4 @@ Seleziona *Aggiungi un altro dominio* se vuoi abilitare CORS in StorageGRID per 
 
 
 .Informazioni correlate
-link:../tenant/configuring-cross-origin-resource-sharing-for-buckets-and-objects.html["${post_edited_translations.segment}"]
+link:../tenant/configuring-cross-origin-resource-sharing-for-buckets-and-objects.html["Configura StorageGRID CORS per bucket e oggetti"]

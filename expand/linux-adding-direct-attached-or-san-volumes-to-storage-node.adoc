@@ -139,15 +139,15 @@ Lo stato viene aggiornato automaticamente.
 
 . Configura il nuovo storage per l'utilizzo da parte del nodo di Storage:
 +
-.. ${post_edited_translations.segment}
+.. Configura i nuovi volumi di storage:
 +
 `sudo add_rangedbs.rb`
 
 +
-${post_edited_translations.segment}
+Questo script individua eventuali nuovi volumi di storage e ti chiede di formattarli.
 
 .. Digita *y* per formattare i volumi di storage.
-.. ${post_edited_translations.segment}
+.. Se alcuni dei volumi sono già stati formattati, decidi se vuoi riformattarli.
 +
 *** Digita *y* per riformattare.
 *** Inserisci *n* per saltare la riformattazione.
@@ -161,14 +161,14 @@ Lo  `setup_rangedbs.sh`script viene eseguito automaticamente.
 . Verifica che lo stato di storage del nodo di storage sia online:
 +
 .. Accedi al Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
-.. ${post_edited_translations.segment}
-.. ${post_edited_translations.segment}
+.. Seleziona *Nodes* > *_Storage Node_* > *Tasks*.
+.. Se l'elenco a discesa *Stato di archiviazione* è impostato su Sola lettura o Offline, seleziona *Online*.
 .. Seleziona *Salva*.
 
 
 . Per vedere i nuovi object store, seleziona *Storage*.
-. ${post_edited_translations.segment}
+. Visualizza i dettagli nella tabella *Volumi*.
 
 
 .Risultato
-${post_edited_translations.segment}
+Ora puoi usare la capacità ampliata dei nodi di archiviazione per salvare i dati degli oggetti.

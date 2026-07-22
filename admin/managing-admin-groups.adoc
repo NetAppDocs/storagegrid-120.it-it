@@ -119,7 +119,7 @@ Se non hai ancora creato utenti locali, puoi salvare il gruppo senza aggiungere 
 Puoi visualizzare i dettagli dei gruppi esistenti, modificare un gruppo o duplicare un gruppo.
 
 * Per visualizzare le informazioni di base relative a tutti i gruppi, consulta la tabella nella pagina Gruppi.
-* ${post_edited_translations.segment}
+* Per visualizzare tutti i dettagli di un gruppo specifico o per modificare un gruppo, usa il menu *Azioni* o la pagina dei dettagli.
 +
 [cols="1a, 2a,2a"]
 |===
@@ -129,7 +129,7 @@ Puoi visualizzare i dettagli dei gruppi esistenti, modificare un gruppo o duplic
  a| 
 Visualizza i dettagli del gruppo
  a| 
-.. ${post_edited_translations.segment}
+.. Seleziona la casella di controllo per il gruppo.
 .. Seleziona *Azioni* > *Visualizza dettagli del gruppo*.
 
  a| 
@@ -140,15 +140,15 @@ Seleziona il nome del gruppo nella tabella.
  a| 
 Modifica il nome visualizzato (solo gruppi locali)
  a| 
-.. ${post_edited_translations.segment}
-.. ${post_edited_translations.segment}
-.. ${post_edited_translations.segment}
+.. Seleziona la casella di controllo per il gruppo.
+.. Seleziona *Azioni* > *Modifica nome gruppo*.
+.. Inserisci il nuovo nome.
 .. Seleziona *Salva modifiche*.
 
  a| 
 .. Seleziona il nome del gruppo per visualizzarne i dettagli.
 .. Seleziona l'icona di modifica image:icon_edit_tm.png["Icona di modifica"].
-.. ${post_edited_translations.segment}
+.. Inserisci il nuovo nome.
 .. Seleziona *Salva modifiche*.
 
 
@@ -157,15 +157,15 @@ Modifica il nome visualizzato (solo gruppi locali)
  a| 
 Modifica la modalità di accesso o le autorizzazioni
  a| 
-.. ${post_edited_translations.segment}
+.. Seleziona la casella di controllo per il gruppo.
 .. Seleziona *Azioni* > *Visualizza dettagli del gruppo*.
-.. ${post_edited_translations.segment}
+.. Facoltativamente, puoi modificare la modalità di accesso del gruppo.
 .. Facoltativamente, seleziona o deseleziona link:admin-group-permissions.html["permessi del gruppo admin"].
 .. Seleziona *Salva modifiche*.
 
  a| 
 .. Seleziona il nome del gruppo per visualizzarne i dettagli.
-.. ${post_edited_translations.segment}
+.. Facoltativamente, puoi modificare la modalità di accesso del gruppo.
 .. Facoltativamente, seleziona o deseleziona link:admin-group-permissions.html["permessi del gruppo admin"].
 .. Seleziona *Salva modifiche*.
 
@@ -176,10 +176,10 @@ Modifica la modalità di accesso o le autorizzazioni
 
 
 [[duplicate-a-group]]
-== ${post_edited_translations.segment}
+== Duplica un gruppo
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Seleziona la casella di controllo per il gruppo.
 . Seleziona *Azioni* > *Duplica gruppo*.
 . Completa la procedura guidata Duplica gruppo.
 
@@ -194,5 +194,5 @@ Puoi eliminare un gruppo admin quando desideri rimuovere il gruppo dal sistema e
 .Passaggi
 . Dalla pagina Gruppi, seleziona la casella di controllo per ogni gruppo che vuoi rimuovere.
 . Seleziona *Azioni* > *Elimina gruppo*.
-. ${post_edited_translations.segment}
+. Seleziona *Elimina gruppi*.
 

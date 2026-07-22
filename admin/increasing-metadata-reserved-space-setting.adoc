@@ -24,7 +24,7 @@ Potresti essere in grado di aumentare manualmente l'impostazione dello spazio ri
 Puoi aumentare il valore dell'impostazione Spazio riservato ai metadati a livello di sistema solo se entrambe queste affermazioni sono vere:
 
 * Ciascun nodo di Storage in qualsiasi sito del tuo sistema dispone di 128 GB o più di RAM.
-* ${post_edited_translations.segment}
+* I nodi di Storage in qualsiasi sito del tuo sistema hanno ciascuno spazio disponibile sufficiente sul volume di storage 0.
 
 
 Tieni presente che, se aumenti questo valore, ridurrai contemporaneamente lo spazio disponibile per lo storage a oggetti sul volume di archiviazione 0 di tutti i Storage Node. Per questo motivo, potresti preferire impostare il Metadata Reserved Space su un valore inferiore a 8 TB, in base alle tue esigenze previste per i metadati degli oggetti.
@@ -45,13 +45,13 @@ Per una spiegazione dettagliata di come l'impostazione Spazio riservato ai metad
 +
 .. Selezionare *Nodi*.
 .. Seleziona il primo Storage Node nella grid.
-.. ${post_edited_translations.segment}
+.. Seleziona la scheda Storage.
 .. Nella sezione Volumi, individua la voce */var/local/rangedb/0*.
 .. Verifica che il valore disponibile sia uguale o maggiore della differenza tra il nuovo valore che vuoi usare e il valore corrente di Metadata Reserved Space.
 +
 Ad esempio, se l'impostazione Spazio riservato per i metadati è attualmente di 4 TB e vuoi aumentarla a 6 TB, il valore Disponibile deve essere 2 TB o superiore.
 
-.. ${post_edited_translations.segment}
+.. Ripeti questi passaggi per tutti i nodi Storage.
 +
 *** Se uno o più nodi di archiviazione non dispongono di spazio disponibile sufficiente, il valore dello spazio riservato ai metadati non può essere aumentato. Non continuare con questa procedura.
 *** Se ogni nodo di archiviazione dispone di spazio disponibile sufficiente sul volume 0, vai al passaggio successivo.
@@ -59,27 +59,27 @@ Ad esempio, se l'impostazione Spazio riservato per i metadati è attualmente di 
 
 
 
-. ${post_edited_translations.segment}
+. Assicurati che ogni Storage Node disponga di almeno 128 GB di RAM.
 +
 .. Selezionare *Nodi*.
 .. Seleziona il primo Storage Node nella grid.
 .. Seleziona la scheda *Hardware*.
 .. Passa il cursore sul grafico dell'utilizzo della memoria. Assicurati che *Total Memory* sia di almeno 128 GB.
-.. ${post_edited_translations.segment}
+.. Ripeti questi passaggi per tutti i nodi Storage.
 +
 *** Se uno o più nodi di archiviazione non dispongono di memoria totale sufficiente, il valore dello spazio riservato ai metadati non può essere aumentato. Non continuare con questa procedura.
-*** ${post_edited_translations.segment}
+*** Se ogni nodo di archiviazione dispone di almeno 128 GB di memoria totale, vai al passaggio successivo.
 
 
 
 
-. ${post_edited_translations.segment}
+. Aggiorna l'impostazione Spazio riservato ai metadati.
 +
 .. Seleziona *Configurazione* > *Sistema* > *Impostazioni di archiviazione*.
 .. Seleziona *Spazio riservato ai metadati*.
 .. Inserisci il nuovo valore.
 +
-${post_edited_translations.segment}
+Ad esempio, per inserire 8 TB, che è il valore massimo supportato, inserisci *8000000000000* (8, seguito da 12 zeri)
 
 .. Seleziona *Salva*.
 

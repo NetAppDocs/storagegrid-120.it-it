@@ -16,7 +16,7 @@ Puoi configurare la sicurezza di rete e degli oggetti per crittografare gli ogge
 
 
 [[stored-object-encryption]]
-== ${post_edited_translations.segment}
+== Crittografia degli oggetti memorizzati
 
 La crittografia degli oggetti memorizzati consente la crittografia di tutti i dati degli oggetti al momento dell'acquisizione tramite S3. Per impostazione predefinita, gli oggetti memorizzati non sono crittografati, ma puoi scegliere di crittografarli utilizzando l'algoritmo di crittografia AES-128 o AES-256. Quando abiliti l'impostazione, tutti i nuovi oggetti acquisiti vengono crittografati, ma non viene apportata alcuna modifica agli oggetti memorizzati esistenti. Se disabiliti la crittografia, gli oggetti attualmente crittografati rimangono tali, ma i nuovi oggetti acquisiti non vengono crittografati.
 
@@ -27,17 +27,17 @@ Per maggiori dettagli sui metodi di crittografia di StorageGRID, vedi link:../ad
 
 
 [[prevent-client-modification]]
-== ${post_edited_translations.segment}
+== Impedisci la modifica del client
 
 Impedisci modifica client è un'impostazione a livello di sistema. Quando l'opzione *Impedisci modifica client* è selezionata, le seguenti richieste vengono negate.
 
 
 
 [[s3-rest-api]]
-=== ${post_edited_translations.segment}
+=== API REST S3
 
 * DeleteBucket richieste
-* ${post_edited_translations.segment}
+* Qualsiasi richiesta di modifica dei dati di un oggetto esistente, dei metadati definiti dall'utente o del tagging degli oggetti S3
 
 
 
@@ -47,7 +47,7 @@ Impedisci modifica client è un'impostazione a livello di sistema. Quando l'opzi
 
 Per impostazione predefinita, le applicazioni client utilizzano il protocollo di rete HTTPS per qualsiasi connessione diretta ai nodi di storage. Facoltativamente, puoi abilitare l'HTTP per queste connessioni, ad esempio durante il test di una grid non di produzione.
 
-Utilizza HTTP per le connessioni ai nodi di archiviazione solo se i client S3 devono stabilire connessioni HTTP direttamente ai nodi di archiviazione. Non devi usare questa opzione per i client che utilizzano solo connessioni HTTPS o per i client che si connettono al servizio Load Balancer (perché puoi link:../admin/configuring-load-balancer-endpoints.html["${post_edited_translations.segment}"] usare sia HTTP che HTTPS).
+Utilizza HTTP per le connessioni ai nodi di archiviazione solo se i client S3 devono stabilire connessioni HTTP direttamente ai nodi di archiviazione. Non devi usare questa opzione per i client che utilizzano solo connessioni HTTPS o per i client che si connettono al servizio Load Balancer (perché puoi link:../admin/configuring-load-balancer-endpoints.html["configura ciascun endpoint del bilanciatore di carico"] usare sia HTTP che HTTPS).
 
 Consulta link:summary-ip-addresses-and-ports-for-client-connections.html["Riepilogo: indirizzi IP e porte per le connessioni client"] per sapere quali porte utilizzano i client S3 quando si connettono ai Storage Node tramite HTTP o HTTPS.
 
@@ -58,19 +58,19 @@ Consulta link:summary-ip-addresses-and-ports-for-client-connections.html["Riepil
 
 .Prima di iniziare
 * Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
-* ${post_edited_translations.segment}
+* Hai il permesso di accesso root.
 
 
 .Passaggi
 . Seleziona *Configurazione* > *Sicurezza* > *Impostazioni di sicurezza*.
-. ${post_edited_translations.segment}
+. Seleziona la scheda *Rete e oggetti*.
 . Per la crittografia degli oggetti memorizzati, usa l'impostazione *Nessuno* (predefinita) se non vuoi che gli oggetti memorizzati siano crittografati, oppure seleziona *AES-128* o *AES-256* per crittografare gli oggetti memorizzati.
 . Seleziona facoltativamente *Impedisci la modifica del client* se vuoi impedire ai client S3 di effettuare richieste specifiche.
 +
 
 NOTE: Se modifichi questa impostazione, ci vorrà circa un minuto per applicare la nuova impostazione. Il valore configurato viene memorizzato nella cache per performance e scalabilità.
 
-. ${post_edited_translations.segment}
+. Seleziona facoltativamente *Abilita HTTP per le connessioni ai nodi di archiviazione* se i client si connettono direttamente ai nodi di archiviazione e vuoi utilizzare connessioni HTTP.
 +
 
 NOTE: Fai attenzione quando abiliti HTTP per una griglia di produzione perché le richieste verranno inviate senza crittografia.

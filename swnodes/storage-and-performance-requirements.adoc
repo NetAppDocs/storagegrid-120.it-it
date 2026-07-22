@@ -199,7 +199,7 @@ _non applicabile_
 
 
  a| 
-${post_edited_translations.segment}
+Nodo gateway
  a| 
 100 GB
  a| 
@@ -282,7 +282,7 @@ Tabelle dei nodi amministrativi
 
 
  a| 
-${post_edited_translations.segment}
+Nodo gateway
  a| 
 `/var/local` volume
  a| 
@@ -362,7 +362,7 @@ Tabelle dei nodi amministrativi
 
 
  a| 
-${post_edited_translations.segment}
+Nodo gateway
  a| 
 volume del sistema operativo
  a| 

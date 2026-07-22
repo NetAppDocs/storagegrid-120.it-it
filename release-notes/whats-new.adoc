@@ -58,7 +58,7 @@ Consulta link:../upgrade/performing-upgrade.html#upgrade-other-nodes["Aggiorna g
 
 * Ora puoi link:../admin/managing-users.html#import-federated-users["Importa fino a 100 utenti federati"] accedere a StorageGRID.
 * Ora puoi link:../ilm/configuring-regions-optional-and-s3-only.html["modifica la regione predefinita"] per i bucket S3. Questa funzionalità offre maggiore flessibilità nella gestione della localizzazione dei dati e della conformità.
-* Ora puoi configurare la replica cross-grid tra bucket con S3 Object Lock abilitato. Consulta link:../admin/grid-federation-what-is-cross-grid-replication.html#cgr-with-ol["${post_edited_translations.segment}"].
+* Ora puoi configurare la replica cross-grid tra bucket con S3 Object Lock abilitato. Consulta link:../admin/grid-federation-what-is-cross-grid-replication.html#cgr-with-ol["Replica cross-grid con S3 Object Lock"].
 +
 NetApp consiglia di utilizzare questa funzionalità solo tra bucket di origine e di destinazione StorageGRID 12.0. Tuttavia, questa funzionalità è supportata tra bucket di origine StorageGRID 11.9 con S3 Object Lock disabilitato e bucket di destinazione StorageGRID 12.0 con S3 Object Lock abilitato.
 

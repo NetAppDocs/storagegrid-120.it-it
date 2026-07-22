@@ -40,7 +40,7 @@ NOTE: Non usare dispositivi bond o bridge direttamente come interfaccia di rete 
 
 
 [[considerations-and-recommendations-for-mac-address-cloning]]
-== ${post_edited_translations.segment}
+== Considerazioni e raccomandazioni per la clonazione degli indirizzi MAC
 
 .[[clonazione dell'indirizzo MAC]]
 La clonazione dell'indirizzo MAC fa sì che il container usi l'indirizzo MAC dell'host e che l'host usi l'indirizzo MAC che specifichi tu oppure uno generato casualmente. Dovresti usare la clonazione dell'indirizzo MAC per evitare l'uso di configurazioni di rete in modalità promiscua.
@@ -149,5 +149,5 @@ Vengono forniti file di configurazione di interfaccia di esempio per questo sche
 
 .Informazioni correlate
 * link:example-etc-network-interfaces.html["Esempio di /etc/network/interfaces per Ubuntu e Debian"]
-* link:example-etc-sysconfig-network-scripts.html["${post_edited_translations.segment}"]
+* link:example-etc-sysconfig-network-scripts.html["Esempio di /etc/sysconfig/network-scripts per RHEL"]
 

@@ -42,7 +42,7 @@ Puoi clonare le tue chiavi di accesso se hai bisogno di accedere agli stessi buc
 +
 image:grid-federation-post-current-user-replicate.png["Endpoint POST per replicare la propria chiave di accesso"]
 
-. ${post_edited_translations.segment}
+. Seleziona *Prova*.
 . Nella casella di testo *body*, sostituisci le voci di esempio per *accessKey* e *secretAccessKey* con i valori del file *.csv* che hai scaricato.
 +
 Assicurati di mantenere le virgolette doppie attorno a ciascuna stringa.
@@ -71,7 +71,7 @@ Puoi clonare le chiavi di accesso di un altro utente se deve accedere agli stess
 +
 `GET /org/users`
 
-.. ${post_edited_translations.segment}
+.. Seleziona *Prova*.
 .. Specifica eventuali parametri che vuoi usare quando cerchi gli utenti.
 .. Seleziona *Esegui*.
 .. Trova l'utente di cui vuoi clonare le chiavi e copia il numero nel campo *id*.
@@ -84,11 +84,11 @@ Puoi clonare le chiavi di accesso di un altro utente se deve accedere agli stess
 +
 image:grid-federation-post-other-user.png["Endpoint POST per replicare la chiave di accesso di un altro utente"]
 
-. ${post_edited_translations.segment}
+. Seleziona *Prova*.
 . Nella casella di testo *userId*, incolla l'ID utente che hai copiato.
 . Nella casella di testo *body*, sostituisci le voci di esempio per *example access key* e *secret access key* con i valori presenti nel file *.csv* per quell'utente.
 +
-${post_edited_translations.segment}
+Assicurati di mantenere le virgolette doppie attorno alla stringa.
 
 . Se la chiave sta per scadere, sostituisci la voce di esempio per *expires* con la data e l'ora di scadenza come stringa nel formato data-ora ISO 8601 (per esempio,  `2023-02-28T22:46:33-08:00`). Se la chiave non scadrà, inserisci *null* come valore per la voce *expires* (oppure rimuovi la riga *Expires* e la virgola che la precede).
 . Seleziona *Esegui*.

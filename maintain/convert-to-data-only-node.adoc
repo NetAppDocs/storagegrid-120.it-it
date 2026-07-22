@@ -47,7 +47,7 @@ TIP: In genere, puoi convertire fino a 10 nodi alla volta se l'utilizzo dei meta
 .Passaggi
 . Annota gli ID dei nodi di Storage non ADC che vuoi convertire.
 . Dalla parte superiore di Grid Manager, seleziona l'icona di aiuto e seleziona *API documentation*.
-. ${post_edited_translations.segment}
+. Seleziona *Vai alla documentazione API privata*.
 . Seleziona l' `POST /private/convert-to-data-only-node/start`operazione. Consulta link:../admin/using-grid-management-api.html#issue-api-requests["Invia richieste API"]per maggiori informazioni.
 +
 Ogni nodo si riavvierà durante la procedura.

@@ -5,35 +5,35 @@ entries:
 - title: Che cos'è un tenant account
   pdf-filename: Usa un account tenant di StorageGRID
   url: "/tenant/index.html"
-- title: "${post_edited_translations.segment}"
+- title: Come accedere e disconnettersi
   entries:
-  - title: "${post_edited_translations.segment}"
+  - title: Accedi a Tenant Manager
     url: "/tenant/signing-in-to-tenant-manager.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Esci da Tenant Manager
     url: "/tenant/signing-out-of-tenant-manager.html"
 - title: Dashboard Tenant Manager
   url: "/tenant/understanding-tenant-manager-dashboard.html"
 - title: API di gestione tenant
   entries:
-  - title: "${post_edited_translations.segment}"
+  - title: Scopri l'API di gestione dei tenant
     url: "/tenant/understanding-tenant-management-api.html"
   - title: Versioning dell'API di gestione dei tenant
     url: "/tenant/tenant-management-api-versioning.html"
   - title: Proteggi contro gli attacchi Cross-Site Request Forgery (CSRF)
     url: "/tenant/protecting-against-cross-site-request-forgery-csrf.html"
-- title: "${post_edited_translations.segment}"
+- title: Usa le connessioni di federazione della griglia
   entries:
-  - title: "${post_edited_translations.segment}"
+  - title: Clona gruppi di tenant e utenti
     url: "/tenant/grid-federation-account-clone.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Clona le chiavi di accesso S3 utilizzando l'API
     url: "/tenant/grid-federation-clone-keys-with-api.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Gestisci la replica cross-grid
     url: "/tenant/grid-federation-manage-cross-grid-replication.html"
   - title: Visualizza le connessioni della federazione di grid
     url: "/tenant/grid-federation-view-connections-tenant.html"
 - title: Gestisci gruppi e utenti
   entries:
-  - title: "${post_edited_translations.segment}"
+  - title: Usa la federazione delle identità
     url: "/tenant/using-identity-federation.html"
   - title: Gestisci i gruppi tenant
     entries:
@@ -45,24 +45,24 @@ entries:
       url: "/tenant/manage-groups.html"
   - title: Gestisci utenti
     url: "/tenant/manage-users.html"
-- title: "${post_edited_translations.segment}"
+- title: Gestisci le chiavi di accesso S3
   entries:
   - title: Chiavi di accesso tenant
-    pdf-filename: "${post_edited_translations.segment}"
+    pdf-filename: Gestisci le chiavi di accesso S3
     url: "/tenant/managing-s3-access-keys.html"
   - title: Crea le tue chiavi di accesso S3
     url: "/tenant/creating-your-own-s3-access-keys.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Visualizza le tue chiavi di accesso S3
     url: "/tenant/viewing-your-s3-access-keys.html"
   - title: Elimina le tue chiavi di accesso S3
     url: "/tenant/deleting-your-own-s3-access-keys.html"
   - title: Crea le chiavi di accesso S3 di un altro utente
     url: "/tenant/creating-another-users-s3-access-keys.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Visualizza le chiavi di accesso S3 di un altro utente
     url: "/tenant/viewing-another-users-s3-access-keys.html"
   - title: Elimina le chiavi di accesso S3 di un altro utente
     url: "/tenant/deleting-another-users-s3-access-keys.html"
-- title: "${post_edited_translations.segment}"
+- title: Gestisci i bucket S3
   entries:
   - title: Crea bucket
     url: "/tenant/creating-s3-bucket.html"
@@ -70,7 +70,7 @@ entries:
     url: "/tenant/viewing-s3-bucket-details.html"
   - title: Cos'è un branch bucket
     url: "/tenant/what-is-branch-bucket.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Gestisci i bucket di filiale
     url: "/tenant/manage-branch-buckets.html"
   - title: Applica il tag della policy ILM al bucket
     url: "/tenant/ilm-policy-tags.html"
@@ -80,7 +80,7 @@ entries:
     url: "/tenant/manage-bucket-consistency.html"
   - title: Attiva o disattiva gli aggiornamenti dell'ora dell'ultimo accesso
     url: "/tenant/enabling-or-disabling-last-access-time-updates.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Modifica il versioning degli oggetti
     url: "/tenant/changing-bucket-versioning.html"
   - title: Usa il blocco oggetto S3
     url: "/tenant/using-s3-object-lock.html"
@@ -90,7 +90,7 @@ entries:
     url: "/tenant/configuring-cross-origin-resource-sharing-for-buckets-and-objects.html"
   - title: Elimina oggetti nel bucket
     url: "/tenant/deleting-s3-bucket-objects.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Elimina bucket
     url: "/tenant/deleting-s3-bucket.html"
   - title: Usa la console S3
     url: "/tenant/use-s3-console.html"
@@ -103,7 +103,7 @@ entries:
       url: "/tenant/considerations-for-platform-services.html"
     - title: servizio di replica CloudMirror
       url: "/tenant/understanding-cloudmirror-replication-service.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Notifiche per i bucket
       url: "/tenant/understanding-notifications-for-buckets.html"
     - title: servizio di integrazione della ricerca
       url: "/tenant/understanding-search-integration-service.html"
@@ -111,7 +111,7 @@ entries:
     entries:
     - title: Configura gli endpoint dei servizi della piattaforma
       url: "/tenant/configuring-platform-services-endpoints.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Specifica l'URN
       url: "/tenant/specifying-urn-for-platform-services-endpoint.html"
     - title: Crea endpoint
       url: "/tenant/creating-platform-services-endpoint.html"
@@ -121,7 +121,7 @@ entries:
       url: "/tenant/editing-platform-services-endpoint.html"
     - title: Elimina endpoint
       url: "/tenant/deleting-platform-services-endpoint.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Risolvi i problemi relativi agli errori dei servizi della piattaforma
       url: "/tenant/troubleshooting-platform-services-endpoint-errors.html"
   - title: Configura la replica CloudMirror
     url: "/tenant/configuring-cloudmirror-replication.html"

@@ -28,9 +28,9 @@ Usa queste istruzioni per:
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Uno"]Pianifica la tua configurazione
 [role="quick-margin-list"]
 * Decidi quale criterio di tiering dei volumi FabricPool utilizzerai per eseguire il tiering dei dati ONTAP inattivi su StorageGRID.
-* ${post_edited_translations.segment}
-* Diventa familiare con il software di sistema StorageGRID, incluso il link:../primer/exploring-grid-manager.html["Grid Manager"] e il link:../primer/exploring-tenant-manager.html["${post_edited_translations.segment}"].
-* Esamina le migliori pratiche di FabricPool per link:best-practices-for-high-availability-groups.html["gruppi HA"], link:best-practices-for-load-balancing.html["bilanciamento del carico"], link:best-practices-ilm.html["ILM"] e link:other-best-practices-for-storagegrid-and-fabricpool.html["${post_edited_translations.segment}"].
+* Progetta e installa un sistema StorageGRID per soddisfare le tue esigenze di capacità di archiviazione e prestazioni.
+* Diventa familiare con il software di sistema StorageGRID, incluso il link:../primer/exploring-grid-manager.html["Grid Manager"] e il link:../primer/exploring-tenant-manager.html["Tenant Manager"].
+* Esamina le migliori pratiche di FabricPool per link:best-practices-for-high-availability-groups.html["gruppi HA"], link:best-practices-for-load-balancing.html["bilanciamento del carico"], link:best-practices-ilm.html["ILM"] e link:other-best-practices-for-storagegrid-and-fabricpool.html["Altro"].
 * Consulta queste risorse aggiuntive, che forniscono dettagli sull'utilizzo e la configurazione di ONTAP e FabricPool:
 +
 https://www.netapp.com/pdf.html?item=/media/17239-tr4598pdf.pdf["TR-4598: FabricPool Best practice in ONTAP"^]
@@ -46,7 +46,7 @@ Ottieni link:information-needed-to-attach-storagegrid-as-cloud-tier.html["Inform
 
 [role="quick-margin-list"]
 * indirizzi IP
-* ${post_edited_translations.segment}
+* domain name
 * Certificato SSL
 
 
@@ -55,7 +55,7 @@ Facoltativamente, configura link:../admin/using-identity-federation.html["federa
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Tre"] Configura le impostazioni di StorageGRID
 [role="quick-margin-para"]
-${post_edited_translations.segment}
+Usa StorageGRID per ottenere i valori di cui ONTAP ha bisogno per connettersi alla grid.
 
 [role="quick-margin-para"]
 L'utilizzo di link:use-fabricpool-setup-wizard.html["setup wizard di FabricPool"] è il modo consigliato e più rapido per configurare tutti gli elementi, ma, se necessario, puoi anche configurare ciascuna entità manualmente.
@@ -77,12 +77,12 @@ FabricPool è una soluzione storage ibrida ONTAP che utilizza un aggregate flash
 
 FabricPool associa un tier cloud (un archivio di oggetti esterno, come StorageGRID) a un tier locale (un aggregato di storage ONTAP) per creare una raccolta composita di dischi. I volumi all'interno di FabricPool possono quindi sfruttare il tiering mantenendo i dati attivi (hot) su uno storage dalle performance elevate (il tier locale) e spostando in tier i dati inattivi (cold) nell'archivio di oggetti esterno (il tier cloud).
 
-${post_edited_translations.segment}
+Non sono necessarie modifiche architetturali e puoi continuare a gestire i tuoi dati e l'ambiente applicativo dal sistema storage centrale ONTAP.
 
 
 
 [[what-is-storagegrid]]
-== ${post_edited_translations.segment}
+== Cos'è StorageGRID?
 
 NetApp StorageGRID è un'architettura di storage che gestisce i dati come oggetti, a differenza di altre architetture di storage come file o storage a blocchi. Gli oggetti vengono conservati all'interno di un singolo container (come un bucket) e non sono annidati come file all'interno di una directory dentro altre directory. Sebbene lo storage a oggetti offra generalmente prestazioni inferiori rispetto allo storage a file o a blocchi, è significativamente più scalabile. I bucket di StorageGRID possono contenere petabyte di dati e miliardi di oggetti.
 

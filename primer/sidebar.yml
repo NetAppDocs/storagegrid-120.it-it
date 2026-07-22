@@ -2,7 +2,7 @@
 section: primer
 title: Scopri StorageGRID
 entries:
-- title: "${post_edited_translations.segment}"
+- title: Cos'è StorageGRID?
   pdf-filename: StorageGRID introduzione alla griglia
   url: "/primer/index.html"
 - title: Cloud ibridi con StorageGRID
@@ -14,7 +14,7 @@ entries:
   - title: Nodi e servizi
     url: "/primer/nodes-and-services.html"
     pdf-filename: Nodi e servizi StorageGRID
-  - title: "${post_edited_translations.segment}"
+  - title: Che cos'è un Admin Node
     url: "/primer/what-admin-node-is.html"
   - title: Che cos'è un nodo di storage
     url: "/primer/what-storage-node-is.html"
@@ -39,7 +39,7 @@ entries:
     url: "/primer/using-information-lifecycle-management.html"
 - title: Esplora StorageGRID
   entries:
-  - title: "${post_edited_translations.segment}"
+  - title: Esplora Grid Manager
     url: "/primer/exploring-grid-manager.html"
   - title: Esplora Tenant Manager
     url: "/primer/exploring-tenant-manager.html"

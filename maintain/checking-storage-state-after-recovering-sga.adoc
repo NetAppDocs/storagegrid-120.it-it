@@ -19,7 +19,7 @@ Dopo aver ripristinato un appliance Storage Node, devi verificare che lo stato d
 
 
 .Passaggi
-. ${post_edited_translations.segment}
-. ${post_edited_translations.segment}
+. Seleziona *Nodes* > *_Storage Node_* > *Tasks*.
+. Se l'elenco a discesa *Stato di archiviazione* è impostato su Sola lettura o Offline, seleziona *Online*.
 . Seleziona *Salva*.
 

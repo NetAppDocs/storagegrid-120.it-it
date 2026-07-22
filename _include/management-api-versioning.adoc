@@ -12,11 +12,11 @@ L'esempio seguente illustra come la versione dell'API viene incrementata in base
 
 [cols="1a,1a,1a"]
 |===
-| ${post_edited_translations.segment} | Vecchia versione | ${post_edited_translations.segment} 
+| Tipo di modifica all'API | Vecchia versione | Nuova versione 
 
 
  a| 
-${post_edited_translations.segment}
+Compatibile con le versioni precedenti
  a| 
 2,1
  a| 

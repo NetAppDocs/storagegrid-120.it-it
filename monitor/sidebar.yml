@@ -93,7 +93,7 @@ entries:
     url: "/monitor/about-bycast-log.html"
 - title: Configura la gestione dei log e il server syslog esterno
   entries:
-  - title: "${post_edited_translations.segment}"
+  - title: Considerazioni per un server syslog esterno
     url: "/monitor/considerations-for-external-syslog-server.html"
   - title: Configura la gestione dei log
     url: "/monitor/configure-log-management.html"

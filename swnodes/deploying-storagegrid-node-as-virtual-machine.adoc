@@ -18,7 +18,7 @@ Se devi distribuire nodi di storage dell'appliance StorageGRID, consulta https:/
 Facoltativamente, puoi rimappare le porte del nodo o aumentare le impostazioni di CPU o memoria prima di accenderlo.
 
 .Prima di iniziare
-* Hai esaminato come link:index.html["${post_edited_translations.segment}"] e comprendi i requisiti relativi a software, CPU e RAM, nonché a storage e prestazioni.
+* Hai esaminato come link:index.html["pianifica e prepara l'installazione"] e comprendi i requisiti relativi a software, CPU e RAM, nonché a storage e prestazioni.
 * Hai familiarità con VMware vSphere Hypervisor e hai esperienza nella distribuzione di macchine virtuali in questo ambiente.
 +
 
@@ -27,7 +27,7 @@ NOTE: Il pacchetto `open-vm-tools`, un'implementazione open-source simile a VMwa
 * Hai scaricato ed estratto la versione corretta dell'archivio di installazione di StorageGRID per VMware.
 +
 
-CAUTION: ${post_edited_translations.segment}
+CAUTION: Se stai implementando il nuovo nodo come parte di un'operazione di espansione o ripristino, devi usare la versione di StorageGRID attualmente in esecuzione sul grid.
 
 * Hai il file StorageGRID Virtual Machine Disk (`.vmdk`:
 
@@ -44,12 +44,12 @@ NetApp-_SG-version_-SHA.vmdk
 
 
 | vsphere-primary-admin.ovf vsphere-primary-admin.mf  a| 
-${post_edited_translations.segment}
+Il file template e il file manifest per il nodo Admin primario.
 
 
 
 | vsphere-non-primary-admin.ovf vsphere-non-primary-admin.mf  a| 
-${post_edited_translations.segment}
+Il file modello e il file manifesto per un nodo Admin non primario.
 
 
 
@@ -83,21 +83,21 @@ Se stai installando un nuovo sistema StorageGRID:
 
 * Puoi distribuire i nodi in qualsiasi ordine.
 * Devi assicurarti che ogni macchina virtuale possa connettersi al nodo di amministrazione primario tramite la Grid Network.
-* ${post_edited_translations.segment}
+* Devi distribuire tutti i nodi della griglia prima di configurare la griglia.
 
 
-${post_edited_translations.segment}
+Se stai eseguendo un'operazione di espansione o di ripristino:
 
-* ${post_edited_translations.segment}
+* Devi assicurarti che la nuova macchina virtuale possa connettersi a tutti gli altri nodi tramite la Grid Network.
 
 
 Se devi rimappare una qualsiasi delle porte del nodo, non accendere il nuovo nodo finché la configurazione della rimappatura delle porte non è completata.
 
 
-NOTE: Il supporto per la rimappatura delle porte è deprecato e verrà rimosso in una versione futura. Per rimuovere le porte rimappate, consulta link:../maintain/removing-port-remaps-on-bare-metal-hosts.html["${post_edited_translations.segment}"].
+NOTE: Il supporto per la rimappatura delle porte è deprecato e verrà rimosso in una versione futura. Per rimuovere le porte rimappate, consulta link:../maintain/removing-port-remaps-on-bare-metal-hosts.html["Rimuovi le rimappature delle porte sugli host bare metal"].
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Usando vCenter, distribuisci un modello OVF.
 +
 Se specifichi un URL, indica una cartella che contiene i seguenti file. Altrimenti, seleziona ciascuno di questi file da una directory locale.
 
@@ -109,7 +109,7 @@ vsphere-_node_.ovf
 vsphere-_node_.mf
 ----
 +
-${post_edited_translations.segment}
+Ad esempio, se questo è il primo nodo che stai distribuendo, utilizza questi file per distribuire il nodo Admin primario per il tuo sistema StorageGRID:
 
 +
 [listing, subs="specialcharacters,quotes"]
@@ -118,9 +118,9 @@ NetApp-_SG-version_-SHA.vmdk
 vsphere-primary-admin.ovf
 vsphere-primary-admin.mf
 ----
-. ${post_edited_translations.segment}
+. Fornisci un nome per la macchina virtuale.
 +
-${post_edited_translations.segment}
+La prassi standard è usare lo stesso nome sia per la macchina virtuale che per il nodo della griglia.
 
 . Posiziona la macchina virtuale nella vApp o nel pool di risorse appropriato.
 . Se stai implementando il nodo Admin primario, leggi e accetta l'End User License Agreement.
@@ -235,7 +235,7 @@ NOTE: Non rimappare le porte utilizzate negli endpoint del load balancer.
 .. Per mappare simmetricamente sia le comunicazioni inbound che outbound per una porta, seleziona *PORT_REMAP*.
 +
 
-NOTE: Il supporto per la rimappatura delle porte è deprecato e verrà rimosso in una versione futura. Per rimuovere le porte rimappate, consulta link:../maintain/removing-port-remaps-on-bare-metal-hosts.html["${post_edited_translations.segment}"].
+NOTE: Il supporto per la rimappatura delle porte è deprecato e verrà rimosso in una versione futura. Per rimuovere le porte rimappate, consulta link:../maintain/removing-port-remaps-on-bare-metal-hosts.html["Rimuovi le rimappature delle porte sugli host bare metal"].
 
 +
 

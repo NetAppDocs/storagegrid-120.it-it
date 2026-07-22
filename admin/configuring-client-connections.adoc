@@ -31,7 +31,7 @@ TIP: I dettagli relativi a Swift sono stati rimossi da questa versione del sito 
 Devi ottenere:
 
 * indirizzi IP
-* ${post_edited_translations.segment}
+* domain name
 * Certificato SSL
 
 
@@ -53,15 +53,15 @@ Facoltativamente, configura:
 ====
 .Usa setup wizard
 --
-${post_edited_translations.segment}
+Segui i passaggi della setup wizard.
 
 --
 .Configura manualmente
 --
 . Crea un gruppo ad alta disponibilità
-. ${post_edited_translations.segment}
+. Crea l'endpoint del bilanciatore di carico
 . Crea account tenant
-. ${post_edited_translations.segment}
+. Crea bucket e chiavi di accesso
 . Configura regola e criterio ILM
 
 
@@ -90,13 +90,13 @@ La tabella seguente mostra i valori che devi configurare in StorageGRID e dove t
 
 [cols="1a,1a,1a"]
 |===
-| Valore | Dove configuri il valore | ${post_edited_translations.segment} 
+| Valore | Dove configuri il valore | Dove usi il valore 
 
 
  a| 
 Indirizzi IP virtuali (VIP)
  a| 
-${post_edited_translations.segment}
+StorageGRID > Gruppo HA
  a| 
 Voce DNS
 
@@ -107,7 +107,7 @@ Porta
  a| 
 StorageGRID > Endpoint del bilanciatore di carico
  a| 
-${post_edited_translations.segment}
+Applicazione client
 
 
 
@@ -116,7 +116,7 @@ Certificato SSL
  a| 
 StorageGRID > Endpoint del bilanciatore di carico
  a| 
-${post_edited_translations.segment}
+Applicazione client
 
 
 
@@ -125,7 +125,7 @@ Nome server (FQDN)
  a| 
 StorageGRID > Endpoint del bilanciatore di carico
  a| 
-* ${post_edited_translations.segment}
+* Applicazione client
 * Voce DNS
 
 
@@ -136,16 +136,16 @@ ID della chiave di accesso S3 e chiave di accesso segreta
  a| 
 StorageGRID > Tenant e bucket
  a| 
-${post_edited_translations.segment}
+Applicazione client
 
 
 
  a| 
-${post_edited_translations.segment}
+Nome bucket/contenitore
  a| 
 StorageGRID > Tenant e bucket
  a| 
-${post_edited_translations.segment}
+Applicazione client
 
 |===
 
@@ -168,7 +168,7 @@ NOTE: Se hai intenzione di utilizzare StorageGRID come sistema di storage a ogge
 * *Configura gli elementi manualmente*. Se ti stai connettendo a un'applicazione S3 e preferisci non utilizzare la setup wizard, puoi ottenere i valori richiesti eseguendo la configurazione manualmente. Segui questi passaggi:
 +
 .. Configura il gruppo ad alta disponibilità (HA) che desideri utilizzare per l'applicazione S3. Vedi link:configure-high-availability-group.html["Configura i gruppi ad alta disponibilità"].
-.. Crea l'endpoint del bilanciatore di carico che l'applicazione S3 userà. Vedi link:configuring-load-balancer-endpoints.html["${post_edited_translations.segment}"].
+.. Crea l'endpoint del bilanciatore di carico che l'applicazione S3 userà. Vedi link:configuring-load-balancer-endpoints.html["Configura gli endpoint del bilanciatore di carico"].
 .. Crea l'account tenant che l'applicazione S3 utilizzerà. Vedi link:creating-tenant-account.html["Crea un tenant account"].
 .. Per un tenant S3, accedi all'account tenant e genera un ID chiave di accesso e una chiave di accesso segreta per ciascun utente che accederà all'applicazione. Consulta link:../tenant/creating-your-own-s3-access-keys.html["Crea le tue chiavi di accesso"].
 .. Crea uno o più bucket S3 all'interno dell'account tenant. Per S3, consulta link:../tenant/creating-s3-bucket.html["Crea bucket S3"].

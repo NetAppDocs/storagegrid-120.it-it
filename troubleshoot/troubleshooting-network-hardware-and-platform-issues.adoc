@@ -73,7 +73,7 @@ TLS handshake failed
 ---- a| 
 Questo messaggio viene visualizzato se provi a utilizzare un algoritmo di crittografia non supportato per stabilire una connessione Transport Layer Security (TLS) da StorageGRID a un sistema esterno utilizzato per la federazione delle identità o per i Cloud Storage Pools.
 
-Verifica gli algoritmi di cifratura offerti dal sistema esterno. Il sistema deve utilizzare uno dei link:../admin/supported-ciphers-for-outgoing-tls-connections.html["${post_edited_translations.segment}"] per le connessioni TLS in uscita, come mostrato nelle istruzioni per l'amministrazione di StorageGRID.
+Verifica gli algoritmi di cifratura offerti dal sistema esterno. Il sistema deve utilizzare uno dei link:../admin/supported-ciphers-for-outgoing-tls-connections.html["algoritmi di cifratura supportati da StorageGRID"] per le connessioni TLS in uscita, come mostrato nelle istruzioni per l'amministrazione di StorageGRID.
 
 |===
 
@@ -87,14 +87,14 @@ L'avviso *Discrepanza MTU della rete Grid* viene attivato quando l'impostazione 
 Le differenze nelle impostazioni MTU potrebbero indicare che alcune, ma non tutte, le reti eth0 sono configurate per i jumbo frame. Una discrepanza nella dimensione MTU superiore a 1000 potrebbe causare problemi di prestazioni di rete.
 
 .Passaggi
-. L'accesso SSH esterno è bloccato per impostazione predefinita. Se necessario, link:../admin/manage-external-ssh-access.html["${post_edited_translations.segment}"].
+. L'accesso SSH esterno è bloccato per impostazione predefinita. Se necessario, link:../admin/manage-external-ssh-access.html["Consenti temporaneamente l'accesso"].
 . Elenca le impostazioni MTU per eth0 su tutti i nodi.
 +
 ** Usa la query fornita nel Grid Manager.
 ** Vai su  `_primary Admin Node IP address_/metrics/graph` e inserisci la seguente query: `node_network_mtu_bytes{device="eth0"}`
 
 
-. https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/changing-mtu-setting.html["${post_edited_translations.segment}"^] come necessario per garantire che siano uguali per l'interfaccia Grid Network (eth0) su tutti i nodi.
+. https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/changing-mtu-setting.html["Modifica le impostazioni MTU"^] come necessario per garantire che siano uguali per l'interfaccia Grid Network (eth0) su tutti i nodi.
 +
 ** Per i nodi basati su Linux e VMware, usa il seguente comando: `+/usr/sbin/change-ip.py [-h] [-n node] mtu network [network...]+`
 +
@@ -164,7 +164,7 @@ Gli avvisi *Errore di ricezione del frame di rete del nodo* possono essere causa
 .Informazioni su questa attività
 Gli avvisi *Errore di ricezione del frame di rete del nodo* possono essere causati dai seguenti problemi con l'hardware di rete che si connette a StorageGRID:
 
-* ${post_edited_translations.segment}
+* La correzione degli errori in avanti (FEC) è richiesta e non è in uso
 * Mancata corrispondenza tra l'MTU della porta dello switch e quella della scheda di rete
 * Elevati tassi di errore di collegamento
 * overrun del buffer circolare della scheda di rete
@@ -258,19 +258,19 @@ NOTE: Quando link:../maintain/configuring-ntp-servers.html["specificando la sorg
 [[linux-network-connectivity-issues]]
 == Linux: problemi di connettività di rete
 
-${post_edited_translations.segment}
+Potresti riscontrare problemi di connettività di rete per i nodi StorageGRID ospitati su host Linux.
 
 
 
 [[mac-address-cloning]]
 === Clonazione dell'indirizzo MAC
 
-In alcuni casi, i problemi di rete possono essere risolti utilizzando la clonazione dell'indirizzo MAC. Se utilizzi host virtuali, imposta il valore della chiave di clonazione dell'indirizzo MAC per ciascuna delle tue reti su "true" nel tuo file di configurazione del nodo. Questa impostazione fa sì che l'indirizzo MAC del container StorageGRID utilizzi l'indirizzo MAC dell'host. Consulta le istruzioni per link:../swnodes/creating-node-configuration-files.html["${post_edited_translations.segment}"].
+In alcuni casi, i problemi di rete possono essere risolti utilizzando la clonazione dell'indirizzo MAC. Se utilizzi host virtuali, imposta il valore della chiave di clonazione dell'indirizzo MAC per ciascuna delle tue reti su "true" nel tuo file di configurazione del nodo. Questa impostazione fa sì che l'indirizzo MAC del container StorageGRID utilizzi l'indirizzo MAC dell'host. Consulta le istruzioni per link:../swnodes/creating-node-configuration-files.html["creare file di configurazione del nodo"].
 
 
 NOTE: Crea interfacce di rete virtuali separate da utilizzare per il sistema operativo host Linux. L'utilizzo delle stesse interfacce di rete per il sistema operativo host Linux e per il container StorageGRID potrebbe rendere irraggiungibile il sistema operativo host se sull'hypervisor non è stata abilitata la modalità promiscua.
 
-Per ulteriori informazioni, consulta le istruzioni per link:../swnodes/configuring-host-network.html["${post_edited_translations.segment}"].
+Per ulteriori informazioni, consulta le istruzioni per link:../swnodes/configuring-host-network.html["abilitare la clonazione MAC"].
 
 
 
@@ -279,12 +279,12 @@ Per ulteriori informazioni, consulta le istruzioni per link:../swnodes/configuri
 
 Se non vuoi usare la clonazione degli indirizzi MAC e preferisci permettere a tutte le interfacce di ricevere e trasmettere dati per indirizzi MAC diversi da quelli assegnati dall'hypervisor, assicurati che le proprietà di sicurezza a livello di switch virtuale e di port group siano impostate su *Accetta* per Modalità promiscua, Modifiche indirizzo MAC e Trasmissioni falsificate. I valori impostati sullo switch virtuale possono essere sovrascritti dai valori a livello di port group, quindi assicurati che le impostazioni siano le stesse in entrambi i punti.
 
-Per ulteriori informazioni sull'utilizzo della modalità promiscua, consulta le istruzioni per link:../swnodes/configuring-host-network.html["${post_edited_translations.segment}"].
+Per ulteriori informazioni sull'utilizzo della modalità promiscua, consulta le istruzioni per link:../swnodes/configuring-host-network.html["come configurare la rete host"].
 
 
 
 [[linux-node-status-is-orphaned]]
-== ${post_edited_translations.segment}
+== Linux: lo stato del nodo è "orfano"
 
 Un nodo Linux in stato orfano di solito indica che il servizio storagegrid o il demone del nodo StorageGRID che controlla il container si sono arrestati in modo imprevisto.
 

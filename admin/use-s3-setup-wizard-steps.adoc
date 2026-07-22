@@ -67,7 +67,7 @@ Un nome visualizzato univoco per questo gruppo HA.
 
 
  a| 
-${post_edited_translations.segment}
+Descrizione (facoltativa)
  a| 
 La descrizione di questo gruppo HA.
 
@@ -178,7 +178,7 @@ La porta StorageGRID che vuoi usare per il bilanciamento del carico. Questo camp
 
 
  a| 
-${post_edited_translations.segment}
+Tipo di client
  a| 
 Deve essere *S3*.
 
@@ -200,7 +200,7 @@ Seleziona *HTTPS*.
 
 
  a| 
-${post_edited_translations.segment}
+Globale (predefinito)
  a| 
 I client possono accedere all'endpoint utilizzando l'indirizzo IP di qualsiasi Gateway Node o Admin Node, l'indirizzo IP virtuale (VIP) di qualsiasi gruppo HA su qualsiasi rete o un FQDN corrispondente.
 
@@ -218,7 +218,7 @@ Gli endpoint con questa modalità di binding possono utilizzare tutti lo stesso 
 
 
  a| 
-${post_edited_translations.segment}
+Interfacce dei nodi
  a| 
 I client devono utilizzare gli indirizzi IP (o i corrispondenti FQDN) delle interfacce dei nodi selezionati per accedere a questo endpoint.
 
@@ -245,7 +245,7 @@ Tutti gli account tenant possono utilizzare questo endpoint per accedere ai prop
 
 
  a| 
-${post_edited_translations.segment}
+Consenti agli inquilini selezionati
  a| 
 Solo i tenant account selezionati possono utilizzare questo endpoint per accedere ai propri bucket.
 
@@ -274,7 +274,7 @@ Utilizza questa opzione per caricare un certificato server firmato da una CA, la
  a| 
 Genera certificato
  a| 
-Utilizza questa opzione per generare un certificato autofirmato. Consulta link:configuring-load-balancer-endpoints.html["${post_edited_translations.segment}"] per i dettagli su cosa inserire.
+Utilizza questa opzione per generare un certificato autofirmato. Consulta link:configuring-load-balancer-endpoints.html["Configura gli endpoint del bilanciatore di carico"] per i dettagli su cosa inserire.
 
 
 
@@ -355,7 +355,7 @@ I nomi dei tenant non devono essere univoci. Quando viene creato l'account del t
 +
 [cols="1a,2a"]
 |===
-| Opzione | ${post_edited_translations.segment} 
+| Opzione | Fai questo 
 
 
  a| 
@@ -414,7 +414,7 @@ Nella fase di download dei dati, puoi scaricare uno o due file per salvare i det
 . Se hai selezionato *Crea automaticamente la chiave di accesso S3 per l'utente root*, esegui una o entrambe le seguenti operazioni:
 +
 ** Seleziona *Scarica le chiavi di accesso* per scaricare un `.csv` file contenente il nome dell'account tenant, l'ID della chiave di accesso e la chiave di accesso segreta.
-** Seleziona l'icona di copia (image:icon_tenant_copy_url.png["${post_edited_translations.segment}"]) per copiare l'ID della chiave di accesso e la chiave di accesso segreta negli appunti.
+** Seleziona l'icona di copia (image:icon_tenant_copy_url.png["icona copia"]) per copiare l'ID della chiave di accesso e la chiave di accesso segreta negli appunti.
 
 
 . Seleziona *Scarica i valori di configurazione* per scaricare un  `.txt` file contenente le impostazioni per l'endpoint del bilanciamento del carico, il tenant, il bucket e l'utente root.

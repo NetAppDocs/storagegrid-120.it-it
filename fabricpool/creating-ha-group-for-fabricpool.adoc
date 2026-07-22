@@ -25,7 +25,7 @@ Per i dettagli su questa attività, consulta link:../admin/managing-high-availab
 
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Seleziona *Configurazione* > *Rete* > *Gruppi ad alta disponibilità*.
 . Seleziona *Create*.
 . Per la fase *Inserisci i dettagli*, compila i seguenti campi.
 +
@@ -42,7 +42,7 @@ Un nome visualizzato univoco per questo gruppo HA.
 
 
  a| 
-${post_edited_translations.segment}
+Descrizione (facoltativa)
  a| 
 La descrizione di questo gruppo HA.
 
@@ -74,7 +74,7 @@ Se il gruppo HA include più di un'interfaccia e l'interfaccia attiva si guasta,
  a| 
 CIDR della sottorete
  a| 
-${post_edited_translations.segment}
+L'indirizzo della subnet VIP in notazione CIDR: un indirizzo IPv4 seguito da una barra e dalla lunghezza della subnet (0-32).
 
 L'indirizzo di rete non deve avere alcun bit host impostato. Ad esempio, `192.16.0.0/22`.
 
@@ -95,5 +95,5 @@ Inserisci almeno uno e non più di dieci indirizzi VIP per l'interfaccia attiva 
 Almeno un indirizzo deve essere IPv4. Facoltativamente, puoi specificare ulteriori indirizzi IPv4 e IPv6.
 
 |===
-. ${post_edited_translations.segment}
+. Seleziona *Crea gruppo HA* e poi seleziona *Fine*.
 

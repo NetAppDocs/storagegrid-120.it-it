@@ -16,7 +16,7 @@ Puoi usare questa procedura per aggiungere o aggiornare i nomi visualizzati per 
 .Prima di iniziare
 * Da qualsiasi nodo amministratore, accedi al Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
 * Hai il link:../admin/admin-group-permissions.html["Permesso di manutenzione o di accesso root"].
-* ${post_edited_translations.segment}
+* Hai la passphrase di provisioning.
 * Hai compreso i requisiti e le migliori pratiche per i nomi visualizzati. Vedi link:../maintain/rename-grid-site-node-overview.html["Rinomina la griglia, i siti e i nodi"].
 
 
@@ -170,7 +170,7 @@ Viene visualizzato un messaggio di conferma. I nuovi nomi visualizzati vengono o
 Una volta terminata la ridenominazione degli elementi, scarica e salva un nuovo pacchetto di ripristino. I nuovi nomi visualizzati per gli elementi rinominati sono inclusi nel  `Passwords.txt` file.
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Inserisci la passphrase di provisioning.
 . Seleziona *Scarica il pacchetto di ripristino*.
 +
 Il download inizia immediatamente.

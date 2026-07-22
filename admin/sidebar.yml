@@ -1,6 +1,6 @@
 ---
 section: admin
-title: "${post_edited_translations.segment}"
+title: Gestisci StorageGRID
 entries:
 - title: Attività di amministrazione
   pdf-filename: Amministra un sistema StorageGRID
@@ -11,7 +11,7 @@ entries:
     url: "/admin/web-browser-requirements.html"
   - title: Accedi al Grid Manager
     url: "/admin/signing-in-to-grid-manager.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Disconnettiti da Grid Manager
     url: "/admin/signing-out-of-grid-manager.html"
   - title: Cambia la tua password
     url: "/admin/changing-your-password.html"
@@ -24,13 +24,13 @@ entries:
     - title: Usa l'API di gestione della griglia
       pdf-filename: API di gestione della griglia
       url: "/admin/using-grid-management-api.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Operazioni API di gestione della griglia
       url: "/admin/grid-management-api-operations.html"
     - title: Versioning dell'API Grid Management
       url: "/admin/grid-management-api-versioning.html"
     - title: Proteggi contro gli attacchi Cross-Site Request Forgery (CSRF)
       url: "/admin/protecting-against-cross-site-request-forgery-csrf.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Usa l'API se il single sign-on è abilitato
       entries:
       - title: Active Directory
         url: "/admin/use-api-if-sso-is-enabled-adfs.html"
@@ -49,11 +49,11 @@ entries:
     url: "/admin/changing-provisioning-passphrase.html"
   - title: Cambia le password della console del nodo
     url: "/admin/change-node-console-password.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Cambia le password di accesso SSH
     url: "/admin/change-ssh-access-passwords.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Usa la federazione delle identità
     url: "/admin/using-identity-federation.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Gestisci i gruppi di amministratori
     url: "/admin/managing-admin-groups.html"
   - title: Autorizzazioni del gruppo amministratore
     url: "/admin/admin-group-permissions.html"
@@ -61,7 +61,7 @@ entries:
     url: "/admin/managing-users.html"
   - title: Usa single sign-on (SSO)
     entries:
-    - title: "${post_edited_translations.segment}"
+    - title: Come funziona l'SSO
       url: "/admin/how-sso-works.html"
     - title: Requisiti per l'SSO
       url: "/admin/requirements-for-sso.html"
@@ -71,7 +71,7 @@ entries:
       url: "/admin/configure-sso.html"
     - title: Crea trust di parti affidabili in AD FS
       url: "/admin/creating-relying-party-trusts-in-ad-fs.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Crea applicazioni aziendali in Entra ID
       url: "/admin/creating-enterprise-application-entra-id.html"
     - title: Crea connessioni SP in PingFederate
       url: "/admin/creating-sp-connection-ping.html"
@@ -86,7 +86,7 @@ entries:
     url: "/admin/grid-federation-overview.html"
   - title: Cos'è un account clone
     url: "/admin/grid-federation-what-is-account-clone.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Che cos'è la replica cross-grid
     url: "/admin/grid-federation-what-is-cross-grid-replication.html"
   - title: Confronta la replica cross-grid e la replica CloudMirror
     url: "/admin/grid-federation-compare-cgr-to-cloudmirror.html"
@@ -102,7 +102,7 @@ entries:
     url: "/admin/grid-federation-retry-failed-replication.html"
 - title: Gestisci la sicurezza
   entries:
-  - title: "${post_edited_translations.segment}"
+  - title: Componenti di sicurezza
     pdf-filename: Gestisci la sicurezza
     url: "/admin/manage-security.html"
   - title: Esamina i metodi di crittografia di StorageGRID
@@ -112,13 +112,13 @@ entries:
     - title: Gestisci i certificati di sicurezza
       pdf-filename: Gestisci i certificati di sicurezza
       url: "/admin/using-storagegrid-security-certificates.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Tipi di certificati server supportati
       url: "/admin/global-certificate-types.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Configura i certificati dell'interfaccia di gestione
       url: "/admin/configuring-custom-server-certificate-for-grid-manager-tenant-manager.html"
     - title: Configura i certificati API S3
       url: "/admin/configuring-custom-server-certificate-for-storage-node.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Copia o scarica il certificato Grid CA
       url: "/admin/copying-storagegrid-system-ca-certificate.html"
     - title: Configura i certificati StorageGRID per FabricPool
       url: "/admin/configuring-storagegrid-certificates-for-fabricpool.html"
@@ -136,10 +136,10 @@ entries:
       url: "/admin/manage-external-ssh-access.html"
   - title: Configura i server di gestione delle chiavi
     entries:
-    - title: "${post_edited_translations.segment}"
+    - title: Che cos'è un key management server
       pdf-filename: Configura i server di gestione delle chiavi
       url: "/admin/kms-configuring.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Configurazione KMS e appliance
       url: "/admin/kms-overview-of-kms-and-appliance-configuration.html"
     - title: Considerazioni e requisiti per l'utilizzo di un key management server
       url: "/admin/kms-considerations-and-requirements.html"
@@ -153,7 +153,7 @@ entries:
       url: "/admin/kms-managing.html"
   - title: Gestisci le impostazioni proxy
     entries:
-    - title: "${post_edited_translations.segment}"
+    - title: Configura proxy di storage
       url: "/admin/configuring-storage-proxy-settings.html"
     - title: Configura il proxy admin
       url: "/admin/configuring-admin-proxy-settings.html"
@@ -165,11 +165,11 @@ entries:
       url: "/admin/manage-firewall-controls.html"
     - title: Configura il firewall interno
       url: "/admin/configure-firewall-controls.html"
-- title: "${post_edited_translations.segment}"
+- title: Gestisci i tenant
   entries:
-  - title: "${post_edited_translations.segment}"
+  - title: Cosa sono gli account tenant
     url: "/admin/managing-tenants.html"
-    pdf-filename: "${post_edited_translations.segment}"
+    pdf-filename: Gestisci i tenant
   - title: Crea account tenant
     url: "/admin/creating-tenant-account.html"
   - title: Modifica account tenant
@@ -180,12 +180,12 @@ entries:
     url: "/admin/deleting-tenant-account.html"
   - title: Gestisci i servizi della piattaforma
     entries:
-    - title: "${post_edited_translations.segment}"
+    - title: Cosa sono i servizi di piattaforma
       pdf-filename: Gestisci i servizi della piattaforma per gli account tenant S3
       url: "/admin/manage-platform-services-for-tenants.html"
     - title: Rete e porte per i servizi della piattaforma
       url: "/admin/networking-and-ports-for-platform-services.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Consegna dei messaggi dei servizi della piattaforma per sito
       url: "/admin/per-site-delivery-of-platform-services-messages.html"
     - title: Risolvi i problemi dei servizi della piattaforma
       url: "/admin/troubleshooting-platform-services.html"
@@ -194,45 +194,45 @@ entries:
 - title: Configura le connessioni client
   entries:
   - title: Attività di configurazione
-    pdf-filename: "${post_edited_translations.segment}"
+    pdf-filename: Configura le connessioni client S3
     url: "/admin/configuring-client-connections.html"
   - title: Sicurezza per i client S3
     url: "/admin/security-for-clients.html"
   - title: Usa setup wizard
     entries:
-    - title: "${post_edited_translations.segment}"
+    - title: Considerazioni e requisiti relativi allo setup wizard di S3
       url: "/admin/use-s3-setup-wizard.html"
     - title: Accedi e completa il setup wizard dell'applicazione S3
       url: "/admin/use-s3-setup-wizard-steps.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Gestisci i gruppi HA
     entries:
     - title: Che cos'è il gruppo HA
-      pdf-filename: "${post_edited_translations.segment}"
+      pdf-filename: Gestisci i gruppi ad alta disponibilità (HA)
       url: "/admin/managing-high-availability-groups.html"
     - title: Come vengono utilizzati i gruppi HA
       url: "/admin/how-ha-groups-are-used.html"
     - title: Opzioni di configurazione per i gruppi HA
       url: "/admin/configuration-options-for-ha-groups.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Configura i gruppi HA
       url: "/admin/configure-high-availability-group.html"
   - title: Gestisci il bilanciamento del carico
     entries:
     - title: Considerazioni sul bilanciamento del carico
       url: "/admin/managing-load-balancing.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Configura gli endpoint del bilanciatore di carico
       url: "/admin/configuring-load-balancer-endpoints.html"
   - title: Configura i nomi di dominio degli endpoint S3
     url: "/admin/configuring-s3-api-endpoint-domain-names.html"
   - title: 'Riepilogo: indirizzi IP e porte per le connessioni client'
     url: "/admin/summary-ip-addresses-and-ports-for-client-connections.html"
-- title: "${post_edited_translations.segment}"
+- title: Gestisci reti e connessioni
   entries:
-  - title: "${post_edited_translations.segment}"
-    pdf-filename: "${post_edited_translations.segment}"
+  - title: Configura le impostazioni di rete
+    pdf-filename: Gestisci reti e connessioni
     url: "/admin/configuring-network-settings.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Linee guida per le reti StorageGRID
     url: "/admin/guidelines-for-storagegrid-networks.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Visualizza gli indirizzi IP
     url: "/admin/viewing-ip-addresses.html"
   - title: Configura le interfacce VLAN
     url: "/admin/configure-vlan-interfaces.html"
@@ -240,20 +240,20 @@ entries:
     url: "/admin/enable-cross-origin-resource-sharing-for-management-interface.html"
   - title: Gestisci le policy di classificazione del traffico
     entries:
-    - title: "${post_edited_translations.segment}"
+    - title: Cos'è la politica di classificazione del traffico
       pdf-filename: Gestisci le policy di classificazione del traffico
       url: "/admin/managing-traffic-classification-policies.html"
     - title: Crea politiche di classificazione del traffico
       url: "/admin/creating-traffic-classification-policies.html"
     - title: Modifica una policy di classificazione del traffico
       url: "/admin/editing-traffic-classification-policy.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Elimina una policy di classificazione del traffico
       url: "/admin/deleting-traffic-classification-policy.html"
     - title: Visualizza le metriche del traffico di rete
       url: "/admin/viewing-network-traffic-metrics.html"
   - title: Algoritmi di crittografia supportati per le connessioni TLS in uscita
     url: "/admin/supported-ciphers-for-outgoing-tls-connections.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Vantaggi delle connessioni HTTP attive, inattive e simultanee
     url: "/admin/benefits-of-active-idle-and-concurrent-http-connections.html"
   - title: Gestisci i costi dei collegamenti
     url: "/admin/manage-link-costs.html"
@@ -270,12 +270,12 @@ entries:
     url: "/admin/troubleshooting-autosupport-messages.html"
   - title: Invia i pacchetti E-Series AutoSupport tramite StorageGRID
     url: "/admin/sending-eseries-autosupport-messages-through-storagegrid.html"
-- title: "${post_edited_translations.segment}"
+- title: Gestisci i nodi di archiviazione
   entries:
-  - title: "${post_edited_translations.segment}"
-    pdf-filename: "${post_edited_translations.segment}"
+  - title: Usa le opzioni di archiviazione
+    pdf-filename: Gestisci i nodi di archiviazione
     entries:
-    - title: "${post_edited_translations.segment}"
+    - title: Cos'è la segmentazione degli oggetti
       url: "/admin/what-object-segmentation-is.html"
     - title: Cosa sono le watermarks del volume di storage
       url: "/admin/what-storage-volume-watermarks-are.html"
@@ -291,5 +291,5 @@ entries:
   entries:
   - title: Usa più nodi di amministrazione
     url: "/admin/using-multiple-admin-nodes.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Identifica il nodo amministrativo primario
     url: "/admin/identifying-primary-admin-node.html"

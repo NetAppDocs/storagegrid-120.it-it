@@ -13,11 +13,11 @@ summary: 'StorageGRID include un firewall interno su ogni nodo che migliora la s
 [role="lead"]
 StorageGRID include un firewall interno su ciascun nodo che migliora la sicurezza della tua grid consentendoti di controllare l'accesso di rete al nodo. Usa il firewall per impedire l'accesso di rete su tutte le porte ad eccezione di quelle necessarie per la tua specifica implementazione della grid. Le modifiche alla configurazione che apporti nella pagina di controllo del Firewall vengono distribuite su ciascun nodo.
 
-${post_edited_translations.segment}
+Utilizza le tre schede nella pagina di controllo del firewall per personalizzare l'accesso di cui hai bisogno per il tuo grid.
 
 * *Elenco indirizzi privilegiati*: usa questa scheda per consentire l'accesso selezionato alle porte chiuse. Puoi aggiungere indirizzi IP o subnet in notazione CIDR che possono accedere alle porte chiuse usando la scheda Gestisci accesso esterno.
 * *Gestisci l'accesso esterno*: Usa questa scheda per chiudere le porte aperte per impostazione predefinita o riaprire le porte precedentemente chiuse.
-* ${post_edited_translations.segment}
+* *Rete client non attendibile*: usa questa scheda per specificare se un nodo considera attendibile il traffico in entrata dalla Client Network.
 +
 Le impostazioni in questa scheda hanno la precedenza sulle impostazioni nella scheda Gestisci accesso esterno.
 
@@ -32,7 +32,7 @@ Le impostazioni in questa scheda hanno la precedenza sulle impostazioni nella sc
 
 NOTE: Le impostazioni che modifichi in una scheda possono influenzare le modifiche di accesso che fai in un'altra scheda. Assicurati di controllare le impostazioni in tutte le schede per essere sicuro che la tua rete si comporti come ti aspetti.
 
-Per configurare i controlli del firewall interno, consulta link:../admin/configure-firewall-controls.html["${post_edited_translations.segment}"].
+Per configurare i controlli del firewall interno, consulta link:../admin/configure-firewall-controls.html["Configura i controlli del firewall"].
 
 Per ulteriori informazioni sui firewall esterni e sulla sicurezza di rete, vedi link:../admin/controlling-access-through-firewalls.html["Controlla l'accesso tramite firewall esterno"].
 
@@ -54,7 +54,7 @@ NOTE: Gli indirizzi IP privilegiati non hanno accesso alle porte interne della g
 Supponiamo che tu voglia utilizzare un jump host (un host con sicurezza rafforzata) per l'amministrazione della rete. Puoi seguire questi passaggi generali:
 
 . Usa la scheda Elenco indirizzi privilegiati per aggiungere l'indirizzo IP del jump host.
-. ${post_edited_translations.segment}
+. Usa la scheda Gestisci accesso esterno per bloccare tutte le porte.
 
 
 
@@ -70,7 +70,7 @@ Dopo aver salvato la configurazione, tutte le porte esterne sull'Admin Node nel 
 Supponiamo che tu voglia bloccare le porte sensibili e il servizio su quella porta. Puoi seguire questi passaggi generali:
 
 . Utilizza la scheda Elenco indirizzi privilegiati per concedere l'accesso solo agli host che necessitano di accedere al servizio.
-. ${post_edited_translations.segment}
+. Usa la scheda Gestisci accesso esterno per bloccare tutte le porte.
 
 
 
@@ -88,13 +88,13 @@ A livello di rete, puoi disabilitare alcuni servizi che non intendi utilizzare. 
 
 
 [[untrusted-client-networks-tab]]
-== ${post_edited_translations.segment}
+== scheda Untrusted Client Networks
 
 Se usi una rete client, puoi contribuire a proteggere StorageGRID da attacchi malevoli accettando il traffico client in entrata solo sugli endpoint configurati esplicitamente.
 
 Per impostazione predefinita, la Client Network su ciascun nodo della griglia è _attendibile_. Ovvero, per impostazione predefinita, StorageGRID considera attendibili le connessioni inbound verso ciascun nodo della griglia su tutte le link:../network/external-communications.html["porte esterne disponibili"].
 
-Puoi ridurre la minaccia di attacchi ostili al tuo sistema StorageGRID specificando che la Client Network su ciascun nodo sia _non attendibile_. Se la Client Network di un nodo non è attendibile, il nodo accetta solo connessioni inbound su porte configurate esplicitamente come endpoint del bilanciatore del carico. Vedi link:../admin/configuring-load-balancer-endpoints.html["${post_edited_translations.segment}"] e link:../admin/configure-firewall-controls.html["${post_edited_translations.segment}"].
+Puoi ridurre la minaccia di attacchi ostili al tuo sistema StorageGRID specificando che la Client Network su ciascun nodo sia _non attendibile_. Se la Client Network di un nodo non è attendibile, il nodo accetta solo connessioni inbound su porte configurate esplicitamente come endpoint del bilanciatore del carico. Vedi link:../admin/configuring-load-balancer-endpoints.html["Configura gli endpoint del bilanciatore di carico"] e link:../admin/configure-firewall-controls.html["Configura i controlli del firewall"].
 
 
 
@@ -103,7 +103,7 @@ Puoi ridurre la minaccia di attacchi ostili al tuo sistema StorageGRID specifica
 
 Supponiamo che tu voglia che un Gateway Node rifiuti tutto il traffico inbound sulla Client Network, tranne le richieste HTTPS S3. Dovresti seguire questi passaggi generali:
 
-. Dalla pagina link:../admin/configuring-load-balancer-endpoints.html["${post_edited_translations.segment}"], configura un endpoint del bilanciatore del carico per S3 su HTTPS sulla porta 443.
+. Dalla pagina link:../admin/configuring-load-balancer-endpoints.html["Endpoint del bilanciatore di carico"], configura un endpoint del bilanciatore del carico per S3 su HTTPS sulla porta 443.
 . Dalla pagina di controllo del firewall, seleziona Non attendibile per specificare che la Client Network sul Gateway Node non è attendibile.
 
 
@@ -116,7 +116,7 @@ Dopo che salvi la configurazione, tutto il traffico in entrata sulla rete client
 
 Supponi di voler abilitare il traffico outbound dei servizi della piattaforma S3 da un Storage Node, ma di voler impedire qualsiasi connessione inbound a tale Storage Node sulla Client Network. Eseguiresti questo passaggio generale:
 
-* ${post_edited_translations.segment}
+* Nella scheda Reti client non attendibili della pagina di controllo del firewall, indica che la rete client sul nodo di archiviazione non è attendibile.
 
 
 Dopo aver salvato la configurazione, il nodo di archiviazione non accetta più traffico in entrata sulla rete client, ma continua a consentire le richieste outbound verso le destinazioni dei servizi della piattaforma configurati.
@@ -124,15 +124,15 @@ Dopo aver salvato la configurazione, il nodo di archiviazione non accetta più t
 
 
 [[example-3-limiting-access-to-grid-manager-to-a-subnet]]
-=== ${post_edited_translations.segment}
+=== Esempio 3: Limitare l'accesso a Grid Manager a una sottorete
 
 Supponiamo che tu voglia consentire l'accesso a Grid Manager solo su una sottorete specifica. Dovresti eseguire i seguenti passaggi:
 
-. ${post_edited_translations.segment}
+. Collega la rete client dei tuoi Admin Nodes alla sottorete.
 . Usa la scheda Rete client non attendibile per configurare la rete client come non attendibile.
 . Quando crei un endpoint del bilanciatore di carico dell'interfaccia di gestione, inserisci la porta e seleziona l'interfaccia di gestione a cui la porta accederà.
 . Seleziona *Sì* per Rete client non attendibile.
-. ${post_edited_translations.segment}
+. Utilizza la scheda Gestisci accesso esterno per bloccare tutte le porte esterne (con o senza indirizzi IP privilegiati impostati per gli host al di fuori di tale sottorete).
 
 
 Dopo aver salvato la configurazione, solo gli host della sottorete specificata possono accedere a Grid Manager. Tutti gli altri host sono bloccati.

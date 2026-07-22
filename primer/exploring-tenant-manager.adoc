@@ -11,7 +11,7 @@ summary: 'Il Tenant Manager è l"interfaccia grafica basata su browser a cui gli
 
 
 [role="lead"]
-L'link:../tenant/index.html["${post_edited_translations.segment}"]interfaccia grafica basata su browser è quella a cui gli utenti tenant accedono per configurare, gestire e monitorare i propri account di storage.
+L'link:../tenant/index.html["Tenant Manager"]interfaccia grafica basata su browser è quella a cui gli utenti tenant accedono per configurare, gestire e monitorare i propri account di storage.
 
 
 NOTE: Il Tenant Manager viene aggiornato a ogni nuova versione e potrebbe non corrispondere alle schermate di esempio presenti in questa pagina.
@@ -62,7 +62,7 @@ NOTE: La gestione delle chiavi di accesso per gli altri utenti avviene dal menu 
 
 
 [[buckets]]
-=== ${post_edited_translations.segment}
+=== Bucket
 
 Gli utenti tenant S3 con le autorizzazioni appropriate possono eseguire le seguenti operazioni sui propri bucket:
 

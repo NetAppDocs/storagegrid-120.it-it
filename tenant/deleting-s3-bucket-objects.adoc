@@ -2,7 +2,7 @@
 permalink: tenant/deleting-s3-bucket-objects.html 
 sidebar: sidebar 
 keywords: how to delete bucket objects, empty bucket 
-summary: ${post_edited_translations.segment} 
+summary: Puoi usare il Tenant Manager per eliminare gli oggetti in uno o più bucket. 
 ---
 = Eliminare oggetti da un bucket S3 di StorageGRID
 :allow-uri-read: 
@@ -11,13 +11,13 @@ summary: ${post_edited_translations.segment}
 
 
 [role="lead"]
-${post_edited_translations.segment}
+Puoi usare il Tenant Manager per eliminare gli oggetti in uno o più bucket.
 
 .Considerazioni e requisiti
 Prima di eseguire questi passaggi, tieni presente quanto segue:
 
 * Quando elimini gli oggetti in un bucket, StorageGRID rimuove in modo permanente tutti gli oggetti e tutte le versioni degli oggetti in ciascun bucket selezionato da tutti i nodi e siti del tuo sistema StorageGRID. StorageGRID rimuove anche tutti i metadati degli oggetti correlati. Non potrai recuperare queste informazioni.
-* ${post_edited_translations.segment}
+* L'eliminazione di tutti gli oggetti in un bucket potrebbe richiedere minuti, giorni o persino settimane, a seconda del numero di oggetti, delle copie degli oggetti e delle operazioni simultanee.
 * Se un bucket ha link:using-s3-object-lock.html["Blocco oggetto S3 abilitato"], potrebbe rimanere nello stato *Eliminazione oggetti: sola lettura* per _anni_.
 +
 
@@ -28,15 +28,15 @@ TIP: Un bucket che utilizza S3 Object Lock rimarrà nello stato *Eliminazione og
 +
 ** Riporta il bucket in modalità di scrittura e riutilizzalo per nuovi oggetti
 ** Elimina il bucket
-** ${post_edited_translations.segment}
+** Mantieni il bucket in modalità di sola lettura per riservare il suo nome per usi futuri
 
 
 * Se per un bucket è abilitato il versioning degli oggetti, i delete marker creati in StorageGRID 11.8 o versioni successive possono essere rimossi utilizzando le operazioni Delete objects in bucket.
 * Se per un bucket è abilitato il versioning degli oggetti, l'operazione di eliminazione degli oggetti non rimuoverà i marcatori di eliminazione creati in StorageGRID 11.7 o versioni precedenti. Consulta le informazioni sull'eliminazione degli oggetti in un bucket in link:../ilm/how-objects-are-deleted.html#delete-s3-versioned-objects["Come vengono eliminati gli oggetti versionati di S3"].
 * Se utilizzi link:grid-federation-manage-cross-grid-replication.html["replicazione cross-grid"], tieni presente quanto segue:
 +
-** ${post_edited_translations.segment}
-** Se selezioni questa opzione per il bucket di origine, verrà attivato l'avviso *Errore di replica tra griglie* se aggiungi oggetti al bucket di destinazione sull'altra griglia. Se non puoi garantire che nessuno aggiunga oggetti al bucket sull'altra griglia, link:../tenant/grid-federation-manage-cross-grid-replication.html["${post_edited_translations.segment}"] per quel bucket prima di eliminare tutti gli oggetti del bucket.
+** L'utilizzo di questa opzione non elimina alcun oggetto dal bucket sull'altra grid.
+** Se selezioni questa opzione per il bucket di origine, verrà attivato l'avviso *Errore di replica tra griglie* se aggiungi oggetti al bucket di destinazione sull'altra griglia. Se non puoi garantire che nessuno aggiunga oggetti al bucket sull'altra griglia, link:../tenant/grid-federation-manage-cross-grid-replication.html["disabilita la replica cross-grid"] per quel bucket prima di eliminare tutti gli oggetti del bucket.
 
 
 
@@ -47,11 +47,11 @@ TIP: Un bucket che utilizza S3 Object Lock rimarrà nello stato *Eliminazione og
 
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Seleziona *Visualizza bucket* dalla dashboard oppure seleziona *STORAGE (S3)* > *Buckets*.
 +
 Viene visualizzata la pagina Buckets, che mostra tutti i bucket S3 esistenti.
 
-. ${post_edited_translations.segment}
+. Usa il menu *Azioni* o la pagina dei dettagli per un bucket specifico.
 +
 [role="tabbed-block"]
 ====
@@ -77,20 +77,20 @@ Dopo qualche minuto:
 
 +
 ** Nella pagina dei dettagli del bucket viene visualizzato un banner di stato giallo. La barra di avanzamento indica quale % di oggetti è stata eliminata.
-** ${post_edited_translations.segment}
-** ${post_edited_translations.segment}
+** *(sola lettura)* appare dopo il nome del bucket nella pagina dei dettagli del bucket.
+** *(Eliminazione oggetti: sola lettura)* appare accanto al nome del bucket nella pagina Buckets.
 
 
 +
-image:delete-bucket-objects-in-progress.png["${post_edited_translations.segment}"]
+image:delete-bucket-objects-in-progress.png["screenshot che mostra l'eliminazione degli oggetti del bucket"]
 
 . Se necessario, durante l'esecuzione dell'operazione, seleziona *Interrompi eliminazione oggetti* per arrestare il processo. Quindi, facoltativamente, seleziona *Elimina oggetti nel bucket* per riprendere il processo.
 +
-${post_edited_translations.segment}
+Quando selezioni *Interrompi l'eliminazione degli oggetti*, il bucket torna in modalità di scrittura; tuttavia, non puoi accedere o ripristinare gli oggetti che sono stati eliminati.
 
 . Attendi il completamento dell'operazione.
 +
-${post_edited_translations.segment}
+Quando il bucket è vuoto, il banner di stato viene aggiornato, ma il bucket rimane di sola lettura.
 
 +
 image:delete-bucket-objects-complete.png["screenshot che mostra tutti gli oggetti bucket eliminati"]

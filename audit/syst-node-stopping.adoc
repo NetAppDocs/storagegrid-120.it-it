@@ -23,7 +23,7 @@ RSLT
  a| 
 Arresto pulito
  a| 
-${post_edited_translations.segment}
+La natura della chiusura:
 
 SUCS: Il sistema è stato arrestato correttamente.
 

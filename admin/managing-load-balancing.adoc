@@ -16,7 +16,7 @@ Puoi usare il bilanciamento del carico per gestire i carichi di lavoro di ingest
 
 
 [[what-is-load-balancing]]
-== ${post_edited_translations.segment}
+== Che cos'è il bilanciamento del carico?
 
 Quando un'applicazione client salva o recupera dati da un sistema StorageGRID, StorageGRID utilizza un bilanciatore del carico per gestire il carico di lavoro di acquisizione e recupero. Il bilanciamento del carico massimizza la velocità e la capacità di connessione distribuendo il carico di lavoro su più Storage Node.
 
@@ -37,13 +37,13 @@ Come best practice generale, ogni sito nel tuo sistema StorageGRID dovrebbe incl
 
 
 [[what-is-a-load-balancer-endpoint]]
-== ${post_edited_translations.segment}
+== Che cos'è un endpoint di bilanciamento del carico?
 
 Un endpoint del load balancer definisce la porta e il protocollo di rete (HTTPS o HTTP) che le richieste delle applicazioni client in entrata e in uscita utilizzeranno per accedere ai nodi che contengono il servizio Load Balancer. L'endpoint definisce anche il tipo di client (S3), la modalità di binding e, facoltativamente, un elenco di tenant consentiti o bloccati.
 
 Per creare un endpoint del bilanciatore del carico, utilizza il Grid Manager oppure completa i wizard di setup di S3 e FabricPool:
 
-* link:configuring-load-balancer-endpoints.html["${post_edited_translations.segment}"]
+* link:configuring-load-balancer-endpoints.html["Configura gli endpoint del bilanciatore di carico"]
 * link:use-s3-setup-wizard-steps.html["Usa la setup wizard"]
 * link:../fabricpool/use-fabricpool-setup-wizard-steps.html["Utilizza il setup wizard di FabricPool"]
 
@@ -61,7 +61,7 @@ Quando crei gli endpoint del bilanciamento del carico:
 * Valuta di aggiungere ulteriori endpoint o nodi per la memorizzazione nella cache dei singoli carichi di lavoro che sono buoni candidati per la cache.
 * Usa endpoint distinti per i carichi di lavoro memorizzabili nella cache e per quelli non memorizzabili nella cache. Questa separazione garantisce che i meccanismi di caching vengano applicati correttamente e non interferiscano con l'elaborazione dei dati non memorizzabili nella cache.
 * Valuta un potenziale carico di lavoro memorizzabile nella cache indirizzandolo all'endpoint abilitato alla cache. Monitora e verifica il tasso di cache hit per determinare l'idoneità del carico di lavoro per la memorizzazione nella cache. Questa valutazione aiuta a ottimizzare le prestazioni e a garantire un uso efficiente delle risorse di cache.
-* link:../audit/index.html["${post_edited_translations.segment}"] per determinare se un carico di lavoro esistente sia un buon candidato per la memorizzazione nella cache. Per un determinato periodo di tempo, determina quale percentuale di GET è per oggetti univoci. Per essere adatto alla memorizzazione nella cache, questo valore deve essere inferiore al 50%.
+* link:../audit/index.html["Esamina i registri di controllo"] per determinare se un carico di lavoro esistente sia un buon candidato per la memorizzazione nella cache. Per un determinato periodo di tempo, determina quale percentuale di GET è per oggetti univoci. Per essere adatto alla memorizzazione nella cache, questo valore deve essere inferiore al 50%.
 
 
 
@@ -69,9 +69,9 @@ Quando crei gli endpoint del bilanciamento del carico:
 ==== Esempi di carichi di lavoro che potrebbero essere buoni candidati per la memorizzazione nella cache
 
 * Data lake
-* ${post_edited_translations.segment}
-* ${post_edited_translations.segment}
-* ${post_edited_translations.segment}
+* Calcolo ad alte prestazioni (HPC)
+* Training AI/ML
+* Reti di distribuzione dei contenuti (CDN)
 * asset management multimediale
 * Produzione video
 
@@ -88,7 +88,7 @@ Quando crei gli endpoint del bilanciamento del carico:
 ==== Esempi di carichi di lavoro che non sono buoni candidati per la memorizzazione nella cache
 
 * FabricPool
-* ${post_edited_translations.segment}
+* Applicazioni di backup
 * Tiering dello storage
 
 
@@ -101,7 +101,7 @@ CAUTION: Se un qualsiasi contenuto che deve essere fornito dalla cache richiede 
 
 * Il `response-content-encoding` parametro di query
 * Il `partNumber` parametro di query
-* ${post_edited_translations.segment}
+* Intestazioni condizionali
 +
 ** `If-Match`
 ** `If-Modified-Since`
@@ -109,11 +109,11 @@ CAUTION: Se un qualsiasi contenuto che deve essere fornito dalla cache richiede 
 ** `If-Unmodified-Since`
 
 
-* ${post_edited_translations.segment}
+* Richieste crittografate a riposo con uno qualsiasi dei seguenti:
 +
-** ${post_edited_translations.segment}
+** SSE (crittografia lato server con chiavi gestite da StorageGRID)
 ** SSE-C (crittografia lato server con chiavi fornite dal cliente)
-** ${post_edited_translations.segment}
+** Crittografia degli oggetti memorizzati
 
 
 
@@ -153,12 +153,12 @@ Se selezioni *HTTPS* come protocollo di rete per l'endpoint del bilanciatore del
 Devi ottenere i seguenti file prima di creare l'endpoint del bilanciamento del carico:
 
 +
-** ${post_edited_translations.segment}
+** Il file del certificato server personalizzato.
 ** Il file della chiave privata del certificato server personalizzato.
 ** Facoltativamente, un pacchetto CA dei certificati di ciascuna autorità di certificazione emittente intermedia.
 
 
-* ${post_edited_translations.segment}
+* *Genera un certificato autofirmato*.
 * *Usa il certificato S3 globale di StorageGRID*. Devi caricare o generare una versione personalizzata di questo certificato prima di poterlo selezionare per l'endpoint del bilanciamento del carico. Consulta link:../admin/configuring-custom-server-certificate-for-storage-node.html["Configura i certificati API S3"].
 
 
@@ -183,23 +183,23 @@ Se vuoi utilizzare richieste in stile S3 virtual hosted, il certificato deve inc
 Alternative Name: DNS:*.s3.storagegrid.example.com
 ----
 
-NOTE: Se usi i caratteri jolly per i domain name, rivedi il link:../harden/hardening-guideline-for-server-certificates.html["${post_edited_translations.segment}"].
+NOTE: Se usi i caratteri jolly per i domain name, rivedi il link:../harden/hardening-guideline-for-server-certificates.html["Linee guida per l'hardening dei certificati server"].
 
-${post_edited_translations.segment}
+Devi anche definire una voce DNS per ogni nome nel certificato di sicurezza.
 
 
 
-==== ${post_edited_translations.segment}
+==== Come gestisco i certificati in scadenza?
 
 
 CAUTION: Se il certificato utilizzato per proteggere la connessione tra l'applicazione S3 e StorageGRID scade, l'applicazione potrebbe perdere temporaneamente l'accesso a StorageGRID.
 
-${post_edited_translations.segment}
+Per evitare problemi legati alla scadenza dei certificati, segui queste best practice:
 
 * Monitora attentamente tutti gli avvisi che segnalano l'imminente scadenza dei certificati, come gli avvisi *Expiration of load balancer endpoint certificate* e *Expiration of global server certificate for S3 API*.
 * Mantieni sempre sincronizzate le versioni del certificato di StorageGRID e dell'applicazione S3. Se sostituisci o rinnovi il certificato utilizzato per un endpoint del bilanciatore di carico, devi sostituire o rinnovare anche il certificato equivalente utilizzato dall'applicazione S3.
 * Utilizza un certificato CA firmato pubblicamente. Se utilizzi un certificato firmato da una CA, puoi sostituire i certificati in scadenza senza interruzioni.
-* ${post_edited_translations.segment}
+* Se hai generato un certificato StorageGRID autofirmato e tale certificato sta per scadere, devi sostituire manualmente il certificato sia in StorageGRID che nell'applicazione S3 prima che il certificato esistente scada.
 
 
 
@@ -253,4 +253,4 @@ Per accedere a `top-secret.pdf`, un utente nel tenant *Top secret* può inviare 
 
 Il servizio Load Balancer su ciascun Admin Node e Gateway Node opera in modo indipendente durante l'inoltro del traffico S3 agli Storage Node. Attraverso un processo di ponderazione, il servizio Load Balancer instrada un maggior numero di richieste agli Storage Node con maggiore disponibilità di CPU. Le informazioni sul carico della CPU dei nodi vengono aggiornate ogni pochi minuti, ma la ponderazione potrebbe essere aggiornata con maggiore frequenza. A tutti gli Storage Node viene assegnato un valore di peso base minimo, anche se un nodo segnala un utilizzo del 100% o non segnala affatto il proprio utilizzo.
 
-${post_edited_translations.segment}
+In alcuni casi, le informazioni sulla disponibilità della CPU sono limitate al sito in cui si trova il servizio Load Balancer.

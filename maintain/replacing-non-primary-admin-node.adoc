@@ -19,7 +19,7 @@ Usa la procedura che corrisponde alla piattaforma di sostituzione che scegli per
 
 [cols="1a,2a"]
 |===
-| Piattaforma di sostituzione | ${post_edited_translations.segment} 
+| Piattaforma di sostituzione | Procedura 
 
 
  a| 
@@ -37,7 +37,7 @@ link:all-node-types-replacing-linux-node.html["Sostituisci un nodo Linux"]
 
 
  a| 
-${post_edited_translations.segment}
+appliance di servizi
  a| 
 link:replacing-failed-node-with-services-appliance.html["Sostituisci un appliance di servizi"]
 

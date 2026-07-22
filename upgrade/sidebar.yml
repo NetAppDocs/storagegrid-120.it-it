@@ -5,23 +5,23 @@ entries:
 - title: Prima di effettuare l'upgrade
   pdf-filename: Aggiorna il software StorageGRID
   url: "/upgrade/index.html"
-- title: "${post_edited_translations.segment}"
+- title: Pianifica e preparati per l'aggiornamento
   entries:
-  - title: "${post_edited_translations.segment}"
+  - title: Stima il tempo per completare l'aggiornamento
     url: "/upgrade/estimating-time-to-complete-upgrade.html"
   - title: Come il tuo sistema è influenzato durante l'aggiornamento
     url: "/upgrade/how-your-system-is-affected-during-upgrade.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Verifica la versione di StorageGRID installata
     url: "/upgrade/verifying-installed-version-of-storagegrid.html"
   - title: Procurati il materiale necessario
     url: "/upgrade/obtaining-required-materials-for-software-upgrade.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Controlla il sistema
     url: "/upgrade/checking-systems-condition-before-upgrading-software.html"
 - title: Aggiorna software
   entries:
   - title: Guida rapida all'aggiornamento
     url: "/upgrade/upgrade-workflow.html"
-  - title: "${post_edited_translations.segment}"
+  - title: 'Linux: Scarica e installa il pacchetto RPM o DEB'
     url: "/upgrade/linux-installing-rpm-or-deb-package-on-all-hosts.html"
   - title: Esegui l'aggiornamento
     url: "/upgrade/performing-upgrade.html"

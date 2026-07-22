@@ -39,7 +39,7 @@ Questa procedura sposta i servizi ADC, IDNT, ACCT e RSM da uno Storage Node a un
 Nell'API di gestione della griglia, l'ID del nodo sorgente è indicato come  `sourceNodeId`. L'ID del nodo di destinazione è indicato come  `targetNodeId`.
 
 . Dalla parte superiore di Grid Manager, seleziona l'icona di aiuto e seleziona *API documentation*.
-. ${post_edited_translations.segment}
+. Seleziona *Vai alla documentazione API privata*.
 . Seleziona l' `POST /private/move-adc/start`operazione. Consulta link:../admin/using-grid-management-api.html#issue-api-requests["Invia richieste API"]per maggiori informazioni.
 +
 Durante la procedura, i due nodi si riavvieranno in sequenza. Il nodo sorgente si riavvia per primo, seguito dal nodo di destinazione.

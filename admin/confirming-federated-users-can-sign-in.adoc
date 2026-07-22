@@ -2,25 +2,25 @@
 permalink: admin/confirming-federated-users-can-sign-in.html 
 sidebar: sidebar 
 keywords: sso configuration 
-summary: ${post_edited_translations.segment} 
+summary: 'Prima di abilitare il single sign-on (SSO), devi confermare che almeno un utente federato possa accedere a Grid Manager e a Tenant Manager per qualsiasi account tenant esistente.' 
 ---
-= ${post_edited_translations.segment}
+= Conferma che gli utenti federati possano accedere a StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-${post_edited_translations.segment}
+Prima di abilitare il single sign-on (SSO), devi confermare che almeno un utente federato possa accedere a Grid Manager e a Tenant Manager per qualsiasi account tenant esistente.
 
 .Prima di iniziare
 * Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
 * Hai link:admin-group-permissions.html["autorizzazioni di accesso specifiche"].
-* ${post_edited_translations.segment}
+* Hai già configurato la federazione delle identità.
 
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Se sono presenti tenant account, assicurati che nessuno dei tenant stia utilizzando una propria fonte di identità.
 +
 
 TIP: Quando abiliti l'SSO, l'origine di identità configurata nel Tenant Manager viene sovrascritta dall'origine di identità configurata nel Grid Manager. Gli utenti appartenenti all'origine di identità del tenant non potranno più accedere a meno che non abbiano un account con l'origine di identità del Grid Manager.
@@ -29,33 +29,33 @@ TIP: Quando abiliti l'SSO, l'origine di identità configurata nel Tenant Manager
 .. Accedi al Tenant Manager per ciascun tenant account.
 .. Seleziona *Gestione accessi* > *Federazione delle identità*.
 .. Verifica che la casella di controllo *Abilita federazione delle identità* non sia selezionata.
-.. ${post_edited_translations.segment}
+.. Se lo è, assicurati che tutti i gruppi federati eventualmente in uso per questo tenant account non siano più necessari, deseleziona la casella di controllo e seleziona *Salva*.
 
 
-. ${post_edited_translations.segment}
+. Conferma che un utente federato possa accedere a Grid Manager:
 +
 .. Da Grid Manager, seleziona *Configurazione* > *Controllo accessi* > *Gruppi di amministratori*.
 .. Assicurati che almeno un gruppo federato sia stato importato dall'origine identità di Active Directory e che gli sia stato assegnato il permesso di accesso Root.
-.. ${post_edited_translations.segment}
+.. Esci.
 .. Conferma che puoi accedere nuovamente a Grid Manager come utente del gruppo federato.
 
 
 . Se sono presenti account tenant, verifica che un utente federato con autorizzazione di accesso Root possa effettuare l'accesso:
 +
 .. Dal Grid Manager, seleziona *Tenants*.
-.. ${post_edited_translations.segment}
-.. ${post_edited_translations.segment}
-.. ${post_edited_translations.segment}
+.. Seleziona il tenant account e seleziona *Azioni* > *Modifica*.
+.. Nella scheda Inserisci dettagli, seleziona *Continua*.
+.. Se la casella di controllo *Usa la propria fonte di identità* è selezionata, deselezionala e seleziona *Salva*.
 
 
 +
-${post_edited_translations.segment}
+Viene visualizzata la pagina del tenant.
 
 +
-.. ${post_edited_translations.segment}
-.. ${post_edited_translations.segment}
+.. Seleziona il tenant account, seleziona *Accedi* e accedi al tenant account come utente root locale.
+.. Dal Gestore tenant, seleziona *Gestione accessi* > *Gruppi*.
 .. Assicurati che ad almeno un gruppo federato del Grid Manager sia stato assegnato il permesso di accesso Root per questo tenant.
-.. ${post_edited_translations.segment}
+.. Esci.
 .. Conferma che puoi accedere di nuovo al tenant come utente del gruppo federato.
 
 
@@ -63,6 +63,6 @@ ${post_edited_translations.segment}
 
 .Informazioni correlate
 * link:requirements-for-sso.html["Requisiti e considerazioni per single sign-on"]
-* link:managing-admin-groups.html["${post_edited_translations.segment}"]
+* link:managing-admin-groups.html["Gestisci i gruppi di amministratori"]
 * link:../tenant/index.html["Usa un tenant account"]
 

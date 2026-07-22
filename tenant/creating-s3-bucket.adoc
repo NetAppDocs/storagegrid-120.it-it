@@ -15,16 +15,16 @@ Puoi usare Tenant Manager per creare bucket S3 per i dati degli oggetti.
 
 .Prima di iniziare
 * Hai effettuato l'accesso al Tenant Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
-* Fai parte di un gruppo di utenti che dispone dell'accesso Root o della possibilità di gestire tutti i bucket link:tenant-management-permissions.html["${post_edited_translations.segment}"]. Queste autorizzazioni hanno la precedenza sulle impostazioni di autorizzazione definite nei criteri di gruppo o di bucket.
+* Fai parte di un gruppo di utenti che dispone dell'accesso Root o della possibilità di gestire tutti i bucket link:tenant-management-permissions.html["permesso"]. Queste autorizzazioni hanno la precedenza sulle impostazioni di autorizzazione definite nei criteri di gruppo o di bucket.
 +
 
 NOTE: Le autorizzazioni per impostare o modificare le proprietà di S3 Object Lock di bucket o oggetti possono essere concesse da link:../s3/use-access-policies.html["criterio del bucket o criterio di gruppo"].
 
-* ${post_edited_translations.segment}
-* ${post_edited_translations.segment}
+* Se prevedi di abilitare il blocco degli oggetti S3 per un bucket, un amministratore della griglia ha abilitato l'impostazione globale di S3 Object Lock per il sistema StorageGRID e hai esaminato i requisiti per bucket e oggetti con S3 Object Lock.
+* Se ogni tenant avrà 5.000 bucket, ogni Storage Node nella griglia ha un minimo di 64 GB di RAM.
 +
 
-NOTE: Ciascuna grid può avere un massimo di 100.000 bucket, inclusi link:../tenant/what-is-branch-bucket.html["${post_edited_translations.segment}"].
+NOTE: Ciascuna grid può avere un massimo di 100.000 bucket, inclusi link:../tenant/what-is-branch-bucket.html["bucket branch"].
 
 
 
@@ -34,7 +34,7 @@ NOTE: Ciascuna grid può avere un massimo di 100.000 bucket, inclusi link:../ten
 == Accedi al wizard
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Seleziona *Visualizza bucket* dalla dashboard oppure seleziona *STORAGE (S3)* > *Buckets*.
 . Seleziona *Create bucket*.
 
 
@@ -44,7 +44,7 @@ NOTE: Ciascuna grid può avere un massimo di 100.000 bucket, inclusi link:../ten
 == Inserisci i dettagli
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Inserisci i dettagli per il bucket.
 +
 [cols="1a,3a"]
 |===
@@ -54,18 +54,18 @@ NOTE: Ciascuna grid può avere un massimo di 100.000 bucket, inclusi link:../ten
  a| 
 Nome bucket
  a| 
-${post_edited_translations.segment}
+Un nome per il bucket che rispetti queste regole:
 
 ** Deve essere univoco in ogni sistema StorageGRID (non solo all'interno dell'account del tenant).
 ** Deve essere conforme al DNS.
 ** Devi inserire almeno 3 e non più di 63 caratteri.
-** ${post_edited_translations.segment}
+** Ogni etichetta deve iniziare e terminare con una lettera minuscola o un numero e può utilizzare solo lettere minuscole, numeri e trattini.
 ** Le richieste di tipo virtual hosted non devono contenere punti. I punti causeranno problemi con la verifica del certificato wildcard del server.
 
 
-Per ulteriori informazioni, consultare il https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html["${post_edited_translations.segment}"^].
+Per ulteriori informazioni, consultare il https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html["Documentazione di Amazon Web Services (AWS) sulle regole di denominazione dei bucket"^].
 
-${post_edited_translations.segment}
+*Nota*: Non puoi cambiare il nome del bucket dopo averlo creato.
 
 
 
@@ -76,7 +76,7 @@ La regione del bucket.
 
 Il tuo amministratore StorageGRID gestisce le aree geografiche disponibili. L'area geografica di un bucket può influire sulla policy di protezione dei dati applicata agli oggetti. Per impostazione predefinita, tutti i bucket vengono creati nell'area geografica `us-east-1`. Se l'area geografica predefinita è configurata su un'area diversa da `us-east-1`, quest'altra area viene inizialmente selezionata nel menu a discesa.
 
-${post_edited_translations.segment}
+*Nota*: Non puoi cambiare la regione dopo aver creato il bucket.
 
 |===
 . Seleziona *Continue*.
@@ -96,7 +96,7 @@ Abilita il versioning degli oggetti se desideri archiviare ogni versione di cias
 Devi abilitare il versioning degli oggetti se:
 
 +
-** ${post_edited_translations.segment}
+** Il bucket verrà utilizzato per la replicazione cross-grid.
 ** Vuoi creare un link:../tenant/what-is-branch-bucket.html["bucket branch"] da questo bucket.
 
 
@@ -120,7 +120,7 @@ NOTE: L'amministratore della grid deve darti l'autorizzazione per link:../tenant
 Quando la *conservazione predefinita* è abilitata, i nuovi oggetti aggiunti al bucket verranno protetti automaticamente dall'eliminazione o dalla sovrascrittura. L'impostazione di *conservazione predefinita* non si applica agli oggetti che hanno i propri periodi di conservazione.
 
 +
-.. ${post_edited_translations.segment}
+.. Se è abilitata l'opzione *Conservazione predefinita*, specifica una *Modalità di conservazione predefinita* per il bucket.
 +
 [cols="1a,2a"]
 |===
@@ -162,7 +162,7 @@ Un _periodo di conservazione massimo_, che può variare da 1 giorno a 100 anni, 
 Il limite di capacità è la capacità massima disponibile per gli oggetti di questo bucket. Questo valore rappresenta una quantità logica (dimensione dell'oggetto), non una quantità fisica (dimensione sul disco).
 
 +
-Se non imposti alcun limite, la capacità di questo bucket è illimitata. Consulta link:../tenant/understanding-tenant-manager-dashboard.html#bucket-capacity-usage["${post_edited_translations.segment}"] per maggiori informazioni.
+Se non imposti alcun limite, la capacità di questo bucket è illimitata. Consulta link:../tenant/understanding-tenant-manager-dashboard.html#bucket-capacity-usage["Utilizzo del limite di capacità"] per maggiori informazioni.
 
 . [[object-count-limit]]Facoltativamente, seleziona *Abilita limite al numero di oggetti*.
 +
@@ -170,9 +170,9 @@ Il limite di oggetti rappresenta il numero massimo di oggetti che questo bucket 
 
 . Seleziona *Create bucket*.
 +
-${post_edited_translations.segment}
+Il bucket viene creato e aggiunto alla tabella nella pagina Buckets.
 
 . Facoltativamente, seleziona *Vai alla pagina dei dettagli del bucket* per link:viewing-s3-bucket-details.html["visualizza i dettagli del bucket"] ed eseguire configurazioni aggiuntive.
 
 
-Puoi anche link:../tenant/manage-branch-buckets.html["${post_edited_translations.segment}"] se necessario.
+Puoi anche link:../tenant/manage-branch-buckets.html["crea bucket di branch"] se necessario.

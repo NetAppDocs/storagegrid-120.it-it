@@ -15,7 +15,7 @@ L'hotfix viene applicato automaticamente prima al nodo Admin primario. Poi devi 
 
 .Prima di iniziare
 * Hai esaminato il link:storagegrid-hotfix-procedure.html["considerazioni per applicare una hotfix"].
-* ${post_edited_translations.segment}
+* Hai la passphrase di provisioning.
 * Hai accesso root o il permesso di manutenzione.
 
 

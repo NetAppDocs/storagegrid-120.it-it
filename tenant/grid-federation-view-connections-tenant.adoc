@@ -2,7 +2,7 @@
 permalink: tenant/grid-federation-view-connections-tenant.html 
 sidebar: sidebar 
 keywords: grid federation connection, view, clear error, last error 
-summary: ${post_edited_translations.segment} 
+summary: 'Se il tuo tenant account dispone dell"autorizzazione "Usa connessione di federazione grid", puoi visualizzare le connessioni consentite.' 
 ---
 = Visualizza le connessioni di federazione della griglia in StorageGRID
 :allow-uri-read: 
@@ -22,7 +22,7 @@ Se il tuo tenant account dispone dell'autorizzazione *Usa connessione di federaz
 .Passaggi
 . Seleziona *STORAGE (S3)* > *Grid federation connections*.
 +
-${post_edited_translations.segment}
+Viene visualizzata la pagina di connessione alla federazione Grid e include una tabella che riassume le seguenti informazioni:
 
 +
 [cols="1a,2a"]
@@ -31,14 +31,14 @@ ${post_edited_translations.segment}
 
 
  a| 
-${post_edited_translations.segment}
+Nome connessione
  a| 
-${post_edited_translations.segment}
+Le connessioni di federazione di grid che questo tenant può utilizzare.
 
 
 
  a| 
-${post_edited_translations.segment}
+Bucket con replicazione cross-grid
  a| 
 Per ogni connessione di federazione di griglia, i bucket tenant per cui è abilitata la replica tra griglie. Gli oggetti aggiunti a questi bucket verranno replicati nell'altra griglia della connessione.
 
@@ -47,7 +47,7 @@ Per ogni connessione di federazione di griglia, i bucket tenant per cui è abili
  a| 
 Ultimo errore
  a| 
-Per ogni connessione di federazione di griglia, l'errore più recente verificatosi, se presente, durante la replica dei dati nell'altra griglia. Vedi <<clear-last-error,${post_edited_translations.segment}>>.
+Per ogni connessione di federazione di griglia, l'errore più recente verificatosi, se presente, durante la replica dei dati nell'altra griglia. Vedi <<clear-last-error,Cancella l'ultimo errore>>.
 
 |===
 . Facoltativamente, seleziona un nome bucket da link:viewing-s3-bucket-details.html["visualizza i dettagli del bucket"].
@@ -61,10 +61,10 @@ Per ogni connessione di federazione di griglia, l'errore più recente verificato
 Nella colonna *Ultimo errore* potrebbe comparire un errore per uno di questi motivi:
 
 * La versione dell'oggetto sorgente non è stata trovata.
-* ${post_edited_translations.segment}
+* Il bucket di origine non è stato trovato.
 * Il bucket di destinazione è stato eliminato.
 * Il bucket di destinazione è stato ricreato da un account diverso.
-* ${post_edited_translations.segment}
+* Il bucket di destinazione ha il versioning sospeso.
 * Il bucket di destinazione è stato ricreato dallo stesso account, ma ora non è più versionato.
 
 
@@ -72,17 +72,17 @@ Nella colonna *Ultimo errore* potrebbe comparire un errore per uno di questi mot
 NOTE: Questa colonna mostra solo l'ultimo errore di replica tra griglie che si è verificato; gli errori precedenti che potrebbero essersi verificati non verranno visualizzati.
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Se nella colonna *Ultimo errore* compare un messaggio, visualizza il testo del messaggio.
 +
-${post_edited_translations.segment}
+Ad esempio, questo errore indica che il bucket di destinazione per la replica cross-grid si trovava in uno stato non valido, probabilmente perché il versioning era sospeso o S3 Object Lock era abilitato.
 
 +
-image:grid-federation-cgr-object-example-last-error.png["${post_edited_translations.segment}"]
+image:grid-federation-cgr-object-example-last-error.png["grid-federation-cgr-object-example-last-error"]
 
 . Esegui le azioni consigliate. Ad esempio, se il versioning è stato sospeso sul bucket di destinazione per la replica tra griglie, riattiva il versioning per quel bucket.
-. ${post_edited_translations.segment}
+. Seleziona la connessione dalla tabella.
 . Seleziona *Cancella errore*.
-. ${post_edited_translations.segment}
+. Seleziona *Sì* per cancellare il messaggio e aggiornare lo stato del sistema.
 . Attendi 5-6 minuti e poi inserisci un nuovo oggetto nel bucket. Verifica che il messaggio di errore non si ripresenti.
 +
 

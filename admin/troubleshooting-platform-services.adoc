@@ -34,7 +34,7 @@ NOTE: La creazione dell'endpoint non andrà a buon fine se i servizi della piatt
 
 Se si verifica un errore quando StorageGRID tenta di raggiungere un endpoint esistente, viene visualizzato un messaggio nella dashboard in Tenant Manager.
 
-image:tenant_dashboard_endpoint_error.png["${post_edited_translations.segment}"]
+image:tenant_dashboard_endpoint_error.png["messaggio di errore dell'endpoint sulla dashboard"]
 
 Gli utenti del tenant possono andare alla pagina Endpoint per vedere il messaggio di errore più recente per ciascun endpoint e per capire quanto tempo fa si è verificato l'errore. La colonna *Ultimo errore* mostra il messaggio di errore più recente per ciascun endpoint e indica quanto tempo fa si è verificato l'errore. Gli errori che includono l'icona image:icon_alert_red_critical.png["Icona X rossa"] si sono verificati negli ultimi 7 giorni.
 
@@ -53,7 +53,7 @@ Se hai configurato un link:configuring-storage-proxy-settings.html["proxy di sto
 
 
 [[determine-if-an-error-has-occurred]]
-== ${post_edited_translations.segment}
+== Verifica se si è verificato un errore
 
 Se si sono verificati errori dell'endpoint negli ultimi 7 giorni, la dashboard nel Tenant Manager visualizza un messaggio di avviso. Puoi andare alla pagina Endpoint per visualizzare ulteriori dettagli sull'errore.
 
@@ -66,7 +66,7 @@ Alcuni problemi relativi ai servizi di piattaforma potrebbero causare il fallime
 
 Per verificare lo stato dei servizi:
 
-. ${post_edited_translations.segment}
+. Seleziona *Nodes* > *_site_* > *_Storage Node_* > *Overview*.
 . Verifica la presenza di avvisi attivi nella tabella Avvisi.
 . Risolvi eventuali avvisi attivi. Se necessario, contatta il supporto tecnico.
 
@@ -126,8 +126,8 @@ Le richieste CloudMirror hanno maggiori probabilità di essere influenzate dalle
 Per visualizzare il tasso di errore delle richieste per i servizi della piattaforma:
 
 . Selezionare *Nodi*.
-. ${post_edited_translations.segment}
-. ${post_edited_translations.segment}
+. Seleziona *_site_* > *Servizi della piattaforma*.
+. Visualizza il grafico del tasso di errore delle richieste.
 +
 image:nodes_page_site_level_platform_services.gif["Servizi della piattaforma a livello di sito nella pagina dei nodi"]
 
@@ -138,9 +138,9 @@ image:nodes_page_site_level_platform_services.gif["Servizi della piattaforma a l
 [[platform-services-unavailable-alert]]
 == Avviso di indisponibilità dei servizi della piattaforma
 
-${post_edited_translations.segment}
+L'avviso *Servizi della piattaforma non disponibili* indica che non puoi eseguire operazioni sui servizi della piattaforma in un sito perché sono in esecuzione o disponibili troppo pochi Storage Node con il servizio RSM.
 
-${post_edited_translations.segment}
+Il servizio RSM garantisce che le richieste di servizio della piattaforma vengano inviate ai rispettivi endpoint.
 
 Per risolvere questo avviso, individua quali Storage Nodes nel sito includono il servizio RSM. (Il servizio RSM è presente sui Storage Nodes che includono anche il servizio ADC.) Assicurati quindi che la maggioranza semplice di tali Storage Nodes sia in esecuzione e disponibile.
 
@@ -150,7 +150,7 @@ NOTE: Se in un sito si verifica un guasto in più di un Storage Node che contien
 
 
 [[additional-troubleshooting-guidance-for-platform-services-endpoints]]
-== ${post_edited_translations.segment}
+== Ulteriori indicazioni per la risoluzione dei problemi relativi agli endpoint dei servizi della piattaforma
 
 Per ulteriori informazioni, vedi link:../tenant/troubleshooting-platform-services-endpoint-errors.html["Usa un tenant account > Risolvi i problemi degli endpoint dei servizi della piattaforma"].
 

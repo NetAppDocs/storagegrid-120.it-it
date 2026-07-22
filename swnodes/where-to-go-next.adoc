@@ -25,15 +25,15 @@ Devi configurare l'hypervisor per riavviare le macchine virtuali quando il serve
 
 
 * link:../admin/managing-tenants.html["Crea un tenant account"]per il protocollo client S3 che verrà utilizzato per archiviare oggetti sul tuo sistema StorageGRID.
-* link:../admin/controlling-storagegrid-access.html["${post_edited_translations.segment}"] configurando gruppi e account utente. Facoltativamente, puoi link:../admin/using-identity-federation.html["configura un'origine di identità federata"] (come Active Directory o OpenLDAP), così puoi importare gruppi e utenti amministrativi. Oppure puoi link:../admin/managing-users.html#create-a-local-user["crea gruppi e utenti locali"].
+* link:../admin/controlling-storagegrid-access.html["Controlla l'accesso al sistema"] configurando gruppi e account utente. Facoltativamente, puoi link:../admin/using-identity-federation.html["configura un'origine di identità federata"] (come Active Directory o OpenLDAP), così puoi importare gruppi e utenti amministrativi. Oppure puoi link:../admin/managing-users.html#create-a-local-user["crea gruppi e utenti locali"].
 * Integra e testa le applicazioni client link:../s3/configuring-tenant-accounts-and-connections.html["S3 API"] che utilizzerai per caricare gli oggetti nel tuo sistema StorageGRID.
 * link:../ilm/index.html["Configura le regole ILM e la policy ILM per la gestione del ciclo di vita delle informazioni"] che desideri utilizzare per proteggere i dati degli oggetti.
 * Se l'installazione include appliance Storage Nodes, usa SANtricity OS per completare le seguenti attività:
 +
-** ${post_edited_translations.segment}
+** Connettiti a ciascun StorageGRID appliance.
 ** Verifica la ricezione dei dati AutoSupport.
 +
-Vedi  https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/configuring-hardware.html["${post_edited_translations.segment}"^].
+Vedi  https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/configuring-hardware.html["Configura l'hardware"^].
 
 
 
@@ -51,5 +51,5 @@ Vedi  https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/configu
 * link:../admin/configuring-stored-object-compression.html["Configura la compressione dello storage"] per ridurre le dimensioni degli oggetti memorizzati, se necessario.
 * link:../admin/configure-vlan-interfaces.html["Configura le interfacce VLAN"] per isolare e partizionare il traffico di rete, se necessario.
 * link:../admin/configure-high-availability-group.html["Configura i gruppi ad alta disponibilità"] per migliorare la disponibilità della connessione per Grid Manager, Tenant Manager e client S3, se necessario.
-* link:../admin/configuring-load-balancer-endpoints.html["${post_edited_translations.segment}"] per la connettività client S3, se richiesta.
+* link:../admin/configuring-load-balancer-endpoints.html["Configura gli endpoint del bilanciatore di carico"] per la connettività client S3, se richiesta.
 

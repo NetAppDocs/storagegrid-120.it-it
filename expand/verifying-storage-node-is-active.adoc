@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: expand, expansion, add storage nodes, verify node is active, StorageGRID 
 summary: 'Al termine di un"operazione di espansione che aggiunge nuovi nodi di storage, il sistema StorageGRID dovrebbe iniziare automaticamente a utilizzare i nuovi nodi di storage. Devi utilizzare il sistema StorageGRID per verificare che il nuovo nodo di storage sia attivo.' 
 ---
-= ${post_edited_translations.segment}
+= Verifica che i nodi di storage siano attivi dopo un'espansione di StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -17,5 +17,5 @@ Al termine di un'operazione di espansione che aggiunge nuovi nodi di storage, il
 . Accedi al Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
 . Seleziona *Nodes* > *_Expansion Storage Node_* > *Storage*.
 . Posiziona il cursore sul grafico *Storage Used - Object Data* per visualizzare il valore di *Used*, che rappresenta la quantità di spazio totale utilizzabile che è stata utilizzata per i dati oggetto.
-. ${post_edited_translations.segment}
+. Verifica che il valore di *Used* aumenti spostando il cursore verso destra sul grafico.
 

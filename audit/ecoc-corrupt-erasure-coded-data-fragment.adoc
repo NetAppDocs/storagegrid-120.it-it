@@ -19,7 +19,7 @@ Questo messaggio di controllo indica che il sistema ha rilevato un frammento di 
 
 
  a| 
-${post_edited_translations.segment}
+VCCO
  a| 
 ID VCS
  a| 
@@ -28,11 +28,11 @@ Il nome del VCS che contiene il chunk danneggiato.
 
 
  a| 
-${post_edited_translations.segment}
+VLID
  a| 
 ID volume
  a| 
-${post_edited_translations.segment}
+Il volume RangeDB che contiene il frammento codificato con cancellazione corrotto.
 
 
 

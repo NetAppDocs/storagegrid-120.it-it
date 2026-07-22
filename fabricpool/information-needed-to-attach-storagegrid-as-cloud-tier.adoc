@@ -18,17 +18,17 @@ Prima di poter collegare StorageGRID come livello cloud per FabricPool, devi ese
 [[what-values-do-i-need]]
 == Di quali valori hai bisogno?
 
-${post_edited_translations.segment}
+La tabella seguente mostra i valori che devi configurare in StorageGRID e come tali valori vengono utilizzati da ONTAP e dal DNS server.
 
 [cols="1a,1a,1a"]
 |===
-| Valore | Dove configuri il valore | ${post_edited_translations.segment} 
+| Valore | Dove configuri il valore | Dove usi il valore 
 
 
  a| 
 Indirizzi IP virtuali (VIP)
  a| 
-${post_edited_translations.segment}
+StorageGRID > Gruppo HA
  a| 
 Voce DNS
 
@@ -39,7 +39,7 @@ Porta
  a| 
 StorageGRID > Endpoint del bilanciatore di carico
  a| 
-${post_edited_translations.segment}
+ONTAP System Manager > Aggiungi livello cloud
 
 
 
@@ -48,7 +48,7 @@ Certificato SSL
  a| 
 StorageGRID > Endpoint del bilanciatore di carico
  a| 
-${post_edited_translations.segment}
+ONTAP System Manager > Aggiungi livello cloud
 
 
 
@@ -66,16 +66,16 @@ ID della chiave di accesso e chiave di accesso segreta
  a| 
 StorageGRID > Tenant e bucket
  a| 
-${post_edited_translations.segment}
+ONTAP System Manager > Aggiungi livello cloud
 
 
 
  a| 
-${post_edited_translations.segment}
+Nome bucket/contenitore
  a| 
 StorageGRID > Tenant e bucket
  a| 
-${post_edited_translations.segment}
+ONTAP System Manager > Aggiungi livello cloud
 
 |===
 

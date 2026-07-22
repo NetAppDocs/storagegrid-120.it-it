@@ -16,11 +16,11 @@ Quando hai finito di lavorare con il Tenant Manager, devi disconnetterti per ass
 .Passaggi
 . Individua il menu a tendina del nome utente nell'angolo in alto a destra dell'interfaccia utente.
 +
-image:tenant_user_sign_out.png["${post_edited_translations.segment}"]
+image:tenant_user_sign_out.png["Link di disconnessione"]
 
 . Seleziona il nome utente e poi seleziona *Esci*.
 +
-** ${post_edited_translations.segment}
+** Se SSO non è in uso:
 +
 Hai effettuato la disconnessione dall'Admin Node. Viene visualizzata la pagina di accesso di Tenant Manager.
 
@@ -34,7 +34,7 @@ Hai effettuato il logout da tutti i nodi di amministrazione a cui stavi accedend
 
 +
 
-NOTE: ${post_edited_translations.segment}
+NOTE: Se il single sign-on è abilitato e hai effettuato l'accesso anche a Grid Manager, devi disconnetterti anche da Grid Manager per uscire dal single sign-on.
 
 
 

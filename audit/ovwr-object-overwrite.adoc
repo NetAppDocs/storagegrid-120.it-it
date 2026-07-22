@@ -2,7 +2,7 @@
 permalink: audit/ovwr-object-overwrite.html 
 sidebar: sidebar 
 keywords: storagegrid, audit, message, OVWR, Object Overwrite 
-summary: ${post_edited_translations.segment} 
+summary: 'Questo messaggio viene generato quando un"operazione esterna (richiesta dal client) provoca la sovrascrittura di un oggetto da parte di un altro oggetto.' 
 ---
 = Messaggio di audit OVWR per sovrascritture di oggetti in StorageGRID
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: ${post_edited_translations.segment}
 
 
 [role="lead"]
-${post_edited_translations.segment}
+Questo messaggio viene generato quando un'operazione esterna (richiesta dal client) provoca la sovrascrittura di un oggetto da parte di un altro oggetto.
 
 [cols="1a,1a,4a"]
 |===
@@ -19,7 +19,7 @@ ${post_edited_translations.segment}
 
 
  a| 
-${post_edited_translations.segment}
+CBID
  a| 
 Identificatore del blocco di contenuto (nuovo)
  a| 
@@ -37,9 +37,9 @@ La dimensione, in byte, dell'oggetto che stai sovrascrivendo.
 
 
  a| 
-${post_edited_translations.segment}
+OCBD
  a| 
-${post_edited_translations.segment}
+Identificatore del blocco di contenuto (precedente)
  a| 
 Il CBID dell'oggetto precedente.
 
@@ -50,7 +50,7 @@ UUID
  a| 
 Identificativo univoco universale (nuovo)
  a| 
-${post_edited_translations.segment}
+L'identificativo del nuovo oggetto all'interno del sistema StorageGRID.
 
 
 
@@ -59,7 +59,7 @@ OUID
  a| 
 ID univocamente universale (precedente)
  a| 
-${post_edited_translations.segment}
+L'identificativo dell'oggetto precedente all'interno del sistema StorageGRID.
 
 
 
@@ -75,7 +75,7 @@ Il percorso dell'oggetto S3 utilizzato sia per l'oggetto precedente che per quel
  a| 
 RSLT
  a| 
-${post_edited_translations.segment}
+Codice risultato
  a| 
 Risultato della transazione di sovrascrittura dell'oggetto. Risultato è sempre:
 
@@ -86,7 +86,7 @@ SUCS: Operazione riuscita
  a| 
 SGRP
  a| 
-${post_edited_translations.segment}
+Sito (gruppo)
  a| 
 Se presente, l'oggetto sovrascritto è stato eliminato nel sito specificato, che non è il sito in cui l'oggetto sovrascritto è stato inserito.
 

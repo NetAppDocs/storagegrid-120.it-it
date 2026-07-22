@@ -79,7 +79,7 @@ CAUTION: Qualsiasi operazione API che esegui tramite la pagina web della documen
 . Seleziona l'azione HTTP per visualizzare i dettagli della richiesta.
 . Verifica se la richiesta richiede parametri aggiuntivi, come un ID di gruppo o un ID utente. Quindi, recupera questi valori. Potresti dover prima effettuare una richiesta API diversa per ottenere le informazioni di cui hai bisogno.
 . Determina se devi modificare il corpo della richiesta di esempio. In tal caso, puoi selezionare *Model* per conoscere i requisiti di ciascun campo.
-. ${post_edited_translations.segment}
+. Seleziona *Prova*.
 . Fornisci i parametri richiesti o modifica il corpo della richiesta come necessario.
 . Seleziona *Esegui*.
 . Esamina il codice di risposta per determinare se la richiesta è andata a buon fine.

@@ -67,7 +67,7 @@ File di stato di AutoSupport. Fornisce dettagli sul protocollo utilizzato, sull'
 
 
  a| 
-${post_edited_translations.segment}
+BUCKETS.XML
  a| 
 ID bucket + ID account + Versione build + Configurazione vincolo posizione + Compliance abilitata + Configurazione compliance + S3 Object Lock abilitato + Configurazione S3 Object Lock + Configurazione consistency + CORS abilitato + Configurazione CORS + Ultimo accesso abilitato + Policy abilitata + Configurazione policy + Notifiche abilitate + Configurazione notifiche + Cloud Mirror abilitato + Configurazione Cloud Mirror + Ricerca abilitata + Configurazione ricerca + Bucket tagging abilitato + Configurazione bucket tagging + Configurazione versioning
  a| 
@@ -87,7 +87,7 @@ File di informazioni sulla configurazione a livello di griglia. Contiene informa
  a| 
 GRID-SPEC.XML
  a| 
-${post_edited_translations.segment}
+Specifiche della griglia, raw XML
  a| 
 Utilizzato per configurare e distribuire StorageGRID. Contiene le specifiche della griglia, l'indirizzo IP del server NTP, l'indirizzo IP del DNS server, la topologia di rete e i profili hardware dei nodi.
 
@@ -105,7 +105,7 @@ File di stato delle attività della griglia (procedure di manutenzione). Fornisc
  a| 
 GRID.JSON
  a| 
-${post_edited_translations.segment}
+Grid + Revisione + Versione software + Descrizione + Licenza + Password + DNS + NTP + Siti + Nodi
  a| 
 Informazioni sulla griglia.
 
@@ -121,16 +121,16 @@ Elenco degli attributi per le configurazioni ILM.
 
 
  a| 
-${post_edited_translations.segment}
+ILM-STATUS.XML
  a| 
-${post_edited_translations.segment}
+Nodo + Percorso servizio + ID attributo + Nome attributo + Valore + Indice + ID tabella + Nome tabella
  a| 
 File informativo sulle metriche ILM. Contiene i tassi di valutazione ILM per ciascun nodo e metriche a livello di grid.
 
 
 
  a| 
-${post_edited_translations.segment}
+ILM.XML
  a| 
 XML raw ILM
  a| 
@@ -161,23 +161,23 @@ NMS-ENTITIES.XML
  a| 
 Indice attributo + OID entità + ID nodo + ID modello dispositivo + Versione modello dispositivo + Nome entità
  a| 
-Entità di gruppo e di servizio nel link:../primer/nodes-and-services.html#storagegrid-services["${post_edited_translations.segment}"]. Fornisce dettagli sulla topologia di grid. Il nodo può essere determinato in base ai servizi in esecuzione sul nodo.
+Entità di gruppo e di servizio nel link:../primer/nodes-and-services.html#storagegrid-services["Albero NMS"]. Fornisce dettagli sulla topologia di grid. Il nodo può essere determinato in base ai servizi in esecuzione sul nodo.
 
 
 
  a| 
 OBJECTS-STATUS.XML
  a| 
-${post_edited_translations.segment}
+Nodo + Percorso servizio + ID attributo + Nome attributo + Valore + Indice + ID tabella + Nome tabella
  a| 
-${post_edited_translations.segment}
+Stato degli oggetti, inclusi stato della scansione in background, trasferimento attivo, velocità di trasferimento, trasferimenti totali, velocità di eliminazione, frammenti danneggiati, oggetti persi, oggetti mancanti, tentativo di riparazione, velocità di scansione, periodo di scansione stimato e stato di completamento della riparazione.
 
 
 
  a| 
 SERVER-STATUS.XML
  a| 
-${post_edited_translations.segment}
+Nodo + Percorso servizio + ID attributo + Nome attributo + Valore + Indice + ID tabella + Nome tabella
  a| 
 Configurazioni del server. Contiene questi dettagli per ciascun nodo: tipo di piattaforma, sistema operativo, memoria installata, memoria disponibile, connettività di storage, numero di serie dello chassis dell'appliance di storage, numero di unità guaste dello storage controller, temperatura dello chassis del compute controller, hardware di elaborazione, numero di serie del compute controller, alimentatore, dimensione dell'unità e tipo di unità.
 
@@ -186,32 +186,32 @@ Configurazioni del server. Contiene questi dettagli per ciascun nodo: tipo di pi
  a| 
 SERVICE-STATUS.XML
  a| 
-${post_edited_translations.segment}
+Nodo + Percorso servizio + ID attributo + Nome attributo + Valore + Indice + ID tabella + Nome tabella
  a| 
 File informativo del nodo di servizio. Contiene dettagli quali spazio tabella allocato, spazio tabella libero, metriche Reaper del database, durata della riparazione dei segmenti, durata dei processi di riparazione, riavvii automatici dei processi e terminazione automatica dei processi.
 
 
 
  a| 
-${post_edited_translations.segment}
+STORAGE-GRADES.XML
  a| 
 ID del livello di archiviazione + Nome del livello di archiviazione + ID del nodo di archiviazione + Percorso del nodo di archiviazione
  a| 
-${post_edited_translations.segment}
+File di definizioni dello storage grade per ciascun Storage Node.
 
 
 
  a| 
 SUMMARY-ATTRIBUTES.XML
  a| 
-${post_edited_translations.segment}
+OID del gruppo + Percorso del gruppo + ID attributo di riepilogo + Nome attributo di riepilogo + Valore + Indice + ID tabella + Nome tabella
  a| 
 Dati di alto livello sullo stato del sistema che riepilogano le informazioni sull'utilizzo di StorageGRID. Fornisce dettagli come il nome della grid, i nomi dei siti, il numero di Storage Node per grid e per sito, il tipo di licenza, la capacità e l'utilizzo della licenza, i termini di supporto software e i dettagli delle operazioni S3.
 
 
 
  a| 
-${post_edited_translations.segment}
+SYSTEM-ALERTS.XML
  a| 
 Nome + Gravità + Nome del nodo + Stato dell'avviso + Nome del sito + Ora di attivazione dell'avviso + Ora di risoluzione dell'avviso + ID regola + ID nodo + ID sito + Silenziato + Altre annotazioni + Altre etichette
  a| 
@@ -220,7 +220,7 @@ Avvisi di sistema correnti che indicano potenziali problemi nel sistema StorageG
 
 
  a| 
-${post_edited_translations.segment}
+USERAGENTS.XML
  a| 
 User agent + Numero di giorni + Richieste HTTP totali + Byte totali ingeriti + Byte totali recuperati + Richieste PUT + Richieste GET + Richieste DELETE + Richieste HEAD + Richieste POST + Richieste OPTIONS + Tempo medio di richiesta (ms) + Tempo medio di richiesta PUT (ms) + Tempo medio di richiesta GET (ms) + Tempo medio di richiesta DELETE (ms) + Tempo medio di richiesta HEAD (ms) + Tempo medio di richiesta POST (ms) + Tempo medio di richiesta OPTIONS (ms)
  a| 

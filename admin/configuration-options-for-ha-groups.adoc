@@ -13,11 +13,11 @@ summary: Il diagramma seguente fornisce esempi di diversi modi in cui puoi confi
 [role="lead"]
 I seguenti diagrammi forniscono esempi di diverse modalità in cui è possibile configurare i gruppi ad alta disponibilità (HA). Ogni opzione presenta vantaggi e svantaggi.
 
-${post_edited_translations.segment}
+Nei diagrammi, il blu indica l'interfaccia primaria nel gruppo HA e il giallo indica l'interfaccia di backup nel gruppo HA.
 
 image:high_availability_examples.png["Esempi di HA"]
 
-${post_edited_translations.segment}
+La tabella riassume i vantaggi di ciascuna configurazione HA mostrata nel diagramma.
 
 [cols="1a,2a,2a"]
 |===
@@ -54,7 +54,7 @@ DNS Round Robin
 HA active-active
  a| 
 * Il traffico viene distribuito su più gruppi HA.
-* ${post_edited_translations.segment}
+* Elevato throughput che aumenta con il numero di gruppi HA.
 * Failover rapido.
 
  a| 

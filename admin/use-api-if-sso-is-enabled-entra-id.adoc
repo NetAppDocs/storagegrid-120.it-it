@@ -11,12 +11,12 @@ summary: 'Se hai configurato e abilitato il single sign-on (SSO) e utilizzi Entr
 
 
 [role="lead"]
-Se hai link:../admin/how-sso-works.html["${post_edited_translations.segment}"] e usi Entra ID come provider SSO, puoi utilizzare due script di esempio per ottenere un token di autenticazione valido per la Grid Management API o la Tenant Management API.
+Se hai link:../admin/how-sso-works.html["single sign-on (SSO) configurato e abilitato"] e usi Entra ID come provider SSO, puoi utilizzare due script di esempio per ottenere un token di autenticazione valido per la Grid Management API o la Tenant Management API.
 
 
 
 [[sign-in-to-the-api-if-entra-id-single-sign-on-is-enabled]]
-== ${post_edited_translations.segment}
+== Accedi all'API se il single sign-on Entra ID è abilitato
 
 Queste istruzioni si applicano se usi Entra ID come provider di identità SSO
 
@@ -26,7 +26,7 @@ Queste istruzioni si applicano se usi Entra ID come provider di identità SSO
 
 
 .Informazioni su questa attività
-${post_edited_translations.segment}
+Per ottenere un token di autenticazione, puoi usare i seguenti script di esempio:
 
 * Lo  `storagegrid-ssoauth-azure.py`script Python
 * Lo  `storagegrid-ssoauth-azure.js` script Node.js

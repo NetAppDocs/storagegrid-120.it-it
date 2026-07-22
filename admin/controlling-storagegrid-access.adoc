@@ -20,10 +20,10 @@ Puoi controllare chi può accedere a StorageGRID e quali attività gli utenti po
 
 Puoi determinare chi può accedere a Grid Manager e all'API di gestione di Grid importando gruppi e utenti da un servizio di federazione delle identità oppure configurando gruppi e utenti locali.
 
-Usare link:using-identity-federation.html["federazione di identità"] rende più veloce la configurazione di link:managing-admin-groups.html["gruppi"] e link:managing-users.html["${post_edited_translations.segment}"] e permette agli utenti di accedere a StorageGRID usando le credenziali che già conoscono. Puoi configurare la federazione delle identità se usi Active Directory, OpenLDAP o Oracle Directory Server.
+Usare link:using-identity-federation.html["federazione di identità"] rende più veloce la configurazione di link:managing-admin-groups.html["gruppi"] e link:managing-users.html["utenti"] e permette agli utenti di accedere a StorageGRID usando le credenziali che già conoscono. Puoi configurare la federazione delle identità se usi Active Directory, OpenLDAP o Oracle Directory Server.
 
 
-NOTE: ${post_edited_translations.segment}
+NOTE: Contatta il supporto tecnico se vuoi utilizzare un altro servizio LDAP v3.
 
 Puoi determinare quali attività ogni utente può svolgere assegnando diversi link:admin-group-permissions.html["autorizzazioni"] a ciascun gruppo. Ad esempio, potresti voler permettere agli utenti di un gruppo di gestire le regole ILM e agli utenti di un altro gruppo di eseguire attività di manutenzione. Un utente deve appartenere ad almeno un gruppo per accedere al sistema.
 
@@ -41,7 +41,7 @@ Il sistema StorageGRID supporta il single sign-on (SSO) utilizzando lo standard 
 [[change-provisioning-passphrase]]
 == Modifica la passphrase di provisioning
 
-La passphrase di provisioning è necessaria per molte procedure di installazione e manutenzione e per scaricare il pacchetto di ripristino di StorageGRID. La passphrase è inoltre necessaria per scaricare i backup delle informazioni sulla topologia della grid e le chiavi di crittografia per il sistema StorageGRID. Puoi link:changing-provisioning-passphrase.html["${post_edited_translations.segment}"] secondo necessità.
+La passphrase di provisioning è necessaria per molte procedure di installazione e manutenzione e per scaricare il pacchetto di ripristino di StorageGRID. La passphrase è inoltre necessaria per scaricare i backup delle informazioni sulla topologia della grid e le chiavi di crittografia per il sistema StorageGRID. Puoi link:changing-provisioning-passphrase.html["cambia la passphrase"] secondo necessità.
 
 
 

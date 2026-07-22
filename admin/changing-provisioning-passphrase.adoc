@@ -24,7 +24,7 @@ La passphrase di provisioning è necessaria per molte procedure di installazione
 
 .Passaggi
 . Seleziona *Configurazione* > *Controllo accessi* > *Password griglia*.
-. ${post_edited_translations.segment}
+. In *Modifica passphrase di provisioning*, seleziona *Apporta una modifica*
 . Inserisci la tua attuale passphrase di provisioning.
 . Inserisci la nuova frase di accesso. La frase di accesso deve contenere almeno 8 e non più di 32 caratteri. Le frasi di accesso distinguono tra maiuscole e minuscole.
 +
@@ -33,13 +33,13 @@ CAUTION: Conserva la passphrase di provisioning in un luogo sicuro. È necessari
 
 . Reinserisci la nuova frase di accesso e seleziona *Salva*.
 +
-${post_edited_translations.segment}
+Il sistema visualizza un banner verde di successo quando la modifica della passphrase di provisioning è completata.
 
 +
 image:change_provisioning_passphrase_success.png["Messaggio di successo per la modifica della passphrase di provisioning"]
 
 . Seleziona *Recovery Package*.
-. ${post_edited_translations.segment}
+. Inserisci la nuova passphrase di provisioning per scaricare il nuovo pacchetto di ripristino.
 +
 
 CAUTION: Dopo aver modificato la passphrase di provisioning, devi scaricare immediatamente un nuovo pacchetto di ripristino. Il file del pacchetto di ripristino ti consente di ripristinare il sistema se si verifica un guasto.

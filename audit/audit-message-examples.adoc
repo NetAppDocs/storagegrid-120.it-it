@@ -43,7 +43,7 @@ Y(CSTR):"hello1"][CBID(UI64):0x50C4F7AC2BC8EDF7][CSIZ(UI64):0
 ----
 Il valore dell'attributo ATYP è SPUT. link:sput-s3-put.html["SPUT"] rappresenta una transazione S3 PUT, che registra l'ingest di un oggetto in un bucket.
 
-${post_edited_translations.segment}
+Il seguente messaggio di controllo mostra anche il bucket a cui è associato l'oggetto:
 
 [listing, subs="specialcharacters,quotes"]
 ----

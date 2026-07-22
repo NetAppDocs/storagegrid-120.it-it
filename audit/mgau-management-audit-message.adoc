@@ -19,9 +19,9 @@ La categoria Management registra le richieste degli utenti all'API di gestione. 
 
 
  a| 
-${post_edited_translations.segment}
+MDIP
  a| 
-${post_edited_translations.segment}
+Indirizzo IP di destinazione
  a| 
 L'indirizzo IP del server (destinazione).
 
@@ -32,14 +32,14 @@ MDNA
  a| 
 domain name
  a| 
-${post_edited_translations.segment}
+Il domain name dell'host.
 
 
 
  a| 
 MPAT
  a| 
-${post_edited_translations.segment}
+PATH richiesta
  a| 
 Il percorso della richiesta.
 
@@ -74,7 +74,7 @@ Il contenuto del corpo della richiesta. Sebbene il corpo della risposta venga re
  a| 
 MRMD
  a| 
-${post_edited_translations.segment}
+Metodo di richiesta
  a| 
 Il metodo di richiesta HTTP:
 
@@ -96,7 +96,7 @@ Il codice di risposta.
 
 
  a| 
-${post_edited_translations.segment}
+MRSP
  a| 
 Corpo di risposta
  a| 
@@ -107,7 +107,7 @@ Il contenuto della risposta (il corpo della risposta) viene registrato per impos
 
 
  a| 
-${post_edited_translations.segment}
+MSIP
  a| 
 Indirizzo IP di origine
  a| 
@@ -116,11 +116,11 @@ L'indirizzo IP del client (sorgente).
 
 
  a| 
-${post_edited_translations.segment}
+MUUN
  a| 
 URN utente
  a| 
-${post_edited_translations.segment}
+L'URN (uniform resource name) dell'utente che ha inviato la richiesta.
 
 
 

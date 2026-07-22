@@ -2,7 +2,7 @@
 permalink: swnodes/approving-pending-grid-nodes.html 
 sidebar: sidebar 
 keywords: how to approve pending grid nodes 
-summary: ${post_edited_translations.segment} 
+summary: Devi approvare ogni nodo della griglia prima che possa unirsi al sistema StorageGRID. 
 ---
 = Approva i nodi della griglia in sospeso per StorageGRID
 :allow-uri-read: 
@@ -11,10 +11,10 @@ summary: ${post_edited_translations.segment}
 
 
 [role="lead"]
-${post_edited_translations.segment}
+Devi approvare ogni nodo della griglia prima che possa unirsi al sistema StorageGRID.
 
 .Prima di iniziare
-${post_edited_translations.segment}
+Hai distribuito tutti i nodi della griglia virtuale e dell'appliance StorageGRID.
 
 
 NOTE: È più efficiente eseguire un'installazione singola di tutti i nodi, piuttosto che installarne alcuni ora e altri in un secondo momento.
@@ -23,11 +23,11 @@ NOTE: È più efficiente eseguire un'installazione singola di tutti i nodi, piut
 . Esamina l'elenco dei nodi in sospeso e verifica che mostri tutti i nodi della griglia che hai distribuito.
 +
 
-NOTE: ${post_edited_translations.segment}
+NOTE: Se manca un nodo della griglia, assicurati che sia stato distribuito correttamente e che abbia l'indirizzo IP della Grid Network corretto del nodo amministratore primario impostato per ADMIN_IP.
 
 . Seleziona il pulsante di opzione accanto al nodo in sospeso che desideri approvare.
 +
-image:5_gmi_installer_grid_nodes_pending.gif["${post_edited_translations.segment}"]
+image:5_gmi_installer_grid_nodes_pending.gif["Questa immagine è spiegata dal testo circostante."]
 
 . Fai clic su *Approva*.
 . Nelle Impostazioni generali, modifica le impostazioni per le seguenti proprietà, se necessario:
@@ -54,12 +54,12 @@ CAUTION: Vedi link:../primer/what-storage-node-is.html#types-of-storage-nodes["T
 ** *Servizio ADC* (solo Storage Node): seleziona *Automatic* per consentire al sistema di determinare se il nodo richiede il servizio Administrative Domain Controller (ADC). Il servizio ADC tiene traccia della posizione e della disponibilità dei servizi grid. Almeno tre Storage Node in ciascun sito devono includere il servizio ADC. Non puoi aggiungere il servizio ADC a un nodo dopo che è stato distribuito.
 
 
-. ${post_edited_translations.segment}
+. Nella sezione Grid Network, modifica le impostazioni delle seguenti proprietà secondo necessità:
 +
 ** *Indirizzo IPv4 (CIDR)*: l'indirizzo di rete CIDR per l'interfaccia Grid Network (eth0 all'interno del container). Ad esempio: 192.168.1.234/21
 ** *Gateway*: il gateway della rete Grid. Ad esempio: 192.168.0.1
 +
-${post_edited_translations.segment}
+Il gateway è necessario se sono presenti più sottoreti di griglia.
 
 +
 
@@ -67,7 +67,7 @@ NOTE: Se hai selezionato DHCP per la configurazione della rete Grid e modifichi 
 
 
 
-. ${post_edited_translations.segment}
+. Se vuoi configurare la rete di amministrazione per il nodo della griglia, aggiungi o aggiorna le impostazioni nella sezione rete di amministrazione come necessario.
 +
 Inserisci le sottoreti di destinazione delle rotte in uscita da questa interfaccia nella casella di testo *Sottoreti (CIDR)*. Se sono presenti più sottoreti Admin, è richiesto il gateway Admin.
 
@@ -81,12 +81,12 @@ NOTE: Se hai selezionato DHCP per la configurazione della Admin Network e modifi
 +
 .. Riavvia l'appliance: nell'Appliance Installer, seleziona *Advanced* > *Reboot*.
 +
-${post_edited_translations.segment}
+Il riavvio può richiedere alcuni minuti.
 
-.. ${post_edited_translations.segment}
+.. Seleziona *Configura rete* > *Configurazione collegamento* e abilita le reti appropriate.
 .. Seleziona *Configura rete* > *Configurazione IP* e configura le reti abilitate.
 .. Torna alla pagina iniziale e fai clic su *Avvia installazione*.
-.. ${post_edited_translations.segment}
+.. Nel Grid Manager: se il nodo è presente nella tabella Nodi approvati, rimuovi il nodo.
 .. Rimuovi il nodo dalla tabella dei nodi in sospeso.
 .. Attendi che il nodo ricompaia nell'elenco dei nodi in sospeso.
 .. Verifica di poter configurare le reti appropriate. Dovrebbero essere già precompilate con le informazioni che hai fornito nella pagina IP Configuration del programma di installazione dell'appliance.
@@ -106,12 +106,12 @@ NOTE: Se hai selezionato DHCP per la configurazione della rete client e modifich
 +
 .. Riavvia l'appliance: nell'Appliance Installer, seleziona *Advanced* > *Reboot*.
 +
-${post_edited_translations.segment}
+Il riavvio può richiedere alcuni minuti.
 
-.. ${post_edited_translations.segment}
+.. Seleziona *Configura rete* > *Configurazione collegamento* e abilita le reti appropriate.
 .. Seleziona *Configura rete* > *Configurazione IP* e configura le reti abilitate.
 .. Torna alla pagina iniziale e fai clic su *Avvia installazione*.
-.. ${post_edited_translations.segment}
+.. Nel Grid Manager: se il nodo è presente nella tabella Nodi approvati, rimuovi il nodo.
 .. Rimuovi il nodo dalla tabella dei nodi in sospeso.
 .. Attendi che il nodo ricompaia nell'elenco dei nodi in sospeso.
 .. Verifica di poter configurare le reti appropriate. Dovrebbero essere già precompilate con le informazioni che hai fornito nella pagina IP Configuration del programma di installazione dell'appliance.
@@ -125,7 +125,7 @@ Per ulteriori informazioni, vedi le  https://docs.netapp.com/us-en/storagegrid-a
 La voce del nodo della griglia passa all'elenco dei nodi approvati.
 
 +
-image:7_gmi_installer_grid_nodes_approved.gif["${post_edited_translations.segment}"]
+image:7_gmi_installer_grid_nodes_approved.gif["Questa immagine è spiegata dal testo circostante."]
 
 . Ripeti questi passaggi per ogni nodo della griglia in sospeso che vuoi approvare.
 +

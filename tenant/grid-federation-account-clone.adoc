@@ -34,7 +34,7 @@ Accedi all'account del tenant sulla griglia di origine (la griglia in cui il ten
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Due"] Facoltativamente, configura la federazione delle identità
 [role="quick-margin-para"]
-Se il tuo tenant account dispone dell'autorizzazione *Usa la tua origine di identità* per utilizzare gruppi e utenti federati, configura la stessa origine di identità (con le stesse impostazioni) sia per il tenant account di origine che per quello di destinazione. I gruppi e gli utenti federati non possono essere clonati a meno che entrambe le griglie utilizzino la stessa origine di identità. Per istruzioni, consulta link:using-identity-federation.html["${post_edited_translations.segment}"].
+Se il tuo tenant account dispone dell'autorizzazione *Usa la tua origine di identità* per utilizzare gruppi e utenti federati, configura la stessa origine di identità (con le stesse impostazioni) sia per il tenant account di origine che per quello di destinazione. I gruppi e gli utenti federati non possono essere clonati a meno che entrambe le griglie utilizzino la stessa origine di identità. Per istruzioni, consulta link:using-identity-federation.html["Usa la federazione delle identità"].
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Tre"]Crea gruppi e utenti
 [role="quick-margin-para"]
@@ -54,7 +54,7 @@ Puoi link:creating-your-own-s3-access-keys.html["crea le tue chiavi di accesso"]
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["Cinque"] Facoltativamente, clona le chiavi di accesso S3
 [role="quick-margin-para"]
-Se devi accedere ai bucket con le stesse chiavi di accesso su entrambe le griglie, crea le chiavi di accesso sulla griglia di origine e poi usa l'API di Tenant Manager per clonarle manualmente sulla griglia di destinazione. Per istruzioni, vedi link:../tenant/grid-federation-clone-keys-with-api.html["${post_edited_translations.segment}"].
+Se devi accedere ai bucket con le stesse chiavi di accesso su entrambe le griglie, crea le chiavi di accesso sulla griglia di origine e poi usa l'API di Tenant Manager per clonarle manualmente sulla griglia di destinazione. Per istruzioni, vedi link:../tenant/grid-federation-clone-keys-with-api.html["Clona le chiavi di accesso S3 utilizzando l'API"].
 
 
 

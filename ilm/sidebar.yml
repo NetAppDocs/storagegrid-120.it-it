@@ -95,7 +95,7 @@ entries:
   entries:
   - title: Usa le policy ILM
     url: "/ilm/ilm-policy-overview.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Crea le policy ILM
     url: "/ilm/creating-ilm-policy.html"
   - title: Esempi di simulazioni di policy ILM
     url: "/ilm/simulating-ilm-policy-examples.html"

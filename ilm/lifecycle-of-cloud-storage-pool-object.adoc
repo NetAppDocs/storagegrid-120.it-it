@@ -97,4 +97,4 @@ Una volta che un oggetto è stato ripristinato nel pool di storage cloud di Azur
 
 
 .Informazioni correlate
-link:../s3/index.html["${post_edited_translations.segment}"]
+link:../s3/index.html["Usa l'API REST di S3"]

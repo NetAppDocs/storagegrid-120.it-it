@@ -16,7 +16,7 @@ Puoi eseguire le attività di gestione del sistema utilizzando l'API REST di Gri
 
 
 [[top-level-resources]]
-== ${post_edited_translations.segment}
+== Risorse di alto livello
 
 L'API di gestione della griglia fornisce le seguenti risorse di primo livello:
 
@@ -45,23 +45,23 @@ CAUTION: Qualsiasi operazione API che esegui tramite la pagina web della documen
 .Passaggi
 . Dall'intestazione di Grid Manager, seleziona l'icona di aiuto e seleziona *API documentation*.
 +
-image:help_menu.png["${post_edited_translations.segment}"]
+image:help_menu.png["Menu di aiuto"]
 
 . Per eseguire un'operazione con l'API privata, seleziona *Vai alla documentazione dell'API privata* nella pagina StorageGRID Management API.
 +
 Le API private sono soggette a modifiche senza preavviso. Gli endpoint privati di StorageGRID ignorano anche la versione dell'API della richiesta.
 
-. ${post_edited_translations.segment}
+. Seleziona l'operazione desiderata.
 +
 Quando espandi un'operazione API, puoi vedere le azioni HTTP disponibili, come GET, PUT, UPDATE e DELETE.
 
-. ${post_edited_translations.segment}
+. Seleziona un'azione HTTP per visualizzare i dettagli della richiesta, tra cui l'endpoint URL, un elenco di eventuali parametri obbligatori o facoltativi, un esempio del corpo della richiesta (se richiesto) e le possibili risposte.
 +
-image:swagger_example.png["${post_edited_translations.segment}"]
+image:swagger_example.png["Esempio da Swagger UI"]
 
 . Verifica se la richiesta richiede parametri aggiuntivi, come un ID di gruppo o un ID utente. Quindi, recupera questi valori. Potresti dover prima effettuare una richiesta API diversa per ottenere le informazioni di cui hai bisogno.
 . Determina se devi modificare il corpo della richiesta di esempio. In tal caso, puoi selezionare *Model* per conoscere i requisiti di ciascun campo.
-. ${post_edited_translations.segment}
+. Seleziona *Prova*.
 . Fornisci i parametri richiesti o modifica il corpo della richiesta come necessario.
 . Seleziona *Esegui*.
 . Esamina il codice di risposta per determinare se la richiesta è andata a buon fine.

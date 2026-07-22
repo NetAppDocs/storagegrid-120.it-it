@@ -13,11 +13,11 @@ summary: 'La segmentazione degli oggetti è il processo di suddivisione di un og
 [role="lead"]
 La segmentazione degli oggetti è il processo di suddivisione di un oggetto in una raccolta di oggetti più piccoli di dimensioni fisse, per ottimizzare lo spazio di archiviazione e l'utilizzo delle risorse per oggetti di grandi dimensioni. Anche il caricamento multi-part su S3 crea oggetti segmentati, con un oggetto che rappresenta ciascuna parte.
 
-${post_edited_translations.segment}
+Quando un oggetto viene inserito nel sistema StorageGRID, il servizio LDR suddivide l'oggetto in segmenti e crea un container di segmenti che elenca le informazioni di intestazione di tutti i segmenti come contenuto.
 
 image:object_segmentation_diagram.gif["Flusso di lavoro di segmentazione degli oggetti"]
 
-${post_edited_translations.segment}
+Al recupero di un container di segmenti, il servizio LDR assembla l'oggetto originale a partire dai suoi segmenti e lo restituisce al client.
 
 Il container e i segmenti non sono necessariamente memorizzati sullo stesso Storage Node. Il container e i segmenti possono essere memorizzati su qualsiasi Storage Node all'interno del pool di storage specificato nella regola ILM.
 

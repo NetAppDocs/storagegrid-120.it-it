@@ -31,11 +31,11 @@ Quando crei un endpoint di bilanciamento del carico StorageGRID per l’uso con 
 
 Nella maggior parte dei casi, la connessione tra ONTAP e StorageGRID dovrebbe utilizzare la crittografia Transport Layer Security (TLS). L'utilizzo di FabricPool senza crittografia TLS è supportato ma non consigliato. Quando selezioni il protocollo di rete per l'endpoint del bilanciamento del carico di StorageGRID, seleziona *HTTPS*. Fornisci quindi il certificato di sicurezza che consentirà a ONTAP di autenticarsi con StorageGRID.
 
-${post_edited_translations.segment}
+Per saperne di più sul certificato server per un endpoint di bilanciamento del carico:
 
 * link:../admin/using-storagegrid-security-certificates.html["Gestisci i certificati di sicurezza"]
 * link:../admin/managing-load-balancing.html["Considerazioni sul bilanciamento del carico"]
-* link:../harden/hardening-guideline-for-server-certificates.html["${post_edited_translations.segment}"]
+* link:../harden/hardening-guideline-for-server-certificates.html["Linee guida per l'hardening dei certificati server"]
 
 
 
@@ -53,7 +53,7 @@ Quando aggiungi StorageGRID come cloud tier FabricPool, devi installare lo stess
 
 CAUTION: Se il certificato utilizzato per proteggere la connessione tra ONTAP e StorageGRID scade, FabricPool smetterà temporaneamente di funzionare e ONTAP perderà temporaneamente l'accesso ai dati sottoposti a tiering su StorageGRID.
 
-${post_edited_translations.segment}
+Per evitare problemi legati alla scadenza dei certificati, segui queste best practice:
 
 * Monitora attentamente tutti gli avvisi che segnalano l'imminente scadenza dei certificati, come gli avvisi *Expiration of load balancer endpoint certificate* e *Expiration of global server certificate for S3 API*.
 * Mantieni sempre sincronizzate le versioni StorageGRID e ONTAP del certificato. Se sostituisci o rinnovi il certificato utilizzato per un endpoint del bilanciatore del carico, devi sostituire o rinnovare il certificato equivalente utilizzato da ONTAP per il cloud tier.

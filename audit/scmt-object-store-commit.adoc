@@ -19,7 +19,7 @@ Il contenuto della griglia non è disponibile o riconosciuto come memorizzato fi
 
 
  a| 
-${post_edited_translations.segment}
+CBID
  a| 
 Identificatore del blocco di contenuto
  a| 
@@ -30,7 +30,7 @@ L'identificativo univoco del blocco di contenuto registrato nello storage perman
  a| 
 RSLT
  a| 
-${post_edited_translations.segment}
+Codice risultato
  a| 
 Stato al momento del salvataggio dell'oggetto su disco:
 

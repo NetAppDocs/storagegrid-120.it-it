@@ -17,11 +17,11 @@ Gli endpoint del bilanciatore di carico determinano le porte e i protocolli di r
 * Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
 * Hai il link:admin-group-permissions.html["Permesso di accesso root"].
 * Hai esaminato il link:managing-load-balancing.html["considerazioni per il bilanciamento del carico"].
-* Se in precedenza hai rimappato una porta che intendi utilizzare per l'endpoint del bilanciatore di carico, hai link:../maintain/removing-port-remaps.html["${post_edited_translations.segment}"].
+* Se in precedenza hai rimappato una porta che intendi utilizzare per l'endpoint del bilanciatore di carico, hai link:../maintain/removing-port-remaps.html["rimosso il port remap"].
 * Hai creato tutti i gruppi di alta disponibilità (HA) che intendi utilizzare. I gruppi HA sono consigliati, ma non obbligatori. Vedi link:managing-high-availability-groups.html["Gestisci i gruppi ad alta disponibilità"].
-* Se l'endpoint del bilanciatore di carico verrà utilizzato da link:../admin/manage-s3-select-for-tenant-accounts.html["${post_edited_translations.segment}"], non deve utilizzare gli indirizzi IP o i FQDN di alcun nodo bare-metal. Per gli endpoint del bilanciatore di carico utilizzati per S3 Select sono consentiti solo appliance di servizi e nodi software basati su VMware.
+* Se l'endpoint del bilanciatore di carico verrà utilizzato da link:../admin/manage-s3-select-for-tenant-accounts.html["Tenant S3 per S3 Select"], non deve utilizzare gli indirizzi IP o i FQDN di alcun nodo bare-metal. Per gli endpoint del bilanciatore di carico utilizzati per S3 Select sono consentiti solo appliance di servizi e nodi software basati su VMware.
 * Hai configurato tutte le interfacce VLAN che intendi utilizzare. Vedi link:configure-vlan-interfaces.html["Configura le interfacce VLAN"].
-* ${post_edited_translations.segment}
+* Se stai creando un endpoint HTTPS (consigliato), hai le informazioni per il certificato del server.
 +
 
 NOTE: Le modifiche al certificato di un endpoint possono richiedere fino a 15 minuti per essere applicate a tutti i nodi.
@@ -48,9 +48,9 @@ Ciascun endpoint del bilanciatore del carico per client S3 specifica una porta, 
 === Accedi al wizard
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Seleziona *Configurazione* > *Rete* > *Endpoint del bilanciatore di carico*.
 . Per creare un endpoint per un client S3, seleziona la scheda *S3 client*.
-. ${post_edited_translations.segment}
+. Per creare un endpoint per l'accesso a Grid Manager, Tenant Manager o entrambi, seleziona la scheda *Management interface*.
 . Seleziona *Create*.
 
 
@@ -60,12 +60,12 @@ Ciascun endpoint del bilanciatore del carico per client S3 specifica una porta, 
 === Inserisci i dettagli dell'endpoint
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Seleziona le istruzioni appropriate per inserire i dettagli relativi al tipo di endpoint che vuoi creare.
 
 
 [role="tabbed-block"]
 ====
-.${post_edited_translations.segment}
+.Client S3
 --
 [cols="1a,3a"]
 |===
@@ -89,7 +89,7 @@ Se inserisci *80* o *8443*, l'endpoint viene configurato solo sui nodi Gateway, 
 
 
  a| 
-${post_edited_translations.segment}
+Tipo di client
  a| 
 Deve essere *S3*.
 
@@ -107,7 +107,7 @@ Il protocollo di rete che i client utilizzeranno per connettersi a questo endpoi
 
 
  a| 
-${post_edited_translations.segment}
+Abilita la memorizzazione nella cache
  a| 
 Abilita o disabilita link:../admin/managing-load-balancing.html#considerations-for-load-balancer-caching["memorizzazione nella cache sui nodi Gateway"] per questo endpoint del bilanciatore del carico.
 
@@ -146,7 +146,7 @@ La porta StorageGRID che vuoi usare per accedere a Grid Manager, Tenant Manager 
  a| 
 Tipo di interfaccia
  a| 
-${post_edited_translations.segment}
+Seleziona il pulsante di opzione per l'interfaccia StorageGRID a cui accederai usando questo endpoint.
 
 
 
@@ -186,7 +186,7 @@ Globale (impostazione predefinita per gli endpoint client)
  a| 
 I client possono accedere all'endpoint utilizzando l'indirizzo IP di qualsiasi Gateway Node o Admin Node, l'indirizzo IP virtuale (VIP) di qualsiasi gruppo HA su qualsiasi rete o un FQDN corrispondente.
 
-${post_edited_translations.segment}
+Utilizza l'impostazione *Globale* a meno che tu non debba limitare l'accessibilità di questo endpoint.
 
 
 
@@ -200,7 +200,7 @@ Gli endpoint con questa modalità di binding possono utilizzare tutti lo stesso 
 
 
  a| 
-${post_edited_translations.segment}
+Interfacce dei nodi
  a| 
 I client devono utilizzare gli indirizzi IP (o i corrispondenti FQDN) delle interfacce dei nodi selezionati per accedere a questo endpoint.
 
@@ -229,8 +229,8 @@ Se stai creando endpoint per l'interfaccia di gestione, sono consentiti solo gli
 +
 Se stai creando endpoint per l'interfaccia di gestione, seleziona VIP associati solo ad Admin Nodes.
 
-. ${post_edited_translations.segment}
-. ${post_edited_translations.segment}
+. Se hai selezionato *Interfacce nodo*, seleziona una o più interfacce nodo per ogni Admin Node o Gateway Node che vuoi associare a questo endpoint.
+. Se hai selezionato *Tipo di nodo*, scegli Nodi amministrativi, che includono sia il nodo amministrativo primario che eventuali nodi amministrativi non primari, oppure Nodi gateway.
 
 
 
@@ -239,7 +239,7 @@ Se stai creando endpoint per l'interfaccia di gestione, seleziona VIP associati 
 === Controlla l'accesso dei tenant
 
 
-NOTE: Un endpoint dell'interfaccia di gestione può controllare l'accesso del tenant solo quando l'endpoint ha il <<enter-endpoint-details,${post_edited_translations.segment}>>.
+NOTE: Un endpoint dell'interfaccia di gestione può controllare l'accesso del tenant solo quando l'endpoint ha il <<enter-endpoint-details,tipo di interfaccia di Tenant Manager>>.
 
 .Passaggi
 . Per la fase di *accesso del tenant*, seleziona una delle seguenti opzioni:
@@ -259,7 +259,7 @@ Devi selezionare questa opzione se non hai ancora creato alcun account tenant. D
 
 
  a| 
-${post_edited_translations.segment}
+Consenti agli inquilini selezionati
  a| 
 Solo i tenant account selezionati possono utilizzare questo endpoint per accedere ai propri bucket.
 
@@ -321,7 +321,7 @@ Specifica il nome del file del certificato e la posizione di download. Salva il 
 +
 Ad esempio: `storagegrid_certificate.pem`
 
-*** ${post_edited_translations.segment}
+*** Seleziona *Copia certificato PEM* o *Copia bundle CA PEM* per copiare il contenuto del certificato da incollare altrove.
 
 
 .. Seleziona *Crea*. + L'endpoint del load balancer viene creato. Il certificato personalizzato viene utilizzato per tutte le nuove connessioni successive tra i client S3 o l'interfaccia di gestione e l'endpoint.
@@ -331,7 +331,7 @@ Ad esempio: `storagegrid_certificate.pem`
 .Genera certificato
 --
 .. Seleziona *Genera certificato*.
-.. ${post_edited_translations.segment}
+.. Specifica le informazioni del certificato:
 +
 [cols="1a,3a"]
 |===
@@ -353,25 +353,25 @@ Uno o più indirizzi IP da includere nel certificato.
 
 
  a| 
-${post_edited_translations.segment}
+Oggetto (facoltativo)
  a| 
 Soggetto o nome distinto (DN) X.509 del titolare del certificato.
 
-${post_edited_translations.segment}
+Se in questo campo non inserisci alcun valore, il certificato generato utilizza il primo domain name o indirizzo IP come nome comune del soggetto (CN).
 
 
 
  a| 
 Giorni di validità
  a| 
-${post_edited_translations.segment}
+Numero di giorni dopo la creazione in cui il certificato scade.
 
 
 
  a| 
 Aggiungi estensioni di utilizzo chiave
  a| 
-${post_edited_translations.segment}
+Se selezioni questa opzione (predefinita e consigliata), le estensioni key usage ed extended key usage vengono aggiunte al certificato generato.
 
 Queste estensioni definiscono lo scopo della chiave contenuta nel certificato.
 
@@ -381,7 +381,7 @@ Queste estensioni definiscono lo scopo della chiave contenuta nel certificato.
 .. Seleziona *Genera*.
 .. Seleziona *Dettagli del certificato* per visualizzare i metadati del certificato generato.
 +
-*** ${post_edited_translations.segment}
+*** Seleziona *Scarica certificato* per salvare il file del certificato.
 +
 Specifica il nome del file del certificato e la posizione di download. Salva il file con l'estensione  `.pem`.
 
@@ -407,21 +407,21 @@ L'endpoint del bilanciatore di carico è stato creato. Il certificato personaliz
 === Dopo aver finito
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Se usi un DNS, assicurati che il DNS includa un record per associare il StorageGRID fully qualified domain name (FQDN) a ciascun indirizzo IP che i client useranno per effettuare le connessioni.
 +
 L'indirizzo IP che inserisci nel record DNS dipende dal fatto che tu stia usando un gruppo HA di nodi di bilanciamento del carico:
 
 +
-** ${post_edited_translations.segment}
+** Se hai configurato un gruppo HA, i client si connetteranno agli indirizzi IP virtuali di quel gruppo HA.
 ** Se non usi un gruppo HA, i client si connetteranno al servizio StorageGRID Load Balancer utilizzando l'indirizzo IP di un Gateway Node o di un Admin Node.
 +
-${post_edited_translations.segment}
+Devi anche assicurarti che il DNS record faccia riferimento a tutti i domain name degli endpoint richiesti, inclusi eventuali wildcard name.
 
 
 
-. ${post_edited_translations.segment}
+. Fornisci ai client S3 le informazioni necessarie per connettersi all'endpoint:
 +
-** ${post_edited_translations.segment}
+** Numero di porta
 ** fully qualified domain name o indirizzo IP
 ** Dettagli relativi ai certificati richiesti
 
@@ -438,7 +438,7 @@ Puoi visualizzare i dettagli degli endpoint del bilanciatore di carico esistenti
 * Per visualizzare le informazioni di base relative a tutti gli endpoint del bilanciatore di carico, consulta le tabelle nella pagina Endpoint del bilanciatore di carico.
 * Per visualizzare tutti i dettagli relativi a uno specifico endpoint, inclusi i metadati del certificato, seleziona il nome dell'endpoint nella tabella. Le informazioni visualizzate variano a seconda del tipo di endpoint e di come è configurato.
 +
-image:load_balancer_endpoint_details.png["${post_edited_translations.segment}"]
+image:load_balancer_endpoint_details.png["Dettagli dell'endpoint del bilanciatore di carico"]
 
 * Per modificare un endpoint, usa il menu *Azioni* nella pagina degli endpoint del bilanciatore di carico.
 +
@@ -459,14 +459,14 @@ TIP: Dopo aver modificato un endpoint, potresti dover attendere fino a 15 minuti
 Modifica il nome dell'endpoint
  a| 
 .. Seleziona la casella di controllo per l'endpoint.
-.. ${post_edited_translations.segment}
-.. ${post_edited_translations.segment}
+.. Seleziona *Azioni* > *Modifica nome endpoint*.
+.. Inserisci il nuovo nome.
 .. Seleziona *Salva*.
 
  a| 
-.. ${post_edited_translations.segment}
+.. Seleziona il nome dell'endpoint per visualizzarne i dettagli.
 .. Seleziona l'icona di modifica image:icon_edit_tm.png["Icona di modifica"].
-.. ${post_edited_translations.segment}
+.. Inserisci il nuovo nome.
 .. Seleziona *Salva*.
 
 
@@ -489,13 +489,13 @@ _n/a_
 Modifica la modalità di associazione dell'endpoint
  a| 
 .. Seleziona la casella di controllo per l'endpoint.
-.. ${post_edited_translations.segment}
+.. Seleziona *Azioni* > *Modifica modalità di associazione endpoint*.
 .. Aggiorna la modalità di associazione secondo necessità.
 .. Seleziona *Salva modifiche*.
 
  a| 
-.. ${post_edited_translations.segment}
-.. ${post_edited_translations.segment}
+.. Seleziona il nome dell'endpoint per visualizzarne i dettagli.
+.. Seleziona *Modifica modalità di binding*.
 .. Aggiorna la modalità di associazione secondo necessità.
 .. Seleziona *Salva modifiche*.
 
@@ -503,17 +503,17 @@ Modifica la modalità di associazione dell'endpoint
 
 
  a| 
-${post_edited_translations.segment}
+Modifica il certificato dell'endpoint
  a| 
 .. Seleziona la casella di controllo per l'endpoint.
-.. ${post_edited_translations.segment}
+.. Seleziona *Azioni* > *Modifica certificato endpoint*.
 .. Carica o genera un nuovo certificato personalizzato oppure inizia a utilizzare il certificato S3 globale, come richiesto.
 .. Seleziona *Salva modifiche*.
 
  a| 
-.. ${post_edited_translations.segment}
+.. Seleziona il nome dell'endpoint per visualizzarne i dettagli.
 .. Seleziona la scheda *Certificato*.
-.. ${post_edited_translations.segment}
+.. Seleziona *Modifica certificato*.
 .. Carica o genera un nuovo certificato personalizzato oppure inizia a utilizzare il certificato S3 globale, come richiesto.
 .. Seleziona *Salva modifiche*.
 
@@ -521,7 +521,7 @@ ${post_edited_translations.segment}
 
 
  a| 
-${post_edited_translations.segment}
+Modifica l'accesso del tenant
  a| 
 .. Seleziona la casella di controllo per l'endpoint.
 .. Seleziona *Azioni* > *Modifica tenant access*.
@@ -529,7 +529,7 @@ ${post_edited_translations.segment}
 .. Seleziona *Salva modifiche*.
 
  a| 
-.. ${post_edited_translations.segment}
+.. Seleziona il nome dell'endpoint per visualizzarne i dettagli.
 .. Seleziona la scheda *Accesso tenant*.
 .. Seleziona *Modifica tenant access*.
 .. Scegli un'opzione di accesso diversa, seleziona o rimuovi i tenant dall'elenco, oppure fai entrambe le cose.
@@ -559,10 +559,10 @@ NOTE: Se perdi l'accesso a Grid Manager mentre rimuovi un endpoint dell'interfac
 .. Seleziona *OK*.
 
 
-* ${post_edited_translations.segment}
+* Per rimuovere un endpoint dalla pagina dei dettagli:
 +
-.. ${post_edited_translations.segment}
-.. ${post_edited_translations.segment}
+.. Dalla pagina del bilanciatore di carico, seleziona il nome dell'endpoint.
+.. Seleziona *Rimuovi* nella pagina dei dettagli.
 .. Seleziona *OK*.
 
 

@@ -44,7 +44,7 @@ NOTE: Un'interfaccia fisica sull'host può essere utilizzata dall'host stesso e 
 * Se intendi utilizzare interfacce VLAN in StorageGRID, l'host deve avere una o più interfacce trunk che forniscano accesso alle VLAN desiderate. Queste interfacce possono essere passate nel container del nodo come eth0, eth2 o come interfacce aggiuntive. Per aggiungere interfacce trunk o di accesso, vedi quanto segue:
 +
 ** *Linux (prima dell'installazione del nodo)*: link:../swnodes/creating-node-configuration-files.html["Crea i file di configurazione del nodo"]
-** *Linux (dopo l'installazione del nodo)*: link:../maintain/linux-adding-trunk-or-access-interfaces-to-node.html["${post_edited_translations.segment}"]
+** *Linux (dopo l'installazione del nodo)*: link:../maintain/linux-adding-trunk-or-access-interfaces-to-node.html["Aggiungi interfacce trunk o di accesso a un nodo"]
 
 
 
@@ -70,7 +70,7 @@ Griglia
  a| 
 Amministratore
  a| 
-${post_edited_translations.segment}
+Client
 
 
 

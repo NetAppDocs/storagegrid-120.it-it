@@ -21,13 +21,13 @@ indexpage:
     links:
     - title: Prepara i materiali
       url: "../swnodes/required-materials.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Automatizza l'installazione di Linux
       url: "../swnodes/automating-installation-linux.html"
     - title: Automatizza l'installazione di VMware
       url: "../swnodes/automating-grid-node-deployment-in-vmware-vsphere.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Distribuisci Linux
       url: "../swnodes/creating-node-configuration-files.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Distribuisci VMware
       url: "../swnodes/collecting-information-about-your-deployment-environment.html"
     - title: Installazione completa dei nodi basata su software
       url: "../swnodes/navigating-to-grid-manager.html"
@@ -35,7 +35,7 @@ indexpage:
     links:
     - title: Novità
       url: "../release-notes/whats-new.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Stima il tempo per completare
       url: "../upgrade/estimating-time-to-complete-upgrade.html"
     - title: Come il tuo sistema è influenzato durante l'aggiornamento
       url: "../upgrade/how-your-system-is-affected-during-upgrade.html"

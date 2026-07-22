@@ -19,7 +19,7 @@ Le notifiche degli eventi vengono create nel bucket di origine come specificato 
 
 L'unicità e l'ordine delle notifiche non sono garantiti. Più di una notifica di un evento potrebbe essere recapitata alla destinazione come risultato delle operazioni eseguite per garantire il successo della consegna. E poiché la consegna è asincrona, non è garantito che l'ordine temporale delle notifiche a livello di destinazione corrisponda all'ordine degli eventi sul bucket di origine, in particolare per le operazioni che hanno origine da diversi siti StorageGRID. Puoi utilizzare la chiave `sequencer` nel messaggio dell'evento per determinare l'ordine degli eventi per un particolare oggetto, come descritto nella documentazione di Amazon S3.
 
-${post_edited_translations.segment}
+Le notifiche degli eventi di StorageGRID seguono l'API Amazon S3 con alcune limitazioni.
 
 * Sono supportati i seguenti tipi di evento:
 +
@@ -34,12 +34,12 @@ ${post_edited_translations.segment}
 ** s3:ObjectRestore:Post
 
 
-* ${post_edited_translations.segment}
+* Le notifiche degli eventi inviate da StorageGRID utilizzano il formato JSON standard, ma omettono alcune chiavi e utilizzano valori specifici per altre, come mostrato nella tabella:
 
 
 [cols="1a,2a"]
 |===
-| Nome chiave | ${post_edited_translations.segment} 
+| Nome chiave | Valore StorageGRID 
 
 
  a| 
@@ -52,14 +52,14 @@ eventSource
  a| 
 awsRegion
  a| 
-${post_edited_translations.segment}
+_non incluso_
 
 
 
  a| 
 x-amz-id-2
  a| 
-${post_edited_translations.segment}
+_non incluso_
 
 
 

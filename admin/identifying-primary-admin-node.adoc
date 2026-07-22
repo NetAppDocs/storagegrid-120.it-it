@@ -13,7 +13,7 @@ summary: Il nodo Admin primario fornisce più funzionalità rispetto ai nodi Adm
 [role="lead"]
 Il nodo Admin primario fornisce più funzionalità rispetto ai nodi Admin non primari. Ad esempio, alcune procedure di manutenzione devono essere eseguite utilizzando il nodo Admin primario.
 
-Per ulteriori informazioni sui nodi di amministrazione, vedi link:../primer/what-admin-node-is.html["${post_edited_translations.segment}"].
+Per ulteriori informazioni sui nodi di amministrazione, vedi link:../primer/what-admin-node-is.html["Che cos'è un Admin Node"].
 
 .Prima di iniziare
 * Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].

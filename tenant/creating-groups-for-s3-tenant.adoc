@@ -2,7 +2,7 @@
 permalink: tenant/creating-groups-for-s3-tenant.html 
 sidebar: sidebar 
 keywords: how to create S3 tenant groups, federated group, local group 
-summary: ${post_edited_translations.segment} 
+summary: Puoi gestire le autorizzazioni per i gruppi di utenti S3 importando gruppi federati o creando gruppi locali. 
 ---
 = Creare gruppi per un tenant S3 in StorageGRID
 :allow-uri-read: 
@@ -11,13 +11,13 @@ summary: ${post_edited_translations.segment}
 
 
 [role="lead"]
-${post_edited_translations.segment}
+Puoi gestire le autorizzazioni per i gruppi di utenti S3 importando gruppi federati o creando gruppi locali.
 
 .Prima di iniziare
 * Hai effettuato l'accesso al Tenant Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
 * Tu appartieni a un gruppo di utenti che ha il link:tenant-management-permissions.html["Permesso di accesso root"].
-* Se pianifichi di importare un gruppo federato, hai link:using-identity-federation.html["${post_edited_translations.segment}"] e il gruppo federato esiste già nell'origine dell'identità configurata.
-* Se il tuo account tenant dispone dell'autorizzazione *Use grid federation connection*, hai esaminato il workflow e le considerazioni per link:grid-federation-account-clone.html["${post_edited_translations.segment}"] e hai effettuato l'accesso alla grid di origine del tenant.
+* Se pianifichi di importare un gruppo federato, hai link:using-identity-federation.html["federazione di identità configurata"] e il gruppo federato esiste già nell'origine dell'identità configurata.
+* Se il tuo account tenant dispone dell'autorizzazione *Use grid federation connection*, hai esaminato il workflow e le considerazioni per link:grid-federation-account-clone.html["clonazione di gruppi di tenant e utenti"] e hai effettuato l'accesso alla grid di origine del tenant.
 
 
 
@@ -28,10 +28,10 @@ ${post_edited_translations.segment}
 Come primo passo, accedi alla procedura guidata Crea gruppo.
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Seleziona *Gestione accessi* > *Gruppi*.
 . Se il tuo account tenant dispone dell'autorizzazione *Use grid federation connection*, conferma che venga visualizzato un banner blu, a indicare che i nuovi gruppi creati su questa griglia verranno clonati sullo stesso tenant sull'altra griglia della connessione. Se questo banner non viene visualizzato, potresti aver effettuato l'accesso alla griglia di destinazione del tenant.
 +
-image:grid-federation-tenant-group-banner.png["${post_edited_translations.segment}"]
+image:grid-federation-tenant-group-banner.png["immagine del banner blu nella pagina Gruppi della griglia di origine del tenant"]
 
 . Seleziona *Crea gruppo*.
 
@@ -44,16 +44,16 @@ image:grid-federation-tenant-group-banner.png["${post_edited_translations.segmen
 Puoi creare un gruppo locale o importare un gruppo federato.
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Seleziona la scheda *Gruppo locale* per creare un gruppo locale oppure seleziona la scheda *Gruppo federato* per importare un gruppo dall'origine di identità configurata in precedenza.
 +
-${post_edited_translations.segment}
+Se single sign-on (SSO) è abilitato per il tuo sistema StorageGRID, gli utenti appartenenti a gruppi locali non potranno accedere al Tenant Manager, anche se possono usare applicazioni client per gestire le risorse del tenant, in base alle autorizzazioni del gruppo.
 
-. ${post_edited_translations.segment}
+. Inserisci il nome del gruppo.
 +
 ** *Gruppo locale*: Inserisci sia un nome visualizzato che un nome univoco. Puoi modificare il nome visualizzato in seguito.
 +
 
-NOTE: ${post_edited_translations.segment}
+NOTE: Se il tuo tenant account dispone dell'autorizzazione *Usa connessione di federazione griglia*, si verificherà un errore di clonazione se lo stesso *nome univoco* esiste già per il tenant nella griglia di destinazione.
 
 ** *Gruppo federato*: Inserisci il nome univoco. Per Active Directory, il nome univoco è il nome associato all'attributo  `sAMAccountName`. Per OpenLDAP, il nome univoco è il nome associato all'attributo  `uid`.
 
@@ -66,12 +66,12 @@ NOTE: ${post_edited_translations.segment}
 [[manage-group-permissions]]
 == Gestisci le autorizzazioni di gruppo
 
-${post_edited_translations.segment}
+Le autorizzazioni di gruppo controllano quali attività puoi eseguire in Tenant Manager e nell'API di gestione del tenant.
 
 .Passaggi
 . Per la *modalità di accesso*, seleziona una delle seguenti opzioni:
 +
-** ${post_edited_translations.segment}
+** *Accesso in lettura e scrittura* (impostazione predefinita): puoi accedere a Tenant Manager e gestire la configurazione del tenant.
 ** *Sola lettura*: gli utenti possono solo visualizzare le impostazioni e le funzionalità. Non possono apportare modifiche o eseguire operazioni nel Tenant Manager o nella Tenant Management API. Gli utenti locali in sola lettura possono modificare le proprie password.
 +
 

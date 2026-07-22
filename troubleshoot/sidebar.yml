@@ -9,7 +9,7 @@ entries:
   entries:
   - title: Conferma la posizione dei dati degli oggetti
     url: "/troubleshoot/confirming-object-data-locations.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Errori dell'object store
     url: "/troubleshoot/object-store-storage-volume-failures.html"
   - title: Verifica l'integrità dell'oggetto
     url: "/troubleshoot/verifying-object-integrity.html"
@@ -18,24 +18,26 @@ entries:
     url: "/troubleshoot/troubleshoot-s3-put-object-size-too-large-alert.html"
   - title: Risolvi i problemi relativi ai dati degli oggetti persi o mancanti
     entries:
-    - title: "${post_edited_translations.segment}"
+    - title: Metodi per il recupero di oggetti
       pdf-filename: Risolvi i problemi relativi ai dati degli oggetti persi o mancanti
       url: "/troubleshoot/troubleshooting-lost-and-missing-object-data.html"
     - title: Indaga su eventuali oggetti smarriti
       url: "/troubleshoot/investigating-potentially-lost-objects.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Risolvi i problemi relativi all'avviso di spazio di archiviazione dati
+      oggetto insufficiente
     url: "/troubleshoot/troubleshooting-low-object-data-storage-alert.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Risolvi i problemi relativi agli avvisi di override della filigrana di
+      sola lettura bassa
     url: "/troubleshoot/troubleshoot-low-watermark-alert.html"
-- title: "${post_edited_translations.segment}"
+- title: Risolvi i problemi relativi ai metadati
   url: "/troubleshoot/troubleshooting-metadata-issues.html"
 - title: Risolvi i problemi degli errori dei certificati
   url: "/troubleshoot/troubleshooting-certificate-errors.html"
-- title: "${post_edited_translations.segment}"
+- title: Risolvi i problemi del nodo di amministrazione e dell'interfaccia utente
   url: "/troubleshoot/troubleshooting-admin-node-and-user-interface-issues.html"
 - title: Risolvi i problemi di rete, hardware e piattaforma
   url: "/troubleshoot/troubleshooting-network-hardware-and-platform-issues.html"
-- title: "${post_edited_translations.segment}"
+- title: Risolvi i problemi del server syslog esterno
   url: "/troubleshoot/troubleshooting-syslog-server.html"
 - title: Risolvi i problemi di caching del bilanciatore di carico
   url: "/troubleshoot/troubleshooting-load-balancer-caching.html"

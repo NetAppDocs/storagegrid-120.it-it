@@ -26,10 +26,10 @@ Gestisci i tuoi gruppi di tenant secondo necessità per visualizzare, modificare
 Puoi visualizzare e modificare le informazioni e i dettagli di base per ogni gruppo.
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Seleziona *Gestione accessi* > *Gruppi*.
 . Esamina le informazioni fornite nella pagina Gruppi, che elenca i dati di base di tutti i gruppi locali e federati per questo tenant account.
 +
-${post_edited_translations.segment}
+Se il tenant account dispone dell'autorizzazione *Usa la connessione di federazione della griglia* e stai visualizzando i gruppi sulla griglia di origine del tenant:
 
 +
 ** Un messaggio a comparsa indica che se modifichi o rimuovi un gruppo, le modifiche non verranno sincronizzate con l'altra griglia.
@@ -38,9 +38,9 @@ ${post_edited_translations.segment}
 
 . Se vuoi cambiare il nome del gruppo:
 +
-.. ${post_edited_translations.segment}
+.. Seleziona la casella di controllo per il gruppo.
 .. Seleziona *Azioni* > *Modifica nome gruppo*.
-.. ${post_edited_translations.segment}
+.. Inserisci il nuovo nome.
 .. Seleziona *Salva modifiche.*
 
 
@@ -50,7 +50,7 @@ ${post_edited_translations.segment}
 ** Seleziona la casella di controllo relativa al gruppo e seleziona *Azioni* > *Visualizza dettagli del gruppo*.
 
 
-. ${post_edited_translations.segment}
+. Esamina la sezione Panoramica, che mostra le seguenti informazioni per ciascun gruppo:
 +
 ** Nome da visualizzare
 ** Nome unico
@@ -59,10 +59,10 @@ ${post_edited_translations.segment}
 ** Autorizzazioni
 ** Policy S3
 ** Numero di utenti in questo gruppo
-** ${post_edited_translations.segment}
+** Campi aggiuntivi se il tenant account dispone dell'autorizzazione *Usa connessione di federazione griglia* e stai visualizzando il gruppo sulla griglia di origine del tenant:
 +
-*** ${post_edited_translations.segment}
-*** ${post_edited_translations.segment}
+*** Stato della clonazione, *Riuscito* o *Fallito*
+*** Un banner blu indica che, se modifichi o elimini questo gruppo, le modifiche non verranno sincronizzate con l'altra grid.
 
 
 
@@ -71,32 +71,32 @@ ${post_edited_translations.segment}
 +
 .. Nella sezione Panoramica, modifica il nome visualizzato selezionando il nome o l'icona di modifica image:icon_edit_tm.png["Icona di modifica"].
 .. Nella scheda *Autorizzazioni di gruppo*, aggiorna le autorizzazioni e seleziona *Salva modifiche*.
-.. ${post_edited_translations.segment}
+.. Nella scheda *Criteri di gruppo*, apporta le modifiche necessarie e seleziona *Salva modifiche*.
 +
 Facoltativamente, seleziona un criterio di gruppo S3 diverso oppure inserisci la stringa JSON per un criterio personalizzato, se necessario.
 
 
 
-. ${post_edited_translations.segment}
+. Per aggiungere uno o più utenti locali esistenti al gruppo:
 +
 .. Seleziona la scheda Utenti.
 +
 image:manage_users.png["Gestisci utenti"]
 
 .. Seleziona *Aggiungi utenti*.
-.. ${post_edited_translations.segment}
+.. Seleziona gli utenti esistenti che vuoi aggiungere e seleziona *Aggiungi utenti*.
 +
-${post_edited_translations.segment}
+Compare un messaggio di successo nell'angolo in alto a destra.
 
 
 
-. ${post_edited_translations.segment}
+. Per rimuovere gli utenti locali dal gruppo:
 +
 .. Seleziona la scheda Utenti.
 .. Seleziona *Rimuovi utenti*.
 .. Seleziona gli utenti che desideri rimuovere e seleziona *Rimuovi utenti*.
 +
-${post_edited_translations.segment}
+Compare un messaggio di successo nell'angolo in alto a destra.
 
 
 
@@ -106,15 +106,15 @@ ${post_edited_translations.segment}
 
 
 [[duplicate-group]]
-== ${post_edited_translations.segment}
+== Gruppo duplicato
 
 Puoi duplicare un gruppo esistente per creare nuovi gruppi più rapidamente.
 
 
-NOTE: ${post_edited_translations.segment}
+NOTE: Se il tuo tenant account dispone dell'autorizzazione *Use grid federation connection* e duplichi un gruppo dalla grid di origine del tenant, il gruppo duplicato verrà clonato nella grid di destinazione del tenant.
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Seleziona *Gestione accessi* > *Gruppi*.
 . Seleziona la casella di controllo per il gruppo che vuoi duplicare.
 . Seleziona *Azioni* > *Duplica gruppo*.
 . Vedi link:creating-groups-for-s3-tenant.html["Crea gruppi per un tenant S3"] per i dettagli su cosa inserire.
@@ -128,12 +128,12 @@ NOTE: ${post_edited_translations.segment}
 
 Per riprovare una clonazione non riuscita:
 
-. ${post_edited_translations.segment}
+. Seleziona ciascun gruppo che riporta la dicitura _(Cloning failed)_ sotto il nome del gruppo.
 . Seleziona *Azioni* > *Clona gruppi*.
 . Visualizza lo stato dell'operazione di clonazione dalla pagina dei dettagli di ogni gruppo che stai clonando.
 
 
-Per ulteriori informazioni, consulta link:grid-federation-account-clone.html["${post_edited_translations.segment}"].
+Per ulteriori informazioni, consulta link:grid-federation-account-clone.html["Clona gruppi di tenant e utenti"].
 
 
 
@@ -146,9 +146,9 @@ Puoi eliminare uno o più gruppi. Gli utenti che appartengono solo a un gruppo e
 NOTE: Se il tuo tenant account ha l'autorizzazione *Use grid federation connection* e elimini un gruppo, StorageGRID non eliminerà il gruppo corrispondente sull'altra grid. Se vuoi mantenere queste informazioni sincronizzate, devi eliminare lo stesso gruppo da entrambe le grid.
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Seleziona *Gestione accessi* > *Gruppi*.
 . Seleziona la casella di controllo per ogni gruppo che vuoi eliminare.
-. ${post_edited_translations.segment}
+. Seleziona *Azioni* > *Elimina gruppo* oppure *Azioni* > *Elimina gruppi*.
 +
 Viene visualizzata una finestra di dialogo di conferma.
 
@@ -169,7 +169,7 @@ Per configurare AssumeRole, crea il gruppo di destinazione da assumere, se il gr
 Le credenziali di sicurezza temporanee create assumendo questo gruppo sono valide per una durata limitata. La sessione dura da 15 minuti a 12 ore e la sessione predefinita è di 1 ora. Quando rimuovi l'utente dalla policy di attendibilità S3 del gruppo, l'utente non può più assumere questo gruppo.
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Seleziona *Gestione accessi* > *Gruppi*.
 . Fai clic sul nome del gruppo.
 . Seleziona la scheda *S3 trust policy*.
 . Aggiungi la tua policy di attendibilità S3, incluso un elenco di utenti che possono eseguire AssumeRole.

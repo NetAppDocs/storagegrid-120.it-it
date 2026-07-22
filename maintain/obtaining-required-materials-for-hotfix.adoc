@@ -26,9 +26,9 @@ Devi scaricare il file hotfix di StorageGRID.
 
 
  a| 
-* ${post_edited_translations.segment}
-* link:../admin/web-browser-requirements.html["${post_edited_translations.segment}"]
-* ${post_edited_translations.segment}
+* Porta di rete
+* link:../admin/web-browser-requirements.html["Browser web supportati"]
+* Client SSH (ad esempio, PuTTY)
 
  a| 
 

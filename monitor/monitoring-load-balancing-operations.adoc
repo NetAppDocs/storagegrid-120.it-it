@@ -20,7 +20,7 @@ Dopo aver configurato il bilanciamento del carico, dovresti verificare che le op
 
 Se hai configurato un gruppo ad alta disponibilità (HA) di Gateway Nodes o Admin Nodes in modalità attivo-backup, solo un nodo del gruppo distribuisce attivamente le richieste dei client.
 
-Per ulteriori informazioni, vedi link:../admin/configuring-client-connections.html["${post_edited_translations.segment}"].
+Per ulteriori informazioni, vedi link:../admin/configuring-client-connections.html["Configura le connessioni client S3"].
 
 .Passaggi
 . Se i client S3 si connettono utilizzando il servizio Load Balancer, verifica che i nodi Admin o i nodi Gateway distribuiscano attivamente il traffico come ti aspetti:

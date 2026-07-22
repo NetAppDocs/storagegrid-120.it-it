@@ -25,17 +25,17 @@ Ogni KMS gestisce una singola chiave di crittografia per i nodi degli appliance 
 +
 ** Utilizza la pagina di gestione delle chiavi del tuo prodotto KMS. Crea una chiave di crittografia AES per ogni KMS o cluster KMS.
 +
-${post_edited_translations.segment}
+La chiave di crittografia deve essere di almeno 2.048 bit e deve essere esportabile.
 
-** Fai creare la chiave a StorageGRID. Ti verrà richiesto quando esegui il test e salvi dopo link:kms-adding.html#sg-create-key["${post_edited_translations.segment}"].
+** Fai creare la chiave a StorageGRID. Ti verrà richiesto quando esegui il test e salvi dopo link:kms-adding.html#sg-create-key["caricamento dei certificati client"].
 
 
 . Annota le seguenti informazioni per ogni KMS o cluster KMS.
 +
-${post_edited_translations.segment}
+Ti servono queste informazioni quando aggiungi il KMS a StorageGRID:
 
 +
-** ${post_edited_translations.segment}
+** Nome host o indirizzo IP per ciascun server.
 ** Porta KMIP utilizzata dal KMS.
 ** Alias della chiave per la chiave di crittografia nel KMS.
 
@@ -45,16 +45,16 @@ ${post_edited_translations.segment}
 Il certificato del server consente al KMS esterno di autenticarsi con StorageGRID.
 
 +
-** ${post_edited_translations.segment}
+** Il certificato deve utilizzare il formato X.509 codificato in Base-64 Privacy Enhanced Mail (PEM).
 ** Il campo Subject Alternative Name (SAN) in ogni certificato server deve includere il fully qualified domain name (FQDN) o l'indirizzo IP a cui StorageGRID si connetterà.
 +
 
 NOTE: Quando configuri il KMS in StorageGRID, devi inserire gli stessi FQDN o indirizzi IP nel campo *Hostname*.
 
-** ${post_edited_translations.segment}
+** Il certificato del server deve corrispondere al certificato utilizzato dall'interfaccia KMIP del KMS, che in genere utilizza la porta 5696.
 
 
-. ${post_edited_translations.segment}
+. Ottieni il certificato client pubblico rilasciato a StorageGRID dal KMS esterno e la chiave privata per il certificato client.
 +
 Il certificato client consente a StorageGRID di autenticarsi presso il KMS.
 

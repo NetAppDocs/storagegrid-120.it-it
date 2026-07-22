@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, audit, message, log, structure, content 
 summary: 'Queste istruzioni contengono informazioni sulla struttura e sul contenuto dei messaggi di audit e dei log di audit di StorageGRID. Puoi utilizzare queste informazioni per leggere e analizzare la traccia di audit dell"attività di sistema.' 
 ---
-= ${post_edited_translations.segment}
+= Messaggi e registri di controllo
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

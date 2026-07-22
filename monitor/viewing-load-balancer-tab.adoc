@@ -52,5 +52,5 @@ Questo grafico fornisce una media mobile di 3 minuti del numero di risposte di e
 
 .Informazioni correlate
 * link:monitoring-load-balancing-operations.html["Monitora le operazioni di bilanciamento del carico"]
-* link:../admin/index.html["${post_edited_translations.segment}"]
+* link:../admin/index.html["Gestisci StorageGRID"]
 

@@ -9,23 +9,23 @@ indexpage:
     le attività e risolvere eventuali avvisi. Potresti anche voler configurare un
     server syslog esterno, utilizzare il monitoraggio SNMP o raccogliere dati aggiuntivi.
   tiles:
-  - title: "${post_edited_translations.segment}"
+  - title: Monitora il tuo sistema
     links:
-    - title: "${post_edited_translations.segment}"
+    - title: Gestisci dashboard
       url: "../monitor/viewing-dashboard.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Visualizza la pagina Nodes
       url: "../monitor/viewing-nodes-page.html"
     - title: Monitora lo stato di salute del sistema
       url: "../monitor/monitoring-system-health.html"
     - title: Monitora la capacità di archiviazione
       url: "../monitor/monitoring-storage-capacity.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Gestisci avvisi e notifiche
     links:
     - title: Gestisci gli avvisi
       url: "../monitor/managing-alerts.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Crea avvisi personalizzati
       url: "../monitor/creating-custom-alert-rules.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Gestisci le email di avviso
       url: "../monitor/email-alert-notifications.html"
     - title: Usa il monitoraggio SNMP
       url: "../monitor/using-snmp-monitoring.html"
@@ -35,7 +35,7 @@ indexpage:
       url: "../monitor/configure-log-management.html"
     - title: Usa un server syslog esterno
       url: "../monitor/considerations-for-external-syslog-server.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Esamina i registri di controllo
       url: "../audit/index.html"
     - title: Riferimento ai file di registro
       url: "../monitor/logs-files-reference.html"

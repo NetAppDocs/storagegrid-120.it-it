@@ -39,9 +39,9 @@ Appaiono link:../ilm/verifying-ilm-policy-with-object-metadata-lookup.html["risu
 
 +
 ** Metadati di sistema, inclusi l'ID dell'oggetto (UUID), l'ID della versione (opzionale), il nome dell'oggetto, il nome del container, il nome o l'ID dell'account tenant, la dimensione logica dell'oggetto, la data e l'ora in cui l'oggetto è stato creato per la prima volta e la data e l'ora dell'ultima modifica dell'oggetto.
-** ${post_edited_translations.segment}
+** Qualsiasi coppia chiave-valore di metadati utente personalizzati associata all'oggetto.
 ** Per gli oggetti S3, tutte le coppie chiave-valore dei tag associate all'oggetto.
-** ${post_edited_translations.segment}
+** Per le copie replicate degli oggetti, la posizione di archiviazione corrente di ciascuna copia.
 ** Per le copie di oggetti con codifica di cancellazione, la posizione di archiviazione corrente di ciascun frammento.
 ** Per le copie di oggetti in un Cloud Storage Pool, la posizione dell'oggetto, incluso il nome del bucket esterno e l'identificativo univoco dell'oggetto.
 ** Per gli oggetti segmentati e gli oggetti composti da più parti, viene visualizzato un elenco dei segmenti dell'oggetto, inclusi gli identificatori dei segmenti e le dimensioni dei dati. Per gli oggetti con più di 100 segmenti, vengono mostrati solo i primi 100 segmenti.

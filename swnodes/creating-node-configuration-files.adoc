@@ -34,9 +34,9 @@ I nomi dei file di configurazione sono importanti. Il formato è  `node-name.con
 
 I nomi dei nodi devono rispettare queste regole:
 
-* ${post_edited_translations.segment}
+* Deve essere unico
 * Devi iniziare con una lettera
-* ${post_edited_translations.segment}
+* Può contenere i caratteri dalla A alla Z e dalla a alla z
 * Puoi inserire i numeri da 0 a 9
 * Può contenere uno o più trattini (-)
 * Non deve superare i 32 caratteri, esclusa l' `.conf`estensione
@@ -44,7 +44,7 @@ I nomi dei nodi devono rispettare queste regole:
 
 Qualsiasi file in `/etc/storagegrid/nodes` che non rispetta queste convenzioni di denominazione non verrà analizzato dal servizio host.
 
-${post_edited_translations.segment}
+Se hai in programma una topologia multisito per la tua griglia, uno schema di denominazione dei nodi tipico potrebbe essere:
 
 `site-nodetype-nodenumber.conf`
 
@@ -53,20 +53,20 @@ Ad esempio, potresti usare  `dc1-adm1.conf` per il primo Admin Node nel Data Cen
 
 
 [[contents-of-a-node-configuration-file]]
-== ${post_edited_translations.segment}
+== Contenuto di un file di configurazione di un nodo
 
 Un file di configurazione contiene coppie chiave/valore, con una chiave e un valore per riga. Per ogni coppia chiave/valore, segui queste regole:
 
 * La chiave e il valore devono essere separati da un segno di uguale (`=`) e da spazi facoltativi.
-* ${post_edited_translations.segment}
+* Le chiavi non possono contenere spazi.
 * I valori possono contenere spazi incorporati.
 * Qualsiasi spazio bianco iniziale o finale viene ignorato.
 
 
 La tabella seguente definisce i valori per tutte le chiavi supportate. Ogni chiave ha una delle seguenti designazioni:
 
-* ${post_edited_translations.segment}
-* ${post_edited_translations.segment}
+* *Obbligatorio*: obbligatorio per ogni nodo o per i tipi di nodo specificati
+* *Best practice*: Facoltativa, ma consigliata
 * *Opzionale*: Opzionale per tutti i nodi
 
 
@@ -87,7 +87,7 @@ La tabella seguente definisce i valori per tutte le chiavi supportate. Ogni chia
  a| 
 Indirizzo IPv4 della rete Grid del nodo Admin che vuoi usare per installare il nodo basato su Linux. Per il ripristino, usa l'IP del nodo Admin primario se disponibile; altrimenti, usa l'IP di un nodo Admin non primario. Se ometti questo parametro, il nodo proverà a individuare un nodo Admin primario usando mDNS.
 
-link:how-grid-nodes-discover-primary-admin-node.html["${post_edited_translations.segment}"]_
+link:how-grid-nodes-discover-primary-admin-node.html["Come i nodi della griglia scoprono il nodo Admin primario"]_
 
 *Nota*: Questo valore viene ignorato e potrebbe essere proibito sul nodo Admin primario.
  a| 
@@ -104,14 +104,14 @@ Best practice
 
 
  a| 
-${post_edited_translations.segment}
+DHCP, STATIC o DISABLED
  a| 
 Opzionale
 
 |===
 
 
-==== ${post_edited_translations.segment}
+==== ADMIN_NETWORK_ESL
 
 [cols="4a,2a"]
 |===
@@ -165,14 +165,14 @@ Esempi:
 
 `10.224.4.81`
  a| 
-${post_edited_translations.segment}
+Obbligatorio quando ADMIN_NETWORK_CONFIG = STATIC.
 
 Facoltativo altrimenti.
 
 |===
 
 
-==== ${post_edited_translations.segment}
+==== ADMIN_NETWORK_MAC
 
 [cols="4a,2a"]
 |===
@@ -209,14 +209,14 @@ Esempi:
 
 `255.255.248.0`
  a| 
-${post_edited_translations.segment}
+Obbligatorio se ADMIN_NETWORK_IP è specificato e ADMIN_NETWORK_CONFIG = STATIC.
 
 Facoltativo altrimenti.
 
 |===
 
 
-==== ${post_edited_translations.segment}
+==== ADMIN_NETWORK_MTU
 
 [cols="4a,2a"]
 |===
@@ -274,7 +274,7 @@ Best practice
 
 
  a| 
-${post_edited_translations.segment}
+Interfaccia (Questo è l'unico valore supportato.)
  a| 
 Opzionale
 
@@ -289,20 +289,20 @@ Opzionale
 
 
  a| 
-${post_edited_translations.segment}
+Vero o falso
 
-${post_edited_translations.segment}
+Imposta la chiave su "true" per fare in modo che il container StorageGRID utilizzi l'indirizzo MAC dell'interfaccia di destinazione dell'host host sulla Admin Network.
 
 *Best practice:* Nelle reti in cui è richiesta la modalità promiscua, usa invece la chiave ADMIN_NETWORK_TARGET_TYPE_INTERFACE_CLONE_MAC.
 
-Per ulteriori dettagli sulla clonazione del MAC per Linux, consulta link:../swnodes/configuring-host-network.html#considerations-and-recommendations-for-mac-address-cloning["${post_edited_translations.segment}"]
+Per ulteriori dettagli sulla clonazione del MAC per Linux, consulta link:../swnodes/configuring-host-network.html#considerations-and-recommendations-for-mac-address-cloning["Considerazioni e raccomandazioni per la clonazione degli indirizzi MAC"]
  a| 
 Best practice
 
 |===
 
 
-==== ${post_edited_translations.segment}
+==== ADMIN_ROLE
 
 [cols="4a,2a"]
 |===
@@ -310,11 +310,11 @@ Best practice
 
 
  a| 
-${post_edited_translations.segment}
+Primaria o non primaria
 
-${post_edited_translations.segment}
+Questa chiave è necessaria solo quando NODE_TYPE = VM_Admin_Node; non specificarla per altri tipi di nodo.
  a| 
-${post_edited_translations.segment}
+Obbligatorio quando NODE_TYPE = VM_Admin_Node
 
 Facoltativo altrimenti.
 
@@ -326,7 +326,7 @@ Facoltativo altrimenti.
 
 
 
-==== ${post_edited_translations.segment}
+==== REGISTRI DI CONTROLLO DEL DISPOSITIVO A BLOCCHI
 
 [cols="4a,2a"]
 |===
@@ -334,7 +334,7 @@ Facoltativo altrimenti.
 
 
  a| 
-${post_edited_translations.segment}
+Percorso e nome del file speciale del dispositivo a blocchi che questo nodo userà per lo storage persistente dei log di audit.
 
 Esempi:
 
@@ -463,7 +463,7 @@ Richiesto
 
 
 
-==== ${post_edited_translations.segment}
+==== CONFIGURAZIONE RETE CLIENT
 
 [cols="4a,2a"]
 |===
@@ -471,7 +471,7 @@ Richiesto
 
 
  a| 
-${post_edited_translations.segment}
+DHCP, STATIC o DISABLED
  a| 
 Opzionale
 
@@ -505,7 +505,7 @@ Opzionale
 |===
 
 
-==== ${post_edited_translations.segment}
+==== CLIENT_NETWORK_IP
 
 [cols="4a,2a"]
 |===
@@ -538,7 +538,7 @@ Facoltativo altrimenti.
 
 
  a| 
-${post_edited_translations.segment}
+L'indirizzo MAC per l'interfaccia di rete client nel container.
 
 Questo campo è facoltativo. Se omesso, verrà generato automaticamente un indirizzo MAC.
 
@@ -576,7 +576,7 @@ Facoltativo altrimenti.
 |===
 
 
-==== ${post_edited_translations.segment}
+==== CLIENT_NETWORK_MTU
 
 [cols="4a,2a"]
 |===
@@ -601,7 +601,7 @@ Opzionale
 |===
 
 
-==== ${post_edited_translations.segment}
+==== CLIENT_NETWORK_TARGET
 
 [cols="4a,2a"]
 |===
@@ -634,7 +634,7 @@ Best practice
 
 
  a| 
-${post_edited_translations.segment}
+Interfaccia (Questo è l'unico valore supportato.)
  a| 
 Opzionale
 
@@ -649,13 +649,13 @@ Opzionale
 
 
  a| 
-${post_edited_translations.segment}
+Vero o falso
 
 Imposta la chiave su "true" per fare in modo che il container StorageGRID utilizzi l'indirizzo MAC dell'interfaccia di destinazione dell'host sulla Client Network.
 
 *Best practice:* Nelle reti in cui è richiesta la modalità promiscua, usa invece la chiave CLIENT_NETWORK_TARGET_TYPE_INTERFACE_CLONE_MAC.
 
-Per ulteriori dettagli sulla clonazione del MAC per Linux, consulta link:../swnodes/configuring-host-network.html#considerations-and-recommendations-for-mac-address-cloning["${post_edited_translations.segment}"]
+Per ulteriori dettagli sulla clonazione del MAC per Linux, consulta link:../swnodes/configuring-host-network.html#considerations-and-recommendations-for-mac-address-cloning["Considerazioni e raccomandazioni per la clonazione degli indirizzi MAC"]
  a| 
 Best practice
 
@@ -667,7 +667,7 @@ Best practice
 
 
 
-==== ${post_edited_translations.segment}
+==== GRID_NETWORK_CONFIG
 
 [cols="4a,2a"]
 |===
@@ -684,7 +684,7 @@ Best practice
 |===
 
 
-==== ${post_edited_translations.segment}
+==== GRID_NETWORK_GATEWAY
 
 [cols="4a,2a"]
 |===
@@ -701,7 +701,7 @@ Richiesto
 |===
 
 
-==== ${post_edited_translations.segment}
+==== GRID_NETWORK_IP
 
 [cols="4a,2a"]
 |===
@@ -717,14 +717,14 @@ Esempi:
 
 `10.224.4.81`
  a| 
-${post_edited_translations.segment}
+Richiesto quando GRID_NETWORK_CONFIG = STATIC
 
 Facoltativo altrimenti.
 
 |===
 
 
-==== ${post_edited_translations.segment}
+==== GRID_NETWORK_MAC
 
 [cols="4a,2a"]
 |===
@@ -740,12 +740,12 @@ Esempio: `b2:9c:02:c2:27:30`
  a| 
 Opzionale
 
-${post_edited_translations.segment}
+Se omesso, un indirizzo MAC verrà generato automaticamente.
 
 |===
 
 
-==== ${post_edited_translations.segment}
+==== MASCHERA_RETE_GRID
 
 [cols="4a,2a"]
 |===
@@ -826,7 +826,7 @@ Richiesto
 
 
  a| 
-${post_edited_translations.segment}
+Interfaccia (Questo è l'unico valore supportato.)
  a| 
 Opzionale
 
@@ -841,13 +841,13 @@ Opzionale
 
 
  a| 
-${post_edited_translations.segment}
+Vero o falso
 
 Imposta il valore della chiave su "true" per fare in modo che il container StorageGRID utilizzi l'indirizzo MAC dell'interfaccia di destinazione dell'host sulla Grid Network.
 
 *Best practice:* Nelle reti in cui è richiesta la modalità promiscua, usa invece la chiave GRID_NETWORK_TARGET_TYPE_INTERFACE_CLONE_MAC.
 
-Per ulteriori dettagli sulla clonazione del MAC per Linux, consulta link:../swnodes/configuring-host-network.html#considerations-and-recommendations-for-mac-address-cloning["${post_edited_translations.segment}"]
+Per ulteriori dettagli sulla clonazione del MAC per Linux, consulta link:../swnodes/configuring-host-network.html#considerations-and-recommendations-for-mac-address-cloning["Considerazioni e raccomandazioni per la clonazione degli indirizzi MAC"]
  a| 
 Best practice
 
@@ -945,7 +945,7 @@ Opzionale
 
 
 [[node-type-keys]]
-=== ${post_edited_translations.segment}
+=== Chiavi del tipo di nodo
 
 
 
@@ -960,9 +960,9 @@ Opzionale
 Tipo di nodo:
 
 * VM_Admin_Node
-* ${post_edited_translations.segment}
+* VM_Storage_Node
 * VM_Archive_Node
-* ${post_edited_translations.segment}
+* VM_API_Gateway
 
  a| 
 Richiesto
@@ -970,7 +970,7 @@ Richiesto
 |===
 
 
-==== ${post_edited_translations.segment}
+==== STORAGE_TYPE
 
 [cols="4a,2a"]
 |===
@@ -985,7 +985,7 @@ Definisce il tipo di oggetti contenuti in un Storage Node. Per ulteriori informa
 * metadati
 
 
-${post_edited_translations.segment}
+*Nota*: Se STORAGE_TYPE non è specificato, il tipo di Storage Node viene impostato di default su combinato (dati e metadati).
  a| 
 Opzionale
 
@@ -993,14 +993,14 @@ Opzionale
 
 
 [[port-remap-keys]]
-=== ${post_edited_translations.segment}
+=== Chiavi di rimappatura delle porte
 
 
-NOTE: Il supporto per la rimappatura delle porte è deprecato e verrà rimosso in una versione futura. Per rimuovere le porte rimappate, consulta link:../maintain/removing-port-remaps-on-bare-metal-hosts.html["${post_edited_translations.segment}"].
+NOTE: Il supporto per la rimappatura delle porte è deprecato e verrà rimosso in una versione futura. Per rimuovere le porte rimappate, consulta link:../maintain/removing-port-remaps-on-bare-metal-hosts.html["Rimuovi le rimappature delle porte sugli host bare metal"].
 
 
 
-==== ${post_edited_translations.segment}
+==== PORT_REMAP
 
 [cols="4a,2a"]
 |===
@@ -1018,7 +1018,7 @@ Il formato utilizzato è: `_network type_/_protocol_/_default port used by grid 
 
 Esempio: `PORT_REMAP = client/tcp/18082/443`
 
-${post_edited_translations.segment}
+Puoi anche rimappare più porte usando un elenco separato da virgole.
 
 Esempio: `PORT_REMAP = client/tcp/18082/443, client/tcp/18083/80`
  a| 
@@ -1043,7 +1043,7 @@ Il formato utilizzato è:  `_network type_/_protocol_/_remapped port_/_default p
 
 Esempio: `PORT_REMAP_INBOUND = grid/tcp/3022/22`
 
-${post_edited_translations.segment}
+Puoi anche rimappare più porte in entrata utilizzando un elenco separato da virgole.
 
 Esempio: `PORT_REMAP_INBOUND = grid/tcp/3022/22, admin/tcp/3022/22`
  a| 

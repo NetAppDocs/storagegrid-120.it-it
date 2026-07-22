@@ -29,7 +29,7 @@ Devi configurare la federazione delle identità per il sistema StorageGRID prima
 
 [cols="1a,1a"]
 |===
-| Tipo di servizio LDAP configurato | ${post_edited_translations.segment} 
+| Tipo di servizio LDAP configurato | Opzioni per il provider di identità SSO 
 
 
  a| 

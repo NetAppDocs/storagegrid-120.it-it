@@ -1,18 +1,18 @@
 ---
 section: expand
-title: "${post_edited_translations.segment}"
+title: Espandi la griglia
 url: "/landing-expand/index.html"
 entries:
 - title: Scopri di più sull'espansione
-  pdf-filename: "${post_edited_translations.segment}"
+  pdf-filename: Espandi il tuo sistema StorageGRID
   url: "/expand/index.html"
-- title: "${post_edited_translations.segment}"
+- title: Pianificazione dell'espansione
   entries:
   - title: Pianificazione dell'espansione per i dati replicati
     url: "/expand/adding-storage-capacity-for-replicated-objects.html"
   - title: Pianificazione dell'espansione per i dati codificati con cancellazione
     url: "/expand/adding-storage-capacity-for-erasure-coded-objects.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Scopri il riequilibrio del codice di cancellazione dopo l'espansione
     url: "/expand/considerations-for-rebalancing-erasure-coded-data.html"
 - title: Linee guida per l'espansione
   entries:
@@ -24,39 +24,39 @@ entries:
     url: "/expand/adding-grid-nodes-to-add-capabilities.html"
   - title: Linee guida per aggiungere un nuovo sito
     url: "/expand/adding-new-site.html"
-- title: "${post_edited_translations.segment}"
+- title: Preparati all'espansione
   url: "/expand/gather-required-materials.html"
 - title: Aggiungi nodi della griglia o sito
   entries:
   - title: Riepilogo del flusso di lavoro
     url: "/expand/adding-grid-nodes-to-existing-site-or-adding-new-site.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Aggiungi o aggiorna le subnet alla Grid Network
     url: "/expand/updating-subnets-for-grid-network.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Distribuisci nuovi nodi della griglia
     url: "/expand/deploying-new-grid-nodes.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Esegui l'espansione
     url: "/expand/performing-expansion.html"
-- title: "${post_edited_translations.segment}"
+- title: Aggiungi volumi di archiviazione
   entries:
-  - title: "${post_edited_translations.segment}"
+  - title: Aggiungi volumi di archiviazione ai nodi di archiviazione
     url: "/expand/adding-storage-volumes-to-storage-nodes.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Aggiungi volumi di archiviazione per VMware
     url: "/expand/vmware-adding-storage-volumes-to-storage-node.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Aggiungi volumi collegati direttamente o SAN per Linux
     url: "/expand/linux-adding-direct-attached-or-san-volumes-to-storage-node.html"
 - title: Configura il sistema espanso
   entries:
-  - title: "${post_edited_translations.segment}"
+  - title: Configura i nodi e i siti appena aggiunti
     url: "/expand/configuring-expanded-storagegrid-system.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Verifica che i nodi di archiviazione siano attivi
     url: "/expand/verifying-storage-node-is-active.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Copia database Admin Node
     url: "/expand/copying-admin-node-database.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Copia metriche Prometheus
     url: "/expand/copying-prometheus-metrics.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Copia i registri di controllo
     url: "/expand/copying-audit-logs.html"
   - title: Ribilancia i dati codificati con cancellazione
     url: "/expand/rebalancing-erasure-coded-data-after-adding-storage-nodes.html"
-- title: "${post_edited_translations.segment}"
+- title: Risolvi i problemi di errori di espansione
   url: "/expand/contacting-technical-support.html"

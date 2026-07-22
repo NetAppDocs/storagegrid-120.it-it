@@ -16,7 +16,7 @@ Puoi riavviare un singolo nodo della griglia dalla scheda Attività nella pagina
 .Prima di iniziare
 * Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
 * Hai il link:../admin/admin-group-permissions.html["Permesso di manutenzione o di accesso root"].
-* ${post_edited_translations.segment}
+* Hai la passphrase di provisioning.
 * Se stai riavviando il nodo di amministrazione primario o qualsiasi Storage Node, hai preso in considerazione le seguenti considerazioni:
 +
 ** Quando riavvii il nodo di amministrazione primario, il tuo browser perde temporaneamente l'accesso al Grid Manager.

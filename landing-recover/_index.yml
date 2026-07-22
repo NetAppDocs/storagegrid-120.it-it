@@ -15,7 +15,7 @@ indexpage:
       url: "../maintain/warnings-and-considerations-for-grid-node-recovery.html"
     - title: Raccogli il materiale necessario
       url: "../maintain/gathering-required-materials-for-grid-node-recovery.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Recupera i nodi guasti
     links:
     - title: Avvertenze e considerazioni
       url: "../maintain/warnings-and-considerations-for-grid-node-recovery.html"
@@ -23,17 +23,17 @@ indexpage:
       url: "../maintain/recovering-from-storage-node-failures.html"
     - title: Nodi di amministrazione
       url: "../maintain/recovering-from-admin-node-failures.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Nodi gateway
       url: "../maintain/replacing-gateway-node.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Nodi di archivio
       url: "../maintain/recovering-from-archive-node-failures.html"
   - title: Sostituisci il nodo
     links:
-    - title: "${post_edited_translations.segment}"
+    - title: Sostituisci il nodo Linux
       url: "../maintain/all-node-types-replacing-linux-node.html"
     - title: Sostituisci il nodo VMware
       url: "../maintain/all-node-types-replacing-vmware-node.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Sostituisci il nodo Linux o VMware con un'appliance di servizi
       url: "../maintain/installing-services-appliance-platform-change-only.html"
     - title: Clona il nodo dell'appliance
       url: https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/how-appliance-node-cloning-works.html

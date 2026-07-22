@@ -21,7 +21,7 @@ Hai link:../swnodes/downloading-and-extracting-storagegrid-installation-files.ht
 +
 `tar -xf StorageGRID_12.0.0_Code_Signature_Verification_Package.tar.gz`
 
-. ${post_edited_translations.segment}
+. Assicurati che questi artefatti siano stati estratti:
 +
 ** Certificato foglia: `Leaf-Cert.pem`
 ** Catena di certificati: `CA-Int-Cert.pem`
@@ -45,7 +45,7 @@ Hai link:../swnodes/downloading-and-extracting-storagegrid-installation-files.ht
 +
 *L'output atteso include*: `Verification: OK`
 
-. ${post_edited_translations.segment}
+. Crea un file di chiave pubblica dal certificato foglia.
 +
 *Esempio*: `openssl x509 -pubkey -noout -in Leaf-Cert.pem > Leaf-Cert.pub`
 

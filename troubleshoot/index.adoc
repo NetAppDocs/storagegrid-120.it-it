@@ -373,21 +373,21 @@ Seleziona *Nodi* > *_Nodo di storage_* > *Oggetti*. Nella tabella Query, visuali
 
 
 [[analyze-data]]
-== ${post_edited_translations.segment}
+== Analizza i dati
 
-${post_edited_translations.segment}
+Utilizza le informazioni che raccogli per determinare la causa del problema e le possibili soluzioni.
 
 L'analisi dipende dal problema specifico, ma in generale:
 
-* ${post_edited_translations.segment}
-* ${post_edited_translations.segment}
-* ${post_edited_translations.segment}
+* Individua i punti di errore e i colli di bottiglia utilizzando gli avvisi.
+* Ricostruisci la cronologia del problema utilizzando la cronologia degli avvisi e i grafici.
+* Utilizza i grafici per individuare le anomalie e confronta la situazione problematica con il normale funzionamento.
 
 
 
 
 [[escalation-information-checklist]]
-== ${post_edited_translations.segment}
+== Lista di controllo delle informazioni per l'escalation
 
 Se non riesci a risolvere il problema autonomamente, contatta il supporto tecnico. Prima di contattare il supporto tecnico, raccogli le informazioni elencate nella tabella seguente per facilitare la risoluzione del problema.
 
@@ -408,19 +408,19 @@ Quali sono i sintomi del problema? Quando è iniziato il problema? Si verifica i
 
  a| 
  a| 
-${post_edited_translations.segment}
+Valutazione dell'impatto
  a| 
 Qual è la gravità del problema? Qual è l'impatto sull'applicazione client?
 
-* ${post_edited_translations.segment}
-* ${post_edited_translations.segment}
+* Il client si è già connesso correttamente prima?
+* Il client può acquisire, recuperare ed eliminare dati?
 
 
 
 
  a| 
  a| 
-${post_edited_translations.segment}
+ID del sistema StorageGRID
  a| 
 Seleziona *Manutenzione* > *Sistema* > *Licenza*. L'ID sistema StorageGRID viene visualizzato come parte della licenza corrente.
 
@@ -430,7 +430,7 @@ Seleziona *Manutenzione* > *Sistema* > *Licenza*. L'ID sistema StorageGRID viene
  a| 
 Versione software
  a| 
-${post_edited_translations.segment}
+Dalla parte superiore di Grid Manager, seleziona l'icona di aiuto e seleziona *Informazioni* per vedere la versione di StorageGRID.
 
 
 
@@ -452,7 +452,7 @@ File di registro e dati di sistema
  a| 
 Raccogli i file di log e i dati di sistema per il tuo sistema. Seleziona *Supporto* > *Strumenti* > *Raccolta log*.
 
-${post_edited_translations.segment}
+Puoi raccogliere i log per l'intera griglia o per nodi selezionati.
 
 Se stai raccogliendo i log solo per i nodi selezionati, assicurati di includere almeno un Storage Node che disponga del servizio ADC. I primi tre Storage Node installati in un sito includono il servizio ADC.
 
@@ -472,7 +472,7 @@ Raccogli informazioni di base sulle operazioni di acquisizione, sulle operazioni
  a| 
 Cronologia delle modifiche recenti
  a| 
-${post_edited_translations.segment}
+Crea una cronologia che riassuma le modifiche recenti al sistema o al suo ambiente.
 
 <<create_timeline,Crea una cronologia delle modifiche recenti>>
 
@@ -482,6 +482,6 @@ ${post_edited_translations.segment}
  a| 
 Storia degli sforzi per diagnosticare il problema
  a| 
-${post_edited_translations.segment}
+Se hai intrapreso delle azioni per diagnosticare o risolvere il problema autonomamente, assicurati di annotare i passaggi che hai seguito e il risultato.
 
 |===

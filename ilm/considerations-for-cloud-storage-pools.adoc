@@ -131,4 +131,4 @@ Quando configuri un account di archiviazione Azure, puoi impostare il livello di
 Non usare la gestione del ciclo di vita di Azure Blob storage per il container utilizzato con un Cloud Storage Pool. Le operazioni del ciclo di vita potrebbero interferire con le operazioni del Cloud Storage Pool.
 
 .Informazioni correlate
-link:creating-cloud-storage-pool.html["${post_edited_translations.segment}"]
+link:creating-cloud-storage-pool.html["Crea un pool di archiviazione cloud"]

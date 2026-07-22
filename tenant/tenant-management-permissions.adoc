@@ -16,10 +16,10 @@ Prima di creare un gruppo di tenant, considera quali autorizzazioni desideri ass
 Per accedere al Tenant Manager o per utilizzare l'API Tenant Management, gli utenti devono appartenere a un gruppo che dispone di almeno un'autorizzazione. Tutti gli utenti che possono accedere possono eseguire le seguenti attività:
 
 * Visualizza la dashboard
-* ${post_edited_translations.segment}
+* Cambiare la propria password (per gli utenti locali)
 
 
-${post_edited_translations.segment}
+Per tutte le autorizzazioni, l'impostazione della modalità di accesso del gruppo determina se puoi modificare le impostazioni ed eseguire operazioni oppure se puoi solo visualizzare le impostazioni e le funzionalità correlate.
 
 
 NOTE: Se un utente appartiene a più gruppi e uno qualsiasi di essi è impostato su Sola lettura, l'utente avrà accesso in sola lettura a tutte le impostazioni e funzionalità selezionate.
@@ -42,7 +42,7 @@ Fornisce accesso completo al Tenant Manager e al Tenant Management API.
  a| 
 Gestisci le tue credenziali S3
  a| 
-${post_edited_translations.segment}
+Consente agli utenti di creare e rimuovere le proprie chiavi di accesso S3.
  a| 
 Gli utenti che non dispongono di questa autorizzazione non vedono l'opzione di menu *STORAGE (S3)* > *My S3 access keys*.
 
@@ -60,9 +60,9 @@ Questa autorizzazione è sostituita dall'autorizzazione Manage all buckets. Non 
 
 
  a| 
-${post_edited_translations.segment}
+Gestisci tutti i bucket
  a| 
-${post_edited_translations.segment}
+Consente agli utenti di utilizzare il Tenant Manager e l'API di gestione del tenant per creare ed eliminare bucket S3 e per gestire le impostazioni di tutti i bucket S3 nell'account tenant, indipendentemente dalle policy del bucket S3 o dei gruppi.
  a| 
 Gli utenti che non dispongono dell'autorizzazione "Visualizza tutti i bucket" o "Gestisci tutti i bucket" non vedono l'opzione di menu *Bucket*.
 
@@ -82,7 +82,7 @@ Gli utenti che non dispongono di questa autorizzazione non vedono l'opzione di m
  a| 
 Usa la scheda Console S3
  a| 
-${post_edited_translations.segment}
+Se combinata con l'autorizzazione Visualizza tutti i bucket o Gestisci tutti i bucket, consente agli utenti di visualizzare e gestire gli oggetti dalla scheda S3 Console nella pagina dei dettagli di un bucket.
  a| 
 
 |===

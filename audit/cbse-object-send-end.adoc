@@ -28,11 +28,11 @@ L'identificativo univoco della sessione/connessione nodo-nodo.
 
 
  a| 
-${post_edited_translations.segment}
+CBID
  a| 
 Identificatore del blocco di contenuto
  a| 
-${post_edited_translations.segment}
+L'identificativo univoco del blocco di contenuto in fase di trasferimento.
 
 
 
@@ -50,7 +50,7 @@ PULL: L'operazione di trasferimento è stata richiesta dall'entità ricevente.
 
 
  a| 
-${post_edited_translations.segment}
+CTSR
  a| 
 Entità di origine
  a| 
@@ -59,7 +59,7 @@ L'ID del nodo sorgente (mittente) del trasferimento CBID.
 
 
  a| 
-${post_edited_translations.segment}
+CTDS
  a| 
 Entità di destinazione
  a| 
@@ -77,7 +77,7 @@ Indica il numero di sequenza da cui è iniziato il trasferimento.
 
 
  a| 
-${post_edited_translations.segment}
+CTAS
  a| 
 Conteggio effettivo della sequenza finale
  a| 
@@ -92,7 +92,7 @@ Risultato del trasferimento
  a| 
 Il risultato dell'operazione di trasferimento (dal punto di vista del soggetto mittente):
 
-${post_edited_translations.segment}
+SUCS: Trasferimento completato con successo; tutti i conteggi di sequenza richiesti sono stati inviati.
 
 CONL: connessione persa durante il trasferimento
 

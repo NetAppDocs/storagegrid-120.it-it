@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to download installation files 
 summary: Devi scaricare gli archivi di installazione di StorageGRID ed estrarre i file richiesti. Facoltativamente, puoi verificare manualmente i file presenti nel pacchetto di installazione. 
 ---
-= ${post_edited_translations.segment}
+= Scarica ed estrai i file di installazione di StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -22,7 +22,7 @@ Devi scaricare l'archivio di installazione di StorageGRID ed estrarre i file ric
 
 CAUTION: Devi applicare tutti gli hotfix richiesti dopo aver installato la release di StorageGRID. Per ulteriori informazioni, vedi la link:../maintain/storagegrid-hotfix-procedure.html["procedura di hotfix nelle istruzioni di recovery e manutenzione"]
 
-. ${post_edited_translations.segment}
+. Leggi il Contratto di licenza per l'utente finale, seleziona la casella di controllo e poi seleziona *Accetta e continua*.
 . Nella colonna *Installa StorageGRID*, seleziona l'archivio di installazione .tgz o .zip per il tuo tipo di nodo basato su software: RHEL, Ubuntu o Debian, oppure VMware.
 +
 
@@ -52,7 +52,7 @@ NOTE: I percorsi elencati nella tabella sono relativi alla directory di livello 
 --
 [cols="1a,1a"]
 |===
-| ${post_edited_translations.segment} | Descrizione 
+| Percorso e nome file | Descrizione 
 
 
 | ./rpms/README  a| 
@@ -61,12 +61,12 @@ Un file di testo che descrive tutti i file contenuti nel file di download di Sto
 
 
 | ./rpms/NLF000000.txt  a| 
-${post_edited_translations.segment}
+Una licenza gratuita che non prevede alcun diritto di supporto per il prodotto.
 
 
 
-| ${post_edited_translations.segment}  a| 
-${post_edited_translations.segment}
+| ./rpms/StorageGRID-Webscale-Images-_version_-SHA.rpm  a| 
+Pacchetto RPM per installare le immagini dei nodi StorageGRID sui tuoi host RHEL.
 
 
 
@@ -75,7 +75,7 @@ Pacchetto RPM per installare il servizio host StorageGRID sui tuoi host RHEL.
 
 
 
-| ${post_edited_translations.segment} | Descrizione 
+| Strumento di scripting per la distribuzione | Descrizione 
 
 
 | ./rpms/configure-storagegrid.py  a| 
@@ -83,8 +83,8 @@ Uno script Python utilizzato per automatizzare la configurazione di un sistema S
 
 
 
-| ${post_edited_translations.segment}  a| 
-${post_edited_translations.segment}
+| ./rpms/configure-sga.py  a| 
+Uno script Python utilizzato per automatizzare la configurazione delle appliance StorageGRID.
 
 
 
@@ -93,35 +93,35 @@ Un esempio di file di configurazione da utilizzare con lo script  `configure-sto
 
 
 
-| ${post_edited_translations.segment}  a| 
+| ./rpms/storagegrid-ssoauth.py  a| 
 Un esempio di script Python che puoi utilizzare per accedere all'API Grid Management quando il single sign-on è abilitato. Puoi utilizzare questo script anche per l'integrazione con Ping Federate.
 
 
 
-| ${post_edited_translations.segment}  a| 
+| ./rpms/configure-storagegrid.blank.json  a| 
 Un file di configurazione vuoto da utilizzare con lo  `configure-storagegrid.py` script.
 
 
 
-| ${post_edited_translations.segment}  a| 
+| ./rpms/extras/ansible  a| 
 Esempio di ruolo e playbook Ansible per la configurazione di host RHEL per il deployment di container StorageGRID. Puoi personalizzare il ruolo o il playbook se necessario.
 
 
 
 | ./rpms/storagegrid-ssoauth-azure.py  a| 
-${post_edited_translations.segment}
+Ecco un esempio di script Python che puoi utilizzare per accedere all'API di gestione della griglia quando il single sign-on (SSO) è abilitato tramite Active Directory o Ping Federate.
 
 
 
-| ${post_edited_translations.segment}  a| 
+| ./rpms/storagegrid-ssoauth-azure.js  a| 
 Uno script di supporto richiamato dallo script Python di accompagnamento `storagegrid-ssoauth-azure.py` per eseguire interazioni SSO con Azure.
 
 
 
 | ./rpms/extras/api-schemas  a| 
-${post_edited_translations.segment}
+Schemi API per StorageGRID.
 
-${post_edited_translations.segment}
+*Nota*: Prima di eseguire un aggiornamento, puoi usare questi schemi per confermare che qualsiasi codice tu abbia scritto per utilizzare le API di gestione di StorageGRID sarà compatibile con la nuova release di StorageGRID, se non hai un ambiente StorageGRID non di produzione per testare la compatibilità dell'aggiornamento.
 
 |===
 --
@@ -129,7 +129,7 @@ ${post_edited_translations.segment}
 --
 [cols="1a,1a"]
 |===
-| ${post_edited_translations.segment} | Descrizione 
+| Percorso e nome file | Descrizione 
 
 
 | ./debs/README  a| 
@@ -137,13 +137,13 @@ Un file di testo che descrive tutti i file contenuti nel file di download di Sto
 
 
 
-| ${post_edited_translations.segment}  a| 
+| ./debs/NLF000000.txt  a| 
 Un file di licenza NetApp non di produzione che puoi usare per test e proof of concept.
 
 
 
 | ./debs/storagegrid-webscale-images-version-SHA.deb  a| 
-${post_edited_translations.segment}
+Pacchetto DEB per installare le immagini dei nodi StorageGRID su host Ubuntu o Debian.
 
 
 
@@ -157,7 +157,7 @@ Pacchetto DEB per installare il servizio host StorageGRID su host Ubuntu o Debia
 
 
 
-| ${post_edited_translations.segment} | Descrizione 
+| Strumento di scripting per la distribuzione | Descrizione 
 
 
 | ./debs/configure-storagegrid.py  a| 
@@ -166,11 +166,11 @@ Uno script Python utilizzato per automatizzare la configurazione di un sistema S
 
 
 | ./debs/configure-sga.py  a| 
-${post_edited_translations.segment}
+Uno script Python utilizzato per automatizzare la configurazione delle appliance StorageGRID.
 
 
 
-| ${post_edited_translations.segment}  a| 
+| ./debs/storagegrid-ssoauth.py  a| 
 Un esempio di script Python che puoi utilizzare per accedere all'API Grid Management quando il single sign-on è abilitato. Puoi utilizzare questo script anche per l'integrazione con Ping Federate.
 
 
@@ -185,13 +185,13 @@ Un file di configurazione vuoto da utilizzare con lo  `configure-storagegrid.py`
 
 
 
-| ${post_edited_translations.segment}  a| 
+| ./debs/extras/ansible  a| 
 Esempio di ruolo e playbook Ansible per configurare host Ubuntu o Debian per la distribuzione di container StorageGRID. Puoi personalizzare il ruolo o il playbook come necessario.
 
 
 
 | ./debs/storagegrid-ssoauth-azure.py  a| 
-${post_edited_translations.segment}
+Ecco un esempio di script Python che puoi utilizzare per accedere all'API di gestione della griglia quando il single sign-on (SSO) è abilitato tramite Active Directory o Ping Federate.
 
 
 
@@ -200,10 +200,10 @@ Uno script di supporto richiamato dallo script Python di accompagnamento `storag
 
 
 
-| ${post_edited_translations.segment}  a| 
-${post_edited_translations.segment}
+| ./debs/extras/api-schemas  a| 
+Schemi API per StorageGRID.
 
-${post_edited_translations.segment}
+*Nota*: Prima di eseguire un aggiornamento, puoi usare questi schemi per confermare che qualsiasi codice tu abbia scritto per utilizzare le API di gestione di StorageGRID sarà compatibile con la nuova release di StorageGRID, se non hai un ambiente StorageGRID non di produzione per testare la compatibilità dell'aggiornamento.
 
 |===
 --
@@ -211,7 +211,7 @@ ${post_edited_translations.segment}
 --
 [cols="1a,1a"]
 |===
-| ${post_edited_translations.segment} | Descrizione 
+| Percorso e nome file | Descrizione 
 
 
 | ./vsphere/README  a| 
@@ -219,8 +219,8 @@ Un file di testo che descrive tutti i file contenuti nel file di download di Sto
 
 
 
-| ${post_edited_translations.segment}  a| 
-${post_edited_translations.segment}
+| ./vsphere/NLF000000.txt  a| 
+Una licenza gratuita che non prevede alcun diritto di supporto per il prodotto.
 
 
 
@@ -249,10 +249,10 @@ Il file template (`.ovf`) e il file manifest (`.mf`) per la distribuzione di Sto
 
 
 
-| ${post_edited_translations.segment} | Descrizione 
+| Strumento di scripting per la distribuzione | Descrizione 
 
 
-| ${post_edited_translations.segment}  a| 
+| ./vsphere/deploy-vsphere-ovftool.sh  a| 
 Uno script Bash utilizzato per automatizzare il deployment dei nodi della grid virtuale.
 
 
@@ -267,8 +267,8 @@ Uno script Python utilizzato per automatizzare la configurazione di un sistema S
 
 
 
-| ${post_edited_translations.segment}  a| 
-${post_edited_translations.segment}
+| ./vsphere/configure-sga.py  a| 
+Uno script Python utilizzato per automatizzare la configurazione delle appliance StorageGRID.
 
 
 
@@ -288,7 +288,7 @@ Un file di configurazione vuoto da utilizzare con lo  `configure-storagegrid.py`
 
 
 | ./vsphere/storagegrid-ssoauth-azure.py  a| 
-${post_edited_translations.segment}
+Ecco un esempio di script Python che puoi utilizzare per accedere all'API di gestione della griglia quando il single sign-on (SSO) è abilitato tramite Active Directory o Ping Federate.
 
 
 
@@ -298,9 +298,9 @@ Uno script di supporto richiamato dallo script Python di accompagnamento `storag
 
 
 | ./vsphere/extras/api-schemas  a| 
-${post_edited_translations.segment}
+Schemi API per StorageGRID.
 
-${post_edited_translations.segment}
+*Nota*: Prima di eseguire un aggiornamento, puoi usare questi schemi per confermare che qualsiasi codice tu abbia scritto per utilizzare le API di gestione di StorageGRID sarà compatibile con la nuova release di StorageGRID, se non hai un ambiente StorageGRID non di produzione per testare la compatibilità dell'aggiornamento.
 
 |===
 --

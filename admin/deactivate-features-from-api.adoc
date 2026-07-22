@@ -25,7 +25,7 @@ Company A può raggiungere questo obiettivo utilizzando il sistema Deactivate Fe
 .Passaggi
 . Accedi alla documentazione Swagger per l'API di gestione della griglia. Vedi link:using-grid-management-api.html["Usa l'API di gestione della griglia"].
 . Individua l'endpoint Disattiva funzionalità.
-. ${post_edited_translations.segment}
+. Per disattivare una funzionalità, come ad esempio "Cambia la password di root del tenant", invia un body all'API in questo modo:
 +
 `{ "grid": {"changeTenantRootPassword": true} }`
 
@@ -47,7 +47,7 @@ CAUTION: La funzionalità *activateFeatures* non può essere riattivata. Se deci
 .Passaggi
 . Accedi alla documentazione Swagger per l'API di gestione della griglia.
 . Individua l'endpoint Disattiva funzionalità.
-. ${post_edited_translations.segment}
+. Per riattivare tutte le funzionalità, invia un body all'API in questo modo:
 +
 `{ "grid": null }`
 

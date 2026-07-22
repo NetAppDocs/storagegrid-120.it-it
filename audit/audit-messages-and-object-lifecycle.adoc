@@ -36,6 +36,6 @@ CBID (identificativo interno dell'oggetto)
 
 
 [[timing-of-audit-messages]]
-== ${post_edited_translations.segment}
+== Tempistica dei messaggi di audit
 
 A causa di fattori quali le differenze di temporizzazione tra i nodi della griglia, le dimensioni degli oggetti e i ritardi di rete, l'ordine dei messaggi di audit generati dai diversi servizi può variare rispetto a quello mostrato negli esempi in questa sezione.

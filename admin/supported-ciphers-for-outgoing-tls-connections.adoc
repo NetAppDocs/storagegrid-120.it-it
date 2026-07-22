@@ -16,7 +16,7 @@ Il sistema StorageGRID supporta un set limitato di suite di cifratura per le con
 
 
 [[supported-versions-of-tls]]
-== ${post_edited_translations.segment}
+== Versioni supportate di TLS
 
 StorageGRID supporta TLS 1.2 e TLS 1.3 per le connessioni a sistemi esterni utilizzati per la federazione delle identità e Cloud Storage Pools.
 

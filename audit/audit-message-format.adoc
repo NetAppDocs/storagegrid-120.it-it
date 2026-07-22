@@ -2,7 +2,7 @@
 permalink: audit/audit-message-format.html 
 sidebar: sidebar 
 keywords: storagegrid, audit, message formats, message format 
-summary: ${post_edited_translations.segment} 
+summary: 'I messaggi di audit scambiati all"interno del sistema StorageGRID includono informazioni standard comuni a tutti i messaggi e contenuti specifici che descrivono l"evento o l"attività segnalata.' 
 ---
 = Scopri la struttura dei messaggi di audit di StorageGRID
 :allow-uri-read: 
@@ -11,11 +11,11 @@ summary: ${post_edited_translations.segment}
 
 
 [role="lead"]
-${post_edited_translations.segment}
+I messaggi di audit scambiati all'interno del sistema StorageGRID includono informazioni standard comuni a tutti i messaggi e contenuti specifici che descrivono l'evento o l'attività segnalata.
 
-Se le informazioni di riepilogo fornite dagli link:using-audit-explain-tool.html["audit-explain"] e link:using-audit-sum-tool.html["${post_edited_translations.segment}"] strumenti sono insufficienti, consulta questa sezione per capire il formato generale di tutti i messaggi di audit.
+Se le informazioni di riepilogo fornite dagli link:using-audit-explain-tool.html["audit-explain"] e link:using-audit-sum-tool.html["audit-sum"] strumenti sono insufficienti, consulta questa sezione per capire il formato generale di tutti i messaggi di audit.
 
-${post_edited_translations.segment}
+Di seguito è riportato un esempio di messaggio di controllo, così come potrebbe apparire nel file di log di audit:
 
 [listing]
 ----
@@ -30,7 +30,7 @@ Ogni messaggio di audit contiene una stringa di elementi attributo. L'intera str
 * Terminato da un carattere di avanzamento riga `\n`
 
 
-${post_edited_translations.segment}
+Ciascun elemento include un codice attributo, un tipo di dati e un valore che sono riportati in questo formato:
 
 [listing]
 ----

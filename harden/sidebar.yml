@@ -7,7 +7,7 @@ entries:
   url: "/harden/index.html"
 - title: Linee guida per il rafforzamento della sicurezza durante gli aggiornamenti
   url: "/harden/hardening-guidelines-for-software-upgrades.html"
-- title: "${post_edited_translations.segment}"
+- title: Linee guida per l'hardening delle reti
   url: "/harden/hardening-guidelines-for-storagegrid-networks.html"
 - title: Linee guida per la protezione dei nodi
   url: "/harden/hardening-guidelines-for-storagegrid-nodes.html"

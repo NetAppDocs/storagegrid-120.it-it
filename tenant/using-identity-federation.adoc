@@ -94,19 +94,19 @@ NOTE: Se in futuro cambierai la password, dovrai aggiornarla su questa pagina.
 ** *DN di base del gruppo*: il full path del nome distinto (DN) per un sottoalbero LDAP in cui vuoi cercare i gruppi. Nell'esempio di Active Directory (sotto), tutti i gruppi il cui nome distinto è relativo al DN di base (DC=storagegrid,DC=example,DC=com) possono essere usati come gruppi federati.
 +
 
-NOTE: ${post_edited_translations.segment}
+NOTE: I valori del *Nome univoco del gruppo* devono essere univoci all'interno del *DN di base del gruppo* a cui appartengono.
 
 ** *DN della base utente*: Il full path del nome distinto (DN) di un sottoalbero LDAP in cui vuoi cercare gli utenti.
 +
 
 NOTE: I valori del *nome univoco utente* devono essere univoci all'interno del *User Base DN* a cui appartengono.
 
-** ${post_edited_translations.segment}
+** *Formato del nome utente di associazione* (facoltativo): il modello di nome utente predefinito che StorageGRID dovrebbe utilizzare se il modello non può essere determinato automaticamente.
 +
-${post_edited_translations.segment}
+Si consiglia di fornire il formato del nome utente di bind perché può permettere agli utenti di accedere se StorageGRID non riesce a effettuare il bind con l'account di servizio.
 
 +
-${post_edited_translations.segment}
+Inserisci uno di questi modelli:
 
 +
 *** *UserPrincipalName pattern (AD e Entra ID)*: `[USERNAME]@_example_.com`
@@ -179,13 +179,13 @@ Il sistema StorageGRID sincronizza periodicamente gruppi e utenti federati dalla
 
 .Passaggi
 . Vai alla pagina di federazione delle identità.
-. ${post_edited_translations.segment}
+. Seleziona *Sync server* nella parte superiore della pagina.
 +
 Il processo di sincronizzazione potrebbe richiedere del tempo a seconda dell'ambiente.
 
 +
 
-NOTE: ${post_edited_translations.segment}
+NOTE: L'avviso *Errore di sincronizzazione della federazione delle identità* viene attivato se si verifica un problema di sincronizzazione tra gruppi e utenti federati dall'origine delle identità.
 
 
 
@@ -201,8 +201,8 @@ Prima di disabilitare la federazione delle identità, dovresti tenere presente q
 
 * Gli utenti federati non potranno accedere.
 * Gli utenti federati attualmente connessi manterranno l'accesso al sistema StorageGRID fino alla scadenza della loro sessione, ma non potranno accedere dopo la scadenza della sessione.
-* ${post_edited_translations.segment}
-* La casella di controllo *Abilita federazione delle identità* è disabilitata se lo stato del single sign-on (SSO) è *Abilitato* o *Modalità Sandbox*. Lo stato SSO nella pagina Single Sign-on deve essere *Disabilitato* prima di poter disabilitare la federazione delle identità. Vedi link:../admin/disabling-single-sign-on.html["${post_edited_translations.segment}"].
+* La sincronizzazione tra il sistema StorageGRID e la fonte di identità non avverrà e non verranno generati avvisi per gli account che non sono stati sincronizzati.
+* La casella di controllo *Abilita federazione delle identità* è disabilitata se lo stato del single sign-on (SSO) è *Abilitato* o *Modalità Sandbox*. Lo stato SSO nella pagina Single Sign-on deve essere *Disabilitato* prima di poter disabilitare la federazione delle identità. Vedi link:../admin/disabling-single-sign-on.html["Disattiva single sign-on"].
 
 
 .Passaggi
@@ -232,7 +232,7 @@ Le sovrapposizioni memberof e refint devono essere abilitate. Per ulteriori info
 [[indexing]]
 === Indicizzazione
 
-${post_edited_translations.segment}
+Devi configurare i seguenti attributi OpenLDAP con le parole chiave di indice specificate:
 
 * `olcDbIndex: objectClass eq`
 * `olcDbIndex: uid eq,pres,sub`

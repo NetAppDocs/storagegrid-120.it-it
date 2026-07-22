@@ -18,7 +18,7 @@ Non tutti i messaggi di controllo generati durante una transazione di eliminazio
 
 
 [[s3-delete-audit-messages]]
-== ${post_edited_translations.segment}
+== Messaggi di audit di eliminazione S3
 
 [cols="1a,1a,2a,1a,2a"]
 |===
@@ -26,11 +26,11 @@ Non tutti i messaggi di controllo generati durante una transazione di eliminazio
 
 
  a| 
-${post_edited_translations.segment}
+SDEL
  a| 
 Eliminazione S3
  a| 
-${post_edited_translations.segment}
+Richiesta fatta per eliminare l'oggetto da un bucket.
  a| 
 CBID, S3KY
  a| 

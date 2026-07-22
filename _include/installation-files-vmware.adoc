@@ -4,7 +4,7 @@
 
 [cols="1a,1a"]
 |===
-| ${post_edited_translations.segment} | Descrizione 
+| Percorso e nome file | Descrizione 
 
 
 | ./vsphere/README  a| 
@@ -12,8 +12,8 @@ Un file di testo che descrive tutti i file contenuti nel file di download di Sto
 
 
 
-| ${post_edited_translations.segment}  a| 
-${post_edited_translations.segment}
+| ./vsphere/NLF000000.txt  a| 
+Una licenza gratuita che non prevede alcun diritto di supporto per il prodotto.
 
 
 
@@ -42,10 +42,10 @@ Il file template (`.ovf`) e il file manifest (`.mf`) per la distribuzione di Sto
 
 
 
-| ${post_edited_translations.segment} | Descrizione 
+| Strumento di scripting per la distribuzione | Descrizione 
 
 
-| ${post_edited_translations.segment}  a| 
+| ./vsphere/deploy-vsphere-ovftool.sh  a| 
 Uno script Bash utilizzato per automatizzare il deployment dei nodi della grid virtuale.
 
 
@@ -60,8 +60,8 @@ Uno script Python utilizzato per automatizzare la configurazione di un sistema S
 
 
 
-| ${post_edited_translations.segment}  a| 
-${post_edited_translations.segment}
+| ./vsphere/configure-sga.py  a| 
+Uno script Python utilizzato per automatizzare la configurazione delle appliance StorageGRID.
 
 
 
@@ -81,7 +81,7 @@ Un file di configurazione vuoto da utilizzare con lo  `configure-storagegrid.py`
 
 
 | ./vsphere/storagegrid-ssoauth-azure.py  a| 
-${post_edited_translations.segment}
+Ecco un esempio di script Python che puoi utilizzare per accedere all'API di gestione della griglia quando il single sign-on (SSO) è abilitato tramite Active Directory o Ping Federate.
 
 
 
@@ -91,8 +91,8 @@ Uno script di supporto richiamato dallo script Python di accompagnamento `storag
 
 
 | ./vsphere/extras/api-schemas  a| 
-${post_edited_translations.segment}
+Schemi API per StorageGRID.
 
-${post_edited_translations.segment}
+*Nota*: Prima di eseguire un aggiornamento, puoi usare questi schemi per confermare che qualsiasi codice tu abbia scritto per utilizzare le API di gestione di StorageGRID sarà compatibile con la nuova release di StorageGRID, se non hai un ambiente StorageGRID non di produzione per testare la compatibilità dell'aggiornamento.
 
 |===

@@ -61,7 +61,7 @@ StorageGRID supporta tutte <<common-params,parametri e intestazioni comuni>> per
 .Corpo della richiesta
 Nessuno
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:operations-for-multipart-uploads.html["Operazioni per caricamenti multipart"]
 
 
@@ -86,7 +86,7 @@ StorageGRID supporta questi tag XML per il corpo della richiesta:
 * `PartNumber`
 
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:complete-multipart-upload.html["CompleteMultipartUpload"]
 
 
@@ -122,7 +122,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 Nessuno
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:put-object-copy.html["CopyObject"]
 
 
@@ -139,7 +139,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 StorageGRID supporta tutti i parametri del corpo della richiesta definiti dall'API REST di Amazon S3 al momento dell'implementazione.
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:operations-on-buckets.html["Operazioni sui bucket"]
 
 
@@ -171,7 +171,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 Nessuno
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:initiate-multipart-upload.html["CreateMultipartUpload"]
 
 
@@ -182,7 +182,7 @@ link:initiate-multipart-upload.html["CreateMultipartUpload"]
 .Parametri di query URI e intestazioni di richiesta
 StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> per questa richiesta.
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:operations-on-buckets.html["Operazioni sui bucket"]
 
 
@@ -196,7 +196,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 Nessuno
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:operations-on-buckets.html["Operazioni sui bucket"]
 
 
@@ -210,7 +210,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 Nessuno
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:operations-on-buckets.html["Operazioni sui bucket"]
 
 
@@ -224,7 +224,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 Nessuno
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 * link:operations-on-buckets.html["Operazioni sui bucket"]
 * link:create-s3-lifecycle-configuration.html["Crea configurazione del ciclo di vita S3"]
 
@@ -240,7 +240,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 Nessuno
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:operations-on-buckets.html["Operazioni sui bucket"]
 
 
@@ -254,7 +254,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 Nessuno
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:operations-on-buckets.html["Operazioni sui bucket"]
 
 
@@ -268,7 +268,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 Nessuno
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:operations-on-buckets.html["Operazioni sui bucket"]
 
 
@@ -285,7 +285,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 Nessuno
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:operations-on-objects.html["Operazioni sugli oggetti"]
 
 
@@ -302,7 +302,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 StorageGRID supporta tutti i parametri del corpo della richiesta definiti dall'API REST di Amazon S3 al momento dell'implementazione.
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:operations-on-objects.html["Operazioni sugli oggetti"]
 
 
@@ -315,7 +315,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 Nessuno
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:operations-on-objects.html["Operazioni sugli oggetti"]
 
 
@@ -329,7 +329,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 Nessuno
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:operations-on-buckets.html["Operazioni sui bucket"]
 
 
@@ -343,7 +343,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 Nessuno
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:operations-on-buckets.html["Operazioni sui bucket"]
 
 
@@ -357,7 +357,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 Nessuno
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:operations-on-buckets.html["Operazioni sui bucket"]
 
 
@@ -371,7 +371,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 Nessuno
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 * link:operations-on-buckets.html["Operazioni sui bucket"]
 * link:create-s3-lifecycle-configuration.html["Crea configurazione del ciclo di vita S3"]
 
@@ -387,7 +387,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 Nessuno
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:operations-on-buckets.html["Operazioni sui bucket"]
 
 
@@ -401,7 +401,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 Nessuno
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:operations-on-buckets.html["Operazioni sui bucket"]
 
 
@@ -415,7 +415,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 Nessuno
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:operations-on-buckets.html["Operazioni sui bucket"]
 
 
@@ -429,7 +429,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 Nessuno
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:operations-on-buckets.html["Operazioni sui bucket"]
 
 
@@ -443,7 +443,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 Nessuno
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:operations-on-buckets.html["Operazioni sui bucket"]
 
 
@@ -457,7 +457,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 Nessuno
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:operations-on-buckets.html["Operazioni sui bucket"]
 
 
@@ -493,7 +493,7 @@ E queste intestazioni di richiesta aggiuntive:
 .Corpo della richiesta
 Nessuno
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:get-object.html["GetObject"]
 
 
@@ -507,7 +507,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 Nessuno
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:operations-on-objects.html["Operazioni sugli oggetti"]
 
 
@@ -521,7 +521,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 Nessuno
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:../s3/use-s3-api-for-s3-object-lock.html["Utilizza l'API REST S3 per configurare S3 Object Lock"]
 
 
@@ -535,7 +535,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 Nessuno
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:../s3/use-s3-api-for-s3-object-lock.html["Utilizza l'API REST S3 per configurare S3 Object Lock"]
 
 
@@ -549,7 +549,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 Nessuno
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:../s3/use-s3-api-for-s3-object-lock.html["Utilizza l'API REST S3 per configurare S3 Object Lock"]
 
 
@@ -563,7 +563,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 Nessuno
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:operations-on-objects.html["Operazioni sugli oggetti"]
 
 
@@ -577,7 +577,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 Nessuno
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:operations-on-buckets.html["Operazioni sui bucket"]
 
 
@@ -602,7 +602,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 Nessuno
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:head-object.html["HeadObject"]
 
 
@@ -616,7 +616,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 Nessuno
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:operations-on-the-service.html["Operazioni sul servizio > ListBuckets"]
 
 
@@ -637,7 +637,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 Nessuno
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:list-multipart-uploads.html["ListMultipartUploads"]
 
 
@@ -658,7 +658,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 Nessuno
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:operations-on-buckets.html["Operazioni sui bucket"]
 
 
@@ -681,7 +681,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 Nessuno
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:operations-on-buckets.html["Operazioni sui bucket"]
 
 
@@ -703,7 +703,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 Nessuno
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:operations-on-buckets.html["Operazioni sui bucket"]
 
 
@@ -722,7 +722,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 Nessuno
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:list-multipart-uploads.html["ListMultipartUploads"]
 
 
@@ -736,7 +736,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 StorageGRID supporta tutti i parametri del corpo della richiesta definiti dall'API REST di Amazon S3 al momento dell'implementazione.
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:operations-on-buckets.html["Operazioni sui bucket"]
 
 
@@ -756,7 +756,7 @@ StorageGRID supporta questi tag XML per il corpo della richiesta:
 * `SSEAlgorithm`
 
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:operations-on-buckets.html["Operazioni sui bucket"]
 
 
@@ -788,7 +788,7 @@ StorageGRID supporta questi tag XML per il corpo della richiesta:
 * `Value`
 
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 * link:operations-on-buckets.html["Operazioni sui bucket"]
 * link:create-s3-lifecycle-configuration.html["Crea configurazione del ciclo di vita S3"]
 
@@ -818,7 +818,7 @@ StorageGRID supporta questi tag XML per il corpo della richiesta:
 * `Value`
 
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:operations-on-buckets.html["Operazioni sui bucket"]
 
 
@@ -850,7 +850,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 * `StorageClass`
 
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:operations-on-buckets.html["Operazioni sui bucket"]
 
 
@@ -864,7 +864,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 StorageGRID supporta tutti i parametri del corpo della richiesta definiti dall'API REST di Amazon S3 al momento dell'implementazione.
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:operations-on-buckets.html["Operazioni sui bucket"]
 
 
@@ -882,7 +882,7 @@ StorageGRID supporta questi parametri del corpo della richiesta:
 * `Status`
 
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:operations-on-buckets.html["Operazioni sui bucket"]
 
 
@@ -915,7 +915,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 * Dati binari dell'oggetto
 
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:put-object.html["PutObject"]
 
 
@@ -929,7 +929,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 StorageGRID supporta tutti i parametri del corpo della richiesta definiti dall'API REST di Amazon S3 al momento dell'implementazione.
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:use-s3-api-for-s3-object-lock.html["Utilizza l'API REST S3 per configurare S3 Object Lock"]
 
 
@@ -943,7 +943,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 StorageGRID supporta tutti i parametri del corpo della richiesta definiti dall'API REST di Amazon S3 al momento dell'implementazione.
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:use-s3-api-for-s3-object-lock.html["Utilizza l'API REST S3 per configurare S3 Object Lock"]
 
 
@@ -960,7 +960,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 StorageGRID supporta tutti i parametri del corpo della richiesta definiti dall'API REST di Amazon S3 al momento dell'implementazione.
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:use-s3-api-for-s3-object-lock.html["Utilizza l'API REST S3 per configurare S3 Object Lock"]
 
 
@@ -974,7 +974,7 @@ StorageGRID supporta tutte le <<common-params,parametri e intestazioni comuni>> 
 .Corpo della richiesta
 StorageGRID supporta tutti i parametri del corpo della richiesta definiti dall'API REST di Amazon S3 al momento dell'implementazione.
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:operations-on-objects.html["Operazioni sugli oggetti"]
 
 
@@ -1027,7 +1027,7 @@ E queste intestazioni di richiesta aggiuntive:
 * Dati binari della parte
 
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:upload-part.html["UploadPart"]
 
 
@@ -1061,5 +1061,5 @@ E queste intestazioni di richiesta aggiuntive:
 .Corpo della richiesta
 Nessuno
 
-.${post_edited_translations.segment}
+.Documentazione di StorageGRID
 link:upload-part-copy.html["UploadPartCopy"]

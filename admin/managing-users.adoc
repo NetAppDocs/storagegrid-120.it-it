@@ -48,7 +48,7 @@ NOTE: Se single sign-on (SSO) è abilitato, gli utenti locali non possono accede
 === Inserisci le credenziali utente
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Inserisci il nome completo dell'utente, un nome utente univoco e una password.
 . Facoltativamente, seleziona *Sì* se questo utente non deve avere accesso a Grid Manager o Grid Management API.
 . Seleziona *Continue*.
 
@@ -64,7 +64,7 @@ NOTE: Se single sign-on (SSO) è abilitato, gli utenti locali non possono accede
 Se non hai ancora creato gruppi, puoi salvare l'utente senza selezionare gruppi. Puoi aggiungere questo utente a un gruppo nella pagina Gruppi.
 
 +
-Se un utente appartiene a più gruppi, le autorizzazioni sono cumulative. Vedi link:managing-admin-groups.html["${post_edited_translations.segment}"] per i dettagli.
+Se un utente appartiene a più gruppi, le autorizzazioni sono cumulative. Vedi link:managing-admin-groups.html["Gestisci i gruppi di amministratori"] per i dettagli.
 
 . Seleziona *Crea utente* e seleziona *Fine*.
 
@@ -81,7 +81,7 @@ Puoi modificare solo gli utenti locali. Usa l'origine dell'identità esterna per
 * Per visualizzare le informazioni di base relative a tutti gli utenti locali e federati, consulta la tabella nella pagina Utenti.
 * Per visualizzare tutti i dettagli di un utente specifico, modificare un utente locale o cambiare la password di un utente locale, usa il menu *Azioni* o la pagina dei dettagli.
 +
-${post_edited_translations.segment}
+Le modifiche vengono applicate la prossima volta che esci e poi accedi di nuovo a Grid Manager.
 
 +
 
@@ -97,7 +97,7 @@ NOTE: Gli utenti locali possono cambiare la propria password usando l'opzione *C
 Visualizza i dettagli dell'utente
  a| 
 .. Seleziona la casella di controllo per l'utente.
-.. ${post_edited_translations.segment}
+.. Seleziona *Azioni* > *Visualizza dettagli utente*.
 
  a| 
 Seleziona il nome dell'utente nella tabella.
@@ -108,14 +108,14 @@ Seleziona il nome dell'utente nella tabella.
 Modifica il nome completo (solo per utenti locali)
  a| 
 .. Seleziona la casella di controllo per l'utente.
-.. ${post_edited_translations.segment}
-.. ${post_edited_translations.segment}
+.. Seleziona *Azioni* > *Modifica nome completo*.
+.. Inserisci il nuovo nome.
 .. Seleziona *Salva modifiche*.
 
  a| 
-.. ${post_edited_translations.segment}
+.. Seleziona il nome dell'utente per visualizzarne i dettagli.
 .. Seleziona l'icona di modifica image:icon_edit_tm.png["Icona di modifica"].
-.. ${post_edited_translations.segment}
+.. Inserisci il nuovo nome.
 .. Seleziona *Salva modifiche*.
 
 
@@ -125,13 +125,13 @@ Modifica il nome completo (solo per utenti locali)
 Negare o consentire l'accesso a StorageGRID
  a| 
 .. Seleziona la casella di controllo per l'utente.
-.. ${post_edited_translations.segment}
+.. Seleziona *Azioni* > *Visualizza dettagli utente*.
 .. Seleziona la scheda Access.
 .. Seleziona *Sì* per impedire all'utente di accedere a Grid Manager o alla Grid Management API, oppure seleziona *No* per consentire all'utente di accedere.
 .. Seleziona *Salva modifiche*.
 
  a| 
-.. ${post_edited_translations.segment}
+.. Seleziona il nome dell'utente per visualizzarne i dettagli.
 .. Seleziona la scheda Access.
 .. Seleziona *Sì* per impedire all'utente di accedere a Grid Manager o alla Grid Management API, oppure seleziona *No* per consentire all'utente di accedere.
 .. Seleziona *Salva modifiche*.
@@ -140,17 +140,17 @@ Negare o consentire l'accesso a StorageGRID
 
 
  a| 
-${post_edited_translations.segment}
+Cambia password (solo per utenti locali)
  a| 
 .. Seleziona la casella di controllo per l'utente.
-.. ${post_edited_translations.segment}
-.. ${post_edited_translations.segment}
+.. Seleziona *Azioni* > *Visualizza dettagli utente*.
+.. Seleziona la scheda Password.
 .. Inserisci una nuova password.
 .. Seleziona *Cambia password*.
 
  a| 
-.. ${post_edited_translations.segment}
-.. ${post_edited_translations.segment}
+.. Seleziona il nome dell'utente per visualizzarne i dettagli.
+.. Seleziona la scheda Password.
 .. Inserisci una nuova password.
 .. Seleziona *Cambia password*.
 
@@ -158,17 +158,17 @@ ${post_edited_translations.segment}
 
 
  a| 
-${post_edited_translations.segment}
+Cambia gruppi (solo utenti locali)
  a| 
 .. Seleziona la casella di controllo per l'utente.
-.. ${post_edited_translations.segment}
+.. Seleziona *Azioni* > *Visualizza dettagli utente*.
 .. Seleziona la scheda Gruppi.
 .. Facoltativamente, seleziona il link accanto al nome di un gruppo per visualizzarne i dettagli in una nuova scheda del browser.
 .. Seleziona *Modifica gruppi* per selezionare gruppi diversi.
 .. Seleziona *Salva modifiche*.
 
  a| 
-.. ${post_edited_translations.segment}
+.. Seleziona il nome dell'utente per visualizzarne i dettagli.
 .. Seleziona la scheda Gruppi.
 .. Facoltativamente, seleziona il link accanto al nome di un gruppo per visualizzarne i dettagli in una nuova scheda del browser.
 .. Seleziona *Modifica gruppi* per selezionare gruppi diversi.
@@ -197,12 +197,12 @@ Per inserire più voci, aggiungi ogni UUID o nome utente su una nuova riga.
 Se l'importazione nel campo Utenti non riesce per uno o più utenti, procedi come segue:
 
 +
-.. ${post_edited_translations.segment}
-.. ${post_edited_translations.segment}
+.. Espandi *Utenti non importati* e seleziona *Copia utenti*.
+.. Riprova l'importazione selezionando *Precedente* e incollando gli utenti copiati nella finestra di dialogo *Importa utenti federati*.
 
 
 +
-${post_edited_translations.segment}
+Dopo che chiudi la finestra di dialogo *Importa utenti federati*, le informazioni sugli utenti federati vengono visualizzate nella pagina Utenti per gli utenti importati correttamente.
 
 
 
@@ -215,8 +215,8 @@ Puoi duplicare un utente esistente per creare un nuovo utente con le stesse auto
 
 .Passaggi
 . Seleziona la casella di controllo per l'utente.
-. ${post_edited_translations.segment}
-. ${post_edited_translations.segment}
+. Seleziona *Azioni* > *Duplica utente*.
+. Completa la procedura guidata Duplicate user.
 
 
 

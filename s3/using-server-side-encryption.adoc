@@ -18,7 +18,7 @@ Se vuoi usare la crittografia lato server, puoi scegliere una delle due opzioni 
 * *SSE (crittografia lato server con chiavi gestite da StorageGRID)*: Quando invii una richiesta S3 per archiviare un oggetto, StorageGRID crittografa l'oggetto con una chiave univoca. Quando invii una richiesta S3 per recuperare l'oggetto, StorageGRID utilizza la chiave archiviata per decrittare l'oggetto.
 * *SSE-C (crittografia lato server con chiavi fornite dal cliente)*: Quando invii una richiesta S3 per archiviare un oggetto, fornisci la tua chiave di crittografia. Quando recuperi un oggetto, fornisci la stessa chiave di crittografia come parte della tua richiesta. Se le due chiavi di crittografia corrispondono, l'oggetto viene decrittografato e i dati dell'oggetto ti vengono restituiti.
 +
-${post_edited_translations.segment}
+Sebbene StorageGRID gestisca tutte le operazioni di crittografia e decrittografia degli oggetti, devi gestire tu le chiavi di crittografia che fornisci.
 
 +
 
@@ -49,7 +49,7 @@ L'intestazione della richiesta SSE è supportata dalle seguenti operazioni sugli
 
 
 [[use-sse-c]]
-== ${post_edited_translations.segment}
+== Usa SSE-C
 
 Per crittografare un oggetto con una chiave univoca che gestisci tu, usi tre intestazioni di richiesta:
 
@@ -78,7 +78,7 @@ Specifica la chiave di crittografia che verrà utilizzata per crittografare o de
 Specifica il digest MD5 della chiave di crittografia in conformità con lo standard RFC 1321, utilizzato per garantire che la chiave di crittografia sia stata trasmessa senza errori. Il valore del digest MD5 deve essere codificato in base64 a 128 bit.
 
 |===
-${post_edited_translations.segment}
+Le intestazioni di richiesta SSE-C sono supportate dalle seguenti operazioni sugli oggetti:
 
 * link:get-object.html["GetObject"]
 * link:head-object.html["HeadObject"]
@@ -94,17 +94,17 @@ ${post_edited_translations.segment}
 [[considerations-for-using-server-side-encryption-with-customer-provided-keys-sse-c]]
 == Considerazioni sull'utilizzo della crittografia lato server con chiavi fornite dal cliente (SSE-C)
 
-${post_edited_translations.segment}
+Prima di utilizzare SSE-C, tieni presente quanto segue:
 
-* ${post_edited_translations.segment}
+* Devi usare https.
 +
 
 CAUTION: StorageGRID rifiuta qualsiasi richiesta effettuata tramite http quando si utilizza SSE-C. Per considerazioni sulla sicurezza, dovresti considerare compromessa qualsiasi chiave inviata accidentalmente tramite http. Scarta la chiave e ruotala come opportuno.
 
-* ${post_edited_translations.segment}
+* L'ETag nella risposta non è l'MD5 dei dati dell'oggetto.
 * Devi gestire la mappatura delle chiavi di crittografia agli oggetti. StorageGRID non memorizza le chiavi di crittografia. Sei tu a dover tenere traccia della chiave di crittografia che fornisci per ogni oggetto.
 * Se il tuo bucket è abilitato al controllo delle versioni, ogni versione dell'oggetto dovrebbe avere la propria chiave di crittografia. Sei responsabile del tracciamento della chiave di crittografia utilizzata per ciascuna versione dell'oggetto.
-* ${post_edited_translations.segment}
+* Poiché gestisci le chiavi di crittografia lato client, devi anche gestire eventuali misure di sicurezza aggiuntive, come la rotazione delle chiavi, sempre lato client.
 +
 
 CAUTION: Le chiavi di crittografia che fornisci non vengono mai memorizzate. Se perdi una chiave di crittografia, perdi l'oggetto corrispondente.

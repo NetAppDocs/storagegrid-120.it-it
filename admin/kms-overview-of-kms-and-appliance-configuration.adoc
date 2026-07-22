@@ -15,20 +15,20 @@ Prima di poter utilizzare un key management server (KMS) per proteggere i dati S
 
 Il diagramma di flusso mostra i passaggi high-level per utilizzare un KMS per proteggere i dati di StorageGRID sui nodi dell'appliance.
 
-image:kms_configuration_overview.png["${post_edited_translations.segment}"]
+image:kms_configuration_overview.png["Flusso di lavoro di configurazione KMS, descritto nel testo seguente"]
 
-${post_edited_translations.segment}
+Il diagramma di flusso mostra che la configurazione di KMS e quella dell'appliance avvengono in parallelo; tuttavia, puoi configurare i server di gestione delle chiavi prima o dopo aver abilitato la crittografia dei nodi per i nuovi nodi dell'appliance, in base alle tue esigenze.
 
 
 
 [[set-up-the-key-management-server-kms]]
-== ${post_edited_translations.segment}
+== Configura il server di gestione delle chiavi (KMS)
 
-${post_edited_translations.segment}
+La configurazione di un server di gestione delle chiavi include i seguenti high-level passaggi.
 
 [cols="1a,1a"]
 |===
-| Passaggio | ${post_edited_translations.segment} 
+| Passaggio | Consulta 
 
 
  a| 
@@ -46,7 +46,7 @@ link:kms-configuring-storagegrid-as-client.html["Configura StorageGRID come clie
 
 
  a| 
-${post_edited_translations.segment}
+Aggiungi il KMS al Grid Manager, assegnalo a un singolo sito o a un gruppo predefinito di siti, carica i certificati necessari e salva la configurazione del KMS.
  a| 
 link:kms-adding.html["Aggiungi un server di gestione delle chiavi (KMS)"]
 
@@ -77,7 +77,7 @@ Vedi https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/optional
 
 
 [[key-management-encryption-process-occurs-automatically]]
-== ${post_edited_translations.segment}
+== Processo di crittografia della gestione delle chiavi (avviene automaticamente)
 
 La crittografia con gestione delle chiavi include i seguenti high-level passaggi che vengono eseguiti automaticamente.
 
@@ -87,7 +87,7 @@ La crittografia con gestione delle chiavi include i seguenti high-level passaggi
 ** Se per il sito non è ancora stato configurato un KMS, i dati sull'appliance continuano a essere crittografati tramite la KEK temporanea finché non configuri un KMS per il sito e l'appliance riceve la configurazione del KMS.
 
 
-. ${post_edited_translations.segment}
+. Il dispositivo utilizza la configurazione KMS per connettersi al KMS e richiedere una chiave di crittografia.
 . Il KMS invia una chiave di crittografia all'appliance. La nuova chiave del KMS sostituisce la KEK temporanea e viene ora utilizzata per crittografare e decrittografare le DEK per i volumi dell'appliance.
 +
 

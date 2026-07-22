@@ -1,28 +1,28 @@
 ---
 section: audit
-title: "${post_edited_translations.segment}"
+title: Esamina i registri di controllo
 entries:
-- title: "${post_edited_translations.segment}"
-  pdf-filename: "${post_edited_translations.segment}"
+- title: Messaggi e registri di controllo
+  pdf-filename: Esamina i registri di controllo di StorageGRID
   url: "/audit/index.html"
-- title: "${post_edited_translations.segment}"
+- title: Flusso e conservazione dei messaggi di audit
   url: "/audit/audit-message-flow-and-retention.html"
 - title: Accedi al file di log
   url: "/audit/accessing-audit-log-file.html"
-- title: "${post_edited_translations.segment}"
+- title: Rotazione dei file di log di audit
   url: "/audit/audit-log-file-rotation.html"
 - title: Formato del file di log di audit
   entries:
   - title: Esempio di formato del registro di controllo
     pdf-filename: Formato del file di log di audit
     url: "/audit/audit-log-file-format.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Usa lo strumento audit-explain
     url: "/audit/using-audit-explain-tool.html"
   - title: Usa lo strumento audit-sum
     url: "/audit/using-audit-sum-tool.html"
 - title: Formato del messaggio di audit
   entries:
-  - title: "${post_edited_translations.segment}"
+  - title: Esempio di messaggio di audit
     pdf-filename: Formato del messaggio di audit
     url: "/audit/audit-message-format.html"
   - title: Tipi di dati
@@ -31,7 +31,7 @@ entries:
     url: "/audit/event-specific-data.html"
   - title: Elementi comuni nei messaggi di audit
     url: "/audit/common-elements-in-audit-messages.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Esempi di messaggi di audit
     url: "/audit/audit-message-examples.html"
 - title: Messaggi di controllo e ciclo di vita degli oggetti
   entries:
@@ -39,18 +39,18 @@ entries:
     url: "/audit/audit-messages-and-object-lifecycle.html"
   - title: Transazioni di ingestione degli oggetti
     url: "/audit/object-ingest-transactions.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Transazioni di eliminazione degli oggetti
     url: "/audit/object-delete-transactions.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Transazioni di recupero oggetti
     url: "/audit/object-retrieve-transactions.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Messaggi di aggiornamento dei metadati
     url: "/audit/metadata-update-messages.html"
 - title: Messaggi di audit
   entries:
   - title: Descrizione dei messaggi
     pdf-filename: Messaggi di audit
     url: "/audit/audit-messages-main.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Categorie di messaggi di audit
     entries:
     - title: Messaggi di audit di sistema
       url: "/audit/system-audit-messages.html"
@@ -64,7 +64,7 @@ entries:
       url: "/audit/management-audit-message.html"
     - title: Messaggi di audit ILM
       url: "/audit/ilm-audit-messages.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Riferimento messaggio di audit
     entries:
     - title: 'BROR: Richiesta di sola lettura del bucket'
       url: "/audit/bror-bucket-read-only-request.html"
@@ -80,13 +80,13 @@ entries:
       url: "/audit/cgrr-cross-grid-replication-request.html"
     - title: 'EBDL: Eliminazione del bucket vuoto'
       url: "/audit/ebdl-empty-bucket-delete.html"
-    - title: "${post_edited_translations.segment}"
+    - title: 'EBKR: Richiesta di bucket vuoto'
       url: "/audit/ebkr-empty-bucket-request.html"
-    - title: "${post_edited_translations.segment}"
+    - title: 'ECMC: Frammento di dati con codifica di cancellazione mancante'
       url: "/audit/ecmc-missing-erasure-coded-data-fragment.html"
-    - title: "${post_edited_translations.segment}"
+    - title: 'ECOC: Frammento di dati codificato tramite cancellazione corrotto'
       url: "/audit/ecoc-corrupt-erasure-coded-data-fragment.html"
-    - title: "${post_edited_translations.segment}"
+    - title: 'ETAF: Autenticazione di sicurezza non riuscita'
       url: "/audit/etaf-security-authentication-failed.html"
     - title: 'GNRG: Registrazione GNDS'
       url: "/audit/gnrg-gnds-registration.html"
@@ -104,13 +104,13 @@ entries:
       url: "/audit/lkcu-overwritten-object-cleanup.html"
     - title: 'LKDM: Pulizia degli oggetti trapelati'
       url: "/audit/lkdm-leaked-object-cleanup.html"
-    - title: "${post_edited_translations.segment}"
+    - title: 'LLST: Posizione persa'
       url: "/audit/llst-location-lost.html"
-    - title: "${post_edited_translations.segment}"
+    - title: 'MGAU: Messaggio di audit gestionale'
       url: "/audit/mgau-management-audit-message.html"
     - title: 'OLST: Il sistema ha rilevato un oggetto smarrito'
       url: "/audit/olst-system-detected-lost-object.html"
-    - title: "${post_edited_translations.segment}"
+    - title: 'ORLM: Regole oggetto soddisfatte'
       url: "/audit/orlm-object-rules-met.html"
     - title: 'OVWR: Sovrascrittura oggetto'
       url: "/audit/ovwr-object-overwrite.html"
@@ -128,21 +128,21 @@ entries:
       url: "/audit/sget-s3-get.html"
     - title: 'SHEA: S3 HEAD'
       url: "/audit/shea-s3-head.html"
-    - title: "${post_edited_translations.segment}"
+    - title: 'SPOS: S3 POST'
       url: "/audit/spos-s3-post.html"
     - title: 'SPUT: S3 PUT'
       url: "/audit/sput-s3-put.html"
-    - title: "${post_edited_translations.segment}"
+    - title: 'SREM: Rimozione dell''Object Store'
       url: "/audit/srem-object-store-remove.html"
     - title: 'SUPD: Metadati S3 aggiornati'
       url: "/audit/supd-s3-metadata-updated.html"
-    - title: "${post_edited_translations.segment}"
+    - title: 'SVRF: Errore di verifica dell''object store'
       url: "/audit/svrf-object-store-verify-fail.html"
-    - title: "${post_edited_translations.segment}"
+    - title: 'SVRU: Verifica object store sconosciuta'
       url: "/audit/svru-object-store-verify-unknown.html"
     - title: 'SYSD: Arresto del nodo'
       url: "/audit/sysd-node-stop.html"
     - title: 'SYST: Arresto del nodo'
       url: "/audit/syst-node-stopping.html"
-    - title: "${post_edited_translations.segment}"
+    - title: 'SYSU: Avvio del nodo'
       url: "/audit/sysu-node-start.html"

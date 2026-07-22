@@ -1,20 +1,22 @@
 ---
 indexpage:
   title: Inizia a utilizzare un sistema StorageGRID
-  summary: "${post_edited_translations.segment}"
+  summary: Prima di installare e utilizzare un sistema StorageGRID, prenditi un po'
+    di tempo per conoscere StorageGRID.
   keywords: learn about StorageGRID, introduction to StorageGRID, get started with
     StorageGRID
-  lead: "${post_edited_translations.segment}"
+  lead: Prima di installare e utilizzare un sistema StorageGRID, prenditi un po' di
+    tempo per conoscere StorageGRID.
   tiles:
-  - title: "${post_edited_translations.segment}"
+  - title: Impara ed esplora
     links:
-    - title: "${post_edited_translations.segment}"
+    - title: Cos'è StorageGRID?
       url: "../primer/index.html"
     - title: Architettura e topologia di rete
       url: "../primer/storagegrid-architecture-and-network-topology.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Come StorageGRID gestisce i dati?
       url: "../primer/how-storagegrid-manages-data.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Esplora Grid Manager
       url: "../primer/exploring-grid-manager.html"
     - title: Esplora Tenant Manager
       url: "../primer/exploring-tenant-manager.html"
@@ -22,7 +24,7 @@ indexpage:
     links:
     - title: Tipi di rete
       url: "../network/storagegrid-network-types.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Requisiti di rete
       url: "../network/networking-requirements-and-guidelines.html"
     - title: Comunicazioni interne dei nodi della grid
       url: "../network/internal-grid-node-communications.html"

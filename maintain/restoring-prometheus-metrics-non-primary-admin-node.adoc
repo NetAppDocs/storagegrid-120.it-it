@@ -17,7 +17,7 @@ Facoltativamente, puoi conservare le metriche storiche gestite da Prometheus su 
 * Il nodo di amministrazione ripristinato è installato e in esecuzione.
 * Il sistema StorageGRID include almeno due nodi di amministrazione.
 * Hai il file  `Passwords.txt`.
-* ${post_edited_translations.segment}
+* Hai la passphrase di provisioning.
 
 
 .Informazioni su questa attività

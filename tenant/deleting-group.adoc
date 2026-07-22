@@ -19,7 +19,7 @@ Puoi eliminare un gruppo dal sistema. Gli utenti che appartengono solo a quel gr
 
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Seleziona *Gestione accessi* > *Gruppi*.
 . Seleziona la casella di controllo per ogni gruppo che vuoi eliminare.
 . Seleziona *Azioni* > *Elimina gruppo*.
 . Seleziona *Elimina gruppo*.

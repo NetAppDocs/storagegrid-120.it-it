@@ -57,7 +57,7 @@ L'identificativo dell'oggetto all'interno del sistema StorageGRID.
  a| 
 RSLT
  a| 
-${post_edited_translations.segment}
+Risultato dell'operazione di eliminazione
  a| 
 Il risultato di un evento, processo o transazione. Se non è rilevante per un messaggio, viene utilizzato NONE anziché SUCS così il messaggio non viene filtrato accidentalmente.
 

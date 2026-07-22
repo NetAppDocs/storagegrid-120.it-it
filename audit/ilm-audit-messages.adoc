@@ -37,10 +37,10 @@ link:lkcu-overwritten-object-cleanup.html["LKCU: Pulizia degli oggetti sovrascri
 
 
  a| 
-${post_edited_translations.segment}
+ORLM
  a| 
-${post_edited_translations.segment}
+Regole oggetto rispettate: questo messaggio di controllo viene generato quando i dati dell'oggetto vengono memorizzati come specificato dalle regole ILM.
  a| 
-link:orlm-object-rules-met.html["${post_edited_translations.segment}"]
+link:orlm-object-rules-met.html["ORLM: Regole oggetto soddisfatte"]
 
 |===

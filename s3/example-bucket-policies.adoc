@@ -15,7 +15,7 @@ Utilizza gli esempi in questa sezione per creare policy di accesso a StorageGRID
 
 Le policy dei bucket specificano le autorizzazioni di accesso per il bucket a cui sono associate. Configuri una policy per un bucket utilizzando l'API S3 PutBucketPolicy tramite uno di questi strumenti:
 
-* link:../tenant/manage-bucket-policy.html["${post_edited_translations.segment}"].
+* link:../tenant/manage-bucket-policy.html["Tenant Manager"].
 * AWS CLI utilizzando questo comando (consulta link:operations-on-buckets.html["Operazioni sui bucket"]):
 +
 [listing, subs="specialcharacters,quotes"]

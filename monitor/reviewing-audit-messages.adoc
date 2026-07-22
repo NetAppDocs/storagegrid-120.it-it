@@ -33,4 +33,4 @@ StorageGRID può inviare le informazioni di audit per impostazione predefinita, 
 * link:../monitor/configure-log-management.html["Scopri come configurare la gestione dei log"].
 
 
-Per dettagli sul file di log di audit, sul formato dei messaggi di audit, sui tipi di messaggi di audit e sugli strumenti disponibili per analizzare i messaggi di audit, vedi link:../audit/index.html["${post_edited_translations.segment}"].
+Per dettagli sul file di log di audit, sul formato dei messaggi di audit, sui tipi di messaggi di audit e sugli strumenti disponibili per analizzare i messaggi di audit, vedi link:../audit/index.html["Esamina i registri di controllo"].

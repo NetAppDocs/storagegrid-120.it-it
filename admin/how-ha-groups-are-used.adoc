@@ -20,17 +20,17 @@ Puoi usare i gruppi ad alta disponibilità (HA) per offrire connessioni altament
 
 Un gruppo HA può garantire l'alta disponibilità solo se tutti i nodi inclusi nel gruppo forniscono gli stessi servizi. Quando crei un gruppo HA, aggiungi interfacce dai tipi di nodi che forniscono i servizi di cui hai bisogno.
 
-* ${post_edited_translations.segment}
+* *Nodi di amministrazione*: includono il servizio Load Balancer e abilitano l'accesso al Grid Manager o al Tenant Manager.
 * *Nodi gateway*: includono il servizio Load Balancer.
 
 
 [cols="1a,2a"]
 |===
-| ${post_edited_translations.segment} | ${post_edited_translations.segment} 
+| Scopo del gruppo HA | Aggiungi nodi di questo tipo al gruppo HA 
 
 
  a| 
-${post_edited_translations.segment}
+Accesso a Grid Manager
  a| 
 * Nodo amministrativo primario (*Primario*)
 * Nodi amministrativi non primari
@@ -52,7 +52,7 @@ Accesso solo al Tenant Manager
 Accesso client S3--Servizio Load Balancer
  a| 
 * Nodi di amministrazione
-* ${post_edited_translations.segment}
+* Nodi gateway
 
 
 
@@ -60,7 +60,7 @@ Accesso client S3--Servizio Load Balancer
  a| 
 Accesso client S3 per link:../admin/manage-s3-select-for-tenant-accounts.html["S3 Select"]
  a| 
-* ${post_edited_translations.segment}
+* appliance di servizi
 * Nodi software basati su VMware
 
 
@@ -72,7 +72,7 @@ Accesso client S3 per link:../admin/manage-s3-select-for-tenant-accounts.html["S
 [[limitations-of-using-ha-groups-with-grid-manager-or-tenant-manager]]
 == Limitazioni dell'utilizzo dei gruppi HA con Grid Manager o Tenant Manager
 
-${post_edited_translations.segment}
+Se un servizio Grid Manager o Tenant Manager non funziona, il failover del gruppo HA non viene attivato.
 
 Se al momento del failover hai effettuato l'accesso a Grid Manager o Tenant Manager, verrai disconnesso e dovrai accedere di nuovo per riprendere la tua attività.
 

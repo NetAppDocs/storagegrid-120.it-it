@@ -54,4 +54,4 @@ StorageGRID supporta endpoint di integrazione di ricerca che rappresentano clust
 L'endpoint di integrazione della ricerca fa riferimento a uno specifico indice e tipo di Elasticsearch. Devi creare l'indice in Elasticsearch prima di creare l'endpoint in StorageGRID, altrimenti la creazione dell'endpoint non riuscirà. Non serve creare il tipo prima di creare l'endpoint. StorageGRID creerà il tipo, se necessario, quando invia i metadati dell'oggetto all'endpoint.
 
 .Informazioni correlate
-link:../admin/index.html["${post_edited_translations.segment}"]
+link:../admin/index.html["Gestisci StorageGRID"]

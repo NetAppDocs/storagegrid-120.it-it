@@ -72,7 +72,7 @@ Utilizza tutte e tre le intestazioni se l'oggetto è crittografato con una chiav
 
 
 
-CAUTION: Le chiavi di crittografia che fornisci non vengono mai memorizzate. Se perdi una chiave di crittografia, perdi anche l'oggetto corrispondente. Prima di usare chiavi fornite dal cliente per proteggere i dati degli oggetti, consulta le considerazioni in link:using-server-side-encryption.html["${post_edited_translations.segment}"].
+CAUTION: Le chiavi di crittografia che fornisci non vengono mai memorizzate. Se perdi una chiave di crittografia, perdi anche l'oggetto corrispondente. Prima di usare chiavi fornite dal cliente per proteggere i dati degli oggetti, consulta le considerazioni in link:using-server-side-encryption.html["Usa la crittografia lato server"].
 
 
 
@@ -155,13 +155,13 @@ Se usi link:../admin/grid-federation-overview.html["federazione di grid"] e link
 
 [cols="1a,2a"]
 |===
-| Griglia | ${post_edited_translations.segment} 
+| Griglia | Stato della replica 
 
 
  a| 
 Fonte
  a| 
-* ${post_edited_translations.segment}
+* *COMPLETATO*: La replica è riuscita.
 * *IN SOSPESO*: L'oggetto non è ancora stato replicato.
 * *ERRORE*: La replica non è riuscita a causa di un errore permanente. Devi risolvere l'errore.
 

@@ -2,7 +2,7 @@
 permalink: audit/olst-system-detected-lost-object.html 
 sidebar: sidebar 
 keywords: storagegrid, audit, message, OLST, System Detected Lost Object 
-summary: ${post_edited_translations.segment} 
+summary: 'Questo messaggio viene generato quando il servizio DDS non riesce a trovare alcuna copia di un oggetto all"interno del sistema StorageGRID.' 
 ---
 = Messaggio di audit OLST per oggetti persi rilevati dal sistema in StorageGRID
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: ${post_edited_translations.segment}
 
 
 [role="lead"]
-${post_edited_translations.segment}
+Questo messaggio viene generato quando il servizio DDS non riesce a trovare alcuna copia di un oggetto all'interno del sistema StorageGRID.
 
 [cols="1a,1a,4a"]
 |===
@@ -19,7 +19,7 @@ ${post_edited_translations.segment}
 
 
  a| 
-${post_edited_translations.segment}
+CBID
  a| 
 Identificatore del blocco di contenuto
  a| 
@@ -68,6 +68,6 @@ VOLI
  a| 
 ID volume
  a| 
-${post_edited_translations.segment}
+Se disponibile, il Volume ID dello Storage Node per l'ultima posizione nota dell'oggetto smarrito.
 
 |===

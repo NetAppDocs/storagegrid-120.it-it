@@ -41,7 +41,7 @@ Ad esempio, se altri client S3 utilizzano questo sistema StorageGRID, dovresti c
 . Inserisci un nome e una descrizione (facoltativa) per la policy e seleziona *Continua*.
 . Per la fase Aggiungi regole di corrispondenza, aggiungi almeno una regola.
 +
-.. ${post_edited_translations.segment}
+.. Seleziona *Aggiungi regola*
 .. Per Tipo, seleziona *Endpoint del bilanciatore del carico* e seleziona l'endpoint del bilanciatore del carico che hai creato per FabricPool.
 +
 Puoi anche selezionare l'account tenant o il bucket FabricPool.
@@ -55,13 +55,13 @@ Puoi anche selezionare l'account tenant o il bucket FabricPool.
 NOTE: StorageGRID raccoglie metriche anche se non imposti limiti, così puoi capire le tendenze del traffico.
 
 +
-.. ${post_edited_translations.segment}
-.. ${post_edited_translations.segment}
+.. Seleziona *Aggiungi un limite*.
+.. Seleziona il tipo di traffico che vuoi limitare e il limite da applicare.
 
 
 . Seleziona *Continue*.
 . Leggi e rivedi la policy di classificazione del traffico. Usa il pulsante *Precedente* per tornare indietro e apportare le modifiche necessarie. Quando sei soddisfatto della policy, seleziona *Salva e continua*.
 
 
-.${post_edited_translations.segment}
+.Dopo che hai finito
 link:../admin/viewing-network-traffic-metrics.html["Visualizza le metriche del traffico di rete"]per verificare che le policy stiano applicando i limiti di traffico che ti aspetti.

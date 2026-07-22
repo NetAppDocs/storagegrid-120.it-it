@@ -2,7 +2,7 @@
 permalink: swnodes/cpu-and-ram-requirements.html 
 sidebar: sidebar 
 keywords: cpu, ram, cpu cores 
-summary: ${post_edited_translations.segment} 
+summary: 'Prima di installare il software StorageGRID, verifica e configura l"hardware in modo che sia pronto a supportare il sistema StorageGRID.' 
 ---
 = Requisiti di CPU e RAM per StorageGRID
 :allow-uri-read: 
@@ -11,15 +11,15 @@ summary: ${post_edited_translations.segment}
 
 
 [role="lead"]
-${post_edited_translations.segment}
+Prima di installare il software StorageGRID, verifica e configura l'hardware in modo che sia pronto a supportare il sistema StorageGRID.
 
-${post_edited_translations.segment}
+Ciascun nodo StorageGRID richiede le seguenti risorse minime:
 
-* ${post_edited_translations.segment}
-* ${post_edited_translations.segment}
+* Core CPU: 8 per nodo
+* RAM: Dipende dalla RAM totale disponibile e dalla quantità di software non StorageGRID in esecuzione sul sistema
 +
-** ${post_edited_translations.segment}
-** ${post_edited_translations.segment}
+** In genere, almeno 24 GB per nodo e da 2 a 16 GB in meno rispetto alla RAM totale del sistema
+** Un minimo di 64 GB per ogni tenant che avrà circa 5.000 bucket
 
 
 

@@ -43,7 +43,7 @@ Codice motivo
  a| 
 Il motivo del fallimento:
 
-${post_edited_translations.segment}
+SCNI: Impossibile stabilire una connessione sicura.
 
 CERM: Certificato mancante.
 
@@ -51,7 +51,7 @@ CERT: Il certificato non è valido.
 
 CERE: Il certificato era scaduto.
 
-${post_edited_translations.segment}
+CERR: Il certificato è stato revocato.
 
 CSGN: La firma del certificato non è valida.
 
@@ -59,11 +59,11 @@ CSGU: Il firmatario del certificato era sconosciuto.
 
 UCRM: Mancavano le credenziali utente.
 
-${post_edited_translations.segment}
+UCRI: Le credenziali utente non erano valide.
 
 UCRU: Le credenziali utente non sono state consentite.
 
-${post_edited_translations.segment}
+TOUT: Autenticazione scaduta.
 
 |===
 Quando si stabilisce una connessione a un servizio sicuro che utilizza il protocollo TLS, le credenziali dell'entità remota vengono verificate utilizzando il profilo TLS e la logica aggiuntiva integrata nel servizio. Se questa autenticazione non riesce a causa di certificati o credenziali non validi, non previsti o non consentiti, viene registrato un messaggio di audit. Questo consente di eseguire query per tentativi di accesso non autorizzato e altri problemi di connessione relativi alla sicurezza.

@@ -1,9 +1,11 @@
 ---
 indexpage:
   title: Espandi la capacità o le funzionalità del tuo sistema StorageGRID
-  summary: "${post_edited_translations.segment}"
+  summary: Puoi espandere la capacità o le funzionalità del tuo sistema StorageGRID
+    senza interrompere le operazioni del sistema.
   keywords: expand grid, add volume, add node, add site
-  lead: "${post_edited_translations.segment}"
+  lead: Puoi espandere la capacità o le funzionalità del tuo sistema StorageGRID senza
+    interrompere le operazioni del sistema.
   tiles:
   - title: Inizia
     links:
@@ -19,9 +21,9 @@ indexpage:
       url: "../expand/adding-new-site.html"
     - title: Raccogli il materiale necessario
       url: "../expand/gather-required-materials.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Aggiungi volumi di archiviazione
     links:
-    - title: "${post_edited_translations.segment}"
+    - title: Aggiungi volumi di archiviazione ai nodi di archiviazione
       url: "../expand/adding-storage-volumes-to-storage-nodes.html"
     - title: 'VMware: Aggiungi volumi di storage al nodo di storage'
       url: "../expand/vmware-adding-storage-volumes-to-storage-node.html"
@@ -35,9 +37,9 @@ indexpage:
       url: "../expand/adding-grid-nodes-to-existing-site-or-adding-new-site.html"
     - title: Aggiorna le sottoreti per Grid Network
       url: "../expand/updating-subnets-for-grid-network.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Distribuisci nuovi nodi della griglia
       url: "../expand/deploying-new-grid-nodes.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Esegui l'espansione
       url: "../expand/performing-expansion.html"
   - title: Configura e risolvi i problemi
     links:

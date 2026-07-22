@@ -23,7 +23,7 @@ Puoi eliminare una policy di classificazione del traffico se non ne hai più bis
 +
 Viene visualizzata la pagina delle policy di classificazione del traffico con le policy esistenti elencate in una tabella.
 
-. ${post_edited_translations.segment}
+. Elimina la policy tramite il menu Azioni o la pagina dei dettagli.
 +
 [role="tabbed-block"]
 ====
@@ -36,14 +36,14 @@ Viene visualizzata la pagina delle policy di classificazione del traffico con le
 --
 .Pagina dei dettagli della policy
 --
-.. ${post_edited_translations.segment}
+.. Seleziona il nome della policy.
 .. Seleziona il pulsante *Rimuovi* accanto al nome del criterio.
 
 
 --
 ====
-. ${post_edited_translations.segment}
+. Seleziona *Sì* per confermare che vuoi eliminare il criterio.
 +
-${post_edited_translations.segment}
+La policy è stata eliminata.
 
 

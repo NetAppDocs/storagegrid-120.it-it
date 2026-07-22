@@ -15,14 +15,14 @@ Il file del pacchetto di ripristino ti permette di ripristinare il sistema Stora
 
 .Prima di iniziare
 * Da qualsiasi nodo amministratore, accedi al Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
-* ${post_edited_translations.segment}
+* Hai la passphrase di provisioning.
 * Hai link:../admin/admin-group-permissions.html["autorizzazioni di accesso specifiche"].
 
 
 Scarica il file del pacchetto di ripristino corrente prima di apportare modifiche alla topologia della griglia del sistema StorageGRID o prima di aggiornare il software. Poi, scarica una nuova copia del pacchetto di ripristino dopo aver apportato modifiche alla topologia della griglia o dopo aver aggiornato il software.
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Seleziona *Maintenance* > *System* > *Recovery package*.
 . Inserisci la passphrase di provisioning e seleziona *Avvia download*.
 +
 Il download inizia immediatamente.

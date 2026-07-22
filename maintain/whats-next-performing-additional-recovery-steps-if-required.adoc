@@ -50,7 +50,7 @@ link:selecting-start-recovery-to-configure-non-primary-admin-node.html["Selezion
 
 
  a| 
-${post_edited_translations.segment}
+Nodo gateway
  a| 
 link:selecting-start-recovery-to-configure-gateway-node.html["Seleziona Avvia ripristino per configurare il nodo gateway"]
 

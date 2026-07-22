@@ -19,9 +19,9 @@ Puoi modificare il nome visualizzato di un gruppo. Non puoi modificare il nome u
 
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Seleziona *Gestione accessi* > *Gruppi*.
 . Seleziona la casella di controllo per il gruppo di cui vuoi modificare il nome visualizzato.
-. ${post_edited_translations.segment}
+. Seleziona *Azioni* > *Modifica nome gruppo*.
 +
 Viene visualizzata la finestra di dialogo Modifica nome gruppo.
 
@@ -34,6 +34,6 @@ Non puoi cambiare il nome univoco di un gruppo. Non puoi modificare il nome visu
 
 . Seleziona *Salva modifiche*.
 +
-${post_edited_translations.segment}
+Un messaggio di conferma appare nell'angolo in alto a destra della pagina.
 
 

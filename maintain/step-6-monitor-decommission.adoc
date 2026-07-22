@@ -16,14 +16,14 @@ Dal passaggio 6 (Monitor Decommission) della procedura guidata Decommission Site
 .Informazioni su questa attività
 Quando StorageGRID rimuove un sito connesso, rimuove i nodi in quest'ordine:
 
-. ${post_edited_translations.segment}
+. Nodi gateway
 . Nodi di amministrazione
 . Nodi di storage
 
 
 Quando StorageGRID rimuove un sito disconnesso, rimuove i nodi in quest'ordine:
 
-. ${post_edited_translations.segment}
+. Nodi gateway
 . Nodi di storage
 . Nodi di amministrazione
 

@@ -40,33 +40,33 @@ Un nome per l'account tenant. I nomi dei tenant non devono essere univoci. Quand
 
 
  a| 
-${post_edited_translations.segment}
+Descrizione (facoltativa)
  a| 
 Una descrizione che ti aiuta a identificare il tenant.
 
 
 
  a| 
-${post_edited_translations.segment}
+Tipo di client
  a| 
 Deve essere *S3* per FabricPool.
 
 
 
  a| 
-${post_edited_translations.segment}
+Quota di spazio di archiviazione (facoltativa)
  a| 
 Lascia vuoto questo campo per FabricPool.
 
 |===
-. ${post_edited_translations.segment}
+. Per il passaggio Seleziona autorizzazioni:
 +
 .. Non selezionare *Consenti i servizi della piattaforma*.
 +
 Di solito, i tenant di FabricPool non hanno bisogno di utilizzare i servizi della piattaforma, come la replica CloudMirror.
 
-.. ${post_edited_translations.segment}
-.. ${post_edited_translations.segment}
+.. Facoltativamente, seleziona *Usa la propria fonte di identità*.
+.. Non selezionare *Allow S3 Select*.
 +
 FabricPool tenant di solito non hanno bisogno di usare S3 Select.
 
@@ -77,7 +77,7 @@ FabricPool tenant di solito non hanno bisogno di usare S3 Select.
 +
 [cols="1a,2a"]
 |===
-| Opzione | ${post_edited_translations.segment} 
+| Opzione | Fai questo 
 
 
  a| 

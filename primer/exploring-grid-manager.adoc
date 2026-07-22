@@ -97,12 +97,12 @@ link:using-information-lifecycle-management.html["Menu ILM"]ti permette di link:
 Dal menu ILM puoi visualizzare e gestire ILM:
 
 * Regole
-* ${post_edited_translations.segment}
+* Politiche
 * Tag dei criteri
 * Pool di storage
 * classi di storage
 * Regioni
-* ${post_edited_translations.segment}
+* Ricerca dei metadati dell'oggetto
 
 
 
@@ -174,10 +174,10 @@ Le attività di monitoraggio includono:
 
 Le attività di controllo degli accessi includono:
 
-* link:../admin/managing-admin-groups.html["${post_edited_translations.segment}"]
+* link:../admin/managing-admin-groups.html["Gestisci i gruppi di amministratori"]
 * link:../admin/managing-users.html["Gestisci gli utenti amministratori"]
 * Cambia link:../admin/changing-provisioning-passphrase.html["passphrase di provisioning"] o link:../admin/change-node-console-password.html["password della console del nodo"]
-* link:../admin/using-identity-federation.html["${post_edited_translations.segment}"]
+* link:../admin/using-identity-federation.html["Usa la federazione delle identità"]
 * link:../admin/how-sso-works.html["Configura SSO"]
 
 

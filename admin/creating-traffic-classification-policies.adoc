@@ -44,7 +44,7 @@ Seleziona i tipi di traffico a cui si applica la regola di corrispondenza. I tip
  a| 
 Valore corrispondente
  a| 
-${post_edited_translations.segment}
+Inserisci il valore che corrisponde al tipo selezionato.
 
 ** Bucket: Inserisci uno o più nomi di bucket.
 ** Espressioni regolari per i bucket: Inserisci una o più espressioni regolari utilizzate per trovare una corrispondenza con un insieme di nomi di bucket.
@@ -52,7 +52,7 @@ ${post_edited_translations.segment}
 L'espressione regolare non è ancorata. Usa l'ancora ^ per eseguire la corrispondenza all'inizio del nome del bucket e l'ancora $ per eseguire la corrispondenza alla fine del nome. La corrispondenza con espressioni regolari supporta un sottoinsieme della sintassi PCRE (Perl compatible regular expression).
 
 ** CIDR: Inserisci una o più sottoreti IPv4, in notazione CIDR, che corrispondono alla sottorete desiderata.
-** Endpoint del bilanciatore di carico: Seleziona un nome endpoint. Questi sono gli endpoint del bilanciatore di carico che hai definito su link:../admin/configuring-load-balancer-endpoints.html["${post_edited_translations.segment}"].
+** Endpoint del bilanciatore di carico: Seleziona un nome endpoint. Questi sono gli endpoint del bilanciatore di carico che hai definito su link:../admin/configuring-load-balancer-endpoints.html["Configura gli endpoint del bilanciatore di carico"].
 ** Tenant: la corrispondenza del tenant utilizza l'ID della chiave di accesso. Se la richiesta non contiene un ID della chiave di accesso (ad esempio, accesso anonimo), viene utilizzata la proprietà del bucket a cui si accede per determinare il tenant.
 
 
@@ -68,7 +68,7 @@ Ad esempio, se vuoi che questa policy si applichi a tutti gli endpoint del load 
 Per una policy contenente più matcher, di cui almeno uno è un matcher inverso, fai attenzione a non creare una policy che corrisponda a tutte le richieste.
 
 |===
-. ${post_edited_translations.segment}
+. Facoltativamente, seleziona *Aggiungi un limite* e seleziona i seguenti dettagli per aggiungere uno o più limiti per controllare il traffico di rete corrispondente a una regola.
 +
 
 NOTE: StorageGRID raccoglie metriche anche se non imposti limiti, così puoi capire le tendenze del traffico.
@@ -90,8 +90,8 @@ Per i limiti di larghezza di banda, StorageGRID applica la policy che meglio cor
 
 ** Indirizzo IP esatto (maschera /32)
 ** Nome esatto del bucket
-** ${post_edited_translations.segment}
-** ${post_edited_translations.segment}
+** Regex del bucket
+** Tenant
 ** Punto finale
 ** Corrispondenze CIDR non esatte (non /32)
 ** Corrispondenze inverse

@@ -6,12 +6,12 @@ Il sistema StorageGRID sincronizza periodicamente gruppi e utenti federati dalla
 
 .Passaggi
 . Vai alla pagina di federazione delle identità.
-. ${post_edited_translations.segment}
+. Seleziona *Sync server* nella parte superiore della pagina.
 +
 Il processo di sincronizzazione potrebbe richiedere del tempo a seconda dell'ambiente.
 
 +
 
-NOTE: ${post_edited_translations.segment}
+NOTE: L'avviso *Errore di sincronizzazione della federazione delle identità* viene attivato se si verifica un problema di sincronizzazione tra gruppi e utenti federati dall'origine delle identità.
 
 

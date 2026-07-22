@@ -18,8 +18,8 @@ I costi dei link ti consentono di stabilire la priorità del sito del data cente
 [[what-are-link-costs]]
 == Quali sono i costi di collegamento?
 
-* ${post_edited_translations.segment}
-* ${post_edited_translations.segment}
+* I costi dei collegamenti vengono usati per dare priorità a quale copia dell'oggetto viene utilizzata per soddisfare il recupero degli oggetti.
+* I costi di collegamento vengono utilizzati dall'API di gestione della griglia e dall'API di gestione dei tenant per determinare quali servizi interni di StorageGRID utilizzare.
 * I costi del link vengono utilizzati dal servizio Load Balancer sui nodi Admin e sui nodi Gateway per indirizzare le connessioni client. Vedi link:../admin/managing-load-balancing.html["Considerazioni sul bilanciamento del carico"].
 
 
@@ -33,7 +33,7 @@ Nell'esempio, un Gateway Node nel data center sito 1 (DC1) distribuisce equament
 
 * Quando recuperi un oggetto che esiste in più copie replicate, StorageGRID recupera la copia nel data center con il costo di collegamento più basso.
 +
-${post_edited_translations.segment}
+Nell'esempio, se un'applicazione client su DC2 recupera un oggetto memorizzato sia su DC1 che su DC3, l'oggetto viene recuperato da DC1, perché il costo del collegamento da DC1 a DC2 è 0, che è inferiore al costo del collegamento da DC3 a DC2 (25).
 
 
 
@@ -58,15 +58,15 @@ Tra siti di data center logici nella stessa posizione fisica
  a| 
 0
  a| 
-${post_edited_translations.segment}
+Data center logici nello stesso edificio fisico o campus collegati da una LAN.
 
 |===
 
 
 [[update-link-costs]]
-== ${post_edited_translations.segment}
+== Aggiorna i costi del collegamento
 
-${post_edited_translations.segment}
+Puoi aggiornare i costi di collegamento tra i siti dei data center per riflettere la latenza tra i siti.
 
 .Prima di iniziare
 * Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
@@ -83,7 +83,7 @@ image:configuring_link_costs.png["Costo del collegamento"]
 Non puoi cambiare il costo del collegamento se la sorgente è la stessa della destinazione.
 
 +
-Per annullare le modifiche, seleziona image:nms_revert.gif["${post_edited_translations.segment}"]*Revert*.
+Per annullare le modifiche, seleziona image:nms_revert.gif["icona annulla"]*Revert*.
 
 . Seleziona *Applica modifiche*.
 

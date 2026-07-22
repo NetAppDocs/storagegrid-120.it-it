@@ -16,7 +16,7 @@ Puoi usare lo strumento  `audit-sum` per contare i messaggi di audit di scrittur
 .Prima di iniziare
 * Hai link:../admin/admin-group-permissions.html["autorizzazioni di accesso specifiche"].
 * Hai il file  `Passwords.txt`.
-* ${post_edited_translations.segment}
+* Conosci l'indirizzo IP del nodo Admin primario.
 
 
 .Informazioni su questa attività
@@ -44,19 +44,19 @@ NOTE: I codici di controllo vengono rimossi dal prodotto e dalla documentazione 
 
 [cols="14,43,43"]
 |===
-| Codice | Descrizione | ${post_edited_translations.segment} 
+| Codice | Descrizione | Consulta 
 
 
 | IDEL | Eliminazione avviata da ILM: registra quando ILM avvia il processo di eliminazione di un oggetto. | link:idel-ilm-initiated-delete.html["IDEL: Eliminazione avviata da ILM"] 
 
 
-| ${post_edited_translations.segment} | S3 DELETE: Registra una transazione riuscita per eliminare un oggetto o un bucket. | link:sdel-s3-delete.html["SDEL: S3 DELETE"] 
+| SDEL | S3 DELETE: Registra una transazione riuscita per eliminare un oggetto o un bucket. | link:sdel-s3-delete.html["SDEL: S3 DELETE"] 
 
 
-| ${post_edited_translations.segment} | ${post_edited_translations.segment} | link:sget-s3-get.html["SGET: S3 GET"] 
+| SGET | S3 GET: Registra una transazione riuscita per recuperare un oggetto o elencare gli oggetti in un bucket. | link:sget-s3-get.html["SGET: S3 GET"] 
 
 
-| SHEA | ${post_edited_translations.segment} | link:shea-s3-head.html["SHEA: S3 HEAD"] 
+| SHEA | S3 HEAD: Registra una transazione avvenuta con successo per verificare l'esistenza di un oggetto o di un bucket. | link:shea-s3-head.html["SHEA: S3 HEAD"] 
 
 
 | SPUT | S3 PUT: Registra una transazione riuscita per creare un nuovo oggetto o bucket. | link:sput-s3-put.html["SPUT: S3 PUT"] 

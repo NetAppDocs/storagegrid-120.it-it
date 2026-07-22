@@ -53,15 +53,15 @@ Bucket con versione o senza versione:: Puoi configurare la replica CloudMirror s
 
 
 [[deletion-replication-loops-and-events]]
-== ${post_edited_translations.segment}
+== Eliminazione, cicli di replica ed eventi
 
 Comportamento di eliminazione:: È uguale al comportamento di eliminazione del servizio Amazon S3, Cross-Region Replication (CRR). L'eliminazione di un oggetto in un bucket di origine non elimina mai un oggetto replicato nella destinazione. Se sia il bucket di origine che quello di destinazione sono dotati di controllo delle versioni, il marcatore di eliminazione viene replicato. Se il bucket di destinazione non è dotato di controllo delle versioni, l'eliminazione di un oggetto nel bucket di origine non replica il marcatore di eliminazione nel bucket di destinazione né elimina l'oggetto di destinazione.
-${post_edited_translations.segment}:: Man mano che gli oggetti vengono replicati nel bucket di destinazione, StorageGRID li contrassegna come "repliche". Un bucket StorageGRID di destinazione non replicherà nuovamente gli oggetti contrassegnati come repliche, proteggendoti da loop di replica accidentali. Questo contrassegno di replica è interno a StorageGRID e non ti impedisce di sfruttare AWS CRR quando utilizzi un bucket Amazon S3 come destinazione.
+Protezione dai cicli di replica:: Man mano che gli oggetti vengono replicati nel bucket di destinazione, StorageGRID li contrassegna come "repliche". Un bucket StorageGRID di destinazione non replicherà nuovamente gli oggetti contrassegnati come repliche, proteggendoti da loop di replica accidentali. Questo contrassegno di replica è interno a StorageGRID e non ti impedisce di sfruttare AWS CRR quando utilizzi un bucket Amazon S3 come destinazione.
 +
 --
 
 NOTE: L'intestazione personalizzata utilizzata per contrassegnare una replica è  `x-ntap-sg-replica`. Questa marcatura impedisce un mirror a cascata. StorageGRID supporta un CloudMirror bidirezionale tra due grid.
 
 --
-${post_edited_translations.segment}:: L'unicità e l'ordine degli eventi nel bucket di destinazione non sono garantiti. Più di una copia identica di un oggetto di origine potrebbe essere consegnata alla destinazione a seguito di operazioni eseguite per garantire il successo della consegna. In rari casi, quando lo stesso oggetto viene aggiornato simultaneamente da due o più siti StorageGRID diversi, l'ordine delle operazioni sul bucket di destinazione potrebbe non corrispondere all'ordine degli eventi sul bucket di origine.
+Eventi nel bucket di destinazione:: L'unicità e l'ordine degli eventi nel bucket di destinazione non sono garantiti. Più di una copia identica di un oggetto di origine potrebbe essere consegnata alla destinazione a seguito di operazioni eseguite per garantire il successo della consegna. In rari casi, quando lo stesso oggetto viene aggiornato simultaneamente da due o più siti StorageGRID diversi, l'ordine delle operazioni sul bucket di destinazione potrebbe non corrispondere all'ordine degli eventi sul bucket di origine.
 

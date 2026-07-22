@@ -16,7 +16,7 @@ Puoi aggiungere, aggiornare o rimuovere i server NTP (Network Time Protocol) per
 .Prima di iniziare
 * Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
 * Hai il link:../admin/admin-group-permissions.html["Permesso di manutenzione o di accesso root"].
-* ${post_edited_translations.segment}
+* Hai la passphrase di provisioning.
 * Hai gli indirizzi IPv4 dei server NTP da configurare.
 
 

@@ -24,7 +24,7 @@ Se possibile, usa DNS server a cui ogni sito può accedere localmente per garant
 . Specifica l'indirizzo IPv4 di almeno un DNS server nella casella di testo *Server 1*.
 . Se necessario, seleziona il segno più accanto all'ultima voce per aggiungere ulteriori voci server.
 +
-image:9_gmi_installer_dns_page.gif["${post_edited_translations.segment}"]
+image:9_gmi_installer_dns_page.gif["Questa immagine è spiegata dal testo circostante."]
 
 +
 La best practice è specificare almeno due DNS server. Puoi specificare fino a sei DNS server.

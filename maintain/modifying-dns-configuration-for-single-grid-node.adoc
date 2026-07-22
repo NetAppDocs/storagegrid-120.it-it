@@ -16,7 +16,7 @@ Anziché configurare il DNS a livello globale per l'intera implementazione, puoi
 In generale, dovresti usare l'opzione *Manutenzione* > *Rete* > *Server DNS* nel Grid Manager per configurare i server DNS. Usa il seguente script solo se hai bisogno di usare server DNS diversi per diversi nodi della griglia.
 
 .Passaggi
-. L'accesso SSH esterno è bloccato per impostazione predefinita. Se necessario, link:../admin/manage-external-ssh-access.html["${post_edited_translations.segment}"].
+. L'accesso SSH esterno è bloccato per impostazione predefinita. Se necessario, link:../admin/manage-external-ssh-access.html["Consenti temporaneamente l'accesso"].
 . Accedi al nodo amministratore principale:
 +
 .. Inserisci il seguente comando: `ssh admin@_primary_Admin_Node_IP_`

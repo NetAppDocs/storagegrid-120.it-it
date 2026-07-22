@@ -275,7 +275,7 @@ PORT_REMAP = client/tcp/18082/443
 Se usata da sola, questa impostazione di esempio mappa simmetricamente sia le comunicazioni inbound che outbound per il nodo della griglia dalla porta 18082 alla porta 443. Se usata insieme a PORT_REMAP_INBOUND, questa impostazione di esempio mappa le comunicazioni outbound dalla porta 18082 alla porta 443.
 
 +
-${post_edited_translations.segment}
+Puoi anche rimappare più porte usando un elenco separato da virgole.
 
 +
 Ad esempio:
@@ -305,7 +305,7 @@ PORT_REMAP_INBOUND = client/tcp/443/18082
 Questo esempio prende il traffico inviato alla porta 443 per superare un firewall interno e lo indirizza alla porta 18082, dove il nodo della griglia è in ascolto per le richieste S3.
 
 +
-${post_edited_translations.segment}
+Puoi anche rimappare più porte in entrata utilizzando un elenco separato da virgole.
 
 +
 Ad esempio:
@@ -348,7 +348,7 @@ Ciascun nodo si trova in una sezione separata del file di configurazione. Ogni n
 * *GRID_NETWORK_IP*: L'indirizzo IP del nodo sulla Grid Network.
 * *ADMIN_NETWORK_IP*: L'indirizzo IP del nodo sulla Admin Network. Obbligatorio solo se il nodo è collegato alla Admin Network e ADMIN_NETWORK_CONFIG è impostato su STATIC.
 * *CLIENT_NETWORK_IP*: L'indirizzo IP del nodo sulla Client Network. Obbligatorio solo se il nodo è collegato alla Client Network e CLIENT_NETWORK_CONFIG per questo nodo è impostato su STATIC.
-* *ADMIN_IP*: L'indirizzo IP del nodo Admin primario sulla Grid Network. Usa il valore che specifichi come GRID_NETWORK_IP per il nodo Admin primario. Se ometti questo parametro, il nodo tenta di individuare l'IP del nodo Admin primario usando mDNS. Per ulteriori informazioni, vedi link:how-grid-nodes-discover-primary-admin-node.html["${post_edited_translations.segment}"].
+* *ADMIN_IP*: L'indirizzo IP del nodo Admin primario sulla Grid Network. Usa il valore che specifichi come GRID_NETWORK_IP per il nodo Admin primario. Se ometti questo parametro, il nodo tenta di individuare l'IP del nodo Admin primario usando mDNS. Per ulteriori informazioni, vedi link:how-grid-nodes-discover-primary-admin-node.html["Come i nodi della griglia scoprono il nodo Admin primario"].
 +
 
 NOTE: Il parametro ADMIN_IP viene ignorato per il nodo Admin primario.
@@ -457,7 +457,7 @@ STORAGE_TYPE = data
 ----
 
 
-.${post_edited_translations.segment}
+.Nodo gateway
 Per i nodi gateway è necessaria la seguente impostazione aggiuntiva:
 
 * *NODE_TYPE*: VM_API_Gateway

@@ -16,20 +16,20 @@ Quando i nodi di archiviazione raggiungono la capacità, devi espandere il siste
 
 
 [[add-storage-volumes]]
-== ${post_edited_translations.segment}
+== Aggiungi volumi di archiviazione
 
-Ogni Storage Node supporta un numero massimo di volumi di archiviazione. Il massimo definito varia a seconda della piattaforma. Se un Storage Node contiene meno del numero massimo di volumi di archiviazione, puoi aggiungere volumi per aumentarne la capacità. Vedi le istruzioni per link:../expand/index.html["${post_edited_translations.segment}"].
+Ogni Storage Node supporta un numero massimo di volumi di archiviazione. Il massimo definito varia a seconda della piattaforma. Se un Storage Node contiene meno del numero massimo di volumi di archiviazione, puoi aggiungere volumi per aumentarne la capacità. Vedi le istruzioni per link:../expand/index.html["espansione di un sistema StorageGRID"].
 
 
 
 [[add-storage-expansion-shelves]]
 == Aggiungi shelf di espansione dello storage
 
-Alcuni Storage Node delle appliance StorageGRID, come SG6060 o SG6160, possono supportare shelf di storage aggiuntivi. Se hai appliance StorageGRID con funzionalità di espansione che non sono ancora state espanse alla capacità massima, puoi aggiungere shelf di storage per aumentare la capacità. Consulta le istruzioni per link:../expand/index.html["${post_edited_translations.segment}"].
+Alcuni Storage Node delle appliance StorageGRID, come SG6060 o SG6160, possono supportare shelf di storage aggiuntivi. Se hai appliance StorageGRID con funzionalità di espansione che non sono ancora state espanse alla capacità massima, puoi aggiungere shelf di storage per aumentare la capacità. Consulta le istruzioni per link:../expand/index.html["espansione di un sistema StorageGRID"].
 
 
 
 [[add-storage-nodes]]
 == Aggiungi nodi di storage
 
-Puoi aumentare la capacità di storage aggiungendo Storage Nodes. Quando aggiungi storage, devi valutare attentamente le regole ILM attualmente attive e i requisiti di capacità. Vedi le istruzioni per link:../expand/index.html["${post_edited_translations.segment}"].
+Puoi aumentare la capacità di storage aggiungendo Storage Nodes. Quando aggiungi storage, devi valutare attentamente le regole ILM attualmente attive e i requisiti di capacità. Vedi le istruzioni per link:../expand/index.html["espansione di un sistema StorageGRID"].

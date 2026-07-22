@@ -27,7 +27,7 @@ Puoi saltare questi passaggi se prevedi di usare il volume root per il volume di
 
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Crea un file system sul volume di storage del motore del container:
 +
 [role="tabbed-block"]
 ====
@@ -46,13 +46,13 @@ sudo mkfs.ext4 docker-storage-volume-device
 ----
 --
 ====
-. ${post_edited_translations.segment}
+. Monta il volume di storage del motore del container:
 +
 [role="tabbed-block"]
 ====
 .RHEL
 --
-** ${post_edited_translations.segment}
+** Per Docker:
 +
 [listing]
 ----

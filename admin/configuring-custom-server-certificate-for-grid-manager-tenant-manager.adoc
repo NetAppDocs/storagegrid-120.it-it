@@ -41,7 +41,7 @@ Per aggiungere un certificato di interfaccia di gestione personalizzato, puoi fo
 
 .Passaggi
 . Seleziona *Configurazione* > *Sicurezza* > *Certificati*.
-. ${post_edited_translations.segment}
+. Nella scheda *Globale*, seleziona *Certificato interfaccia di gestione*.
 . Seleziona *Usa certificato personalizzato*.
 . Carica o genera il certificato.
 +
@@ -72,7 +72,7 @@ Specifica il nome del file del certificato e la posizione di download. Salva il 
 +
 Ad esempio: `storagegrid_certificate.pem`
 
-*** ${post_edited_translations.segment}
+*** Seleziona *Copia certificato PEM* o *Copia bundle CA PEM* per copiare il contenuto del certificato da incollare altrove.
 
 
 .. Seleziona *Salva*. + Il certificato dell'interfaccia di gestione personalizzata viene utilizzato per tutte le nuove connessioni successive a Grid Manager, Tenant Manager, Grid Manager API o Tenant Manager API.
@@ -87,7 +87,7 @@ Genera i file del certificato del server.
 NOTE: La best practice per un ambiente di produzione è usare un certificato di interfaccia di gestione personalizzato firmato da un'autorità di certificazione esterna.
 
 .. Seleziona *Genera certificato*.
-.. ${post_edited_translations.segment}
+.. Specifica le informazioni del certificato:
 +
 [cols="1a,3a"]
 |===
@@ -109,25 +109,25 @@ Uno o più indirizzi IP da includere nel certificato.
 
 
  a| 
-${post_edited_translations.segment}
+Oggetto (facoltativo)
  a| 
 Soggetto o nome distinto (DN) X.509 del titolare del certificato.
 
-${post_edited_translations.segment}
+Se in questo campo non inserisci alcun valore, il certificato generato utilizza il primo domain name o indirizzo IP come nome comune del soggetto (CN).
 
 
 
  a| 
 Giorni di validità
  a| 
-${post_edited_translations.segment}
+Numero di giorni dopo la creazione in cui il certificato scade.
 
 
 
  a| 
 Aggiungi estensioni di utilizzo chiave
  a| 
-${post_edited_translations.segment}
+Se selezioni questa opzione (predefinita e consigliata), le estensioni key usage ed extended key usage vengono aggiunte al certificato generato.
 
 Queste estensioni definiscono lo scopo della chiave contenuta nel certificato.
 
@@ -137,7 +137,7 @@ Queste estensioni definiscono lo scopo della chiave contenuta nel certificato.
 .. Seleziona *Genera*.
 .. Seleziona *Dettagli del certificato* per visualizzare i metadati del certificato generato.
 +
-*** ${post_edited_translations.segment}
+*** Seleziona *Scarica certificato* per salvare il file del certificato.
 +
 Specifica il nome del file del certificato e la posizione di download. Salva il file con l'estensione  `.pem`.
 
@@ -169,7 +169,7 @@ Puoi tornare a usare il certificato di interfaccia di gestione predefinito per l
 
 .Passaggi
 . Seleziona *Configurazione* > *Sicurezza* > *Certificati*.
-. ${post_edited_translations.segment}
+. Nella scheda *Globale*, seleziona *Certificato interfaccia di gestione*.
 . Seleziona *Usa certificato predefinito*.
 +
 Quando ripristini il certificato dell'interfaccia di gestione predefinito, i file del certificato del server personalizzato che hai configurato vengono eliminati e non possono essere recuperati dal sistema. Il certificato dell'interfaccia di gestione predefinito viene utilizzato per tutte le nuove connessioni client successive.
@@ -180,7 +180,7 @@ Quando ripristini il certificato dell'interfaccia di gestione predefinito, i fil
 
 
 [[use-a-script-to-generate-a-new-self-signed-management-interface-certificate]]
-== ${post_edited_translations.segment}
+== Usa uno script per generare un nuovo certificato di interfaccia di gestione autofirmato
 
 Se è richiesta una rigorosa convalida del nome host, puoi usare uno script per generare il certificato dell'interfaccia di gestione.
 
@@ -205,7 +205,7 @@ Quando sei connesso come root, il prompt cambia da  `$` a  `#`.
 
 
 
-. ${post_edited_translations.segment}
+. Configura StorageGRID con un nuovo certificato autofirmato.
 +
 `$ sudo make-certificate --domains _wildcard-admin-node-fqdn_ --type management`
 
@@ -232,8 +232,8 @@ Includi i tag BEGIN e END nella tua selezione.
 . Conferma che il certificato è stato configurato:
 +
 .. Accedi al Grid Manager.
-.. ${post_edited_translations.segment}
-.. ${post_edited_translations.segment}
+.. Seleziona *Configurazione* > *Sicurezza* > *Certificati*
+.. Nella scheda *Globale*, seleziona *Certificato interfaccia di gestione*.
 
 
 . Configura il client di gestione in modo che utilizzi il certificato pubblico che hai copiato. Includi i tag BEGIN e END.
@@ -244,22 +244,22 @@ Includi i tag BEGIN e END nella tua selezione.
 [[download-or-copy-the-management-interface-certificate]]
 == Scarica o copia il certificato dell'interfaccia di gestione
 
-${post_edited_translations.segment}
+Puoi salvare o copiare il contenuto del certificato dell'interfaccia di gestione per usarlo altrove.
 
 .Passaggi
 . Seleziona *Configurazione* > *Sicurezza* > *Certificati*.
-. ${post_edited_translations.segment}
-. ${post_edited_translations.segment}
+. Nella scheda *Globale*, seleziona *Certificato interfaccia di gestione*.
+. Seleziona la scheda *Server* o *CA bundle* e poi scarica o copia il certificato.
 +
 [role="tabbed-block"]
 ====
-.${post_edited_translations.segment}
+.Scarica il file del certificato o il bundle CA
 --
 Scarica il file del certificato o del pacchetto CA `.pem`. Se utilizzi un pacchetto CA opzionale, ogni certificato del pacchetto viene visualizzato in una propria sotto-scheda.
 
 .. Seleziona *Scarica certificato* o *Scarica CA bundle*.
 +
-${post_edited_translations.segment}
+Se scarichi un pacchetto di CA, tutti i certificati presenti nelle schede secondarie del pacchetto CA vengono scaricati come un unico file.
 
 .. Specifica il nome del file del certificato e la posizione di download. Salva il file con l'estensione  `.pem`.
 +

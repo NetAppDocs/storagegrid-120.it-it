@@ -36,7 +36,7 @@ Vedi  https://docs.netapp.com/us-en/ontap/fabricpool/promote-all-data-performanc
 Puoi usare il  `volume object-store` comando con l'opzione  `tiering` per  https://docs.netapp.com/us-en/ontap/fabricpool/check-status-performance-tier-promotion-task.html["verifica lo stato della promozione al performance tier"^].
 
 . Al termine dell'operazione di promozione, accedi a StorageGRID Tenant Manager per l'account tenant FabricPool.
-. ${post_edited_translations.segment}
+. Seleziona *Visualizza bucket* dalla dashboard oppure seleziona *STORAGE (S3)* > *Buckets*.
 . Conferma che il bucket FabricPool sia ora vuoto.
 . Se il bucket è vuoto, link:../tenant/deleting-s3-bucket.html["elimina il bucket"].
 

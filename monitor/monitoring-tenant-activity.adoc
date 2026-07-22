@@ -124,7 +124,7 @@ Puoi aprire il  `.csv` file in un'applicazione per fogli di calcolo o usarlo nel
 . Facoltativamente, seleziona la scheda *Funzionalità consentite* per visualizzare un elenco delle autorizzazioni e delle funzionalità abilitate per il tenant. Vedi link:../admin/editing-tenant-account.html["Modifica account tenant"] se hai bisogno di modificare una di queste impostazioni.
 . Se il tenant ha l'autorizzazione *Usa connessione di federazione a griglia*, puoi selezionare la scheda *Federazione a griglia* per saperne di più sulla connessione.
 +
-Vedi link:../admin/grid-federation-overview.html["Che cos'è la federazione di griglie?"] e link:../admin/grid-federation-manage-tenants.html["${post_edited_translations.segment}"].
+Vedi link:../admin/grid-federation-overview.html["Che cos'è la federazione di griglie?"] e link:../admin/grid-federation-manage-tenants.html["Gestisci i tenant autorizzati per la federazione della griglia"].
 
 
 
@@ -164,7 +164,7 @@ Ad esempio, puoi monitorare i seguenti tipi di informazioni:
 
 I log di controllo vengono scritti in file di testo che puoi analizzare utilizzando lo strumento di analisi dei log che preferisci. Questo ti permette di capire meglio le attività dei client o di implementare modelli di addebito e fatturazione più sofisticati.
 
-Vedi link:../audit/index.html["${post_edited_translations.segment}"] per maggiori informazioni.
+Vedi link:../audit/index.html["Esamina i registri di controllo"] per maggiori informazioni.
 
 
 

@@ -23,9 +23,9 @@ indexpage:
       url: "../admin/using-grid-management-api.html"
   - title: Gestisci gruppi e utenti amministrativi
     links:
-    - title: "${post_edited_translations.segment}"
+    - title: Usa la federazione delle identità
       url: "../admin/using-identity-federation.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Gestisci i gruppi di amministratori
       url: "../admin/managing-admin-groups.html"
     - title: Autorizzazioni del gruppo amministratore
       url: "../admin/admin-group-permissions.html"

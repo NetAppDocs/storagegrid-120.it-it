@@ -53,26 +53,26 @@ Se non l'hai ancora fatto, crea un archivio dati per connettere PingFederate al 
 Se non l'hai ancora fatto, crea un validatore di credenziali per le password.
 
 * *Tipo*: Validatore di credenziali LDAP Username Password
-* ${post_edited_translations.segment}
+* *Archivio dati*: Seleziona l'archivio dati che hai creato.
 * *Base di ricerca*: Inserisci le informazioni da LDAP (ad esempio, DC=saml,DC=sgws).
 * *Filtro di ricerca*: sAMAccountName=${username}
-* ${post_edited_translations.segment}
+* *Ambito*: Sottostruttura
 
 
 
 
 [[create-idp-adapter-instanceadapter-instance]]
-=== ${post_edited_translations.segment}
+=== Crea un'istanza dell'adattatore IdP [[adapter-instance]]
 
-${post_edited_translations.segment}
+Se non l'hai ancora fatto, crea un'istanza dell'adattatore IdP.
 
 .Passaggi
 . Vai su *Autenticazione* > *Integrazione* > *IdP Adapters*.
 . Seleziona *Crea nuova istanza*.
 . Nella scheda Tipo, seleziona *HTML Form IdP Adapter*.
-. ${post_edited_translations.segment}
+. Nella scheda Adattatore IdP, seleziona *Aggiungi una nuova riga a 'Credential Validators'*.
 . Seleziona <<password-validator,validatore delle credenziali della password>> che hai creato.
-. ${post_edited_translations.segment}
+. Nella scheda Attributi adattatore, seleziona l'attributo *username* per *Pseudonimo*.
 . Seleziona *Salva*.
 
 
@@ -84,7 +84,7 @@ ${post_edited_translations.segment}
 Se non l'hai ancora fatto, crea o importa il certificato di firma.
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Vai su *Sicurezza* > *Chiavi e certificati di firma e decrittazione*.
 . Crea o importa il certificato di firma.
 
 
@@ -105,8 +105,8 @@ TIP: Devi creare una connessione SP per ogni Admin Node nel tuo sistema StorageG
 
 .Passaggi
 . Vai su *Applicazioni* > *Integrazione* > *SP Connections*.
-. ${post_edited_translations.segment}
-. ${post_edited_translations.segment}
+. Seleziona *Crea connessione*.
+. Seleziona *Non utilizzare un modello per questa connessione*.
 . Seleziona *Profili SSO del browser* e *SAML 2.0* come protocollo.
 
 
@@ -118,7 +118,7 @@ TIP: Devi creare una connessione SP per ogni Admin Node nel tuo sistema StorageG
 .Passaggi
 . Nella scheda Importa metadati, seleziona *File*.
 . Scegli il file di metadati SAML che hai scaricato dalla pagina Configura SSO per l'Admin Node.
-. ${post_edited_translations.segment}
+. Esamina il riepilogo dei metadati e le informazioni fornite nella scheda Informazioni generali.
 +
 L'ID entità del partner e il nome della connessione sono impostati sull'ID di connessione dello StorageGRID SP. (ad esempio, 10.96.105.200-DC1-ADM1-105-200). L'URL di base è l'indirizzo IP del nodo di amministrazione di StorageGRID.
 
@@ -128,14 +128,14 @@ L'ID entità del partner e il nome della connessione sono impostati sull'ID di c
 
 
 [[configure-idp-browser-sso]]
-=== ${post_edited_translations.segment}
+=== Configura SSO del browser IdP
 
 .Passaggi
 . Nella scheda SSO del browser, seleziona *Configura SSO del browser*.
-. ${post_edited_translations.segment}
+. Nella scheda Profili SAML, seleziona le opzioni *SP-initiated SSO*, *SP-initial SLO*, *IdP-initiated SSO* e *IdP-initiated SLO*.
 . Seleziona *Next*.
-. ${post_edited_translations.segment}
-. ${post_edited_translations.segment}
+. Nella scheda Durata dell'asserzione, non apportare modifiche.
+. Nella scheda Creazione asserzioni, seleziona *Configura creazione asserzioni*.
 +
 .. Nella scheda Mappatura identità, seleziona *Standard*.
 .. Nella scheda Contratto attributo, usa *SAML_SUBJECT* come Contratto attributo e il formato del nome non specificato che è stato importato.
@@ -150,25 +150,25 @@ L'ID entità del partner e il nome della connessione sono impostati sull'ID di c
 === Istanza dell'adattatore di mappa
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Nella scheda Mapping origine autenticazione, seleziona *Mappa nuova istanza adattatore*.
 . Nella scheda Istanza adattatore, seleziona l'<<adapter-instance,istanza dell'adattatore>> che hai creato.
-. ${post_edited_translations.segment}
+. Nella scheda Metodo di mappatura, seleziona *Recupera attributi aggiuntivi da un archivio dati*.
 . Nella scheda Origine attributi e ricerca utente, seleziona *Aggiungi origine attributi*.
 . Nella scheda Archivio dati, inserisci una descrizione e seleziona l'<<data-store,datastore>>elemento che hai aggiunto.
 . Nella scheda Ricerca nella directory LDAP:
 +
-** ${post_edited_translations.segment}
+** Inserisci il *Base DN*, che deve corrispondere esattamente al valore che hai inserito in StorageGRID per il LDAP server.
 ** Per l'ambito di ricerca, seleziona *Sottostruttura*.
 ** Per la classe oggetto radice, cerca e aggiungi uno di questi attributi: *objectGUID* o *userPrincipalName*.
 
 
-. ${post_edited_translations.segment}
+. Nella scheda Tipi di codifica degli attributi binari LDAP, seleziona *Base64* per l'attributo *objectGUID*.
 . Nella scheda Filtro LDAP, inserisci *sAMAccountName=${username}*.
 . Nella scheda Attribute Contract Fulfillment, seleziona *LDAP (attribute)* dal menu a discesa Source e seleziona *objectGUID* o *userPrincipalName* dal menu a discesa Value.
 . Rivedi e poi salva l'origine degli attributi.
 . Nella scheda Origine attributi Failsave, seleziona *Annulla la transazione SSO*.
-. ${post_edited_translations.segment}
-. ${post_edited_translations.segment}
+. Rivedi il riepilogo e seleziona *Fatto*.
+. Seleziona *Fatto*.
 
 
 
@@ -177,28 +177,28 @@ L'ID entità del partner e il nome della connessione sono impostati sull'ID di c
 === Configura le impostazioni del protocollo
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Nella scheda *Connessione SP* > *SSO del browser* > *Impostazioni protocollo*, seleziona *Configura impostazioni protocollo*.
 . Nella scheda URL del servizio di consumo delle asserzioni, accetta i valori predefiniti, importati dai metadati SAML di StorageGRID (*POST* per Binding e  `/api/saml-response` per Endpoint URL).
 . Nella scheda URL del servizio SLO, accetta i valori predefiniti, importati dai metadati StorageGRID (*REDIRECT* per Binding e  `/api/saml-logout` per Endpoint URL).
 . Nella scheda "Associazioni SAML consentite", deseleziona *ARTIFACT* e *SOAP*. Sono obbligatori solo *POST* e *REDIRECT*.
-. ${post_edited_translations.segment}
+. Nella scheda Criteri di firma, lascia selezionate le caselle di controllo *Richiedi la firma delle richieste di Authn* e *Firma sempre l'asserzione*.
 . Nella scheda Criteri di crittografia, seleziona *Nessuno*.
-. ${post_edited_translations.segment}
-. ${post_edited_translations.segment}
+. Rivedi il riepilogo e seleziona *Fatto* per salvare le impostazioni del protocollo.
+. Rivedi il riepilogo e seleziona *Fatto* per salvare le impostazioni Browser SSO.
 
 
 
 
 [[configure-credentials]]
-=== ${post_edited_translations.segment}
+=== Configura le credenziali
 
 .Passaggi
 . Dalla scheda Connessione SP, seleziona *Credenziali*.
 . Dalla scheda Credenziali, seleziona *Configura credenziali*.
-. Seleziona il <<signing-certificate,${post_edited_translations.segment}>> che hai creato o importato.
+. Seleziona il <<signing-certificate,certificato di firma>> che hai creato o importato.
 . Seleziona *Avanti* per andare su *Gestisci impostazioni di verifica della firma*.
 +
-.. ${post_edited_translations.segment}
+.. Nella scheda Modello di fiducia, seleziona *Non ancorato*.
 .. Nella scheda Certificato di verifica della firma, controlla le informazioni del certificato di firma, che sono state importate dai metadati SAML di StorageGRID.
 
 
@@ -213,10 +213,10 @@ L'ID entità del partner e il nome della connessione sono impostati sull'ID di c
 Puoi copiare la prima connessione SP per creare le connessioni SP di cui hai bisogno per ogni Admin Node nella tua grid. Carichi nuovi metadati per ogni copia.
 
 
-NOTE: ${post_edited_translations.segment}
+NOTE: Le connessioni SP per i diversi Admin Node utilizzano impostazioni identiche, ad eccezione dell'Entity ID del Partner, della Base URL, del Connection ID, del Connection Name, della Signature Verification e della SLO Response URL.
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Seleziona *Azione* > *Copia* per creare una copia della connessione SP iniziale per ogni Admin Node aggiuntivo.
 . Inserisci l'ID di connessione e il nome della connessione per la copia e seleziona *Salva*.
 . Scegli il file di metadati corrispondente all'Admin Node:
 +
@@ -229,7 +229,7 @@ NOTE: ${post_edited_translations.segment}
 . Risolvi l'errore dovuto all'attributo non utilizzato:
 +
 .. Seleziona la nuova connessione.
-.. ${post_edited_translations.segment}
+.. Seleziona *Configura SSO del browser > Configura creazione asserzione > Contratto attributo*.
 .. Elimina la voce per *urn:oid*.
 .. Seleziona *Salva*.
 

@@ -1,6 +1,6 @@
 ---
 section: s3
-title: "${post_edited_translations.segment}"
+title: Usa l'API REST di S3
 entries:
 - title: Versioni e aggiornamenti supportati
   pdf-filename: Usa S3 con StorageGRID
@@ -39,7 +39,7 @@ entries:
       url: "/s3/operations-on-objects.html"
     - title: Usa S3 Select
       url: "/s3/use-s3-select.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Usa la crittografia lato server
       url: "/s3/using-server-side-encryption.html"
     - title: CopyObject
       url: "/s3/put-object-copy.html"
@@ -91,16 +91,16 @@ entries:
     url: "/s3/put-bucket-metadata-notification-configuration-request.html"
   - title: Ottieni l'utilizzo dello storage
     url: "/s3/get-storage-usage-request.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Richieste di bucket deprecate per la Compliance legacy
     entries:
     - title: Funzionalità e richieste obsolete
-      pdf-filename: "${post_edited_translations.segment}"
+      pdf-filename: Richieste di bucket deprecate per la Compliance legacy
       url: "/s3/deprecated-bucket-requests-for-legacy-compliance.html"
     - title: Deprecato - Modifiche alla richiesta CreateBucket per la conformità
       url: "/s3/deprecated-put-bucket-request-modifications-for-compliance.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Obsoleto - Richiesta GET di conformità del bucket
       url: "/s3/deprecated-get-bucket-compliance-request.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Obsoleto - Richiesta PUT di conformità del bucket
       url: "/s3/deprecated-put-bucket-compliance-request.html"
 - title: Gestisci le policy di accesso
   entries:
@@ -112,5 +112,5 @@ entries:
     url: "/s3/example-bucket-policies.html"
   - title: Esempi di criteri di gruppo
     url: "/s3/example-group-policies.html"
-- title: "${post_edited_translations.segment}"
+- title: Le operazioni S3 vengono tracciate nei file di log di controllo
   url: "/s3/s3-operations-tracked-in-audit-logs.html"

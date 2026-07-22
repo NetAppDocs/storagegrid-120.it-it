@@ -297,7 +297,7 @@ Utilizza un nome utente e una password in chiaro per autenticare le connessioni 
 
 
  a| 
-${post_edited_translations.segment}
+SASL/SCRAM-SHA-256
  a| 
 Utilizza un nome utente e una password tramite un protocollo di challenge-response e l'algoritmo di hashing SHA-256 per autenticare le connessioni alla destinazione.
  a| 
@@ -416,7 +416,7 @@ Disabilita la verifica del certificato del server, il che significa che l'identi
  a| 
 Certificato client
  a| 
-${post_edited_translations.segment}
+Il certificato client viene utilizzato per verificare l'identità del client durante la connessione all'endpoint.
 
 
 
@@ -428,7 +428,7 @@ La chiave privata per il certificato client. Se crittografata, deve utilizzare i
 
 
  a| 
-${post_edited_translations.segment}
+Passphrase della chiave privata del client
  a| 
 La passphrase per decrittografare la chiave privata del client. Se la chiave privata non è crittografata, lascia questo campo vuoto.
 

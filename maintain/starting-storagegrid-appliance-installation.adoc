@@ -17,7 +17,7 @@ Per installare StorageGRID su un nodo di archiviazione appliance, usi il program
 * L'apparecchio è stato installato in un rack, collegato alle tue reti e acceso.
 * I collegamenti di rete e gli indirizzi IP sono stati configurati per l'appliance usando StorageGRID Appliance Installer.
 * Conosci l'indirizzo IP del nodo Admin primario della StorageGRID grid.
-* ${post_edited_translations.segment}
+* Tutte le subnet Grid Network elencate nella pagina di configurazione IP del programma di installazione dell'appliance StorageGRID sono state definite nell'elenco delle subnet Grid Network sul nodo Admin primario.
 * Hai completato queste attività preliminari seguendo le istruzioni di installazione per il tuo dispositivo di archiviazione. Vedi https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/index.html["Guida rapida all'installazione dell'hardware"^].
 * Stai usando un link:../admin/web-browser-requirements.html["browser web supportato"].
 * Conosci uno degli indirizzi IP assegnati al controller di calcolo nell'appliance. Puoi utilizzare l'indirizzo IP per la Admin Network (porta di gestione 1 sul controller), la Grid Network o la Client Network.
@@ -42,7 +42,7 @@ NOTE: Quando recuperi un nodo di storage appliance, reinstallalo con lo stesso t
 `https://_Controller_IP_:8443`
 
 +
-${post_edited_translations.segment}
+Viene visualizzata la pagina iniziale del programma di installazione dell'appliance StorageGRID.
 
 . Nella sezione relativa alla connessione al nodo amministratore primario, decidi se devi specificare l'indirizzo IP per il nodo amministratore primario.
 +
@@ -58,7 +58,7 @@ Il programma di installazione dell'appliance StorageGRID può rilevare automatic
  a| 
 Inserimento manuale dell'indirizzo IP
  a| 
-.. ${post_edited_translations.segment}
+.. Deseleziona la casella di controllo *Abilita rilevamento Admin Node*.
 .. Inserisci manualmente l'indirizzo IP.
 
 
@@ -73,7 +73,7 @@ Inserimento manuale dell'indirizzo IP
  a| 
 Rilevamento automatico di tutti i nodi Admin primari connessi
  a| 
-.. ${post_edited_translations.segment}
+.. Seleziona la casella di controllo *Abilita il rilevamento del nodo amministratore*.
 .. Dall'elenco degli indirizzi IP rilevati, seleziona l'Admin Node per la grid in cui verrà distribuito questo appliance Storage Node.
 
 
@@ -93,7 +93,7 @@ Se il pulsante *Avvia installazione* non è abilitato, potresti dover modificare
 
 . Dalla home page di StorageGRID Appliance Installer, fai clic su *Avvia installazione*.
 +
-${post_edited_translations.segment}
+Lo stato attuale cambia in "Installazione in corso" e viene visualizzata la pagina Monitor Installazione.
 
 +
 

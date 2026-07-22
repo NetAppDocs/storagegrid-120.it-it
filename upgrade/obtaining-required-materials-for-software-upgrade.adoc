@@ -23,14 +23,14 @@ Portatile di servizio
  a| 
 Il computer portatile di servizio deve avere:
 
-* ${post_edited_translations.segment}
-* ${post_edited_translations.segment}
+* Porta di rete
+* Client SSH (ad esempio, PuTTY)
 
 
 
 
  a| 
-link:../admin/web-browser-requirements.html["${post_edited_translations.segment}"]
+link:../admin/web-browser-requirements.html["Browser web supportati"]
  a| 
 Il supporto dei browser in genere cambia a ogni release di StorageGRID. Assicurati che il tuo browser sia compatibile con la nuova versione di StorageGRID.
 
@@ -53,11 +53,11 @@ Assicurati che il tuo sistema operativo Linux soddisfi i requisiti minimi di ver
 
 
  a| 
-${post_edited_translations.segment}
+Documentazione di StorageGRID
  a| 
 * https://library.netapp.com/ecm/ecm_download_file/ECMLP3351267["Note di rilascio"^]. È necessario accedere con il proprio account NetApp o crearne uno per accedere alle note di rilascio. Assicurarsi di leggerle attentamente prima di iniziare l'aggiornamento.
 * https://kb.netapp.com/hybrid/StorageGRID/Maintenance/StorageGRID_12.0_software_upgrade_resolution_guide["Guida alla risoluzione degli upgrade software di StorageGRID"^] per la versione principale a cui stai eseguendo l'upgrade (accesso richiesto)
-* Altro https://docs.netapp.com/us-en/storagegrid-family/index.html["${post_edited_translations.segment}"^], secondo necessità.
+* Altro https://docs.netapp.com/us-en/storagegrid-family/index.html["Documentazione di StorageGRID"^], secondo necessità.
 
 
 |===

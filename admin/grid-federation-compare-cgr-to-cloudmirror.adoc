@@ -35,7 +35,7 @@ La replica CloudMirror crea una copia indipendente di un oggetto in un'infrastru
  a| 
 Come si configura?
  a| 
-. ${post_edited_translations.segment}
+. Configura una connessione di federazione di griglia tra due griglie.
 . Aggiungi nuovi account tenant, che vengono clonati automaticamente nell'altra griglia.
 . Aggiungi nuovi gruppi di tenant e utenti, che vengono anch'essi clonati.
 . Crea i bucket corrispondenti su ciascuna griglia e abilita la replica tra griglie in una o entrambe le direzioni.
@@ -59,12 +59,12 @@ In genere, un tenant.
 
 
  a| 
-${post_edited_translations.segment}
+Qual è la destinazione?
  a| 
 Un bucket S3 corrispondente e identico sull'altro sistema StorageGRID nella connessione di federazione grid.
  a| 
-* ${post_edited_translations.segment}
-* ${post_edited_translations.segment}
+* Qualsiasi infrastruttura S3 compatibile (inclusi Amazon S3).
+* Google Cloud Platform (GCP)
 
 
 
@@ -131,13 +131,13 @@ Cosa succede se elimini un oggetto?
 * Se la replica tra griglie è configurata solo in una direzione, gli oggetti nel bucket di destinazione possono essere eliminati senza influire sulla fonte.
 
  a| 
-${post_edited_translations.segment}
+I risultati varieranno in base allo stato di versioning dei bucket di origine e di destinazione (che non devono necessariamente essere gli stessi):
 
 * Se entrambi i bucket sono versionati, una richiesta di eliminazione aggiunge un indicatore di eliminazione in entrambe le posizioni.
-* ${post_edited_translations.segment}
+* Se solo il bucket di origine è versionato, una richiesta di eliminazione aggiungerà un indicatore di eliminazione alla fonte ma non alla destinazione.
 * Se nessuno dei due bucket è versionato, una richiesta di eliminazione cancellerà l'oggetto dall'origine ma non dalla destinazione.
 
 
-${post_edited_translations.segment}
+Allo stesso modo, gli oggetti nel bucket di destinazione possono essere eliminati senza influire sulla sorgente.
 
 |===

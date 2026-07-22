@@ -25,7 +25,7 @@ NOTE: Se la rimappatura della porta consente l'accesso al client, riconfigura il
 NOTE: Questa procedura non funziona per un sistema StorageGRID distribuito come container su host bare metal. Consulta le istruzioni per link:removing-port-remaps-on-bare-metal-hosts.html["rimozione delle rimappature delle porte su host bare metal"].
 
 .Passaggi
-. L'accesso SSH esterno è bloccato per impostazione predefinita. Se necessario, link:../admin/manage-external-ssh-access.html["${post_edited_translations.segment}"].
+. L'accesso SSH esterno è bloccato per impostazione predefinita. Se necessario, link:../admin/manage-external-ssh-access.html["Consenti temporaneamente l'accesso"].
 . Accedi al nodo.
 +
 .. Inserisci il seguente comando: `ssh -p 8022 admin@node_IP`

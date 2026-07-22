@@ -2,7 +2,7 @@
 permalink: audit/idel-ilm-initiated-delete.html 
 sidebar: sidebar 
 keywords: storagegrid, audit, message, IDEL, ILM Initiated Delete 
-summary: ${post_edited_translations.segment} 
+summary: Questo messaggio viene generato quando ILM avvia il processo di eliminazione di un oggetto. 
 ---
 = Messaggio di audit IDEL per le eliminazioni avviate da ILM in StorageGRID
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: ${post_edited_translations.segment}
 
 
 [role="lead"]
-${post_edited_translations.segment}
+Questo messaggio viene generato quando ILM avvia il processo di eliminazione di un oggetto.
 
 Il messaggio IDEL viene generato in una di queste situazioni:
 
@@ -25,7 +25,7 @@ Il messaggio IDEL viene generato in una di queste situazioni:
 
 
  a| 
-${post_edited_translations.segment}
+CBID
  a| 
 Identificatore del blocco di contenuto
  a| 
@@ -36,7 +36,7 @@ Il CBID dell'oggetto.
  a| 
 CMPA
  a| 
-${post_edited_translations.segment}
+Conformità: eliminazione automatica
  a| 
 Solo per oggetti in bucket S3 conformi. 0 (falso) o 1 (vero), indica se un oggetto conforme deve essere eliminato automaticamente quando termina il suo periodo di conservazione, a meno che il bucket non sia soggetto a un blocco legale.
 
@@ -45,23 +45,23 @@ Solo per oggetti in bucket S3 conformi. 0 (falso) o 1 (vero), indica se un ogget
  a| 
 CMPL
  a| 
-${post_edited_translations.segment}
+Conformità: Legal hold
  a| 
 Solo per gli oggetti nei bucket S3 conformi. 0 (falso) o 1 (vero), che indica se il bucket è attualmente sottoposto a un blocco legale.
 
 
 
  a| 
-${post_edited_translations.segment}
+CMPR
  a| 
-${post_edited_translations.segment}
+Conformità: periodo di conservazione
  a| 
 Solo per oggetti in bucket S3 conformi. La durata del periodo di conservazione dell'oggetto in minuti.
 
 
 
  a| 
-${post_edited_translations.segment}
+CTME
  a| 
 Conformità: tempo di ingestione
  a| 
@@ -98,7 +98,7 @@ CLEC: per gli oggetti con codifica di cancellazione, l'ID del profilo di codific
 
 CLDI: per gli oggetti replicati, l'ID del nodo LDR e l'ID del volume della posizione dell'oggetto.
 
-${post_edited_translations.segment}
+CLNL: ID del nodo ARC della posizione dell'oggetto se i dati dell'oggetto sono archiviati.
 
 
 
@@ -123,7 +123,7 @@ SUCS: L'operazione ILM è stata un successo.
 
 
  a| 
-${post_edited_translations.segment}
+REGOLA
  a| 
 Etichetta delle regole
  a| 
@@ -136,7 +136,7 @@ Etichetta delle regole
  a| 
 SGRP
  a| 
-${post_edited_translations.segment}
+Sito (gruppo)
  a| 
 Se presente, l'oggetto è stato eliminato nel sito specificato, che non è il sito in cui l'oggetto è stato acquisito.
 
@@ -152,7 +152,7 @@ L'identificativo dell'oggetto all'interno del sistema StorageGRID.
 
 
  a| 
-${post_edited_translations.segment}
+VSID
  a| 
 ID versione
  a| 

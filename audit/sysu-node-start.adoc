@@ -23,13 +23,13 @@ RSLT
  a| 
 Arresto pulito
  a| 
-${post_edited_translations.segment}
+La natura della chiusura:
 
 SUCS: Il sistema è stato spento correttamente.
 
 DSDN: Il sistema non è stato arrestato correttamente.
 
-${post_edited_translations.segment}
+VRGN: Il sistema è stato avviato per la prima volta dopo l'installazione (o la reinstallazione) del server.
 
 |===
 Il messaggio non indica se il server host è stato avviato, ma solo se è stato avviato il servizio di reporting. Questo messaggio può essere utilizzato per:

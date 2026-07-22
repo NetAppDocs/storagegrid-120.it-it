@@ -50,19 +50,19 @@ NOTE: Se in futuro cambierai la password, dovrai aggiornarla su questa pagina.
 ** *DN di base del gruppo*: il full path del nome distinto (DN) per un sottoalbero LDAP in cui vuoi cercare i gruppi. Nell'esempio di Active Directory (sotto), tutti i gruppi il cui nome distinto è relativo al DN di base (DC=storagegrid,DC=example,DC=com) possono essere usati come gruppi federati.
 +
 
-NOTE: ${post_edited_translations.segment}
+NOTE: I valori del *Nome univoco del gruppo* devono essere univoci all'interno del *DN di base del gruppo* a cui appartengono.
 
 ** *DN della base utente*: Il full path del nome distinto (DN) di un sottoalbero LDAP in cui vuoi cercare gli utenti.
 +
 
 NOTE: I valori del *nome univoco utente* devono essere univoci all'interno del *User Base DN* a cui appartengono.
 
-** ${post_edited_translations.segment}
+** *Formato del nome utente di associazione* (facoltativo): il modello di nome utente predefinito che StorageGRID dovrebbe utilizzare se il modello non può essere determinato automaticamente.
 +
-${post_edited_translations.segment}
+Si consiglia di fornire il formato del nome utente di bind perché può permettere agli utenti di accedere se StorageGRID non riesce a effettuare il bind con l'account di servizio.
 
 +
-${post_edited_translations.segment}
+Inserisci uno di questi modelli:
 
 +
 *** *UserPrincipalName pattern (AD e Entra ID)*: `[USERNAME]@_example_.com`

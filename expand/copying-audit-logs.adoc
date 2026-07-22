@@ -45,7 +45,7 @@ Quando sei connesso come root, il prompt cambia da  `$` a  `#`.
 
 
 . Interrompi il servizio AMS per impedirgli di creare un nuovo file: `service ams stop`
-. ${post_edited_translations.segment}
+. Vai alla directory di esportazione degli audit:
 +
 `cd /var/local/audit/export/`
 
@@ -65,7 +65,7 @@ mv audit.log _new_name_.txt
 +
 `mv _new_name_.txt audit.log`
 
-. ${post_edited_translations.segment}
+. Avvia il servizio AMS:
 +
 `service ams start`
 
@@ -84,7 +84,7 @@ Quando sei connesso come root, il prompt cambia da  `$` a  `#`.
 
 
 
-. ${post_edited_translations.segment}
+. Aggiorna le impostazioni utente e di gruppo per i file di registro di controllo:
 +
 `cd /var/local/audit/export/`
 

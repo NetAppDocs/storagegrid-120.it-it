@@ -15,7 +15,7 @@ I servizi della piattaforma includono la replica CloudMirror, le notifiche degli
 
 Se abiliti i servizi della piattaforma per gli account tenant S3, devi configurare la tua grid in modo che i tenant possano accedere alle risorse esterne necessarie per utilizzare questi servizi.
 
-I servizi della piattaforma non sono supportati per link:../tenant/what-is-branch-bucket.html["${post_edited_translations.segment}"].
+I servizi della piattaforma non sono supportati per link:../tenant/what-is-branch-bucket.html["bucket branch"].
 
 
 

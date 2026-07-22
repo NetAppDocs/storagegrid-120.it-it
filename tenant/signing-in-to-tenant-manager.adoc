@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to sign in to tenant manager 
 summary: 'Accedi al Tenant Manager inserendo l"URL del tenant nella barra degli indirizzi di un browser web supportato.' 
 ---
-= ${post_edited_translations.segment}
+= Accedi a StorageGRID Tenant Manager
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -31,7 +31,7 @@ Accedi al Tenant Manager inserendo l'URL del tenant nella barra degli indirizzi 
 +
 L'URL include sempre un fully qualified domain name (FQDN), l'indirizzo IP di un Admin Node o l'indirizzo IP virtuale di un gruppo HA di Admin Node. Potrebbe anche includere un numero di porta, l'ID dell'account tenant a 20 cifre o entrambi.
 
-* ${post_edited_translations.segment}
+* Se l'URL non include l'ID account di 20 cifre del tenant, significa che hai questo ID account.
 * Stai usando un link:../admin/web-browser-requirements.html["browser web supportato"].
 * I cookie sono abilitati nel tuo browser web.
 * Appartieni a un gruppo di utenti che ha link:tenant-management-permissions.html["autorizzazioni di accesso specifiche"].
@@ -39,8 +39,8 @@ L'URL include sempre un fully qualified domain name (FQDN), l'indirizzo IP di un
 
 .Passaggi
 . Avvia un link:../admin/web-browser-requirements.html["browser web supportato"].
-. ${post_edited_translations.segment}
-. ${post_edited_translations.segment}
+. Nella barra degli indirizzi del browser, inserisci l'URL per accedere a Tenant Manager.
+. Se viene visualizzato un avviso di sicurezza, installa il certificato utilizzando la procedura guidata di installazione del browser.
 . Accedi al Tenant Manager.
 +
 La schermata di accesso visualizzata dipende dall'URL inserito e dal fatto che single sign-on (SSO) sia stato configurato o meno per StorageGRID.
@@ -50,18 +50,18 @@ La schermata di accesso visualizzata dipende dall'URL inserito e dal fatto che s
 ====
 .Non usi SSO
 --
-${post_edited_translations.segment}
+Se StorageGRID non utilizza il single sign-on, viene visualizzata una delle seguenti schermate:
 
 ** La pagina di accesso di Grid Manager. Seleziona il link *Accesso tenant*.
 ** La pagina di accesso di Tenant Manager. Il campo *Account* potrebbe essere già compilato.
 +
-... ${post_edited_translations.segment}
-... ${post_edited_translations.segment}
+... Se l'ID account di 20 cifre del tenant non viene visualizzato, seleziona il nome dell'account tenant se compare nell'elenco degli account recenti oppure inserisci l'ID account.
+... Inserisci il tuo nome utente e la tua password.
 ... Seleziona *Accedi*.
 +
 Viene visualizzata la dashboard del Tenant Manager.
 
-... ${post_edited_translations.segment}
+... Se hai ricevuto una password iniziale da qualcun altro, seleziona *_username_* > *Change password* per proteggere il tuo account.
 
 
 
@@ -69,7 +69,7 @@ Viene visualizzata la dashboard del Tenant Manager.
 --
 .Utilizzare SSO
 --
-${post_edited_translations.segment}
+Se StorageGRID utilizza il single sign-on, viene visualizzata una delle seguenti schermate:
 
 ** La pagina single sign-on della tua organizzazione.
 +
@@ -77,7 +77,7 @@ Inserisci le tue credenziali SSO standard e seleziona *Accedi*.
 
 ** La pagina di accesso SSO per il Tenant Manager.
 +
-... ${post_edited_translations.segment}
+... Se l'ID account di 20 cifre del tenant non viene visualizzato, seleziona il nome dell'account tenant se compare nell'elenco degli account recenti oppure inserisci l'ID account.
 ... Seleziona *Accedi*.
 ... Accedi con le tue credenziali SSO standard sulla pagina di accesso SSO della tua organizzazione.
 +

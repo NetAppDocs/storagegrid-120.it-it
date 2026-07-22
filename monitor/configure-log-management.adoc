@@ -187,7 +187,7 @@ Se vuoi salvare i file di log internamente, scegli un tenant e un bucket per lo 
 Puoi configurare facoltativamente un syslog server esterno per salvare i log di audit, i log delle applicazioni e i log degli eventi di sicurezza in una posizione esterna alla tua grid.
 
 
-NOTE: Se non vuoi usare un syslog server esterno, salta questo passaggio e vai a <<select-log-location,${post_edited_translations.segment}>>.
+NOTE: Se non vuoi usare un syslog server esterno, salta questo passaggio e vai a <<select-log-location,Seleziona la posizione del file di log>>.
 
 
 TIP: Se le opzioni di configurazione disponibili in questa procedura non sono abbastanza flessibili per soddisfare le tue esigenze, puoi applicare opzioni di configurazione aggiuntive usando gli endpoint  `audit-destinations`, che si trovano nella sezione API privata del link:../admin/using-grid-management-api.html["API di gestione della griglia"]. Ad esempio, puoi usare l'API se vuoi utilizzare server syslog diversi per gruppi di nodi diversi.
@@ -584,7 +584,7 @@ NOTE: Le informazioni di audit di StorageGRID non vengono inviate al server sysl
 
 
 [[select-log-location]]
-=== ${post_edited_translations.segment}
+=== Seleziona la posizione del file di log
 
 Puoi specificare dove vengono inviati i log di controllo, i log degli eventi di sicurezza, link:../monitor/storagegrid-software-logs.html["Registri delle applicazioni StorageGRID"] e i log di accesso.
 
@@ -620,7 +620,7 @@ I messaggi di audit, i registri degli eventi di sicurezza e i registri delle app
 
 
  a| 
-${post_edited_translations.segment}
+Nodi amministrativi/nodi locali
  a| 
 I messaggi di audit vengono inviati al file di log di audit sugli Admin Node, mentre i log degli eventi di sicurezza e i log delle applicazioni vengono memorizzati sui nodi che li hanno generati. Le informazioni di audit vengono memorizzate nei seguenti file:
 
@@ -631,7 +631,7 @@ I messaggi di audit vengono inviati al file di log di audit sugli Admin Node, me
 
 
  a| 
-${post_edited_translations.segment}
+Server syslog esterno
  a| 
 Le informazioni di audit vengono inviate a un server syslog esterno e salvate sui nodi locali (`/var/local/log/localaudit.log`). Il tipo di informazioni inviate dipende da come hai configurato il server syslog esterno. Questa opzione è abilitata solo dopo che hai <<use-external-syslog-server,configurato un server syslog esterno>>.
 

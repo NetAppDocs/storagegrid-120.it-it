@@ -2,7 +2,7 @@
 permalink: swnodes/configuring-host-storage.html 
 sidebar: sidebar 
 keywords: how to configure host storage 
-summary: ${post_edited_translations.segment} 
+summary: Devi allocare volumi di storage a blocchi a ciascun host Linux. 
 ---
 = Configurare l'archiviazione host StorageGRID per le distribuzioni Linux
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: ${post_edited_translations.segment}
 
 
 [role="lead"]
-${post_edited_translations.segment}
+Devi allocare volumi di storage a blocchi a ciascun host Linux.
 
 .Prima di iniziare
 Hai esaminato i seguenti argomenti, che ti forniscono le informazioni necessarie per portare a termine questo compito:
@@ -24,20 +24,20 @@ Hai esaminato i seguenti argomenti, che ti forniscono le informazioni necessarie
 NOTE: "Linux" si riferisce a un'installazione di RHEL, Ubuntu o Debian. Per un elenco delle versioni supportate, vedi  https://imt.netapp.com/matrix/#welcome["NetApp Interoperability Matrix Tool (IMT)"^].
 
 .Informazioni su questa attività
-${post_edited_translations.segment}
+Quando assegni volumi di storage a blocchi (LUN) agli host, usa le tabelle in "Requisiti di archiviazione" per determinare quanto segue:
 
-* ${post_edited_translations.segment}
+* Numero di volumi necessari per ciascun host (in base al numero e ai tipi di nodi che verranno distribuiti su tale host)
 * Categoria di archiviazione per ciascun volume (cioè, Dati di sistema o Dati oggetto)
 * Dimensione di ciascun volume
 
 
-${post_edited_translations.segment}
+Utilizzerai queste informazioni, così come il nome persistente assegnato da Linux a ciascun volume fisico, quando implementerai i nodi StorageGRID sull'host.
 
 
-NOTE: ${post_edited_translations.segment}
+NOTE: Non devi partizionare, formattare o montare nessuno di questi volumi; devi solo assicurarti che siano visibili agli host.
 
 
-NOTE: ${post_edited_translations.segment}
+NOTE: È richiesto un solo LUN oggetto-dati per i nodi di archiviazione solo metadati.
 
 Evita di usare file di dispositivo speciali "raw" (`/dev/sdb`, ad esempio, quando componi l'elenco dei nomi dei volumi. Questi file possono cambiare a ogni riavvio dell'host, il che può compromettere il corretto funzionamento del sistema. Se usi LUN iSCSI e Device Mapper Multipathing, valuta di usare alias multipath nella directory  `/dev/mapper`, soprattutto se la tua topologia SAN include percorsi di rete ridondanti verso lo storage condiviso. In alternativa, puoi usare i collegamenti simbolici creati dal sistema sotto  `/dev/disk/by-path/` per i nomi dei dispositivi persistenti.
 
@@ -56,7 +56,7 @@ lrwxrwxrwx 1 root root  9 Sep 19 18:53 pci-0000:03:00.0-scsi-0:0:1:0 -> ../../sd
 lrwxrwxrwx 1 root root  9 Sep 19 18:53 pci-0000:03:00.0-scsi-0:0:2:0 -> ../../sdc
 lrwxrwxrwx 1 root root  9 Sep 19 18:53 pci-0000:03:00.0-scsi-0:0:3:0 -> ../../sdd
 ----
-${post_edited_translations.segment}
+I risultati possono variare per ogni installazione.
 
 Assegna nomi descrittivi a ciascuno di questi volumi di storage a blocchi per semplificare l'installazione iniziale di StorageGRID e le future procedure di manutenzione. Se usi il driver device mapper multipath per l'accesso ridondante ai volumi di storage condivisi, puoi usare il campo  `alias` nel file  `/etc/multipath.conf`.
 
@@ -103,7 +103,7 @@ Se stai configurando lo storage condiviso per supportare la migrazione dei nodi 
 NOTE: Il supporto per Docker come motore di container per le distribuzioni solo software è deprecato. Docker verrà sostituito da un altro motore di container in una versione futura.
 
 .Informazioni correlate
-* link:configuring-docker-storage-volume.html["${post_edited_translations.segment}"]
+* link:configuring-docker-storage-volume.html["Configura il volume di storage del motore container"]
 * link:storage-and-performance-requirements.html["Requisiti di storage e prestazioni"]
 * link:node-container-migration-requirements.html["Requisiti per la migrazione dei container dei nodi"]
 

@@ -40,14 +40,14 @@ Dopo che hai deciso di aggiungere volumi di storage e hai determinato quali Stor
 
 
 [[guidelines-for-adding-storage-nodes]]
-== ${post_edited_translations.segment}
+== Linee guida per l'aggiunta di Storage Node
 
-${post_edited_translations.segment}
+Prima di aggiungere nodi di storage a siti esistenti, controlla le seguenti linee guida e limitazioni:
 
 * Devi esaminare le tue regole ILM attuali per capire dove e quando aggiungere Storage Node per aumentare lo storage disponibile per link:../ilm/what-replication-is.html["oggetti replicati"] o link:../ilm/what-erasure-coding-schemes-are.html["oggetti codificati con erasure coding"].
 * Non dovresti aggiungere più di 10 Storage Node in una singola procedura di espansione.
 * Puoi aggiungere nodi di archiviazione a più di un sito in un'unica procedura di espansione.
-* ${post_edited_translations.segment}
+* Puoi aggiungere Storage Nodes e altri tipi di nodi in un'unica procedura di espansione.
 * Prima di avviare la procedura di espansione, devi verificare che tutte le operazioni di riparazione dei dati eseguite come parte di un recovery siano state completate. Vedi link:../maintain/checking-data-repair-jobs.html["Verifica i lavori di riparazione dei dati"].
 * Se devi rimuovere i nodi di archiviazione prima o dopo aver effettuato un'espansione, non dovresti decommissionare più di 10 nodi di archiviazione in una singola procedura di Decommission Node.
 * Aggiungi un numero sufficiente di Storage Node per mantenere le prestazioni di I/O dello storage sottostante. Le operazioni di scrittura saranno distribuite tra gli Storage Node in base alla capacità di storage disponibile. Se gli Storage Node espansi hanno una capacità di storage disponibile significativamente maggiore, questi nodi riceveranno un numero significativamente maggiore di scritture. In particolare, quando gli Storage Node esistenti sono quasi pieni, le nuove scritture si baseranno solo sugli Storage Node espansi. Le operazioni di lettura e cancellazione saranno gestite in base al tuo carico di lavoro specifico.

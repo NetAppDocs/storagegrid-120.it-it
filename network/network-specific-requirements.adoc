@@ -35,7 +35,7 @@ Le seguenti restrizioni vengono imposte dal Grid Manager durante la fase di impl
 
 * La subnet mask per qualsiasi indirizzo IP di rete non può essere 255.255.255.254 o 255.255.255.255 (/31 o /32 nella notazione CIDR).
 * La sottorete definita dall'indirizzo IP e dalla maschera di sottorete (CIDR) di un'interfaccia di rete non può sovrapporsi alla sottorete di nessun'altra interfaccia configurata sullo stesso nodo.
-* ${post_edited_translations.segment}
+* Non utilizzare sottoreti che contengono i seguenti indirizzi IPv4 per la Grid Network, l'Admin Network o la Client Network di alcun nodo:
 +
 ** 192.168.130.101
 ** 192.168.130.121
@@ -50,12 +50,12 @@ Le seguenti restrizioni vengono imposte dal Grid Manager durante la fase di impl
 
 
 +
-${post_edited_translations.segment}
+Ad esempio, non utilizzare i seguenti intervalli di sottoreti per la Grid Network, l'Admin Network o la Client Network di alcun nodo:
 
 +
 ** 192.168.130.0/24 perché questo intervallo di sottorete contiene gli indirizzi IP 192.168.130.101 e 192.168.130.102
-** ${post_edited_translations.segment}
-** ${post_edited_translations.segment}
+** 192.168.131.0/24 perché questo intervallo di sottorete contiene gli indirizzi IP 192.168.131.101 e 192.168.131.102
+** 198.51.100.0/24 perché questo intervallo di sottorete contiene gli indirizzi IP 198.51.100.2 e 198.51.100.4
 
 
 * La sottorete Grid Network per ciascun nodo deve essere inclusa nel GNSL.
@@ -67,7 +67,7 @@ ${post_edited_translations.segment}
 
 
 [[grid-network]]
-== ${post_edited_translations.segment}
+== Rete Grid
 
 * Al momento della distribuzione, ogni nodo della griglia deve essere collegato alla Grid Network e deve poter comunicare con il primary Admin Node usando la configurazione di rete che specifichi quando distribuisci il nodo.
 * Durante il normale funzionamento del grid, ogni nodo del grid deve essere in grado di comunicare con tutti gli altri nodi del grid tramite la Grid Network.
@@ -97,12 +97,12 @@ NOTE: Devi definire almeno una sottorete sulla Admin Network per abilitare le co
 
 
 [[client-network]]
-== ${post_edited_translations.segment}
+== Rete client
 
 La rete client è facoltativa. Se vuoi configurare una rete client, tieni presente quanto segue.
 
 * La rete client è progettata per supportare il traffico proveniente dai client S3. Se configurata, la gateway della rete client diventa il gateway predefinito del nodo.
-* Se usi una rete client, puoi contribuire a proteggere StorageGRID da attacchi ostili accettando il traffico client in entrata solo sugli endpoint del bilanciatore di carico configurati esplicitamente. Vedi link:../admin/configuring-load-balancer-endpoints.html["${post_edited_translations.segment}"].
+* Se usi una rete client, puoi contribuire a proteggere StorageGRID da attacchi ostili accettando il traffico client in entrata solo sugli endpoint del bilanciatore di carico configurati esplicitamente. Vedi link:../admin/configuring-load-balancer-endpoints.html["Configura gli endpoint del bilanciatore di carico"].
 * Se l'interfaccia Client Network è configurata come trunk per supportare le interfacce VLAN, valuta se sia necessario configurare l'interfaccia Client Network (eth2). Se configurata, il traffico Client Network passerà sulla VLAN nativa del trunk, come configurata nello switch.
 
 

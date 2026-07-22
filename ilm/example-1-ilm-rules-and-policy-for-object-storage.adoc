@@ -124,5 +124,5 @@ image:policy_1_configured_policy.png["Policy ILM per l'esempio 1"]
 
 .Informazioni correlate
 * link:ilm-policy-overview.html["Usa le policy ILM"]
-* link:creating-ilm-policy.html["${post_edited_translations.segment}"]
+* link:creating-ilm-policy.html["Crea le policy ILM"]
 

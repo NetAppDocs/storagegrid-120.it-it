@@ -31,7 +31,7 @@ Individua quali tenant utilizzano oggetti più grandi di 5 GiB, così puoi avvis
 +
 Quando sei connesso come root, il prompt cambia da  `$` a  `#`.
 
-.. ${post_edited_translations.segment}
+.. Vai nella directory dove si trovano i log di audit.
 +
 --
 La directory dei log di controllo e i nodi applicabili dipendono dalle impostazioni di destinazione dei log di controllo.
@@ -49,7 +49,7 @@ Nodi locali (predefiniti)
 
 
  a| 
-${post_edited_translations.segment}
+Nodi amministrativi/nodi locali
  a| 
 *** Nodi amministrativi (primario e non primario): `/var/local/audit/export/audit.log`
 *** Tutti i nodi: Il `/var/local/log/localaudit.log` file è in genere vuoto o mancante in questa modalità.
@@ -58,14 +58,14 @@ ${post_edited_translations.segment}
 
 
  a| 
-${post_edited_translations.segment}
+Server syslog esterno
  a| 
 `/var/local/log/localaudit.log`
 
 |===
 In base alle tue impostazioni di destinazione dell'audit, inserisci: `cd /var/local/log` o `/var/local/audit/export/`
 
-Per saperne di più, consulta link:../monitor/configure-log-management.html#select-log-location["${post_edited_translations.segment}"].
+Per saperne di più, consulta link:../monitor/configure-log-management.html#select-log-location["Seleziona la posizione del file di log"].
 
 --
 .. Identifica quali tenant stanno utilizzando oggetti più grandi di 5 GiB.

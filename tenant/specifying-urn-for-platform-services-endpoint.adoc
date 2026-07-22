@@ -29,7 +29,7 @@ L'URN per un endpoint dei servizi della piattaforma deve iniziare con  `arn:aws`
 
 Ad esempio, se stai specificando l'URN per un CloudMirror endpoint ospitato su StorageGRID, l'URN potrebbe iniziare con  `urn:sgws`.
 
-${post_edited_translations.segment}
+L'elemento successivo dell'URN specifica il tipo di servizio della piattaforma, come segue:
 
 [cols="2a,1a"]
 |===
@@ -60,11 +60,11 @@ Ad esempio, per continuare a specificare l'URN per un endpoint CloudMirror ospit
 
 Per la maggior parte degli endpoint, l'elemento finale dell'URN identifica la risorsa specifica di destinazione all'URI di destinazione, ad esempio  `sns-topic-name`.
 
-${post_edited_translations.segment}
+Per gli endpoint webhook, la risorsa di destinazione è l'URI di destinazione stesso.
 
 [cols="1a,2a"]
 |===
-| Servizio | ${post_edited_translations.segment} 
+| Servizio | Risorsa specifica 
 
 
  a| 
@@ -88,13 +88,13 @@ Integrazione della ricerca
  a| 
 `domain-name/index-name/type-name`
 
-${post_edited_translations.segment}
+*Nota:* Se il cluster Elasticsearch *non* è configurato per creare automaticamente gli indici, devi creare l'indice manualmente prima di creare l'endpoint.
 
 |===
 
 
 [[urns-for-services-hosted-on-aws-and-gcp]]
-== ${post_edited_translations.segment}
+== URN per i servizi ospitati su AWS e GCP
 
 Per le entità AWS e GCP, l'URN completo è un ARN AWS valido. Ad esempio:
 
@@ -125,7 +125,7 @@ NOTE: Per un endpoint di integrazione della ricerca AWS, il `domain-name` deve i
 
 
 [[urns-for-locally-hosted-services]]
-== ${post_edited_translations.segment}
+== URN per i servizi ospitati localmente
 
 Quando utilizzi servizi ospitati localmente anziché servizi cloud, puoi specificare l'URN in qualsiasi modo crei un URN valido e univoco, purché l'URN includa gli elementi richiesti nella terza e ultima posizione. Puoi lasciare vuoti gli elementi indicati come opzionali, oppure puoi specificarli in qualsiasi modo ti aiuti a identificare la risorsa e a rendere l'URN univoco. Ad esempio:
 
@@ -145,7 +145,7 @@ urn:sgws:s3:optional:optional:bucket-name
 ----
 * Notifiche:
 +
-${post_edited_translations.segment}
+Specifica un endpoint di Amazon Simple Notification Service:
 
 +
 [listing]

@@ -2,7 +2,7 @@
 permalink: expand/index.html 
 sidebar: sidebar 
 keywords: expand grid, StorageGRID 
-summary: ${post_edited_translations.segment} 
+summary: Puoi espandere la capacità o le funzionalità del tuo sistema StorageGRID senza interrompere le operazioni del sistema. 
 ---
 = Scopri come espandere il tuo sistema StorageGRID
 :allow-uri-read: 
@@ -49,7 +49,7 @@ NOTE: "Linux" si riferisce a un'installazione di RHEL, Ubuntu o Debian. Per un e
 
 
 --
-.${post_edited_translations.segment}
+.Aggiungi volumi di archiviazione
 --
 Segui i passaggi per link:adding-storage-volumes-to-storage-nodes.html["aggiunta di volumi di storage ai nodi di Storage"].
 

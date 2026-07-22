@@ -37,7 +37,7 @@ indexpage:
       url: "/maintain/storagegrid-hotfix-procedure.html"
   - title: Configura la griglia
     links:
-    - title: "${post_edited_translations.segment}"
+    - title: Gestisci StorageGRID
       url: "/admin/index.html"
     - title: Gestisci gli oggetti con ILM
       url: "/ilm/index.html"
@@ -49,7 +49,7 @@ indexpage:
     links:
     - title: Usa un tenant account
       url: "/tenant/index.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Usa l'API REST di S3
       url: "/s3/index.html"
     - title: Usa l'API REST di Swift (end of life)
       url: "/swift/index.html"
@@ -59,7 +59,7 @@ indexpage:
       url: "/monitor/index.html"
     - title: Risolvi i problemi della tua griglia
       url: "/troubleshoot/index.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Esamina i registri di controllo
       url: "/audit/index.html"
   - title: Espandi e mantieni la tua griglia
     links:

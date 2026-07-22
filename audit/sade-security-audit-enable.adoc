@@ -23,7 +23,7 @@ AETM
  a| 
 Metodo di attivazione
  a| 
-${post_edited_translations.segment}
+Il metodo utilizzato per abilitare l'audit.
 
 
 

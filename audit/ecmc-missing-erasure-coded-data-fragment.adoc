@@ -2,7 +2,7 @@
 permalink: audit/ecmc-missing-erasure-coded-data-fragment.html 
 sidebar: sidebar 
 keywords: storagegrid, audit, message, ECMC, Missing Erasure-Coded Data Fragment 
-summary: ${post_edited_translations.segment} 
+summary: Questo messaggio di controllo indica che il sistema ha rilevato un frammento di dati con codifica di cancellazione mancante. 
 ---
 = Messaggio di audit ECMC per dati con codifica di cancellazione mancanti in StorageGRID
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: ${post_edited_translations.segment}
 
 
 [role="lead"]
-${post_edited_translations.segment}
+Questo messaggio di controllo indica che il sistema ha rilevato un frammento di dati con codifica di cancellazione mancante.
 
 [cols="1a,1a,4a"]
 |===

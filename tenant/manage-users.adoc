@@ -14,12 +14,12 @@ summary: 'Puoi creare utenti locali e assegnarli a gruppi locali per determinare
 Puoi creare utenti locali e assegnarli a gruppi locali per determinare a quali funzionalità questi utenti possono accedere. Puoi anche importare utenti federati. Il Tenant Manager include un utente locale predefinito, chiamato "root". Anche se puoi aggiungere e rimuovere utenti locali, non puoi rimuovere l'utente root.
 
 
-NOTE: ${post_edited_translations.segment}
+NOTE: Se il single sign-on (SSO) è abilitato per il tuo sistema StorageGRID, gli utenti locali non potranno accedere al Tenant Manager o all'API di gestione del tenant, anche se possono utilizzare le applicazioni client per accedere alle risorse del tenant, in base alle autorizzazioni del gruppo.
 
 .Prima di iniziare
 * Hai effettuato l'accesso al Tenant Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
 * Tu appartieni a un gruppo di utenti che ha il link:tenant-management-permissions.html["Permesso di accesso root"].
-* Se il tuo account tenant dispone dell'autorizzazione *Use grid federation connection*, hai esaminato il workflow e le considerazioni per link:grid-federation-account-clone.html["${post_edited_translations.segment}"] e hai effettuato l'accesso alla grid di origine del tenant.
+* Se il tuo account tenant dispone dell'autorizzazione *Use grid federation connection*, hai esaminato il workflow e le considerazioni per link:grid-federation-account-clone.html["clonazione di gruppi di tenant e utenti"] e hai effettuato l'accesso alla grid di origine del tenant.
 
 
 
@@ -50,10 +50,10 @@ image:grid-federation-tenant-user-banner.png["immagine del banner blu nella pagi
 
 
 [[enter-credentials]]
-=== ${post_edited_translations.segment}
+=== Inserisci le credenziali
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Per la fase *Inserisci le credenziali utente*, compila i seguenti campi.
 +
 [cols="1a,3a"]
 |===
@@ -63,7 +63,7 @@ image:grid-federation-tenant-user-banner.png["immagine del banner blu nella pagi
  a| 
 Nome e cognome
  a| 
-${post_edited_translations.segment}
+Il nome completo di questo utente, ad esempio il nome e il cognome di una persona o il nome di un'applicazione.
 
 
 
@@ -88,7 +88,7 @@ Nega l'accesso
  a| 
 Seleziona *Sì* per impedire a questo utente di accedere all'account del tenant, anche se potrebbe ancora appartenere a uno o più gruppi.
 
-${post_edited_translations.segment}
+Ad esempio, seleziona *Sì* per sospendere temporaneamente la possibilità di accesso di un utente.
 
 |===
 . Seleziona *Continue*.
@@ -111,64 +111,64 @@ Gli utenti che non appartengono ad alcun gruppo non avranno permessi di gestione
 +
 Se il tuo tenant account dispone dell'autorizzazione *Usa connessione di federazione griglia* e ti trovi sulla griglia di origine del tenant, il nuovo utente locale viene clonato nella griglia di destinazione del tenant. *Riuscito* appare come *Stato di clonazione* nella sezione Panoramica della pagina dei dettagli dell'utente.
 
-. ${post_edited_translations.segment}
+. Seleziona *Fine* per tornare alla pagina Utenti.
 
 
 
 
 [[view-or-edit-local-user]]
-== ${post_edited_translations.segment}
+== Visualizza o modifica utente locale
 
 .Passaggi
 . Seleziona *Gestione accessi* > *Utenti*.
-. ${post_edited_translations.segment}
+. Esamina le informazioni fornite nella pagina Utenti, che elenca i dati di base di tutti gli utenti locali e federati di questo tenant account.
 +
 Se il tenant account dispone dell'autorizzazione *Utilizza la connessione di federazione della griglia* e stai visualizzando l'utente sulla griglia di origine del tenant:
 
 +
 ** Un messaggio a comparsa indica che se modifichi o rimuovi un utente, le modifiche non verranno sincronizzate con l'altra grid.
-** Se necessario, un messaggio banner indica se gli utenti non sono stati clonati nel tenant sulla griglia di destinazione. Puoi <<clone-users,${post_edited_translations.segment}>>.
+** Se necessario, un messaggio banner indica se gli utenti non sono stati clonati nel tenant sulla griglia di destinazione. Puoi <<clone-users,riprova a clonare un utente che non è riuscito>>.
 
 
-. ${post_edited_translations.segment}
+. Se desideri modificare il nome completo dell'utente:
 +
 .. Seleziona la casella di controllo per l'utente.
-.. ${post_edited_translations.segment}
-.. ${post_edited_translations.segment}
+.. Seleziona *Actions* > *Edit full name*.
+.. Inserisci il nuovo nome.
 .. Seleziona *Salva modifiche.*
 
 
 . Se desideri visualizzare maggiori dettagli o apportare ulteriori modifiche, procedi in uno dei seguenti modi:
 +
 ** Seleziona il nome utente.
-** ${post_edited_translations.segment}
+** Seleziona la casella di controllo per l'utente e seleziona *Azioni* > *Visualizza dettagli utente*.
 
 
 . Esamina la sezione Panoramica, che mostra le seguenti informazioni per ciascun utente:
 +
 ** Nome e cognome
 ** Nome utente
-** ${post_edited_translations.segment}
-** ${post_edited_translations.segment}
+** Tipo di utente
+** Accesso negato
 ** Modalità di accesso
-** ${post_edited_translations.segment}
+** Iscrizione al gruppo
 ** Campi aggiuntivi se il tenant account dispone dell'autorizzazione *Usa connessione di federazione griglia* e stai visualizzando l'utente sulla griglia di origine del tenant:
 +
-*** ${post_edited_translations.segment}
+*** Stato della clonazione, *Riuscito* o *Fallito*
 *** Un banner blu indica che, se modifichi questo utente, le modifiche non verranno sincronizzate con l'altra grid.
 
 
 
 
-. Modifica le impostazioni utente secondo necessità. Consulta <<create-user,${post_edited_translations.segment}>> per dettagli su cosa inserire.
+. Modifica le impostazioni utente secondo necessità. Consulta <<create-user,Crea utente locale>> per dettagli su cosa inserire.
 +
 .. Nella sezione Panoramica, modifica il nome completo selezionando il nome o l'icona di modifica image:icon_edit_tm.png["Icona di modifica"].
 +
-${post_edited_translations.segment}
+Non puoi cambiare il nome utente.
 
 .. Nella scheda *Password*, modifica la password dell'utente e seleziona *Salva modifiche*.
-.. ${post_edited_translations.segment}
-.. Nella scheda *Chiavi di accesso*, seleziona *Crea chiave* e segui le istruzioni per link:creating-another-users-s3-access-keys.html["${post_edited_translations.segment}"].
+.. Nella scheda *Accesso*, seleziona *No* per consentire all'utente di accedere oppure *Sì* per impedirgli di accedere. Quindi, seleziona *Salva modifiche*.
+.. Nella scheda *Chiavi di accesso*, seleziona *Crea chiave* e segui le istruzioni per link:creating-another-users-s3-access-keys.html["creare le chiavi di accesso S3 di un altro utente"].
 .. Nella scheda *Gruppi*, seleziona *Modifica gruppi* per aggiungere l'utente ai gruppi o rimuoverlo dai gruppi. Quindi, seleziona *Salva modifiche*.
 
 
@@ -194,12 +194,12 @@ Per inserire più voci, aggiungi ogni UUID o nome utente su una nuova riga.
 Se l'importazione nel campo Utenti non riesce per uno o più utenti, procedi come segue:
 
 +
-.. ${post_edited_translations.segment}
-.. ${post_edited_translations.segment}
+.. Espandi *Utenti non importati* e seleziona *Copia utenti*.
+.. Riprova l'importazione selezionando *Precedente* e incollando gli utenti copiati nella finestra di dialogo *Importa utenti federati*.
 
 
 +
-${post_edited_translations.segment}
+Dopo che chiudi la finestra di dialogo *Importa utenti federati*, le informazioni sugli utenti federati vengono visualizzate nella pagina Utenti per gli utenti importati correttamente.
 
 
 
@@ -215,25 +215,25 @@ NOTE: Se il tuo tenant account dispone dell'autorizzazione *Usa connessione di f
 
 .Passaggi
 . Seleziona *Gestione accessi* > *Utenti*.
-. ${post_edited_translations.segment}
+. Seleziona la casella di controllo per l'utente che vuoi duplicare.
 . Seleziona *Azioni* > *Duplica utente*.
-. Vedi <<create-user,${post_edited_translations.segment}>> per i dettagli su cosa inserire.
+. Vedi <<create-user,Crea utente locale>> per i dettagli su cosa inserire.
 . Seleziona *Crea utente*.
 
 
 
 
 [[clone-usersretry-user-clone]]
-== ${post_edited_translations.segment}
+== [[clone-users]]Riprova clonazione utente
 
 Per riprovare una clonazione non riuscita:
 
 . Seleziona ciascun utente che riporta la dicitura _(Cloning failed)_ sotto il nome utente.
-. ${post_edited_translations.segment}
+. Seleziona *Azioni* > *Clona utenti*.
 . Visualizza lo stato dell'operazione di clonazione dalla pagina dei dettagli di ogni utente che stai clonando.
 
 
-Per ulteriori informazioni, consulta link:grid-federation-account-clone.html["${post_edited_translations.segment}"].
+Per ulteriori informazioni, consulta link:grid-federation-account-clone.html["Clona gruppi di tenant e utenti"].
 
 
 
@@ -250,10 +250,10 @@ NOTE: Devi usare l'origine di identità federata per eliminare gli utenti federa
 
 .Passaggi
 . Seleziona *Gestione accessi* > *Utenti*.
-. ${post_edited_translations.segment}
+. Seleziona la casella di controllo per ogni utente che vuoi eliminare.
 . Seleziona *Azioni* > *Elimina utente* oppure *Azioni* > *Elimina utenti*.
 +
 Viene visualizzata una finestra di dialogo di conferma.
 
-. ${post_edited_translations.segment}
+. Seleziona *Elimina utente* o *Elimina utenti*.
 

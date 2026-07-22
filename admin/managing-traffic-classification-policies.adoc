@@ -18,14 +18,14 @@ Le policy di classificazione del traffico vengono applicate agli endpoint sul se
 
 
 [[matching-rules]]
-== ${post_edited_translations.segment}
+== Regole di corrispondenza
 
 Ogni policy di classificazione del traffico contiene una o più regole di corrispondenza per identificare il traffico di rete correlato a una o più delle seguenti entità:
 
-* ${post_edited_translations.segment}
+* Bucket
 * Sottorete
-* ${post_edited_translations.segment}
-* ${post_edited_translations.segment}
+* Tenant
+* Endpoint del bilanciatore di carico
 
 
 StorageGRID monitora il traffico che corrisponde a qualsiasi regola all'interno della policy secondo gli obiettivi della regola. Qualsiasi traffico che corrisponde a una qualsiasi regola di una policy viene gestito da quella policy. Al contrario, puoi impostare regole che corrispondano a tutto il traffico tranne che a una specifica entità.
@@ -35,11 +35,11 @@ StorageGRID monitora il traffico che corrisponde a qualsiasi regola all'interno 
 [[traffic-limiting]]
 == limitazione del traffico
 
-${post_edited_translations.segment}
+Facoltativamente, puoi aggiungere i seguenti tipi di limite a una policy:
 
 * larghezza di banda aggregata
 * Larghezza di banda per richiesta
-* ${post_edited_translations.segment}
+* Richieste simultanee
 * Tasso di richiesta
 
 
@@ -63,28 +63,28 @@ L'esempio seguente mostra tre livelli di un SLA. Puoi creare criteri di classifi
 
 [cols="1a,1a,1a,1a,1a"]
 |===
-| Livello di servizio | Capacità | Protezione dei dati | ${post_edited_translations.segment} | Costo 
+| Livello di servizio | Capacità | Protezione dei dati | Massime prestazioni consentite | Costo 
 
 
  a| 
 Oro
  a| 
-${post_edited_translations.segment}
+1 PB di storage consentito
  a| 
 Regola ILM a 3 copie
  a| 
 25 K richieste/sec
 
-${post_edited_translations.segment}
+5 GB/sec (40 Gbps) larghezza di banda
  a| 
-${post_edited_translations.segment}
+$$$ al mese
 
 
 
  a| 
 Argento
  a| 
-${post_edited_translations.segment}
+250 TB di storage consentito
  a| 
 2 copie regola ILM
  a| 
@@ -92,18 +92,18 @@ ${post_edited_translations.segment}
 
 1,25 GB/sec (10 Gbps) larghezza di banda
  a| 
-${post_edited_translations.segment}
+$$ al mese
 
 
 
  a| 
-${post_edited_translations.segment}
+Bronzo
  a| 
-${post_edited_translations.segment}
+100 TB di storage consentiti
  a| 
 2 copie regola ILM
  a| 
-${post_edited_translations.segment}
+5 K richieste/sec
 
 1 GB/sec (8 Gbps) larghezza di banda
  a| 

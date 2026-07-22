@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: expand, expansion, planning, storagegrid files, StorageGRID 
 summary: 'Prima di eseguire un"operazione di espansione, raccogli i materiali e installa e configura qualsiasi nuovo hardware e rete.' 
 ---
-= ${post_edited_translations.segment}
+= Preparati ad espandere il tuo sistema StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -32,11 +32,11 @@ Per i dettagli, consulta le istruzioni per <<download-and-extract-install-files,
  a| 
 Portatile di servizio
  a| 
-${post_edited_translations.segment}
+Il computer portatile di servizio ha quanto segue:
 
-* ${post_edited_translations.segment}
-* ${post_edited_translations.segment}
-* link:../admin/web-browser-requirements.html["${post_edited_translations.segment}"]
+* Porta di rete
+* Client SSH (ad esempio, PuTTY)
+* link:../admin/web-browser-requirements.html["Browser web supportati"]
 
 
 
@@ -56,9 +56,9 @@ La passphrase viene creata e documentata quando il sistema StorageGRID viene ins
 
 
  a| 
-${post_edited_translations.segment}
+Documentazione di StorageGRID
  a| 
-* link:../admin/index.html["${post_edited_translations.segment}"]
+* link:../admin/index.html["Gestisci StorageGRID"]
 * https://library.netapp.com/ecm/ecm_download_file/ECMLP3351267["Note di rilascio"^]. È necessario accedere con il proprio account NetApp o crearne uno per accedere alle note di rilascio.
 * link:../swnodes/index.html["Istruzioni di installazione per la tua piattaforma"]
 
@@ -74,9 +74,9 @@ Per le versioni supportate, consulta la https://imt.netapp.com/matrix/#welcome["
 
 
 [[download-and-extract-the-storagegrid-installation-files]]
-== ${post_edited_translations.segment}
+== Scarica ed estrai i file di installazione di StorageGRID
 
-.${post_edited_translations.segment}
+.[[scarica-e-estrai-i-file-di-installazione]]
 Prima di poter aggiungere nuovi nodi alla griglia o un nuovo sito, devi scaricare l'archivio di installazione di StorageGRID appropriato ed estrarre i file.
 
 .Informazioni su questa attività
@@ -84,9 +84,9 @@ Devi eseguire le operazioni di espansione utilizzando la versione di StorageGRID
 
 .Passaggi
 . Vai a https://mysupport.netapp.com/site/products/all/details/storagegrid/downloads-tab["Download NetApp: StorageGRID"^].
-. ${post_edited_translations.segment}
+. Seleziona la versione di StorageGRID attualmente in esecuzione sulla griglia.
 . Accedi con il nome utente e la password del tuo account NetApp.
-. ${post_edited_translations.segment}
+. Leggi il Contratto di licenza per l'utente finale, seleziona la casella di controllo e poi seleziona *Accetta e continua*.
 . Nella colonna *Installa StorageGRID* della pagina di download, seleziona il  `.tgz` o  `.zip` file per la tua piattaforma.
 +
 La versione indicata nel file di archivio di installazione deve corrispondere alla versione del software attualmente installato.
@@ -127,14 +127,14 @@ Per espandere una distribuzione esistente su OpenStack, devi distribuire una mac
 . Scarica ed estrai il file archivio.
 . Segui la procedura appropriata per la tua piattaforma per scegliere i file necessari, in base alla tua piattaforma, alla topologia di griglia pianificata e a come espanderai il tuo sistema StorageGRID.
 +
-${post_edited_translations.segment}
+I percorsi indicati nella procedura per ciascuna piattaforma sono relativi alla directory di livello superiore installata dal file di archivio.
 
-. ${post_edited_translations.segment}
+. Se stai espandendo un sistema RHEL, seleziona i file appropriati.
 
 
 [cols="1a,1a"]
 |===
-| ${post_edited_translations.segment} | Descrizione 
+| Percorso e nome file | Descrizione 
 
 
 | ./rpms/README  a| 
@@ -143,12 +143,12 @@ Un file di testo che descrive tutti i file contenuti nel file di download di Sto
 
 
 | ./rpms/NLF000000.txt  a| 
-${post_edited_translations.segment}
+Una licenza gratuita che non prevede alcun diritto di supporto per il prodotto.
 
 
 
-| ${post_edited_translations.segment}  a| 
-${post_edited_translations.segment}
+| ./rpms/StorageGRID-Webscale-Images-_version_-SHA.rpm  a| 
+Pacchetto RPM per installare le immagini dei nodi StorageGRID sui tuoi host RHEL.
 
 
 
@@ -157,7 +157,7 @@ Pacchetto RPM per installare il servizio host StorageGRID sui tuoi host RHEL.
 
 
 
-| ${post_edited_translations.segment} | Descrizione 
+| Strumento di scripting per la distribuzione | Descrizione 
 
 
 | ./rpms/configure-storagegrid.py  a| 
@@ -165,8 +165,8 @@ Uno script Python utilizzato per automatizzare la configurazione di un sistema S
 
 
 
-| ${post_edited_translations.segment}  a| 
-${post_edited_translations.segment}
+| ./rpms/configure-sga.py  a| 
+Uno script Python utilizzato per automatizzare la configurazione delle appliance StorageGRID.
 
 
 
@@ -175,35 +175,35 @@ Un esempio di file di configurazione da utilizzare con lo script  `configure-sto
 
 
 
-| ${post_edited_translations.segment}  a| 
+| ./rpms/storagegrid-ssoauth.py  a| 
 Un esempio di script Python che puoi utilizzare per accedere all'API Grid Management quando il single sign-on è abilitato. Puoi utilizzare questo script anche per l'integrazione con Ping Federate.
 
 
 
-| ${post_edited_translations.segment}  a| 
+| ./rpms/configure-storagegrid.blank.json  a| 
 Un file di configurazione vuoto da utilizzare con lo  `configure-storagegrid.py` script.
 
 
 
-| ${post_edited_translations.segment}  a| 
+| ./rpms/extras/ansible  a| 
 Esempio di ruolo e playbook Ansible per la configurazione di host RHEL per il deployment di container StorageGRID. Puoi personalizzare il ruolo o il playbook se necessario.
 
 
 
 | ./rpms/storagegrid-ssoauth-azure.py  a| 
-${post_edited_translations.segment}
+Ecco un esempio di script Python che puoi utilizzare per accedere all'API di gestione della griglia quando il single sign-on (SSO) è abilitato tramite Active Directory o Ping Federate.
 
 
 
-| ${post_edited_translations.segment}  a| 
+| ./rpms/storagegrid-ssoauth-azure.js  a| 
 Uno script di supporto richiamato dallo script Python di accompagnamento `storagegrid-ssoauth-azure.py` per eseguire interazioni SSO con Azure.
 
 
 
 | ./rpms/extras/api-schemas  a| 
-${post_edited_translations.segment}
+Schemi API per StorageGRID.
 
-${post_edited_translations.segment}
+*Nota*: Prima di eseguire un aggiornamento, puoi usare questi schemi per confermare che qualsiasi codice tu abbia scritto per utilizzare le API di gestione di StorageGRID sarà compatibile con la nuova release di StorageGRID, se non hai un ambiente StorageGRID non di produzione per testare la compatibilità dell'aggiornamento.
 
 |===
 . Se stai espandendo un sistema Ubuntu o Debian, seleziona i file appropriati.
@@ -211,7 +211,7 @@ ${post_edited_translations.segment}
 
 [cols="1a,1a"]
 |===
-| ${post_edited_translations.segment} | Descrizione 
+| Percorso e nome file | Descrizione 
 
 
 | ./debs/README  a| 
@@ -219,13 +219,13 @@ Un file di testo che descrive tutti i file contenuti nel file di download di Sto
 
 
 
-| ${post_edited_translations.segment}  a| 
+| ./debs/NLF000000.txt  a| 
 Un file di licenza NetApp non di produzione che puoi usare per test e proof of concept.
 
 
 
 | ./debs/storagegrid-webscale-images-version-SHA.deb  a| 
-${post_edited_translations.segment}
+Pacchetto DEB per installare le immagini dei nodi StorageGRID su host Ubuntu o Debian.
 
 
 
@@ -239,7 +239,7 @@ Pacchetto DEB per installare il servizio host StorageGRID su host Ubuntu o Debia
 
 
 
-| ${post_edited_translations.segment} | Descrizione 
+| Strumento di scripting per la distribuzione | Descrizione 
 
 
 | ./debs/configure-storagegrid.py  a| 
@@ -248,11 +248,11 @@ Uno script Python utilizzato per automatizzare la configurazione di un sistema S
 
 
 | ./debs/configure-sga.py  a| 
-${post_edited_translations.segment}
+Uno script Python utilizzato per automatizzare la configurazione delle appliance StorageGRID.
 
 
 
-| ${post_edited_translations.segment}  a| 
+| ./debs/storagegrid-ssoauth.py  a| 
 Un esempio di script Python che puoi utilizzare per accedere all'API Grid Management quando il single sign-on è abilitato. Puoi utilizzare questo script anche per l'integrazione con Ping Federate.
 
 
@@ -267,13 +267,13 @@ Un file di configurazione vuoto da utilizzare con lo  `configure-storagegrid.py`
 
 
 
-| ${post_edited_translations.segment}  a| 
+| ./debs/extras/ansible  a| 
 Esempio di ruolo e playbook Ansible per configurare host Ubuntu o Debian per la distribuzione di container StorageGRID. Puoi personalizzare il ruolo o il playbook come necessario.
 
 
 
 | ./debs/storagegrid-ssoauth-azure.py  a| 
-${post_edited_translations.segment}
+Ecco un esempio di script Python che puoi utilizzare per accedere all'API di gestione della griglia quando il single sign-on (SSO) è abilitato tramite Active Directory o Ping Federate.
 
 
 
@@ -282,10 +282,10 @@ Uno script di supporto richiamato dallo script Python di accompagnamento `storag
 
 
 
-| ${post_edited_translations.segment}  a| 
-${post_edited_translations.segment}
+| ./debs/extras/api-schemas  a| 
+Schemi API per StorageGRID.
 
-${post_edited_translations.segment}
+*Nota*: Prima di eseguire un aggiornamento, puoi usare questi schemi per confermare che qualsiasi codice tu abbia scritto per utilizzare le API di gestione di StorageGRID sarà compatibile con la nuova release di StorageGRID, se non hai un ambiente StorageGRID non di produzione per testare la compatibilità dell'aggiornamento.
 
 |===
 . Se stai espandendo un sistema VMware, seleziona i file appropriati.
@@ -293,7 +293,7 @@ ${post_edited_translations.segment}
 
 [cols="1a,1a"]
 |===
-| ${post_edited_translations.segment} | Descrizione 
+| Percorso e nome file | Descrizione 
 
 
 | ./vsphere/README  a| 
@@ -301,8 +301,8 @@ Un file di testo che descrive tutti i file contenuti nel file di download di Sto
 
 
 
-| ${post_edited_translations.segment}  a| 
-${post_edited_translations.segment}
+| ./vsphere/NLF000000.txt  a| 
+Una licenza gratuita che non prevede alcun diritto di supporto per il prodotto.
 
 
 
@@ -331,10 +331,10 @@ Il file template (`.ovf`) e il file manifest (`.mf`) per la distribuzione di Sto
 
 
 
-| ${post_edited_translations.segment} | Descrizione 
+| Strumento di scripting per la distribuzione | Descrizione 
 
 
-| ${post_edited_translations.segment}  a| 
+| ./vsphere/deploy-vsphere-ovftool.sh  a| 
 Uno script Bash utilizzato per automatizzare il deployment dei nodi della grid virtuale.
 
 
@@ -349,8 +349,8 @@ Uno script Python utilizzato per automatizzare la configurazione di un sistema S
 
 
 
-| ${post_edited_translations.segment}  a| 
-${post_edited_translations.segment}
+| ./vsphere/configure-sga.py  a| 
+Uno script Python utilizzato per automatizzare la configurazione delle appliance StorageGRID.
 
 
 
@@ -370,7 +370,7 @@ Un file di configurazione vuoto da utilizzare con lo  `configure-storagegrid.py`
 
 
 | ./vsphere/storagegrid-ssoauth-azure.py  a| 
-${post_edited_translations.segment}
+Ecco un esempio di script Python che puoi utilizzare per accedere all'API di gestione della griglia quando il single sign-on (SSO) è abilitato tramite Active Directory o Ping Federate.
 
 
 
@@ -380,9 +380,9 @@ Uno script di supporto richiamato dallo script Python di accompagnamento `storag
 
 
 | ./vsphere/extras/api-schemas  a| 
-${post_edited_translations.segment}
+Schemi API per StorageGRID.
 
-${post_edited_translations.segment}
+*Nota*: Prima di eseguire un aggiornamento, puoi usare questi schemi per confermare che qualsiasi codice tu abbia scritto per utilizzare le API di gestione di StorageGRID sarà compatibile con la nuova release di StorageGRID, se non hai un ambiente StorageGRID non di produzione per testare la compatibilità dell'aggiornamento.
 
 |===
 . Se stai espandendo un sistema StorageGRID basato su appliance, seleziona i file appropriati.
@@ -393,7 +393,7 @@ NOTE: Per l'installazione dell'appliance, questi file sono necessari solo se vuo
 
 [cols="1a,1a"]
 |===
-| ${post_edited_translations.segment} | Descrizione 
+| Percorso e nome file | Descrizione 
 
 
 | ./debs/storagegrid-webscale-images-version-SHA.deb  a| 
@@ -409,11 +409,11 @@ images-version-SHA.deb`.
 
 
 [[verify-hardware-and-networking]]
-== ${post_edited_translations.segment}
+== Verifica hardware e rete
 
 Prima di iniziare l'espansione del tuo sistema StorageGRID, assicurati di quanto segue:
 
-* ${post_edited_translations.segment}
+* L'hardware necessario per supportare i nuovi nodi della griglia o il nuovo sito è stato installato e configurato.
 * Tutti i nuovi nodi hanno percorsi di comunicazione bidirezionali con tutti i nodi esistenti e nuovi (un requisito per la rete Grid). In particolare, conferma che le seguenti porte TCP siano aperte tra i nuovi nodi che stai aggiungendo nell'espansione e il nodo Admin primario:
 +
 ** 1055

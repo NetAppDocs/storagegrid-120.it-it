@@ -19,7 +19,7 @@ Puoi decommissionare e rimuovere definitivamente i nodi connessi alla grid.
 * Hai verificato che non siano in corso processi di riparazione dati.
 * Hai confermato che il recovery del nodo di storage non è in corso in nessuna parte della grid. Se invece è in corso, aspetta che qualsiasi rebuild di Cassandra eseguito come parte del recovery sia completato. A questo punto puoi procedere con il decommissioning.
 * Hai verificato che nessun'altra procedura di manutenzione venga eseguita mentre è in corso la procedura di decommission del nodo, a meno che la procedura di decommission non venga messa in pausa.
-* ${post_edited_translations.segment}
+* Hai la passphrase di provisioning.
 * I nodi della griglia sono collegati.
 * La colonna *Decommission Possible* relativa al nodo o ai nodi che vuoi decommissionare include un segno di spunta verde.
 +
@@ -86,7 +86,7 @@ Quando un nodo viene decommissionato, i suoi servizi vengono disabilitati e il n
 
 .Passaggi
 . Dalla pagina Decommissiona nodi, seleziona la casella di controllo per ogni nodo della griglia che vuoi decommissionare.
-. ${post_edited_translations.segment}
+. Inserisci la passphrase di provisioning.
 +
 Il pulsante *Avvia decommission* è abilitato.
 

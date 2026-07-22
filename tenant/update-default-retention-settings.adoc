@@ -20,7 +20,7 @@ Se hai abilitato S3 Object Lock durante la creazione del bucket, puoi modificare
 
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Seleziona *Visualizza bucket* dalla dashboard oppure seleziona *STORAGE (S3)* > *Buckets*.
 . Seleziona il nome del bucket dalla tabella.
 +
 Viene visualizzata la pagina dei dettagli del bucket.
@@ -30,7 +30,7 @@ Viene visualizzata la pagina dei dettagli del bucket.
 +
 Le modifiche a questa impostazione non si applicano agli oggetti già presenti nel bucket né agli oggetti che potrebbero avere il proprio periodo di conservazione.
 
-. ${post_edited_translations.segment}
+. Se è abilitata l'opzione *Conservazione predefinita*, specifica una *Modalità di conservazione predefinita* per il bucket.
 +
 [cols="1a,2a"]
 |===

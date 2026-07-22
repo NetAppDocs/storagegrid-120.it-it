@@ -16,18 +16,18 @@ Quando configuri un sistema StorageGRID per l'utilizzo con FabricPool, potresti 
 
 
 [[audit-message-and-log-destinations]]
-== ${post_edited_translations.segment}
+== Destinazioni dei messaggi e dei log di controllo
 
 FabricPool carichi di lavoro spesso presentano un'elevata frequenza di operazioni di lettura, che possono generare un elevato volume di messaggi di audit.
 
 * Se non hai bisogno di un record delle operazioni di lettura dei client per FabricPool o qualsiasi altra applicazione S3, facoltativamente vai su *Configuration* > *Monitoring* > *Audit and syslog server*. Modifica l'impostazione *Client Reads* in *Error* per ridurre il numero di messaggi di audit registrati nel log di audit. Vedi link:../monitor/configure-log-management.html["Configura la gestione dei log e il server syslog esterno"] per i dettagli.
-* Se hai una griglia di grandi dimensioni, usi diversi tipi di applicazioni S3 o vuoi conservare tutti i dati di audit, configura un syslog server esterno e salva le informazioni di audit in remoto. Usare un server esterno riduce al minimo l'impatto sulle prestazioni della registrazione dei messaggi di audit senza ridurre la completezza dei dati di audit. Vedi link:../monitor/considerations-for-external-syslog-server.html["${post_edited_translations.segment}"] per i dettagli.
+* Se hai una griglia di grandi dimensioni, usi diversi tipi di applicazioni S3 o vuoi conservare tutti i dati di audit, configura un syslog server esterno e salva le informazioni di audit in remoto. Usare un server esterno riduce al minimo l'impatto sulle prestazioni della registrazione dei messaggi di audit senza ridurre la completezza dei dati di audit. Vedi link:../monitor/considerations-for-external-syslog-server.html["Considerazioni per un server syslog esterno"] per i dettagli.
 
 
 
 
 [[object-encryption]]
-== ${post_edited_translations.segment}
+== Crittografia degli oggetti
 
 Quando configuri StorageGRID, puoi opzionalmente abilitare la link:../admin/changing-network-options-object-encryption.html["opzione globale per la crittografia degli oggetti memorizzati"] se è richiesta la crittografia dei dati per altri client StorageGRID. I dati che vengono trasferiti da FabricPool a StorageGRID sono già crittografati, quindi non è necessario abilitare l'impostazione StorageGRID. Le chiavi di crittografia lato client sono di proprietà di ONTAP.
 
@@ -36,7 +36,7 @@ Quando configuri StorageGRID, puoi opzionalmente abilitare la link:../admin/chan
 [[object-compression]]
 == compressione degli oggetti
 
-Quando configuri StorageGRID, non abilitare link:../admin/configuring-stored-object-compression.html["${post_edited_translations.segment}"]. I dati che vengono spostati da FabricPool a StorageGRID sono già compressi. Usare l'opzione StorageGRID non ridurrà ulteriormente le dimensioni di un oggetto.
+Quando configuri StorageGRID, non abilitare link:../admin/configuring-stored-object-compression.html["opzione globale per comprimere gli oggetti memorizzati"]. I dati che vengono spostati da FabricPool a StorageGRID sono già compressi. Usare l'opzione StorageGRID non ridurrà ulteriormente le dimensioni di un oggetto.
 
 
 

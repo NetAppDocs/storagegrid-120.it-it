@@ -32,9 +32,9 @@ Vengono visualizzati i risultati della ricerca dei metadati dell'oggetto. Questa
 
 +
 ** Metadati di sistema, come l'ID dell'oggetto (UUID), il tipo di risultato (oggetto, indicatore di eliminazione, bucket S3) e la dimensione logica dell'oggetto. Consulta lo screenshot di esempio qui sotto per maggiori dettagli.
-** ${post_edited_translations.segment}
+** Qualsiasi coppia chiave-valore di metadati utente personalizzati associata all'oggetto.
 ** Per gli oggetti S3, tutte le coppie chiave-valore dei tag associate all'oggetto.
-** ${post_edited_translations.segment}
+** Per le copie replicate degli oggetti, la posizione di archiviazione corrente di ciascuna copia.
 ** Per le copie di oggetti con codifica di cancellazione, la posizione di archiviazione corrente di ciascun frammento.
 ** Per le copie di oggetti in un Cloud Storage Pool, la posizione dell'oggetto, incluso il nome del bucket esterno e l'identificativo univoco dell'oggetto.
 ** Per gli oggetti segmentati e gli oggetti composti da più parti, viene visualizzato un elenco dei segmenti dell'oggetto, inclusi gli identificatori dei segmenti e le dimensioni dei dati. Per gli oggetti con più di 100 segmenti, vengono mostrati solo i primi 100 segmenti.
@@ -43,7 +43,7 @@ Vengono visualizzati i risultati della ricerca dei metadati dell'oggetto. Questa
 
 . Conferma che l'oggetto sia memorizzato nella posizione o nelle posizioni corrette e che sia il tipo di copia corretto.
 +
-Se l'opzione Audit è abilitata, puoi anche monitorare il registro di controllo per il messaggio ORLM Object Rules Met. Il messaggio di audit ORLM può darti più informazioni sullo stato del processo di valutazione ILM, ma non può darti informazioni sulla correttezza del posizionamento dei dati dell'oggetto o sulla completezza della policy ILM. Devi valutare tu stesso questo aspetto. Per dettagli, vedi link:../audit/index.html["${post_edited_translations.segment}"].
+Se l'opzione Audit è abilitata, puoi anche monitorare il registro di controllo per il messaggio ORLM Object Rules Met. Il messaggio di audit ORLM può darti più informazioni sullo stato del processo di valutazione ILM, ma non può darti informazioni sulla correttezza del posizionamento dei dati dell'oggetto o sulla completezza della policy ILM. Devi valutare tu stesso questo aspetto. Per dettagli, vedi link:../audit/index.html["Esamina i registri di controllo"].
 
 
 
@@ -55,4 +55,4 @@ NOTE: La seguente screenshot è un esempio. I risultati varieranno a seconda del
 image:object_lookup_results.png["Risultati ricerca oggetto"]
 
 .Informazioni correlate
-link:../s3/index.html["${post_edited_translations.segment}"]
+link:../s3/index.html["Usa l'API REST di S3"]

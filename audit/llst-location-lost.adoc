@@ -21,9 +21,9 @@ Questo messaggio viene generato ogni volta che non è possibile trovare una posi
  a| 
 CBIL
  a| 
-${post_edited_translations.segment}
+CBID
  a| 
-${post_edited_translations.segment}
+Il CBID interessato.
 
 
 
@@ -37,13 +37,13 @@ Per i dati degli oggetti codificati con cancellazione. L'ID del profilo di codif
 
 
  a| 
-${post_edited_translations.segment}
+LTYP
  a| 
 Tipo di posizione
  a| 
 CLDI (online): per i dati oggetto replicati
 
-${post_edited_translations.segment}
+CLEC (online): per dati di oggetti con codifica di cancellazione
 
 CLNL (Nearline): Per i dati oggetto replicati archiviati
 
@@ -59,7 +59,7 @@ L'ID del nodo su cui sono state perse le posizioni.
 
 
  a| 
-${post_edited_translations.segment}
+PCLD
  a| 
 Percorso all'oggetto replicato
  a| 
@@ -79,13 +79,13 @@ Sempre NONE. RSLT è un campo di messaggio obbligatorio, ma non è rilevante per
 
 
  a| 
-${post_edited_translations.segment}
+TSRC
  a| 
-${post_edited_translations.segment}
+Fonte di attivazione
  a| 
 UTENTE: Attivato dall'utente
 
-${post_edited_translations.segment}
+SYST: Sistema attivato
 
 
 
@@ -94,6 +94,6 @@ UUID
  a| 
 ID univoco universale
  a| 
-${post_edited_translations.segment}
+L'identificativo dell'oggetto interessato nel sistema StorageGRID.
 
 |===

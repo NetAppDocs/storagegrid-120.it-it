@@ -14,7 +14,7 @@ summary: 'Un tenant account consente di utilizzare l"API REST di Simple Storage 
 Un tenant account consente di utilizzare l'API REST di Simple Storage Service (S3) per archiviare e recuperare oggetti in un sistema StorageGRID.
 
 
-TIP: I dettagli di Swift sono stati rimossi da questa versione del sito di documentazione. Consulta https://docs.netapp.com/us-en/storagegrid-118/admin/managing-tenants.html["${post_edited_translations.segment}"^].
+TIP: I dettagli di Swift sono stati rimossi da questa versione del sito di documentazione. Consulta https://docs.netapp.com/us-en/storagegrid-118/admin/managing-tenants.html["StorageGRID 11.8: Gestisci i tenant"^].
 
 Come amministratore della griglia, crei e gestisci gli account tenant che i client S3 utilizzano per archiviare e recuperare oggetti.
 
@@ -49,19 +49,19 @@ Inoltre, puoi abilitare l'impostazione S3 Object Lock per il sistema StorageGRID
 
 
 [[what-is-tenant-manager-used-for]]
-== ${post_edited_translations.segment}
+== A cosa serve Tenant Manager?
 
 Dopo che hai creato il tenant account, gli utenti tenant possono accedere al Tenant Manager per svolgere attività come le seguenti:
 
 * Configura la federazione delle identità (a meno che l'origine dell'identità non sia condivisa con la grid)
 * Gestisci gruppi e utenti
 * Usa la federazione di griglia per clonare gli account e replicare tra griglie
-* ${post_edited_translations.segment}
-* ${post_edited_translations.segment}
-* ${post_edited_translations.segment}
+* Gestisci le chiavi di accesso S3
+* Crea e gestisci bucket S3
+* Usa i servizi della piattaforma S3
 * Usa S3 Select
 * Monitora l'utilizzo dello storage
 
 
 
-TIP: Anche se gli utenti tenant S3 possono creare e gestire chiavi di accesso S3 e bucket con il Tenant Manager, devono usare un'applicazione client S3 per acquisire e gestire gli oggetti. Vedi link:../s3/index.html["${post_edited_translations.segment}"] per i dettagli.
+TIP: Anche se gli utenti tenant S3 possono creare e gestire chiavi di accesso S3 e bucket con il Tenant Manager, devono usare un'applicazione client S3 per acquisire e gestire gli oggetti. Vedi link:../s3/index.html["Usa l'API REST di S3"] per i dettagli.

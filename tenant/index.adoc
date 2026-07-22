@@ -54,12 +54,12 @@ Dopo un link:../admin/creating-tenant-account.html["L'account tenant S3 è stato
 * Configura la federazione delle identità (a meno che l'origine dell'identità non sia condivisa con la grid)
 * Gestisci gruppi e utenti
 * Usa la federazione di griglia per clonare gli account e replicare tra griglie
-* ${post_edited_translations.segment}
-* ${post_edited_translations.segment}
-* ${post_edited_translations.segment}
+* Gestisci le chiavi di accesso S3
+* Crea e gestisci bucket S3
+* Usa i servizi della piattaforma S3
 * Usa S3 Select
 * Monitora l'utilizzo dello storage
 
 
 
-TIP: Anche se puoi creare e gestire bucket S3 con Tenant Manager, devi usare un link:../s3/index.html["${post_edited_translations.segment}"] o link:use-s3-console.html["Console S3"] per acquisire e gestire gli oggetti.
+TIP: Anche se puoi creare e gestire bucket S3 con Tenant Manager, devi usare un link:../s3/index.html["Client S3"] o link:use-s3-console.html["Console S3"] per acquisire e gestire gli oggetti.

@@ -2,22 +2,22 @@
 section: swnodes
 title: Installare i nodi StorageGRID
 entries:
-- title: "${post_edited_translations.segment}"
+- title: Installa nodi basati su appliance
   url: "/swnodes/storagegrid-hardware.html"
 - title: Installa nodi basati su software
   entries:
   - title: Avvio rapido
     pdf-filename: Installa StorageGRID sui nodi basati su software
     url: "/swnodes/index.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Pianifica e prepara l'installazione su nodi basati su software
     entries:
     - title: Informazioni e materiali necessari
       url: "/swnodes/required-materials.html"
     - title: Scarica ed estrai i file di installazione di StorageGRID
       url: "/swnodes/downloading-and-extracting-storagegrid-installation-files.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Verifica manuale dei file di installazione
       url: "/swnodes/download-files-verify.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Requisiti software
       url: "/swnodes/software-requirements.html"
     - title: Requisiti di CPU e RAM
       url: "/swnodes/cpu-and-ram-requirements.html"
@@ -25,7 +25,7 @@ entries:
       url: "/swnodes/storage-and-performance-requirements.html"
     - title: Requisiti per la migrazione dei container Node (Linux)
       url: "/swnodes/node-container-migration-requirements.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Prepara gli host (Linux)
       entries:
       - title: Come cambiano le impostazioni a livello di host
         url: "/swnodes/how-host-wide-settings-change.html"
@@ -37,7 +37,7 @@ entries:
         url: "/swnodes/configuring-host-network.html"
       - title: Configura lo storage host
         url: "/swnodes/configuring-host-storage.html"
-      - title: "${post_edited_translations.segment}"
+      - title: Configura il volume di archiviazione del motore del container
         url: "/swnodes/configuring-docker-storage-volume.html"
       - title: Installa i servizi host di StorageGRID
         url: "/swnodes/installing-storagegrid-webscale-host-services.html"
@@ -47,21 +47,21 @@ entries:
       url: "/swnodes/automating-installation-linux.html"
     - title: Automatizza l'installazione (VMware)
       url: "/swnodes/automating-grid-node-deployment-in-vmware-vsphere.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Distribuisci nodi di griglia virtuali
     entries:
     - title: Raccogli informazioni sul tuo ambiente di distribuzione (VMware)
       url: "/swnodes/collecting-information-about-your-deployment-environment.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Crea i file di configurazione del nodo per la distribuzione (Linux)
       url: "/swnodes/creating-node-configuration-files.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Come i nodi della griglia scoprono il nodo Admin primario
       url: "/swnodes/how-grid-nodes-discover-primary-admin-node.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Distribuisci un nodo StorageGRID come macchina virtuale (VMware)
       url: "/swnodes/deploying-storagegrid-node-as-virtual-machine.html"
     - title: Esempi di file di configurazione del nodo (Linux)
       url: "/swnodes/example-node-configuration-files.html"
     - title: Convalida la configurazione di StorageGRID (Linux)
       url: "/swnodes/validating-storagegrid-configuration.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Avvia il servizio host StorageGRID (Linux)
       url: "/swnodes/starting-storagegrid-host-service.html"
   - title: API REST di installazione
     url: "/swnodes/overview-of-installation-rest-api.html"
@@ -77,21 +77,21 @@ entries:
   entries:
   - title: Vai al Grid Manager
     url: "/swnodes/navigating-to-grid-manager.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Specifica le informazioni sulla licenza
     url: "/swnodes/specifying-storagegrid-license-information.html"
   - title: Aggiungi siti
     url: "/swnodes/adding-sites.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Specifica le sottoreti della rete Grid
     url: "/swnodes/specifying-grid-network-subnets.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Approva i nodi della grid in sospeso
     url: "/swnodes/approving-pending-grid-nodes.html"
   - title: Specifica le informazioni del server NTP
     url: "/swnodes/specifying-network-time-protocol-server-information.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Specifica le informazioni del DNS server
     url: "/swnodes/specifying-domain-name-system-server-information.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Specifica le password di sistema
     url: "/swnodes/specifying-storagegrid-system-passwords.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Rivedi la configurazione e completa l'installazione
     url: "/swnodes/reviewing-your-configuration-and-completing-installation.html"
   - title: Linee guida post-installazione
     url: "/swnodes/post-installation-guidelines.html"

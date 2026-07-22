@@ -16,7 +16,7 @@ Dopo aver aggiunto un nuovo Admin Node, puoi facoltativamente copiare le metrich
 .Prima di iniziare
 * Il nuovo Admin Node è installato e in esecuzione.
 * Hai il file  `Passwords.txt`.
-* ${post_edited_translations.segment}
+* Hai la passphrase di provisioning.
 
 
 .Informazioni su questa attività
@@ -37,7 +37,7 @@ NOTE: La copia del database Prometheus potrebbe richiedere un'ora o più. Alcune
 . Dall'Admin Node di origine, arresta il servizio Prometheus: `service prometheus stop`
 . Completa i seguenti passaggi sul nuovo Admin Node:
 +
-.. ${post_edited_translations.segment}
+.. Accedi al nuovo Admin Node:
 +
 ... Inserisci il seguente comando: `ssh admin@_grid_node_IP_`
 ... Inserisci la password indicata nel file  `Passwords.txt`.

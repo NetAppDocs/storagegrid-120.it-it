@@ -46,15 +46,15 @@ Di solito, un tenant
 
 
  a| 
-${post_edited_translations.segment}
+Qual è la destinazione?
  a| 
 * Qualsiasi infrastruttura S3 compatibile (inclusi Amazon S3)
 * Livello Archive di Azure Blob
-* ${post_edited_translations.segment}
+* Google Cloud Platform (GCP)
 
  a| 
 * Qualsiasi infrastruttura S3 compatibile (inclusi Amazon S3)
-* ${post_edited_translations.segment}
+* Google Cloud Platform (GCP)
 
 
 

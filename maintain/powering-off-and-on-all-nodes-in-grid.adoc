@@ -34,7 +34,7 @@ NOTE: Se un singolo host include più di un nodo della griglia, non spegnere l'h
 NOTE: Se necessario, puoi link:linux-migrating-grid-node-to-new-host.html["migrare nodi da un host Linux a un altro"] eseguire la manutenzione dell'host senza compromettere la funzionalità o la disponibilità della tua grid.
 
 .Passaggi
-. L'accesso SSH esterno è bloccato per impostazione predefinita. Se necessario, link:../admin/manage-external-ssh-access.html["${post_edited_translations.segment}"].
+. L'accesso SSH esterno è bloccato per impostazione predefinita. Se necessario, link:../admin/manage-external-ssh-access.html["Consenti temporaneamente l'accesso"].
 . Ferma tutte le applicazioni client dall'accedere alla griglia.
 . [[log_in_to_gn]]Accedi a ciascun nodo Gateway:
 +

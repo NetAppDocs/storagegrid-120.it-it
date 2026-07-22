@@ -17,7 +17,7 @@ Il servizio di bilanciamento del carico di StorageGRID è disponibile su tutti i
 
 Configuri uno o più endpoint del bilanciatore di carico per definire la porta e il protocollo di rete (HTTPS o HTTP) che le richieste client in entrata e in uscita utilizzeranno per accedere ai servizi del Load Balancer sui nodi Gateway e Admin. L'endpoint del bilanciatore di carico definisce anche il tipo di client (S3), la modalità di binding e, facoltativamente, un elenco di tenant consentiti o bloccati. Vedi link:../admin/managing-load-balancing.html["Considerazioni sul bilanciamento del carico"].
 
-Se necessario, puoi raggruppare le interfacce di rete di più Gateway Node e Admin Node in un gruppo ad alta disponibilità (HA). Se l'interfaccia attiva nel gruppo HA si guasta, un'interfaccia di backup può gestire il carico di lavoro dell'applicazione client. Vedi link:../admin/managing-high-availability-groups.html["${post_edited_translations.segment}"].
+Se necessario, puoi raggruppare le interfacce di rete di più Gateway Node e Admin Node in un gruppo ad alta disponibilità (HA). Se l'interfaccia attiva nel gruppo HA si guasta, un'interfaccia di backup può gestire il carico di lavoro dell'applicazione client. Vedi link:../admin/managing-high-availability-groups.html["Gestisci i gruppi ad alta disponibilità (HA)"].
 
 
 
@@ -48,7 +48,7 @@ Gestisce gli indirizzi IP virtuali ad alta disponibilità per gruppi di Admin No
 
 
  a| 
-${post_edited_translations.segment}
+Bilanciatore di carico
  a| 
 Fornisce il bilanciamento del carico Layer 7 del traffico S3 dai client ai nodi di archiviazione. Questo è il meccanismo di bilanciamento del carico consigliato.
 

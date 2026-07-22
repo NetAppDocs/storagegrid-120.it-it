@@ -35,7 +35,7 @@ Per ulteriori informazioni, consulta quanto segue:
 
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Seleziona *Visualizza bucket* dalla dashboard oppure seleziona *STORAGE (S3)* > *Buckets*.
 . Seleziona il nome del bucket dalla tabella.
 +
 Viene visualizzata la pagina dei dettagli del bucket.

@@ -59,7 +59,7 @@ Scopri come:
 * link:../admin/signing-in-to-grid-manager.html["Accedi al Grid Manager"]
 * link:../monitor/monitoring-system-health.html["Monitora lo stato di salute del sistema"]
 * link:../admin/configure-autosupport-grid-manager.html["Configura AutoSupport"]
-* link:../monitor/email-alert-notifications.html["${post_edited_translations.segment}"]
+* link:../monitor/email-alert-notifications.html["Configura le notifiche email per gli avvisi"]
 * link:../admin/configuring-s3-api-endpoint-domain-names.html["Configura i nomi di dominio degli endpoint S3"]
 
 

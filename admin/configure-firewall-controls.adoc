@@ -20,7 +20,7 @@ Puoi configurare il firewall di StorageGRID per controllare l'accesso di rete a 
 * Se vuoi che un nodo Admin o un nodo Gateway accetti traffico in entrata solo sugli endpoint configurati esplicitamente, hai definito gli endpoint del bilanciatore di carico.
 +
 
-NOTE: ${post_edited_translations.segment}
+NOTE: Quando modifichi la configurazione della rete client, le connessioni client esistenti potrebbero non funzionare se gli endpoint del bilanciatore di carico non sono stati configurati.
 
 
 
@@ -67,7 +67,7 @@ NOTE: Le impostazioni nella scheda Elenco indirizzi privilegiati non possono sov
 . Facoltativamente, seleziona *Aggiungi un altro indirizzo IP o sottorete in notazione CIDR* per aggiungere altri client privilegiati.
 +
 
-TIP: ${post_edited_translations.segment}
+TIP: Aggiungi il minor numero possibile di indirizzi all'elenco dei destinatari privilegiati.
 
 . Facoltativamente, seleziona *Consenti agli indirizzi IP privilegiati di accedere alle porte interne di StorageGRID*. Vedi link:../network/internal-grid-node-communications.html["Porte interne di StorageGRID"].
 +
@@ -123,24 +123,24 @@ Le modifiche di configurazione che apporti nella scheda *Rete client non attendi
 . Seleziona *Rete client non attendibile*.
 . Nella sezione Imposta impostazione predefinita per i nuovi nodi, specifica quale deve essere l'impostazione predefinita quando vengono aggiunti nuovi nodi alla grid in una procedura di espansione.
 +
-** ${post_edited_translations.segment}
+** *Affidabile* (impostazione predefinita): Quando aggiungi un nodo in un'espansione, la sua Client Network è considerata affidabile.
 ** *Non attendibile*: Quando un nodo viene aggiunto in un'espansione, la sua Client Network non è attendibile.
 +
 Se necessario, puoi tornare a questa scheda per modificare l'impostazione di uno specifico nuovo nodo.
 
 +
 
-NOTE: ${post_edited_translations.segment}
+NOTE: Questa impostazione non influisce sui nodi esistenti nel tuo sistema StorageGRID.
 
 
 
-. ${post_edited_translations.segment}
+. Usa le seguenti opzioni per selezionare i nodi che devono consentire le connessioni client solo sugli endpoint di bilanciamento del carico configurati esplicitamente o su porte aggiuntive selezionate:
 +
-** ${post_edited_translations.segment}
+** Seleziona *Untrust on displayed nodes* per aggiungere tutti i nodi visualizzati nella tabella all'elenco Rete client non attendibile.
 ** Seleziona *Considera attendibili i nodi visualizzati* per rimuovere tutti i nodi visualizzati nella tabella dall'elenco Untrusted Client Network.
-** ${post_edited_translations.segment}
+** Usa l'interruttore accanto a ciascun nodo per impostare la Client Network come Trusted o Untrusted per il nodo selezionato.
 +
-${post_edited_translations.segment}
+Ad esempio, puoi selezionare *Non considerare attendibili i nodi visualizzati* per aggiungere tutti i nodi all'elenco Rete client non attendibile e poi usare l'interruttore accanto a un singolo nodo per aggiungere quel singolo nodo all'elenco Rete client attendibile.
 
 +
 

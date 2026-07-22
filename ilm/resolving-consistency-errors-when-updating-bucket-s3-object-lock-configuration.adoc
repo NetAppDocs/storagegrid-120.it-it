@@ -31,6 +31,6 @@ Per risolvere questo errore, segui questi passaggi:
 
 .Informazioni correlate
 * link:../tenant/index.html["Usa un tenant account"]
-* link:../s3/index.html["${post_edited_translations.segment}"]
+* link:../s3/index.html["Usa l'API REST di S3"]
 * link:../maintain/index.html["Recupera e mantieni"]
 

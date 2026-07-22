@@ -16,7 +16,7 @@ Quando hai finito di lavorare con Grid Manager, devi disconnetterti per garantir
 .Passaggi
 . Seleziona il tuo nome utente nell'angolo in alto a destra.
 +
-image:sign_out.png["${post_edited_translations.segment}"]
+image:sign_out.png["Link di disconnessione"]
 
 . Seleziona *Esci*.
 +
@@ -26,7 +26,7 @@ image:sign_out.png["${post_edited_translations.segment}"]
 
 
  a| 
-${post_edited_translations.segment}
+SSO non in uso
  a| 
 Sei uscito dal nodo di amministrazione.
 

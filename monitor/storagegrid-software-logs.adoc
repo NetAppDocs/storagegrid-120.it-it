@@ -201,7 +201,7 @@ Nodi di amministrazione
 | /var/local/log/cache-svc.log + /var/local/log/cache-svc.errlog  a| 
 Registri del servizio cache.
  a| 
-${post_edited_translations.segment}
+Nodi gateway
 
 
 
@@ -426,5 +426,5 @@ Tutti i nodi
 |===
 .Informazioni correlate
 * link:about-bycast-log.html["Informazioni sul file bycast.log"]
-* link:../s3/index.html["${post_edited_translations.segment}"]
+* link:../s3/index.html["Usa l'API REST di S3"]
 

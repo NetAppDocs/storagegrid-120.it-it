@@ -27,7 +27,7 @@ Puoi configurare le impostazioni per un singolo proxy di storage.
 .Passaggi
 . Seleziona *Configurazione* > *Sicurezza* > *Impostazioni proxy*.
 . Nella scheda *Archiviazione*, seleziona la casella di controllo *Abilita proxy di archiviazione*.
-. ${post_edited_translations.segment}
+. Seleziona il protocollo per il proxy di storage.
 . Inserisci il nome host o l'indirizzo IP del proxy server.
 . Facoltativamente, inserisci la porta utilizzata per connetterti al proxy server.
 +
@@ -41,6 +41,6 @@ Dopo aver salvato il proxy di archiviazione, puoi configurare e testare nuovi en
 
 NOTE: Le modifiche al proxy possono richiedere fino a 10 minuti per avere effetto.
 
-. ${post_edited_translations.segment}
+. Verifica le impostazioni del tuo proxy server per assicurarti che i messaggi relativi ai servizi della piattaforma provenienti da StorageGRID non vengano bloccati.
 . Se devi disabilitare un proxy storage, deseleziona la casella di controllo e seleziona *Salva*.
 

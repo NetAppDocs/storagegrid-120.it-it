@@ -27,7 +27,7 @@ Se vuoi configurare il firewall interno di StorageGRID, vedi link:../admin/confi
  a| 
 Porta HTTPS predefinita per i nodi Admin
  a| 
-${post_edited_translations.segment}
+I browser web e i client API di gestione possono accedere a Grid Manager, Grid Management API, Tenant Manager e Tenant Management API.
 
 *Nota:* Anche la porta 443 viene utilizzata per parte del traffico interno.
 

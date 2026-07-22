@@ -126,6 +126,6 @@ Quando un oggetto versionato viene eliminato, StorageGRID crea un marcatore di e
 
 
 .Informazioni correlate
-* link:../s3/index.html["${post_edited_translations.segment}"]
+* link:../s3/index.html["Usa l'API REST di S3"]
 * link:example-4-ilm-rules-and-policy-for-s3-versioned-objects.html["Esempio 4: Regole e policy ILM per gli oggetti versionati S3"]
 

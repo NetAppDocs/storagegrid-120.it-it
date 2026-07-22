@@ -16,7 +16,7 @@ Puoi recuperare i file di log di StorageGRID e i dati di sistema, inclusi i dati
 .Prima di iniziare
 * Hai effettuato l'accesso a Grid Manager su qualsiasi nodo Admin utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
 * Hai link:../admin/admin-group-permissions.html["autorizzazioni di accesso specifiche"].
-* ${post_edited_translations.segment}
+* Hai la passphrase di provisioning.
 
 
 .Informazioni su questa attività

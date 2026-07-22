@@ -135,7 +135,7 @@ Servizio di cache
  a| 
 Viene eseguito sui nodi del bilanciatore di carico (Gateway) e gestisce una cache locale del contenuto degli oggetti.
  a| 
-${post_edited_translations.segment}
+Nodi gateway
 
 
 

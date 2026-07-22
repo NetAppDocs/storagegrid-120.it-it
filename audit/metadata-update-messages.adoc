@@ -2,7 +2,7 @@
 permalink: audit/metadata-update-messages.html 
 sidebar: sidebar 
 keywords: storagegrid, audit, message, Metadata update, S3 metadata update, SUPD 
-summary: ${post_edited_translations.segment} 
+summary: I messaggi di audit vengono generati quando un client S3 aggiorna i metadati di un oggetto. 
 ---
 = Messaggi di controllo per gli aggiornamenti dei metadati degli oggetti S3 in StorageGRID
 :allow-uri-read: 
@@ -11,12 +11,12 @@ summary: ${post_edited_translations.segment}
 
 
 [role="lead"]
-${post_edited_translations.segment}
+I messaggi di audit vengono generati quando un client S3 aggiorna i metadati di un oggetto.
 
 
 
 [[s3-metadata-update-audit-messages]]
-== ${post_edited_translations.segment}
+== Messaggi di audit dell'aggiornamento dei metadati S3
 
 [cols="1a,1a,2a,1a,2a"]
 |===
@@ -30,7 +30,7 @@ Metadati S3 aggiornati
  a| 
 Generato quando un client S3 aggiorna i metadati di un oggetto acquisito.
  a| 
-${post_edited_translations.segment}
+CBID, S3KY, HTRH
  a| 
 link:supd-s3-metadata-updated.html["SUPD: Metadati S3 aggiornati"]
 
@@ -38,7 +38,7 @@ link:supd-s3-metadata-updated.html["SUPD: Metadati S3 aggiornati"]
 
 
 [[example-s3-metadata-update]]
-== ${post_edited_translations.segment}
+== Esempio: aggiornamento dei metadati S3
 
 L'esempio mostra una transazione riuscita per aggiornare i metadati di un oggetto S3 esistente.
 

@@ -19,14 +19,14 @@ Puoi creare nuovi gruppi più rapidamente duplicando un gruppo esistente.
 
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Seleziona *Gestione accessi* > *Gruppi*.
 . Seleziona la casella di controllo per il gruppo che vuoi duplicare.
 . Seleziona *Duplicate group*. Per ulteriori dettagli sulla creazione di un gruppo, consulta le istruzioni per la creazione di gruppi per link:creating-groups-for-s3-tenant.html["un tenant S3"].
-. ${post_edited_translations.segment}
+. Seleziona la scheda *Gruppo locale* per creare un gruppo locale oppure seleziona la scheda *Gruppo federato* per importare un gruppo dall'origine di identità configurata in precedenza.
 +
-Se il single sign-on (SSO) è abilitato per il tuo sistema StorageGRID, gli utenti appartenenti ai gruppi locali non potranno accedere a Tenant Manager, sebbene possano utilizzare le applicazioni client per gestire le risorse del tenant, in base a link:tenant-management-permissions.html["${post_edited_translations.segment}"].
+Se il single sign-on (SSO) è abilitato per il tuo sistema StorageGRID, gli utenti appartenenti ai gruppi locali non potranno accedere a Tenant Manager, sebbene possano utilizzare le applicazioni client per gestire le risorse del tenant, in base a link:tenant-management-permissions.html["autorizzazioni di gruppo"].
 
-. ${post_edited_translations.segment}
+. Inserisci il nome del gruppo.
 +
 ** *Gruppo locale*: Inserisci sia un nome visualizzato che un nome univoco. Puoi modificare il nome visualizzato in seguito.
 ** *Gruppo federato*: Inserisci il nome univoco. Per Active Directory, il nome univoco è il nome associato all'attributo  `sAMAccountName`. Per OpenLDAP, il nome univoco è il nome associato all'attributo  `uid`.

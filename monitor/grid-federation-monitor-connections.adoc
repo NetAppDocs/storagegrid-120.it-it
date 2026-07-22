@@ -11,7 +11,7 @@ summary: Puoi monitorare le informazioni di base su tutte le connessioni di fede
 
 
 [role="lead"]
-Puoi monitorare informazioni di base su tutte le link:../admin/grid-federation-overview.html["${post_edited_translations.segment}"], informazioni dettagliate su una connessione specifica o metriche Prometheus sulle operazioni di replica tra griglie. Puoi monitorare una connessione da entrambe le griglie.
+Puoi monitorare informazioni di base su tutte le link:../admin/grid-federation-overview.html["connessioni di federazione della griglia"], informazioni dettagliate su una connessione specifica o metriche Prometheus sulle operazioni di replica tra griglie. Puoi monitorare una connessione da entrambe le griglie.
 
 .Prima di iniziare
 * Hai effettuato l'accesso al Grid Manager su una delle due griglie utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].

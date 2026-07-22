@@ -130,6 +130,6 @@ Se la notifica viene ricevuta nell'argomento di destinazione, hai configurato co
 
 .Informazioni correlate
 * link:understanding-notifications-for-buckets.html["Comprendi le notifiche per i bucket"]
-* link:../s3/index.html["${post_edited_translations.segment}"]
+* link:../s3/index.html["Usa l'API REST di S3"]
 * link:creating-platform-services-endpoint.html["Crea un endpoint per i servizi della piattaforma"]
 

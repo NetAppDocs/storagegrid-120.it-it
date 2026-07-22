@@ -320,9 +320,9 @@ rete StorageGRID
 Su quale rete StorageGRID l'agente rimarrà in ascolto.
 
 ** Reti Grid, Admin e Client: l'agente SNMP ascolterà le query su tutte e tre le reti.
-** ${post_edited_translations.segment}
+** Rete Grid
 ** Rete di amministrazione
-** ${post_edited_translations.segment}
+** Rete client
 +
 *Nota*: Se usi la rete client per dati non protetti e crei un indirizzo agente per la rete client, sappi che anche il traffico SNMP sarà non protetto.
 

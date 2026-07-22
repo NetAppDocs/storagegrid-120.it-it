@@ -22,7 +22,7 @@ NOTE: Questa procedura si applica solo ai nodi di archiviazione basati su softwa
 
 [cols="1a,2a"]
 |===
-| Piattaforma | ${post_edited_translations.segment} 
+| Piattaforma | Procedura 
 
 
  a| 

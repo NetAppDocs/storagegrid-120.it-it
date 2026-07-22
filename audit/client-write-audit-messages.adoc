@@ -19,24 +19,24 @@ I messaggi di audit di scrittura del client vengono registrati quando un'applica
 
 
  a| 
-${post_edited_translations.segment}
+OVWR
  a| 
 Sovrascrittura oggetto: registra una transazione per sovrascrivere un oggetto con un altro oggetto.
  a| 
-${post_edited_translations.segment}
+Client S3
  a| 
 link:ovwr-object-overwrite.html["OVWR: Sovrascrittura oggetto"]
 
 
 
  a| 
-${post_edited_translations.segment}
+SDEL
  a| 
 S3 DELETE: Registra una transazione riuscita per eliminare un oggetto o un bucket.
 
 *Nota:* Se la transazione opera su una sottorisorsa, il messaggio di controllo includerà il campo S3SR.
  a| 
-${post_edited_translations.segment}
+Client S3
  a| 
 link:sdel-s3-delete.html["SDEL: S3 DELETE"]
 
@@ -47,9 +47,9 @@ SPOS
  a| 
 S3 POST: Registra una transazione riuscita per ripristinare un oggetto da AWS Glacier storage a un Cloud Storage Pool.
  a| 
-${post_edited_translations.segment}
+Client S3
  a| 
-link:spos-s3-post.html["${post_edited_translations.segment}"]
+link:spos-s3-post.html["SPOS: S3 POST"]
 
 
 
@@ -60,7 +60,7 @@ S3 PUT: Registra una transazione riuscita per creare un nuovo oggetto o bucket.
 
 *Nota:* Se la transazione opera su una sottorisorsa, il messaggio di controllo includerà il campo S3SR.
  a| 
-${post_edited_translations.segment}
+Client S3
  a| 
 link:sput-s3-put.html["SPUT: S3 PUT"]
 
@@ -69,9 +69,9 @@ link:sput-s3-put.html["SPUT: S3 PUT"]
  a| 
 SUPD
  a| 
-${post_edited_translations.segment}
+Metadati S3 aggiornati: registra una transazione riuscita per aggiornare i metadati di un oggetto o bucket esistente.
  a| 
-${post_edited_translations.segment}
+Client S3
  a| 
 link:supd-s3-metadata-updated.html["SUPD: Metadati S3 aggiornati"]
 

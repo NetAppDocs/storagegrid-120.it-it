@@ -2,7 +2,7 @@
 permalink: admin/using-identity-federation.html 
 sidebar: sidebar 
 keywords: how to use identity federation, how to use federated groups with Grid Manager 
-summary: ${post_edited_translations.segment} 
+summary: 'L"utilizzo della federazione delle identità rende più veloce la configurazione di gruppi e utenti e permette agli utenti di accedere a StorageGRID usando le credenziali che già conoscono.' 
 ---
 = Usa la federazione delle identità in StorageGRID
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: ${post_edited_translations.segment}
 
 
 [role="lead"]
-${post_edited_translations.segment}
+L'utilizzo della federazione delle identità rende più veloce la configurazione di gruppi e utenti e permette agli utenti di accedere a StorageGRID usando le credenziali che già conoscono.
 
 
 
@@ -28,7 +28,7 @@ Puoi configurare la federazione delle identità in Grid Manager se vuoi che i gr
 
 NOTE: Se vuoi usare un servizio LDAP v3 che non è presente nell'elenco, contatta il supporto tecnico.
 
-* Se vuoi usare OpenLDAP, devi configurare il server OpenLDAP. Vedi <<${post_edited_translations.segment}>>.
+* Se vuoi usare OpenLDAP, devi configurare il server OpenLDAP. Vedi <<Linee guida per configurare un server OpenLDAP>>.
 * Se intendi abilitare il single sign-on (SSO), hai esaminato il link:requirements-for-sso.html["requisiti e considerazioni per single sign-on"].
 * Se prevedi di utilizzare Transport Layer Security (TLS) per le comunicazioni con il LDAP server, il provider di identità utilizza TLS 1.2 o 1.3. Vedi link:supported-ciphers-for-outgoing-tls-connections.html["Algoritmi di crittografia supportati per le connessioni TLS in uscita"].
 
@@ -46,7 +46,7 @@ Puoi configurare un'origine di identità per Grid Manager se vuoi importare grup
 === Inserisci la configurazione
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Seleziona *Configurazione* > *Controllo accessi* > *Federazione delle identità*.
 . Seleziona *Abilita federazione delle identità*.
 . Nella sezione relativa al tipo di servizio LDAP, seleziona il tipo di servizio LDAP che vuoi configurare.
 +
@@ -95,19 +95,19 @@ NOTE: Se in futuro cambierai la password, dovrai aggiornarla su questa pagina.
 ** *DN di base del gruppo*: il full path del nome distinto (DN) per un sottoalbero LDAP in cui vuoi cercare i gruppi. Nell'esempio di Active Directory (sotto), tutti i gruppi il cui nome distinto è relativo al DN di base (DC=storagegrid,DC=example,DC=com) possono essere usati come gruppi federati.
 +
 
-NOTE: ${post_edited_translations.segment}
+NOTE: I valori del *Nome univoco del gruppo* devono essere univoci all'interno del *DN di base del gruppo* a cui appartengono.
 
 ** *DN della base utente*: Il full path del nome distinto (DN) di un sottoalbero LDAP in cui vuoi cercare gli utenti.
 +
 
 NOTE: I valori del *nome univoco utente* devono essere univoci all'interno del *User Base DN* a cui appartengono.
 
-** ${post_edited_translations.segment}
+** *Formato del nome utente di associazione* (facoltativo): il modello di nome utente predefinito che StorageGRID dovrebbe utilizzare se il modello non può essere determinato automaticamente.
 +
-${post_edited_translations.segment}
+Si consiglia di fornire il formato del nome utente di bind perché può permettere agli utenti di accedere se StorageGRID non riesce a effettuare il bind con l'account di servizio.
 
 +
-${post_edited_translations.segment}
+Inserisci uno di questi modelli:
 
 +
 *** *UserPrincipalName pattern (AD e Entra ID)*: `[USERNAME]@_example_.com`
@@ -174,19 +174,19 @@ image:identity_federation_test_connection.png["Richiesta di federazione delle id
 
 
 [[force-synchronization-with-the-identity-source]]
-== ${post_edited_translations.segment}
+== Forza la sincronizzazione con l'identity source
 
 Il sistema StorageGRID sincronizza periodicamente gruppi e utenti federati dalla sorgente di identità. Puoi forzare l'avvio della sincronizzazione se vuoi abilitare o limitare le autorizzazioni degli utenti il più rapidamente possibile.
 
 .Passaggi
 . Vai alla pagina di federazione delle identità.
-. ${post_edited_translations.segment}
+. Seleziona *Sync server* nella parte superiore della pagina.
 +
 Il processo di sincronizzazione potrebbe richiedere del tempo a seconda dell'ambiente.
 
 +
 
-NOTE: ${post_edited_translations.segment}
+NOTE: L'avviso *Errore di sincronizzazione della federazione delle identità* viene attivato se si verifica un problema di sincronizzazione tra gruppi e utenti federati dall'origine delle identità.
 
 
 
@@ -202,8 +202,8 @@ Prima di disabilitare la federazione delle identità, dovresti tenere presente q
 
 * Gli utenti federati non potranno accedere.
 * Gli utenti federati attualmente connessi manterranno l'accesso al sistema StorageGRID fino alla scadenza della loro sessione, ma non potranno accedere dopo la scadenza della sessione.
-* ${post_edited_translations.segment}
-* La casella di controllo *Abilita federazione delle identità* è disabilitata se lo stato del single sign-on (SSO) è *Abilitato* o *Modalità Sandbox*. Lo stato SSO nella pagina Single Sign-on deve essere *Disabilitato* prima di poter disabilitare la federazione delle identità. Vedi link:../admin/disabling-single-sign-on.html["${post_edited_translations.segment}"].
+* La sincronizzazione tra il sistema StorageGRID e la fonte di identità non avverrà e non verranno generati avvisi per gli account che non sono stati sincronizzati.
+* La casella di controllo *Abilita federazione delle identità* è disabilitata se lo stato del single sign-on (SSO) è *Abilitato* o *Modalità Sandbox*. Lo stato SSO nella pagina Single Sign-on deve essere *Disabilitato* prima di poter disabilitare la federazione delle identità. Vedi link:../admin/disabling-single-sign-on.html["Disattiva single sign-on"].
 
 
 .Passaggi
@@ -214,7 +214,7 @@ Prima di disabilitare la federazione delle identità, dovresti tenere presente q
 
 
 [[guidelines-for-configuring-an-openldap-server]]
-== ${post_edited_translations.segment}
+== Linee guida per configurare un server OpenLDAP
 
 Se vuoi usare un server OpenLDAP per la federazione delle identità, devi configurare impostazioni specifiche sul server OpenLDAP.
 
@@ -233,7 +233,7 @@ Le sovrapposizioni memberof e refint devono essere abilitate. Per ulteriori info
 [[indexing]]
 === Indicizzazione
 
-${post_edited_translations.segment}
+Devi configurare i seguenti attributi OpenLDAP con le parole chiave di indice specificate:
 
 * `olcDbIndex: objectClass eq`
 * `olcDbIndex: uid eq,pres,sub`

@@ -16,7 +16,7 @@ Dopo aver sostituito un nodo amministratore non primario, devi selezionare "Avvi
 .Prima di iniziare
 * Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
 * Hai il link:../admin/admin-group-permissions.html["Permesso di manutenzione o di accesso root"].
-* ${post_edited_translations.segment}
+* Hai la passphrase di provisioning.
 * Hai distribuito e configurato il nodo sostitutivo.
 
 
@@ -26,7 +26,7 @@ Dopo aver sostituito un nodo amministratore non primario, devi selezionare "Avvi
 +
 I nodi vengono visualizzati nell'elenco dopo un errore, ma non puoi selezionare un nodo finché non è stato reinstallato ed è pronto per il ripristino.
 
-. ${post_edited_translations.segment}
+. Inserisci la *passphrase di provisioning*.
 . Fai clic su *Avvia ripristino*.
 +
 image:4b_select_recovery_node.png["screenshot che mostra la pagina Maintenance > Recovery"]

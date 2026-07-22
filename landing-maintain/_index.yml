@@ -1,6 +1,6 @@
 ---
 indexpage:
-  title: "${post_edited_translations.segment}"
+  title: Gestisci un sistema StorageGRID
   summary: Puoi eseguire procedure di manutenzione per ripristinare il tuo sistema
     StorageGRID in caso di guasti o per mantenerlo aggiornato ed efficiente.
   keywords: maintain grid, recovery package
@@ -9,27 +9,27 @@ indexpage:
   tiles:
   - title: Inizia
     links:
-    - title: "${post_edited_translations.segment}"
+    - title: manutenzione Grid
       url: "../maintain/index.html"
     - title: Scarica il pacchetto di ripristino
       url: "../maintain/downloading-recovery-package.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Disattiva nodi o siti
     links:
     - title: Tipi di decommission
       url: "../maintain/decommission-procedure.html"
     - title: Rimuovi un nodo della griglia
       url: "../maintain/grid-node-decommissioning.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Rimuovi un sito
       url: "../maintain/considerations-for-removing-site.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Procedure di manutenzione aggiuntive
     links:
-    - title: "${post_edited_translations.segment}"
+    - title: Rinomina la griglia, il sito o il nodo
       url: "../maintain/rename-grid-site-node-overview.html"
     - title: Procedure dei nodi
       url: "../maintain/grid-node-procedures.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Procedure di rete
       url: "../maintain/updating-subnets-for-grid-network.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Procedure host e middleware
       url: "../maintain/linux-migrating-grid-node-to-new-host.html"
   - title: Esegui la manutenzione delle appliance StorageGRID
     links:

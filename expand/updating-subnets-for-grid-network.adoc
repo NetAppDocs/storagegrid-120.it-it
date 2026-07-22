@@ -18,7 +18,7 @@ StorageGRID mantiene un elenco delle sottoreti di rete utilizzate per la comunic
 .Prima di iniziare
 * Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
 * Hai il link:../admin/admin-group-permissions.html["Permesso di manutenzione o di accesso root"].
-* ${post_edited_translations.segment}
+* Hai la passphrase di provisioning.
 * Hai gli indirizzi di rete, in notazione CIDR, delle subnet che vuoi configurare.
 
 
@@ -27,7 +27,7 @@ Se uno dei nuovi nodi ha un indirizzo IP della Grid Network su una sottorete non
 
 [NOTE]
 ====
-${post_edited_translations.segment}
+Non utilizzare sottoreti che contengono i seguenti indirizzi IPv4 per la Grid Network, l'Admin Network o la Client Network di alcun nodo:
 
 * 192.168.130.101
 * 192.168.130.121
@@ -41,11 +41,11 @@ ${post_edited_translations.segment}
 * 198.51.100.4
 
 
-${post_edited_translations.segment}
+Ad esempio, non utilizzare i seguenti intervalli di sottoreti per la Grid Network, l'Admin Network o la Client Network di alcun nodo:
 
 * 192.168.130.0/24 perché questo intervallo di sottorete contiene gli indirizzi IP 192.168.130.101 e 192.168.130.102
-* ${post_edited_translations.segment}
-* ${post_edited_translations.segment}
+* 192.168.131.0/24 perché questo intervallo di sottorete contiene gli indirizzi IP 192.168.131.101 e 192.168.131.102
+* 198.51.100.0/24 perché questo intervallo di sottorete contiene gli indirizzi IP 198.51.100.2 e 198.51.100.4
 
 
 ====
@@ -55,11 +55,11 @@ ${post_edited_translations.segment}
 +
 Ad esempio, inserisci  `10.96.104.0/22`.
 
-. ${post_edited_translations.segment}
-. ${post_edited_translations.segment}
+. Inserisci la passphrase di provisioning e seleziona *Salva*.
+. Attendi che le modifiche vengano applicate, quindi scarica un nuovo pacchetto di ripristino.
 +
-.. ${post_edited_translations.segment}
-.. ${post_edited_translations.segment}
+.. Seleziona *Maintenance* > *System* > *Recovery package*.
+.. Inserisci la *passphrase di provisioning*.
 +
 
 CAUTION: Il file del pacchetto di ripristino deve essere protetto perché contiene chiavi di crittografia e password che possono essere utilizzate per ottenere dati dal sistema StorageGRID. Viene utilizzato anche per ripristinare il nodo Admin primario.
@@ -68,4 +68,4 @@ CAUTION: Il file del pacchetto di ripristino deve essere protetto perché contie
 
 
 
-${post_edited_translations.segment}
+Le sottoreti che hai specificato vengono configurate automaticamente per il tuo sistema StorageGRID.

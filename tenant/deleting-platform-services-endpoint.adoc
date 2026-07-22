@@ -21,16 +21,16 @@ Puoi eliminare un endpoint se non vuoi più usare il servizio della piattaforma 
 .Passaggi
 . Seleziona *STORAGE (S3)* > *Platform services endpoints*.
 +
-${post_edited_translations.segment}
+Viene visualizzata la pagina degli endpoint dei servizi della piattaforma e viene mostrato l'elenco degli endpoint dei servizi della piattaforma già configurati.
 
 . Seleziona la casella di controllo per ogni endpoint che desideri eliminare.
 +
 
 NOTE: Se elimini un endpoint dei servizi della piattaforma che è in uso, il servizio della piattaforma associato verrà disabilitato per tutti i bucket che utilizzano tale endpoint. Tutte le richieste non ancora completate verranno scartate. Le nuove richieste continueranno a essere generate finché non modifichi la configurazione del bucket in modo che non faccia più riferimento all'URN eliminato. StorageGRID segnalerà queste richieste come errori irreversibili.
 
-. ${post_edited_translations.segment}
+. Seleziona *Azioni* > *Elimina endpoint*.
 +
-${post_edited_translations.segment}
+Viene visualizzato un messaggio di conferma.
 
-. ${post_edited_translations.segment}
+. Seleziona *Elimina endpoint*.
 

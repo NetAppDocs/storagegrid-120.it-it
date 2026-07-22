@@ -13,7 +13,7 @@ summary: Prima di utilizzare StorageGRID con un carico di lavoro FabricPool, dev
 [role="lead"]
 Prima di utilizzare StorageGRID con un carico di lavoro FabricPool, devi creare un bucket S3 per i dati FabricPool. Devi anche ottenere una access key e una secret access key per il tenant account che userai per FabricPool.
 
-Per i dettagli su questa attività, consulta link:../tenant/creating-s3-bucket.html["Crea bucket S3"] e link:../tenant/creating-your-own-s3-access-keys.html["${post_edited_translations.segment}"]. Per utilizzare il setup wizard di FabricPool per completare questa attività, vai su link:use-fabricpool-setup-wizard-steps.html["Accedi e completa la FabricPool setup wizard"].
+Per i dettagli su questa attività, consulta link:../tenant/creating-s3-bucket.html["Crea bucket S3"] e link:../tenant/creating-your-own-s3-access-keys.html["Crea le tue chiavi di accesso S3"]. Per utilizzare il setup wizard di FabricPool per completare questa attività, vai su link:use-fabricpool-setup-wizard-steps.html["Accedi e completa la FabricPool setup wizard"].
 
 .Prima di iniziare
 * Hai creato un account tenant per l'utilizzo di FabricPool.
@@ -35,14 +35,14 @@ Puoi fare una delle seguenti cose:
 Devi creare un bucket univoco per ogni ONTAP cluster che vuoi utilizzare.
 
 +
-.. ${post_edited_translations.segment}
+.. Seleziona *Visualizza bucket* dalla dashboard oppure seleziona *STORAGE (S3)* > *Buckets*.
 .. Seleziona *Create bucket*.
 .. Inserisci il nome del bucket StorageGRID che desideri utilizzare con FabricPool. Ad esempio, `fabricpool-bucket`.
 +
 
 TIP: Non puoi cambiare il nome del bucket dopo aver creato il bucket.
 
-.. ${post_edited_translations.segment}
+.. Seleziona la regione per questo bucket.
 +
 Per impostazione predefinita, tutti i bucket vengono creati nella regione `us-east-1`. Se la regione predefinita è configurata su una regione diversa da `us-east-1`, questa altra regione viene inizialmente selezionata nel menu a discesa.
 
@@ -56,8 +56,8 @@ NOTE: Non selezionare *Abilita il versioning degli oggetti* per il bucket Fabric
 
 . Crea una chiave di accesso e una chiave di accesso segreta.
 +
-.. ${post_edited_translations.segment}
-.. ${post_edited_translations.segment}
+.. Seleziona *STORAGE (S3)* > *My access keys*.
+.. Seleziona *Crea key*.
 .. Seleziona *Crea access key*.
 .. Copia l'ID della chiave di accesso e la chiave di accesso segreta in un luogo sicuro, oppure seleziona *Download .csv* per salvare un file foglio di calcolo contenente l'ID della chiave di accesso e la chiave di accesso segreta.
 +

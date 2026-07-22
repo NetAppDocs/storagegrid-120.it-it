@@ -20,7 +20,7 @@ Potresti dover decommissionare un nodo che non è attualmente connesso alla grid
 * Hai confermato che il recovery dello Storage Node non è in corso in nessuna parte della grid. Se invece lo è, devi aspettare che qualsiasi rebuild di Cassandra eseguito come parte del recovery sia completato. A quel punto puoi procedere con il decommissioning.
 * Hai verificato che nessun'altra procedura di manutenzione venga eseguita mentre è in corso la procedura di decommission del nodo, a meno che la procedura di decommission non venga messa in pausa.
 * La colonna *Decommission Possible* per il nodo o i nodi disconnessi che vuoi decommissionare include un segno di spunta verde.
-* ${post_edited_translations.segment}
+* Hai la passphrase di provisioning.
 
 
 .Informazioni su questa attività
@@ -54,7 +54,7 @@ NOTE: Se la tua grid contiene più nodi disconnessi, il software richiede di dec
 
 CAUTION: Fai attenzione quando scegli di decommissionare più di un nodo di griglia disconnesso alla volta, soprattutto se selezioni più nodi di Storage disconnessi. Se hai più di un nodo di Storage disconnesso che non puoi recuperare, contatta il supporto tecnico per determinare la soluzione migliore.
 
-. ${post_edited_translations.segment}
+. Inserisci la passphrase di provisioning.
 +
 Il pulsante *Avvia decommission* è abilitato.
 

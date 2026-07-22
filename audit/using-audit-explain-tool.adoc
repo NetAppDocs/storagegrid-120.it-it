@@ -16,7 +16,7 @@ Puoi usare lo  `audit-explain` strumento per tradurre i messaggi di audit presen
 .Prima di iniziare
 * Hai link:../admin/admin-group-permissions.html["autorizzazioni di accesso specifiche"].
 * Devi avere il file `Passwords.txt`.
-* ${post_edited_translations.segment}
+* Devi conoscere l'indirizzo IP del nodo Admin primario.
 
 
 .Informazioni su questa attività

@@ -19,7 +19,7 @@ Quando un client S3 emette una transazione DELETE, viene effettuata una richiest
 
 
  a| 
-${post_edited_translations.segment}
+CBID
  a| 
 Identificatore del blocco di contenuto
  a| 
@@ -28,7 +28,7 @@ L'identificativo univoco del blocco di contenuto richiesto. Se il CBID è sconos
 
 
  a| 
-${post_edited_translations.segment}
+CNCH
  a| 
 Intestazione di controllo della coerenza
  a| 
@@ -48,7 +48,7 @@ L'identificativo univoco del sistema per la connessione TCP/IP.
  a| 
 CSIZ
  a| 
-${post_edited_translations.segment}
+Dimensione del contenuto
  a| 
 La dimensione dell'oggetto eliminato in byte. Le operazioni sui bucket non includono questo campo.
 
@@ -66,7 +66,7 @@ L'ID della versione del marcatore di eliminazione creato quando elimini un ogget
  a| 
 GFID
  a| 
-${post_edited_translations.segment}
+ID di connessione alla federazione di griglia
  a| 
 L'ID di connessione della connessione di federazione della griglia associata a una richiesta di eliminazione della replica tra griglie. Incluso solo nei log di controllo sulla grid di destinazione.
 
@@ -82,9 +82,9 @@ L'ID dell'account del tenant sulla griglia di origine per una richiesta di elimi
 
 
  a| 
-${post_edited_translations.segment}
+HTRH
  a| 
-${post_edited_translations.segment}
+Intestazione della richiesta HTTP
  a| 
 Elenco dei nomi e dei valori delle intestazioni delle richieste HTTP registrate come selezionato durante la configurazione.
 
@@ -95,18 +95,18 @@ Elenco dei nomi e dei valori delle intestazioni delle richieste HTTP registrate 
 
 
  a| 
-${post_edited_translations.segment}
+MTME
  a| 
 Ultima modifica
  a| 
-${post_edited_translations.segment}
+Il timestamp Unix, in microsecondi, che indica quando l'oggetto è stato modificato l'ultima volta.
 
 
 
  a| 
 RSLT
  a| 
-${post_edited_translations.segment}
+Codice risultato
  a| 
 Risultato della transazione DELETE. Il risultato è sempre:
 
@@ -160,7 +160,7 @@ Il bucket o la sottorisorsa oggetto su cui stai operando, se applicabile.
 
 
  a| 
-${post_edited_translations.segment}
+SACC
  a| 
 Nome account tenant S3 (mittente della richiesta)
  a| 
@@ -171,9 +171,9 @@ Il nome dell'account tenant per l'utente che ha inviato la richiesta. Vuoto per 
  a| 
 SAIP
  a| 
-${post_edited_translations.segment}
+Indirizzo IP (mittente della richiesta)
  a| 
-${post_edited_translations.segment}
+L'indirizzo IP dell'applicazione client che ha effettuato la richiesta.
 
 
 
@@ -198,7 +198,7 @@ L'ID account tenant del proprietario del bucket di destinazione. Usato per ident
  a| 
 SGRP
  a| 
-${post_edited_translations.segment}
+Sito (gruppo)
  a| 
 Se presente, l'oggetto è stato eliminato nel sito specificato, che non è il sito in cui l'oggetto è stato acquisito.
 
@@ -211,7 +211,7 @@ URN utente S3 (mittente della richiesta)
  a| 
 L'ID account tenant e il nome utente dell'utente che effettua la richiesta. L'utente può essere un utente locale o un utente LDAP. Per esempio: `urn:sgws:identity::03393893651506583485:root`
 
-${post_edited_translations.segment}
+Vuoto per le richieste anonime.
 
 
 
@@ -252,7 +252,7 @@ L'identificativo dell'oggetto all'interno del sistema StorageGRID.
 
 
  a| 
-${post_edited_translations.segment}
+VSID
  a| 
 ID versione
  a| 

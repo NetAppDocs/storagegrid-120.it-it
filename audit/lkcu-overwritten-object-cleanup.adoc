@@ -28,11 +28,11 @@ La dimensione dell'oggetto in byte.
 
 
  a| 
-${post_edited_translations.segment}
+LTYP
  a| 
 Tipo di pulizia
  a| 
-${post_edited_translations.segment}
+_Solo per uso interno._
 
 
 

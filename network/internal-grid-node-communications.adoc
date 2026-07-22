@@ -26,7 +26,7 @@ Oltre a ICMP e alle porte elencate nella tabella, StorageGRID utilizza il Virtua
 Se le policy di rete aziendali limitano l'accesso a una qualsiasi di queste porte, puoi rimappare le porte in fase di distribuzione utilizzando un parametro di configurazione di distribuzione. Per ulteriori informazioni sulla rimappatura delle porte e sui parametri di configurazione di distribuzione, vedi link:../swnodes/index.html["Installa StorageGRID sui nodi basati su software"].
 
 
-NOTE: Il supporto per la rimappatura delle porte è deprecato e verrà rimosso in una versione futura. Per rimuovere le porte rimappate, consulta link:../maintain/removing-port-remaps-on-bare-metal-hosts.html["${post_edited_translations.segment}"].
+NOTE: Il supporto per la rimappatura delle porte è deprecato e verrà rimosso in una versione futura. Per rimuovere le porte rimappate, consulta link:../maintain/removing-port-remaps-on-bare-metal-hosts.html["Rimuovi le rimappature delle porte sugli host bare metal"].
 
 
 
@@ -38,7 +38,7 @@ Configura le seguenti porte solo se devi definire restrizioni firewall esterne a
 Se le policy di rete aziendali limitano l'accesso a una qualsiasi di queste porte, puoi rimappare le porte quando distribuisci i nodi usando il VMware vSphere Web Client oppure impostando un file di configurazione quando automatizzi la distribuzione dei nodi della griglia. Per ulteriori informazioni sulla rimappatura delle porte e sui parametri di configurazione della distribuzione, consulta le istruzioni per link:../swnodes/index.html["installare StorageGRID su VMware"].
 
 
-NOTE: Il supporto per la rimappatura delle porte è deprecato e verrà rimosso in una versione futura. Per rimuovere le porte rimappate, consulta link:../maintain/removing-port-remaps-on-bare-metal-hosts.html["${post_edited_translations.segment}"].
+NOTE: Il supporto per la rimappatura delle porte è deprecato e verrà rimosso in una versione futura. Per rimuovere le porte rimappate, consulta link:../maintain/removing-port-remaps-on-bare-metal-hosts.html["Rimuovi le rimappature delle porte sugli host bare metal"].
 
 
 
@@ -210,7 +210,7 @@ TCP
  a| 
 Tutti i nodi
  a| 
-${post_edited_translations.segment}
+Nodi gateway
  a| 
 Traffico interno del load balancer.
 

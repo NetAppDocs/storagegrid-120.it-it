@@ -13,7 +13,7 @@ summary: 'Prima di implementare i servizi della piattaforma, dai un"occhiata all
 [role="lead"]
 Prima di implementare i servizi della piattaforma, dai un'occhiata alla panoramica e alle considerazioni per l'utilizzo di questi servizi.
 
-Per informazioni su S3, vedi link:../s3/index.html["${post_edited_translations.segment}"].
+Per informazioni su S3, vedi link:../s3/index.html["Usa l'API REST di S3"].
 
 
 
@@ -32,24 +32,24 @@ TIP: L'utilizzo dei servizi della piattaforma deve essere abilitato per ogni acc
 
 
 [[how-platform-services-are-configured]]
-== ${post_edited_translations.segment}
+== Come vengono configurati i servizi della piattaforma
 
-I servizi della piattaforma comunicano con endpoint esterni che configuri usando il link:configuring-platform-services-endpoints.html["${post_edited_translations.segment}"] o il link:understanding-tenant-management-api.html["API di gestione tenant"]. Ogni endpoint rappresenta una destinazione esterna, come un bucket Amazon S3 di StorageGRID, un bucket Amazon Web Services, un argomento Amazon SNS, un endpoint webhook o un cluster Elasticsearch ospitato localmente, su AWS o altrove.
+I servizi della piattaforma comunicano con endpoint esterni che configuri usando il link:configuring-platform-services-endpoints.html["Tenant Manager"] o il link:understanding-tenant-management-api.html["API di gestione tenant"]. Ogni endpoint rappresenta una destinazione esterna, come un bucket Amazon S3 di StorageGRID, un bucket Amazon Web Services, un argomento Amazon SNS, un endpoint webhook o un cluster Elasticsearch ospitato localmente, su AWS o altrove.
 
 Dopo aver creato un endpoint esterno, puoi abilitare un servizio di piattaforma per un bucket aggiungendo la configurazione XML al bucket. La configurazione XML identifica gli oggetti su cui il bucket deve agire, l'azione che il bucket deve intraprendere e l'endpoint che il bucket deve utilizzare per il servizio.
 
 Devi aggiungere configurazioni XML separate per ciascun servizio di piattaforma che vuoi configurare. Ad esempio:
 
 * Se vuoi che tutti gli oggetti le cui chiavi iniziano con  `/images` vengano replicati in un bucket Amazon S3, devi aggiungere una configurazione di replica al bucket di origine.
-* ${post_edited_translations.segment}
-* ${post_edited_translations.segment}
+* Se vuoi anche inviare notifiche quando questi oggetti vengono memorizzati nel bucket, devi aggiungere una configurazione delle notifiche.
+* Se vuoi indicizzare i metadati di questi oggetti, devi aggiungere la configurazione di notifica dei metadati utilizzata per implementare l'integrazione della ricerca.
 
 
 Il formato del file XML di configurazione è regolato dalle API REST S3 utilizzate per implementare i servizi della piattaforma StorageGRID:
 
 [cols="1a,2a,1a"]
 |===
-| ${post_edited_translations.segment} | ${post_edited_translations.segment} | ${post_edited_translations.segment} 
+| Servizio della piattaforma | API REST S3 | Consulta 
 
 
  a| 
@@ -93,7 +93,7 @@ Integrazione della ricerca
 
 
 [[considerations-for-using-platform-services]]
-== ${post_edited_translations.segment}
+== Considerazioni sull'utilizzo dei servizi della piattaforma
 
 [cols="1a,3a"]
 |===
@@ -101,7 +101,7 @@ Integrazione della ricerca
 
 
  a| 
-${post_edited_translations.segment}
+Monitoraggio dell'endpoint di destinazione
  a| 
 Devi monitorare la disponibilità di ciascun endpoint di destinazione. Se la connettività all'endpoint di destinazione viene persa per un periodo di tempo prolungato e si crea un grande backlog di richieste, le richieste client aggiuntive (come le richieste PUT) a StorageGRID falliranno. Devi riprovare queste richieste fallite quando l'endpoint diventa raggiungibile.
 
@@ -119,7 +119,7 @@ Le richieste CloudMirror hanno maggiori probabilità di essere influenzate dalle
 
 
  a| 
-${post_edited_translations.segment}
+Garanzie di ordinamento
  a| 
 StorageGRID garantisce l'ordinamento delle operazioni su un oggetto all'interno di un sito. Finché tutte le operazioni su un oggetto vengono eseguite all'interno dello stesso sito, lo stato finale dell'oggetto (ai fini della replica) sarà sempre uguale allo stato in StorageGRID.
 
@@ -128,23 +128,23 @@ StorageGRID fa del suo meglio per ordinare le richieste quando le operazioni ven
 
 
  a| 
-${post_edited_translations.segment}
+Eliminazioni di oggetti guidate da ILM
  a| 
 Per uniformarsi al comportamento di eliminazione di AWS CRR e Amazon Simple Notification Service, le richieste CloudMirror e di notifica degli eventi non vengono inviate quando un oggetto nel bucket di origine viene eliminato a causa delle regole ILM di StorageGRID. Ad esempio, non vengono inviate richieste CloudMirror o di notifica degli eventi se una regola ILM elimina un oggetto dopo 14 giorni.
 
-${post_edited_translations.segment}
+Al contrario, le richieste di integrazione della ricerca vengono inviate quando gli oggetti vengono eliminati a causa di ILM.
 
 
 
  a| 
-${post_edited_translations.segment}
+Utilizzo degli endpoint Kafka
  a| 
 Per gli endpoint Kafka, il Mutual TLS non è supportato. Di conseguenza, se hai  `ssl.client.auth` impostato su  `required` nella configurazione del tuo broker Kafka, potrebbe causare problemi di configurazione dell'endpoint Kafka.
 
 L'autenticazione degli endpoint Kafka utilizza i seguenti tipi di autenticazione. Questi tipi sono diversi da quelli utilizzati per l'autenticazione di altri endpoint, come Amazon SNS, e richiedono credenziali di nome utente e password.
 
 * SASL/PLAIN
-* ${post_edited_translations.segment}
+* SASL/SCRAM-SHA-256
 * SASL/SCRAM-SHA-512
 
 
@@ -162,7 +162,7 @@ L'autenticazione degli endpoint Kafka utilizza i seguenti tipi di autenticazione
 
 
  a| 
-${post_edited_translations.segment}
+Stato della replica
  a| 
 StorageGRID non supporta l' `x-amz-replication-status`intestazione.
 
@@ -178,13 +178,13 @@ La dimensione massima degli oggetti che possono essere replicati in un bucket di
 
 
  a| 
-${post_edited_translations.segment}
+Versioning dei bucket e ID di versione
  a| 
 Se il bucket S3 di origine in StorageGRID ha la gestione delle versioni abilitata, dovresti abilitarla anche per il bucket di destinazione.
 
 Quando usi il versioning, tieni presente che l'ordine delle versioni degli oggetti nel bucket di destinazione è approssimativo e non garantito dal servizio CloudMirror, a causa delle limitazioni del protocollo S3.
 
-${post_edited_translations.segment}
+*Nota*: Gli ID di versione del bucket di origine in StorageGRID non sono correlati agli ID di versione del bucket di destinazione.
 
 
 
@@ -212,7 +212,7 @@ Il servizio CloudMirror non supporta oggetti crittografati con SSE-C. Se provi a
 
 
  a| 
-${post_edited_translations.segment}
+Bucket con S3 Object Lock abilitato
  a| 
 La replica non è supportata per i bucket di origine o di destinazione con S3 Object Lock abilitato.
 

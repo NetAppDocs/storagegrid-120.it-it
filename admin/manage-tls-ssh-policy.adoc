@@ -71,7 +71,7 @@ NCSM 3.0.8 e il modulo NetApp StorageGRID Kernel Crypto API 6.1.129-1-ntap1-amd6
 
 
 +
-Per ulteriori informazioni, consulta il NIST Cryptographic Algorithm Validation Program link:https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4838["${post_edited_translations.segment}"^].
+Per ulteriori informazioni, consulta il NIST Cryptographic Algorithm Validation Program link:https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4838["Certificato #4838"^].
 
 ** NetApp StorageGRID modulo API crittografica del kernel
 +
@@ -83,7 +83,7 @@ Il modulo API Crypto del kernel NetApp StorageGRID è presente solo sulle piatta
 
 
 +
-Per ulteriori informazioni, consulta il Programma di convalida degli algoritmi crittografici NIST link:https://csrc.nist.gov/projects/cryptographic-algorithm-validation-program/validation-search?searchMode=implementation&product=NetApp+StorageGRID+Kernel+Crypto+API&productType=-1&ipp=50["Certificati n. A6242 - n. A6257"^] e link:https://csrc.nist.gov/projects/cryptographic-module-validation-program/entropy-validations/certificate/223["${post_edited_translations.segment}"^].
+Per ulteriori informazioni, consulta il Programma di convalida degli algoritmi crittografici NIST link:https://csrc.nist.gov/projects/cryptographic-algorithm-validation-program/validation-search?searchMode=implementation&product=NetApp+StorageGRID+Kernel+Crypto+API&productType=-1&ipp=50["Certificati n. A6242 - n. A6257"^] e link:https://csrc.nist.gov/projects/cryptographic-module-validation-program/entropy-validations/certificate/223["Certificato di entropia #E223"^].
 
 
 
@@ -106,7 +106,7 @@ Facoltativamente, se il tuo StorageGRID ha requisiti di crittografia FIPS 140, a
 . Per vedere i dettagli sui cifrari, i protocolli e gli algoritmi di ciascuna policy, seleziona *Visualizza dettagli*.
 . Per modificare i criteri correnti, seleziona *Usa criteri*.
 +
-${post_edited_translations.segment}
+Accanto a *Current policy* compare un segno di spunta verde nel riquadro della policy.
 
 
 
@@ -119,17 +119,17 @@ Puoi creare una policy personalizzata se hai bisogno di applicare i tuoi algorit
 
 .Passaggi
 . Dalla sezione della policy più simile alla policy personalizzata che vuoi creare, seleziona *Visualizza dettagli*.
-. ${post_edited_translations.segment}
+. Seleziona *Copia negli appunti* e poi seleziona *Annulla*.
 +
-image:securitysettings-custom-security-policy-copy.png["${post_edited_translations.segment}"]
+image:securitysettings-custom-security-policy-copy.png["copiare una policy esistente per creare una policy personalizzata"]
 
-. ${post_edited_translations.segment}
+. Dalla sezione *Criteri personalizzati*, seleziona *Configura e utilizza*.
 . Incolla il JSON che hai copiato e apporta le modifiche necessarie.
-. ${post_edited_translations.segment}
+. Seleziona *Usa policy*.
 +
 Accanto a *Politica attuale* nella sezione delle politiche personalizzate compare un segno di spunta verde.
 
-. ${post_edited_translations.segment}
+. Facoltativamente, seleziona *Modifica configurazione* per apportare ulteriori modifiche alla nuova policy personalizzata.
 
 
 
@@ -158,6 +158,6 @@ Quando sei connesso come root, il prompt cambia da  `$` a  `#`.
 +
 `restore-default-cipher-configurations`
 
-. ${post_edited_translations.segment}
+. Da un browser web, accedi al Grid Manager sullo stesso Admin Node.
 . Segui i passaggi in <<select-a-security-policy,Seleziona una politica di sicurezza>> per configurare nuovamente i criteri.
 

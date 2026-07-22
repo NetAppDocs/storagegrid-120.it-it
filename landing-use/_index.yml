@@ -1,24 +1,28 @@
 ---
 indexpage:
-  title: "${post_edited_translations.segment}"
-  summary: "${post_edited_translations.segment}"
+  title: Usa tenant e client StorageGRID
+  summary: Dopo che hai completato la configurazione iniziale, gli account tenant
+    di StorageGRID possono creare bucket e usare le applicazioni client S3 per acquisire,
+    recuperare ed eliminare oggetti.
   keywords: use tenant, manage tenant group, manage tenant user, manage s3 access
     key, manage s3 bucket, use tenant features, use s3 rest api
-  lead: "${post_edited_translations.segment}"
+  lead: Dopo che hai completato la configurazione iniziale, gli account tenant di
+    StorageGRID possono creare bucket e usare le applicazioni client S3 per acquisire,
+    recuperare ed eliminare oggetti.
   tiles:
-  - title: "${post_edited_translations.segment}"
+  - title: Scopri di più sui tenant
     links:
     - title: Che cos'è un tenant?
       url: "../tenant/index.html"
     - title: Accedi al Tenant Manager
       url: "../tenant/signing-in-to-tenant-manager.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Monitora gli account tenant
       url: "../tenant/understanding-tenant-manager-dashboard.html"
     - title: Usa l'API di gestione dei tenant
       url: "../tenant/understanding-tenant-management-api.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Gestisci gruppi di tenant e utenti
     links:
-    - title: "${post_edited_translations.segment}"
+    - title: Usa la federazione delle identità
       url: "../tenant/using-identity-federation.html"
     - title: Crea gruppi S3
       url: "../tenant/creating-groups-for-s3-tenant.html"
@@ -26,27 +30,27 @@ indexpage:
       url: "../tenant/tenant-management-permissions.html"
     - title: Gestisci utenti
       url: "../tenant/manage-users.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Gestisci le chiavi di accesso S3 e i bucket
     links:
-    - title: "${post_edited_translations.segment}"
+    - title: Gestisci le chiavi di accesso S3
       url: "../tenant/managing-s3-access-keys.html"
     - title: Crea bucket
       url: "../tenant/creating-s3-bucket.html"
     - title: Visualizza i dettagli del bucket
       url: "../tenant/viewing-s3-bucket-details.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Elimina bucket
       url: "../tenant/deleting-s3-bucket.html"
   - title: Usa le funzionalità tenant
     links:
-    - title: "${post_edited_translations.segment}"
+    - title: Clonazione account
       url: "../tenant/grid-federation-account-clone.html"
     - title: Replicazione cross-grid
       url: "../tenant/grid-federation-manage-cross-grid-replication.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Servizi della piattaforma
       url: "../tenant/considerations-for-platform-services.html"
     - title: Blocco oggetto S3
       url: "../tenant/using-s3-object-lock.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Usa l'API REST di S3
     links:
     - title: 'Riferimento rapido: richieste API S3 supportate'
       url: "../s3/quick-reference-support-for-aws-apis.html"
@@ -54,7 +58,7 @@ indexpage:
       url: "../s3/operations-on-buckets.html"
     - title: Operazioni sugli oggetti
       url: "../s3/operations-on-objects.html"
-    - title: "${post_edited_translations.segment}"
+    - title: Politiche di accesso a bucket e gruppi
       url: "../s3/use-access-policies.html"
   - title: Usa l'API REST di Swift (end of life)
     links:

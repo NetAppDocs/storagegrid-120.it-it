@@ -9,8 +9,8 @@ Prima di disabilitare la federazione delle identità, dovresti tenere presente q
 
 * Gli utenti federati non potranno accedere.
 * Gli utenti federati attualmente connessi manterranno l'accesso al sistema StorageGRID fino alla scadenza della loro sessione, ma non potranno accedere dopo la scadenza della sessione.
-* ${post_edited_translations.segment}
-* La casella di controllo *Abilita federazione delle identità* è disabilitata se lo stato del single sign-on (SSO) è *Abilitato* o *Modalità Sandbox*. Lo stato SSO nella pagina Single Sign-on deve essere *Disabilitato* prima di poter disabilitare la federazione delle identità. Vedi link:../admin/disabling-single-sign-on.html["${post_edited_translations.segment}"].
+* La sincronizzazione tra il sistema StorageGRID e la fonte di identità non avverrà e non verranno generati avvisi per gli account che non sono stati sincronizzati.
+* La casella di controllo *Abilita federazione delle identità* è disabilitata se lo stato del single sign-on (SSO) è *Abilitato* o *Modalità Sandbox*. Lo stato SSO nella pagina Single Sign-on deve essere *Disabilitato* prima di poter disabilitare la federazione delle identità. Vedi link:../admin/disabling-single-sign-on.html["Disattiva single sign-on"].
 
 
 .Passaggi

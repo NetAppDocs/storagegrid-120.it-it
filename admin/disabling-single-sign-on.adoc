@@ -26,7 +26,7 @@ Viene visualizzata la pagina di single sign-on.
 . Seleziona *Disabilita SSO*.
 . Seleziona *Sì*.
 +
-${post_edited_translations.segment}
+Viene visualizzato un messaggio di avviso che indica che gli utenti locali potranno ora effettuare l'accesso.
 
 
 

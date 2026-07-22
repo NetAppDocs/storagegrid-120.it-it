@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: storagegrid-enable.html 
 keywords: storagegrid, how to enable, third-party solutions, tools, applications, examples, resources 
-summary: ${post_edited_translations.segment} 
+summary: Scopri come testare e abilitare le applicazioni nel tuo ambiente StorageGRID. 
 ---
 = Soluzioni e risorse StorageGRID
 :hardbreaks:

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: copy Admin Node database, alert history, Admin Node expansion, StorageGRID 
 summary: Quando aggiungi nodi di amministrazione tramite una procedura di espansione, puoi copiare facoltativamente il database dal nodo di amministrazione primario al nuovo nodo di amministrazione. Copiare il database ti permette di conservare informazioni storiche su attributi, avvisi e alert. 
 ---
-= ${post_edited_translations.segment}
+= Copia il database Admin Node nei nuovi nodi Admin in StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -16,14 +16,14 @@ Quando aggiungi nodi di amministrazione tramite una procedura di espansione, puo
 .Prima di iniziare
 * Hai completato i passaggi di espansione necessari per aggiungere un Admin Node.
 * Hai il file  `Passwords.txt`.
-* ${post_edited_translations.segment}
+* Hai la passphrase di provisioning.
 
 
 .Informazioni su questa attività
 Il processo di attivazione del software StorageGRID crea un database vuoto per il servizio NMS sul nodo di amministrazione dell'espansione. Quando il servizio NMS si avvia sul nodo di amministrazione dell'espansione, registra le informazioni relative ai server e ai servizi che sono attualmente parte del sistema o aggiunti in seguito. Questo database del nodo di amministrazione include le seguenti informazioni:
 
-* ${post_edited_translations.segment}
-* ${post_edited_translations.segment}
+* Cronologia degli avvisi
+* Dati storici sugli attributi, utilizzati nei grafici in stile legacy nella pagina Nodes
 
 
 Per garantire che il database del nodo di amministrazione sia coerente tra i nodi, puoi copiare il database dal nodo di amministrazione primario al nodo di amministrazione di espansione.
@@ -34,7 +34,7 @@ NOTE: La copia del database dal nodo amministrativo primario (il nodo amministra
 Segui questi passaggi per arrestare il servizio MI e il servizio API sia sul nodo Admin primario che sul nodo Admin di espansione prima di copiare il database.
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Completa i seguenti passaggi sul nodo Admin primario:
 +
 .. Accedi al nodo di amministrazione:
 +
@@ -45,7 +45,7 @@ Segui questi passaggi per arrestare il servizio MI e il servizio API sia sul nod
 
 
 .. Eseguire il seguente comando: `recover-access-points`
-.. ${post_edited_translations.segment}
+.. Inserisci la passphrase di provisioning.
 .. Interrompi il servizio MI: `service mi stop`
 .. Arresta il servizio Management Application Program Interface (mgmt-api): `service mgmt-api stop`
 
@@ -65,7 +65,7 @@ Segui questi passaggi per arrestare il servizio MI e il servizio API sia sul nod
 .. Aggiungi la chiave privata SSH all'agente SSH. Inserisci:``ssh-add``
 .. Inserisci la password di accesso SSH indicata nel file  `Passwords.txt`.
 .. Copia il database dal nodo Admin di origine al nodo Admin di espansione: `/usr/local/mi/bin/mi-clone-db.sh _Source_Admin_Node_IP_`
-.. ${post_edited_translations.segment}
+.. Quando richiesto, conferma di voler sovrascrivere il database MI sul nodo di amministrazione dell'espansione.
 +
 Il database e i relativi dati storici vengono copiati nell'Admin Node di espansione. Al termine dell'operazione di copia, lo script avvia l'Admin Node di espansione.
 

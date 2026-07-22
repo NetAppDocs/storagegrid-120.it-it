@@ -25,7 +25,7 @@ Se vuoi usare un server OpenLDAP per la federazione delle identità, devi config
 [[indexing]]
 == Indicizzazione
 
-${post_edited_translations.segment}
+Devi configurare i seguenti attributi OpenLDAP con le parole chiave di indice specificate:
 
 [listing]
 ----

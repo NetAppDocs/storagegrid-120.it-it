@@ -34,7 +34,7 @@ CAUTION: Se vengono segnalati più di 10 oggetti smarriti, contatta il supporto 
 +
 Questo numero indica il numero totale di oggetti che questo nodo della griglia rileva come mancanti nell'intero sistema StorageGRID. Il valore è la somma dei contatori degli oggetti persi del componente Data store all'interno dei servizi LDR e DDS.
 
-. Da un Admin Node, link:../audit/accessing-audit-log-file.html["${post_edited_translations.segment}"] per determinare l'identificatore univoco (UUID) dell'oggetto che ha attivato l'avviso *Oggetti potenzialmente persi*:
+. Da un Admin Node, link:../audit/accessing-audit-log-file.html["accedi al registro di controllo"] per determinare l'identificatore univoco (UUID) dell'oggetto che ha attivato l'avviso *Oggetti potenzialmente persi*:
 +
 .. Accedi al nodo della griglia:
 +
@@ -44,7 +44,7 @@ Questo numero indica il numero totale di oggetti che questo nodo della griglia r
 ... Inserisci la password indicata nel `Passwords.txt` file. Quando effettui l'accesso come root, il prompt cambia da `$` a `#`.
 
 
-.. ${post_edited_translations.segment}
+.. Vai nella directory dove si trovano i log di audit.
 +
 --
 La directory dei log di controllo e i nodi applicabili dipendono dalle impostazioni di destinazione dei log di controllo.
@@ -62,7 +62,7 @@ Nodi locali (predefiniti)
 
 
  a| 
-${post_edited_translations.segment}
+Nodi amministrativi/nodi locali
  a| 
 *** Nodi amministrativi (primario e non primario): `/var/local/audit/export/audit.log`
 *** Tutti i nodi: Il `/var/local/log/localaudit.log` file è in genere vuoto o mancante in questa modalità.
@@ -71,18 +71,18 @@ ${post_edited_translations.segment}
 
 
  a| 
-${post_edited_translations.segment}
+Server syslog esterno
  a| 
 `/var/local/log/localaudit.log`
 
 |===
 In base alle tue impostazioni di destinazione dell'audit, inserisci: `cd /var/local/log` o `/var/local/audit/export/`
 
-Per saperne di più, consulta link:../monitor/configure-log-management.html#select-log-location["${post_edited_translations.segment}"].
+Per saperne di più, consulta link:../monitor/configure-log-management.html#select-log-location["Seleziona la posizione del file di log"].
 
 --
 .. Usa grep per estrarre i messaggi di audit Object Lost (OLST). Inserisci: `grep OLST audit_file_name`
-.. ${post_edited_translations.segment}
+.. Nota il valore UUID incluso nel messaggio.
 +
 [listing]
 ----
@@ -96,18 +96,18 @@ Admin: # grep OLST audit.log
 . Cerca i metadati dell'oggetto smarrito usando l'UUID:
 +
 .. Seleziona *ILM* > *Object metadata lookup*.
-.. ${post_edited_translations.segment}
-.. ${post_edited_translations.segment}
+.. Inserisci l'UUID e seleziona *Cerca*.
+.. Esamina le posizioni nei metadati e intraprendi l'azione appropriata:
 +
 [cols="2a,4a"]
 |===
-| ${post_edited_translations.segment} | Conclusione 
+| Metadati | Conclusione 
 
 
  a| 
 Oggetto <object_identifier> non trovato
  a| 
-${post_edited_translations.segment}
+Se l'oggetto non viene trovato, viene restituito il messaggio "ERROR":"
 
 Se l'oggetto non viene trovato, <<reset-lost-obj-count,reimposta il contatore degli oggetti potenzialmente persi>> per cancellare l'allarme. L'assenza di un oggetto indica che l'oggetto è stato eliminato intenzionalmente.
 
@@ -116,7 +116,7 @@ Se l'oggetto non viene trovato, <<reset-lost-obj-count,reimposta il contatore de
  a| 
 Località > 0
  a| 
-${post_edited_translations.segment}
+Se nell'output sono elencate delle posizioni, l'avviso *Oggetti potenzialmente persi* potrebbe essere un falso positivo.
 
 Verifica che gli oggetti esistano. Usa il Node ID e il percorso del file indicati nell'output per confermare che il file oggetto si trovi nella posizione indicata.
 
@@ -125,11 +125,11 @@ Se gli oggetti esistono, <<reset-lost-obj-count,reimposta il contatore degli ogg
 
 
  a| 
-${post_edited_translations.segment}
+Posizioni = 0
  a| 
 Se nell'output non sono elencate posizioni, l'oggetto potrebbe essere mancante. Contatta il supporto tecnico.
 
-L'assistenza tecnica potrebbe chiederti di verificare se è in corso una procedura di ripristino dello storage. Consulta le informazioni su link:../maintain/restoring-volume.html["${post_edited_translations.segment}"] e link:../maintain/restoring-object-data-to-storage-volume.html["${post_edited_translations.segment}"].
+L'assistenza tecnica potrebbe chiederti di verificare se è in corso una procedura di ripristino dello storage. Consulta le informazioni su link:../maintain/restoring-volume.html["ripristinare i dati dell'oggetto usando Grid Manager"] e link:../maintain/restoring-object-data-to-storage-volume.html["ripristinare i dati dell'oggetto su un volume di archiviazione"].
 
 |===
 

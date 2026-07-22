@@ -19,7 +19,7 @@ Quando un client S3 effettua una transazione GET, viene fatta una richiesta per 
 
 
  a| 
-${post_edited_translations.segment}
+CBID
  a| 
 Identificatore del blocco di contenuto
  a| 
@@ -28,7 +28,7 @@ L'identificativo univoco del blocco di contenuto richiesto. Se il CBID è sconos
 
 
  a| 
-${post_edited_translations.segment}
+CNCH
  a| 
 Intestazione di controllo della coerenza
  a| 
@@ -48,16 +48,16 @@ L'identificativo univoco del sistema per la connessione TCP/IP.
  a| 
 CSIZ
  a| 
-${post_edited_translations.segment}
+Dimensione del contenuto
  a| 
 La dimensione dell'oggetto recuperato in byte. Le operazioni sui bucket non includono questo campo.
 
 
 
  a| 
-${post_edited_translations.segment}
+HTRH
  a| 
-${post_edited_translations.segment}
+Intestazione della richiesta HTTP
  a| 
 Elenco dei nomi e dei valori delle intestazioni delle richieste HTTP registrate come selezionato durante la configurazione.
 
@@ -75,7 +75,7 @@ ListObjectsV2
 
 
  a| 
-${post_edited_translations.segment}
+NCHD
  a| 
 Numero di child
  a| 
@@ -95,7 +95,7 @@ Solo per operazioni di lettura di intervalli. Indica l'intervallo di byte letto 
  a| 
 RSLT
  a| 
-${post_edited_translations.segment}
+Codice risultato
  a| 
 Risultato della transazione GET. Il risultato è sempre:
 
@@ -149,7 +149,7 @@ Il bucket o la sottorisorsa oggetto su cui stai operando, se applicabile.
 
 
  a| 
-${post_edited_translations.segment}
+SACC
  a| 
 Nome account tenant S3 (mittente della richiesta)
  a| 
@@ -160,9 +160,9 @@ Il nome dell'account tenant per l'utente che ha inviato la richiesta. Vuoto per 
  a| 
 SAIP
  a| 
-${post_edited_translations.segment}
+Indirizzo IP (mittente della richiesta)
  a| 
-${post_edited_translations.segment}
+L'indirizzo IP dell'applicazione client che ha effettuato la richiesta.
 
 
 
@@ -191,7 +191,7 @@ URN utente S3 (mittente della richiesta)
  a| 
 L'ID account tenant e il nome utente dell'utente che effettua la richiesta. L'utente può essere un utente locale o un utente LDAP. Per esempio: `urn:sgws:identity::03393893651506583485:root`
 
-${post_edited_translations.segment}
+Vuoto per le richieste anonime.
 
 
 
@@ -232,7 +232,7 @@ L'identificativo dell'oggetto all'interno del sistema StorageGRID.
 
 
  a| 
-${post_edited_translations.segment}
+VSID
  a| 
 ID versione
  a| 

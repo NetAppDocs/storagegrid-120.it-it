@@ -19,7 +19,7 @@ Tutti i messaggi di audit contengono gli elementi comuni.
 
 
  a| 
-${post_edited_translations.segment}
+AMID
  a| 
 FC32
  a| 
@@ -28,7 +28,7 @@ ID modulo: un identificatore a quattro caratteri dell'ID modulo che ha generato 
 
 
  a| 
-${post_edited_translations.segment}
+ANID
  a| 
 UI32
  a| 

@@ -18,9 +18,9 @@ I seguenti workflow per i messaggi di audit e la conservazione dei messaggi di a
 
 
 [[audit-message-flow]]
-== ${post_edited_translations.segment}
+== Flusso dei messaggi di audit
 
-${post_edited_translations.segment}
+I messaggi di audit vengono elaborati dai nodi di amministrazione quando StorageGRID è configurato per *Admin Nodes/local nodes* o *Admin Node and external syslog server* e dai nodi di archiviazione che dispongono di un servizio Administrative Domain Controller (ADC).
 
 Come mostrato nel diagramma di flusso dei messaggi di audit, ciascun nodo StorageGRID invia i propri messaggi di audit a uno dei servizi ADC presso il sito del data center. Il servizio ADC viene abilitato automaticamente per i primi tre Storage Node installati in ciascun sito.
 
@@ -39,7 +39,7 @@ StorageGRID utilizza un processo di copia ed eliminazione per garantire che ness
 
 Quando un nodo genera o inoltra un messaggio di audit, il messaggio viene memorizzato in una coda di messaggi di audit sul disco di sistema del nodo della griglia. Una copia del messaggio viene sempre conservata in una coda di messaggi di audit finché il messaggio non viene scritto nel file di log di audit nella directory dell'Admin Node `/var/local/audit/export`. Questo aiuta a prevenire la perdita di un messaggio di audit durante il trasporto.
 
-image:audit_message_retention.gif["${post_edited_translations.segment}"]
+image:audit_message_retention.gif["diagramma che riassume la ricezione dei messaggi di audit presso l'AMS"]
 
 La coda dei messaggi di audit può aumentare temporaneamente a causa di problemi di connettività di rete o di una capacità di audit insufficiente. Man mano che le code aumentano, consumano più spazio disponibile nella directory  `/var/local/` di ciascun nodo. Se il problema persiste e la directory dei messaggi di audit di un nodo si riempie troppo, i singoli nodi danno priorità all'elaborazione dell'arretrato e diventano temporaneamente non disponibili per nuovi messaggi.
 
@@ -66,7 +66,7 @@ I seguenti tipi di problemi possono causare una crescita molto elevata delle cod
 [[large-audit-queue-alert-and-audit-messages-queued-amqs-alarm]]
 === Avviso di coda di audit di grandi dimensioni e allarme Audit Messages Queued (AMQS)
 
-${post_edited_translations.segment}
+Per aiutarti a monitorare le dimensioni delle code dei messaggi di audit nel tempo, l'avviso *Coda di audit di grandi dimensioni* e l'allarme AMQS legacy vengono attivati quando il numero di messaggi in una coda di Storage Node o in una coda di Admin Node raggiunge determinate soglie.
 
 Se viene attivato l'avviso *Coda di audit di grandi dimensioni* o l'allarme AMQS legacy, inizia verificando il carico sul sistema: se c'è stato un numero significativo di transazioni recenti, l'avviso e l'allarme dovrebbero risolversi nel tempo e puoi ignorarli.
 

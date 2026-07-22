@@ -7,7 +7,7 @@ NOTE: Per l'installazione dell'appliance, questi file sono necessari solo se vuo
 
 [cols="1a,1a"]
 |===
-| ${post_edited_translations.segment} | Descrizione 
+| Percorso e nome file | Descrizione 
 
 
 | ./debs/storagegrid-webscale-images-version-SHA.deb  a| 

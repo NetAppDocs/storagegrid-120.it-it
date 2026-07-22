@@ -23,20 +23,20 @@ S3SL
  a| 
 Richiesta S3 Select: registra un completamento dopo che una richiesta S3 Select è stata restituita al client. Il messaggio S3SL può includere dettagli sul messaggio di errore e sul codice di errore. La richiesta potrebbe non essere andata a buon fine.
  a| 
-${post_edited_translations.segment}
+Client S3
  a| 
 link:s3-select-request.html["S3SL: richiesta S3 Select"]
 
 
 
  a| 
-${post_edited_translations.segment}
+SGET
  a| 
-${post_edited_translations.segment}
+S3 GET: Registra una transazione riuscita per recuperare un oggetto o elencare gli oggetti in un bucket.
 
 *Nota:* Se la transazione opera su una sottorisorsa, il messaggio di controllo includerà il campo S3SR.
  a| 
-${post_edited_translations.segment}
+Client S3
  a| 
 link:sget-s3-get.html["SGET: S3 GET"]
 
@@ -45,9 +45,9 @@ link:sget-s3-get.html["SGET: S3 GET"]
  a| 
 SHEA
  a| 
-${post_edited_translations.segment}
+S3 HEAD: Registra una transazione avvenuta con successo per verificare l'esistenza di un oggetto o di un bucket.
  a| 
-${post_edited_translations.segment}
+Client S3
  a| 
 link:shea-s3-head.html["SHEA: S3 HEAD"]
 

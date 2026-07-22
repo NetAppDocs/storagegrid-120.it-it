@@ -26,17 +26,17 @@ Risultato
 Risultato della richiesta di aggiornamento:
 
 * SUCS: Operazione riuscita
-* ${post_edited_translations.segment}
-* ${post_edited_translations.segment}
+* SUNV: Servizio non disponibile
+* GERR: Altro guasto
 
 
 
 
  a| 
-${post_edited_translations.segment}
+GNID
  a| 
 ID nodo
  a| 
-${post_edited_translations.segment}
+L'ID del nodo del servizio che ha avviato la richiesta di aggiornamento.
 
 |===

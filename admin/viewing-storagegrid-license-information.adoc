@@ -22,18 +22,18 @@ Se si verifica un problema con la licenza software per questo sistema StorageGRI
 image:dashboard_health_panel_license_status.png["Scheda stato di salute della dashboard Stato della licenza"]
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Per accedere alla pagina della licenza, procedi in uno dei seguenti modi:
 +
-** ${post_edited_translations.segment}
+** Seleziona *Manutenzione* > *Sistema* > *Licenza*.
 ** Dalla scheda Stato di salute nella dashboard, seleziona l'icona Stato licenza o il link *Licenza*.
 +
-${post_edited_translations.segment}
+Questo link viene visualizzato solo in caso di problemi con la licenza.
 
 
 
 . Visualizza i dettagli di sola lettura per la licenza corrente:
 +
-** ${post_edited_translations.segment}
+** ID del sistema StorageGRID, ovvero il numero identificativo univoco per questa installazione di StorageGRID
 ** Numero di serie della licenza
 ** Tipo di licenza, *Perpetua* o *Subscription*
 ** Capacità di storage autorizzata della grid

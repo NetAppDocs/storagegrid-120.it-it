@@ -21,7 +21,7 @@ Puoi aggiungere, eliminare o modificare le subnet per tutti i nodi nell'elenco d
 
 [NOTE]
 ====
-${post_edited_translations.segment}
+Non utilizzare sottoreti che contengono i seguenti indirizzi IPv4 per la Grid Network, l'Admin Network o la Client Network di alcun nodo:
 
 * 192.168.130.101
 * 192.168.130.121
@@ -35,16 +35,16 @@ ${post_edited_translations.segment}
 * 198.51.100.4
 
 
-${post_edited_translations.segment}
+Ad esempio, non utilizzare i seguenti intervalli di sottoreti per la Grid Network, l'Admin Network o la Client Network di alcun nodo:
 
 * 192.168.130.0/24 perché questo intervallo di sottorete contiene gli indirizzi IP 192.168.130.101 e 192.168.130.102
-* ${post_edited_translations.segment}
-* ${post_edited_translations.segment}
+* 192.168.131.0/24 perché questo intervallo di sottorete contiene gli indirizzi IP 192.168.131.101 e 192.168.131.102
+* 198.51.100.0/24 perché questo intervallo di sottorete contiene gli indirizzi IP 198.51.100.2 e 198.51.100.4
 
 
 ====
 .Passaggi
-. L'accesso SSH esterno è bloccato per impostazione predefinita. Se necessario, link:../admin/manage-external-ssh-access.html["${post_edited_translations.segment}"].
+. L'accesso SSH esterno è bloccato per impostazione predefinita. Se necessario, link:../admin/manage-external-ssh-access.html["Consenti temporaneamente l'accesso"].
 . Accedi al nodo amministratore principale:
 +
 .. Inserisci il seguente comando: `ssh admin@_primary_Admin_Node_IP_`
@@ -158,8 +158,8 @@ Updating grid network configuration on Name
 
 . Scarica un nuovo pacchetto di ripristino dal Grid Manager.
 +
-.. ${post_edited_translations.segment}
-.. ${post_edited_translations.segment}
+.. Seleziona *Maintenance* > *System* > *Recovery package*.
+.. Inserisci la passphrase di provisioning.
 
 
 . Se hai consentito l'accesso SSH esterno, link:../admin/manage-external-ssh-access.html["blocco accesso"] quando hai finito di aggiungere o modificare gli elenchi di sottoreti.

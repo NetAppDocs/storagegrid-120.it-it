@@ -21,9 +21,9 @@ Questo messaggio registra un completamento dopo che una richiesta S3 Select è s
  a| 
 BYSC
  a| 
-${post_edited_translations.segment}
+Byte scansionati
  a| 
-${post_edited_translations.segment}
+Numero di byte scansionati (ricevuti) dai nodi di Storage.
 
 BYSC e BYPR potrebbero essere diversi se l'oggetto è compresso. Se l'oggetto è compresso, BYSC avrà il conteggio dei byte compressi e BYPR avrà i byte dopo la decompressione.
 
@@ -41,7 +41,7 @@ Numero di byte elaborati. Indica quanti byte di "Byte scansionati" sono stati ef
  a| 
 BYRT
  a| 
-${post_edited_translations.segment}
+Byte restituiti
  a| 
 Numero di byte che un job S3 Select ha restituito al client.
 
@@ -79,16 +79,16 @@ REID
  a| 
 ID richiesta
  a| 
-${post_edited_translations.segment}
+Identificativo per la richiesta S3 Select.
 
 
 
  a| 
-${post_edited_translations.segment}
+EXTM
  a| 
 Tempo di esecuzione
  a| 
-${post_edited_translations.segment}
+Il tempo, in secondi, impiegato dal processo S3 Select per completare.
 
 
 
@@ -102,7 +102,7 @@ Messaggio di errore generato dal job S3 Select.
 
 
  a| 
-${post_edited_translations.segment}
+ERTY
  a| 
 Tipo di errore
  a| 
@@ -142,7 +142,7 @@ S3AI
  a| 
 ID account tenant S3 (mittente della richiesta)
  a| 
-${post_edited_translations.segment}
+L'ID account tenant dell'utente che ha inviato la richiesta.
 
 
 

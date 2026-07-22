@@ -35,7 +35,7 @@ Ottieni indirizzi IP e configura le interfacce VLAN:: Se configurerai un gruppo 
 Se prevedi di utilizzare una LAN virtuale per separare il traffico dall'applicazione S3, hai già configurato l'interfaccia VLAN. Vedi link:../admin/configure-vlan-interfaces.html["Configura le interfacce VLAN"].
 
 --
-Configura la federazione delle identità e il single sign-on:: Se prevedi di utilizzare la federazione delle identità o il single sign-on (SSO) per il tuo sistema StorageGRID, hai abilitato queste funzionalità. Sai anche quale gruppo federato deve avere access root per il tenant account che verrà utilizzato dall'applicazione S3. Vedi link:../admin/using-identity-federation.html["${post_edited_translations.segment}"] e link:../admin/how-sso-works.html["Configura single sign-on"].
+Configura la federazione delle identità e il single sign-on:: Se prevedi di utilizzare la federazione delle identità o il single sign-on (SSO) per il tuo sistema StorageGRID, hai abilitato queste funzionalità. Sai anche quale gruppo federato deve avere access root per il tenant account che verrà utilizzato dall'applicazione S3. Vedi link:../admin/using-identity-federation.html["Usa la federazione delle identità"] e link:../admin/how-sso-works.html["Configura single sign-on"].
 Ottieni e configura i nomi di dominio:: Sai quale fully qualified domain name (FQDN) usare per StorageGRID. Le voci del name server DNS mapperanno questo FQDN agli indirizzi IP virtuali (VIP) del gruppo HA che crei usando la procedura guidata.
 +
 --
@@ -48,12 +48,12 @@ Esamina i requisiti per il bilanciamento del carico e il certificato di sicurezz
 Se vuoi usare un endpoint di bilanciamento del carico esterno (di terze parti), devi avere il fully qualified domain name (FQDN), la porta e il certificato per quel bilanciatore di carico.
 
 --
-${post_edited_translations.segment}:: Se vuoi consentire al tenant S3 di clonare i dati dell'account e replicare gli oggetti del bucket in un'altra griglia utilizzando una connessione di federazione di griglia, conferma quanto segue prima di avviare lo wizard:
+Configura le connessioni di federazione della griglia:: Se vuoi consentire al tenant S3 di clonare i dati dell'account e replicare gli oggetti del bucket in un'altra griglia utilizzando una connessione di federazione di griglia, conferma quanto segue prima di avviare lo wizard:
 +
 --
 * Hai link:grid-federation-manage-connection.html["hai configurato la connessione alla federazione di griglia"].
 * Lo stato della connessione è *Connected*.
-* ${post_edited_translations.segment}
+* Hai il permesso di accesso root.
 
 
 --

@@ -19,7 +19,7 @@ Questo messaggio di controllo indica che il servizio CMN ha terminato l'elaboraz
 
 
  a| 
-${post_edited_translations.segment}
+TSID
  a| 
 ID attività
  a| 
@@ -38,7 +38,7 @@ Risultato finale dell'attività di griglia:
 
 * SUCS: L'attività di griglia è stata completata con successo.
 * ABRT: L'attività di griglia è stata terminata senza errori di rollback.
-* ${post_edited_translations.segment}
+* ROLF: L'attività di grid è stata interrotta e non è stato possibile completare il processo di rollback.
 * ANNULLA: L'attività di grid è stata annullata dall'utente prima che venisse avviata.
 * EXPR: L'attività di griglia è scaduta prima di essere avviata.
 * IVLD: L'attività di grid non è valida.

@@ -14,4 +14,4 @@ summary: 'Il supporto per l"API Swift ha raggiunto la fine del suo ciclo di vita
 Il supporto per l'API Swift ha raggiunto la fine del suo ciclo di vita e verrà rimosso in una versione futura.
 
 
-TIP: I dettagli relativi a Swift sono stati rimossi da questa versione del sito di documentazione. Vedi https://docs.netapp.com/us-en/storagegrid-118/swift/index.html["${post_edited_translations.segment}"^].
+TIP: I dettagli relativi a Swift sono stati rimossi da questa versione del sito di documentazione. Vedi https://docs.netapp.com/us-en/storagegrid-118/swift/index.html["StorageGRID 11.8: Usa l'API REST Swift"^].

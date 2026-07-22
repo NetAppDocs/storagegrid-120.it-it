@@ -19,7 +19,7 @@ Questo messaggio viene visualizzato ogni volta che un blocco di contenuto non su
 
 
  a| 
-${post_edited_translations.segment}
+CBID
  a| 
 Identificatore del blocco di contenuto
  a| 
@@ -30,13 +30,13 @@ L'identificativo univoco del blocco di contenuto la cui verifica non è andata a
  a| 
 RSLT
  a| 
-${post_edited_translations.segment}
+Codice risultato
  a| 
-${post_edited_translations.segment}
+Tipo di errore di verifica:
 
 CRCF: controllo di ridondanza ciclica (CRC) non riuscito.
 
-${post_edited_translations.segment}
+HMAC: Verifica del codice di autenticazione del messaggio basato su hash (HMAC) non riuscita.
 
 EHSH: Hash del contenuto crittografato inatteso.
 
@@ -46,7 +46,7 @@ SEQC: Sequenza dati errata sul disco.
 
 PERR: Struttura del file su disco non valida.
 
-${post_edited_translations.segment}
+DERR: Errore del disco.
 
 FNAM: Nome file non valido.
 

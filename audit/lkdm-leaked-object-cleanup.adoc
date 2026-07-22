@@ -19,9 +19,9 @@ Questo messaggio viene generato quando un chunk non valido viene ripulito o elim
 
 
  a| 
-${post_edited_translations.segment}
+CLOC
  a| 
-${post_edited_translations.segment}
+Posizione del blocco
  a| 
 Il percorso del file del chunk trapelato che è stato eliminato.
 
@@ -41,7 +41,7 @@ Tipo di chunk:
 
 
  a| 
-${post_edited_translations.segment}
+LTYP
  a| 
 Tipo di perdita
  a| 
@@ -60,11 +60,11 @@ I cinque tipi di perdite che puoi rilevare:
 
 
  a| 
-${post_edited_translations.segment}
+CTIM
  a| 
 Tempo di creazione del chunk
  a| 
-${post_edited_translations.segment}
+Ora in cui è stato creato il chunk trapelato.
 
 
 
@@ -78,7 +78,7 @@ L'identificativo dell'oggetto a cui appartiene il chunk.
 
 
  a| 
-${post_edited_translations.segment}
+CBID
  a| 
 Identificatore del blocco di contenuto
  a| 

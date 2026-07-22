@@ -2,7 +2,7 @@
 permalink: tenant/testing-connection-for-platform-services-endpoint.html 
 sidebar: sidebar 
 keywords: how to test platform services endpoint connection 
-summary: ${post_edited_translations.segment} 
+summary: 'Se la connessione a un servizio della piattaforma è cambiata, puoi testare la connessione per l"endpoint per verificare che la risorsa di destinazione esista e che sia raggiungibile utilizzando le credenziali che hai specificato.' 
 ---
 = Verifica la connessione per un endpoint dei servizi della piattaforma StorageGRID
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: ${post_edited_translations.segment}
 
 
 [role="lead"]
-${post_edited_translations.segment}
+Se la connessione a un servizio della piattaforma è cambiata, puoi testare la connessione per l'endpoint per verificare che la risorsa di destinazione esista e che sia raggiungibile utilizzando le credenziali che hai specificato.
 
 .Prima di iniziare
 * Hai effettuato l'accesso al Tenant Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
@@ -19,14 +19,14 @@ ${post_edited_translations.segment}
 
 
 .Informazioni su questa attività
-${post_edited_translations.segment}
+StorageGRID non verifica che le credenziali abbiano le autorizzazioni corrette.
 
 .Passaggi
 . Seleziona *STORAGE (S3)* > *Platform services endpoints*.
 +
-${post_edited_translations.segment}
+Viene visualizzata la pagina degli endpoint dei servizi della piattaforma e viene mostrato l'elenco degli endpoint dei servizi della piattaforma già configurati.
 
-. ${post_edited_translations.segment}
+. Seleziona l'endpoint di cui vuoi testare la connessione.
 +
 Viene visualizzata la pagina dei dettagli dell'endpoint.
 

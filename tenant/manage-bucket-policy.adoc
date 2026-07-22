@@ -26,10 +26,10 @@ Puoi controllare l'accesso degli utenti a un bucket S3 e agli oggetti in quel bu
 +
 ** Inserisci una bucket policy selezionando la casella di controllo *Abilita policy*. Quindi inserisci una stringa valida in formato JSON.
 +
-${post_edited_translations.segment}
+Ogni policy del bucket ha un limite di dimensione di 20.480 byte.
 
 ** Modifica una policy esistente modificando la stringa.
-** ${post_edited_translations.segment}
+** Disattiva un criterio deselezionando *Abilita criterio*.
 
 
 

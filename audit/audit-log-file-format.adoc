@@ -15,7 +15,7 @@ I file di log di audit si trovano su ogni Admin Node e contengono una raccolta d
 
 Ogni messaggio di audit contiene quanto segue:
 
-* ${post_edited_translations.segment}
+* L'ora coordinata universale (UTC) dell'evento che ha attivato il messaggio di audit (ATIM) in formato ISO 8601, seguita da uno spazio:
 +
 `_YYYY-MM-DDTHH:MM:SS.UUUUUU_`, dove  `_UUUUUU_` sono microsecondi.
 

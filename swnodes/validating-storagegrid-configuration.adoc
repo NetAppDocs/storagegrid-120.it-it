@@ -27,11 +27,11 @@ Se i file sono corretti, l'output mostra *PASSED* per ciascun file di configuraz
 
 NOTE: Quando usi un solo LUN su nodi solo metadati, potresti ricevere un messaggio di avviso che puoi ignorare.
 
-image:rhel_node_configuration_file_output.gif["${post_edited_translations.segment}"]
+image:rhel_node_configuration_file_output.gif["Questa immagine è spiegata dal testo circostante."]
 
 
 TIP: Per un'installazione automatizzata, puoi sopprimere questo output usando le opzioni  `-q` o  `--quiet` nel comando  `storagegrid` (ad esempio,  `storagegrid --quiet...`). Se sopprimi l'output, il comando avrà un valore di uscita diverso da zero se vengono rilevati avvisi o errori di configurazione.
 
 Se i file di configurazione non sono corretti, i problemi vengono visualizzati come *WARNING* e *ERROR*, come mostrato nell'esempio. Se vengono rilevati errori di configurazione, devi correggerli prima di continuare con l'installazione.
 
-image:rhel_node_configuration_file_output_with_errors.gif["${post_edited_translations.segment}"]
+image:rhel_node_configuration_file_output_with_errors.gif["Questa immagine è spiegata dal testo circostante."]

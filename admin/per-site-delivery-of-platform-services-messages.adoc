@@ -19,6 +19,6 @@ image:notification_multiple_sites.gif["Diagramma che mostra che un'azione sull'o
 
 Se successivamente il client esegue un'operazione di eliminazione tramite API S3 sullo stesso oggetto dal Data Center Site 2, la notifica relativa all'eliminazione viene attivata e inviata dal Data Center Site 2.
 
-image:notifications_site_2.gif["${post_edited_translations.segment}"]
+image:notifications_site_2.gif["diagramma che mostra l'azione sull'oggetto dal sito 2 che attiva le notifiche dal sito 2"]
 
 Assicurati che la rete in ogni sito sia configurata in modo che i messaggi dei servizi della piattaforma possano essere recapitati alle rispettive destinazioni.

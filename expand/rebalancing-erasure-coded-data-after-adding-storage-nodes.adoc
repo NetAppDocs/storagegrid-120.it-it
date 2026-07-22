@@ -14,20 +14,20 @@ summary: Dopo che hai aggiunto i nodi di archiviazione, puoi usare la procedura 
 Dopo aver aggiunto i nodi di archiviazione, puoi usare la procedura di ribilanciamento della codifica di cancellazione (EC) per ridistribuire i frammenti codificati con codifica di cancellazione tra i nodi di archiviazione esistenti e nuovi.
 
 .Prima di iniziare
-* ${post_edited_translations.segment}
-* Hai esaminato il link:considerations-for-rebalancing-erasure-coded-data.html["${post_edited_translations.segment}"].
+* Hai completato la procedura di espansione per aggiungere i nuovi Storage Node.
+* Hai esaminato il link:considerations-for-rebalancing-erasure-coded-data.html["considerazioni per il ribilanciamento dei dati codificati con cancellazione"].
 * Devi capire che i dati degli oggetti replicati non verranno spostati da questa procedura e che la procedura di ribilanciamento EC non sposta i dati replicati. Tuttavia, i dati replicati vengono presi in considerazione quando si determina dove spostare i dati EC.
 * Hai il file  `Passwords.txt`.
 
 
 .Cosa succede quando esegui questa procedura
-${post_edited_translations.segment}
+Prima di iniziare la procedura, nota quanto segue:
 
-* ${post_edited_translations.segment}
+* La procedura di ribilanciamento EC non si avvierà se uno o più volumi sono offline (smontati) o se sono online (montati) ma in stato di errore.
 * La procedura di ribilanciamento EC riserva temporaneamente una grande quantità di storage. Potrebbero essere generati avvisi di storage, che si risolveranno al termine del ribilanciamento. Se non c'è storage sufficiente per la prenotazione, la procedura di ribilanciamento EC non andrà a buon fine. Le prenotazioni di storage vengono rilasciate al termine della procedura di ribilanciamento EC, indipendentemente dal fatto che la procedura abbia avuto successo o meno.
 * Se un volume va offline mentre è in corso la procedura di ribilanciamento EC, la procedura di ribilanciamento verrà interrotta. I frammenti di dati già spostati rimarranno nelle nuove posizioni e non si perderà alcun dato.
 +
-${post_edited_translations.segment}
+Puoi ripetere la procedura dopo che tutti i volumi sono tornati online.
 
 * Quando è in esecuzione la procedura di ribilanciamento EC, le prestazioni delle operazioni ILM e delle operazioni client S3 potrebbero essere influenzate.
 +
@@ -37,8 +37,8 @@ NOTE: Le operazioni API S3 per caricare oggetti (o parti di oggetti) potrebbero 
 * *Condizioni di completamento dell'operazione*. La procedura di ribilanciamento della EC si considera completata quando si verifica una delle seguenti condizioni:
 +
 ** Non può spostare altri dati codificati con cancellazione.
-** ${post_edited_translations.segment}
-** ${post_edited_translations.segment}
+** I dati in tutti i nodi rientrano in una deviazione del 5% rispetto alla partizione dati di destinazione.
+** La procedura è in corso da 30 giorni.
 
 
 
@@ -49,8 +49,8 @@ NOTE: Le operazioni API S3 per caricare oggetti (o parti di oggetti) potrebbero 
 .. Selezionare *Nodi*.
 .. Seleziona il primo Storage Node nel sito.
 .. Seleziona la scheda *Storage*.
-.. ${post_edited_translations.segment}
-.. ${post_edited_translations.segment}
+.. Posiziona il cursore sul grafico "Spazio di archiviazione utilizzato - Dati oggetto" per visualizzare la quantità corrente di dati replicati e dati codificati per la cancellazione sul nodo di archiviazione.
+.. Ripeti questi passaggi per visualizzare gli altri Storage Node presenti nel sito.
 
 
 . Accedi al nodo amministratore principale:
@@ -66,7 +66,7 @@ Quando sei connesso come root, il prompt cambia da  `$` a  `#`.
 
 . Avvia la procedura:
 +
-${post_edited_translations.segment}
+`rebalance-data start --site "_site-name_"
 
 +
 Per "_site-name_", specifica il primo sito in cui hai aggiunto un nuovo Storage Node o più nodi. Racchiudi `site-name` tra virgolette.
@@ -75,9 +75,9 @@ Per "_site-name_", specifica il primo sito in cui hai aggiunto un nuovo Storage 
 La procedura di ribilanciamento EC inizia e viene restituito un job ID.
 
 . Copia l'ID del lavoro.
-. ${post_edited_translations.segment}
+. [[view-status]]Monitora lo stato della procedura di ribilanciamento EC.
 +
-** ${post_edited_translations.segment}
+** Per visualizzare lo stato di una singola procedura di ribilanciamento EC:
 +
 `rebalance-data status --job-id _job-id_`
 
@@ -98,24 +98,24 @@ Per ottenere assistenza sul comando rebalance-data:
 ====
 
 
-. ${post_edited_translations.segment}
+. Esegui ulteriori passaggi, in base allo stato restituito:
 +
 ** Se  `State` è  `In progress`, l'operazione di ribilanciamento EC è ancora in corso. Dovresti monitorare periodicamente la procedura fino al completamento.
 +
 Vai alla pagina Nodi per valutare la distribuzione dei dati tra gli Storage Node del sito.
 
 +
-${post_edited_translations.segment}
+Il processo di ribilanciamento EC si considera completato e si interrompe quando i dati in tutti i nodi rientrano in una deviazione del 5% rispetto alla partizione dati di destinazione.
 
 ** Se  `State` è  `Success`, puoi facoltativamente <<review_object_storage,rivedi storage a oggetti>> per vedere i dettagli aggiornati del sito.
 +
-${post_edited_translations.segment}
+I dati codificati con erasure coding dovrebbero ora essere distribuiti in modo più equilibrato tra i Storage Node del sito.
 
 ** Se `State` è `Failure`:
 +
-... ${post_edited_translations.segment}
-... ${post_edited_translations.segment}
-... ${post_edited_translations.segment}
+... Conferma che tutti i nodi di storage del sito siano connessi al grid.
+... Controlla e risolvi eventuali avvisi che potrebbero influire su questi Storage Node.
+... Riavvia la procedura di ribilanciamento EC:
 +
 `rebalance-data start –-job-id _job-id_`
 
@@ -128,7 +128,7 @@ ${post_edited_translations.segment}
 +
 `rebalance-data pause --job-id _job-id_`
 
-. ${post_edited_translations.segment}
+. Se hai bisogno di interrompere la procedura di ribilanciamento EC (ad esempio, per poter eseguire un aggiornamento del software StorageGRID), inserisci quanto segue:
 +
 `rebalance-data terminate --job-id _job-id_`
 

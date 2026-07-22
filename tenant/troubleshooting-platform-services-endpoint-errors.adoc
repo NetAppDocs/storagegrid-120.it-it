@@ -16,11 +16,11 @@ Se si verifica un errore quando StorageGRID tenta di comunicare con un endpoint 
 
 
 [[determine-if-error-has-occurred]]
-== ${post_edited_translations.segment}
+== Determina se si è verificato un errore
 
 Se si sono verificati errori degli endpoint dei servizi di piattaforma negli ultimi 7 giorni, la dashboard del Tenant Manager mostra un messaggio di avviso. Puoi andare alla pagina Endpoint dei servizi di piattaforma per visualizzare ulteriori dettagli sull'errore.
 
-image:tenant_dashboard_endpoint_error.png["${post_edited_translations.segment}"]
+image:tenant_dashboard_endpoint_error.png["messaggio di errore dell'endpoint sulla dashboard"]
 
 Lo stesso errore che compare nella dashboard appare anche nella parte superiore della pagina degli endpoint dei servizi della piattaforma. Per visualizzare un messaggio di errore più dettagliato:
 
@@ -32,12 +32,12 @@ Lo stesso errore che compare nella dashboard appare anche nella parte superiore 
 
 
 [[check-if-error-is-still-current]]
-== ${post_edited_translations.segment}
+== Verifica se l'errore persiste
 
 Alcuni errori potrebbero continuare a essere visualizzati nella colonna *Ultimo errore* anche dopo essere stati risolti. Per vedere se un errore è attuale o per forzare la rimozione di un errore risolto dalla tabella:
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Seleziona l'endpoint.
 +
 Viene visualizzata la pagina dei dettagli dell'endpoint.
 
@@ -56,8 +56,8 @@ Puoi utilizzare il messaggio *Ultimo errore* nella pagina dei dettagli dell'endp
 Se devi modificare l'endpoint per risolvere un errore, selezionando *Verifica e salva le modifiche* StorageGRID convalida l'endpoint aggiornato e conferma che è raggiungibile con le credenziali correnti. La connessione all'endpoint viene convalidata da un nodo in ciascun sito.
 
 .Passaggi
-. ${post_edited_translations.segment}
-. ${post_edited_translations.segment}
+. Seleziona l'endpoint.
+. Nella pagina dei dettagli dell'endpoint, seleziona *Configurazione*.
 . Modifica la configurazione dell'endpoint secondo necessità.
 . Seleziona *Connessione* > *Test connessione*.
 
@@ -65,13 +65,13 @@ Se devi modificare l'endpoint per risolvere un errore, selezionando *Verifica e 
 
 
 [[endpoint-credentials-with-insufficient-permissions]]
-== ${post_edited_translations.segment}
+== Credenziali dell'endpoint con autorizzazioni insufficienti
 
 Quando StorageGRID convalida un endpoint dei servizi della piattaforma, conferma che le credenziali dell'endpoint possano essere utilizzate per contattare la risorsa di destinazione ed esegue un controllo di base delle autorizzazioni. Tuttavia, StorageGRID non convalida tutte le autorizzazioni richieste per alcune operazioni dei servizi della piattaforma. Per questo motivo, se ricevi un errore quando provi a utilizzare un servizio della piattaforma (come "403 Forbidden"), controlla le autorizzazioni associate alle credenziali dell'endpoint.
 
 .Informazioni correlate
-* link:../admin/troubleshooting-platform-services.html["${post_edited_translations.segment}"]
+* link:../admin/troubleshooting-platform-services.html["Gestisci StorageGRID > Risolvi i problemi dei servizi della piattaforma"]
 * link:creating-platform-services-endpoint.html["Crea un endpoint per i servizi della piattaforma"]
-* link:testing-connection-for-platform-services-endpoint.html["${post_edited_translations.segment}"]
-* link:editing-platform-services-endpoint.html["${post_edited_translations.segment}"]
+* link:testing-connection-for-platform-services-endpoint.html["Verifica la connessione per l'endpoint dei servizi della piattaforma"]
+* link:editing-platform-services-endpoint.html["Modifica l'endpoint dei servizi della piattaforma"]
 

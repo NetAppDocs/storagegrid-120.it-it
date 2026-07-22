@@ -20,8 +20,8 @@ Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirement
 Per informazioni sulla modifica degli indirizzi IP, vedi link:../maintain/configuring-ip-addresses.html["Configura gli indirizzi IP"].
 
 .Passaggi
-. ${post_edited_translations.segment}
-. ${post_edited_translations.segment}
+. Seleziona *Nodes* > *_grid node_* > *Overview*.
+. Seleziona *Mostra altro* a destra del titolo IP Addresses.
 +
 Gli indirizzi IP di quel nodo della griglia sono elencati in una tabella.
 

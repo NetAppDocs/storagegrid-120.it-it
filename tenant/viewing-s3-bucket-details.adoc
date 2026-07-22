@@ -19,7 +19,7 @@ Puoi visualizzare i bucket nel tuo tenant account.
 
 
 .Passaggi
-. ${post_edited_translations.segment}
+. Seleziona *Visualizza bucket* dalla dashboard oppure seleziona *STORAGE (S3)* > *Buckets*.
 +
 Viene visualizzata la pagina Buckets.
 
@@ -34,7 +34,7 @@ NOTE: I valori visualizzati relativi a Conteggio oggetti, Spazio utilizzato e Ut
 +
 Nome:: Il nome univoco del bucket, che non può essere modificato.
 Funzionalità abilitate:: Elenco delle funzionalità abilitate per il bucket.
-Blocco oggetto S3:: ${post_edited_translations.segment}
+Blocco oggetto S3:: Indica se il blocco degli oggetti S3 è abilitato per il bucket.
 +
 --
 Questa colonna viene visualizzata solo se il blocco degli oggetti S3 è abilitato per la griglia. Questa colonna mostra anche le informazioni per eventuali bucket Compliant legacy.
@@ -67,7 +67,7 @@ Data di creazione:: Data e ora di creazione del bucket. Questa colonna è nascos
 
 . Per visualizzare i dettagli relativi a uno specifico bucket, seleziona il nome del bucket dalla tabella.
 +
-.. ${post_edited_translations.segment}
+.. Consulta le informazioni di riepilogo nella parte superiore della pagina web per confermare i dettagli del bucket, come Region e Object count.
 .. Visualizza le barre di utilizzo del limite di capacità e del limite di conteggio degli oggetti. Se l'utilizzo è al 100% o vicino al 100%, valuta se aumentare il limite o eliminare alcuni oggetti.
 .. Se necessario, seleziona *Elimina oggetti nel bucket* e *Elimina bucket*.
 +
@@ -92,7 +92,7 @@ Presta molta attenzione agli avvisi che compaiono quando selezioni ciascuna di q
 **** link:changing-bucket-versioning.html["Versioning degli oggetti"]
 **** link:using-s3-object-lock.html["Blocco oggetto S3"]
 **** link:update-default-retention-settings.html["Conservazione predefinita del bucket"]
-**** link:grid-federation-manage-cross-grid-replication.html["${post_edited_translations.segment}"] (se consentito per il tenant)
+**** link:grid-federation-manage-cross-grid-replication.html["Gestisci la replica cross-grid"] (se consentito per il tenant)
 
 
 *** *Servizi della piattaforma*: link:considerations-for-platform-services.html["Gestisci i servizi della piattaforma"] (se consentiti per il tenant)

@@ -21,35 +21,35 @@ Puoi modificare la configurazione di un endpoint dei servizi di piattaforma per 
 .Passaggi
 . Seleziona *STORAGE (S3)* > *Platform services endpoints*.
 +
-${post_edited_translations.segment}
+Viene visualizzata la pagina degli endpoint dei servizi della piattaforma e viene mostrato l'elenco degli endpoint dei servizi della piattaforma già configurati.
 
 . Seleziona l'endpoint che desideri modificare.
 +
 Viene visualizzata la pagina dei dettagli dell'endpoint.
 
 . Seleziona *Configurazione*.
-. ${post_edited_translations.segment}
+. Se necessario, modifica la configurazione dell'endpoint.
 +
 
 NOTE: Non puoi modificare l'URN di un endpoint dopo che è stato creato.
 
 +
-.. Per modificare il nome visualizzato dell'endpoint, seleziona l'icona di modifica image:icon_edit_tm.png["${post_edited_translations.segment}"].
-.. ${post_edited_translations.segment}
+.. Per modificare il nome visualizzato dell'endpoint, seleziona l'icona di modifica image:icon_edit_tm.png["Icona di modifica"].
+.. Se necessario, cambia l'URI.
 .. Se necessario, cambia il tipo di autenticazione.
 +
 *** Per l'autenticazione tramite chiave di accesso, modifica la chiave come necessario selezionando *Modifica chiave S3* e incollando un nuovo ID della chiave di accesso e una nuova chiave di accesso segreta. Se devi annullare le modifiche, seleziona *Ripristina modifica chiave S3*.
 *** Per l'autenticazione CAP (C2S Access Portal), modifica l'URL delle credenziali temporanee o la passphrase facoltativa della chiave privata del client e carica i nuovi file del certificato e della chiave, se necessario.
 +
 
-NOTE: ${post_edited_translations.segment}
+NOTE: La chiave privata del client deve essere in formato crittografato OpenSSL o in formato di chiave privata non crittografata.
 
 
 
-.. ${post_edited_translations.segment}
+.. Se necessario, cambia il metodo per verificare i certificati.
 
 
-. ${post_edited_translations.segment}
+. Seleziona *Test e salva le modifiche*.
 +
 ** Se l'endpoint è raggiungibile utilizzando le credenziali specificate, viene visualizzato un messaggio di successo. La connessione all'endpoint viene verificata da un nodo in ciascun sito.
 ** Se la convalida dell'endpoint non riesce, viene visualizzato un messaggio di errore. Modifica l'endpoint per correggere l'errore, quindi seleziona *Test e salva le modifiche*.

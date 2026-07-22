@@ -71,7 +71,7 @@ Nota i seguenti requisiti e caratteristiche quando configuri la replica CloudMir
 
 
 
-. ${post_edited_translations.segment}
+. Seleziona *Visualizza bucket* dalla dashboard oppure seleziona *STORAGE (S3)* > *Buckets*.
 . Seleziona il nome del bucket di origine.
 +
 Viene visualizzata la pagina dei dettagli del bucket.

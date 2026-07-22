@@ -38,7 +38,7 @@ CAUTION: Assicurati che almeno due nodi in ogni sito possano accedere ad almeno 
 . Specifica gli indirizzi IPv4 di almeno quattro server NTP nelle caselle di testo da *Server 1* a *Server 4*.
 . Se necessario, seleziona il segno più accanto all'ultima voce per aggiungere ulteriori voci server.
 +
-image:8_gmi_installer_ntp_page.gif["${post_edited_translations.segment}"]
+image:8_gmi_installer_ntp_page.gif["Questa immagine è spiegata dal testo circostante."]
 
 . Seleziona *Next*.
 

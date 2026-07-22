@@ -73,7 +73,7 @@ Sì
 
 
  a| 
-Include i servizi <<load-balancer,${post_edited_translations.segment}>> e <<high-availability,Alta disponibilità>>
+Include i servizi <<load-balancer,Bilanciatore di carico>> e <<high-availability,Alta disponibilità>>
  a| 
 Sì
  a| 

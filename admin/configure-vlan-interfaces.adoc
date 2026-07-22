@@ -22,13 +22,13 @@ Crea interfacce virtual LAN (VLAN) sugli Admin Node e sui Gateway Node e usale n
 * Un'interfaccia principale deve essere configurata come interfaccia trunk sullo switch.
 * Un'interfaccia principale può essere la Grid Network (eth0), la Client Network (eth2) o un'interfaccia trunk aggiuntiva per la VM o l'host bare-metal (ad esempio, ens256).
 * Per ciascuna interfaccia VLAN, puoi selezionare solo un'interfaccia padre per un determinato nodo. Ad esempio, non puoi utilizzare sia l'interfaccia Grid Network sia l'interfaccia Client Network sullo stesso Gateway Node come interfaccia padre per la stessa VLAN.
-* ${post_edited_translations.segment}
+* Se l'interfaccia VLAN è destinata al traffico degli Admin Node, che include il traffico relativo al Grid Manager e al Tenant Manager, seleziona solo le interfacce sugli Admin Node.
 * Se l'interfaccia VLAN è per il traffico client S3, seleziona le interfacce sui nodi di amministrazione o sui nodi gateway.
 * Se hai bisogno di aggiungere interfacce trunk, consulta le seguenti informazioni per i dettagli:
 +
 ** *VMware (dopo l'installazione del nodo)*: link:../maintain/vmware-adding-trunk-or-access-interfaces-to-node.html["VMware: Aggiungi interfacce trunk o di accesso a un nodo"]
 ** *Linux (prima dell'installazione del nodo)*: link:../swnodes/creating-node-configuration-files.html["Crea i file di configurazione del nodo"]
-** *Linux (dopo l'installazione del nodo)*: link:../maintain/linux-adding-trunk-or-access-interfaces-to-node.html["${post_edited_translations.segment}"]
+** *Linux (dopo l'installazione del nodo)*: link:../maintain/linux-adding-trunk-or-access-interfaces-to-node.html["Aggiungi interfacce trunk o di accesso a un nodo"]
 
 
 

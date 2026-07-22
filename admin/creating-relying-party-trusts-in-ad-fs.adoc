@@ -14,16 +14,16 @@ summary: 'Devi usare Active Directory Federation Services (AD FS) per creare una
 Devi usare Active Directory Federation Services (AD FS) per creare una relying party trust per ogni Admin Node nel tuo sistema. Puoi creare relying party trust usando i comandi PowerShell, importando i metadati SAML da StorageGRID o inserendo i dati manualmente.
 
 .Prima di iniziare
-* ${post_edited_translations.segment}
+* Hai configurato il single sign-on per StorageGRID e hai selezionato *AD FS* come tipo di SSO.
 * Hai link:../admin/configure-sso.html["modalità sandbox attivata"] in Grid Manager.
 * Conosci il fully qualified domain name (o l'indirizzo IP) e l'identificatore del relying party per ciascun Admin Node nel tuo sistema. Puoi trovare questi valori nella tabella dei dettagli degli Admin Node nella pagina Configure SSO di StorageGRID.
 +
 
 NOTE: Devi creare una relazione di attendibilità relying party per ciascun Admin Node nel tuo sistema StorageGRID. La presenza di una relazione di attendibilità relying party per ciascun Admin Node garantisce che gli utenti possano accedere e disconnettersi in modo sicuro da qualsiasi Admin Node.
 
-* ${post_edited_translations.segment}
+* Hai esperienza nella creazione di trust di relying party in AD FS oppure hai accesso alla documentazione di Microsoft AD FS.
 * Stai utilizzando lo snap-in Gestione AD FS e appartieni al gruppo Administrators.
-* ${post_edited_translations.segment}
+* Se stai creando manualmente la relazione di trust con la relying party, hai il certificato personalizzato che è stato caricato per l'interfaccia di gestione di StorageGRID oppure sai come accedere a un Admin Node dalla shell dei comandi.
 
 
 .Informazioni su questa attività
@@ -58,18 +58,18 @@ Viene visualizzato l'elenco dei relying party trust.
 . Aggiungi una policy di controllo degli accessi al trust della relying party appena creato:
 +
 .. Individua il trust della parte affidabile che hai appena creato.
-.. ${post_edited_translations.segment}
-.. ${post_edited_translations.segment}
-.. ${post_edited_translations.segment}
+.. Fai clic con il pulsante destro del mouse sul trust e seleziona *Modifica criteri di controllo degli accessi*.
+.. Seleziona una policy di controllo degli accessi.
+.. Seleziona *Applica* e poi *OK*
 
 
 . Aggiungi una Claim Issuance Policy al Relying Party Trust appena creato:
 +
 .. Individua il trust della parte affidabile che hai appena creato.
-.. ${post_edited_translations.segment}
-.. ${post_edited_translations.segment}
+.. Fai clic con il pulsante destro del mouse sul trust e seleziona *Modifica la claim issuance policy*.
+.. Seleziona *Aggiungi regola*.
 .. Nella pagina Seleziona modello di regola, seleziona *Invia attributi LDAP come attestazioni* dall'elenco e seleziona *Avanti*.
-.. ${post_edited_translations.segment}
+.. Nella pagina Configura regola, inserisci un nome visualizzato per questa regola.
 +
 Ad esempio, *ObjectGUID to Name ID* o *UPN to Name ID*.
 
@@ -118,10 +118,10 @@ NOTE: Quando inserisci il nome visualizzato, usa il Relying Party Identifier per
 
 . Aggiungi una regola di claim:
 +
-.. ${post_edited_translations.segment}
-.. ${post_edited_translations.segment}
+.. Fai clic con il pulsante destro del mouse sul trust e seleziona *Modifica la claim issuance policy*.
+.. Seleziona *Aggiungi regola*:
 .. Nella pagina Seleziona modello di regola, seleziona *Invia attributi LDAP come attestazioni* dall'elenco e seleziona *Avanti*.
-.. ${post_edited_translations.segment}
+.. Nella pagina Configura regola, inserisci un nome visualizzato per questa regola.
 +
 Ad esempio, *ObjectGUID to Name ID* o *UPN to Name ID*.
 
@@ -149,16 +149,16 @@ Se i metadati sono mancanti, verifica che l'indirizzo dei metadati della Federat
 [[create-a-relying-party-trust-manually]]
 == Crea manualmente un trust della relying party
 
-${post_edited_translations.segment}
+Se scegli di non importare i dati per le relying party trusts, puoi inserire i valori manualmente.
 
 .Passaggi
 . In Windows Server Manager, seleziona *Strumenti* e poi *Gestione AD FS*.
 . Nella sezione Azioni, seleziona *Aggiungi attendibilità della parte affidabile*.
 . Nella pagina di benvenuto, scegli *Claims aware* e seleziona *Start*.
-. ${post_edited_translations.segment}
-. ${post_edited_translations.segment}
+. Seleziona *Inserisci manualmente i dati relativi alla parte affidabile* e seleziona *Avanti*.
+. Completa la procedura guidata di attendibilità della parte affidabile:
 +
-.. ${post_edited_translations.segment}
+.. Inserisci un nome visualizzato per questo Admin Node.
 +
 Per coerenza, usa il Relying Party Identifier per il nodo Admin, esattamente come appare nella pagina Single Sign-on in Grid Manager. Ad esempio,  `SG-DC1-ADM1`.
 
@@ -178,7 +178,7 @@ Per  `_Admin_Node_FQDN_`, inserisci il fully qualified domain name per l'Admin N
 +
 Per  `_Admin_Node_Identifier_`, inserisci il Relying Party Identifier per l'Admin Node, esattamente come appare nella pagina di single sign-on. Ad esempio,  `SG-DC1-ADM1`.
 
-.. ${post_edited_translations.segment}
+.. Rivedi le impostazioni, salva la relying party trust e chiudi la procedura guidata.
 +
 Viene visualizzata la finestra di dialogo Edit Claim Issuance Policy.
 
@@ -191,7 +191,7 @@ NOTE: Se la finestra di dialogo non viene visualizzata, fai clic con il pulsante
 . Per avviare la procedura guidata Regola di rivendicazione, seleziona *Aggiungi regola*:
 +
 .. Nella pagina Seleziona modello di regola, seleziona *Invia attributi LDAP come attestazioni* dall'elenco e seleziona *Avanti*.
-.. ${post_edited_translations.segment}
+.. Nella pagina Configura regola, inserisci un nome visualizzato per questa regola.
 +
 Ad esempio, *ObjectGUID to Name ID* o *UPN to Name ID*.
 
@@ -205,9 +205,9 @@ Ad esempio, *ObjectGUID to Name ID* o *UPN to Name ID*.
 . Nella scheda *Endpoint*, configura l'endpoint per il single logout (SLO):
 +
 .. Seleziona *Aggiungi SAML*.
-.. ${post_edited_translations.segment}
+.. Seleziona *Tipo di endpoint* > *Disconnessione SAML*.
 .. Seleziona *Associazione* > *Reindirizzamento*.
-.. ${post_edited_translations.segment}
+.. Nel campo *URL attendibile*, inserisci l'URL utilizzato per il single logout (SLO) da questo Admin Node:
 +
 `https://_Admin_Node_FQDN_/api/saml-logout`
 
@@ -217,11 +217,11 @@ Per  `_Admin_Node_FQDN_`, inserisci il fully qualified domain name del nodo Admi
 .. Seleziona *OK*.
 
 
-. ${post_edited_translations.segment}
+. Nella scheda *Firma*, specifica il certificato di firma per questo trust della relying party:
 +
-.. ${post_edited_translations.segment}
+.. Aggiungi il certificato personalizzato:
 +
-*** ${post_edited_translations.segment}
+*** Se hai il certificato di gestione personalizzato che hai caricato su StorageGRID, seleziona quel certificato.
 *** Se non hai il certificato personalizzato, accedi al nodo di amministrazione, vai alla directory  `/var/local/mgmt-api` del nodo di amministrazione e aggiungi il file del certificato  `custom-server.crt`.
 +
 
@@ -231,7 +231,7 @@ NOTE: L'utilizzo del certificato predefinito dell'Admin Node (`server.crt`) non 
 
 .. Seleziona *Applica* e poi *OK*.
 +
-${post_edited_translations.segment}
+Le proprietà della Relying Party vengono salvate e chiuse.
 
 
 

@@ -17,13 +17,13 @@ Se vuoi conservare le informazioni storiche relative ad attributi e avvisi su un
 * Il nodo di amministrazione ripristinato è installato e in esecuzione.
 * Il sistema StorageGRID include almeno due nodi di amministrazione.
 * Hai il file  `Passwords.txt`.
-* ${post_edited_translations.segment}
+* Hai la passphrase di provisioning.
 
 
 .Informazioni su questa attività
 Se un Admin Node si guasta, le informazioni storiche memorizzate nel suo database Admin Node vengono perse. Questo database include le seguenti informazioni:
 
-* ${post_edited_translations.segment}
+* Cronologia degli avvisi
 * Dati storici sugli attributi, utilizzati nei grafici in stile legacy nella pagina Nodes
 
 

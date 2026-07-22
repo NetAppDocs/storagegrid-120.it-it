@@ -61,26 +61,26 @@ Le riparazioni in background non vengono eseguite durante l'aggiornamento quando
 
 Durante l'aggiornamento a StorageGRID 12.0:
 
-* ${post_edited_translations.segment}
+* Tutti i nodi dell'appliance StorageGRID vengono aggiornati automaticamente al firmware StorageGRID Appliance Installer versione 12.0.
 * Gli appliance SG6060 e SGF6024 vengono aggiornati automaticamente alla versione firmware BIOS 3B08.EX e alla versione firmware BMC 4.01.07.
 * Gli appliance SG100 e SG1000 vengono aggiornati automaticamente alla versione firmware BIOS 3B13.EC e alla versione firmware BMC 4.75.07.
-* ${post_edited_translations.segment}
+* Gli appliance SGF6112, SG6160, SG110 e SG1100 vengono aggiornati automaticamente alla versione firmware BIOS 3A14.QD e alla versione firmware BMC 3.19.07.
 
 
 
 
 [[ilm-policies-are-handled-differently-according-to-their-status]]
-== ${post_edited_translations.segment}
+== Le politiche ILM vengono gestite in modo diverso a seconda del loro stato
 
-* ${post_edited_translations.segment}
-* ${post_edited_translations.segment}
-* ${post_edited_translations.segment}
+* La policy attiva rimarrà invariata dopo l'aggiornamento.
+* Solo le ultime 10 policy storiche vengono conservate durante l'aggiornamento.
+* Se è presente una proposta di policy, verrà eliminata durante l'aggiornamento.
 
 
 
 
 [[alerts-might-be-triggered]]
-== ${post_edited_translations.segment}
+== Gli avvisi potrebbero essere attivati
 
 Potrebbero essere attivati avvisi all'avvio e all'arresto dei servizi e quando il sistema StorageGRID opera in un ambiente a versioni miste (alcuni nodi della griglia eseguono una versione precedente, mentre altri sono stati aggiornati a una versione successiva). Altri avvisi potrebbero essere attivati al termine dell'aggiornamento.
 
@@ -88,7 +88,7 @@ Ad esempio, potresti visualizzare l'avviso *Impossibile comunicare con il nodo* 
 
 L'avviso *Impossibile posizionare ILM* potrebbe essere attivato quando i nodi di archiviazione vengono arrestati durante l'aggiornamento a StorageGRID 12.0. Questo avviso potrebbe persistere per 1 giorno dopo il completamento dell'aggiornamento.
 
-${post_edited_translations.segment}
+Al termine dell'aggiornamento, puoi visualizzare gli avvisi relativi all'aggiornamento selezionando *Avvisi risolti di recente* o *Avvisi correnti* dalla dashboard di Grid Manager.
 
 
 

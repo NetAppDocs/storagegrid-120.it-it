@@ -2,7 +2,7 @@
 permalink: audit/gtsu-grid-task-submitted.html 
 sidebar: sidebar 
 keywords: storagegrid, audit, message, GTSU, Grid Task Submitted 
-summary: ${post_edited_translations.segment} 
+summary: 'Questo messaggio di controllo indica che un"attività di griglia è stata inviata al servizio CMN.' 
 ---
 = Messaggio di audit GTSU per le attività di grid inviate in StorageGRID
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: ${post_edited_translations.segment}
 
 
 [role="lead"]
-${post_edited_translations.segment}
+Questo messaggio di controllo indica che un'attività di griglia è stata inviata al servizio CMN.
 
 [cols="1a,1a,4a"]
 |===
@@ -19,7 +19,7 @@ ${post_edited_translations.segment}
 
 
  a| 
-${post_edited_translations.segment}
+TSID
  a| 
 ID attività
  a| 
@@ -32,23 +32,23 @@ Identifica in modo univoco un'attività di griglia generata e ti permette di ges
  a| 
 TTYP
  a| 
-${post_edited_translations.segment}
+Tipo di attività
  a| 
-${post_edited_translations.segment}
+Il tipo di attività di grid.
 
 
 
  a| 
 TVER
  a| 
-${post_edited_translations.segment}
+Versione attività
  a| 
-${post_edited_translations.segment}
+Un numero che indica la versione del grid task.
 
 
 
  a| 
-${post_edited_translations.segment}
+TDSC
  a| 
 Descrizione dell'attività
  a| 
@@ -57,7 +57,7 @@ Una descrizione comprensibile all'uomo dell'attività della grid.
 
 
  a| 
-${post_edited_translations.segment}
+VATS
  a| 
 Valido dopo il timestamp
  a| 
@@ -66,16 +66,16 @@ L'istante più remoto (UINT64 microsecondi dal 1° gennaio 1970 - ora UNIX) in c
 
 
  a| 
-${post_edited_translations.segment}
+VBTS
  a| 
-${post_edited_translations.segment}
+Timestamp di validità precedente
  a| 
 L'ora più recente (UINT64 microsecondi dal 1° gennaio 1970 - ora UNIX) in cui l'attività di griglia è valida.
 
 
 
  a| 
-${post_edited_translations.segment}
+TSRC
  a| 
 Fonte
  a| 
@@ -88,11 +88,11 @@ La fonte del compito:
 
 
  a| 
-${post_edited_translations.segment}
+ACTV
  a| 
 Tipo di attivazione
  a| 
-${post_edited_translations.segment}
+Il tipo di attivazione:
 
 * AUTO: L'attività di griglia è stata inviata per l'attivazione automatica.
 * IN SOSPESO: L'attività di griglia è stata inserita nella tabella in sospeso. Questa è l'unica possibilità per la sorgente TXTB.

@@ -39,7 +39,7 @@ Indica se il bucket viene reso di sola lettura o se sta uscendo dallo stato di s
  a| 
 BROS
  a| 
-${post_edited_translations.segment}
+Motivo di sola lettura del bucket
  a| 
 Il motivo per cui il bucket viene reso di sola lettura o esce dallo stato di sola lettura. Ad esempio, emptyBucket.
 
@@ -48,7 +48,7 @@ Il motivo per cui il bucket viene reso di sola lettura o esce dallo stato di sol
  a| 
 S3AI
  a| 
-${post_edited_translations.segment}
+ID account tenant S3
  a| 
 L'ID del tenant che ha inviato la richiesta. Un valore vuoto indica accesso anonimo.
 

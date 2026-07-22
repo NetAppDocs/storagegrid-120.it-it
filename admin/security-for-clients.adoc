@@ -40,14 +40,14 @@ HTTPS fornisce una comunicazione sicura, crittografata tramite TLS, ed è consig
 +
 HTTP offre comunicazioni meno sicure e non crittografate e dovrebbe essere utilizzato solo per grid non di produzione o di test.
 
-* ${post_edited_translations.segment}
+* I client che si connettono ai Storage Nodes possono utilizzare sia HTTPS che HTTP.
 +
-${post_edited_translations.segment}
+HTTPS è l'impostazione predefinita ed è consigliata.
 
 +
 HTTP fornisce una comunicazione meno sicura e non crittografata, ma può essere opzionalmente link:changing-network-options-object-encryption.html["abilitato"] per grid non di produzione o di test.
 
-* ${post_edited_translations.segment}
+* Le comunicazioni tra StorageGRID e il client sono crittografate tramite TLS.
 * Le comunicazioni tra il servizio Load Balancer e i nodi di archiviazione all'interno della griglia sono crittografate sia che l'endpoint del load balancer sia configurato per accettare connessioni HTTP o HTTPS.
 * I client devono fornire link:../s3/authenticating-requests.html["intestazioni di autenticazione HTTP"] a StorageGRID per eseguire le operazioni REST API.
 
@@ -78,7 +78,7 @@ Il sistema StorageGRID supporta un set di suite di cifratura che le applicazioni
 
 
 [[supported-versions-of-tls]]
-=== ${post_edited_translations.segment}
+=== Versioni supportate di TLS
 
 StorageGRID supporta TLS 1.2 e TLS 1.3.
 

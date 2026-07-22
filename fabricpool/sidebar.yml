@@ -13,15 +13,15 @@ entries:
     url: "/fabricpool/use-fabricpool-setup-wizard.html"
   - title: Accedi e completa la procedura guidata
     url: "/fabricpool/use-fabricpool-setup-wizard-steps.html"
-- title: "${post_edited_translations.segment}"
+- title: Configura StorageGRID manualmente
   entries:
   - title: Crea gruppo HA
     url: "/fabricpool/creating-ha-group-for-fabricpool.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Crea l'endpoint del bilanciatore di carico
     url: "/fabricpool/creating-load-balancer-endpoint-for-fabricpool.html"
   - title: Crea account tenant
     url: "/fabricpool/creating-tenant-account-for-fabricpool.html"
-  - title: "${post_edited_translations.segment}"
+  - title: Crea un bucket S3 e ottieni le chiavi di accesso
     url: "/fabricpool/creating-s3-bucket-and-access-key.html"
   - title: Configura ILM per i dati FabricPool
     url: "/fabricpool/using-storagegrid-ilm-with-fabricpool-data.html"
