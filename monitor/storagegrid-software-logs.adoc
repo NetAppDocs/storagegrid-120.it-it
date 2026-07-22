@@ -1,0 +1,430 @@
+---
+permalink: monitor/storagegrid-software-logs.html 
+sidebar: sidebar 
+keywords: logs 
+summary: Puoi usare i log di StorageGRID per risolvere i problemi. 
+---
+= Registri software StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi usare i log di StorageGRID per risolvere i problemi.
+
+
+NOTE: Se vuoi inviare i tuoi log a un server syslog esterno o cambiare la destinazione delle informazioni di audit come la  `bycast.log` e  `nms.log`, consulta link:../monitor/configure-log-management.html["Configura la gestione dei log"].
+
+
+
+[[general-storagegrid-logs]]
+== Registri generali di StorageGRID
+
+[cols="3a,3a,2a"]
+|===
+| Nome file | Note | Trovato su 
+
+
+| /var/local/log/bycast.log  a| 
+Il file principale di StorageGRID per la risoluzione dei problemi.
+ a| 
+Tutti i nodi
+
+
+
+| /var/local/log/bycast-err.log  a| 
+Contiene un sottoinsieme di `bycast.log` (messaggi con gravità ERROR e CRITICAL). I messaggi CRITICAL vengono visualizzati anche nel sistema.
+ a| 
+Tutti i nodi
+
+
+
+| /var/local/core/  a| 
+Contiene eventuali file di core dump creati se il programma termina in modo anomalo. Le possibili cause includono errori di asserzione, violazioni o timeout dei thread.
+
+*Nota*: Il file  ``/var/local/core/kexec_cmd` di solito è presente sui nodi dell'appliance e non indica un errore.
+ a| 
+Tutti i nodi
+
+|===
+
+
+[[cipher-related-logs]]
+== Registri relativi alla cifratura
+
+[cols="3a,3a,2a"]
+|===
+| Nome file | Note | Trovato su 
+
+
+| /var/local/log/ssh-config-generation.log  a| 
+Contiene i log relativi alla generazione delle configurazioni SSH e al ricaricamento dei servizi SSH.
+ a| 
+Tutti i nodi
+
+
+
+| /var/local/log/nginx/config-generation.log  a| 
+Contiene i log relativi alla generazione delle configurazioni di nginx e al ricaricamento dei servizi di nginx.
+ a| 
+Tutti i nodi
+
+
+
+| /var/local/log/nginx-gw/config-generation.log  a| 
+Contiene i log relativi alla generazione delle configurazioni di nginx-gw (e al ricaricamento dei servizi di nginx-gw).
+ a| 
+Nodi di amministrazione e gateway
+
+
+
+| /var/local/log/update-cipher-configurations.log  a| 
+Contiene i log relativi alla configurazione delle policy TLS e SSH.
+ a| 
+Tutti i nodi
+
+|===
+
+
+[[grid-federation-logs]]
+== Log della federazione di grid
+
+[cols="3a,3a,2a"]
+|===
+| Nome file | Note | Trovato su 
+
+
+| /var/local/log/update_grid_federation_config.log  a| 
+Contiene i log relativi alla generazione delle configurazioni di nginx e nginx-gw per le connessioni di federazione della grid.
+ a| 
+Tutti i nodi
+
+|===
+
+
+[[nms-logs]]
+== Registri NMS
+
+[cols="3a,3a,2a"]
+|===
+| Nome file | Note | Trovato su 
+
+
+| /var/local/log/nms.log  a| 
+* Acquisisce le notifiche dal Grid Manager e dal Tenant Manager.
+* Cattura gli eventi relativi al funzionamento del servizio NMS. Ad esempio, notifiche email e modifiche alla configurazione.
+* Contiene aggiornamenti del bundle XML derivanti da modifiche di configurazione effettuate nel sistema.
+* Contiene messaggi di errore relativi al downsampling dell'attributo, eseguito una volta al giorno.
+* Contiene messaggi di errore del server web Java, ad esempio errori di generazione della pagina ed errori HTTP Status 500.
+* Contiene i log relativi a AutoSupport.
+
+ a| 
+Nodi di amministrazione
+
+
+
+| /var/local/log/nms.errlog  a| 
+Contiene messaggi di errore relativi agli aggiornamenti del database MySQL.
+
+Contiene il flusso di errore standard (stderr) dei servizi corrispondenti. C'è un file di log per ogni servizio. Questi file sono generalmente vuoti, a meno che non ci siano problemi con il servizio.
+ a| 
+Nodi di amministrazione
+
+
+
+| /var/local/log/nms.requestlog  a| 
+Contiene informazioni sulle connessioni in uscita dall'API di gestione verso i servizi interni di StorageGRID.
+ a| 
+Nodi di amministrazione
+
+|===
+
+
+[[server-manager-logs]]
+== Log di Server Manager
+
+[cols="3a,3a,2a"]
+|===
+| Nome file | Note | Trovato su 
+
+
+| /var/local/log/servermanager.log  a| 
+File di log dell'applicazione Server Manager in esecuzione sul server.
+ a| 
+Tutti i nodi
+
+
+
+| /var/local/log/GridstatBackend.errlog  a| 
+File di log per l'applicazione backend GUI di Server Manager.
+ a| 
+Tutti i nodi
+
+
+
+| /var/local/log/gridstat.errlog  a| 
+File di log per l'interfaccia grafica di Server Manager.
+ a| 
+Tutti i nodi
+
+|===
+
+
+[[storagegrid-services-logs]]
+== Registri dei servizi StorageGRID
+
+[cols="3a,3a,2a"]
+|===
+| Nome file | Note | Trovato su 
+
+
+| /var/local/log/acct.errlog  a| 
+ a| 
+Nodi di archiviazione che eseguono il servizio ADC
+
+
+
+| /var/local/log/adc.errlog  a| 
+Contiene il flusso di errore standard (stderr) dei servizi corrispondenti. C'è un file di log per ogni servizio. Questi file sono generalmente vuoti, a meno che non ci siano problemi con il servizio.
+ a| 
+Nodi di archiviazione che eseguono il servizio ADC
+
+
+
+| /var/local/log/ams.errlog  a| 
+ a| 
+Nodi di amministrazione
+
+
+
+| /var/local/log/cache-svc.log + /var/local/log/cache-svc.errlog  a| 
+Registri del servizio cache.
+ a| 
+${post_edited_translations.segment}
+
+
+
+| /var/local/log/cassandra/system.log  a| 
+Informazioni per l'archivio dei metadati (database Cassandra) che puoi usare se si verificano problemi durante l'aggiunta di nuovi Storage Node o se l'attività di riparazione di nodetool si blocca.
+ a| 
+Nodi di storage
+
+
+
+| /var/local/log/cassandra-reaper.log  a| 
+Informazioni sul servizio Cassandra Reaper, che si occupa della riparazione dei dati nel database Cassandra.
+ a| 
+Nodi di storage
+
+
+
+| /var/local/log/cassandra-reaper.errlog  a| 
+Informazioni di errore per il servizio Cassandra Reaper.
+ a| 
+Nodi di storage
+
+
+
+| /var/local/log/chunk.errlog  a| 
+ a| 
+Nodi di storage
+
+
+
+| /var/local/log/cmn.errlog  a| 
+ a| 
+Nodi di amministrazione
+
+
+
+| /var/local/log/cms.errlog  a| 
+Questo file di log potrebbe essere presente sui sistemi che sono stati aggiornati da una versione precedente di StorageGRID. Contiene informazioni obsolete.
+ a| 
+Nodi di storage
+
+
+
+| /var/local/log/dds.errlog  a| 
+ a| 
+Nodi di storage
+
+
+
+| /var/local/log/dmv.errlog  a| 
+ a| 
+Nodi di storage
+
+
+
+| /var/local/log/dynip*  a| 
+Contiene i log relativi al servizio dynip, che monitora la grid per rilevare modifiche dinamiche degli indirizzi IP e aggiorna la configurazione locale.
+ a| 
+Tutti i nodi
+
+
+
+| /var/local/log/grafana.log  a| 
+Il file di log associato al servizio Grafana, utilizzato per la visualizzazione delle metriche nel Grid Manager.
+ a| 
+Nodi di amministrazione
+
+
+
+| /var/local/log/hagroups.log  a| 
+Il log associato ai gruppi ad alta disponibilità.
+ a| 
+Nodi di amministrazione e nodi gateway
+
+
+
+| /var/local/log/hagroups_events.log  a| 
+Tiene traccia dei cambiamenti di stato, come la transizione da BACKUP a MASTER o FAULT.
+ a| 
+Nodi di amministrazione e nodi gateway
+
+
+
+| /var/local/log/idnt.errlog  a| 
+ a| 
+Nodi di archiviazione che eseguono il servizio ADC
+
+
+
+| /var/local/log/jaeger.log  a| 
+Il log associato al servizio jaeger, che viene utilizzato per la raccolta delle tracce.
+ a| 
+Tutti i nodi
+
+
+
+| /var/local/log/kstn.errlog  a| 
+ a| 
+Nodi di archiviazione che eseguono il servizio ADC
+
+
+
+| /var/local/log/lambda*  a| 
+Contiene i log del servizio S3 Select.
+ a| 
+Nodi di amministrazione e gateway
+
+Solo alcuni nodi Admin e Gateway contengono questo registro. Vedi il link:../admin/manage-s3-select-for-tenant-accounts.html["Requisiti e limitazioni di S3 Select per i nodi Admin e Gateway"].
+
+
+
+| /var/local/log/ldr.errlog  a| 
+ a| 
+Nodi di storage
+
+
+
+| /var/local/log/miscd/*.log  a| 
+Contiene i log del servizio MISCd (Information Service Control Daemon), che fornisce un'interfaccia per interrogare e gestire i servizi su altri nodi e per gestire le configurazioni ambientali sul nodo, come interrogare lo stato dei servizi in esecuzione su altri nodi.
+ a| 
+Tutti i nodi
+
+
+
+| /var/local/log/nginx/*.log  a| 
+Contiene i log del servizio nginx, che funge da meccanismo di autenticazione e comunicazione sicura per consentire a vari servizi di grid (come Prometheus e Dynip) di comunicare con i servizi su altri nodi tramite API HTTPS.
+ a| 
+Tutti i nodi
+
+
+
+| /var/local/log/nginx-gw/*.log  a| 
+Contiene i log generali relativi al servizio nginx-gw, inclusi i log degli errori e i log per le porte admin con accesso limitato sugli Admin Nodes.
+ a| 
+Nodi di amministrazione e nodi gateway
+
+
+
+| /var/local/log/nginx-gw/cgr-access.log.gz  a| 
+Contiene i registri di accesso relativi al traffico di replica cross-grid.
+ a| 
+Nodi amministratori, nodi gateway o entrambi, a seconda della configurazione della federazione della griglia. Presenti solo sulla grid di destinazione per la replica tra grid.
+
+
+
+| /var/local/log/nginx-gw/endpoint-access.log.gz  a| 
+Contiene i log di accesso per il servizio Load Balancer, che fornisce il bilanciamento del carico del traffico S3 dai client ai Storage Node.
+ a| 
+Nodi di amministrazione e nodi gateway
+
+
+
+| /var/local/log/persistence*  a| 
+Contiene i log del servizio Persistence, che gestisce i file sul disco di root che devono persistere anche dopo un riavvio.
+ a| 
+Tutti i nodi
+
+
+
+| /var/local/log/prometheus.log  a| 
+Per tutti i nodi, contiene il registro del servizio node exporter e il registro del servizio metriche ade-exporter.
+
+Per i nodi amministratori, contiene anche i log dei servizi Prometheus e Alert Manager.
+ a| 
+Tutti i nodi
+
+
+
+| /var/local/log/raft.log  a| 
+Contiene l'output della libreria utilizzata dal servizio RSM per il protocollo Raft.
+ a| 
+Nodi di archiviazione con servizio RSM
+
+
+
+| /var/local/log/rms.errlog  a| 
+Contiene i log del servizio Replicated State Machine Service (RSM), utilizzato per i servizi della piattaforma S3.
+ a| 
+Nodi di archiviazione con servizio RSM
+
+
+
+| /var/local/log/ssm.errlog  a| 
+ a| 
+Tutti i nodi
+
+
+
+| /var/local/log/update-s3vs-domains.log  a| 
+Contiene i log relativi all'elaborazione degli aggiornamenti per la configurazione dei nomi di dominio virtuali ospitati su S3. Consulta le istruzioni per implementare le applicazioni client S3.
+ a| 
+Nodi di amministrazione e gateway
+
+
+
+| /var/local/log/update-snmp-firewall.*  a| 
+Contengono log relativi alle porte del firewall gestite per SNMP.
+ a| 
+Tutti i nodi
+
+
+
+| /var/local/log/update-sysl.log  a| 
+Contiene log relativi alle modifiche apportate alla configurazione del syslog di sistema.
+ a| 
+Tutti i nodi
+
+
+
+| /var/local/log/update-traffic-classes.log  a| 
+Contiene i log relativi alle modifiche apportate alla configurazione dei classificatori di traffico.
+ a| 
+Nodi di amministrazione e gateway
+
+
+
+| /var/local/log/update-utcn.log  a| 
+Contiene i log relativi alla modalità Untrusted Client Network su questo nodo.
+ a| 
+Tutti i nodi
+
+|===
+.Informazioni correlate
+* link:about-bycast-log.html["Informazioni sul file bycast.log"]
+* link:../s3/index.html["${post_edited_translations.segment}"]
+

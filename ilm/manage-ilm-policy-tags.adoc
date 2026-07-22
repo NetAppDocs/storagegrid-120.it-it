@@ -1,0 +1,71 @@
+---
+permalink: ilm/manage-ilm-policy-tags.html 
+sidebar: sidebar 
+keywords: ILM policy tag 
+summary: Puoi visualizzare i dettagli dei tag delle policy ILM, modificare un tag o rimuovere un tag. 
+---
+= Gestisci i tag dei criteri ILM in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi visualizzare i dettagli dei tag delle policy ILM, modificare un tag o rimuovere un tag.
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Tu hai il link:../admin/admin-group-permissions.html["autorizzazioni di accesso richieste"].
+
+
+
+
+[[view-ilm-policy-tag-details]]
+== Visualizza i dettagli del tag di policy ILM
+
+Per visualizzare i dettagli di un tag:
+
+. Seleziona *ILM* > *Policy tags*.
+. Seleziona il nome della policy dalla tabella. Viene visualizzata la pagina dei dettagli del tag.
+. Nella pagina dei dettagli, visualizza la cronologia precedente delle policy assegnate.
+. Visualizza una policy selezionandola.
+
+
+
+
+[[edit-ilm-policy-tag]]
+== Modifica il tag della policy ILM
+
+
+NOTE: I nomi e le descrizioni dei tag sono visibili ai tenant. Scegli valori che aiutino i tenant a prendere una decisione informata quando selezionano i tag delle policy da assegnare ai loro bucket. Ad esempio, se la policy assegnata eliminerà gli oggetti dopo un certo periodo di tempo, puoi comunicarlo nella descrizione. Non includere informazioni sensibili in questi campi.
+
+Per modificare la descrizione di un tag esistente:
+
+. Seleziona *ILM* > *Policy tags*.
+. Seleziona la casella di controllo per il tag, poi seleziona *Modifica*.
++
+In alternativa, seleziona il nome del tag. Viene visualizzata la pagina dei dettagli del tag e puoi selezionare *Modifica* su quella pagina.
+
+. Modifica la descrizione del tag secondo necessità
+. Seleziona *Salva*.
+
+
+
+
+[[remove-ilm-policy-tag]]
+== Rimuovi il tag della policy ILM
+
+Quando rimuovi un tag di policy, a tutti i bucket a cui è assegnato quel tag verrà applicata la policy predefinita.
+
+Per rimuovere un tag:
+
+. Seleziona *ILM* > *Policy tags*.
+. Seleziona la casella di controllo corrispondente al tag, quindi seleziona *Rimuovi*. Viene visualizzata una finestra di dialogo di conferma.
++
+In alternativa, seleziona il nome del tag. Viene visualizzata la pagina dei dettagli del tag e puoi selezionare *Rimuovi* in quella pagina.
+
+. Seleziona *Sì* per eliminare il tag.
+
+
+.Informazioni correlate
+link:creating-ilm-policy.html#activate-ilm-policy["Scopri come creare tag di policy ILM"]

@@ -1,0 +1,87 @@
+---
+permalink: tenant/manage-bucket-consistency.html 
+sidebar: sidebar 
+keywords: how to manage bucket consistency, how to change bucket consistency, read after new write, read-after-new-write, strong site, strong-site, strong global, strong-global 
+summary: 'I valori di coerenza possono essere utilizzati per specificare la disponibilità delle modifiche alle impostazioni del bucket, nonché per bilanciare la disponibilità degli oggetti all"interno di un bucket e la coerenza di tali oggetti tra diversi Storage Node e siti. Puoi modificare i valori di coerenza in modo che siano diversi da quelli predefiniti, così le applicazioni client possono soddisfare le loro esigenze operative.' 
+---
+= Gestire la coerenza dei bucket di StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+I valori di coerenza possono essere utilizzati per specificare la disponibilità delle modifiche alle impostazioni del bucket, nonché per bilanciare la disponibilità degli oggetti all'interno di un bucket e la coerenza di tali oggetti tra diversi Storage Node e siti. Puoi modificare i valori di coerenza in modo che siano diversi da quelli predefiniti, così le applicazioni client possono soddisfare le loro esigenze operative.
+
+.Prima di iniziare
+* Hai effettuato l'accesso al Tenant Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Appartieni a un gruppo di utenti che ha le link:tenant-management-permissions.html["Gestisci tutti i bucket o autorizzazione di accesso root"]. Queste autorizzazioni sovrascrivono le impostazioni delle autorizzazioni nelle policy di gruppo o di bucket.
+
+
+
+
+[[bucket-consistency-guidelines]]
+== Linee guida sulla coerenza dei bucket
+
+La coerenza del bucket viene utilizzata per determinare la coerenza delle applicazioni client che influiscono sugli oggetti all'interno di quel bucket S3. In generale, dovresti usare la coerenza *Read-after-new-write* per i tuoi bucket.
+
+
+
+[[change-bucket-consistencychange-bucket-consistency]]
+== [[change-bucket-consistency]]Modifica della coerenza del bucket
+
+Se la coerenza *Read-after-new-write* non soddisfa i requisiti dell'applicazione client, puoi modificarla impostando la coerenza del bucket o utilizzando l' `Consistency-Control`intestazione. L' `Consistency-Control`intestazione ha la precedenza sulla coerenza del bucket.
+
+
+NOTE: Quando cambi la consistenza di un bucket, solo gli oggetti ingeriti dopo la modifica sono garantiti di rispettare la nuova impostazione.
+
+.Passaggi
+. Seleziona *Visualizza bucket* dalla dashboard oppure seleziona *STORAGE (S3)* > *Buckets*.
+. Seleziona il nome del bucket dalla tabella.
++
+Viene visualizzata la pagina dei dettagli del bucket.
+
+. Dalla scheda *Opzioni del bucket*, seleziona l'**accordion**.
+. Seleziona una coerenza per le operazioni eseguite sugli oggetti in questo bucket.
++
+** *Tutti*: Garantisce il massimo livello di coerenza. Tutti i nodi ricevono i dati immediatamente, oppure la richiesta fallisce.
+** *Strong-global*: Garantisce la coerenza read-after-write per tutte le richieste dei client su tutti i siti.
+** *Strong-site*: Garantisce la coerenza di lettura dopo scrittura per tutte le richieste dei client all'interno di un sito.
+** *Read-after-new-write* (impostazione predefinita): garantisce la coerenza read-after-write per i nuovi oggetti e la coerenza finale per gli aggiornamenti degli oggetti. Offre elevata disponibilità e garanzie di protezione dei dati. Consigliato nella maggior parte dei casi.
+** *Disponibile*: Fornisce coerenza finale sia per i nuovi oggetti che per gli aggiornamenti degli oggetti. Per i bucket S3, usalo solo se necessario (ad esempio, per un bucket che contiene valori di log che vengono letti raramente o per operazioni HEAD o GET su chiavi che non esistono). Non supportato per i bucket S3 FabricPool.
+
+
+. Seleziona *Salva modifiche*.
+
+
+
+
+[[what-happens-when-you-change-bucket-settings]]
+== ${post_edited_translations.segment}
+
+${post_edited_translations.segment}
+
+Le seguenti impostazioni del bucket utilizzano la coerenza *forte* per impostazione predefinita. Se due o più Storage Node non sono disponibili in un sito, o se un sito non è disponibile, eventuali modifiche a queste impostazioni potrebbero non essere disponibili.
+
+* link:deleting-s3-bucket-objects.html["${post_edited_translations.segment}"]
+* link:enabling-or-disabling-last-access-time-updates.html["Ultimo accesso"]
+* link:../s3/create-s3-lifecycle-configuration.html["Ciclo di vita del bucket"]
+* link:../s3/use-access-policies.html["Criteri del bucket"]
+* link:../s3/operations-on-buckets.html["${post_edited_translations.segment}"]
+* link:changing-bucket-versioning.html["Versioning del bucket"]
+* link:using-s3-object-lock.html["Blocco oggetto S3"]
+* link:../admin/reviewing-storagegrid-encryption-methods.html#bucket-encryption-table["Crittografia del bucket"]
+
+
+
+NOTE: Il valore di coerenza per il versioning dei bucket, il blocco degli oggetti S3 e la crittografia dei bucket non può essere impostato su un valore che non sia fortemente coerente.
+
+Le seguenti impostazioni dei bucket non utilizzano la coerenza forte e presentano una maggiore disponibilità alle modifiche. Le modifiche a queste impostazioni potrebbero richiedere del tempo prima di avere effetto.
+
+* link:considerations-for-platform-services.html["${post_edited_translations.segment}"]
+* link:configuring-cross-origin-resource-sharing-for-buckets-and-objects.html["${post_edited_translations.segment}"]
+* <<change-bucket-consistency,Modifica la coerenza del bucket>>
+
+
+
+TIP: Se la coerenza predefinita utilizzata durante la modifica delle impostazioni del bucket non soddisfa i requisiti dell'applicazione client, puoi modificare la coerenza utilizzando l'intestazione  `Consistency-Control` per link:../s3/put-bucket-consistency-request.html["${post_edited_translations.segment}"] o utilizzando le opzioni  `reducedConsistency` o  `force` in link:understanding-tenant-management-api.html["API di gestione tenant"].

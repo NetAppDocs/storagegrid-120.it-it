@@ -1,0 +1,28 @@
+---
+permalink: admin/configuring-network-settings.html 
+sidebar: sidebar 
+keywords: network settings, vlan interface, traffic classification 
+summary: Puoi configurare diverse impostazioni di rete dal Grid Manager per ottimizzare il funzionamento del tuo sistema StorageGRID. 
+---
+= Configura le impostazioni di rete di StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi configurare diverse impostazioni di rete dal Grid Manager per ottimizzare il funzionamento del tuo sistema StorageGRID.
+
+
+
+[[configure-vlan-interfaces]]
+== Configura le interfacce VLAN
+
+Puoi link:configure-vlan-interfaces.html["${post_edited_translations.segment}"] isolare e partizionare il traffico per sicurezza, flessibilità e prestazioni. Ogni interfaccia VLAN è associata a una o più interfacce padre sui nodi Admin e sui nodi Gateway. Puoi usare le interfacce VLAN nei gruppi HA e negli endpoint del load balancer per separare il traffico client o admin in base all'applicazione o al tenant.
+
+
+
+[[traffic-classification-policies]]
+== ${post_edited_translations.segment}
+
+Puoi usare link:managing-traffic-classification-policies.html["politiche di classificazione del traffico"] per identificare e gestire diversi tipi di traffico di rete, incluso il traffico relativo a bucket specifici, tenant, sottoreti client o endpoint di load balancer. Queste policy possono aiutarti a limitare e monitorare il traffico.

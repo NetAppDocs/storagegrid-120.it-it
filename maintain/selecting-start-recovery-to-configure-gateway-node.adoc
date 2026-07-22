@@ -1,0 +1,51 @@
+---
+permalink: maintain/selecting-start-recovery-to-configure-gateway-node.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, gateway node 
+summary: Dopo aver sostituito un nodo Gateway, devi selezionare Avvia ripristino in Grid Manager per configurare il nuovo nodo come sostituto del nodo guasto. 
+---
+= Seleziona Avvia ripristino per configurare il nodo gateway di StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Dopo aver sostituito un nodo Gateway, devi selezionare Avvia ripristino in Grid Manager per configurare il nuovo nodo come sostituto del nodo guasto.
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Hai il link:../admin/admin-group-permissions.html["Permesso di manutenzione o di accesso root"].
+* ${post_edited_translations.segment}
+* Hai distribuito e configurato il nodo sostitutivo.
+
+
+.Passaggi
+. Dal Grid Manager, seleziona *Manutenzione* > *Attività* > *Ripristino*.
+. Seleziona il nodo della griglia che vuoi recuperare nell'elenco Pending Nodes.
++
+I nodi vengono visualizzati nell'elenco dopo un errore, ma non puoi selezionare un nodo finché non è stato reinstallato ed è pronto per il ripristino.
+
+. ${post_edited_translations.segment}
+. Fai clic su *Avvia ripristino*.
++
+image:4b_select_recovery_node.png["screenshot che mostra la pagina Maintenance > Recovery"]
+
+. Monitora l'avanzamento del ripristino nella tabella Recovering Grid Node.
++
+
+NOTE: Durante l'esecuzione della procedura di ripristino, puoi fare clic su *Ripristina* per avviare un nuovo ripristino. Viene visualizzata una finestra di dialogo che indica che il nodo rimarrà in uno stato indeterminato se reimposti la procedura.
+
++
+image:recovery_reset_warning.gif["screenshot che mostra la finestra di dialogo di avviso di reset recovery"]
+
++
+Se vuoi riprovare il ripristino dopo aver reimpostato la procedura, devi riportare il nodo a uno stato pre-installazione, come segue:
+
++
+** *VMware*: Elimina il nodo della griglia virtuale distribuito. Quindi, quando sei pronto a riavviare il ripristino, ridistribuisci il nodo.
+** *Linux*: Riavvia il nodo eseguendo questo comando sull'host Linux: `storagegrid node force-recovery _node-name_`
+** *Appliance*: Se vuoi riprovare il ripristino dopo aver reimpostato la procedura, devi riportare il nodo dell'appliance a uno stato preinstallato eseguendo  `sgareinstall` sul nodo. Vedi link:preparing-appliance-for-reinstallation-platform-replacement-only.html["Prepara l'appliance per la reinstallazione (solo sostituzione della piattaforma)"].
+
+
+

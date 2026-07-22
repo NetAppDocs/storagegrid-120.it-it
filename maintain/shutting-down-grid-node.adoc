@@ -1,0 +1,123 @@
+---
+permalink: maintain/shutting-down-grid-node.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, node shutdown, shut down node, node shut down 
+summary: Puoi arrestare un nodo della griglia dalla shell dei comandi del nodo. 
+---
+= Arrestare il nodo StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi arrestare un nodo della griglia dalla shell dei comandi del nodo.
+
+.Prima di iniziare
+* Hai il file  `Passwords.txt`.
+
+
+.Informazioni su questa attività
+Prima di eseguire questa procedura, prendi in considerazione questi aspetti:
+
+* In generale, non dovresti spegnere più di un nodo alla volta per evitare interruzioni.
+* Non spegnere un nodo durante una procedura di manutenzione a meno che non sia esplicitamente indicato dalla documentazione o dal supporto tecnico.
+* La procedura di arresto dipende da dove è installato il nodo, come segue:
++
+** Spegnere un nodo VMware spegne la macchina virtuale.
+** Spegnere un nodo Linux spegne il container.
+** Spegnere un nodo appliance StorageGRID spegne il controller di calcolo.
+
+
+* Se prevedi di arrestare più di un nodo di archiviazione in un sito, interrompi l'inserimento di oggetti in quel sito per circa un'ora prima di arrestare i nodi.
++
+Se una regola ILM utilizza l'opzione di acquisizione *Dual commit* (o se una regola utilizza l'opzione *Balanced* e non è possibile creare immediatamente tutte le copie richieste), StorageGRID esegue immediatamente il commit di tutti gli oggetti appena acquisiti su due Storage Node nello stesso sito e valuta ILM in un secondo momento. Se più di uno Storage Node in un sito viene arrestato, potresti non riuscire ad accedere agli oggetti appena acquisiti per tutta la durata dell'arresto. Anche le operazioni di scrittura potrebbero non riuscire se nel sito rimangono disponibili troppo pochi Storage Node. Vedi link:../ilm/index.html["Gestisci gli oggetti con ILM"].
+
+
+
+.Passaggi
+. Accedi al nodo della griglia:
++
+.. Inserisci il seguente comando: `ssh admin@_grid_node_IP_`
+.. Inserisci la password indicata nel file  `Passwords.txt`.
+.. Inserisci il seguente comando per passare all'utente root: `su -`
+.. Inserisci la password indicata nel file  `Passwords.txt`.
+
+
++
+Quando sei connesso come root, il prompt cambia da  `$` a  `#`.
+
+. Interrompi tutti i servizi: `service servermanager stop`
++
+I servizi possono impiegare fino a 15 minuti per spegnersi e potresti voler accedere al sistema da remoto per monitorare il processo di spegnimento.
+
+. Se il nodo è in esecuzione su una macchina virtuale VMware o è un nodo appliance, esegui il comando di arresto: `shutdown -h now`
++
+Esegui questo passaggio indipendentemente dall'esito del comando  `service servermanager stop`.
+
++
+
+NOTE: Dopo aver impartito il  `shutdown -h now` comando su un nodo dell'appliance, devi spegnere e riaccendere l'appliance per riavviare il nodo.
+
++
+Per l'appliance, questo comando arresta lo storage controller, ma l'appliance rimane accesa. Devi completare il passaggio successivo.
+
+. Se stai spegnendo un nodo dell'appliance, segui la procedura specifica per la tua appliance.
++
+[role="tabbed-block"]
+====
+.SG6160
+--
+.. Spegni l'alimentazione dello storage controller SG6100-CN.
+.. Attendi che il LED blu di alimentazione sullo storage controller SG6100-CN si spenga.
+
+
+--
+.SGF6112
+--
+.. Spegni l'alimentazione dell'apparecchio.
+.. Attendi che il LED blu di alimentazione si spenga.
+
+
+--
+.SG6000
+--
+.. Attendi che il LED verde "Cache Active" sul retro degli storage controller si spenga.
++
+Questo LED si accende quando è necessario scrivere dati dalla cache sulle unità. Devi aspettare che questo LED si spenga prima di spegnere l'alimentazione.
+
+.. Spegni l'apparecchio e aspetta che il LED blu di alimentazione si spenga.
+
+
+--
+.SG5800
+--
+.. Attendi che il LED verde "Cache Active" sul retro dello storage controller si spenga.
++
+Questo LED si accende quando è necessario scrivere dati dalla cache sulle unità. Devi aspettare che questo LED si spenga prima di spegnere l'alimentazione.
+
+.. Dalla pagina iniziale di SANtricity System Manager, seleziona *Visualizza operazioni in corso*.
+.. Assicurati che tutte le operazioni siano state completate prima di continuare con il passaggio successivo.
+.. Spegni entrambi gli interruttori di alimentazione sul ripiano del controller e aspetta che tutti i LED sul ripiano del controller si spengano.
+
+
+--
+.SG5700
+--
+.. Attendi che il LED verde "Cache Active" sul retro dello storage controller si spenga.
++
+Questo LED si accende quando è necessario scrivere dati dalla cache sulle unità. Devi aspettare che questo LED si spenga prima di spegnere l'alimentazione.
+
+.. Spegni l'apparecchio e aspetta che tutte le luci LED e il display a sette segmenti si spengano.
+
+
+--
+.SG100 o SG1000
+--
+.. Spegni l'alimentazione dell'apparecchio.
+.. Attendi che il LED blu di alimentazione si spenga.
+
+
+--
+====
+

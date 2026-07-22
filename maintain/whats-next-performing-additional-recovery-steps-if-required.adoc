@@ -1,0 +1,79 @@
+---
+permalink: maintain/whats-next-performing-additional-recovery-steps-if-required.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, corrective action, additional recovery 
+summary: 'A seconda delle azioni specifiche che hai intrapreso per avviare i nodi StorageGRID sull"host sostitutivo, potresti dover eseguire ulteriori passaggi di recovery per ciascun nodo.' 
+---
+= Eseguire ulteriori passaggi di ripristino del nodo StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+A seconda delle azioni specifiche che hai intrapreso per avviare i nodi StorageGRID sull'host sostitutivo, potresti dover eseguire ulteriori passaggi di recovery per ciascun nodo.
+
+Il ripristino del nodo è completato se non hai dovuto intraprendere alcuna azione correttiva durante la sostituzione dell'host Linux o il ripristino del nodo della griglia guasto sul nuovo host.
+
+
+
+[[corrective-actions-and-next-steps]]
+== Azioni correttive e prossimi passi
+
+Durante la sostituzione del nodo, potresti aver dovuto intraprendere una di queste azioni correttive:
+
+* Hai dovuto usare il  `--force` flag per importare il nodo.
+* Per qualsiasi  `<PURPOSE>`, il valore della variabile  `BLOCK_DEVICE_<PURPOSE>` del file di configurazione si riferisce a un dispositivo a blocchi che non contiene gli stessi dati che aveva prima del guasto dell'host.
+* Hai emesso  `storagegrid node force-recovery _node-name_` per il nodo.
+* Hai aggiunto un nuovo dispositivo a blocchi.
+
+
+Se hai intrapreso *una qualsiasi* di queste azioni correttive, devi eseguire ulteriori passaggi di recovery.
+
+[cols="2a,1a"]
+|===
+| Tipo di recupero | Passaggio successivo 
+
+
+ a| 
+Nodo amministrativo primario
+ a| 
+link:configuring-replacement-primary-admin-node.html["Configura il nodo Admin primario sostitutivo"]
+
+
+
+ a| 
+Nodo amministrativo non primario
+ a| 
+link:selecting-start-recovery-to-configure-non-primary-admin-node.html["Seleziona Avvia ripristino per configurare il nodo Admin non primario"]
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+link:selecting-start-recovery-to-configure-gateway-node.html["Seleziona Avvia ripristino per configurare il nodo gateway"]
+
+
+
+ a| 
+Nodo di archiviazione (basato su software):
+
+* Se hai dovuto usare il  `--force` flag per importare il nodo, o hai emesso  `storagegrid node force-recovery _node-name_`
+* Se hai dovuto eseguire una reinstallazione completa del nodo o se hai avuto bisogno di ripristinare /var/local
+
+ a| 
+link:selecting-start-recovery-to-configure-storage-node.html["Seleziona Avvia ripristino per configurare il nodo di archiviazione"]
+
+
+
+ a| 
+Nodo di archiviazione (basato su software):
+
+* Se hai aggiunto un nuovo dispositivo a blocchi.
+* Se, per qualsiasi  `<PURPOSE>`, il valore della variabile  `BLOCK_DEVICE_<PURPOSE>` del file di configurazione fa riferimento a un dispositivo a blocchi che non contiene gli stessi dati che aveva prima del guasto dell'host.
+
+ a| 
+link:recovering-from-storage-volume-failure-where-system-drive-is-intact.html["Recupera da un errore del volume di archiviazione quando l'unità di sistema è intatta"]
+
+|===

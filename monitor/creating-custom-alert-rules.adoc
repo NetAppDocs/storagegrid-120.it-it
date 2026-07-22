@@ -1,0 +1,114 @@
+---
+permalink: monitor/creating-custom-alert-rules.html 
+sidebar: sidebar 
+keywords: how to create custom alert rules 
+summary: 'Puoi creare regole di avviso personalizzate per definire le tue condizioni per l"attivazione degli avvisi.' 
+---
+= Crea regole di avviso personalizzate in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi creare regole di avviso personalizzate per definire le tue condizioni per l'attivazione degli avvisi.
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Hai il link:../admin/admin-group-permissions.html["Gestisci gli avvisi o i permessi di accesso root"].
+* Hai familiarità con il link:commonly-used-prometheus-metrics.html["metriche Prometheus comunemente utilizzate"].
+* Capisci il  https://prometheus.io/docs/prometheus/latest/querying/basics/["sintassi delle query di Prometheus"^].
+* Facoltativamente, hai guardato il video:
++
+.Avvisi personalizzati
+video::54af90c4-9a38-4136-9621-b1ff008604a3[panopto]
+
+
+.Informazioni su questa attività
+StorageGRID non convalida gli avvisi personalizzati. Se decidi di creare regole di avviso personalizzate, segui queste linee guida generali:
+
+* Guarda le condizioni delle regole di avviso predefinite e usale come esempio per le tue regole di avviso personalizzate.
+* Se definisci più condizioni per una regola di avviso, usa la stessa espressione per tutte le condizioni. Poi, cambia il valore di soglia per ciascuna condizione.
+* Verifica attentamente ogni condizione per individuare eventuali errori di battitura o di logica.
+* Usa solo le metriche elencate nell'API di gestione della griglia.
+* Quando testi un'espressione utilizzando l'API di gestione della griglia, tieni presente che una risposta "positiva" potrebbe essere un corpo di risposta vuoto (nessun avviso attivato). Per vedere se l'avviso viene effettivamente attivato, puoi impostare temporaneamente una soglia su un valore che ti aspetti sia vero in questo momento.
++
+Ad esempio, per testare l'espressione `node_memory_MemTotal_bytes < 24000000000`, esegui prima `node_memory_MemTotal_bytes >= 0` e assicurati di ottenere i risultati attesi (tutti i nodi restituiscono un valore). Poi, cambia l'operatore e la soglia ai valori previsti ed esegui di nuovo. Nessun risultato indica che non ci sono avvisi correnti per questa espressione.
+
+* Non dare per scontato che un avviso personalizzato funzioni a meno che tu non abbia verificato che venga attivato quando previsto.
+
+
+.Passaggi
+. Seleziona *Avvisi* > *Regole*.
++
+Viene visualizzata la pagina Regole di avviso.
+
+. Seleziona *Crea regola personalizzata*.
++
+Viene visualizzata la finestra di dialogo Crea regola personalizzata.
+
++
+image:alerts_create_custom_rule.png["Avvisi > Crea regola personalizzata"]
+
+. Seleziona o deseleziona la casella di controllo *Abilitato* per decidere se questa regola di avviso è attualmente abilitata.
++
+Se una regola di avviso è disabilitata, le sue espressioni non vengono valutate e non viene attivato alcun avviso.
+
+. Inserisci le seguenti informazioni:
++
+[cols="1a,2a"]
+|===
+| Campo | Descrizione 
+
+
+ a| 
+Nome unico
+ a| 
+Un nome univoco per questa regola. Il nome della regola di avviso viene visualizzato nella pagina Avvisi ed è anche l'oggetto delle notifiche email. I nomi delle regole di avviso possono essere composti da 1 a 64 caratteri.
+
+
+
+ a| 
+Descrizione
+ a| 
+Descrizione del problema riscontrato. La descrizione è il messaggio di avviso visualizzato nella pagina Avvisi e nelle notifiche email. Le descrizioni delle regole di avviso possono essere lunghe da 1 a 128 caratteri.
+
+
+
+ a| 
+Azioni consigliate
+ a| 
+Facoltativamente, puoi specificare le azioni consigliate da intraprendere quando viene attivato questo avviso. Inserisci le azioni consigliate come testo semplice (senza codici di formattazione). Le azioni consigliate per le regole di avviso possono essere comprese tra 0 e 1.024 caratteri.
+
+|===
+. Nella sezione Condizioni, inserisci un'espressione Prometheus per uno o più livelli di gravità dell'avviso.
++
+Un'espressione di base è solitamente della forma:
+
++
+`[metric] [operator] [value]`
+
++
+Le espressioni possono avere qualsiasi lunghezza, ma nell'interfaccia utente appaiono su un'unica riga. È richiesta almeno un'espressione.
+
++
+Questa espressione fa sì che venga attivato un avviso se la quantità di RAM installata per un nodo è inferiore a 24.000.000.000 di byte (24 GB).
+
++
+`node_memory_MemTotal_bytes < 24000000000`
+
++
+Per visualizzare le metriche disponibili e testare le espressioni Prometheus, seleziona l'icona di aiuto image:icon_nms_question.png["icona del punto interrogativo"] e segui il collegamento alla sezione Metrics dell'API Grid Management.
+
+. Nel campo *Durata*, inserisci la quantità di tempo per cui una condizione deve rimanere in vigore in modo continuativo prima che venga attivato l'avviso e seleziona un'unità di tempo.
++
+Per attivare immediatamente un avviso quando una condizione diventa vera, inserisci *0*. Aumenta questo valore per evitare che condizioni temporanee attivino avvisi.
+
++
+Il valore predefinito è 5 minuti.
+
+. Seleziona *Salva*.
++
+La finestra di dialogo si chiude e la nuova regola di avviso personalizzata appare nella tabella Regole di avviso.
+
+

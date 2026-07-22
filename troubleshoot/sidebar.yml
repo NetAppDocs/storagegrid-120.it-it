@@ -1,0 +1,41 @@
+---
+section: troubleshoot
+title: Risoluzione dei problemi del sistema StorageGRID
+entries:
+- title: Linee guida per la risoluzione dei problemi
+  pdf-filename: Risoluzione dei problemi del sistema StorageGRID
+  url: "/troubleshoot/index.html"
+- title: Risolvi i problemi relativi a oggetti e storage
+  entries:
+  - title: Conferma la posizione dei dati degli oggetti
+    url: "/troubleshoot/confirming-object-data-locations.html"
+  - title: "${post_edited_translations.segment}"
+    url: "/troubleshoot/object-store-storage-volume-failures.html"
+  - title: Verifica l'integrità dell'oggetto
+    url: "/troubleshoot/verifying-object-integrity.html"
+  - title: Risolvi il problema dell'avviso "Dimensione oggetto troppo grande" per
+      S3 PUT Object
+    url: "/troubleshoot/troubleshoot-s3-put-object-size-too-large-alert.html"
+  - title: Risolvi i problemi relativi ai dati degli oggetti persi o mancanti
+    entries:
+    - title: "${post_edited_translations.segment}"
+      pdf-filename: Risolvi i problemi relativi ai dati degli oggetti persi o mancanti
+      url: "/troubleshoot/troubleshooting-lost-and-missing-object-data.html"
+    - title: Indaga su eventuali oggetti smarriti
+      url: "/troubleshoot/investigating-potentially-lost-objects.html"
+  - title: "${post_edited_translations.segment}"
+    url: "/troubleshoot/troubleshooting-low-object-data-storage-alert.html"
+  - title: "${post_edited_translations.segment}"
+    url: "/troubleshoot/troubleshoot-low-watermark-alert.html"
+- title: "${post_edited_translations.segment}"
+  url: "/troubleshoot/troubleshooting-metadata-issues.html"
+- title: Risolvi i problemi degli errori dei certificati
+  url: "/troubleshoot/troubleshooting-certificate-errors.html"
+- title: "${post_edited_translations.segment}"
+  url: "/troubleshoot/troubleshooting-admin-node-and-user-interface-issues.html"
+- title: Risolvi i problemi di rete, hardware e piattaforma
+  url: "/troubleshoot/troubleshooting-network-hardware-and-platform-issues.html"
+- title: "${post_edited_translations.segment}"
+  url: "/troubleshoot/troubleshooting-syslog-server.html"
+- title: Risolvi i problemi di caching del bilanciatore di carico
+  url: "/troubleshoot/troubleshooting-load-balancer-caching.html"

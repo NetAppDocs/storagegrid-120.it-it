@@ -1,0 +1,42 @@
+---
+permalink: admin/enable-cross-origin-resource-sharing-for-management-interface.html 
+sidebar: sidebar 
+keywords: how to configure cross-origin resource sharing, cors, management, api, domain 
+summary: ${post_edited_translations.segment} 
+---
+= Abilita StorageGRID CORS per un'interfaccia di gestione
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Come amministratore della griglia, puoi abilitare la condivisione delle risorse tra origini diverse (CORS) per le richieste API di gestione a StorageGRID, se vuoi che i dati in StorageGRID siano accessibili tramite API di gestione da un altro dominio.
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Il link:../tenant/tenant-management-permissions.html["Permesso di accesso root"] fornisce accesso a tutte le richieste di configurazione CORS.
+
+
+.Informazioni su questa attività
+CORS è un meccanismo di sicurezza che consente alle applicazioni web client in un dominio di accedere alle risorse in un dominio diverso. Ad esempio, supponi di voler creare una dashboard di monitoraggio per StorageGRID nel dominio `\http://www.example.com`. Abilitando CORS in StorageGRID per `\http://www.example.com` e "Grid Manager", il dominio StorageGRID risponde alle richieste API di Grid Management provenienti da `\http://www.example.com`.
+
+Le richieste Management API (mgmt-api) con  `application/json` o  `multipart/formdata` richieste per  `Content-Type` sono supportate per CORS.
+
+.Passaggi
+. In Grid Manager, vai su *CONFIGURAZIONE* > *Rete* > *Impostazioni CORS dell'interfaccia di gestione*.
+. ${post_edited_translations.segment}
++
+** *Grid Manager*: Abilita CORS per le richieste API di gestione della griglia tra domini diversi.
+** ${post_edited_translations.segment}
+
+
+. Inserisci l'URL dell'altro dominio nel campo *Domini*.
++
+Seleziona *Aggiungi un altro dominio* se vuoi abilitare CORS in StorageGRID per più di un dominio.
+
+. Seleziona *Salva*.
+
+
+.Informazioni correlate
+link:../tenant/configuring-cross-origin-resource-sharing-for-buckets-and-objects.html["${post_edited_translations.segment}"]

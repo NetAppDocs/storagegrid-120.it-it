@@ -1,0 +1,237 @@
+---
+permalink: admin/creating-sp-connection-ping.html 
+sidebar: sidebar 
+keywords: service provider, sp connection, pingfederate, ping, single sign on, sso 
+summary: 'Usi PingFederate per creare una connessione service provider (SP) per ogni Admin Node nel tuo sistema. Per velocizzare il processo, importerai i metadati SAML da StorageGRID.' 
+---
+= Crea connessioni service provider in PingFederate per StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Usi PingFederate per creare una connessione service provider (SP) per ogni Admin Node nel tuo sistema. Per velocizzare il processo, importerai i metadati SAML da StorageGRID.
+
+.Prima di iniziare
+* Hai configurato il single sign-on per StorageGRID e hai selezionato *Ping Federate* come tipo di SSO.
+* Hai link:../admin/configure-sso.html#enter-sandbox-mode["modalità sandbox attivata"] in Grid Manager.
+* Disponi dell'*ID connessione SP* per ciascun nodo di amministrazione nel tuo sistema. Puoi trovare questi valori nella tabella dei dettagli dei nodi di amministrazione nella pagina Configura SSO.
+* Hai scaricato i *metadati SAML* per ciascun Admin Node nel tuo sistema.
+* Hai esperienza nella creazione di connessioni SP in PingFederate Server.
+* Hai il https://docs.pingidentity.com/pingfederate/latest/administrators_reference_guide/pf_administrators_reference_guide.html["Guida di riferimento per l'amministratore"^] per il server PingFederate. La documentazione di PingFederate fornisce istruzioni dettagliate passo passo e spiegazioni.
+* Hai il link:../admin/admin-group-permissions.html["Autorizzazione amministratore"] per il server PingFederate.
+
+
+.Informazioni su questa attività
+Queste istruzioni riassumono come configurare il server PingFederate versione 10.3 come provider SSO per StorageGRID. Se stai utilizzando un'altra versione di PingFederate, potresti dover adattare queste istruzioni. Consulta la documentazione del server PingFederate per istruzioni dettagliate relative alla tua versione.
+
+
+
+[[complete-prerequisites-in-pingfederate]]
+== Completa i prerequisiti in PingFederate
+
+Prima di poter creare le connessioni SP che utilizzerai per StorageGRID, devi completare le attività preliminari in PingFederate. Utilizzerai le informazioni di questi prerequisiti quando configurerai le connessioni SP.
+
+
+
+[[create-data-storedata-store]]
+=== Crea archivio dati[[data-store]]
+
+Se non l'hai ancora fatto, crea un archivio dati per connettere PingFederate al LDAP server di AD FS. Utilizza i valori che hai usato quando link:../admin/using-identity-federation.html["configurare la federazione delle identità"] in StorageGRID.
+
+* *Tipo*: Directory (LDAP)
+* *Tipo di LDAP*: Active Directory
+* *Nome attributo binario*: Inserisci *objectGUID* nella scheda Attributi binari LDAP esattamente come mostrato.
+
+
+
+
+[[create-password-credential-validatorpassword-validator]]
+=== Crea un validatore di credenziali password[[password-validator]]
+
+Se non l'hai ancora fatto, crea un validatore di credenziali per le password.
+
+* *Tipo*: Validatore di credenziali LDAP Username Password
+* ${post_edited_translations.segment}
+* *Base di ricerca*: Inserisci le informazioni da LDAP (ad esempio, DC=saml,DC=sgws).
+* *Filtro di ricerca*: sAMAccountName=${username}
+* ${post_edited_translations.segment}
+
+
+
+
+[[create-idp-adapter-instanceadapter-instance]]
+=== ${post_edited_translations.segment}
+
+${post_edited_translations.segment}
+
+.Passaggi
+. Vai su *Autenticazione* > *Integrazione* > *IdP Adapters*.
+. Seleziona *Crea nuova istanza*.
+. Nella scheda Tipo, seleziona *HTML Form IdP Adapter*.
+. ${post_edited_translations.segment}
+. Seleziona <<password-validator,validatore delle credenziali della password>> che hai creato.
+. ${post_edited_translations.segment}
+. Seleziona *Salva*.
+
+
+
+
+[[create-or-import-signing-certificatesigning-certificate]]
+=== Crea o importa un certificato di firma[[signing-certificate]]
+
+Se non l'hai ancora fatto, crea o importa il certificato di firma.
+
+.Passaggi
+. ${post_edited_translations.segment}
+. Crea o importa il certificato di firma.
+
+
+
+
+[[create-an-sp-connection-in-pingfederate]]
+== Crea una connessione SP in PingFederate
+
+Quando crei una connessione SP in PingFederate, importi i metadati SAML scaricati da StorageGRID per l'Admin Node. Il file dei metadati contiene molti dei valori specifici di cui hai bisogno.
+
+
+TIP: Devi creare una connessione SP per ogni Admin Node nel tuo sistema StorageGRID, così gli utenti possono accedere e disconnettersi in modo sicuro da qualsiasi nodo. Usa queste istruzioni per creare la prima connessione SP. Poi, vai su <<Crea connessioni SP aggiuntive>> per creare tutte le connessioni aggiuntive di cui hai bisogno.
+
+
+
+[[choose-sp-connection-type]]
+=== Scegli il tipo di connessione SP
+
+.Passaggi
+. Vai su *Applicazioni* > *Integrazione* > *SP Connections*.
+. ${post_edited_translations.segment}
+. ${post_edited_translations.segment}
+. Seleziona *Profili SSO del browser* e *SAML 2.0* come protocollo.
+
+
+
+
+[[import-sp-metadata]]
+=== Importa metadati SP
+
+.Passaggi
+. Nella scheda Importa metadati, seleziona *File*.
+. Scegli il file di metadati SAML che hai scaricato dalla pagina Configura SSO per l'Admin Node.
+. ${post_edited_translations.segment}
++
+L'ID entità del partner e il nome della connessione sono impostati sull'ID di connessione dello StorageGRID SP. (ad esempio, 10.96.105.200-DC1-ADM1-105-200). L'URL di base è l'indirizzo IP del nodo di amministrazione di StorageGRID.
+
+. Seleziona *Next*.
+
+
+
+
+[[configure-idp-browser-sso]]
+=== ${post_edited_translations.segment}
+
+.Passaggi
+. Nella scheda SSO del browser, seleziona *Configura SSO del browser*.
+. ${post_edited_translations.segment}
+. Seleziona *Next*.
+. ${post_edited_translations.segment}
+. ${post_edited_translations.segment}
++
+.. Nella scheda Mappatura identità, seleziona *Standard*.
+.. Nella scheda Contratto attributo, usa *SAML_SUBJECT* come Contratto attributo e il formato del nome non specificato che è stato importato.
+
+
+. Per estendere il contratto, seleziona *Elimina* per rimuovere l' `urn:oid`, che non viene utilizzato.
+
+
+
+
+[[map-adapter-instance]]
+=== Istanza dell'adattatore di mappa
+
+.Passaggi
+. ${post_edited_translations.segment}
+. Nella scheda Istanza adattatore, seleziona l'<<adapter-instance,istanza dell'adattatore>> che hai creato.
+. ${post_edited_translations.segment}
+. Nella scheda Origine attributi e ricerca utente, seleziona *Aggiungi origine attributi*.
+. Nella scheda Archivio dati, inserisci una descrizione e seleziona l'<<data-store,datastore>>elemento che hai aggiunto.
+. Nella scheda Ricerca nella directory LDAP:
++
+** ${post_edited_translations.segment}
+** Per l'ambito di ricerca, seleziona *Sottostruttura*.
+** Per la classe oggetto radice, cerca e aggiungi uno di questi attributi: *objectGUID* o *userPrincipalName*.
+
+
+. ${post_edited_translations.segment}
+. Nella scheda Filtro LDAP, inserisci *sAMAccountName=${username}*.
+. Nella scheda Attribute Contract Fulfillment, seleziona *LDAP (attribute)* dal menu a discesa Source e seleziona *objectGUID* o *userPrincipalName* dal menu a discesa Value.
+. Rivedi e poi salva l'origine degli attributi.
+. Nella scheda Origine attributi Failsave, seleziona *Annulla la transazione SSO*.
+. ${post_edited_translations.segment}
+. ${post_edited_translations.segment}
+
+
+
+
+[[configure-protocol-settings]]
+=== Configura le impostazioni del protocollo
+
+.Passaggi
+. ${post_edited_translations.segment}
+. Nella scheda URL del servizio di consumo delle asserzioni, accetta i valori predefiniti, importati dai metadati SAML di StorageGRID (*POST* per Binding e  `/api/saml-response` per Endpoint URL).
+. Nella scheda URL del servizio SLO, accetta i valori predefiniti, importati dai metadati StorageGRID (*REDIRECT* per Binding e  `/api/saml-logout` per Endpoint URL).
+. Nella scheda "Associazioni SAML consentite", deseleziona *ARTIFACT* e *SOAP*. Sono obbligatori solo *POST* e *REDIRECT*.
+. ${post_edited_translations.segment}
+. Nella scheda Criteri di crittografia, seleziona *Nessuno*.
+. ${post_edited_translations.segment}
+. ${post_edited_translations.segment}
+
+
+
+
+[[configure-credentials]]
+=== ${post_edited_translations.segment}
+
+.Passaggi
+. Dalla scheda Connessione SP, seleziona *Credenziali*.
+. Dalla scheda Credenziali, seleziona *Configura credenziali*.
+. Seleziona il <<signing-certificate,${post_edited_translations.segment}>> che hai creato o importato.
+. Seleziona *Avanti* per andare su *Gestisci impostazioni di verifica della firma*.
++
+.. ${post_edited_translations.segment}
+.. Nella scheda Certificato di verifica della firma, controlla le informazioni del certificato di firma, che sono state importate dai metadati SAML di StorageGRID.
+
+
+. Esamina le schermate di riepilogo e seleziona *Salva* per salvare la connessione SP.
+
+
+
+
+[[create-additional-sp-connections]]
+=== Crea connessioni SP aggiuntive
+
+Puoi copiare la prima connessione SP per creare le connessioni SP di cui hai bisogno per ogni Admin Node nella tua grid. Carichi nuovi metadati per ogni copia.
+
+
+NOTE: ${post_edited_translations.segment}
+
+.Passaggi
+. ${post_edited_translations.segment}
+. Inserisci l'ID di connessione e il nome della connessione per la copia e seleziona *Salva*.
+. Scegli il file di metadati corrispondente all'Admin Node:
++
+.. Seleziona *Action* > *Aggiorna con metadati*.
+.. Seleziona *Scegli file* e carica i metadati.
+.. Seleziona *Next*.
+.. Seleziona *Salva*.
+
+
+. Risolvi l'errore dovuto all'attributo non utilizzato:
++
+.. Seleziona la nuova connessione.
+.. ${post_edited_translations.segment}
+.. Elimina la voce per *urn:oid*.
+.. Seleziona *Salva*.
+
+
+

@@ -1,0 +1,64 @@
+---
+permalink: primer/what-gateway-node-is.html 
+sidebar: sidebar 
+keywords: StorageGRID, gateway nodes, api gateway 
+summary: 'I nodi gateway forniscono un"interfaccia di bilanciamento del carico dedicata che le applicazioni client S3 possono utilizzare per connettersi a StorageGRID. Il bilanciamento del carico massimizza la velocità e la capacità di connessione distribuendo il carico di lavoro su più Storage Node. I nodi gateway sono opzionali.' 
+---
+= Che cos'è un nodo gateway StorageGRID?
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+I nodi gateway forniscono un'interfaccia di bilanciamento del carico dedicata che le applicazioni client S3 possono utilizzare per connettersi a StorageGRID. Il bilanciamento del carico massimizza la velocità e la capacità di connessione distribuendo il carico di lavoro su più Storage Node. I nodi gateway sono opzionali.
+
+Il servizio di bilanciamento del carico di StorageGRID è disponibile su tutti i nodi di amministrazione e su tutti i nodi gateway. Esegue la terminazione TLS (Transport Layer Security) delle richieste dei client, le analizza e stabilisce nuove connessioni sicure con i nodi di Storage. Il servizio di bilanciamento del carico indirizza senza interruzioni i client verso il nodo di Storage ottimale, così che il guasto di nodi o anche di un intero sito sia trasparente.
+
+Configuri uno o più endpoint del bilanciatore di carico per definire la porta e il protocollo di rete (HTTPS o HTTP) che le richieste client in entrata e in uscita utilizzeranno per accedere ai servizi del Load Balancer sui nodi Gateway e Admin. L'endpoint del bilanciatore di carico definisce anche il tipo di client (S3), la modalità di binding e, facoltativamente, un elenco di tenant consentiti o bloccati. Vedi link:../admin/managing-load-balancing.html["Considerazioni sul bilanciamento del carico"].
+
+Se necessario, puoi raggruppare le interfacce di rete di più Gateway Node e Admin Node in un gruppo ad alta disponibilità (HA). Se l'interfaccia attiva nel gruppo HA si guasta, un'interfaccia di backup può gestire il carico di lavoro dell'applicazione client. Vedi link:../admin/managing-high-availability-groups.html["${post_edited_translations.segment}"].
+
+
+
+[[primary-services-for-gateway-nodes]]
+== Servizi principali per i nodi gateway
+
+La tabella seguente mostra i servizi principali per i Gateway Nodes; tuttavia, questa tabella non elenca tutti i servizi dei nodi.
+
+[cols="1a,2a"]
+|===
+| Servizio | Funzione chiave 
+
+
+ a| 
+Servizio di cache
+ a| 
+Gestisce una cache locale del contenuto degli oggetti.
+
+
+
+ a| 
+Alta disponibilità
+ a| 
+Gestisce gli indirizzi IP virtuali ad alta disponibilità per gruppi di Admin Node e Gateway Node.
+
+*Nota:* Questo servizio è disponibile anche sui nodi di amministrazione.
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Fornisce il bilanciamento del carico Layer 7 del traffico S3 dai client ai nodi di archiviazione. Questo è il meccanismo di bilanciamento del carico consigliato.
+
+*Nota:* Questo servizio è disponibile anche sui nodi di amministrazione.
+
+
+
+ a| 
+Monitoraggio dello stato del server (SSM)
+ a| 
+Monitora il sistema operativo e l'hardware sottostante.
+
+|===

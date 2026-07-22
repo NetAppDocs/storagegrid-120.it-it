@@ -1,0 +1,85 @@
+---
+permalink: maintain/step-2-view-details.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, view details 
+summary: 'Dal passaggio 2 (Visualizza dettagli) della procedura guidata Decommission Site, puoi vedere quali nodi sono inclusi nel sito, quanto spazio è stato utilizzato su ciascun Storage Node e valutare quanto spazio libero è disponibile negli altri siti della tua grid.' 
+---
+= Rivedere i dettagli del sito prima di decommissionare in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Dal passaggio 2 (Visualizza dettagli) della procedura guidata Decommission Site, puoi vedere quali nodi sono inclusi nel sito, quanto spazio è stato utilizzato su ciascun Storage Node e valutare quanto spazio libero è disponibile negli altri siti della tua grid.
+
+.Prima di iniziare
+Prima di decommissionare un sito, devi verificare quanti dati oggetto sono presenti nel sito.
+
+* Se stai eseguendo il decommission di un sito connesso, devi sapere quanti dati oggetto sono attualmente presenti nel sito prima di aggiornare ILM. In base alla capacità del sito e alle tue esigenze di protezione dei dati, puoi creare nuove regole ILM per spostare i dati in altri siti o per eliminare i dati oggetto dal sito.
+* Se possibile, esegui tutte le espansioni necessarie dei nodi di archiviazione prima di iniziare la procedura di decommission.
+* Se stai eseguendo il decommission di un sito disconnesso, devi capire quanti dati oggetto diventeranno permanentemente inaccessibili quando rimuovi il sito.
+
+
+
+CAUTION: Se stai eseguendo il decommission di un sito disconnesso, ILM non può spostare o eliminare i dati degli oggetti. Tutti i dati che rimangono nel sito andranno persi. Tuttavia, se la tua policy ILM è stata progettata per proteggere dalla perdita di un singolo sito, le copie dei dati degli oggetti esistono ancora nei siti rimanenti. Vedi link:../ilm/using-multiple-storage-pools-for-cross-site-replication.html["Abilita la protezione dalla perdita del sito"].
+
+.Passaggi
+. Dal passaggio 2 (Visualizza dettagli), controlla eventuali avvisi relativi al sito che hai selezionato per la rimozione.
++
+image:decommission_site_step_2_site_warnings.png["Decommissionare sito Fase 2 Avvisi del sito"]
+
++
+In questi casi viene visualizzato un avviso:
+
++
+** Il sito include un nodo Gateway. Se i client S3 si stanno connettendo attualmente a questo nodo, devi configurare un nodo equivalente in un altro sito. Assicurati che i client possano connettersi al nodo sostitutivo prima di continuare con la procedura di decommission.
+** Il sito contiene un mix di nodi connessi (image:icon_alert_green_checkmark.png["Icon Alert Segno di spunta verde"]) e nodi disconnessi (image:icon_alarm_gray_administratively_down.png["Icona Allarme Grigio Amministrativamente Down"] o image:icon_alarm_blue_unknown.png["Icona Allarme Blu Sconosciuto"]). Prima di poter rimuovere questo sito, devi riportare online tutti i nodi offline.
+
+
+. Rivedi i dettagli relativi al sito che hai selezionato per la rimozione.
++
+image:decommission_site_step_2_view_details.png["Decommissiona sito Fase 2 Visualizza dettagli"]
+
++
+Le seguenti informazioni sono incluse per il sito selezionato:
+
++
+** Numero di nodi
+** Lo spazio totale utilizzato, lo spazio libero e la capacità di tutti i nodi Storage nel sito.
++
+*** Per il decommission di un sito connesso, il valore *Spazio utilizzato* rappresenta la quantità di dati degli oggetti che devono essere spostati in altri siti o eliminati con ILM.
+*** Per il decommission di un sito disconnesso, il valore *Spazio utilizzato* indica la quantità di dati oggetto che diventeranno inaccessibili quando rimuovi il sito.
+
+
+** Nomi dei nodi, tipi e stati delle connessioni:
++
+*** image:icon_alert_green_checkmark.png["Icon Alert Segno di spunta verde"] (Collegato)
+*** image:icon_alarm_gray_administratively_down.png["Icona Allarme Grigio Amministrativamente Down"] (Amministrativamente chiuso)
+*** image:icon_alarm_blue_unknown.png["Icona Allarme Blu Sconosciuto"] (Sconosciuto)
+
+
+** Dettagli su ciascun nodo:
++
+*** Per ciascun Storage Node, la quantità di spazio utilizzata per i dati degli oggetti.
+*** Per i nodi di amministrazione e i nodi gateway, indica se il nodo è attualmente utilizzato in un gruppo ad alta disponibilità (HA). Non puoi decommissionare un nodo di amministrazione o un nodo gateway che è utilizzato in un gruppo HA. Prima di iniziare il decommission, modifica i gruppi HA per rimuovere tutti i nodi del sito oppure rimuovi il gruppo HA se include solo nodi di questo sito. Per istruzioni, vedi link:../admin/managing-high-availability-groups.html["${post_edited_translations.segment}"].
+
+
+
+
+. Nella sezione "Dettagli per altri siti" della pagina, valuta quanto spazio è disponibile negli altri siti della tua griglia.
++
+image:decommission_site_step_2_view_details_for_other_sites.png["Decommissionare sito Fase 2 Visualizza dettagli per altri siti"]
+
++
+Se stai eseguendo un decommission di un sito connesso e prevedi di utilizzare ILM per spostare i dati degli oggetti dal sito selezionato (anziché semplicemente eliminarli), devi assicurarti che gli altri siti abbiano abbastanza capacità per ospitare i dati spostati e che rimanga capacità adeguata per la crescita futura.
+
++
+
+NOTE: Viene visualizzato un avviso se lo *Spazio utilizzato* per il sito che vuoi rimuovere è superiore allo *Spazio libero totale per altri siti*. Per assicurarti che sia disponibile una capacità di storage adeguata dopo la rimozione del sito, potresti dover eseguire un'espansione prima di effettuare questa procedura.
+
+. Seleziona *Next*.
++
+Viene visualizzato il passaggio 3 (Revisione della policy ILM).
+
+

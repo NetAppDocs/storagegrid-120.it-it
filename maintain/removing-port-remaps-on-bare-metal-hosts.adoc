@@ -1,0 +1,92 @@
+---
+permalink: maintain/removing-port-remaps-on-bare-metal-hosts.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, linux, linux host, bare metal host, baremetal host, remove port remap, removing port remap, port remap 
+summary: 'Se vuoi configurare un endpoint per il servizio Load Balancer e vuoi usare una porta già configurata come Mapped-To Port di una rimappatura delle porte, devi prima rimuovere la rimappatura delle porte esistente, altrimenti l"endpoint non sarà efficace.' 
+---
+= Rimuovere le rimappature delle porte di StorageGRID sugli host bare metal
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se vuoi configurare un endpoint per il servizio Load Balancer e vuoi usare una porta già configurata come Mapped-To Port di una rimappatura delle porte, devi prima rimuovere la rimappatura delle porte esistente, altrimenti l'endpoint non sarà efficace.
+
+.Informazioni su questa attività
+Se esegui StorageGRID su host bare metal, segui questa procedura invece di quella generale per rimuovere le rimappature delle porte. Devi modificare il file di configurazione del nodo per ogni Admin Node e Gateway Node che ha porte rimappate in conflitto, rimuovere tutte le rimappature delle porte del nodo e riavviare il nodo.
+
+
+CAUTION: Questa procedura rimuove tutte le rimappature delle porte. Se hai bisogno di conservare alcune rimappature, contatta il supporto tecnico.
+
+Per informazioni sulla configurazione degli endpoint del bilanciatore di carico, consulta le istruzioni per l'amministrazione di StorageGRID.
+
+
+NOTE: Questa procedura può comportare una temporanea perdita di servizio quando i nodi vengono riavviati.
+
+.Passaggi
+. Accedi all'host che supporta il nodo. Accedi come root o con un account che ha i permessi sudo.
+. Esegui il seguente comando per disabilitare temporaneamente il nodo: `sudo storagegrid node stop _node-name_`
+. Utilizzando un editor di testo come vim o pico, modifica il file di configurazione del nodo.
++
+Il file di configurazione del nodo si trova in  `/etc/storagegrid/nodes/_node-name_.conf`.
+
+. Individua la sezione del file di configurazione del nodo che contiene le mappature delle porte.
++
+Osserva le ultime due righe dell'esempio seguente.
+
++
+[listing, subs="specialcharacters,quotes"]
+----
+ADMIN_NETWORK_CONFIG = STATIC
+ADMIN_NETWORK_ESL = 10.0.0.0/8, 172.19.0.0/16, 172.21.0.0/16
+ADMIN_NETWORK_GATEWAY = 10.224.0.1
+ADMIN_NETWORK_IP = 10.224.5.140
+ADMIN_NETWORK_MASK = 255.255.248.0
+ADMIN_NETWORK_MTU = 1400
+ADMIN_NETWORK_TARGET = eth1
+ADMIN_NETWORK_TARGET_TYPE = Interface
+BLOCK_DEVICE_VAR_LOCAL = /dev/sda2
+CLIENT_NETWORK_CONFIG = STATIC
+CLIENT_NETWORK_GATEWAY = 47.47.0.1
+CLIENT_NETWORK_IP = 47.47.5.140
+CLIENT_NETWORK_MASK = 255.255.248.0
+CLIENT_NETWORK_MTU = 1400
+CLIENT_NETWORK_TARGET = eth2
+CLIENT_NETWORK_TARGET_TYPE = Interface
+GRID_NETWORK_CONFIG = STATIC
+GRID_NETWORK_GATEWAY = 192.168.0.1
+GRID_NETWORK_IP = 192.168.5.140
+GRID_NETWORK_MASK = 255.255.248.0
+GRID_NETWORK_MTU = 1400
+GRID_NETWORK_TARGET = eth0
+GRID_NETWORK_TARGET_TYPE = Interface
+NODE_TYPE = VM_API_Gateway
+*PORT_REMAP = client/tcp/8082/443*
+*PORT_REMAP_INBOUND = client/tcp/8082/443*
+----
+. Modifica le voci PORT_REMAP e PORT_REMAP_INBOUND per rimuovere le rimappature delle porte.
++
+[listing]
+----
+PORT_REMAP =
+PORT_REMAP_INBOUND =
+----
+. Esegui il seguente comando per convalidare le modifiche apportate al file di configurazione del nodo: ``sudo storagegrid node validate _node-name_``
++
+Risolvi eventuali errori o avvisi prima di passare al passaggio successivo.
+
+. Esegui il seguente comando per riavviare il nodo senza rimappare le porte: `sudo storagegrid node start _node-name_`
+. Accedi al nodo come admin utilizzando la password indicata nel  `Passwords.txt` file.
+. Verifica che i servizi si avviino correttamente.
++
+.. Visualizza un elenco dello stato di tutti i servizi sul server:``sudo storagegrid-status``
++
+Lo stato viene aggiornato automaticamente.
+
+.. Attendi che tutti i servizi abbiano lo stato "In esecuzione" o "Verificato".
+.. Esci dalla schermata di stato:``Ctrl+C``
+
+
+. Ripeti questi passaggi su ogni Admin Node e Gateway Node che presenta porte rimappate in conflitto.
+

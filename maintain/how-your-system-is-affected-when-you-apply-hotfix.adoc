@@ -1,0 +1,59 @@
+---
+permalink: maintain/how-your-system-is-affected-when-you-apply-hotfix.html 
+sidebar: sidebar 
+keywords: storagegrid, hotfix 
+summary: Devi capire come il tuo sistema StorageGRID sarà influenzato quando applichi un hotfix. 
+---
+= Come StorageGRID è influenzato quando si applica un hotfix
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Devi capire come il tuo sistema StorageGRID sarà influenzato quando applichi un hotfix.
+
+
+
+[[storagegrid-hotfixes-are-non-disruptive]]
+== Gli hotfix di StorageGRID sono non invasivi
+
+Il sistema StorageGRID può acquisire e recuperare dati dalle applicazioni client durante l'intero processo di hotfix. Se approvi tutti i nodi dello stesso tipo per l'hotfix (ad esempio, Storage Nodes), i nodi vengono fermati uno alla volta, così non c'è mai un momento in cui tutti i nodi della griglia o tutti i nodi della griglia di un certo tipo siano indisponibili.
+
+Per garantire la disponibilità continua, assicurati che la tua policy ILM contenga regole che specifichino l'archiviazione di più copie di ciascun oggetto. Devi inoltre assicurarti che tutti i client S3 esterni siano configurati per inviare le richieste a uno dei seguenti:
+
+* Un indirizzo IP virtuale di gruppo ad alta disponibilità (HA)
+* Un bilanciatore di carico di terze parti ad alta disponibilità
+* Nodi gateway multipli per ciascun client
+* Nodi di storage multipli per ciascun client
+
+
+
+
+[[client-applications-might-experience-short-term-disruptions]]
+== Le applicazioni client potrebbero subire interruzioni di breve durata
+
+Il sistema StorageGRID può acquisire e recuperare dati dalle applicazioni client durante il processo di hotfix; tuttavia, le connessioni dei client ai singoli Gateway Node o Storage Node potrebbero essere temporaneamente interrotte se l'hotfix deve riavviare i servizi su quei nodi. La connettività verrà ripristinata al termine del processo di hotfix e al riavvio dei servizi sui singoli nodi.
+
+Potresti dover programmare un periodo di inattività per applicare una hotfix se la perdita di connettività per un breve periodo non è accettabile. Puoi usare l'approvazione selettiva per programmare quando vengono aggiornati determinati nodi.
+
+
+NOTE: Puoi usare più gateway e gruppi ad alta disponibilità (HA) per fornire il failover automatico durante il processo di hotfix. Vedi le istruzioni per link:../admin/configure-high-availability-group.html["configurare i gruppi ad alta disponibilità"].
+
+
+
+[[alerts-and-snmp-notifications-might-be-triggered]]
+== Potrebbero essere attivati avvisi e notifiche SNMP
+
+Potrebbero essere generati avvisi e notifiche SNMP al riavvio dei servizi e quando il sistema StorageGRID opera in un ambiente a versioni miste (alcuni nodi della griglia eseguono una versione precedente, mentre altri sono stati aggiornati a una versione successiva). In genere, questi avvisi e notifiche si risolvono al completamento dell'hotfix.
+
+
+
+[[configuration-changes-are-restricted]]
+== Le modifiche alla configurazione sono limitate
+
+Quando applichi una hotfix a StorageGRID:
+
+* Non apportare modifiche alla configurazione della griglia (ad esempio, specificando le sottoreti della Grid Network o approvando i nodi di griglia in sospeso) finché l'hotfix non è stato applicato a tutti i nodi.
+* Non aggiornare la configurazione ILM finché l'hotfix non è stato applicato a tutti i nodi.
+

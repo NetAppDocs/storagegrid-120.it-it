@@ -1,0 +1,42 @@
+---
+permalink: maintain/monitoring-storagegrid-appliance-installation-sn.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, appliance 
+summary: 'Il programma di installazione dell"appliance StorageGRID fornisce lo stato fino al completamento dell"installazione. Quando l"installazione del software è completa, l"appliance viene riavviata.' 
+---
+= Monitoraggio dell'installazione dell'appliance StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Il programma di installazione dell'appliance StorageGRID fornisce lo stato fino al completamento dell'installazione. Quando l'installazione del software è completa, l'appliance viene riavviata.
+
+.Passaggi
+. Per monitorare l'avanzamento dell'installazione, fai clic su *Monitor Installation* nella barra dei menu.
++
+La pagina di installazione del monitor mostra lo stato di avanzamento dell'installazione.
+
++
+La barra di stato blu indica quale attività è attualmente in corso. Le barre di stato verdi indicano le attività completate con successo.
+
++
+
+NOTE: Il programma di installazione garantisce che le attività completate in un'installazione precedente non vengano eseguite di nuovo. Se esegui di nuovo un'installazione, le attività che non devono essere eseguite di nuovo vengono mostrate con una barra di stato verde e lo stato "Ignorato".
+
+. Controlla l'avanzamento delle prime due fasi di installazione.
++
+** *1. Configura lo storage*
++
+Durante questa fase, il programma di installazione si connette allo storage controller, cancella qualsiasi configurazione esistente, comunica con SANtricity OS per configurare i volumi e configura le impostazioni dell'host.
+
+** *2. Installa il sistema operativo*
++
+Durante questa fase, il programma di installazione copia l'immagine di base del sistema operativo per StorageGRID sull'appliance.
+
+
+
+. Continua a monitorare l'avanzamento dell'installazione finché la fase *Install StorageGRID* non si interrompe e sulla console integrata compare un messaggio che ti chiede di approvare questo nodo sull'Admin Node tramite Grid Manager.
+. Vai a link:selecting-start-recovery-to-configure-appliance-storage-node.html["Seleziona Avvia ripristino per configurare il nodo Storage Node dell'appliance"].
+

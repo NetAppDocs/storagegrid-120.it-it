@@ -1,0 +1,65 @@
+---
+permalink: ilm/creating-and-assigning-storage-grades.html 
+sidebar: sidebar 
+keywords: what is a storage grade, create storage grade 
+summary: I livelli di storage identificano il tipo di storage utilizzato da un Storage Node. Puoi creare livelli di storage se vuoi che le regole ILM posizionino determinati oggetti su determinati Storage Node. 
+---
+= Crea e assegna gradi di storage in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+I livelli di storage identificano il tipo di storage utilizzato da un Storage Node. Puoi creare livelli di storage se vuoi che le regole ILM posizionino determinati oggetti su determinati Storage Node.
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Hai link:../admin/admin-group-permissions.html["autorizzazioni di accesso specifiche"].
+
+
+.Informazioni su questa attività
+Quando installi StorageGRID, il livello di storage *Default* viene assegnato automaticamente a ogni Storage Node nel tuo sistema. Se necessario, puoi definire livelli di storage personalizzati e assegnarli a Storage Node diversi.
+
+L'utilizzo di livelli di storage personalizzati consente di creare pool di storage ILM che contengono solo un tipo specifico di Storage Node. Ad esempio, potresti voler archiviare determinati oggetti sui tuoi Storage Node più veloci, come gli appliance di storage all-flash StorageGRID.
+
+
+NOTE: Ai nodi di storage che contengono solo metadati non puoi assegnare un livello di storage. Per ulteriori informazioni, consulta link:../primer/what-storage-node-is.html#types-of-storage-nodes["Tipi di nodi di archiviazione"].
+
+Se il livello di storage non è un problema (ad esempio, tutti i nodi di storage sono identici), puoi saltare questa procedura e usare la selezione *includes all storage grades* per il livello di storage quando link:creating-storage-pool.html["creare pool di storage"]. Usando questa selezione, il pool di storage includerà ogni nodo di storage nel sito, indipendentemente dal suo livello di storage.
+
+
+NOTE: Non creare più livelli di storage del necessario. Ad esempio, non creare un livello di storage per ogni Storage Node. Assegna invece ciascun livello di storage a due o più nodi. I livelli di storage assegnati a un solo nodo possono causare ritardi nell'ILM se quel nodo diventa non disponibile.
+
+.Passaggi
+. Seleziona *ILM* > *Gradi di storage*.
+. Definisci livelli di storage personalizzati:
++
+.. Per ogni livello di storage personalizzato che vuoi aggiungere, seleziona *Inserisci* image:icon_nms_insert.gif["inserisci icona"] per aggiungere una riga.
+.. Inserisci un'etichetta descrittiva.
++
+image:editing_storage_grades.gif["Pagina dei gradi di storage"]
+
+.. Seleziona *Applica modifiche*.
+.. Facoltativamente, se devi modificare un'etichetta salvata, seleziona *Modifica* image:icon_nms_edit.gif["icona di modifica"] e seleziona *Applica modifiche*.
++
+
+NOTE: Non puoi eliminare i storage grades.
+
+
+
+. Assegna nuovi storage grade ai Storage Node:
++
+.. Individua il nodo di archiviazione nell'elenco LDR e seleziona la relativa icona *Modifica* image:icon_nms_edit.gif["icona di modifica"].
+.. Seleziona il livello di storage appropriato dall'elenco.
++
+image:assigning_storage_grades_to_storage_nodes.gif["Pagina dei gradi di storage"]
+
++
+
+NOTE: Assegna un livello di storage a un determinato Storage Node una sola volta. Un Storage Node ripristinato dopo un errore mantiene il livello di storage assegnato in precedenza. Non cambiare questa assegnazione dopo l'attivazione della policy ILM. Se l'assegnazione viene cambiata, i dati vengono archiviati in base al nuovo livello di storage.
+
+.. Seleziona *Applica modifiche*.
+
+
+

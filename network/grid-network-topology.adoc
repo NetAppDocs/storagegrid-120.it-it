@@ -1,0 +1,29 @@
+---
+permalink: network/grid-network-topology.html 
+sidebar: sidebar 
+keywords: grid network topology 
+summary: La topologia di rete più semplice si crea configurando solo la Grid Network. 
+---
+= Topologia di rete Grid per StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La topologia di rete più semplice si crea configurando solo la Grid Network.
+
+Quando configuri la rete Grid, imposti l'indirizzo IP host, la subnet mask e l'indirizzo IP del gateway per l'interfaccia eth0 di ciascun nodo del grid.
+
+Durante la configurazione, devi aggiungere tutte le subnet di Grid Network all'elenco delle subnet di Grid Network (GNSL). Questo elenco include tutte le subnet di tutti i siti e potrebbe includere anche subnet esterne che forniscono accesso a servizi critici come NTP, DNS o LDAP.
+
+Durante l'installazione, l'interfaccia Grid Network applica route statiche per tutte le sottoreti nel GNSL e imposta la route predefinita del nodo sul gateway Grid Network, se configurato. Il GNSL non è necessario se non è presente una Client Network e il gateway Grid Network è la route predefinita del nodo. Vengono inoltre generate le route host verso tutti gli altri nodi del grid.
+
+In questo esempio, tutto il traffico condivide la stessa rete, incluso il traffico relativo alle richieste dei client S3 e alle funzioni amministrative e di manutenzione.
+
+
+NOTE: Questa topologia è appropriata per implementazioni a sito singolo non accessibili dall'esterno, proof of concept o implementazioni di test, oppure quando un bilanciatore di carico di terze parti funge da confine di accesso per i client. Quando possibile, la Grid Network dovrebbe essere utilizzata esclusivamente per il traffico interno. Sia la Admin Network che la Client Network hanno ulteriori restrizioni firewall che bloccano il traffico esterno verso i servizi interni. L'utilizzo della Grid Network per il traffico client esterno è supportato, ma questo utilizzo offre meno livelli di protezione.
+
+image:grid_network.png["${post_edited_translations.segment}"]
+
+image:grid_network_ips.png["Indirizzi IP della rete Grid"]

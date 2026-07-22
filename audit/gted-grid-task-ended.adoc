@@ -1,0 +1,49 @@
+---
+permalink: audit/gted-grid-task-ended.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, GTED, Grid Task Ended 
+summary: 'Questo messaggio di controllo indica che il servizio CMN ha terminato l"elaborazione dell"attività di griglia specificata e ha spostato l"attività nella tabella storica. Se il risultato è SUCS, ABRT o ROLF, ci sarà un messaggio di controllo corrispondente "Grid Task Started". Gli altri risultati indicano che l"elaborazione di questa attività di griglia non è mai iniziata.' 
+---
+= Messaggio di audit GTED per le attività di grid terminate in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Questo messaggio di controllo indica che il servizio CMN ha terminato l'elaborazione dell'attività di griglia specificata e ha spostato l'attività nella tabella storica. Se il risultato è SUCS, ABRT o ROLF, ci sarà un messaggio di controllo corrispondente "Grid Task Started". Gli altri risultati indicano che l'elaborazione di questa attività di griglia non è mai iniziata.
+
+[cols="1a,1a,4a"]
+|===
+| Codice | Campo | Descrizione 
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+ID attività
+ a| 
+Questo campo identifica in modo univoco un'attività di griglia generata e consente di gestirla durante tutto il suo ciclo di vita.
+
+*Nota:* L'ID attività viene assegnato al momento della generazione di un'attività di griglia, non al momento del suo invio. È possibile che una determinata attività di griglia venga inviata più volte e, in questo caso, il campo ID attività non è sufficiente per collegare in modo univoco i messaggi di controllo Submitted, Started e Ended.
+
+
+
+ a| 
+RSLT
+ a| 
+Risultato
+ a| 
+Risultato finale dell'attività di griglia:
+
+* SUCS: L'attività di griglia è stata completata con successo.
+* ABRT: L'attività di griglia è stata terminata senza errori di rollback.
+* ${post_edited_translations.segment}
+* ANNULLA: L'attività di grid è stata annullata dall'utente prima che venisse avviata.
+* EXPR: L'attività di griglia è scaduta prima di essere avviata.
+* IVLD: L'attività di grid non è valida.
+* AUTORIZZAZIONE: L'operazione sulla griglia non era autorizzata.
+* DUPL: L'attività di grid è stata rifiutata perché duplicata.
+
+
+|===

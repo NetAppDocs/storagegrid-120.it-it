@@ -1,0 +1,70 @@
+---
+permalink: swnodes/required-materials.html 
+sidebar: sidebar 
+keywords: installation materials 
+summary: Prima di installare StorageGRID, raccogli e prepara le informazioni e i materiali necessari. 
+---
+= Informazioni e materiali necessari per StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Prima di installare StorageGRID, raccogli e prepara le informazioni e i materiali necessari.
+
+
+
+[[required-information]]
+== Informazioni richieste
+
+Piano di rete:: A quali reti vuoi collegare ciascun nodo StorageGRID. StorageGRID supporta più reti per la separazione del traffico, la sicurezza e la comodità amministrativa.
++
+--
+Vedi StorageGRID link:../network/index.html["Linee guida di rete"].
+
+--
+Informazioni di rete:: Indirizzi IP da assegnare a ciascun nodo della griglia e indirizzi IP dei server DNS e NTP.
+Server per i nodi della griglia:: Individua un insieme di server (fisici, virtuali o entrambi) che, nel loro complesso, forniscano risorse sufficienti a supportare il numero e il tipo di nodi StorageGRID che intendi implementare.
++
+--
+
+NOTE: Se la tua installazione di StorageGRID non utilizzerà StorageGRID appliance (hardware) Storage Nodes, devi usare storage RAID hardware con cache di scrittura supportata dalla batteria (BBWC). StorageGRID non supporta l'uso di virtual storage area network (vSAN), software RAID o l'assenza di protezione RAID.
+
+--
+Migrazione dei nodi (solo Ubuntu e Debian, se necessario):: Comprendere il link:node-container-migration-requirements.html["requisiti per la migrazione dei nodi"], se si desidera eseguire manutenzione programmata sugli host fisici senza alcuna interruzione del servizio.
+Informazioni correlate:: https://imt.netapp.com/matrix/#welcome["Tool NetApp Interoperability Matrix"^]
+
+
+
+
+[[required-materials]]
+== Materiali necessari
+
+licenza NetApp StorageGRID:: Devi avere una licenza NetApp valida e firmata digitalmente.
+
+
+
+NOTE: Una licenza non di produzione, che puoi usare per test e proof of concept di grid, è inclusa nell'archivio di installazione di StorageGRID.
+
+Archivio di installazione StorageGRID:: link:downloading-and-extracting-storagegrid-installation-files.html["Scarica l'archivio di installazione di StorageGRID ed estrai i file"].
+Portatile di servizio:: Il sistema StorageGRID viene installato tramite un computer portatile di servizio.
++
+--
+Il computer portatile di servizio deve avere:
+
+* ${post_edited_translations.segment}
+* ${post_edited_translations.segment}
+* link:../admin/web-browser-requirements.html["${post_edited_translations.segment}"]
+
+
+--
+${post_edited_translations.segment}::
++
+--
+* https://library.netapp.com/ecm/ecm_download_file/ECMLP3351267["Note di rilascio"^]. È necessario accedere con il proprio account NetApp o crearne uno per accedere alle note di rilascio.
+* link:../admin/index.html["Istruzioni per l'amministrazione di StorageGRID"]
+
+
+--
+

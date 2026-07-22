@@ -1,0 +1,166 @@
+---
+permalink: tenant/creating-groups-for-s3-tenant.html 
+sidebar: sidebar 
+keywords: how to create S3 tenant groups, federated group, local group 
+summary: ${post_edited_translations.segment} 
+---
+= Creare gruppi per un tenant S3 in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+${post_edited_translations.segment}
+
+.Prima di iniziare
+* Hai effettuato l'accesso al Tenant Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Tu appartieni a un gruppo di utenti che ha il link:tenant-management-permissions.html["Permesso di accesso root"].
+* Se pianifichi di importare un gruppo federato, hai link:using-identity-federation.html["${post_edited_translations.segment}"] e il gruppo federato esiste già nell'origine dell'identità configurata.
+* Se il tuo account tenant dispone dell'autorizzazione *Use grid federation connection*, hai esaminato il workflow e le considerazioni per link:grid-federation-account-clone.html["${post_edited_translations.segment}"] e hai effettuato l'accesso alla grid di origine del tenant.
+
+
+
+
+[[access-the-create-group-wizard]]
+== Accedi alla procedura guidata Crea gruppo
+
+Come primo passo, accedi alla procedura guidata Crea gruppo.
+
+.Passaggi
+. ${post_edited_translations.segment}
+. Se il tuo account tenant dispone dell'autorizzazione *Use grid federation connection*, conferma che venga visualizzato un banner blu, a indicare che i nuovi gruppi creati su questa griglia verranno clonati sullo stesso tenant sull'altra griglia della connessione. Se questo banner non viene visualizzato, potresti aver effettuato l'accesso alla griglia di destinazione del tenant.
++
+image:grid-federation-tenant-group-banner.png["${post_edited_translations.segment}"]
+
+. Seleziona *Crea gruppo*.
+
+
+
+
+[[choose-a-group-type]]
+== Scegli un tipo di gruppo
+
+Puoi creare un gruppo locale o importare un gruppo federato.
+
+.Passaggi
+. ${post_edited_translations.segment}
++
+${post_edited_translations.segment}
+
+. ${post_edited_translations.segment}
++
+** *Gruppo locale*: Inserisci sia un nome visualizzato che un nome univoco. Puoi modificare il nome visualizzato in seguito.
++
+
+NOTE: ${post_edited_translations.segment}
+
+** *Gruppo federato*: Inserisci il nome univoco. Per Active Directory, il nome univoco è il nome associato all'attributo  `sAMAccountName`. Per OpenLDAP, il nome univoco è il nome associato all'attributo  `uid`.
+
+
+. Seleziona *Continue*.
+
+
+
+
+[[manage-group-permissions]]
+== Gestisci le autorizzazioni di gruppo
+
+${post_edited_translations.segment}
+
+.Passaggi
+. Per la *modalità di accesso*, seleziona una delle seguenti opzioni:
++
+** ${post_edited_translations.segment}
+** *Sola lettura*: gli utenti possono solo visualizzare le impostazioni e le funzionalità. Non possono apportare modifiche o eseguire operazioni nel Tenant Manager o nella Tenant Management API. Gli utenti locali in sola lettura possono modificare le proprie password.
++
+
+NOTE: Se un utente appartiene a più gruppi e uno qualsiasi di essi è impostato su Sola lettura, l'utente avrà accesso in sola lettura a tutte le impostazioni e funzionalità selezionate.
+
+
+
+. Seleziona una o più autorizzazioni per questo gruppo.
++
+Vedi link:../tenant/tenant-management-permissions.html["Autorizzazioni per la gestione dei tenant"].
+
+. Seleziona *Continue*.
+
+
+
+
+[[set-s3-group-policy]]
+== Imposta i criteri di gruppo S3
+
+Il criterio di gruppo determina quali autorizzazioni di accesso S3 avranno gli utenti.
+
+.Passaggi
+. Seleziona il criterio che vuoi usare per questo gruppo.
++
+[cols="1a,2a"]
+|===
+| Criteri di gruppo | Descrizione 
+
+
+ a| 
+Nessun accesso S3
+ a| 
+Predefinito. Gli utenti di questo gruppo non hanno accesso alle risorse S3, a meno che l'accesso non venga concesso tramite una bucket policy. Se scegli questa opzione, solo l'utente root avrà accesso alle risorse S3 per impostazione predefinita.
+
+
+
+ a| 
+Accesso in sola lettura
+ a| 
+Gli utenti di questo gruppo hanno accesso in sola lettura alle risorse S3. Ad esempio, gli utenti di questo gruppo possono elencare gli oggetti e leggere i dati degli oggetti, i metadati e i tag. Quando selezioni questa opzione, la stringa JSON per un criterio di gruppo di sola lettura appare nella casella di testo. Non puoi modificare questa stringa.
+
+
+
+ a| 
+Accesso completo
+ a| 
+Gli utenti di questo gruppo hanno accesso completo alle risorse S3, inclusi i bucket. Quando selezioni questa opzione, la stringa JSON per un criterio di gruppo con accesso completo appare nella casella di testo. Non puoi modificare questa stringa.
+
+
+
+ a| 
+Mitigazione del ransomware
+ a| 
+Questa policy di esempio si applica a tutti i bucket per questo tenant. Gli utenti di questo gruppo possono eseguire azioni comuni, ma non possono eliminare definitivamente oggetti dai bucket che hanno il versioning degli oggetti abilitato.
+
+Gli utenti di Tenant Manager che dispongono dell'autorizzazione *Gestisci tutti i bucket* possono ignorare questo criterio di gruppo. Limita l'autorizzazione *Gestisci tutti i bucket* agli utenti attendibili e usa l'autenticazione a più fattori (MFA) dove disponibile.
+
+
+
+ a| 
+Personalizzato
+ a| 
+Agli utenti del gruppo vengono concesse le autorizzazioni che specifichi nella casella di testo.
+
+|===
+. Se hai selezionato *Personalizzato*, inserisci i criteri di gruppo. Ogni criterio di gruppo ha un limite di dimensione di 5.120 byte. Devi inserire una stringa in formato JSON valido.
++
+Per informazioni dettagliate sulle policy di gruppo, inclusa la sintassi del linguaggio e gli esempi, vedi link:../s3/example-group-policies.html["Esempi di criteri di gruppo"].
+
+. Se stai creando un gruppo locale, seleziona *Continua*. Se stai creando un gruppo federato, seleziona *Crea gruppo* e *Fine*.
+
+
+
+
+[[add-users-local-groups-only]]
+== Aggiungi utenti (solo gruppi locali)
+
+Puoi salvare il gruppo senza aggiungere utenti oppure, se vuoi, aggiungere eventuali utenti locali già esistenti.
+
+
+NOTE: Se il tuo tenant account dispone dell'autorizzazione *Usa connessione di federazione griglia*, gli utenti che selezioni quando crei un gruppo locale sulla griglia di origine non vengono inclusi quando il gruppo viene clonato sul cluster di destinazione. Per questo motivo, non selezionare utenti quando crei il gruppo. Invece, seleziona il gruppo quando crei gli utenti.
+
+.Passaggi
+. Facoltativamente, seleziona uno o più utenti locali per questo gruppo.
+. Seleziona *Crea gruppo* e *Fine*.
++
+Il gruppo che hai creato appare nell'elenco dei gruppi.
+
++
+Se il tuo tenant account dispone dell'autorizzazione *Usa connessione di federazione griglia* e ti trovi sulla grid di origine del tenant, il nuovo gruppo viene clonato nella grid di destinazione del tenant. *Success* appare come *Stato di clonazione* nella sezione Panoramica della pagina dei dettagli del gruppo.
+
+

@@ -1,0 +1,246 @@
+---
+permalink: maintain/step-6-monitor-decommission.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, monitor decommission, decommission 
+summary: 'Dal passaggio 6 (Monitor Decommission) della procedura guidata Decommission Site, puoi monitorare l"avanzamento mentre il sito viene rimosso.' 
+---
+= Monitora l'avanzamento della decommission del sito in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Dal passaggio 6 (Monitor Decommission) della procedura guidata Decommission Site, puoi monitorare l'avanzamento mentre il sito viene rimosso.
+
+.Informazioni su questa attività
+Quando StorageGRID rimuove un sito connesso, rimuove i nodi in quest'ordine:
+
+. ${post_edited_translations.segment}
+. Nodi di amministrazione
+. Nodi di storage
+
+
+Quando StorageGRID rimuove un sito disconnesso, rimuove i nodi in quest'ordine:
+
+. ${post_edited_translations.segment}
+. Nodi di storage
+. Nodi di amministrazione
+
+
+La rimozione di ciascun Gateway Node o Admin Node potrebbe richiedere solo pochi minuti o un'ora; tuttavia, la rimozione degli Storage Node potrebbe richiedere giorni o settimane.
+
+.Passaggi
+. Non appena viene generato un nuovo pacchetto di ripristino, scarica il file.
++
+image:decommission_site_step_6_recovery_package.png["Pacchetto di ripristino per la fase 6 della decommission del sito"]
+
++
+
+NOTE: Scarica il pacchetto di ripristino il prima possibile per assicurarti di poter ripristinare la tua grid se qualcosa va storto durante la procedura di decommission.
+
++
+.. Seleziona il collegamento nel messaggio oppure seleziona *Manutenzione* > *Sistema* > *Pacchetto di ripristino*.
+.. Scarica il  `.zip` file.
++
+Vedi le istruzioni per link:downloading-recovery-package.html["download del pacchetto di ripristino"].
+
+
+
++
+
+NOTE: Il file del pacchetto di ripristino deve essere protetto perché contiene chiavi di crittografia e password che possono essere utilizzate per ottenere dati dal sistema StorageGRID.
+
+. Utilizzando il grafico "Movimento dati", monitora lo spostamento dei dati degli oggetti da questo sito ad altri siti.
++
+Il trasferimento dei dati è iniziato quando hai attivato la nuova policy ILM nel passaggio 3 (Modifica policy ILM). Il trasferimento dei dati continuerà per tutta la procedura di decommission.
+
++
+image:decommission_site_step_6_data_movement.png["Fase 6 decommissionare sito: trasferimento dati"]
+
+. Nella sezione Avanzamento dei nodi della pagina, monitora l'avanzamento della procedura di decommission man mano che i nodi vengono rimossi.
++
+Quando un nodo di archiviazione viene rimosso, ciascun nodo attraversa una serie di fasi. Anche se la maggior parte di queste fasi avviene rapidamente o addirittura in modo impercettibile, potresti dover aspettare giorni o anche settimane perché altre fasi si completino, in base a quanta quantità di dati deve essere spostata. È necessario ulteriore tempo per gestire i dati codificati per la cancellazione e rivalutare ILM.
+
++
+image:decommission_site_step_6_storage_node.png["Fase 6 decommissionare sito Storage Node"]
+
++
+Se stai monitorando l'avanzamento della decommission di un sito connesso, consulta questa tabella per capire le fasi di decommission di un nodo di storage:
+
++
+[cols="1a,2a"]
+|===
+| Fase | Durata stimata 
+
+
+ a| 
+In attesa
+ a| 
+Un minuto o meno
+
+
+
+ a| 
+Attendi i lock
+ a| 
+Minuti
+
+
+
+ a| 
+Prepara l'attività
+ a| 
+Un minuto o meno
+
+
+
+ a| 
+Contrassegnare LDR come decommissionato
+ a| 
+Minuti
+
+
+
+ a| 
+Decommissionare dati replicati e codificati con erasure coding
+ a| 
+Ore, giorni o settimane in base alla quantità di dati
+
+*Nota*: Se devi eseguire altre attività di manutenzione, puoi mettere in pausa la decommission durante questa fase.
+
+
+
+ a| 
+Imposta stato LDR
+ a| 
+Minuti
+
+
+
+ a| 
+Svuota le code di controllo
+ a| 
+Da minuti a ore, in base al numero di messaggi e alla latenza di rete.
+
+
+
+ a| 
+Completa
+ a| 
+Minuti
+
+|===
++
+Se stai monitorando l'avanzamento della decommission di un sito disconnesso, consulta questa tabella per capire le fasi di decommission di un nodo di storage:
+
++
+[cols="1a,1a"]
+|===
+| Fase | Durata stimata 
+
+
+ a| 
+In attesa
+ a| 
+Un minuto o meno
+
+
+
+ a| 
+Attendi i lock
+ a| 
+Minuti
+
+
+
+ a| 
+Prepara l'attività
+ a| 
+Un minuto o meno
+
+
+
+ a| 
+Disabilita i servizi esterni
+ a| 
+Minuti
+
+
+
+ a| 
+Revoca del certificato
+ a| 
+Minuti
+
+
+
+ a| 
+Annullamento della registrazione del nodo
+ a| 
+Minuti
+
+
+
+ a| 
+Annulla registrazione Storage Grade
+ a| 
+Minuti
+
+
+
+ a| 
+Rimozione del gruppo di storage
+ a| 
+Minuti
+
+
+
+ a| 
+Rimozione entità
+ a| 
+Minuti
+
+
+
+ a| 
+Completa
+ a| 
+Minuti
+
+|===
+. Dopo che tutti i nodi hanno raggiunto la fase Complete, attendi che le restanti operazioni di decommission del sito siano completate.
++
+** Durante la fase di *Riparazione di Cassandra*, StorageGRID esegue le riparazioni necessarie ai cluster Cassandra rimanenti nella tua grid. Queste riparazioni potrebbero richiedere diversi giorni o più, a seconda di quanti Storage Node rimangono nella tua grid.
++
+image:decommission_site_step_6_repair_cassandra.png["Decommissionare sito Fase 6 Riparazione Cassandra"]
+
+** Durante la fase *Disattiva profili EC ed elimina pool di storage*, vengono apportate le seguenti modifiche a ILM:
++
+*** Tutti i profili di codifica di cancellazione che facevano riferimento al sito vengono disattivati.
+*** Tutti i pool di storage che facevano riferimento al sito vengono eliminati.
++
+
+NOTE: Anche il pool di storage All Storage Nodes (StorageGRID 11.6 e versioni precedenti) viene rimosso perché utilizza il sito All Sites.
+
+
+
+** Infine, durante la fase di *Rimozione della configurazione*, tutti i riferimenti rimanenti al sito e ai suoi nodi vengono rimossi dal resto della grid.
++
+image:decommission_site_step_6_remove_configuration.png["Decommissionare sito - Fase 6 Rimuovi configurazione"]
+
+
+
+. Quando la procedura di decommission è completata, la pagina Decommission Site mostra un messaggio di successo e il sito rimosso non viene più visualizzato.
++
+image:decommission_site_success_message.png["Messaggio di successo per il decommission del sito"]
+
+
+
+.Dopo aver finito
+Dopo aver completato la procedura di decommissionare del sito, completa queste attività:
+
+* Assicurati che le unità di tutti i Storage Node nel sito decommissionato vengano completamente cancellate. Usa uno strumento o un servizio di cancellazione dati disponibile in commercio per rimuovere in modo permanente e sicuro i dati dalle unità.
+* Se il sito include uno o più nodi di amministrazione e il single sign-on (SSO) è abilitato per il tuo sistema StorageGRID, rimuovi tutte le relying party trust per il sito da Active Directory Federation Services (AD FS).
+* Dopo che i nodi sono stati spenti correttamente e automaticamente come parte della procedura di decommission del sito connesso, rimuovi le macchine virtuali associate.
+

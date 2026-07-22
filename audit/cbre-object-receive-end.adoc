@@ -1,0 +1,106 @@
+---
+permalink: audit/cbre-object-receive-end.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, CBRE, Object Receive End 
+summary: ${post_edited_translations.segment} 
+---
+= Messaggio di audit CBRE per la ricezione dell'oggetto in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+${post_edited_translations.segment}
+
+[cols="1a,1a,4a"]
+|===
+| Codice | Campo | Descrizione 
+
+
+ a| 
+CNID
+ a| 
+Identificatore di connessione
+ a| 
+L'identificativo univoco della sessione/connessione nodo-nodo.
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Identificatore del blocco di contenuto
+ a| 
+${post_edited_translations.segment}
+
+
+
+ a| 
+CTDR
+ a| 
+Direzione di trasferimento
+ a| 
+Indica se il trasferimento CBID è stato avviato tramite push o pull:
+
+PUSH: L'operazione di trasferimento è stata richiesta dall'entità mittente.
+
+PULL: L'operazione di trasferimento è stata richiesta dall'entità ricevente.
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Entità di origine
+ a| 
+L'ID del nodo sorgente (mittente) del trasferimento CBID.
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Entità di destinazione
+ a| 
+L'ID del nodo di destinazione (ricevente) del trasferimento CBID.
+
+
+
+ a| 
+CTSS
+ a| 
+Inizio conteggio sequenza
+ a| 
+Indica il numero di sequenza da cui è iniziato il trasferimento.
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Conteggio effettivo della sequenza finale
+ a| 
+Indica l'ultimo conteggio di sequenza trasferito correttamente. Se il conteggio effettivo della sequenza finale è uguale al conteggio della sequenza iniziale e il risultato del trasferimento non è stato positivo, non è stato scambiato alcun dato.
+
+
+
+ a| 
+RSLT
+ a| 
+Risultato del trasferimento
+ a| 
+Il risultato dell'operazione di trasferimento (dal punto di vista del soggetto mittente):
+
+${post_edited_translations.segment}
+
+CONL: connessione persa durante il trasferimento
+
+CTMO: connessione scaduta durante la fase di stabilimento o trasferimento
+
+UNRE: ID nodo di destinazione irraggiungibile
+
+CRPT: trasferimento terminato a causa della ricezione di dati corrotti o non validi
+
+|===
+Questo messaggio di audit indica che un'operazione di trasferimento dati da nodo a nodo è stata completata. Se il risultato del trasferimento (Transfer Result) è positivo, l'operazione ha trasferito i dati da "Start Sequence Count" a "Actual End Sequence Count". I nodi di invio e ricezione sono identificati dai relativi ID nodo. Queste informazioni possono essere utilizzate per tracciare il flusso di dati del sistema e per individuare, tabulare e analizzare gli errori. Se combinato con i messaggi di audit dello storage, può essere utilizzato anche per verificare il numero di repliche.

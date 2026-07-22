@@ -1,0 +1,99 @@
+---
+permalink: tenant/understanding-tenant-manager-dashboard.html 
+sidebar: sidebar 
+keywords: how to understand tenant manager dashboard 
+summary: 'La dashboard di Tenant Manager fornisce una panoramica della configurazione di un account tenant e della quantità di spazio utilizzato dagli oggetti nei bucket S3 del tenant. Se il tenant ha una quota, la dashboard mostra quanta parte della quota è utilizzata e quanta ne rimane. Se ci sono errori relativi all"account tenant, gli errori vengono mostrati nella dashboard.' 
+---
+= Dashboard Tenant Manager in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La dashboard di Tenant Manager fornisce una panoramica della configurazione di un account tenant e della quantità di spazio utilizzato dagli oggetti nei bucket S3 del tenant. Se il tenant ha una quota, la dashboard mostra quanta parte della quota è utilizzata e quanta ne rimane. Se ci sono errori relativi all'account tenant, gli errori vengono mostrati nella dashboard.
+
+
+NOTE: La dimensione logica di tutti gli oggetti appartenenti a questo tenant include i caricamenti multipart incompleti e in corso. La dimensione non include lo spazio fisico aggiuntivo utilizzato per le policy ILM. I valori relativi allo spazio utilizzato sono stime. Queste stime sono influenzate dal momento dell'ingestione, dalla connettività di rete e dallo stato dei nodi.
+
+Quando gli oggetti sono stati caricati, la dashboard appare come nel seguente esempio:
+
+image:tenant_dashboard_with_buckets.png["Dashboard - Elenco dei bucket"]
+
+
+
+[[tenant-account-information]]
+== Informazioni sull'account del tenant
+
+Nella parte superiore del dashboard viene visualizzato il numero di bucket o container, gruppi e utenti configurati. Viene inoltre visualizzato il numero di endpoint dei servizi della piattaforma, se configurati. Seleziona i collegamenti per visualizzare i dettagli.
+
+A seconda delle link:tenant-management-permissions.html["autorizzazioni di gestione tenant"] che hai e delle opzioni che hai configurato, il resto del pannello di controllo mostra varie combinazioni di linee guida, utilizzo dello storage, informazioni sugli oggetti e dettagli sui tenant.
+
+
+
+[[storage-and-quota-usage]]
+== Utilizzo dello storage e della quota
+
+Il pannello Utilizzo dello storage contiene le seguenti informazioni:
+
+* La quantità di dati oggetto per il tenant.
++
+Questo valore indica la quantità totale di dati degli oggetti caricati e non rappresenta lo spazio utilizzato per memorizzare copie di tali oggetti e dei relativi metadati.
+
+* Se è impostata una quota, vengono visualizzati lo spazio totale disponibile per i dati degli oggetti e la quantità e la % di spazio rimanente. La quota limita la quantità di dati degli oggetti che puoi inserire.
++
+
+CAUTION: L'utilizzo della quota si basa su stime interne e potrebbe essere superato in alcuni casi. Ad esempio, StorageGRID verifica la quota quando un tenant inizia a caricare oggetti e rifiuta i nuovi caricamenti se il tenant ha superato la quota. Tuttavia, StorageGRID non tiene conto delle dimensioni del caricamento corrente per determinare se la quota è stata superata. Se vengono eliminati oggetti, a un tenant potrebbe essere temporaneamente impedito di caricare nuovi oggetti fino al ricalcolo dell'utilizzo della quota. Il calcolo dell'utilizzo della quota può richiedere 10 minuti o più.
+
+* Un grafico a barre che rappresenta le dimensioni relative dei bucket o dei container più grandi.
++
+Puoi posizionare il cursore su uno qualsiasi dei segmenti del grafico per vedere lo spazio totale occupato da quel bucket o container.
+
++
+image:tenant_dashboard_storage_usage_segment.png["Segmento del grafico a barre"]
+
+* In corrispondenza con il grafico a barre, un elenco dei bucket o container più grandi, comprensivo della quantità totale di dati degli oggetti e del numero di oggetti per ciascun bucket o container.
++
+image:tenant_dashboard_buckets.png["Bucket del dashboard del tenant"]
+
++
+Se il tenant ha più di nove bucket o container, tutti gli altri bucket o container vengono combinati in un'unica voce in fondo all'elenco.
+
+
+
+
+NOTE: Per modificare le unità di misura dei valori di archiviazione visualizzati nel Tenant Manager, seleziona il menu a tendina utente nell'angolo in alto a destra del Tenant Manager, poi seleziona *User preferences*.
+
+
+
+[[quota-usage-alerts]]
+== Avvisi di utilizzo delle quote
+
+Se hai abilitato gli avvisi di utilizzo della quota nel Grid Manager, questi avvisi vengono visualizzati nel Tenant Manager quando la quota è bassa o superata, come segue:
+
+* Se è stato utilizzato il 90% o più della quota di un tenant, viene attivato l'avviso *Tenant quota usage high*.
++
+Valuta di chiedere al tuo amministratore di grid di aumentare la quota.
+
+* Se superi la quota, una notifica ti informa che non puoi caricare nuovi oggetti.
+
+
+
+
+[[bucket-capacity-usagecapacity-limit-usage]]
+== [[bucket-capacity-usage]]Utilizzo del limite di capacità
+
+Se hai impostato un limite di capacità per i tuoi bucket, la dashboard di Tenant Manager visualizza un elenco dei bucket principali in base all'utilizzo del limite di capacità.
+
+Se non è impostato alcun limite per un bucket, la sua capacità è illimitata. Tuttavia, se il tuo tenant account ha una quota di archiviazione totale e tale quota è stata raggiunta, non potrai inserire altri oggetti, indipendentemente dal limite di capacità rimanente sul bucket.
+
+
+
+[[endpoint-errors]]
+== Errori dell'endpoint
+
+Se hai utilizzato Grid Manager per configurare uno o più endpoint da utilizzare con i servizi della piattaforma, la dashboard di Tenant Manager visualizza un avviso se si sono verificati errori in uno qualsiasi degli endpoint negli ultimi sette giorni.
+
+image:tenant_dashboard_endpoint_error.png["Dashboard che mostra il messaggio dell'endpoint"]
+
+Per vedere i dettagli su link:troubleshooting-platform-services-endpoint-errors.html["errori dell'endpoint dei servizi della piattaforma"], seleziona *Endpoint* per visualizzare la pagina Endpoint.

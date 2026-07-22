@@ -1,0 +1,97 @@
+---
+permalink: admin/managing-high-availability-groups.html 
+sidebar: sidebar 
+keywords: manage high availability group, ha groups, admin node, gateway node, active interface, backup interface, priority order 
+summary: 'I gruppi ad alta disponibilità (HA) forniscono connessioni dati ad alta disponibilità per i client S3 e connessioni ad alta disponibilità al Grid Manager e al Tenant Manager.' 
+---
+= Scopri i gruppi ad alta disponibilità di StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+I gruppi ad alta disponibilità (HA) forniscono connessioni dati ad alta disponibilità per i client S3 e connessioni ad alta disponibilità al Grid Manager e al Tenant Manager.
+
+Puoi raggruppare le interfacce di rete di più nodi Admin e Gateway in un gruppo ad alta disponibilità (HA). Se l'interfaccia attiva nel gruppo HA si guasta, un'interfaccia di backup può gestire il carico di lavoro.
+
+${post_edited_translations.segment}
+
+* ${post_edited_translations.segment}
+* I gruppi HA che includono solo Admin Node forniscono connessioni ad alta disponibilità al Grid Manager e al Tenant Manager.
+* Un gruppo HA che include solo appliance di servizi e nodi software basati su VMware può fornire connessioni ad alta disponibilità per link:../admin/manage-s3-select-for-tenant-accounts.html["Tenant S3 che usano S3 Select"]. I gruppi HA sono consigliati quando si utilizza S3 Select, ma non obbligatori.
+
+
+
+
+[[how-do-you-create-an-ha-group]]
+== ${post_edited_translations.segment}
+
+. Selezioni un'interfaccia di rete per uno o più Admin Node o Gateway Node. Puoi usare un'interfaccia Grid Network (eth0), un'interfaccia Client Network (eth2), un'interfaccia VLAN o un'interfaccia di accesso che hai aggiunto al nodo.
++
+
+NOTE: ${post_edited_translations.segment}
+
+. Specifica un'interfaccia come interfaccia primaria. L'interfaccia primaria è l'interfaccia attiva a meno che non si verifichi un guasto.
+. ${post_edited_translations.segment}
+. Puoi assegnare da uno a 10 indirizzi IP virtuali (VIP) al gruppo. Le applicazioni client possono utilizzare uno qualsiasi di questi indirizzi VIP per connettersi a StorageGRID.
+
+
+Per istruzioni, consulta link:configure-high-availability-group.html["Configura i gruppi ad alta disponibilità"].
+
+
+
+[[what-is-the-active-interface]]
+== Qual è l'interfaccia attiva?
+
+Durante il normale funzionamento, tutti gli indirizzi VIP del gruppo HA vengono aggiunti all'interfaccia primaria, che è la prima interfaccia in ordine di priorità. Finché l'interfaccia primaria rimane disponibile, viene utilizzata quando i client si connettono a qualsiasi indirizzo VIP del gruppo. Cioè, durante il normale funzionamento, l'interfaccia primaria è l'interfaccia "attiva" per il gruppo.
+
+Analogamente, durante il normale funzionamento, le interfacce a priorità inferiore del gruppo HA fungono da interfacce di "backup". Queste interfacce di backup non vengono utilizzate a meno che l'interfaccia primaria (attualmente attiva) non diventi non disponibile.
+
+
+
+[[view-the-current-ha-group-status-of-a-node]]
+== Visualizza lo stato attuale del gruppo HA di un nodo
+
+Per verificare se un nodo è assegnato a un gruppo HA e determinarne lo stato attuale, seleziona *Nodi* > *_nodo_*.
+
+Se la scheda *Panoramica* include una voce per i *gruppi HA*, il nodo viene assegnato ai gruppi HA elencati. Il valore che segue il nome del gruppo indica lo stato corrente del nodo nel gruppo HA:
+
+* ${post_edited_translations.segment}
+* *Backup*: Il gruppo HA non sta attualmente utilizzando questo nodo; questa è un'interfaccia di backup.
+* *Arrestato*: Il gruppo HA non può essere ospitato su questo nodo perché il servizio di High Availability (keepalived) è stato arrestato manualmente.
+* *Errore*: Il gruppo HA non può essere ospitato su questo nodo a causa di uno o più dei seguenti motivi:
++
+** ${post_edited_translations.segment}
+** L'interfaccia eth0 o VIP del nodo è inattiva.
+** ${post_edited_translations.segment}
+
+
+
+
+In questo esempio, il nodo Admin primario è stato aggiunto a due gruppi HA. Attualmente, questo nodo funge da interfaccia attiva per il gruppo di client Admin e da interfaccia di backup per il gruppo di client FabricPool.
+
+image:ha_group_primary_interface.png["${post_edited_translations.segment}"]
+
+
+
+[[what-happens-when-the-active-interface-fails]]
+== Cosa succede quando l'interfaccia attiva si guasta?
+
+L'interfaccia che attualmente ospita gli indirizzi VIP è l'interfaccia attiva. Se il gruppo HA include più di un'interfaccia e l'interfaccia attiva si guasta, gli indirizzi VIP vengono spostati sulla prima interfaccia di backup disponibile, in ordine di priorità. Se anche questa interfaccia si guasta, gli indirizzi VIP vengono spostati sulla successiva interfaccia di backup disponibile e così via.
+
+${post_edited_translations.segment}
+
+* ${post_edited_translations.segment}
+* ${post_edited_translations.segment}
+* L'interfaccia attiva si disconnette.
+* Il servizio Load Balancer si interrompe.
+* ${post_edited_translations.segment}
+
+
+
+NOTE: Il failover potrebbe non essere attivato da guasti di rete esterni al nodo che ospita l'interfaccia attiva. Analogamente, il failover non viene attivato dai servizi del Grid Manager o del Tenant Manager.
+
+Il processo di failover in genere richiede solo pochi secondi ed è sufficientemente rapido da far sì che le applicazioni client risentano minimamente dell'impatto e possano fare affidamento sui normali meccanismi di retry per continuare a funzionare.
+
+Quando il problema viene risolto e un'interfaccia a priorità più elevata torna disponibile, gli indirizzi VIP vengono automaticamente spostati sull'interfaccia a priorità più alta disponibile.

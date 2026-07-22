@@ -1,0 +1,72 @@
+---
+permalink: primer/copy-management.html 
+sidebar: sidebar 
+keywords: StorageGRID, object data, ilm policy, ilm rules, replicated copy, replication, erasure-coded copy, ec, cloud storage pool 
+summary: I dati degli oggetti sono gestiti dalla policy ILM attiva e dalle sue regole ILM. Le regole ILM creano copie replicate o con codifica di cancellazione per proteggere i dati degli oggetti dalla perdita. 
+---
+= Come StorageGRID gestisce le copie degli oggetti
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+I dati degli oggetti sono gestiti dalle policy ILM attive e dalle relative regole ILM. Le regole ILM creano copie replicate o con codifica di cancellazione per proteggere i dati degli oggetti dalla perdita.
+
+Potrebbero essere richiesti diversi tipi o posizioni di copie dell'oggetto in momenti diversi della vita dell'oggetto. Le regole ILM vengono valutate periodicamente per garantire che gli oggetti siano collocati come richiesto.
+
+I dati degli oggetti sono gestiti dal servizio LDR.
+
+
+
+[[content-protection-replication]]
+== Protezione dei contenuti: replica
+
+Se le istruzioni di posizionamento del contenuto di una regola ILM richiedono copie replicate dei dati degli oggetti, le copie vengono create e memorizzate su disco dai Storage Nodes che compongono il pool di storage configurato.
+
+Il motore ILM del servizio LDR controlla la replica e garantisce che il numero corretto di copie sia memorizzato nelle posizioni corrette e per il tempo corretto.
+
+image:replication_data_flow.png["diagramma che illustra il processo descritto nel testo circostante"]
+
+. Il motore ILM interroga il servizio ADC per determinare il miglior servizio LDR di destinazione all'interno del pool di storage specificato dalla regola ILM. Poi invia a quel servizio LDR un comando per avviare la replica.
+. Il servizio LDR di destinazione interroga il servizio ADC per individuare la posizione di origine migliore. Poi invia una richiesta di replica al servizio LDR di origine.
+. Il servizio LDR di origine invia una copia al servizio LDR di destinazione.
+. Il servizio LDR di destinazione notifica al motore ILM che i dati dell'oggetto sono stati memorizzati.
+. Il motore ILM aggiorna l'archivio dei metadati con i metadati sulla posizione degli oggetti.
+
+
+
+
+[[content-protection-erasure-coding]]
+== Protezione dei contenuti: erasure coding
+
+Se una regola ILM include istruzioni per creare copie codificate tramite erasure coding dei dati degli oggetti, lo schema di erasure coding applicabile suddivide i dati degli oggetti in frammenti di dati e di parità e distribuisce questi frammenti tra gli Storage Node configurati nel profilo di erasure coding.
+
+Il motore ILM, che è un componente del servizio LDR, controlla la codifica di cancellazione e garantisce che il profilo di codifica di cancellazione venga applicato ai dati degli oggetti.
+
+image:erasure_coding_data_flow.png["Flusso di dati della codifica di cancellazione"]
+
+. Il motore ILM interroga il servizio ADC per determinare quale servizio DDS sia più adatto a eseguire l'operazione di codifica di cancellazione. Quando è stato individuato, il motore ILM invia una richiesta di "initiate" a quel servizio.
+. Il servizio DDS istruisce un LDR a eseguire la codifica di cancellazione sui dati dell'oggetto.
+. Il servizio LDR di origine invia una copia al servizio LDR selezionato per la codifica di cancellazione.
+. Dopo aver creato il numero appropriato di frammenti di parità e di dati, il servizio LDR distribuisce questi frammenti tra i Storage Nodes (servizi Chunk) che costituiscono il pool di storage del profilo di erasure-coding.
+. Il servizio LDR notifica al motore ILM che i dati degli oggetti sono stati distribuiti correttamente.
+. Il motore ILM aggiorna l'archivio dei metadati con i metadati sulla posizione degli oggetti.
+
+
+
+
+[[content-protection-cloud-storage-pool]]
+== Protezione dei contenuti: Cloud Storage Pool
+
+Se le istruzioni di posizionamento del contenuto di una regola ILM richiedono che una copia replicata dei dati dell'oggetto venga archiviata in un Cloud Storage Pool, i dati dell'oggetto vengono duplicati nel bucket S3 esterno o nel container Azure Blob storage specificato per il Cloud Storage Pool.
+
+Il motore ILM, che è un componente del servizio LDR, e il servizio Data Mover controllano lo spostamento degli oggetti verso il Cloud Storage Pool.
+
+image:cloud_storage_pool_data_flow.png["Flusso di dati del Cloud Storage Pool"]
+
+. Il motore ILM seleziona un servizio Data Mover per replicare nel Cloud Storage Pool.
+. Il servizio Data Mover invia i dati degli oggetti al Cloud Storage Pool.
+. Il servizio Data Mover notifica al motore ILM che i dati dell'oggetto sono stati memorizzati.
+. Il motore ILM aggiorna l'archivio dei metadati con i metadati sulla posizione degli oggetti.
+

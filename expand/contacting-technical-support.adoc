@@ -1,0 +1,61 @@
+---
+permalink: expand/contacting-technical-support.html 
+sidebar: sidebar 
+keywords: troubleshoot expansion, contact technical support, StorageGRID 
+summary: 'Se riscontri errori durante il processo di espansione della griglia che non riesci a risolvere, o se un"attività della griglia non riesce, raccogli i file di registro e contatta il supporto tecnico.' 
+---
+= Risolvi gli errori di espansione in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se riscontri errori durante il processo di espansione della griglia che non riesci a risolvere, o se un'attività della griglia non riesce, raccogli i file di registro e contatta il supporto tecnico.
+
+${post_edited_translations.segment}
+
+.Passaggi
+. L'accesso SSH esterno è bloccato per impostazione predefinita. Se necessario, link:../admin/manage-external-ssh-access.html["${post_edited_translations.segment}"].
+. Connettiti al nodo di espansione che ha riscontrato problemi:
++
+.. Inserisci il seguente comando:``ssh -p 8022 admin@_grid_node_IP_``
++
+La porta 8022 è la porta SSH del sistema operativo di base, mentre la porta 22 è la porta SSH del motore di container che esegue StorageGRID.
+
+.. Inserisci la password indicata nel file  `Passwords.txt`.
+.. Inserisci il seguente comando per passare all'utente root: `su -`
+.. Inserisci la password indicata nel file  `Passwords.txt`.
+
+
++
+Dopo aver effettuato l'accesso come root, il prompt cambia da  `$` a  `#`.
+
+. A seconda della fase di installazione raggiunta, recupera uno qualsiasi dei seguenti log disponibili sul nodo della griglia:
++
+[cols="1a,2a"]
+|===
+| Piattaforma | ${post_edited_translations.segment} 
+
+
+ a| 
+VMware
+ a| 
+** `/var/log/daemon.log`
+** `/var/log/storagegrid/daemon.log`
+** `/var/log/storagegrid/nodes/<node-name>.log`
+
+
+
+
+ a| 
+Linux
+ a| 
+** `/var/log/storagegrid/daemon.log`
+** `/etc/storagegrid/nodes/<node-name>.conf` (per ogni nodo guasto)
+** `/var/log/storagegrid/nodes/<node-name>.log` (per ogni nodo guasto; potrebbe non esistere)
+
+
+|===
+. Se hai consentito l'accesso SSH esterno, link:../admin/manage-external-ssh-access.html["blocco accesso"] quando hai finito l'attività.
+

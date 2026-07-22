@@ -1,0 +1,99 @@
+---
+permalink: audit/llst-location-lost.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, LLST, Location Lost 
+summary: 'Questo messaggio viene generato ogni volta che non è possibile trovare una posizione per una copia di un oggetto (replicata o codificata con cancellazione).' 
+---
+= Messaggio di audit LLST per le posizioni di copia degli oggetti persi in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Questo messaggio viene generato ogni volta che non è possibile trovare una posizione per una copia di oggetto (replicata o codificata con cancellazione).
+
+[cols="1a,1a,4a"]
+|===
+| Codice | Campo | Descrizione 
+
+
+ a| 
+CBIL
+ a| 
+${post_edited_translations.segment}
+ a| 
+${post_edited_translations.segment}
+
+
+
+ a| 
+ECPR
+ a| 
+Profilo di Erasure-Coding
+ a| 
+Per i dati degli oggetti codificati con cancellazione. L'ID del profilo di codifica con cancellazione utilizzato.
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Tipo di posizione
+ a| 
+CLDI (online): per i dati oggetto replicati
+
+${post_edited_translations.segment}
+
+CLNL (Nearline): Per i dati oggetto replicati archiviati
+
+
+
+ a| 
+NOID
+ a| 
+ID del nodo sorgente
+ a| 
+L'ID del nodo su cui sono state perse le posizioni.
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Percorso all'oggetto replicato
+ a| 
+Il percorso completo della posizione su disco dei dati dell'oggetto perso. Restituito solo quando LTYP ha valore CLDI (ovvero, per gli oggetti replicati).
+
+Assume la forma `/var/local/rangedb/2/p/13/13/00oJs6X%{h{U)SeUFxE@`
+
+
+
+ a| 
+RSLT
+ a| 
+Risultato
+ a| 
+Sempre NONE. RSLT è un campo di messaggio obbligatorio, ma non è rilevante per questo messaggio. Si usa NONE anziché SUCS in modo che questo messaggio non venga filtrato.
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+${post_edited_translations.segment}
+ a| 
+UTENTE: Attivato dall'utente
+
+${post_edited_translations.segment}
+
+
+
+ a| 
+UUID
+ a| 
+ID univoco universale
+ a| 
+${post_edited_translations.segment}
+
+|===

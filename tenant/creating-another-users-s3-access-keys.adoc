@@ -1,0 +1,64 @@
+---
+permalink: tenant/creating-another-users-s3-access-keys.html 
+sidebar: sidebar 
+keywords: how to create other user S3 access key 
+summary: ${post_edited_translations.segment} 
+---
+= Crea le chiavi di accesso S3 di un altro utente in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+${post_edited_translations.segment}
+
+.Prima di iniziare
+* Hai effettuato l'accesso al Tenant Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Tu appartieni a un gruppo di utenti che ha il link:tenant-management-permissions.html["Permesso di accesso root"].
+
+
+.Informazioni su questa attività
+Puoi creare una o più chiavi di accesso S3 per altri utenti così possono creare e gestire bucket per il loro account tenant. Dopo che hai creato una nuova chiave di accesso, aggiorna l'applicazione con il nuovo ID della chiave di accesso e la chiave di accesso segreta. Per sicurezza, non creare più chiavi di quante ne servano all'utente ed elimina quelle che non vengono usate. Se hai solo una chiave e sta per scadere, crea una nuova chiave prima che la vecchia scada, poi elimina quella vecchia.
+
+Ogni chiave può avere un tempo di scadenza specifico o nessuna scadenza. Segui queste linee guida per il tempo di scadenza:
+
+* Imposta un tempo di scadenza per le chiavi per limitare l'accesso dell'utente a un determinato periodo di tempo. L'impostazione di un tempo di scadenza breve può aiutare a ridurre il rischio in caso di esposizione accidentale dell'ID della chiave di accesso e della chiave di accesso segreta. Le chiavi scadute vengono rimosse automaticamente.
+* Se il rischio per la sicurezza nel tuo ambiente è basso e non hai bisogno di creare periodicamente nuove chiavi, non è necessario impostare un tempo di scadenza per le chiavi. Se in seguito decidi di creare nuove chiavi, elimina manualmente le vecchie chiavi.
+
+
+
+CAUTION: È possibile accedere ai bucket e agli oggetti S3 appartenenti a un utente utilizzando l'ID della chiave di accesso e la chiave di accesso segreta visualizzati per tale utente nel Tenant Manager. Per questo motivo, proteggi le chiavi di accesso come faresti con una password. Ruota regolarmente le chiavi di accesso, rimuovi le chiavi inutilizzate dall'account e non condividerle mai con altri utenti.
+
+.Passaggi
+. Seleziona *Gestione accessi* > *Utenti*.
+. Seleziona l'utente di cui vuoi gestire le chiavi di accesso S3.
++
+Viene visualizzata la pagina dei dettagli dell'utente.
+
+. ${post_edited_translations.segment}
+. Esegui una delle seguenti operazioni:
++
+** Seleziona *Non impostare una data di scadenza* per creare una chiave che non scade. (Predefinito)
+** Seleziona *Imposta una data di scadenza* e imposta la data e l'ora di scadenza.
++
+
+NOTE: La data di scadenza può essere al massimo di cinque anni dalla data odierna. L'orario di scadenza può essere di minimo un minuto dall'ora attuale.
+
+
+
+. Seleziona *Crea access key*.
++
+Viene visualizzata la finestra di dialogo "Chiave di accesso per il download", che elenca l'ID della chiave di accesso e la chiave di accesso segreta.
+
+. Copia l'ID della chiave di accesso e la chiave di accesso segreta in un luogo sicuro, oppure seleziona *Download .csv* per salvare un file foglio di calcolo contenente l'ID della chiave di accesso e la chiave di accesso segreta.
++
+
+CAUTION: Non chiudere questa finestra di dialogo finché non hai copiato o scaricato queste informazioni. Non potrai copiare o scaricare le chiavi dopo la chiusura della finestra di dialogo.
+
+. Seleziona *Fine*.
++
+${post_edited_translations.segment}
+
+. Se il tuo account tenant dispone dell'autorizzazione *Usa connessione di federazione della griglia*, puoi facoltativamente utilizzare l'API di gestione dei tenant per clonare manualmente le chiavi di accesso S3 dal tenant sulla griglia di origine al tenant sulla griglia di destinazione. Vedi link:grid-federation-clone-keys-with-api.html["${post_edited_translations.segment}"].
+

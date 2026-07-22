@@ -1,0 +1,43 @@
+---
+indexpage:
+  title: Recupera o sostituisci i nodi
+  summary: Se un nodo della griglia si guasta, puoi ripristinarlo sostituendo il server
+    fisico o virtuale guasto, reinstallando il software StorageGRID e ripristinando
+    i dati recuperabili.
+  keywords: recover node, replace node
+  lead: Se un nodo della griglia si guasta, puoi ripristinarlo sostituendo il server
+    fisico o virtuale guasto, reinstallando il software StorageGRID e ripristinando
+    i dati recuperabili.
+  tiles:
+  - title: Inizia
+    links:
+    - title: Avvertenze e considerazioni
+      url: "../maintain/warnings-and-considerations-for-grid-node-recovery.html"
+    - title: Raccogli il materiale necessario
+      url: "../maintain/gathering-required-materials-for-grid-node-recovery.html"
+  - title: "${post_edited_translations.segment}"
+    links:
+    - title: Avvertenze e considerazioni
+      url: "../maintain/warnings-and-considerations-for-grid-node-recovery.html"
+    - title: Nodi di storage
+      url: "../maintain/recovering-from-storage-node-failures.html"
+    - title: Nodi di amministrazione
+      url: "../maintain/recovering-from-admin-node-failures.html"
+    - title: "${post_edited_translations.segment}"
+      url: "../maintain/replacing-gateway-node.html"
+    - title: "${post_edited_translations.segment}"
+      url: "../maintain/recovering-from-archive-node-failures.html"
+  - title: Sostituisci il nodo
+    links:
+    - title: "${post_edited_translations.segment}"
+      url: "../maintain/all-node-types-replacing-linux-node.html"
+    - title: Sostituisci il nodo VMware
+      url: "../maintain/all-node-types-replacing-vmware-node.html"
+    - title: "${post_edited_translations.segment}"
+      url: "../maintain/installing-services-appliance-platform-change-only.html"
+    - title: Clona il nodo dell'appliance
+      url: https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/how-appliance-node-cloning-works.html
+  - title: Recupera un sito
+    links:
+    - title: Come il supporto tecnico ripristina un sito
+      url: "../maintain/how-site-recovery-is-performed-by-technical-support.html"

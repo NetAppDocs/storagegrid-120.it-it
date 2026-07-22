@@ -1,0 +1,488 @@
+---
+permalink: network/external-communications.html 
+sidebar: sidebar 
+keywords: storagegrid, network port, external communications, ports, TCP, UDP, client communications 
+summary: I client devono comunicare con i nodi della griglia per acquisire e recuperare contenuti. Le porte utilizzate dipendono dai protocolli di storage a oggetti scelti. Queste porte devono essere accessibili al client. 
+---
+= Comunicazioni esterne per StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+I client devono comunicare con i nodi della griglia per acquisire e recuperare contenuti. Le porte utilizzate dipendono dai protocolli di storage a oggetti scelti. Queste porte devono essere accessibili al client.
+
+
+
+[[restricted-access-to-ports]]
+== Accesso limitato alle porte
+
+Se le policy di rete aziendali limitano l'accesso a una qualsiasi delle porte, puoi fare una delle seguenti cose:
+
+* Usa link:../admin/configuring-load-balancer-endpoints.html["endpoint del bilanciatore di carico"] per consentire l'accesso alle porte definite dall'utente.
+* Riassegna le porte durante la distribuzione dei nodi. Tuttavia, non devi rimappare gli endpoint del bilanciatore di carico. Consulta le informazioni sulla rimappatura delle porte per il tuo nodo StorageGRID:
+
+
+
+NOTE: Il supporto per la rimappatura delle porte è obsoleto e verrà rimosso in una versione futura. Per rimuovere le porte rimappate, consulta link:../maintain/removing-port-remaps.html["Rimuovi le rimappature delle porte sui dispositivi StorageGRID"] o link:../maintain/removing-port-remaps-on-bare-metal-hosts.html["${post_edited_translations.segment}"].
+
+* link:../swnodes/creating-node-configuration-files.html["Chiavi di rimappatura delle porte per StorageGRID su Red Hat Enterprise Linux"]
+* link:../swnodes/deploying-storagegrid-node-as-virtual-machine.html#vmware-remap-ports["Rimappa le porte per StorageGRID su VMware"]
+* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/optional-remapping-network-ports-for-appliance.html["Opzionale: rimappa le porte di rete per l'appliance"^]
+
+
+
+
+[[ports-used-for-external-communications]]
+== Porte utilizzate per le comunicazioni esterne
+
+La tabella seguente mostra le porte utilizzate per il traffico in entrata nei nodi.
+
+
+NOTE: Questo elenco non include le porte che potrebbero essere configurate come link:../admin/configuring-load-balancer-endpoints.html["endpoint del bilanciatore di carico"].
+
+[cols="1a,1a,1a,1a,1a,4a"]
+|===
+| Porta | TCP o UDP | Protocollo | Da | A | Dettagli 
+
+
+ a| 
+22
+ a| 
+TCP
+ a| 
+SSH
+ a| 
+Portatile di servizio
+ a| 
+Tutti i nodi
+ a| 
+Per le procedure che prevedono passaggi da console è necessario l'accesso SSH o tramite console. In alternativa, puoi usare la porta 2022 invece della 22.
+
+*Nota*: Questa porta è necessaria solo quando devi abilitare l'accesso SSH per alcune operazioni di manutenzione.
+
+
+
+ a| 
+25
+ a| 
+TCP
+ a| 
+SMTP
+ a| 
+Nodi di amministrazione
+ a| 
+Server di posta elettronica
+ a| 
+Utilizzato per avvisi e comunicazioni e-mail basate su AutoSupport. Puoi modificare l'impostazione predefinita della porta 25 dalla pagina Email Servers.
+
+
+
+ a| 
+53
+ a| 
+TCP/UDP
+ a| 
+DNS
+ a| 
+Tutti i nodi
+ a| 
+Server DNS
+ a| 
+Usato per DNS.
+
+
+
+ a| 
+67
+ a| 
+UDP
+ a| 
+DHCP
+ a| 
+Tutti i nodi
+ a| 
+Servizio DHCP
+ a| 
+Utilizzato facoltativamente per supportare la configurazione di rete basata su DHCP. Il servizio dhclient non viene eseguito per i grid configurati staticamente.
+
+
+
+ a| 
+68
+ a| 
+UDP
+ a| 
+DHCP
+ a| 
+Servizio DHCP
+ a| 
+Tutti i nodi
+ a| 
+Utilizzato facoltativamente per supportare la configurazione di rete basata su DHCP. Il servizio dhclient non viene eseguito per le griglie che utilizzano indirizzi IP statici.
+
+
+
+ a| 
+80
+ a| 
+TCP
+ a| 
+HTTP
+ a| 
+Browser
+ a| 
+Nodi di amministrazione
+ a| 
+La porta 80 reindirizza alla porta 443 per l'interfaccia utente del nodo Admin.
+
+
+
+ a| 
+80
+ a| 
+TCP
+ a| 
+HTTP
+ a| 
+Browser
+ a| 
+Appliance
+ a| 
+La porta 80 reindirizza alla porta 8443 per l'Installer di StorageGRID Appliance.
+
+
+
+ a| 
+80
+ a| 
+TCP
+ a| 
+HTTP
+ a| 
+Nodi di storage con ADC
+ a| 
+AWS
+ a| 
+Utilizzato per i messaggi dei servizi della piattaforma inviati ad AWS o ad altri servizi esterni che utilizzano HTTP. I tenant possono modificare l'impostazione predefinita della porta HTTP 80 quando creano un endpoint.
+
+
+
+ a| 
+80
+ a| 
+TCP
+ a| 
+HTTP
+ a| 
+Nodi di storage
+ a| 
+AWS
+ a| 
+Le richieste dei Cloud Storage Pools vengono inviate alle destinazioni AWS che utilizzano HTTP. Gli amministratori della grid possono modificare l'impostazione predefinita della porta HTTP di 80 durante la configurazione di un Cloud Storage Pool.
+
+
+
+ a| 
+123
+ a| 
+UDP
+ a| 
+NTP
+ a| 
+Nodi NTP primari
+ a| 
+NTP esterno
+ a| 
+Servizio di protocollo orario di rete (NTP). I nodi selezionati come sorgenti NTP primarie sincronizzano anche gli orari con le sorgenti orarie NTP esterne.
+
+
+
+ a| 
+161
+ a| 
+TCP/UDP
+ a| 
+SNMP
+ a| 
+client SNMP
+ a| 
+Tutti i nodi
+ a| 
+Utilizzato per il polling SNMP. Tutti i nodi forniscono informazioni di base; anche i nodi Admin forniscono dati di avviso. Per impostazione predefinita viene utilizzata la porta UDP 161 quando configurata.
+
+*Nota:* Questa porta è necessaria e viene aperta sul firewall del nodo solo se SNMP è configurato. Se prevedi di utilizzare SNMP, puoi configurare porte alternative.
+
+*Nota:* Per informazioni sull'utilizzo di SNMP con StorageGRID, contatta il tuo referente commerciale NetApp.
+
+
+
+ a| 
+162
+ a| 
+TCP/UDP
+ a| 
+Notifiche SNMP
+ a| 
+Tutti i nodi
+ a| 
+Destinazioni di notifica
+ a| 
+Le notifiche e le trap SNMP in uscita utilizzano di default la porta UDP 162.
+
+*Nota:* Questa porta è necessaria solo se SNMP è abilitato e sono configurate le destinazioni di notifica. Se prevedi di utilizzare SNMP, puoi configurare porte alternative.
+
+*Nota:* Per informazioni sull'utilizzo di SNMP con StorageGRID, contatta il tuo referente commerciale NetApp.
+
+
+
+ a| 
+389
+ a| 
+TCP/UDP
+ a| 
+LDAP
+ a| 
+Nodi di storage con ADC
+ a| 
+Active Directory/LDAP
+ a| 
+Utilizzato per connettersi a un Active Directory o LDAP server per la federazione delle identità.
+
+
+
+ a| 
+443
+ a| 
+TCP
+ a| 
+HTTPS
+ a| 
+Browser
+ a| 
+Nodi di amministrazione
+ a| 
+Utilizzato dai browser web e dai client API di gestione per accedere a Grid Manager e Tenant Manager.
+
+*Nota*: Se chiudi le porte 443 o 8443 di Grid Manager, tutti gli utenti attualmente connessi su una porta bloccata, incluso te, perderanno l'accesso a Grid Manager a meno che il loro indirizzo IP non sia stato aggiunto all'elenco degli indirizzi privilegiati. Consulta link:../admin/configure-firewall-controls.html["${post_edited_translations.segment}"] per configurare gli indirizzi IP privilegiati.
+
+
+
+ a| 
+443
+ a| 
+TCP
+ a| 
+HTTPS
+ a| 
+Nodi di amministrazione
+ a| 
+Active Directory
+ a| 
+Utilizzato dai nodi di amministrazione che si connettono ad Active Directory se il single sign-on (SSO) è abilitato.
+
+
+
+ a| 
+443
+ a| 
+TCP
+ a| 
+HTTPS
+ a| 
+Nodi di storage con ADC
+ a| 
+AWS
+ a| 
+Utilizzato per i messaggi dei servizi della piattaforma inviati ad AWS o ad altri servizi esterni che utilizzano HTTPS. I tenant possono sovrascrivere l'impostazione predefinita della porta HTTP 443 quando creano un endpoint.
+
+
+
+ a| 
+443
+ a| 
+TCP
+ a| 
+HTTPS
+ a| 
+Nodi di storage
+ a| 
+AWS
+ a| 
+Le richieste dei Cloud Storage Pools vengono inviate alle destinazioni AWS che utilizzano HTTPS. Gli amministratori della grid possono modificare l'impostazione predefinita della porta HTTPS 443 quando configurano un Cloud Storage Pool.
+
+
+
+ a| 
+5353
+ a| 
+UDP
+ a| 
+mDNS
+ a| 
+Tutti i nodi
+ a| 
+Tutti i nodi
+ a| 
+Fornisce il servizio multicast DNS (mDNS) utilizzato per le modifiche complete degli indirizzi IP della griglia e per il rilevamento del nodo Admin primario durante l'installazione, l'espansione e il ripristino.
+
+*Nota*: La configurazione di questa porta è facoltativa.
+
+
+
+ a| 
+5696
+ a| 
+TCP
+ a| 
+KMIP
+ a| 
+Appliance
+ a| 
+KMS
+ a| 
+Traffico esterno Key Management Interoperability Protocol (KMIP) dagli appliance configurati per la crittografia dei nodi verso il Key Management Server (KMS), a meno che non venga specificata una porta diversa nella pagina di configurazione del KMS dell'Appliance Installer di StorageGRID.
+
+
+
+ a| 
+8443
+ a| 
+TCP
+ a| 
+HTTPS
+ a| 
+Browser
+ a| 
+Nodi di amministrazione
+ a| 
+Opzionale. Utilizzato dai browser web e dai client API di gestione per accedere al Grid Manager. Può essere utilizzato per separare le comunicazioni tra Grid Manager e Tenant Manager.
+
+*Nota*: Se chiudi le porte 443 o 8443 di Grid Manager, tutti gli utenti attualmente connessi su una porta bloccata, incluso te, perderanno l'accesso a Grid Manager a meno che il loro indirizzo IP non sia stato aggiunto all'elenco degli indirizzi privilegiati. Consulta link:../admin/configure-firewall-controls.html["${post_edited_translations.segment}"] per configurare gli indirizzi IP privilegiati.
+
+
+
+ a| 
+8443
+ a| 
+TCP
+ a| 
+HTTPS
+ a| 
+Browser
+ a| 
+Appliance
+ a| 
+Utilizzato dai browser web e dai client API di gestione per accedere al programma di installazione dell'appliance StorageGRID.
+
+*Nota*: La porta 443 reindirizza alla porta 8443 per il programma di installazione dell'appliance StorageGRID.
+
+
+
+ a| 
+9022
+ a| 
+TCP
+ a| 
+SSH
+ a| 
+Portatile di servizio
+ a| 
+Appliance
+ a| 
+Consente l'accesso agli appliance StorageGRID in modalità di pre-configurazione per supporto e risoluzione dei problemi. Questa porta non è richiesta per essere accessibile tra i nodi del grid o durante il normale funzionamento.
+
+
+
+ a| 
+9091
+ a| 
+TCP
+ a| 
+HTTPS
+ a| 
+Servizio Grafana esterno
+ a| 
+Nodi di amministrazione
+ a| 
+Utilizzato dai servizi Grafana esterni per l'accesso sicuro al servizio StorageGRID Prometheus.
+
+*Nota:* Questa porta è necessaria solo se è abilitato l'accesso a Prometheus basato su certificati.
+
+
+
+ a| 
+9092
+ a| 
+TCP
+ a| 
+Kafka
+ a| 
+Nodi di storage con ADC
+ a| 
+cluster Kafka
+ a| 
+Utilizzato per i messaggi dei servizi della piattaforma inviati a un cluster Kafka. I tenant possono sovrascrivere l'impostazione predefinita della porta Kafka di 9092 durante la creazione di un endpoint.
+
+
+
+ a| 
+9443
+ a| 
+TCP
+ a| 
+HTTPS
+ a| 
+Browser
+ a| 
+Nodi di amministrazione
+ a| 
+Opzionale. Utilizzato dai browser web e dai client API di gestione per accedere al Tenant Manager. Può essere utilizzato per separare le comunicazioni tra Grid Manager e Tenant Manager.
+
+
+
+ a| 
+18082
+ a| 
+TCP
+ a| 
+HTTPS
+ a| 
+Client S3
+ a| 
+Nodi di storage
+ a| 
+Traffico client S3 diretto ai nodi di storage (HTTPS).
+
+
+
+ a| 
+18084
+ a| 
+TCP
+ a| 
+HTTP
+ a| 
+Client S3
+ a| 
+Nodi di storage
+ a| 
+Traffico client S3 direttamente verso i nodi di storage (HTTP).
+
+
+
+ a| 
+23000-23999
+ a| 
+TCP
+ a| 
+HTTPS
+ a| 
+Tutti i nodi sulla griglia di origine per la replica tra griglie
+ a| 
+Nodi di amministrazione e nodi gateway sulla griglia di destinazione per la replica tra griglie
+ a| 
+Questo intervallo di porte è riservato alle connessioni di federazione di griglie. Entrambe le griglie in una data connessione utilizzano la stessa porta.
+
+|===

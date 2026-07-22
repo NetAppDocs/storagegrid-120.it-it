@@ -1,0 +1,23 @@
+---
+permalink: maintain/recovering-storagegrid-appliance-storage-node.html 
+sidebar: sidebar 
+keywords: recover, appliance storage node failure, workflow 
+summary: 'La procedura per il recovery di un nodo di archiviazione StorageGRID guasto è la stessa sia in caso di perdita dell"unità di sistema sia in caso di perdita dei soli volumi di archiviazione.' 
+---
+= Avvisi per il ripristino dei nodi di archiviazione dell'appliance StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La procedura per il recovery di un nodo di archiviazione StorageGRID guasto è la stessa sia in caso di perdita dell'unità di sistema sia in caso di perdita dei soli volumi di archiviazione.
+
+
+CAUTION: Se più di uno Storage Node non funziona (o è offline), contatta il supporto tecnico. Non eseguire la seguente procedura di recovery. Potresti perdere dei dati. Per ulteriori informazioni, consulta link:how-site-recovery-is-performed-by-technical-support.html["Come il supporto tecnico ripristina un sito"].
+
+
+CAUTION: Se le regole ILM sono configurate per memorizzare una sola copia replicata e tale copia si trova su un volume di archiviazione guasto, non potrai recuperare l'oggetto.
+
+
+NOTE: Per le procedure di manutenzione hardware, come le istruzioni per la sostituzione di un controller o la reinstallazione di SANtricity OS, consulta la  https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/index.html["istruzioni di manutenzione per il tuo storage appliance"^].

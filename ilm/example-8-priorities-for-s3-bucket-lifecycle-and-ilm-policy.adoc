@@ -1,0 +1,121 @@
+---
+permalink: ilm/example-8-priorities-for-s3-bucket-lifecycle-and-ilm-policy.html 
+sidebar: sidebar 
+keywords: retention priority, example S3 bucket lifecycle, example ILM policy 
+summary: A seconda della configurazione del ciclo di vita, gli oggetti seguono le impostazioni di conservazione del ciclo di vita del bucket S3 o di una policy ILM. 
+---
+= Come il ciclo di vita del bucket S3 e la policy ILM interagiscono in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+A seconda della configurazione del ciclo di vita, gli oggetti seguono le impostazioni di conservazione del ciclo di vita del bucket S3 o di una policy ILM.
+
+
+
+[[example-of-bucket-lifecycle-taking-priority-over-ilm-policy]]
+== Esempio di ciclo di vita del bucket che ha la priorità sulla policy ILM
+
+Policy ILM::
++
+--
+* Regola basata su un riferimento temporale non corrente: al giorno 0, tieni X copie per 20 giorni
+* Regola basata sul riferimento temporale di acquisizione (impostazione predefinita): al giorno 0, conserva X copie per 50 giorni
+
+
+--
+Ciclo di vita del bucket:: `"Filter": {"Prefix": "docs/"}, "Expiration": {"Days": 100}, "NoncurrentVersionExpiration": {"NoncurrentDays": 5}`
+Risultato::
++
+--
+* Viene acquisito un oggetto denominato "docs/text". Corrisponde al filtro del ciclo di vita del bucket con prefisso "docs/".
++
+** Dopo 100 giorni viene creato un delete-marker e "docs/text" diventa noncurrent.
+** Dopo 5 giorni, per un totale di 105 giorni dall'ingestione, "docs/text" viene eliminata.
+** Dopo 95 giorni, ovvero 200 giorni dall'ingest e 100 giorni dalla creazione del delete-marker, il delete-marker scaduto viene eliminato.
+
+
+* È stato acquisito un oggetto denominato "video/movie". Non corrisponde al filtro e utilizza la policy di conservazione ILM.
++
+** Dopo 50 giorni viene creato un indicatore di eliminazione e "video/movie" diventa non corrente.
+** Dopo 20 giorni, per un totale di 70 giorni dall'ingest, "video/movie" viene eliminato.
+** Dopo 30 giorni, per un totale di 100 giorni dall'ingest e 50 giorni dalla creazione del delete-marker, il delete-marker scaduto viene eliminato.
+
+
+
+
+--
+
+
+
+
+[[example-of-bucket-lifecycle-implicitly-keeping-forever]]
+== Esempio di ciclo di vita del bucket che implicitamente conserva per sempre
+
+Policy ILM::
++
+--
+* Regola basata su un riferimento temporale non corrente: al giorno 0, tieni X copie per 20 giorni
+* Regola basata sul riferimento temporale di acquisizione (impostazione predefinita): al giorno 0, conserva X copie per 50 giorni
+
+
+--
+Ciclo di vita del bucket:: `"Filter": {"Prefix": "docs/"}, "Expiration": {"ExpiredObjectDeleteMarker": true}`
+Risultato::
++
+--
+* Viene acquisito un oggetto denominato "docs/text". Corrisponde al filtro del ciclo di vita del bucket con prefisso "docs/".
++
+L' `Expiration`azione si applica solo ai marcatori di eliminazione scaduti, il che implica mantenere tutto il resto per sempre (a partire da "docs/").
+
++
+I marcatori di eliminazione che iniziano con "docs/" vengono rimossi quando scadono.
+
+* È stato acquisito un oggetto denominato "video/movie". Non corrisponde al filtro e utilizza la policy di conservazione ILM.
++
+** Dopo 50 giorni viene creato un indicatore di eliminazione e "video/movie" diventa non corrente.
+** Dopo 20 giorni, per un totale di 70 giorni dall'ingest, "video/movie" viene eliminato.
+** Dopo 30 giorni, per un totale di 100 giorni dall'ingest e 50 giorni dalla creazione del delete-marker, il delete-marker scaduto viene eliminato.
+
+
+
+
+--
+
+
+
+
+[[example-of-using-bucket-lifecycle-to-duplicate-ilm-and-clean-up-expired-delete-markers]]
+== Esempio di utilizzo del ciclo di vita del bucket per duplicare ILM e ripulire i marcatori di eliminazione scaduti
+
+Policy ILM::
++
+--
+* Regola basata su un riferimento temporale non corrente: al giorno 0, tieni X copie per 20 giorni
+* Regola basata sul riferimento del tempo di acquisizione (predefinito): al giorno 0, conserva X copie per sempre
+
+
+--
+Ciclo di vita del bucket:: `"Filter": {}, "Expiration": {"ExpiredObjectDeleteMarker": true}, "NoncurrentVersionExpiration": {"NoncurrentDays": 20}`
+Risultato::
++
+--
+* La policy ILM viene duplicata nel ciclo di vita del bucket.
++
+** La regola "per sempre" della policy ILM è progettata per rimuovere manualmente gli oggetti ed eliminare le versioni non correnti dopo 20 giorni. Di conseguenza, la regola "tempo di acquisizione" manterrà per sempre i delete marker scaduti.
+** Il ciclo di vita del bucket duplica il comportamento della policy ILM aggiungendo  `"ExpiredObjectDeleteMarker": true`, che rimuove i marcatori di eliminazione una volta scaduti
+
+
+* Un oggetto viene ingerito. Nessun filtro significa che il ciclo di vita del bucket si applica a tutti gli oggetti e sovrascrive le impostazioni di conservazione di ILM.
++
+** Quando un tenant invia una richiesta di eliminazione di un oggetto, viene creato un delete-marker e l'oggetto diventa non corrente.
+** Dopo 20 giorni, l'oggetto non corrente viene eliminato e il delete-marker scade.
+** Poco dopo, il marcatore di eliminazione scaduto viene eliminato.
+
+
+
+
+--
+

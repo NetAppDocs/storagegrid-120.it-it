@@ -1,0 +1,105 @@
+---
+permalink: admin/configuring-s3-api-endpoint-domain-names.html 
+sidebar: sidebar 
+keywords: s3 endpoint domain names, virtual-hosted-style requests 
+summary: 'Per supportare le richieste in stile virtual-hosted di S3, devi usare Grid Manager per configurare l"elenco dei nomi di dominio degli endpoint S3 a cui si connettono i client S3.' 
+---
+= Configura i nomi di dominio degli endpoint S3 in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Per supportare le richieste in stile virtual-hosted di S3, devi usare Grid Manager per configurare l'elenco dei nomi di dominio degli endpoint S3 a cui si connettono i client S3.
+
+
+CAUTION: L'utilizzo di un indirizzo IP per un domain name dell'endpoint non è supportato. Le versioni future impediranno questa configurazione.
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Hai link:../admin/admin-group-permissions.html["autorizzazioni di accesso specifiche"].
+* ${post_edited_translations.segment}
++
+
+CAUTION: Non apportare modifiche alla domain name configuration durante un aggiornamento della griglia.
+
+
+
+.Informazioni su questa attività
+${post_edited_translations.segment}
+
+* Usa Grid Manager per aggiungere i domain name degli endpoint S3 al sistema StorageGRID.
+* Assicurati che link:../admin/configuring-administrator-client-certificates.html["${post_edited_translations.segment}"] sia firmato per tutti i domain name richiesti dal client.
++
+Ad esempio, se l'endpoint è `s3.company.com`, devi assicurarti che il certificato utilizzato per le connessioni HTTPS includa l'endpoint `s3.company.com` e il Subject Alternative Name (SAN) wildcard dell'endpoint: `*.s3.company.com`.
+
+* Configura il DNS server utilizzato dal client. Includi i record DNS per gli indirizzi IP che i client utilizzano per stabilire le connessioni e assicurati che i record facciano riferimento a tutti i nomi di dominio degli endpoint S3 richiesti, inclusi eventuali nomi wildcard.
++
+
+NOTE: I client possono connettersi a StorageGRID utilizzando l'indirizzo IP di un Gateway Node, di un Admin Node o di un Storage Node, oppure connettendosi all'indirizzo IP virtuale di un high availability group. Dovresti capire come le applicazioni client si connettono alla grid così da includere gli indirizzi IP corretti nei record DNS.
+
+
+
+${post_edited_translations.segment}
+
+* I client che si connettono a un endpoint del bilanciatore di carico possono utilizzare un certificato personalizzato per tale endpoint. Ogni endpoint del bilanciatore di carico può essere configurato per riconoscere diversi domain name degli endpoint S3.
+* ${post_edited_translations.segment}
+
+
+
+NOTE: Se non aggiungi i nomi di dominio degli endpoint S3 e l'elenco è vuoto, il supporto per le richieste in stile virtual-hosted di S3 è disattivato.
+
+
+
+[[add-an-s3-endpoint-domain-name]]
+== Aggiungi un domain name S3
+
+.Passaggi
+. Seleziona *Configuration* > *Network* > *S3 endpoint domain names*.
+. Inserisci il domain name nel campo *Domain name 1*. Seleziona *Add another domain name* per aggiungere altri domain name.
+. Seleziona *Salva*.
+. Assicurati che i certificati server utilizzati dai client corrispondano ai domain name degli endpoint S3 richiesti.
++
+** Se i client si connettono a un endpoint del bilanciatore di carico che utilizza il proprio certificato, link:../admin/configuring-load-balancer-endpoints.html["aggiorna il certificato associato all'endpoint"].
+** Se i client si connettono a un endpoint di load balancer che utilizza il certificato API S3 globale o direttamente ai Storage Node, link:../admin/use-s3-setup-wizard-steps.html["aggiorna il certificato API S3 globale"].
+
+
+. ${post_edited_translations.segment}
+
+
+.Risultato
+Ora, quando i client utilizzano l'endpoint `_bucket.s3.company.com_`, il DNS server risolve l'endpoint corretto e il certificato autentica l'endpoint come previsto.
+
+
+
+[[rename-an-s3-endpoint-domain-name]]
+== Rinomina un domain name endpoint S3
+
+Se cambi un nome utilizzato dalle applicazioni S3, le richieste in stile virtual-hosted non andranno a buon fine.
+
+.Passaggi
+. Seleziona *Configuration* > *Network* > *S3 endpoint domain names*.
+. Seleziona il campo domain name che vuoi modificare ed effettua le modifiche necessarie.
+. Seleziona *Salva*.
+. ${post_edited_translations.segment}
+
+
+
+
+[[delete-an-s3-endpoint-domain-name]]
+== Elimina un domain name endpoint S3
+
+Se rimuovi un nome utilizzato dalle applicazioni S3, le richieste in stile virtual-hosted non andranno a buon fine.
+
+.Passaggi
+. Seleziona *Configuration* > *Network* > *S3 endpoint domain names*.
+. Seleziona l'icona di eliminazione image:icon-x-to-remove.png["icona di eliminazione"] accanto al domain name.
+. ${post_edited_translations.segment}
+
+
+.Informazioni correlate
+* link:../s3/index.html["${post_edited_translations.segment}"]
+* link:viewing-ip-addresses.html["${post_edited_translations.segment}"]
+* link:configure-high-availability-group.html["Configura i gruppi ad alta disponibilità"]
+

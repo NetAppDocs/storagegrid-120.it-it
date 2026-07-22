@@ -1,0 +1,132 @@
+---
+permalink: maintain/decommissioning-connected-grid-nodes.html 
+sidebar: sidebar 
+keywords: storagegrid, decommission, connected nodes, decommission node 
+summary: Puoi decommissionare e rimuovere definitivamente i nodi connessi alla grid. 
+---
+= Decommissionare i nodi StorageGRID collegati
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi decommissionare e rimuovere definitivamente i nodi connessi alla grid.
+
+.Prima di iniziare
+* Hai compreso le considerazioni per decommissionare link:considerations-for-decommissioning-admin-or-gateway-nodes.html["Nodi di amministrazione e gateway"] e le considerazioni per decommissionare link:considerations-for-decommissioning-storage-nodes.html["Nodi di storage"].
+* Hai raccolto tutto il materiale necessario.
+* Hai verificato che non siano in corso processi di riparazione dati.
+* Hai confermato che il recovery del nodo di storage non è in corso in nessuna parte della grid. Se invece è in corso, aspetta che qualsiasi rebuild di Cassandra eseguito come parte del recovery sia completato. A questo punto puoi procedere con il decommissioning.
+* Hai verificato che nessun'altra procedura di manutenzione venga eseguita mentre è in corso la procedura di decommission del nodo, a meno che la procedura di decommission non venga messa in pausa.
+* ${post_edited_translations.segment}
+* I nodi della griglia sono collegati.
+* La colonna *Decommission Possible* relativa al nodo o ai nodi che vuoi decommissionare include un segno di spunta verde.
++
+
+NOTE: La decommission non verrà avviata se uno o più volumi sono offline (smontati) o se sono online (montati) ma in stato di errore.
+
++
+
+NOTE: Se uno o più volumi vanno offline durante una decommission, il processo di decommission si completa dopo che questi volumi sono tornati online.
+
+* Tutti i nodi della griglia hanno uno stato di salute normale (verde) image:icon_alert_green_checkmark.png["icona con segno di spunta verde"]. Se visualizzi una di queste icone nella colonna *Salute*, devi provare a risolvere il problema:
++
+[cols="1a,1a,3a"]
+|===
+| Icona | Colore | Gravità 
+
+
+ a| 
+image:icon_alarm_yellow_notice.gif["icona quadrata gialla"]
+ a| 
+Giallo
+ a| 
+Avviso
+
+
+
+ a| 
+image:icon_alert_yellow_minor.png["icona a forma di diamante arancione chiaro"]
+ a| 
+Arancione chiaro
+ a| 
+Minore
+
+
+
+ a| 
+image:icon_alert_orange_major.png["icona a forma di diamante arancione scuro"]
+ a| 
+Arancione scuro
+ a| 
+Maggiore
+
+
+
+ a| 
+image:icon_alert_red_critical.png["icona x rossa"]
+ a| 
+Rosso
+ a| 
+Critico
+
+|===
+* Se in precedenza hai decommissionato un nodo di storage disconnesso, tutti i job di riparazione dei dati sono stati completati con successo. Vedi link:checking-data-repair-jobs.html["Verifica i lavori di riparazione dei dati"].
+
+
+
+CAUTION: Non rimuovere la macchina virtuale o altre risorse di un nodo della griglia finché non ti viene detto di farlo in questa procedura.
+
+
+CAUTION: Presta attenzione quando decommissioni i Storage Node in un grid che contiene nodi basati su software di soli metadati. Se decommissioni tutti i nodi configurati per memorizzare _sia_ oggetti che metadati, la capacità di memorizzare oggetti viene rimossa dal grid. Consulta link:../primer/what-storage-node-is.html#types-of-storage-nodes["Tipi di nodi di archiviazione"] per ulteriori informazioni sui Storage Node di soli metadati.
+
+.Informazioni su questa attività
+Quando un nodo viene decommissionato, i suoi servizi vengono disabilitati e il nodo si spegne automaticamente.
+
+.Passaggi
+. Dalla pagina Decommissiona nodi, seleziona la casella di controllo per ogni nodo della griglia che vuoi decommissionare.
+. ${post_edited_translations.segment}
++
+Il pulsante *Avvia decommission* è abilitato.
+
+. Seleziona *Avvia decommission*.
+. Esamina l'elenco dei nodi nella finestra di dialogo di conferma e seleziona *OK*.
++
+Viene avviata la procedura di decommission del nodo e l'avanzamento viene visualizzato per ciascun nodo.
+
++
+
+CAUTION: Non mettere un nodo di storage offline dopo che la procedura di decommission è stata avviata. Cambiare lo stato potrebbe comportare che alcuni contenuti non vengano copiati in altre posizioni.
+
+. Non appena il nuovo pacchetto di ripristino sarà disponibile, seleziona il collegamento al pacchetto di ripristino nel banner oppure seleziona *Manutenzione* > *Sistema* > *Pacchetto di ripristino* per accedere alla pagina del pacchetto di ripristino. Quindi, scarica il  `.zip` file.
++
+Vedi link:downloading-recovery-package.html["download del pacchetto di ripristino"].
+
++
+
+NOTE: Scarica il pacchetto di ripristino il prima possibile per assicurarti di poter ripristinare la tua grid se qualcosa va storto durante la procedura di decommission.
+
+. Controlla periodicamente la pagina Decommission Nodes per assicurarti che tutti i nodi selezionati siano stati decommissionati con successo.
++
+
+TIP: I nodi di storage possono richiedere giorni o settimane per essere decommissionati.
+
++
+Quando tutte le operazioni sono completate, l'elenco di selezione dei nodi viene visualizzato di nuovo con un messaggio di successo.
+
+
+
+.Dopo aver finito
+Dopo aver completato la procedura di decommissionare del nodo, completa questi passaggi:
+
+. Segui la procedura appropriata per la tua piattaforma. Ad esempio:
++
+** *Linux*: Potresti voler scollegare i volumi ed eliminare i file di configurazione del nodo che hai creato durante l'installazione. Vedi link:../swnodes/index.html["Installa StorageGRID sui nodi basati su software"].
+** *VMware*: Potresti voler usare l'opzione vCenter "Elimina da disco" per eliminare la macchina virtuale. Potresti anche dover eliminare eventuali dischi dati indipendenti dalla macchina virtuale.
+** *StorageGRID appliance*: Il nodo dell'appliance torna automaticamente allo stato non distribuito, consentendoti di accedere al programma di installazione dell'appliance StorageGRID. Puoi spegnere l'appliance o aggiungerla a un altro sistema StorageGRID.
+
+
+. Assicurati che le unità del nodo di grid decommissionato vengano completamente cancellate. Usa uno strumento o un servizio di cancellazione dati disponibile in commercio per rimuovere in modo permanente e sicuro i dati dalle unità.
+. Se hai decommissionato un nodo appliance e i dati sull'appliance erano protetti tramite crittografia del nodo, usa StorageGRID Appliance Installer per cancellare la configurazione del server di gestione delle chiavi (Clear KMS). Devi cancellare la configurazione KMS se vuoi aggiungere l'appliance a un'altra grid. Per istruzioni, vedi  https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/monitoring-node-encryption-in-maintenance-mode.html["Monitora la crittografia del nodo in modalità di manutenzione"^].
+

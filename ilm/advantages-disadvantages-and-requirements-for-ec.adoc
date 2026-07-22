@@ -1,0 +1,70 @@
+---
+permalink: ilm/advantages-disadvantages-and-requirements-for-ec.html 
+sidebar: sidebar 
+keywords: erasure coding advantages, disadvantages, EC requirements 
+summary: Prima di decidere se utilizzare la replica o la codifica di cancellazione per proteggere i dati degli oggetti dalla perdita, dovresti capire i vantaggi, gli svantaggi e i requisiti della codifica di cancellazione. 
+---
+= Vantaggi, svantaggi e requisiti per l'erasure coding in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Prima di decidere se utilizzare la replica o la codifica di cancellazione per proteggere i dati degli oggetti dalla perdita, dovresti capire i vantaggi, gli svantaggi e i requisiti della codifica di cancellazione.
+
+
+
+[[advantages-of-erasure-coding]]
+== Vantaggi della codifica a cancellazione
+
+Rispetto alla replica, la codifica a cancellazione offre maggiore affidabilità, disponibilità ed efficienza di archiviazione.
+
+* *Affidabilità*: Misurata dal numero di guasti simultanei che possono essere sostenuti senza perdita di dati.
++
+** Replicazione: più copie identiche degli oggetti sono memorizzate su nodi diversi e in siti diversi.
+** Codifica di cancellazione: un oggetto viene codificato in frammenti di dati e di parità e distribuito su molti nodi e siti. Questa dispersione offre protezione sia dai guasti del sito che del nodo.
+
+
+* *Disponibilità*: la possibilità di recuperare gli oggetti se i nodi di archiviazione si guastano o diventano inaccessibili. Rispetto alla replica, la codifica di cancellazione offre una maggiore disponibilità a costi di storage comparabili.
+* *Efficienza di archiviazione*: a parità di disponibilità e affidabilità, gli oggetti con codifica di cancellazione utilizzano meno spazio su disco rispetto agli oggetti replicati. Ad esempio, un oggetto da 10 MB replicato su due siti occupa 20 MB di spazio su disco (due copie), mentre un oggetto con codifica di cancellazione su tre siti con uno schema di codifica di cancellazione 6+3 occupa solo 15 MB di spazio su disco.
++
+
+NOTE: Lo spazio su disco per gli oggetti con codifica di cancellazione viene calcolato come la dimensione dell'oggetto più l'overhead dello storage. La percentuale di overhead dello storage è data dal numero di frammenti di parità diviso per il numero di frammenti di dati.
+
+
+
+
+
+[[disadvantages-of-erasure-coding]]
+== Svantaggi della codifica di cancellazione
+
+Rispetto alla replicazione, la codifica a cancellazione presenta i seguenti svantaggi:
+
+* A seconda dello schema di codifica di cancellazione, si consiglia un numero maggiore di Storage Node e siti. Al contrario, se replichi i dati degli oggetti, ti serve solo un Storage Node per ogni copia. Vedi link:what-erasure-coding-schemes-are.html#erasure-coding-schemes-for-storage-pools-containing-three-or-more-sites["Schemi di codifica di cancellazione per pool di storage contenenti tre o più siti"] e link:what-erasure-coding-schemes-are.html#erasure-coding-schemes-for-one-site-storage-pools["Schemi di codifica a cancellazione per pool di storage a sito singolo"].
+* Aumento dei costi e della complessità delle espansioni di storage. Per espandere una deployment che utilizza la replica, devi aggiungere capacità di storage in ogni posizione in cui vengono create copie di oggetti. Per espandere una deployment che utilizza la codifica di cancellazione, devi considerare sia lo schema di codifica di cancellazione in uso sia quanto sono pieni i nodi di storage esistenti. Ad esempio, se aspetti che i nodi esistenti siano pieni al 100%, devi aggiungere almeno  `k+m` nodi di storage, ma se espandi quando i nodi esistenti sono pieni al 70%, puoi aggiungere due nodi per sito e comunque massimizzare la capacità di storage utilizzabile. Per ulteriori informazioni, vedi link:../expand/adding-storage-capacity-for-erasure-coded-objects.html["${post_edited_translations.segment}"].
+* L'utilizzo della codifica di cancellazione su siti geograficamente distribuiti comporta un aumento delle latenze di recupero. I frammenti di un oggetto codificato con codifica di cancellazione e distribuito su siti remoti richiedono più tempo per essere recuperati tramite connessioni WAN rispetto a un oggetto replicato e disponibile localmente (nello stesso sito a cui si connette il client).
+* Quando usi la codifica di cancellazione su siti distribuiti geograficamente, c'è un maggiore utilizzo del traffico di rete WAN per i recuperi e le riparazioni, soprattutto per gli oggetti recuperati frequentemente o per le riparazioni di oggetti tramite connessioni di rete WAN.
+* Quando usi la codifica di cancellazione tra siti, il throughput massimo degli oggetti diminuisce drasticamente man mano che la latenza di rete tra i siti aumenta. Questa diminuzione è il risultato di una riduzione del throughput di rete TCP, che influisce sulla rapidità con cui il sistema StorageGRID può memorizzare e recuperare i frammenti degli oggetti.
+* Maggiore utilizzo delle risorse di calcolo.
+
+
+
+
+[[when-to-use-erasure-coding]]
+== Quando utilizzare la codifica di cancellazione
+
+Usa la codifica di cancellazione per i seguenti requisiti:
+
+* Oggetti di dimensioni superiori a 1 MB.
++
+
+NOTE: La codifica di cancellazione è più adatta per oggetti di dimensioni superiori a 1 MB. Non usare la codifica di cancellazione per oggetti più piccoli di 200 KB per evitare l'overhead della gestione di frammenti codificati molto piccoli.
+
+* Archiviazione a lungo termine o a freddo per contenuti consultati raramente.
+* Elevata disponibilità e affidabilità dei dati.
+* Protezione contro guasti completi del sito e dei nodi.
+* Efficienza dello storage.
+* Implementazioni su un singolo sito che richiedono una protezione efficiente dei dati con una sola copia codificata tramite erasure coding, anziché più copie replicate.
+* Implementazioni multi-sito in cui la latenza tra i siti è inferiore a 100 ms.
+

@@ -1,0 +1,41 @@
+---
+permalink: audit/accessing-audit-log-file.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, log, log file, access, accessing 
+summary: 'La cartella condivisa di audit contiene il file audit.log attivo e tutti i file di log di audit compressi. Puoi accedere ai file di log di audit direttamente dalla riga di comando dell"Admin Node.' 
+---
+= Accedi ai file di log di audit dalla riga di comando del nodo Admin di StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La cartella di controllo contiene il file attivo `audit.log` e tutti i file di log di controllo compressi. Puoi accedere ai file di log di controllo direttamente dalla riga di comando dell'Admin Node.
+
+Il file `audit.log` rimane vuoto a meno che non configuri StorageGRID per *Admin Nodes/local nodes* o *Admin Node and external syslog server*. Per ulteriori informazioni, consulta link:../monitor/configure-log-management.html#select-log-location["${post_edited_translations.segment}"].
+
+.Prima di iniziare
+* Hai link:../admin/admin-group-permissions.html["autorizzazioni di accesso specifiche"].
+* Devi avere il file `Passwords.txt`.
+* ${post_edited_translations.segment}
+
+
+.Passaggi
+. Accedi a un nodo amministratore:
++
+.. Inserisci il seguente comando: `ssh admin@_primary_Admin_Node_IP_`
+.. Inserisci la password indicata nel file  `Passwords.txt`.
+.. Inserisci il seguente comando per passare all'utente root: `su -`
+.. Inserisci la password indicata nel file  `Passwords.txt`.
++
+Quando sei connesso come root, il prompt cambia da  `$` a  `#`.
+
+
+
+. Vai alla directory che contiene i file di log di controllo:
++
+`cd  /var/local/audit/export/`
+
+. ${post_edited_translations.segment}
+

@@ -1,0 +1,69 @@
+---
+permalink: expand/guidelines-for-adding-object-capacity.html 
+sidebar: sidebar 
+keywords: adding storage capacity, guidelines, storage volumes, expansion, StorageGRID 
+summary: 'Puoi espandere la capacità di storage a oggetti del tuo sistema StorageGRID aggiungendo volumi di storage ai nodi di storage esistenti oppure aggiungendo nuovi nodi di storage ai siti esistenti. Devi aggiungere capacità di storage in modo che soddisfi i requisiti della tua policy di gestione del ciclo di vita delle informazioni (ILM).' 
+---
+= Linee guida per l'aggiunta di capacità di oggetti in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi espandere la capacità di storage a oggetti del tuo sistema StorageGRID aggiungendo volumi di storage ai nodi di storage esistenti oppure aggiungendo nuovi nodi di storage ai siti esistenti. Devi aggiungere capacità di storage in modo che soddisfi i requisiti della tua policy di gestione del ciclo di vita delle informazioni (ILM).
+
+
+
+[[guidelines-for-adding-storage-volumes]]
+== Linee guida per l'aggiunta di volumi di storage
+
+Prima di aggiungere volumi di storage ai nodi di storage esistenti, consulta le seguenti linee guida e limitazioni:
+
+* Devi esaminare le tue regole ILM attuali per determinare dove e quando link:../expand/adding-storage-volumes-to-storage-nodes.html["aggiungi volumi di archiviazione"] aumentare lo storage disponibile per link:../ilm/what-replication-is.html["oggetti replicati"] o link:../ilm/what-erasure-coding-schemes-are.html["oggetti codificati con erasure coding"].
+* Non puoi aumentare la capacità di metadati del tuo sistema aggiungendo volumi di storage, perché i metadati degli oggetti vengono memorizzati solo sul volume 0.
+* Ogni nodo di storage basato su software può supportare un massimo di 48 volumi di storage. Se hai bisogno di aggiungere capacità oltre questo limite, devi aggiungere nuovi nodi di storage.
+* Puoi aggiungere uno o due shelf di espansione a ciascun SG6060. Ogni shelf di espansione aggiunge 16 volumi di storage. Con entrambi gli shelf di espansione installati, SG6060 può supportare un totale di 48 volumi di storage.
+* Puoi aggiungere uno o due shelf di espansione a ciascun SG6160 appliance. Ogni shelf di espansione aggiunge 60 volumi di storage. Con entrambi gli shelf di espansione installati, l'SG6160 può supportare un totale di 180 volumi di storage.
+* Non puoi aggiungere volumi di storage a nessun altro appliance di storage.
+* Non puoi aumentare le dimensioni di un volume di storage esistente.
+* Non puoi aggiungere volumi di archiviazione a un nodo di archiviazione mentre stai eseguendo un aggiornamento di sistema, un'operazione di ripristino o un'altra espansione.
+
+
+Dopo che hai deciso di aggiungere volumi di storage e hai determinato quali Storage Node devi espandere per soddisfare la tua policy ILM, segui le istruzioni per il tuo tipo di Storage Node:
+
+* Per aggiungere uno o due shelf di espansione a un appliance di storage SG6060, vai su  https://docs.netapp.com/us-en/storagegrid-appliances/sg6000/adding-expansion-shelf-to-deployed-sg6060.html["Aggiungi shelf di espansione a SG6060 già implementato"^].
+* Per aggiungere uno o due shelf di espansione a un appliance di storage SG6160, vai a https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/adding-expansion-shelf-to-deployed-sg6160.html["Aggiungi shelf di espansione a SG6160 già implementato"^]
+* Per un nodo basato su software, segui le istruzioni per link:adding-storage-volumes-to-storage-nodes.html["aggiunta di volumi di storage ai nodi di Storage"].
+
+
+
+
+[[guidelines-for-adding-storage-nodes]]
+== ${post_edited_translations.segment}
+
+${post_edited_translations.segment}
+
+* Devi esaminare le tue regole ILM attuali per capire dove e quando aggiungere Storage Node per aumentare lo storage disponibile per link:../ilm/what-replication-is.html["oggetti replicati"] o link:../ilm/what-erasure-coding-schemes-are.html["oggetti codificati con erasure coding"].
+* Non dovresti aggiungere più di 10 Storage Node in una singola procedura di espansione.
+* Puoi aggiungere nodi di archiviazione a più di un sito in un'unica procedura di espansione.
+* ${post_edited_translations.segment}
+* Prima di avviare la procedura di espansione, devi verificare che tutte le operazioni di riparazione dei dati eseguite come parte di un recovery siano state completate. Vedi link:../maintain/checking-data-repair-jobs.html["Verifica i lavori di riparazione dei dati"].
+* Se devi rimuovere i nodi di archiviazione prima o dopo aver effettuato un'espansione, non dovresti decommissionare più di 10 nodi di archiviazione in una singola procedura di Decommission Node.
+* Aggiungi un numero sufficiente di Storage Node per mantenere le prestazioni di I/O dello storage sottostante. Le operazioni di scrittura saranno distribuite tra gli Storage Node in base alla capacità di storage disponibile. Se gli Storage Node espansi hanno una capacità di storage disponibile significativamente maggiore, questi nodi riceveranno un numero significativamente maggiore di scritture. In particolare, quando gli Storage Node esistenti sono quasi pieni, le nuove scritture si baseranno solo sugli Storage Node espansi. Le operazioni di lettura e cancellazione saranno gestite in base al tuo carico di lavoro specifico.
+
+
+
+
+[[guidelines-for-adc-service-on-storage-nodes]]
+== Linee guida per il servizio ADC sui nodi di storage
+
+Durante la configurazione dell'espansione, devi scegliere se includere il servizio Administrative Domain Controller (ADC) su ciascun nuovo Storage Node. Il servizio ADC tiene traccia della posizione e della disponibilità dei servizi della grid.
+
+* È possibile link:../maintain/move-adc-service.html["spostare il servizio ADC da un nodo di storage a un altro nello stesso sito"].
+* Il sistema StorageGRID richiede che link:../maintain/understanding-adc-service-quorum.html["quorum dei servizi ADC"] sia disponibile in ogni sito e in ogni momento.
+* In ogni sito almeno tre Storage Node devono includere il servizio ADC.
+* Si sconsiglia di aggiungere il servizio ADC a ogni Storage Node. L'inclusione di troppi servizi ADC può causare rallentamenti a causa dell'aumento delle comunicazioni tra i nodi.
+* Una singola grid non dovrebbe avere più di 48 Storage Node con il servizio ADC. Questo equivale a 16 siti con tre servizi ADC in ciascun sito.
+* In generale, quando selezioni l'impostazione *Servizio ADC* per un nuovo nodo, dovresti selezionare *Automatico*. Seleziona *Sì* solo se il nuovo nodo sostituirà un altro Storage Node che include il servizio ADC. Poiché non puoi decommissionare uno Storage Node se rimarrebbero troppo pochi servizi ADC, selezionare *Sì* garantisce che un nuovo servizio ADC sia disponibile prima che il vecchio servizio venga rimosso.
+

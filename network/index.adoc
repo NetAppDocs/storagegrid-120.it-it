@@ -1,0 +1,62 @@
+---
+permalink: network/index.html 
+sidebar: sidebar 
+keywords: storagegrid, network, networking, ethernet, subnet, routing 
+summary: 'Utilizza queste linee guida per conoscere l"architettura e le topologie di rete di StorageGRID e per apprendere i requisiti per la configurazione e il provisioning della rete.' 
+---
+= Linee guida di networking per StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Utilizza queste linee guida per conoscere l'architettura e le topologie di rete di StorageGRID e per apprendere i requisiti per la configurazione e il provisioning della rete.
+
+
+
+[[about-these-instructions]]
+== Informazioni su queste istruzioni
+
+Queste linee guida forniscono informazioni che puoi usare per creare l'infrastruttura di rete StorageGRID prima di implementare e configurare i nodi StorageGRID. Usa queste linee guida per assicurarti che la comunicazione possa avvenire tra tutti i nodi del grid e tra il grid e i client e servizi esterni.
+
+I client e i servizi esterni devono connettersi alle reti StorageGRID per svolgere funzioni quali le seguenti:
+
+* Archivia e recupera i dati degli oggetti
+* Ricevi notifiche via email
+* Accedi all'interfaccia di gestione di StorageGRID (Grid Manager e Tenant Manager)
+* Accedi alla condivisione di audit (facoltativo)
+* Fornisci servizi come:
++
+** Network Time Protocol (NTP)
+** Domain Name System (DNS)
+** Server di gestione delle chiavi (KMS)
+
+
+
+
+La rete StorageGRID deve essere configurata in modo appropriato per gestire il traffico necessario a queste funzioni e ad altre ancora.
+
+
+
+[[before-you-begin]]
+== Prima di iniziare
+
+La configurazione della rete per un sistema StorageGRID richiede un alto livello di esperienza con lo switching Ethernet, il networking TCP/IP, le subnet, il routing di rete e i firewall.
+
+Prima di configurare la rete, familiarizza con l'architettura di StorageGRID come descritto in link:../primer/index.html["Scopri StorageGRID"].
+
+Dopo aver determinato quali reti StorageGRID vuoi usare e come verranno configurate, puoi installare e configurare i nodi StorageGRID seguendo le istruzioni appropriate.
+
+.Installa i nodi dell'appliance
+* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/index.html["Installa l'hardware dell'appliance"^]
+
+
+.Installa nodi basati su software
+* link:../swnodes/index.html["Installa StorageGRID sui nodi basati su software"]
+
+
+.Configura e amministra il software StorageGRID
+* link:../admin/index.html["${post_edited_translations.segment}"]
+* https://library.netapp.com/ecm/ecm_download_file/ECMLP3351267["Note di rilascio"^]. È necessario accedere con il proprio account NetApp o crearne uno per accedere alle note di rilascio.
+

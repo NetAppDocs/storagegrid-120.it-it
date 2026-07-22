@@ -1,0 +1,75 @@
+---
+permalink: monitor/monitoring-information-lifecycle-management.html 
+sidebar: sidebar 
+keywords: lifecycle management, lifecycle, monitoring, ILM, information lifecycle management 
+summary: 'Il sistema di gestione del ciclo di vita delle informazioni (ILM) fornisce la gestione dei dati per tutti gli oggetti memorizzati nel grid. Devi monitorare le operazioni ILM per capire se il grid può gestire il carico attuale o se servono più risorse.' 
+---
+= Monitorare la gestione del ciclo di vita delle informazioni in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Il sistema di gestione del ciclo di vita delle informazioni (ILM) fornisce la gestione dei dati per tutti gli oggetti memorizzati nel grid. Devi monitorare le operazioni ILM per capire se il grid può gestire il carico attuale o se servono più risorse.
+
+.Informazioni su questa attività
+Il sistema StorageGRID gestisce gli oggetti applicando le policy ILM attive. Le policy ILM e le relative regole ILM determinano quante copie vengono create, il tipo di copie che vengono create, dove vengono collocate le copie e per quanto tempo ciascuna copia viene conservata.
+
+L'inserimento di oggetti e altre attività correlate agli oggetti possono superare la velocità con cui StorageGRID è in grado di valutare ILM, causando la messa in coda di oggetti le cui istruzioni di posizionamento ILM non possono essere soddisfatte in tempo quasi reale. Dovresti monitorare se StorageGRID riesce a tenere il passo con le azioni dei client.
+
+
+
+[[use-grid-manager-dashboard-tab]]
+== Usa la scheda dashboard di Grid Manager
+
+.Passaggi
+Utilizza la scheda ILM nella dashboard di Grid Manager per monitorare le operazioni ILM:
+
+. Accedi a Grid Manager.
+. Dalla dashboard, seleziona la scheda ILM e annota i valori sulla scheda Coda ILM (Oggetti) e sulla scheda Tasso di valutazione ILM.
++
+È normale che si verifichino picchi temporanei nella coda ILM (Oggetti) sulla dashboard. Tuttavia, se la coda continua ad aumentare senza mai diminuire, la grid necessita di più risorse per funzionare in modo efficiente: o più Storage Node, oppure, se la policy ILM posiziona gli oggetti in posizioni remote, maggiore larghezza di banda di rete.
+
+
+
+
+
+[[use-the-nodes-page]]
+== Usa la pagina Nodi
+
+.Passaggi
+Inoltre, esamina le code ILM utilizzando la pagina *Nodi*:
+
+
+NOTE: I grafici presenti nella pagina *Nodi* verranno sostituiti con le corrispondenti schede del dashboard in una futura release di StorageGRID.
+
+. Selezionare *Nodi*.
+. Seleziona *_grid name_* > *ILM*.
+. Posiziona il cursore sul grafico della coda ILM per visualizzare il valore dei seguenti attributi in un dato momento:
++
+** *Oggetti in coda (da operazioni client)*: Il numero totale di oggetti in attesa di valutazione ILM a causa di operazioni client (ad esempio, ingest).
+** *Oggetti in coda (da tutte le operazioni)*: Il numero totale di oggetti in attesa di valutazione ILM.
+** *Frequenza di scansione (oggetti/sec)*: La velocità con cui gli oggetti nella grid vengono scansionati e messi in coda per ILM.
+** *Frequenza di valutazione (oggetti/sec)*: La frequenza attuale con cui gli oggetti vengono valutati rispetto alla policy ILM nel grid.
+
+
++
+
+NOTE: La sezione relativa alla coda ILM è inclusa solo per il grid. Queste informazioni non vengono visualizzate nella scheda ILM per un sito o uno Storage Node.
+
+. Nella sezione Coda ILM, guarda i seguenti attributi.
++
+** *Periodo di scansione - stimato*: Tempo stimato per completare una scansione ILM completa di tutti gli oggetti.
++
+
+NOTE: Una scansione completa non garantisce che ILM sia stato applicato a tutti gli oggetti.
+
+** *Tentativi di riparazione*: Il numero totale di operazioni di riparazione degli oggetti per i dati replicati che sono state tentate. Questo conteggio aumenta ogni volta che un Storage Node tenta di riparare un oggetto ad alto rischio. Le riparazioni ILM ad alto rischio hanno la priorità se il grid diventa occupato.
++
+Lo stesso oggetto di riparazione potrebbe incrementare nuovamente se la replica non riesce dopo la riparazione. Questi attributi possono essere utili quando monitori l'avanzamento del ripristino del volume dello Storage Node. Se il numero di riparazioni tentate ha smesso di aumentare ed è stata completata una scansione completa, la riparazione probabilmente è terminata.
+
+
+
+. In alternativa, invia una query Prometheus per  `storagegrid_ilm_scan_period_estimated_minutes` e  `storagegrid_ilm_repairs_attempted`.
+

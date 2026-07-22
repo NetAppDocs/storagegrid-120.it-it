@@ -1,0 +1,135 @@
+---
+permalink: swnodes/approving-pending-grid-nodes.html 
+sidebar: sidebar 
+keywords: how to approve pending grid nodes 
+summary: ${post_edited_translations.segment} 
+---
+= Approva i nodi della griglia in sospeso per StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+${post_edited_translations.segment}
+
+.Prima di iniziare
+${post_edited_translations.segment}
+
+
+NOTE: È più efficiente eseguire un'installazione singola di tutti i nodi, piuttosto che installarne alcuni ora e altri in un secondo momento.
+
+.Passaggi
+. Esamina l'elenco dei nodi in sospeso e verifica che mostri tutti i nodi della griglia che hai distribuito.
++
+
+NOTE: ${post_edited_translations.segment}
+
+. Seleziona il pulsante di opzione accanto al nodo in sospeso che desideri approvare.
++
+image:5_gmi_installer_grid_nodes_pending.gif["${post_edited_translations.segment}"]
+
+. Fai clic su *Approva*.
+. Nelle Impostazioni generali, modifica le impostazioni per le seguenti proprietà, se necessario:
++
+** *Sito*: Il nome di sistema del sito per questo nodo della griglia.
+** *Nome*: Il nome di sistema per il nodo. Il nome predefinito è quello che hai specificato quando hai configurato il nodo.
++
+I nomi di sistema sono necessari per le operazioni interne di StorageGRID e non possono essere modificati dopo il completamento dell'installazione. Tuttavia, durante questa fase del processo di installazione, puoi modificare i nomi di sistema secondo necessità.
+
++
+
+NOTE: Per un nodo VMware, puoi modificare il nome qui, ma questa azione non cambierà il nome della macchina virtuale in vSphere.
+
+** *Ruolo NTP*: il ruolo Network Time Protocol (NTP) del nodo grid. Le opzioni sono *Automatico*, *Primario* e *Client*. Selezionando *Automatico* viene assegnato il ruolo Primario ai nodi Admin, ai nodi Storage con servizi ADC, ai nodi Gateway e a tutti i nodi grid con indirizzi IP non statici. A tutti gli altri nodi grid viene assegnato il ruolo Client.
++
+
+CAUTION: Assicurati che almeno due nodi in ogni sito possano accedere ad almeno quattro sorgenti NTP esterne. Se in un sito solo un nodo può raggiungere le sorgenti NTP, si verificheranno problemi di temporizzazione se quel nodo si guasta. Inoltre, designare due nodi per sito come sorgenti NTP primarie garantisce una temporizzazione precisa se un sito è isolato dal resto del grid.
+
+** *Tipo di storage* (solo Storage Node): specifica che un nuovo Storage Node deve essere utilizzato esclusivamente solo per i dati, solo per i metadati o per entrambi. Le opzioni sono *Dati e metadati* ("combinato"), *Solo dati* e *Solo metadati*.
++
+
+CAUTION: Vedi link:../primer/what-storage-node-is.html#types-of-storage-nodes["Tipi di nodi di archiviazione"] per informazioni sui requisiti per questi tipi di nodo.
+
+** *Servizio ADC* (solo Storage Node): seleziona *Automatic* per consentire al sistema di determinare se il nodo richiede il servizio Administrative Domain Controller (ADC). Il servizio ADC tiene traccia della posizione e della disponibilità dei servizi grid. Almeno tre Storage Node in ciascun sito devono includere il servizio ADC. Non puoi aggiungere il servizio ADC a un nodo dopo che è stato distribuito.
+
+
+. ${post_edited_translations.segment}
++
+** *Indirizzo IPv4 (CIDR)*: l'indirizzo di rete CIDR per l'interfaccia Grid Network (eth0 all'interno del container). Ad esempio: 192.168.1.234/21
+** *Gateway*: il gateway della rete Grid. Ad esempio: 192.168.0.1
++
+${post_edited_translations.segment}
+
++
+
+NOTE: Se hai selezionato DHCP per la configurazione della rete Grid e modifichi il valore qui, il nuovo valore verrà configurato come indirizzo statico sul nodo. Devi assicurarti che l'indirizzo IP configurato non sia incluso in un pool di indirizzi DHCP.
+
+
+
+. ${post_edited_translations.segment}
++
+Inserisci le sottoreti di destinazione delle rotte in uscita da questa interfaccia nella casella di testo *Sottoreti (CIDR)*. Se sono presenti più sottoreti Admin, è richiesto il gateway Admin.
+
++
+
+NOTE: Se hai selezionato DHCP per la configurazione della Admin Network e modifichi il valore qui, il nuovo valore verrà configurato come indirizzo statico sul nodo. Devi assicurarti che l'indirizzo IP configurato non rientri in un pool di indirizzi DHCP.
+
++
+*Appliance:* per un'appliance StorageGRID, se la rete di amministrazione non è stata configurata durante l'installazione iniziale tramite StorageGRID Appliance Installer, non è possibile configurarla in questa finestra di dialogo di Grid Manager. In alternativa, devi seguire questi passaggi:
+
++
+.. Riavvia l'appliance: nell'Appliance Installer, seleziona *Advanced* > *Reboot*.
++
+${post_edited_translations.segment}
+
+.. ${post_edited_translations.segment}
+.. Seleziona *Configura rete* > *Configurazione IP* e configura le reti abilitate.
+.. Torna alla pagina iniziale e fai clic su *Avvia installazione*.
+.. ${post_edited_translations.segment}
+.. Rimuovi il nodo dalla tabella dei nodi in sospeso.
+.. Attendi che il nodo ricompaia nell'elenco dei nodi in sospeso.
+.. Verifica di poter configurare le reti appropriate. Dovrebbero essere già precompilate con le informazioni che hai fornito nella pagina IP Configuration del programma di installazione dell'appliance.
++
+Per ulteriori informazioni, vedi le  https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/index.html["Guida rapida all'installazione dell'hardware"^] per trovare le istruzioni per il tuo appliance.
+
+
+
+. Se vuoi configurare la rete client per il nodo della griglia, aggiungi o aggiorna le impostazioni nella sezione Rete client secondo necessità. Se la rete client è configurata, il gateway è obbligatorio e diventa il gateway predefinito per il nodo dopo l'installazione.
++
+
+NOTE: Se hai selezionato DHCP per la configurazione della rete client e modifichi il valore qui, il nuovo valore verrà configurato come indirizzo statico sul nodo. Devi assicurarti che l'indirizzo IP configurato non sia incluso in un pool di indirizzi DHCP.
+
++
+*Appliance:* Per una StorageGRID appliance, se la rete client non è stata configurata durante l'installazione iniziale tramite StorageGRID Appliance Installer, non può essere configurata in questa finestra di dialogo di Grid Manager. Invece, devi seguire questi passaggi:
+
++
+.. Riavvia l'appliance: nell'Appliance Installer, seleziona *Advanced* > *Reboot*.
++
+${post_edited_translations.segment}
+
+.. ${post_edited_translations.segment}
+.. Seleziona *Configura rete* > *Configurazione IP* e configura le reti abilitate.
+.. Torna alla pagina iniziale e fai clic su *Avvia installazione*.
+.. ${post_edited_translations.segment}
+.. Rimuovi il nodo dalla tabella dei nodi in sospeso.
+.. Attendi che il nodo ricompaia nell'elenco dei nodi in sospeso.
+.. Verifica di poter configurare le reti appropriate. Dovrebbero essere già precompilate con le informazioni che hai fornito nella pagina IP Configuration del programma di installazione dell'appliance.
++
+Per ulteriori informazioni, vedi le  https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/index.html["Guida rapida all'installazione dell'hardware"^] per trovare le istruzioni per il tuo appliance.
+
+
+
+. Fare clic su *Save*.
++
+La voce del nodo della griglia passa all'elenco dei nodi approvati.
+
++
+image:7_gmi_installer_grid_nodes_approved.gif["${post_edited_translations.segment}"]
+
+. Ripeti questi passaggi per ogni nodo della griglia in sospeso che vuoi approvare.
++
+Devi approvare tutti i nodi che vuoi nella grid. Tuttavia, puoi tornare su questa pagina in qualsiasi momento prima di fare clic su *Install* nella pagina Summary. Puoi modificare le proprietà di un nodo della grid approvato selezionando il suo pulsante di opzione e facendo clic su *Edit*.
+
+. Quando hai finito di approvare i nodi della griglia, fai clic su *Avanti*.
+

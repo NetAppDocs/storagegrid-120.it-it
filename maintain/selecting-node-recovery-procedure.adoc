@@ -1,0 +1,62 @@
+---
+permalink: maintain/selecting-node-recovery-procedure.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, procedure 
+summary: Devi selezionare la procedura di ripristino corretta per il tipo di nodo che ha avuto un guasto. 
+---
+= Selezionare la procedura di ripristino del nodo StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Devi selezionare la procedura di ripristino corretta per il tipo di nodo che ha avuto un guasto.
+
+[cols="1a,2a"]
+|===
+| Nodo della griglia | Procedura di recupero 
+
+
+ a| 
+Più di un nodo di archiviazione
+ a| 
+Contatta il supporto tecnico. Se più di uno Storage Node ha smesso di funzionare, il supporto tecnico deve aiutarti con il ripristino per evitare incoerenze nel database che potrebbero causare la perdita di dati. Potrebbe essere necessaria una procedura di ripristino del sito.
+
+link:how-site-recovery-is-performed-by-technical-support.html["Come il supporto tecnico ripristina un sito"]
+
+
+
+ a| 
+Un singolo nodo di archiviazione
+ a| 
+La procedura di ripristino del nodo di archiviazione dipende dal tipo e dalla durata del guasto.
+
+link:recovering-from-storage-node-failures.html["Recupera dai guasti del nodo di archiviazione"]
+
+
+
+ a| 
+Nodo amministratore
+ a| 
+La procedura del nodo Admin dipende dal fatto che tu debba recuperare il nodo Admin primario o un nodo Admin non primario.
+
+link:recovering-from-admin-node-failures.html["Recupera dai guasti del nodo amministratore"]
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+link:replacing-gateway-node.html["Ripristina dopo i guasti del nodo gateway"]
+
+
+
+ a| 
+Nodo di archivio
+ a| 
+https://docs.netapp.com/us-en/storagegrid-118/maintain/recovering-from-archive-node-failures.html["Ripristina dai guasti dell'Archive Node (StorageGRID 11.8 doc site)"^]
+
+|===
+
+NOTE: Se un server che ospita più di un nodo della griglia si guasta, puoi ripristinare i nodi in qualsiasi ordine. Tuttavia, se il server guasto ospita il nodo Admin primario, devi ripristinare prima quel nodo. Ripristinare prima il nodo Admin primario impedisce che il ripristino degli altri nodi si blocchi mentre attendono di contattare il nodo Admin primario.

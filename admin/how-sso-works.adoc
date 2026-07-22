@@ -1,0 +1,129 @@
+---
+permalink: admin/how-sso-works.html 
+sidebar: sidebar 
+keywords: single sign on, sso, SAML 
+summary: 'Quando il single sign-on (SSO) è abilitato, puoi accedere a Grid Manager, Tenant Manager, Grid Management API o Tenant Management API solo se le tue credenziali sono autorizzate tramite il processo di accesso SSO implementato dalla tua organizzazione. Gli utenti locali non possono accedere a StorageGRID.' 
+---
+= Scopri l'SSO di StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Quando il single sign-on (SSO) è abilitato, gli utenti possono accedere a Grid Manager, Tenant Manager, Grid Management API o Tenant Management API solo se le loro credenziali sono autorizzate tramite il processo di accesso SSO implementato dalla tua organizzazione. Gli utenti locali non possono accedere a StorageGRID.
+
+Il sistema StorageGRID supporta il single sign-on (SSO) utilizzando lo standard Security Assertion Markup Language 2.0 (SAML 2.0).
+
+Prima di abilitare il single sign-on (SSO), verifica come i processi di accesso e disconnessione di StorageGRID vengono influenzati quando l’SSO è abilitato.
+
+
+
+[[sign-in-when-sso-is-enabled]]
+== ${post_edited_translations.segment}
+
+Quando l'SSO è abilitato e accedi a StorageGRID, vieni reindirizzato alla pagina SSO della tua organizzazione per convalidare le tue credenziali.
+
+.Passaggi
+. Inserisci il fully qualified domain name o l'indirizzo IP di qualsiasi StorageGRID Admin Node in un browser web.
++
+Viene visualizzata la pagina di accesso di StorageGRID.
+
++
+** ${post_edited_translations.segment}
+** Se in precedenza hai effettuato l'accesso a Grid Manager o a Tenant Manager, ti viene chiesto di selezionare un account recente o di inserire un account ID.
++
+
+NOTE: La pagina di accesso di StorageGRID non viene visualizzata quando inserisci l'URL completo per un tenant account (cioè un fully qualified domain name o un indirizzo IP seguito da  `/?accountId=_20-digit-account-id_`). Invece, vieni immediatamente reindirizzato alla pagina di accesso SSO della tua organizzazione, dove puoi <<signin_sso,Accedi con le tue credenziali SSO>>.
+
+
+
+. ${post_edited_translations.segment}
++
+** Per accedere a Grid Manager, lascia vuoto il campo *ID account*, inserisci *0* come ID account oppure seleziona *Grid Manager* se compare nell'elenco degli account recenti.
+** Per accedere al Tenant Manager, inserisci l'ID account tenant di 20 cifre oppure seleziona un tenant per nome se compare nell'elenco degli account recenti.
+
+
+. ${post_edited_translations.segment}
++
+StorageGRID ti reindirizza alla pagina di accesso SSO della tua organizzazione. Ad esempio:
+
+. [[signin_sso]]Accedi con le tue credenziali SSO.
++
+${post_edited_translations.segment}
+
++
+.. Il provider di identità (IdP) fornisce una risposta di autenticazione a StorageGRID.
+.. StorageGRID convalida la risposta di autenticazione.
+.. ${post_edited_translations.segment}
++
+
+NOTE: Se l'account di servizio non è accessibile, puoi comunque accedere, purché tu sia un utente esistente che appartiene a un gruppo federato con autorizzazioni di accesso a StorageGRID.
+
+
+
+. Facoltativamente, puoi accedere ad altri Admin Node, oppure al Grid Manager o al Tenant Manager, se hai le autorizzazioni adeguate.
++
+Non devi reinserire le credenziali SSO.
+
+
+
+
+
+[[sign-out-when-sso-is-enabled]]
+== ${post_edited_translations.segment}
+
+${post_edited_translations.segment}
+
+.Passaggi
+. Individua il link *Esci* nell'angolo in alto a destra dell'interfaccia utente.
+. Seleziona *Esci*.
++
+Viene visualizzata la pagina di accesso a StorageGRID. Il menu a tendina *Account recenti* viene aggiornato per includere *Grid Manager* o il nome del tenant, così puoi accedere più rapidamente a queste interfacce utente in futuro.
+
++
+
+TIP: La tabella riassume cosa succede quando esci se stai usando una singola sessione del browser. Se hai effettuato l'accesso a StorageGRID tramite più sessioni del browser, devi uscire da ogni sessione separatamente.
+
++
+[cols="1a,1a,1a"]
+|===
+| Se hai effettuato l'accesso a... | E ti disconnetti da... | Sei uscito da... 
+
+
+ a| 
+Grid Manager su uno o più Admin Node
+ a| 
+Grid Manager su qualsiasi Admin Node
+ a| 
+Grid Manager su tutti i nodi di amministrazione
+
+*Nota:* Se usi Entra ID per il single sign-on, potrebbe volerci qualche minuto per essere disconnesso da tutti i nodi di amministrazione.
+
+
+
+ a| 
+Tenant Manager su uno o più Admin Node
+ a| 
+Tenant Manager su qualsiasi nodo amministrativo
+ a| 
+${post_edited_translations.segment}
+
+
+
+ a| 
+Sia Grid Manager che Tenant Manager
+ a| 
+Grid Manager
+ a| 
+Solo Grid Manager. Devi disconnetterti anche da Tenant Manager per disconnetterti da SSO.
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Solo il Tenant Manager. Devi anche disconnetterti dal Grid Manager per disconnetterti dal SSO.
+
+|===
+

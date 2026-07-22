@@ -1,0 +1,135 @@
+---
+permalink: admin/creating-traffic-classification-policies.html 
+sidebar: sidebar 
+keywords: traffic classification, network traffic, traffic limits, policy 
+summary: Puoi creare policy di classificazione del traffico se desideri monitorare e, facoltativamente, limitare il traffico di rete per bucket, tenant, sottorete IP o endpoint del bilanciatore del carico. Facoltativamente, puoi impostare limiti per una policy in base alla larghezza di banda, al numero di richieste simultanee o alla frequenza delle richieste. 
+---
+= Creare criteri di classificazione del traffico StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi creare policy di classificazione del traffico se desideri monitorare e, facoltativamente, limitare il traffico di rete per bucket, regex del bucket, CIDR, endpoint del bilanciatore del carico o tenant. Facoltativamente, puoi impostare limiti per una policy in base alla larghezza di banda, al numero di richieste simultanee o alla frequenza delle richieste.
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Hai il link:admin-group-permissions.html["Permesso di accesso root"].
+* Hai creato tutti gli endpoint del load balancer che vuoi abbinare.
+* Hai creato tutti i tenant che vuoi abbinare.
+
+
+.Passaggi
+. Seleziona *Configurazione* > *Rete* > *Classificazione del traffico*.
+. Seleziona *Create*.
+. Inserisci un nome e una descrizione (facoltativa) per la policy e seleziona *Continua*.
++
+Ad esempio, descrivi a cosa si applica questa politica di classificazione del traffico e cosa limiterà.
+
+. Seleziona *Aggiungi regola* e specifica i seguenti dettagli per creare una o più regole di corrispondenza per la policy. Qualsiasi policy che crei deve avere almeno una regola di corrispondenza. Seleziona *Continua*.
++
+[cols="1a,3a"]
+|===
+| Campo | Descrizione 
+
+
+ a| 
+Tipo
+ a| 
+Seleziona i tipi di traffico a cui si applica la regola di corrispondenza. I tipi di traffico sono bucket, bucket regex, CIDR, endpoint del load balancer e tenant.
+
+
+
+ a| 
+Valore corrispondente
+ a| 
+${post_edited_translations.segment}
+
+** Bucket: Inserisci uno o più nomi di bucket.
+** Espressioni regolari per i bucket: Inserisci una o più espressioni regolari utilizzate per trovare una corrispondenza con un insieme di nomi di bucket.
++
+L'espressione regolare non è ancorata. Usa l'ancora ^ per eseguire la corrispondenza all'inizio del nome del bucket e l'ancora $ per eseguire la corrispondenza alla fine del nome. La corrispondenza con espressioni regolari supporta un sottoinsieme della sintassi PCRE (Perl compatible regular expression).
+
+** CIDR: Inserisci una o più sottoreti IPv4, in notazione CIDR, che corrispondono alla sottorete desiderata.
+** Endpoint del bilanciatore di carico: Seleziona un nome endpoint. Questi sono gli endpoint del bilanciatore di carico che hai definito su link:../admin/configuring-load-balancer-endpoints.html["${post_edited_translations.segment}"].
+** Tenant: la corrispondenza del tenant utilizza l'ID della chiave di accesso. Se la richiesta non contiene un ID della chiave di accesso (ad esempio, accesso anonimo), viene utilizzata la proprietà del bucket a cui si accede per determinare il tenant.
+
+
+
+
+ a| 
+Corrispondenza inversa
+ a| 
+Se vuoi includere tutto il traffico di rete _tranne_ quello coerente con il Tipo e il Valore di corrispondenza appena definiti, seleziona la casella di controllo *Corrispondenza inversa*. Altrimenti, lascia la casella di controllo deselezionata.
+
+Ad esempio, se vuoi che questa policy si applichi a tutti gli endpoint del load balancer tranne uno, specifica l'endpoint del load balancer da escludere e seleziona *Corrispondenza inversa*.
+
+Per una policy contenente più matcher, di cui almeno uno è un matcher inverso, fai attenzione a non creare una policy che corrisponda a tutte le richieste.
+
+|===
+. ${post_edited_translations.segment}
++
+
+NOTE: StorageGRID raccoglie metriche anche se non imposti limiti, così puoi capire le tendenze del traffico.
+
++
+[cols="1a,3a"]
+|===
+| Campo | Descrizione 
+
+
+ a| 
+Tipo
+ a| 
+Il tipo di limite che vuoi applicare al traffico di rete corrispondente alla regola. Ad esempio, puoi limitare la larghezza di banda o la frequenza delle richieste.
+
+*Nota*: puoi creare criteri per limitare la larghezza di banda aggregata o per limitare la larghezza di banda per richiesta. Tuttavia, StorageGRID non può limitare entrambi i tipi di larghezza di banda contemporaneamente. Quando la larghezza di banda aggregata è in uso, la larghezza di banda per richiesta non è disponibile. Al contrario, quando la larghezza di banda per richiesta è in uso, la larghezza di banda aggregata non è disponibile. I limiti della larghezza di banda aggregata potrebbero comportare un ulteriore lieve impatto sulle prestazioni del traffico non limitato.
+
+Per i limiti di larghezza di banda, StorageGRID applica la policy che meglio corrisponde al tipo di limite impostato. Ad esempio, se hai una policy che limita il traffico in una sola direzione, il traffico nella direzione opposta sarà illimitato, anche se è presente traffico che corrisponde ad altre policy che hanno limiti di larghezza di banda. StorageGRID implementa le "migliori" corrispondenze per i limiti di larghezza di banda nel seguente ordine:
+
+** Indirizzo IP esatto (maschera /32)
+** Nome esatto del bucket
+** ${post_edited_translations.segment}
+** ${post_edited_translations.segment}
+** Punto finale
+** Corrispondenze CIDR non esatte (non /32)
+** Corrispondenze inverse
+
+
+
+
+ a| 
+Si applica a
+ a| 
+Se questo limite si applica alle richieste di lettura del client (GET o HEAD) o alle richieste di scrittura (PUT, POST o DELETE).
+
+
+
+ a| 
+Valore
+ a| 
+Il valore a cui verrà limitato il traffico di rete, in base all'unità che selezioni. Ad esempio, inserisci 10 e seleziona MiB/s per evitare che il traffico di rete corrispondente a questa regola superi i 10 MiB/s.
+
+*Nota*: a seconda dell'impostazione delle unità, le unità disponibili saranno binarie (ad esempio, GiB) o decimali (ad esempio, GB). Per modificare l'impostazione delle unità, seleziona il menu a discesa dell'utente in alto a destra del Grid Manager, quindi seleziona *User Preferences*.
+
+
+
+ a| 
+Unità
+ a| 
+L'unità che descrive il valore che hai inserito.
+
+|===
++
+Ad esempio, se vuoi creare un limite di larghezza di banda di 4 GB/s per un livello SLA, crea due limiti di larghezza di banda aggregata: GET/HEAD a 4 GB/s e PUT/POST/DELETE a 4 GB/s.
+
+. Seleziona *Continue*.
+. Leggi e rivedi la policy di classificazione del traffico. Usa il pulsante *Precedente* per tornare indietro e apportare le modifiche necessarie. Quando sei soddisfatto della policy, seleziona *Salva e continua*.
++
+Il traffico client S3 ora viene gestito in base alla policy di classificazione del traffico.
+
+
+
+.Dopo aver finito
+link:viewing-network-traffic-metrics.html["Visualizza le metriche del traffico di rete"]per verificare che le policy stiano applicando i limiti di traffico che ti aspetti.

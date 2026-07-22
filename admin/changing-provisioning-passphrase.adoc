@@ -1,0 +1,47 @@
+---
+permalink: admin/changing-provisioning-passphrase.html 
+sidebar: sidebar 
+keywords: provisioning passphrase, change passphrase 
+summary: Usa questa procedura per modificare la passphrase di provisioning di StorageGRID. La passphrase è necessaria per le procedure di ripristino, espansione e manutenzione. La passphrase è richiesta anche per scaricare i backup del recovery package che includono le informazioni sulla topologia della grid, le password della console dei nodi grid e le chiavi di crittografia per il sistema StorageGRID. 
+---
+= Modificare la passphrase di provisioning di StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Usa questa procedura per cambiare la passphrase di provisioning di StorageGRID. La passphrase è necessaria per le procedure di ripristino, espansione e manutenzione. La passphrase è anche necessaria per scaricare i backup del pacchetto di ripristino che includono le informazioni sulla topologia della grid, le password della console dei nodi della grid e le chiavi di crittografia per il sistema StorageGRID.
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Hai i permessi di accesso di manutenzione o utente root.
+* Hai la passphrase di provisioning corrente.
+
+
+.Informazioni su questa attività
+La passphrase di provisioning è necessaria per molte procedure di installazione e manutenzione, e per link:../maintain/downloading-recovery-package.html["download del pacchetto di ripristino"]. La passphrase di provisioning non è elencata nel file  `Passwords.txt`. Assicurati di annotare la passphrase di provisioning e di conservarla in un luogo sicuro.
+
+.Passaggi
+. Seleziona *Configurazione* > *Controllo accessi* > *Password griglia*.
+. ${post_edited_translations.segment}
+. Inserisci la tua attuale passphrase di provisioning.
+. Inserisci la nuova frase di accesso. La frase di accesso deve contenere almeno 8 e non più di 32 caratteri. Le frasi di accesso distinguono tra maiuscole e minuscole.
++
+
+CAUTION: Conserva la passphrase di provisioning in un luogo sicuro. È necessaria per le procedure di installazione, espansione e manutenzione.
+
+. Reinserisci la nuova frase di accesso e seleziona *Salva*.
++
+${post_edited_translations.segment}
+
++
+image:change_provisioning_passphrase_success.png["Messaggio di successo per la modifica della passphrase di provisioning"]
+
+. Seleziona *Recovery Package*.
+. ${post_edited_translations.segment}
++
+
+CAUTION: Dopo aver modificato la passphrase di provisioning, devi scaricare immediatamente un nuovo pacchetto di ripristino. Il file del pacchetto di ripristino ti consente di ripristinare il sistema se si verifica un guasto.
+
+

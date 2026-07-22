@@ -1,0 +1,25 @@
+---
+permalink: monitor/viewing-ilm-tab.html 
+sidebar: sidebar 
+keywords: ilm tab 
+summary: 'La scheda ILM fornisce informazioni sulle operazioni di information lifecycle management (ILM).' 
+---
+= Visualizza la scheda StorageGRID ILM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La scheda ILM fornisce informazioni sulle operazioni di information lifecycle management (ILM).
+
+La scheda ILM viene visualizzata per ogni Storage Node, ogni sito e l'intera grid. Per ogni sito e per la grid, la scheda ILM mostra un grafico della coda ILM nel tempo. Per la grid, questa scheda fornisce anche il tempo stimato per completare una scansione ILM completa di tutti gli oggetti.
+
+Per i nodi di archiviazione, la scheda ILM fornisce dettagli sulla valutazione ILM e sulla verifica in background per gli oggetti con codifica di cancellazione.
+
+image:nodes_page_ilm_tab.png["Scheda ILM della pagina Nodes"]
+
+.Informazioni correlate
+* link:monitoring-information-lifecycle-management.html["Monitora il ciclo di vita delle informazioni"]
+* link:../admin/index.html["${post_edited_translations.segment}"]
+

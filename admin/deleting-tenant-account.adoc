@@ -1,0 +1,37 @@
+---
+permalink: admin/deleting-tenant-account.html 
+sidebar: sidebar 
+keywords: tenant, delete, remove tenant 
+summary: 'Puoi eliminare un tenant account se vuoi rimuovere definitivamente l"accesso del tenant al sistema.' 
+---
+= Eliminare un account tenant StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+${post_edited_translations.segment}
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Hai link:admin-group-permissions.html["autorizzazioni di accesso specifiche"].
+* Hai rimosso tutti i bucket S3 e gli oggetti associati all'account del tenant.
+* Se il tenant è autorizzato a utilizzare una connessione grid federation, hai esaminato le considerazioni relative a link:grid-federation-manage-tenants.html["${post_edited_translations.segment}"].
+
+
+.Passaggi
+. Seleziona *tenant*.
+. Individua l'account tenant o gli account tenant che vuoi eliminare.
++
+${post_edited_translations.segment}
+
+. ${post_edited_translations.segment}
+. ${post_edited_translations.segment}
++
+** ${post_edited_translations.segment}
+** ${post_edited_translations.segment}
+
+
+. Seleziona *Sì*.
+

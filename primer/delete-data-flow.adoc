@@ -1,0 +1,65 @@
+---
+permalink: primer/delete-data-flow.html 
+sidebar: sidebar 
+keywords: StorageGRID, object, delete, deletion, object lock, bucket lifecycle, expiration, ilm, placement instruction 
+summary: 'Tutte le copie degli oggetti vengono rimosse dal sistema StorageGRID quando un client o tenant esegue un"operazione di eliminazione o quando scade il ciclo di vita dell"oggetto, attivandone la rimozione automatica. Esiste un flusso di dati definito per l"eliminazione degli oggetti.' 
+---
+= Come StorageGRID gestisce l'eliminazione degli oggetti
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Tutte le copie degli oggetti vengono rimosse dal sistema StorageGRID quando un client esegue un'operazione di eliminazione o quando scade il ciclo di vita dell'oggetto, attivandone la rimozione automatica. Esiste un flusso di dati definito per l'eliminazione degli oggetti.
+
+
+
+[[deletion-hierarchy]]
+== Gerarchia di eliminazione
+
+StorageGRID offre diversi metodi per controllare quando gli oggetti vengono conservati o eliminati. Gli oggetti possono essere eliminati su richiesta del client o automaticamente. StorageGRID dà sempre la priorità alle impostazioni di S3 Object Lock rispetto alle richieste di eliminazione del client, che a loro volta hanno la priorità rispetto al ciclo di vita del bucket S3 e alle istruzioni di posizionamento ILM.
+
+* *Blocco oggetti S3*: Se l'impostazione globale S3 Object Lock è abilitata per la grid, i client S3 possono creare bucket con S3 Object Lock abilitato e poi usare l'API REST S3 per specificare retain-until-date e le impostazioni di legal hold per ogni versione dell'oggetto aggiunta a quel bucket.
++
+** Una versione di un oggetto soggetta a blocco legale non può essere eliminata in alcun modo.
+** Prima che venga raggiunta la retain-until-date di una versione di un oggetto, tale versione non può essere eliminata in alcun modo.
+** Gli oggetti nei bucket con S3 Object Lock abilitato vengono conservati da ILM "per sempre". Tuttavia, dopo che è stata raggiunta la data di conservazione, una versione di un oggetto può essere eliminata su richiesta del client o alla scadenza del ciclo di vita del bucket.
+** Se i client S3 applicano una retain-until-date predefinita al bucket, non è necessario specificare una retain-until-date per ogni oggetto.
+
+
+* *Richiesta di eliminazione da parte del client*: Un client S3 può inviare una richiesta di eliminazione di un oggetto. Quando un client elimina un oggetto, tutte le copie dell'oggetto vengono rimosse dal sistema StorageGRID.
+* *Elimina oggetti nel bucket*: Gli utenti di Tenant Manager possono utilizzare questa opzione per rimuovere definitivamente tutte le copie degli oggetti e delle versioni degli oggetti nei bucket selezionati dal sistema StorageGRID.
+* *Ciclo di vita S3 bucket*: i client S3 possono aggiungere una configurazione del ciclo di vita ai propri bucket che specifica un'azione di scadenza. Se esiste un ciclo di vita del bucket, StorageGRID elimina automaticamente tutte le copie di un oggetto quando viene raggiunta la data o il numero di giorni specificati nell'azione di scadenza, a meno che il client non elimini prima l'oggetto.
+* *Istruzioni per il posizionamento ILM*: Supponendo che il bucket non abbia S3 Object Lock abilitato e che non sia presente ciclo di vita, StorageGRID elimina automaticamente un oggetto al termine dell'ultimo periodo di tempo nella regola ILM e non sono specificati ulteriori posizionamenti per l'oggetto.
++
+
+NOTE: Quando il ciclo di vita di un bucket S3 è configurato, le azioni di scadenza del ciclo di vita sovrascrivono la policy ILM per gli oggetti che corrispondono al filtro del ciclo di vita. Di conseguenza, un oggetto potrebbe essere conservato nella grid anche dopo che tutte le istruzioni ILM per il posizionamento dell'oggetto sono scadute.
+
+
+
+Vedi link:../ilm/how-objects-are-deleted.html["Come vengono eliminati gli oggetti"] per maggiori informazioni.
+
+
+
+[[data-flow-for-client-deletes]]
+== Flusso di dati per le eliminazioni dei client
+
+image:delete_data_flow.png["Flusso di eliminazione dei dati del client"]
+
+. Il servizio LDR riceve una richiesta di eliminazione dall'applicazione client.
+. Il servizio LDR aggiorna l'archivio dei metadati in modo che l'oggetto risulti eliminato alle richieste del client e istruisce il motore ILM a rimuovere tutte le copie dei dati dell'oggetto.
+. L'oggetto viene rimosso dal sistema. L'archivio dei metadati viene aggiornato per rimuovere i metadati dell'oggetto.
+
+
+
+
+[[data-flow-for-ilm-deletes]]
+== Flusso di dati per le eliminazioni ILM
+
+image:automatic_deletion_data_flow.png["Flusso di dati di cancellazione automatica"]
+
+. Il motore ILM determina che l'oggetto deve essere eliminato.
+. Il motore ILM notifica lo store dei metadati. Lo store dei metadati aggiorna i metadati dell'oggetto così che l'oggetto risulti eliminato per le richieste dei client.
+. Il motore ILM rimuove tutte le copie dell'oggetto. L'archivio dei metadati viene aggiornato per rimuovere i metadati dell'oggetto.
+

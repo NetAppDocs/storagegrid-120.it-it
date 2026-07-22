@@ -1,0 +1,31 @@
+---
+permalink: audit/syst-node-stopping.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, SYST, Node Stopping 
+summary: 'Quando un servizio viene arrestato correttamente, viene generato questo messaggio per indicare che è stato richiesto l"arresto e che il servizio ha avviato la sua sequenza di arresto. SYST può essere utilizzato per determinare se è stato richiesto l"arresto, prima che il servizio venga riavviato (a differenza di SYSD, che di solito viene inviato dopo il riavvio del servizio).' 
+---
+= Messaggio di audit SYST per l'arresto del nodo in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Quando un servizio viene arrestato correttamente, viene generato questo messaggio per indicare che è stato richiesto l'arresto e che il servizio ha avviato la sua sequenza di arresto. SYST può essere utilizzato per determinare se è stato richiesto l'arresto, prima che il servizio venga riavviato (a differenza di SYSD, che di solito viene inviato dopo il riavvio del servizio).
+
+[cols="1a,1a,4a"]
+|===
+| Codice | Campo | Descrizione 
+
+
+ a| 
+RSLT
+ a| 
+Arresto pulito
+ a| 
+${post_edited_translations.segment}
+
+SUCS: Il sistema è stato arrestato correttamente.
+
+|===
+Il messaggio non indica se il server host è in fase di arresto, ma solo il servizio di segnalazione. Il codice RSLT di un messaggio SYST non può indicare un arresto "sporco", perché il messaggio viene generato solo da arresti "puliti".

@@ -1,0 +1,96 @@
+---
+permalink: fabricpool/index.html 
+sidebar: sidebar 
+keywords: how to configure storagegrid for fabricpool, using fabricpool with storagegrid, 
+summary: Se usi il software NetApp ONTAP, puoi usare NetApp FabricPool per spostare in tier i dati inattivi su un sistema di storage a oggetti NetApp StorageGRID. 
+---
+= Flusso di lavoro di configurazione per l'utilizzo di StorageGRID con FabricPool
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se usi il software NetApp ONTAP, puoi usare NetApp FabricPool per spostare in tier i dati inattivi su un sistema di storage a oggetti NetApp StorageGRID.
+
+Usa queste istruzioni per:
+
+* Scopri le considerazioni e le best practice per configurare StorageGRID per un carico di lavoro FabricPool.
+* Scopri come configurare un sistema di storage a oggetti StorageGRID per l'utilizzo con FabricPool.
+* Scopri come fornire i valori richiesti a ONTAP quando colleghi StorageGRID come tier cloud FabricPool.
+
+
+
+
+[[quick-start-for-configuring-storagegrid-for-fabricpool]]
+== Guida rapida per configurare StorageGRID per FabricPool
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Uno"]Pianifica la tua configurazione
+[role="quick-margin-list"]
+* Decidi quale criterio di tiering dei volumi FabricPool utilizzerai per eseguire il tiering dei dati ONTAP inattivi su StorageGRID.
+* ${post_edited_translations.segment}
+* Diventa familiare con il software di sistema StorageGRID, incluso il link:../primer/exploring-grid-manager.html["Grid Manager"] e il link:../primer/exploring-tenant-manager.html["${post_edited_translations.segment}"].
+* Esamina le migliori pratiche di FabricPool per link:best-practices-for-high-availability-groups.html["gruppi HA"], link:best-practices-for-load-balancing.html["bilanciamento del carico"], link:best-practices-ilm.html["ILM"] e link:other-best-practices-for-storagegrid-and-fabricpool.html["${post_edited_translations.segment}"].
+* Consulta queste risorse aggiuntive, che forniscono dettagli sull'utilizzo e la configurazione di ONTAP e FabricPool:
++
+https://www.netapp.com/pdf.html?item=/media/17239-tr4598pdf.pdf["TR-4598: FabricPool Best practice in ONTAP"^]
+
++
+https://docs.netapp.com/us-en/ontap/fabricpool/index.html["Documentazione ONTAP per FabricPool"^]
+
+
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Due"] Esegui le attività preliminari
+[role="quick-margin-para"]
+Ottieni link:information-needed-to-attach-storagegrid-as-cloud-tier.html["Informazioni necessarie per collegare StorageGRID come livello cloud"], tra cui:
+
+[role="quick-margin-list"]
+* indirizzi IP
+* ${post_edited_translations.segment}
+* Certificato SSL
+
+
+[role="quick-margin-para"]
+Facoltativamente, configura link:../admin/using-identity-federation.html["federazione di identità"] e link:../admin/how-sso-works.html["single sign-on"].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Tre"] Configura le impostazioni di StorageGRID
+[role="quick-margin-para"]
+${post_edited_translations.segment}
+
+[role="quick-margin-para"]
+L'utilizzo di link:use-fabricpool-setup-wizard.html["setup wizard di FabricPool"] è il modo consigliato e più rapido per configurare tutti gli elementi, ma, se necessario, puoi anche configurare ciascuna entità manualmente.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["Quattro"]Configura ONTAP e DNS
+[role="quick-margin-para"]
+Usa ONTAP per link:configure-ontap.html["aggiungi un livello cloud"] che utilizza i valori StorageGRID. Quindi, link:configure-dns-server.html["configura le voci DNS"] per associare gli indirizzi IP a qualsiasi nome di dominio che intendi utilizzare.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["Cinque"]Monitorare e gestire
+[role="quick-margin-para"]
+Quando il sistema è attivo e funzionante, esegui attività continue in ONTAP e StorageGRID per gestire e monitorare la stratificazione dei dati FabricPool nel tempo.
+
+
+
+[[what-is-fabricpool]]
+== Cos'è FabricPool?
+
+FabricPool è una soluzione storage ibrida ONTAP che utilizza un aggregate flash dalle performance elevate come livello di prestazioni e un archivio di oggetti come livello cloud. Utilizzare aggregate abilitati FabricPool ti aiuta a ridurre i costi di storage senza compromettere prestazioni, efficienza o protezione.
+
+FabricPool associa un tier cloud (un archivio di oggetti esterno, come StorageGRID) a un tier locale (un aggregato di storage ONTAP) per creare una raccolta composita di dischi. I volumi all'interno di FabricPool possono quindi sfruttare il tiering mantenendo i dati attivi (hot) su uno storage dalle performance elevate (il tier locale) e spostando in tier i dati inattivi (cold) nell'archivio di oggetti esterno (il tier cloud).
+
+${post_edited_translations.segment}
+
+
+
+[[what-is-storagegrid]]
+== ${post_edited_translations.segment}
+
+NetApp StorageGRID è un'architettura di storage che gestisce i dati come oggetti, a differenza di altre architetture di storage come file o storage a blocchi. Gli oggetti vengono conservati all'interno di un singolo container (come un bucket) e non sono annidati come file all'interno di una directory dentro altre directory. Sebbene lo storage a oggetti offra generalmente prestazioni inferiori rispetto allo storage a file o a blocchi, è significativamente più scalabile. I bucket di StorageGRID possono contenere petabyte di dati e miliardi di oggetti.
+
+
+
+[[why-use-storagegrid-as-a-fabricpool-cloud-tier]]
+== Perché usare StorageGRID come livello cloud FabricPool?
+
+FabricPool può eseguire il tiering dei dati ONTAP verso diversi provider di storage a oggetti, inclusa StorageGRID. A differenza dei cloud pubblici che potrebbero impostare un numero massimo di operazioni di input/output al secondo (IOPS) supportate a livello di bucket o container, le prestazioni di StorageGRID scalano in base al numero di nodi nel sistema. Utilizzare StorageGRID come livello cloud FabricPool ti permette di mantenere i dati meno utilizzati nel tuo cloud privato per ottenere le massime performance e il controllo completo sui tuoi dati.
+
+Inoltre, non è necessaria una licenza FabricPool quando usi StorageGRID come livello cloud.

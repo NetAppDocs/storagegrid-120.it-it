@@ -1,0 +1,96 @@
+---
+permalink: ilm/creating-default-ilm-rule.html 
+sidebar: sidebar 
+keywords: create default ilm rule 
+summary: 'Prima di creare una policy ILM, devi creare una regola predefinita per inserire nella policy tutti gli oggetti non corrispondenti a un"altra regola. La regola predefinita non può utilizzare alcun filtro. Deve essere applicata a tutti i tenant, a tutti i bucket e a tutte le versioni degli oggetti.' 
+---
+= Crea una regola ILM predefinita in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Prima di creare una policy ILM, devi creare una regola predefinita per inserire nella policy tutti gli oggetti non corrispondenti a un'altra regola. La regola predefinita non può usare alcun filtro. Deve essere applicata a tutti i tenant, a tutti i bucket e a tutte le versioni degli oggetti.
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Hai link:../admin/admin-group-permissions.html["autorizzazioni di accesso specifiche"].
+
+
+.Informazioni su questa attività
+La regola predefinita è l'ultima regola ad essere valutata in una policy ILM, quindi non può utilizzare alcun filtro. Le istruzioni di posizionamento per la regola predefinita vengono applicate a tutti gli oggetti che non corrispondono a un'altra regola nella policy.
+
+In questo esempio di policy, la prima regola si applica solo agli oggetti appartenenti a test-tenant-1. La regola predefinita, che è l'ultima, si applica agli oggetti appartenenti a tutti gli altri tenant account.
+
+image:ilm_policies_page_default_rule.png["Regola predefinita della pagina delle policy ILM"]
+
+Quando crei la regola predefinita, tieni presenti questi requisiti:
+
+* La regola predefinita verrà automaticamente inserita come ultima regola quando la aggiungi a una policy.
+* La regola predefinita non può utilizzare filtri di base o avanzati.
+* La regola predefinita deve essere applicata a tutte le versioni dell'oggetto.
+* La regola predefinita dovrebbe creare copie replicate.
++
+
+NOTE: Non usare come regola predefinita per una policy una regola che crea copie con codifica di cancellazione. Le regole di codifica di cancellazione dovrebbero usare un filtro avanzato per impedire che gli oggetti più piccoli vengano codificati con la codifica di cancellazione.
+
+* In generale, la regola predefinita dovrebbe conservare gli oggetti per sempre.
+* Se usi (o prevedi di abilitare) l'impostazione globale S3 Object Lock, la regola predefinita deve essere conforme.
+
+
+.Passaggi
+. Seleziona *ILM* > *Regole*.
+. Seleziona *Create*.
++
+Viene visualizzato il passaggio 1 (Inserisci i dettagli) della procedura guidata Crea regola ILM.
+
+. Inserisci un nome univoco per la regola nel campo *Nome regola*.
+. Facoltativamente, inserisci una breve descrizione della regola nel campo *Descrizione*.
+. Lascia vuoto il campo *Account tenant*.
++
+La regola predefinita deve essere applicata a tutti gli account tenant.
+
+. Lascia l'opzione "Si applica a tutti i bucket" selezionata nel menu a tendina "Nome del bucket".
++
+La regola predefinita deve essere applicata a tutti i bucket S3.
+
+. Mantieni la risposta predefinita, *No*, alla domanda "Applica questa regola solo alle versioni precedenti degli oggetti (nei bucket S3 con versioning abilitato)?"
+. Non aggiungere filtri avanzati.
++
+La regola predefinita non può specificare alcun filtro.
+
+. Seleziona *Next*.
++
+Viene visualizzato il passaggio 2 (Definisci i posizionamenti).
+
+. Per il tempo di riferimento, seleziona qualsiasi opzione.
++
+Se hai mantenuto la risposta predefinita, *No*, alla domanda "Applica questa regola solo alle versioni precedenti dell'oggetto?" Il tempo non corrente non sarà incluso nell'elenco a discesa. La regola predefinita deve applicarsi a tutte le versioni dell'oggetto.
+
+. Specifica le istruzioni di posizionamento per la regola predefinita.
++
+** La regola predefinita dovrebbe conservare gli oggetti per sempre. Viene visualizzato un avviso quando attivi una nuova policy se la regola predefinita non conserva gli oggetti per sempre. Devi confermare che questo è il comportamento che ti aspetti.
+** La regola predefinita dovrebbe creare copie replicate.
++
+
+NOTE: Non usare come regola predefinita per una policy una regola che crea copie con codifica di cancellazione. Le regole di codifica di cancellazione dovrebbero includere il filtro avanzato *Dimensione oggetto (MB) superiore a 200 KB* per impedire che oggetti più piccoli vengano codificati con la cancellazione.
+
+** Se usi (o hai intenzione di abilitare) l'impostazione globale S3 Object Lock, la regola predefinita deve essere conforme:
++
+*** Devi creare almeno due copie replicate dell'oggetto o una copia con codifica di cancellazione.
+*** Queste copie devono esistere sui nodi di archiviazione per tutta la durata di ogni riga delle istruzioni di posizionamento.
+*** Non puoi salvare copie di oggetti in un Cloud Storage Pool.
+*** Almeno una riga delle istruzioni di posizionamento deve iniziare dal giorno 0, utilizzando l'Ingest time come orario di riferimento.
+*** Almeno una riga delle istruzioni per il posizionamento deve essere "per sempre".
+
+
+
+
+. Guarda il diagramma di conservazione per confermare le tue istruzioni di posizionamento.
+. Seleziona *Continue*.
++
+Viene visualizzato il passaggio 3 (Seleziona il comportamento di ingest).
+
+. Seleziona l'opzione di ingest da utilizzare e seleziona *Crea*.
+

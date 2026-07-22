@@ -1,0 +1,46 @@
+---
+permalink: maintain/pausing-and-resuming-decommission-process-for-storage-nodes.html 
+sidebar: sidebar 
+keywords: how to pause decommission 
+summary: 'Se devi eseguire una seconda procedura di manutenzione, puoi mettere in pausa la procedura di decommission per uno Storage Node durante alcune fasi. Dopo che l"altra procedura è terminata, puoi riprendere il decommission.' 
+---
+= Metti in pausa e riprendi il processo di decommission per i nodi di storage StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se devi eseguire una seconda procedura di manutenzione, puoi mettere in pausa la procedura di decommission per uno Storage Node durante alcune fasi. Dopo che l'altra procedura è terminata, puoi riprendere il decommission.
+
+
+NOTE: Il pulsante *Pausa* è abilitato solo quando si raggiungono le fasi di valutazione ILM o di decommissionare dei dati codificati per la cancellazione; tuttavia, la valutazione ILM (migrazione dei dati) continuerà a essere eseguita in background.
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Hai il link:../admin/admin-group-permissions.html["Permesso di manutenzione o di accesso root"].
+
+
+.Passaggi
+. Seleziona *Manutenzione* > *Attività* > *Decommission*.
++
+Viene visualizzata la pagina di decommission.
+
+. Seleziona *Decommissiona nodi*.
++
+Viene visualizzata la pagina Decommission Nodes. Quando la procedura di decommission raggiunge una delle seguenti fasi, il pulsante *Pausa* viene abilitato.
+
++
+** Valutare l'ILM
+** Decommissionamento dei dati codificati per la cancellazione
+
+
+. Seleziona *Pausa* per sospendere la procedura.
++
+La fase corrente è in pausa e il pulsante *Riprendi* è abilitato.
+
++
+image:decommission_nodes_procedure_paused.png["Procedura di decommission dei nodi sospesa"]
+
+. Dopo che l'altra procedura di manutenzione è terminata, seleziona *Riprendi* per procedere con la decommission.
+

@@ -1,0 +1,54 @@
+---
+permalink: audit/client-read-audit-messages.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, messages, client read, S3SL, SGET, SHEA, WGET, WHEA, S3 
+summary: 'I messaggi di audit di lettura del client vengono registrati quando un"applicazione client S3 effettua una richiesta per recuperare un oggetto.' 
+---
+= Messaggi di audit per le operazioni di lettura del client in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+I messaggi di audit di lettura del client vengono registrati quando un'applicazione client S3 effettua una richiesta per recuperare un oggetto.
+
+[cols="1a,3a,1a,1a"]
+|===
+| Codice | Descrizione | Utilizzato da | Vedi 
+
+
+ a| 
+S3SL
+ a| 
+Richiesta S3 Select: registra un completamento dopo che una richiesta S3 Select è stata restituita al client. Il messaggio S3SL può includere dettagli sul messaggio di errore e sul codice di errore. La richiesta potrebbe non essere andata a buon fine.
+ a| 
+${post_edited_translations.segment}
+ a| 
+link:s3-select-request.html["S3SL: richiesta S3 Select"]
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+${post_edited_translations.segment}
+
+*Nota:* Se la transazione opera su una sottorisorsa, il messaggio di controllo includerà il campo S3SR.
+ a| 
+${post_edited_translations.segment}
+ a| 
+link:sget-s3-get.html["SGET: S3 GET"]
+
+
+
+ a| 
+SHEA
+ a| 
+${post_edited_translations.segment}
+ a| 
+${post_edited_translations.segment}
+ a| 
+link:shea-s3-head.html["SHEA: S3 HEAD"]
+
+|===

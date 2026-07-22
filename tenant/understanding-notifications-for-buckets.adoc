@@ -1,0 +1,71 @@
+---
+permalink: tenant/understanding-notifications-for-buckets.html 
+sidebar: sidebar 
+keywords: s3 bucket event notification, sequencer key 
+summary: Puoi abilitare la notifica degli eventi per un bucket S3 se vuoi che StorageGRID invii notifiche relative a eventi specifici a una destinazione cluster Kafka o ad Amazon Simple Notification Service. 
+---
+= Scopri le notifiche degli eventi di StorageGRID per i bucket S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi abilitare la notifica degli eventi per un bucket S3 se vuoi che StorageGRID invii notifiche relative a eventi specifici a una destinazione cluster Kafka, a un endpoint webhook o ad Amazon Simple Notification Service.
+
+Ad esempio, puoi configurare avvisi da inviare agli amministratori per ogni oggetto aggiunto a un bucket, dove gli oggetti rappresentano file di registro associati a un evento critico del sistema.
+
+Le notifiche degli eventi vengono create nel bucket di origine come specificato nella configurazione delle notifiche e vengono consegnate alla destinazione. Se un evento associato a un oggetto ha esito positivo, viene creata una notifica relativa a tale evento, che viene messa in coda per la consegna.
+
+L'unicità e l'ordine delle notifiche non sono garantiti. Più di una notifica di un evento potrebbe essere recapitata alla destinazione come risultato delle operazioni eseguite per garantire il successo della consegna. E poiché la consegna è asincrona, non è garantito che l'ordine temporale delle notifiche a livello di destinazione corrisponda all'ordine degli eventi sul bucket di origine, in particolare per le operazioni che hanno origine da diversi siti StorageGRID. Puoi utilizzare la chiave `sequencer` nel messaggio dell'evento per determinare l'ordine degli eventi per un particolare oggetto, come descritto nella documentazione di Amazon S3.
+
+${post_edited_translations.segment}
+
+* Sono supportati i seguenti tipi di evento:
++
+** s3:ObjectCreated:
+** s3:ObjectCreated:Put
+** s3:ObjectCreated:Post
+** s3:ObjectCreated:Copy
+** s3:ObjectCreated:CompleteMultipartUpload
+** s3:ObjectRemoved:
+** s3:ObjectRemoved:Delete
+** s3:ObjectRemoved:DeleteMarkerCreated
+** s3:ObjectRestore:Post
+
+
+* ${post_edited_translations.segment}
+
+
+[cols="1a,2a"]
+|===
+| Nome chiave | ${post_edited_translations.segment} 
+
+
+ a| 
+eventSource
+ a| 
+`sgws:s3`
+
+
+
+ a| 
+awsRegion
+ a| 
+${post_edited_translations.segment}
+
+
+
+ a| 
+x-amz-id-2
+ a| 
+${post_edited_translations.segment}
+
+
+
+ a| 
+arn
+ a| 
+`urn:sgws:s3:::bucket_name`
+
+|===

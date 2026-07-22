@@ -1,0 +1,310 @@
+---
+permalink: monitor/email-alert-notifications.html 
+sidebar: sidebar 
+keywords: how to disable alert rules, how to remove a custom alert rule 
+summary: Se vuoi che vengano inviate notifiche email quando si verificano avvisi, devi fornire le informazioni sul tuo server SMTP. Devi anche inserire gli indirizzi email dei destinatari delle notifiche di avviso. 
+---
+= Configura le notifiche e-mail per gli avvisi di StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se vuoi che vengano inviate notifiche email quando si verificano avvisi, devi fornire le informazioni sul tuo server SMTP. Devi anche inserire gli indirizzi email dei destinatari delle notifiche di avviso.
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Hai il link:../admin/admin-group-permissions.html["Gestisci gli avvisi o i permessi di accesso root"].
+
+
+.Informazioni su questa attività
+Le impostazioni email utilizzate per le notifiche di avviso non vengono utilizzate per i pacchetti AutoSupport. Tuttavia, puoi usare lo stesso server di posta elettronica per tutte le notifiche.
+
+Se la tua distribuzione StorageGRID include più nodi di amministrazione, il nodo di amministrazione primario è il mittente preferito per le notifiche di avviso, i pacchetti AutoSupport e le trap e inform SNMP. Se il nodo di amministrazione primario diventa non disponibile, le notifiche vengono temporaneamente inviate dagli altri nodi di amministrazione. Vedi link:../primer/what-admin-node-is.html["Che cos'è un Admin Node?"].
+
+.Passaggi
+. Seleziona *Avvisi* > *Configurazione email*.
++
+Viene visualizzata la pagina di configurazione della posta elettronica.
+
+. Seleziona la casella di controllo *Abilita notifiche e-mail* per indicare che vuoi che vengano inviate e-mail di notifica quando gli avvisi raggiungono le soglie configurate.
++
+Vengono visualizzate le sezioni Email (SMTP) Server, Transport Layer Security (TLS), Email Addresses e Filters.
+
+. Nella sezione Server di posta elettronica (SMTP), inserisci le informazioni necessarie a StorageGRID per accedere al tuo server SMTP.
++
+Se il server SMTP richiede l'autenticazione, devi fornire sia un nome utente che una password.
+
++
+[cols="1a,2a"]
+|===
+| Campo | Inserisci 
+
+
+ a| 
+Server di posta
+ a| 
+Il fully qualified domain name (FQDN) o l'indirizzo IP del server SMTP.
+
+
+
+ a| 
+Porta
+ a| 
+La porta utilizzata per accedere al server SMTP. Deve essere compresa tra 1 e 65535.
+
+
+
+ a| 
+Nome utente (facoltativo)
+ a| 
+Se il server SMTP richiede l'autenticazione, inserisci il nome utente con cui autenticarti.
+
+
+
+ a| 
+Password (facoltativa)
+ a| 
+Se il server SMTP richiede l'autenticazione, inserisci la password per autenticarti.
+
+|===
+. Nella sezione Indirizzi e-mail, inserisci gli indirizzi e-mail del mittente e di ciascun destinatario.
++
+.. Nel campo *Indirizzo email del mittente*, specifica un indirizzo email valido da usare come mittente per le notifiche di avviso.
++
+Ad esempio: `storagegrid-alerts@example.com`
+
+.. Nella sezione Destinatari, inserisci un indirizzo email per ogni lista email o persona che deve ricevere un'email quando si verifica un avviso.
++
+Seleziona l'icona più image:icon_plus_sign_black_on_white.gif["icona più"] per aggiungere i destinatari.
+
+
+
+. Se per le comunicazioni con il server SMTP è necessario il protocollo Transport Layer Security (TLS), seleziona *Richiedi TLS* nella sezione Transport Layer Security (TLS).
++
+.. Nel campo *Certificato CA*, inserisci il certificato CA che verrà utilizzato per verificare l'identità del server SMTP.
++
+Puoi copiare e incollare il contenuto in questo campo oppure selezionare *Browse* e scegliere il file.
+
++
+Devi fornire un singolo file che contenga i certificati di ciascuna autorità di certificazione (CA) emittente intermedia. Il file deve contenere ciascun file di certificato CA codificato in formato PEM, concatenati nell'ordine della catena di certificati.
+
+.. Seleziona la casella di controllo *Invia certificato client* se il tuo server di posta SMTP richiede ai mittenti di fornire certificati client per l'autenticazione.
+.. Nel campo *Certificato client*, inserisci il certificato client codificato in formato PEM da inviare al server SMTP.
++
+Puoi copiare e incollare il contenuto in questo campo oppure selezionare *Browse* e scegliere il file.
+
+.. Nel campo *Chiave privata*, inserisci la chiave privata del certificato client in formato PEM non crittografato.
++
+Puoi copiare e incollare il contenuto in questo campo oppure selezionare *Browse* e scegliere il file.
+
++
+
+NOTE: Se devi modificare le impostazioni dell'email, seleziona l'icona della matita image:icon_edit_tm.png["Icona di modifica"] per aggiornare questo campo.
+
+
+
+. Nella sezione Filtri, seleziona quali livelli di gravità degli avvisi devono generare notifiche via e-mail, a meno che la regola per un avviso specifico non sia stata silenziata.
++
+[cols="1a,2a"]
+|===
+| Gravità | Descrizione 
+
+
+ a| 
+Minore, maggiore, critico
+ a| 
+Viene inviata una notifica via e-mail quando viene soddisfatta la condizione minore, maggiore o critica per una regola di avviso.
+
+
+
+ a| 
+Importante, critico
+ a| 
+Ricevi una notifica via e-mail quando viene soddisfatta la condizione maggiore o critica per una regola di avviso. Le notifiche non vengono inviate per gli avvisi minori.
+
+
+
+ a| 
+Solo critico
+ a| 
+Ricevi una notifica via e-mail solo quando si verifica la condizione critica per una regola di avviso. Non ricevi notifiche per avvisi di minore o maggiore entità.
+
+|===
+. Quando sei pronto per testare le impostazioni della tua email, segui questi passaggi:
++
+.. Seleziona *Invia email di prova*.
++
+Viene visualizzato un messaggio di conferma che indica che è stata inviata un'email di prova.
+
+.. Controlla le caselle di posta di tutti i destinatari dell'email e verifica che sia stata ricevuta un'email di prova.
++
+
+NOTE: Se non ricevi l'e-mail entro pochi minuti o se viene visualizzato l'avviso *Errore di notifica e-mail*, controlla le impostazioni e riprova.
+
+.. Accedi a qualsiasi altro Admin Node e invia un'email di prova per verificare la connettività da tutti i siti.
++
+
+NOTE: Quando testi le notifiche di avviso, devi accedere a ogni Admin Node per verificare la connettività. Questo è diverso dal test dei pacchetti AutoSupport, in cui tutti gli Admin Node inviano l'email di prova.
+
+
+
+. Seleziona *Salva*.
++
+L'invio di un'email di prova non salva le impostazioni. Devi selezionare *Salva*.
+
++
+Le impostazioni e-mail sono state salvate.
+
+
+
+
+
+[[information-included-in-alert-email-notifications]]
+== Informazioni incluse nelle notifiche e-mail di avviso
+
+Dopo che hai configurato il server di posta SMTP, le notifiche email vengono inviate ai destinatari designati quando viene attivato un avviso, a meno che la regola di avviso non sia soppressa da un'opzione di silenzio. Vedi link:silencing-alert-notifications.html["Silenzia le notifiche di avviso"].
+
+Le notifiche via e-mail includono le seguenti informazioni:
+
+image:alerts_email_notification.png["Notifiche email per gli avvisi"]
+
+[cols="1a,6a"]
+|===
+| Callout | Descrizione 
+
+
+ a| 
+1
+ a| 
+Il nome dell'avviso, seguito dal numero di istanze attive di questo avviso.
+
+
+
+ a| 
+2
+ a| 
+La descrizione dell'allerta.
+
+
+
+ a| 
+3
+ a| 
+Eventuali azioni consigliate per l'avviso.
+
+
+
+ a| 
+4
+ a| 
+Dettagli relativi a ciascuna istanza attiva dell'avviso, inclusi il nodo e il sito interessati, la gravità dell'avviso, l'ora UTC in cui è stata attivata la regola di avviso e il nome del job e del servizio interessati.
+
+
+
+ a| 
+5
+ a| 
+Il nome host del nodo Admin che ha inviato la notifica.
+
+|===
+
+
+[[how-alerts-are-grouped]]
+== Come vengono raggruppati gli avvisi
+
+Per evitare che venga inviato un numero eccessivo di notifiche email quando vengono attivati degli avvisi, StorageGRID cerca di raggruppare più avvisi nella stessa notifica.
+
+Consulta la tabella seguente per esempi di come StorageGRID raggruppa più avvisi nelle notifiche e-mail.
+
+[cols="1a,1a"]
+|===
+| Comportamento | Esempio 
+
+
+ a| 
+Ogni notifica di avviso si applica solo agli avvisi che hanno lo stesso nome. Se due avvisi con nomi diversi vengono attivati contemporaneamente, vengono inviate due notifiche email.
+ a| 
+* L'allarme A viene attivato contemporaneamente su due nodi. Viene inviata una sola notifica.
+* L'allarme A viene attivato sul nodo 1 e l'allarme B viene attivato contemporaneamente sul nodo 2. Vengono inviate due notifiche, una per ciascun allarme.
+
+
+
+
+ a| 
+Per un avviso specifico su un nodo specifico, se le soglie vengono raggiunte per più di un livello di gravità, viene inviata una notifica solo per l'avviso più grave.
+ a| 
+* Viene attivato l'allarme A e vengono raggiunte le soglie di allarme minore, maggiore e critico. Per l'allarme critico viene inviata una sola notifica.
+
+
+
+
+ a| 
+La prima volta che viene attivato un avviso, StorageGRID attende 2 minuti prima di inviare una notifica. Se durante questo lasso di tempo vengono attivati altri avvisi con lo stesso nome, StorageGRID li raggruppa tutti nella notifica iniziale.
+ a| 
+. L'allarme A viene attivato sul nodo 1 alle 08:00. Non viene inviata alcuna notifica.
+. L'allarme A viene attivato sul nodo 2 alle 08:01. Non viene inviata alcuna notifica.
+. Alle 08:02 viene inviata una notifica per segnalare entrambe le istanze dell'avviso.
+
+
+
+
+ a| 
+Se viene attivato un altro avviso con lo stesso nome, StorageGRID attende 10 minuti prima di inviare una nuova notifica. La nuova notifica riporta tutti gli avvisi attivi (avvisi correnti che non sono stati silenziati), anche se sono già stati segnalati in precedenza.
+ a| 
+. L'allarme A viene attivato sul nodo 1 alle 08:00. Una notifica viene inviata alle 08:02.
+. L'allarme A viene attivato sul nodo 2 alle 08:05. Una seconda notifica viene inviata alle 08:15 (10 minuti dopo). Entrambi i nodi vengono segnalati.
+
+
+
+
+ a| 
+Se sono presenti più avvisi attivi con lo stesso nome e uno di questi viene risolto, non viene inviata una nuova notifica se l'avviso si ripresenta sul nodo per il quale è stato risolto.
+ a| 
+. L'allarme A viene attivato per il nodo 1. Viene inviata una notifica.
+. L'allarme A viene attivato per il nodo 2. Viene inviata una seconda notifica.
+. L'avviso A è stato risolto per il nodo 2, ma rimane attivo per il nodo 1.
+. L'allerta A viene attivata nuovamente per il nodo 2. Non viene inviata alcuna nuova notifica perché l'allerta è ancora attiva per il nodo 1.
+
+
+
+
+ a| 
+StorageGRID continua a inviare notifiche via e-mail ogni 7 giorni finché tutti i casi di avviso non vengono risolti o la regola di avviso non viene disattivata.
+ a| 
+. L'allerta A viene attivata per il nodo 1 l'8 marzo. Viene inviata una notifica.
+. L'avviso A non è risolto o silenziato. Ulteriori notifiche vengono inviate il 15 marzo, il 22 marzo, il 29 marzo e così via.
+
+
+|===
+
+
+[[troubleshoot-alert-email-notifications]]
+== Risolvi i problemi delle notifiche email di avviso
+
+Se viene visualizzato l'avviso *Errore di notifica e-mail* o non riesci a ricevere l'email di notifica di prova, segui questi passaggi per risolvere il problema.
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Hai il link:../admin/admin-group-permissions.html["Gestisci gli avvisi o i permessi di accesso root"].
+
+
+.Passaggi
+. Verifica le tue impostazioni.
++
+.. Seleziona *Avvisi* > *Configurazione email*.
+.. Verifica che le impostazioni del server email (SMTP) siano corrette.
+.. Verifica di aver specificato indirizzi email validi per i destinatari.
+
+
+. Controlla il filtro antispam e assicurati che l'email non sia stata inviata nella cartella della posta indesiderata.
+. Chiedi al tuo amministratore di posta elettronica di confermare che le email provenienti dall'indirizzo del mittente non vengano bloccate.
+. Raccogli un file di log per l'Admin Node e poi contatta il supporto tecnico.
++
+Il supporto tecnico può usare le informazioni nei file di log per aiutarti a capire cosa non ha funzionato. Ad esempio, il file prometheus.log potrebbe mostrare un errore durante la connessione al server che hai specificato.
+
++
+Vedi link:collecting-log-files-and-system-data.html["Raccogli i file di log e i dati di sistema"].
+
+

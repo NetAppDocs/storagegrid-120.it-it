@@ -1,0 +1,93 @@
+---
+permalink: audit/ovwr-object-overwrite.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, OVWR, Object Overwrite 
+summary: ${post_edited_translations.segment} 
+---
+= Messaggio di audit OVWR per sovrascritture di oggetti in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+${post_edited_translations.segment}
+
+[cols="1a,1a,4a"]
+|===
+| Codice | Campo | Descrizione 
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Identificatore del blocco di contenuto (nuovo)
+ a| 
+Il CBID del nuovo oggetto.
+
+
+
+ a| 
+CSIZ
+ a| 
+Dimensione oggetto precedente
+ a| 
+La dimensione, in byte, dell'oggetto che stai sovrascrivendo.
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+${post_edited_translations.segment}
+ a| 
+Il CBID dell'oggetto precedente.
+
+
+
+ a| 
+UUID
+ a| 
+Identificativo univoco universale (nuovo)
+ a| 
+${post_edited_translations.segment}
+
+
+
+ a| 
+OUID
+ a| 
+ID univocamente universale (precedente)
+ a| 
+${post_edited_translations.segment}
+
+
+
+ a| 
+PATH
+ a| 
+Percorso oggetto S3
+ a| 
+Il percorso dell'oggetto S3 utilizzato sia per l'oggetto precedente che per quello nuovo
+
+
+
+ a| 
+RSLT
+ a| 
+${post_edited_translations.segment}
+ a| 
+Risultato della transazione di sovrascrittura dell'oggetto. Risultato è sempre:
+
+SUCS: Operazione riuscita
+
+
+
+ a| 
+SGRP
+ a| 
+${post_edited_translations.segment}
+ a| 
+Se presente, l'oggetto sovrascritto è stato eliminato nel sito specificato, che non è il sito in cui l'oggetto sovrascritto è stato inserito.
+
+|===

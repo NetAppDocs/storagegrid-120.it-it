@@ -1,0 +1,60 @@
+---
+permalink: admin/web-browser-requirements.html 
+sidebar: sidebar 
+keywords: web browser requirements, supported browser, chrome, edge, firefox 
+summary: Devi usare un browser web supportato. 
+---
+= Requisiti del browser web per StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Devi usare un browser web supportato.
+
+[cols="2a,2a"]
+|===
+| browser web | ${post_edited_translations.segment} 
+
+
+ a| 
+Google Chrome
+ a| 
+138
+
+
+
+ a| 
+Microsoft Edge
+ a| 
+138
+
+
+
+ a| 
+Mozilla Firefox
+ a| 
+140
+
+|===
+${post_edited_translations.segment}
+
+[cols="3a,1a"]
+|===
+| Larghezza del browser | Pixel 
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+1024
+
+
+
+ a| 
+Ottimale
+ a| 
+1280
+
+|===

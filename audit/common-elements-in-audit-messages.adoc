@@ -1,0 +1,106 @@
+---
+permalink: audit/common-elements-in-audit-messages.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, messages, message, common elements, AMID, ANID, ASES, ASQN, ATID, ATIM, ATYP, AVER, RSLT 
+summary: Tutti i messaggi di audit contengono gli elementi comuni. 
+---
+= Elementi comuni nei messaggi di audit di StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Tutti i messaggi di audit contengono gli elementi comuni.
+
+[cols="1a,1a,4a"]
+|===
+| Codice | Tipo | Descrizione 
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+FC32
+ a| 
+ID modulo: un identificatore a quattro caratteri dell'ID modulo che ha generato il messaggio. Questo indica il segmento di codice all'interno del quale è stato generato il messaggio di audit.
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+UI32
+ a| 
+ID nodo: l'ID del nodo della griglia assegnato al servizio che ha generato il messaggio. A ciascun servizio viene assegnato un identificatore univoco al momento della configurazione e dell'installazione del sistema StorageGRID. Questo ID non può essere modificato.
+
+
+
+ a| 
+ASES
+ a| 
+UI64
+ a| 
+Identificativo della sessione di audit: nelle versioni precedenti, questo elemento indicava l'ora in cui il sistema di audit veniva inizializzato dopo l'avvio del servizio. Questo valore temporale veniva misurato in microsecondi a partire dall'epoca del sistema operativo (00:00:00 UTC del 1 gennaio 1970).
+
+*Nota:* Questo elemento è obsoleto e non compare più nei messaggi di controllo.
+
+
+
+ a| 
+ASQN
+ a| 
+UI64
+ a| 
+Conteggio sequenza: nelle versioni precedenti, questo contatore veniva incrementato per ogni messaggio di audit generato sul nodo della griglia (ANID) e azzerato al riavvio del servizio.
+
+*Nota:* Questo elemento è obsoleto e non compare più nei messaggi di controllo.
+
+
+
+ a| 
+ATID
+ a| 
+UI64
+ a| 
+ID di tracciamento: un identificatore condiviso dal set di messaggi attivati da un singolo evento.
+
+
+
+ a| 
+ATIM
+ a| 
+UI64
+ a| 
+Timestamp: l'ora in cui è stato generato l'evento che ha attivato il messaggio di audit, misurata in microsecondi dall'epoca del sistema operativo (00:00:00 UTC del 1 gennaio 1970). Nota che la maggior parte degli strumenti disponibili per convertire il timestamp in data e ora locali si basa sui millisecondi.
+
+Potrebbe essere necessario arrotondare o troncare il timestamp registrato. L'ora leggibile dall'uomo che appare all'inizio del messaggio di audit nel  `audit.log` file è l'attributo ATIM in formato ISO 8601. La data e l'ora sono rappresentate come  `_YYYY-MMDDTHH:MM:SS.UUUUUU_`, dove  `T` è un carattere stringa letterale che indica l'inizio del segmento temporale della data.  `_UUUUUU_` sono microsecondi.
+
+
+
+ a| 
+ATYP
+ a| 
+FC32
+ a| 
+Tipo di evento: un identificatore a quattro caratteri dell'evento registrato. Questo determina il contenuto del "payload" del messaggio: gli attributi inclusi.
+
+
+
+ a| 
+AVER
+ a| 
+UI32
+ a| 
+Versione: la versione del messaggio di audit. Man mano che il software StorageGRID si evolve, le nuove versioni dei servizi potrebbero includere nuove funzionalità nei report di audit. Questo campo consente la compatibilità con le versioni precedenti nel servizio AMS per elaborare i messaggi provenienti da versioni precedenti dei servizi.
+
+
+
+ a| 
+RSLT
+ a| 
+FC32
+ a| 
+Risultato: il risultato di un evento, processo o transazione. Se non è rilevante per un messaggio, si usa NONE anziché SUCS per evitare che il messaggio venga filtrato accidentalmente.
+
+|===

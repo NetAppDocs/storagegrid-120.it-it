@@ -1,0 +1,41 @@
+---
+permalink: ilm/index.html 
+sidebar: sidebar 
+keywords: information lifecycle management overview, about information lifecycle management, ilm overview, about ilm 
+summary: 'Le regole di gestione del ciclo di vita delle informazioni (ILM) in una policy ILM indicano a StorageGRID come creare e distribuire copie dei dati degli oggetti e come gestire queste copie nel tempo.' 
+---
+= Gestisci gli oggetti con ILM in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le regole di gestione del ciclo di vita delle informazioni (ILM) in una policy ILM indicano a StorageGRID come creare e distribuire copie dei dati degli oggetti e come gestire queste copie nel tempo.
+
+
+
+[[about-these-instructions]]
+== Informazioni su queste istruzioni
+
+La progettazione e l'implementazione di regole e politiche ILM richiedono un'attenta pianificazione. Devi comprendere i requisiti operativi, la topologia del tuo sistema StorageGRID, le esigenze di protezione degli oggetti e i tipi di storage disponibili. Poi devi decidere come vuoi che i diversi tipi di oggetti vengano copiati, distribuiti e archiviati.
+
+Usa queste istruzioni per:
+
+* Scopri StorageGRID ILM, incluso link:how-ilm-operates-throughout-objects-life.html["come funziona ILM durante l'intero ciclo di vita di un oggetto"].
+* Scopri come configurare link:what-storage-pool-is.html["pool di storage"], link:what-cloud-storage-pool-is.html["Pool di storage cloud"] e link:what-ilm-rule-is.html["Regole ILM"].
+* Scopri come link:creating-ilm-policy.html["creare, simulare e attivare una policy ILM"] proteggere i dati degli oggetti su uno o più siti.
+* Scopri come link:managing-objects-with-s3-object-lock.html["Gestisci gli oggetti con S3 Object Lock"] ti aiuta a garantire che gli oggetti in specifici bucket S3 non vengano eliminati o sovrascritti per un periodo di tempo specificato.
+
+
+
+
+[[learn-more]]
+== Saperne di più
+
+Per saperne di più, guarda questi video:
+
+.Panoramica delle regole ILM
+video::9872d38f-80b3-4ad4-9f79-b1ff008760c7[panopto]
+.Panoramica delle policy ILM
+video::e768d4da-da88-413c-bbaa-b1ff00874d10[panopto]

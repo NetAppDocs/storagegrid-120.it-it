@@ -1,0 +1,167 @@
+---
+permalink: troubleshoot/troubleshoot-low-watermark-alert.html 
+sidebar: sidebar 
+keywords: troubleshoot low soft read-only watermark override alert, optimized watermarks 
+summary: 'Se utilizzi valori personalizzati per i watermark dei volumi di storage, potrebbe essere necessario risolvere l"avviso Low read-only watermark override. Se possibile, dovresti aggiornare il sistema per iniziare a utilizzare i valori ottimizzati.' 
+---
+= Risolvi l'override della filigrana in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se usi valori personalizzati per le filigrane del volume di storage, potresti dover risolvere l'avviso *Low read-only watermark override*. Se possibile, dovresti aggiornare il sistema per iniziare a usare i valori ottimizzati.
+
+Nelle versioni precedenti, i tre link:../admin/what-storage-volume-watermarks-are.html["watermark del volume di storage"] erano impostazioni globali &#8212; gli stessi valori si applicavano a ogni volume di storage su ciascun Storage Node. A partire da StorageGRID 11.6, il software può ottimizzare questi watermark per ciascun volume di storage, in base alle dimensioni dello Storage Node e alla capacità relativa del volume.
+
+${post_edited_translations.segment}
+
+* Il sistema è quasi saturo e non sarebbe in grado di accettare nuovi dati se venissero applicati watermark ottimizzati. In questo caso, StorageGRID non modificherà le impostazioni del watermark.
+* In precedenza hai impostato uno dei watermark del volume di storage su un valore personalizzato. StorageGRID non sovrascriverà le impostazioni personalizzate del watermark con valori ottimizzati. Tuttavia, StorageGRID potrebbe attivare l'avviso *Low read-only watermark override* se il valore personalizzato per il watermark soft di sola lettura del volume di storage è troppo basso.
+
+
+
+
+[[understand-the-alert]]
+== ${post_edited_translations.segment}
+
+Se usi valori personalizzati per le filigrane del volume di storage, l'avviso *Low read-only watermark override* potrebbe essere attivato per uno o più Storage Nodes.
+
+Ogni avviso indica che il valore personalizzato del watermark di sola lettura del volume di archiviazione è inferiore al valore minimo ottimizzato per quel Storage Node. Se continui a usare l'impostazione personalizzata, il nodo di archiviazione potrebbe rimanere con spazio critico prima di poter passare in sicurezza allo stato di sola lettura. Alcuni volumi di archiviazione potrebbero diventare inaccessibili (smontati automaticamente) quando il nodo raggiunge la capacità.
+
+Ad esempio, supponi di aver impostato in precedenza la soglia soft di sola lettura del volume di storage a 5 GB. Ora supponi che StorageGRID abbia calcolato i seguenti valori ottimizzati per i quattro volumi di storage nel nodo di storage A:
+
+[cols="2a,2a"]
+|===
+
+
+ a| 
+Volume 0
+ a| 
+12 GB
+
+
+
+ a| 
+Volume 1
+ a| 
+12 GB
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+11 GB
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+15 GB
+
+|===
+L'avviso *Override del watermark di sola lettura basso* viene attivato per lo Storage Node A perché il watermark personalizzato (5 GB) è inferiore al valore minimo ottimizzato per tutti i volumi in quel nodo (11 GB). Se continui a utilizzare l'impostazione personalizzata, lo spazio sul nodo potrebbe ridursi a livelli critici prima che possa passare in modo sicuro allo stato di sola lettura.
+
+
+
+[[resolve-the-alert]]
+== Risolvi l'avviso
+
+Segui questi passaggi se sono stati attivati uno o più avvisi *Low read-only watermark override*. Puoi usare queste istruzioni anche se attualmente usi impostazioni filigrana personalizzate e vuoi iniziare a usare impostazioni ottimizzate anche se non sono stati attivati avvisi.
+
+.Prima di iniziare
+* Hai completato l'aggiornamento a StorageGRID 11.6 o superiore.
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Hai link:../admin/admin-group-permissions.html["Permesso di accesso root"].
+
+
+.Informazioni su questa attività
+Puoi risolvere l'avviso *Low read-only watermark override* aggiornando le impostazioni personalizzate della filigrana ai nuovi override della filigrana. Tuttavia, se uno o più Storage Node sono quasi pieni o se hai requisiti ILM speciali, devi prima visualizzare le filigrane di storage ottimizzate e determinare se è sicuro utilizzarle.
+
+
+
+[[assess-object-data-usage-for-entire-grid]]
+=== Valuta l'utilizzo dei dati degli oggetti per l'intera griglia
+
+.Passaggi
+. Selezionare *Nodi*.
+. Per ogni sito nella griglia, espandi l'elenco dei nodi.
+. Esamina i valori percentuali indicati nella colonna *Dati oggetto utilizzati* per ciascun Storage Node in ogni sito.
++
+image:nodes_page_object_data_used_with_alert.png["Pagina dei nodi che mostra i dati degli oggetti utilizzati per 3 SN"]
+
+. Segui il passaggio appropriato:
++
+.. Se nessuno dei nodi di archiviazione è quasi pieno (ad esempio, tutti i valori *Dati oggetto utilizzati* sono inferiori all'80%), puoi iniziare a usare le impostazioni di override. Vai a <<use-optimized-watermarks,Usa filigrane ottimizzate>>.
+.. Se le regole ILM utilizzano un comportamento di acquisizione rigoroso o se specifici pool di archiviazione sono quasi pieni, esegui i passaggi in <<view-optimized-watermarks,Visualizza le watermarks di storage ottimizzate>> e <<determine-optimized-watermarks,Verifica se puoi utilizzare filigrane ottimizzate>>.
+
+
+
+
+
+
+[[view-optimized-watermarksview-optimized-storage-watermarks]]
+=== [[view-optimized-watermarks]]Visualizza le filigrane di archiviazione ottimizzate
+
+StorageGRID utilizza due metriche Prometheus per mostrare i valori ottimizzati che ha calcolato per il watermark soft di sola lettura del volume di storage. Puoi visualizzare i valori minimi e massimi ottimizzati per ciascun Storage Node nella tua grid.
+
+.Passaggi
+. ${post_edited_translations.segment}
+. Nella sezione Prometheus, seleziona il collegamento per accedere all'interfaccia utente di Prometheus.
+. ${post_edited_translations.segment}
++
+`storagegrid_storage_volume_minimum_optimized_soft_readonly_watermark`
+
++
+L'ultima colonna mostra il valore minimo ottimizzato del watermark soft di sola lettura per tutti i volumi di archiviazione su ciascun Storage Node. Se questo valore è superiore all'impostazione personalizzata per il watermark soft di sola lettura del volume di archiviazione, viene attivato l'avviso *Low read-only watermark override* per lo Storage Node.
+
+. Per vedere il valore massimo consigliato per la filigrana soft read-only, inserisci la seguente metrica Prometheus e seleziona *Esegui*:
++
+`storagegrid_storage_volume_maximum_optimized_soft_readonly_watermark`
+
++
+${post_edited_translations.segment}
+
+. [[maximum_optimized_value]]Nota il valore massimo ottimizzato per ciascun Storage Node.
+
+
+
+
+[[determine-optimized-watermarksdetermine-if-you-can-use-optimized-watermarks]]
+=== [[determine-optimized-watermarks]]Determina se puoi utilizzare filigrane ottimizzate
+
+.Passaggi
+. Selezionare *Nodi*.
+. Ripeti questi passaggi per ogni nodo di archiviazione online:
++
+.. Seleziona *_Storage Node_* > *Storage*.
+.. Scorri verso il basso fino alla tabella Archivi oggetti.
+.. Confronta il valore *Disponibile* per ogni archivio di oggetti (volume) con il massimo watermark ottimizzato che hai annotato per quel Storage Node.
+
+
+. Se almeno un volume su ogni nodo di archiviazione online ha più spazio disponibile rispetto al limite massimo ottimizzato per quel nodo, vai a <<use-optimized-watermarks,Usa filigrane ottimizzate>> per iniziare a utilizzare i limiti ottimizzati.
++
+Altrimenti, espandi la griglia il prima possibile. O link:../expand/adding-storage-volumes-to-storage-nodes.html["aggiungi volumi di archiviazione"] su un nodo esistente o link:../expand/adding-grid-nodes-to-existing-site-or-adding-new-site.html["aggiungi nuovi Storage Node"]. Quindi, vai a <<use-optimized-watermarks,Usa filigrane ottimizzate>> per aggiornare le impostazioni della watermark.
+
+. Se devi continuare a usare valori personalizzati per le filigrane del volume di archiviazione, link:../monitor/silencing-alert-notifications.html["silenzio"] oppure link:../monitor/disabling-alert-rules.html["disabilitare"] l'avviso *Low read-only watermark override*.
++
+
+NOTE: Gli stessi valori di watermark personalizzati vengono applicati a ogni volume di archiviazione su ogni Storage Node. L'utilizzo di valori inferiori a quelli consigliati per i watermark dei volumi di archiviazione potrebbe rendere alcuni volumi di archiviazione inaccessibili (smontati automaticamente) quando il nodo raggiunge la capacità.
+
+
+
+
+
+[[use-optimized-watermarksuse-optimized-watermarks]]
+=== [[use-optimized-watermarks]]Utilizza filigrane ottimizzate
+
+.Passaggi
+. Vai su *Support* > *Other* > *Storage watermarks*.
+. Seleziona la casella di controllo *Usa valori ottimizzati*.
+. Seleziona *Salva*.
+
+
+Le impostazioni ottimizzate della filigrana per il volume di archiviazione sono ora attive per ciascun volume di archiviazione, in base alle dimensioni del Storage Node e alla capacità relativa del volume.

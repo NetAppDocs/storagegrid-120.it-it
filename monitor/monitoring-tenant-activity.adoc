@@ -1,0 +1,184 @@
+---
+permalink: monitor/monitoring-tenant-activity.html 
+sidebar: sidebar 
+keywords: how to monitor tenant activity 
+summary: 'Tutte le attività dei client S3 sono associate agli account tenant di StorageGRID. Puoi usare Grid Manager per monitorare l"utilizzo dello storage o il traffico di rete per tutti i tenant o per un tenant specifico. Puoi usare il registro di audit o le dashboard di Grafana per raccogliere informazioni più dettagliate su come i tenant utilizzano StorageGRID.' 
+---
+= Monitorare l'attività dei tenant in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Tutte le attività dei client S3 sono associate agli account tenant di StorageGRID. Puoi usare Grid Manager per monitorare l'utilizzo dello storage o il traffico di rete per tutti i tenant o per un tenant specifico. Puoi usare il registro di audit o le dashboard di Grafana per raccogliere informazioni più dettagliate su come i tenant utilizzano StorageGRID.
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Hai il link:../admin/admin-group-permissions.html["Access root o autorizzazione account tenant"].
+
+
+
+
+[[view-all-tenants]]
+== Visualizza tutti i tenant
+
+La pagina Tenant mostra le informazioni di base per tutti gli account tenant attivi.
+
+.Passaggi
+. Seleziona *tenant*.
+. Esamina le informazioni visualizzate nelle pagine Tenant.
++
+Lo spazio logico utilizzato, l'utilizzo della quota, la quota e il numero di oggetti sono elencati per ciascun tenant. Se non è stata impostata una quota per un tenant, i campi "Utilizzo della quota" e "Quota" contengono un trattino (&#8212;).
+
++
+
+NOTE: La dimensione logica di tutti gli oggetti appartenenti a questo tenant include i caricamenti multipart incompleti e in corso. La dimensione non include lo spazio fisico aggiuntivo utilizzato per le policy ILM. I valori relativi allo spazio utilizzato sono stime. Queste stime sono influenzate dal momento dell'ingestione, dalla connettività di rete e dallo stato dei nodi.
+
++
+image:tenant_accounts_page.png["Pagina degli account tenant"]
+
+. Facoltativamente, accedi a un tenant account selezionando il link di accesso image:icon_tenant_sign_in.png["Icona di accesso tenant"] nella colonna *Accedi/Copia URL*.
+. Facoltativamente, puoi copiare l'URL della pagina di accesso di un tenant selezionando il link "Copia URL" image:icon_tenant_copy_url.png["Icona copia URL tenant"] nella colonna *Accedi/Copia URL*.
+. Facoltativamente, seleziona *Esporta in CSV* per visualizzare ed esportare un  `.csv` file contenente i valori di utilizzo per tutti i tenant.
++
+Ti viene chiesto di aprire o salvare il  `.csv` file.
+
++
+Il contenuto del file  `.csv` si presenta come nell'esempio seguente:
+
++
+image:tenant_accounts_example_csv.png["Esempio di account tenant in formato .csv"]
+
++
+Puoi aprire il  `.csv` file in un'applicazione per fogli di calcolo o usarlo nell'automazione.
+
+. Se non vengono visualizzati oggetti, facoltativamente, seleziona *Azioni* > *Elimina* per rimuovere uno o più tenant. Vedi link:../admin/deleting-tenant-account.html["Elimina account tenant"].
++
+Non puoi rimuovere un tenant account se l'account include bucket o container.
+
+
+
+
+
+[[view-a-specific-tenant]]
+== Visualizza un tenant specifico
+
+Puoi visualizzare i dettagli di uno specifico tenant.
+
+.Passaggi
+. Seleziona il nome del tenant dalla pagina Tenant.
++
+Viene visualizzata la pagina dei dettagli del tenant.
+
++
+image:tenant_usage_modal.png["Modale di utilizzo del tenant"]
+
+. Controlla la panoramica del tenant in cima alla pagina.
++
+Questa sezione della pagina dei dettagli fornisce informazioni di riepilogo per il tenant, inclusi il numero di oggetti del tenant, l'utilizzo della quota, lo spazio logico utilizzato e l'impostazione della quota.
+
++
+
+NOTE: La dimensione logica di tutti gli oggetti appartenenti a questo tenant include i caricamenti multipart incompleti e in corso. La dimensione non include lo spazio fisico aggiuntivo utilizzato per le policy ILM. I valori relativi allo spazio utilizzato sono stime. Queste stime sono influenzate dal momento dell'ingestione, dalla connettività di rete e dallo stato dei nodi.
+
+. Dalla scheda *Ripartizione dello spazio*, controlla il grafico *Consumo di spazio*.
++
+Questo grafico mostra il consumo totale di spazio per tutti i bucket S3 del tenant.
+
++
+Se è stata impostata una quota per questo tenant, la quantità di quota utilizzata e quella rimanente vengono visualizzate in formato testuale (ad esempio, `85.00 GB of 100 GB used`). Se non è stata impostata alcuna quota, il tenant ha una quota illimitata e il testo include solo la quantità di spazio utilizzato (ad esempio, `85.00 GB used`). Il grafico a barre mostra la % di quota in ogni bucket o container. Se il tenant ha superato la quota di archiviazione di oltre l'1% e di almeno 1 GB, il grafico mostra la quota totale e la quantità in eccesso.
+
++
+Puoi posizionare il cursore sul grafico a barre per vedere lo spazio di archiviazione utilizzato da ciascun bucket o container. Puoi posizionare il cursore sul segmento di spazio libero per vedere la quantità di quota di archiviazione rimanente.
+
++
+image:tenant_bucket_space_consumption_GM.png["Grafico a barre del consumo di bucket del tenant"]
+
++
+
+CAUTION: L'utilizzo della quota si basa su stime interne e potrebbe essere superato in alcuni casi. Ad esempio, StorageGRID verifica la quota quando un tenant inizia a caricare oggetti e rifiuta i nuovi caricamenti se il tenant ha superato la quota. Tuttavia, StorageGRID non tiene conto delle dimensioni del caricamento corrente per determinare se la quota è stata superata. Se vengono eliminati oggetti, a un tenant potrebbe essere temporaneamente impedito di caricare nuovi oggetti fino al ricalcolo dell'utilizzo della quota. Il calcolo dell'utilizzo della quota può richiedere 10 minuti o più.
+
++
+
+NOTE: L'utilizzo della quota di un tenant indica la quantità totale di dati oggetto che il tenant ha caricato su StorageGRID (dimensione logica). L'utilizzo della quota non rappresenta lo spazio utilizzato per archiviare copie di quegli oggetti e i loro metadati (dimensione fisica).
+
++
+
+NOTE: Puoi abilitare la regola di avviso *Elevato utilizzo della quota del tenant* per determinare se i tenant stanno consumando le proprie quote. Se abilitata, questa regola di avviso viene attivata quando un tenant ha utilizzato il 90% della propria quota. Per istruzioni, vedi link:../monitor/editing-alert-rules.html["Modifica le regole di avviso"].
+
+. Dalla scheda *Suddivisione dello spazio*, controlla i *Dettagli del bucket*.
++
+Questa tabella elenca i bucket S3 per il tenant. Lo spazio utilizzato corrisponde alla quantità totale di dati degli oggetti nel bucket o container. Questo valore non rappresenta lo spazio di storage necessario per le copie ILM e i metadati degli oggetti.
+
+. Facoltativamente, seleziona *Esporta in CSV* per visualizzare ed esportare un file .csv contenente i valori di utilizzo per ogni bucket o container.
++
+Il contenuto del file `.csv`di un singolo tenant S3 si presenta come nel seguente esempio:
+
++
+image:tenant_bucket_details_csv.png["Esempio di file CSV con i dettagli del bucket del tenant"]
+
++
+Puoi aprire il  `.csv` file in un'applicazione per fogli di calcolo o usarlo nell'automazione.
+
+. Facoltativamente, seleziona la scheda *Funzionalità consentite* per visualizzare un elenco delle autorizzazioni e delle funzionalità abilitate per il tenant. Vedi link:../admin/editing-tenant-account.html["Modifica account tenant"] se hai bisogno di modificare una di queste impostazioni.
+. Se il tenant ha l'autorizzazione *Usa connessione di federazione a griglia*, puoi selezionare la scheda *Federazione a griglia* per saperne di più sulla connessione.
++
+Vedi link:../admin/grid-federation-overview.html["Che cos'è la federazione di griglie?"] e link:../admin/grid-federation-manage-tenants.html["${post_edited_translations.segment}"].
+
+
+
+
+
+[[view-network-traffic]]
+== Visualizza traffico di rete
+
+Se sono in atto delle policy di classificazione del traffico per un tenant, controlla il traffico di rete di quel tenant.
+
+.Passaggi
+. Seleziona *Configurazione* > *Rete* > *Classificazione del traffico*.
++
+Viene visualizzata la pagina "Politiche di classificazione del traffico" e le politiche esistenti sono elencate nella tabella.
+
+. Esamina l'elenco delle policy per identificare quelle che si applicano a uno specifico tenant.
+. Per visualizzare le metriche associate a una policy, seleziona il pulsante di opzione a sinistra della policy e seleziona *Metriche*.
+. Analizza i grafici per determinare con quale frequenza la policy limita il traffico e se devi modificarla.
+
+
+Vedi link:../admin/managing-traffic-classification-policies.html["Gestisci le policy di classificazione del traffico"] per maggiori informazioni.
+
+
+
+[[use-the-audit-log]]
+== Usa il registro di controllo
+
+Facoltativamente, puoi utilizzare il registro di controllo per un monitoraggio più dettagliato delle attività di un tenant.
+
+Ad esempio, puoi monitorare i seguenti tipi di informazioni:
+
+* Operazioni specifiche del client, come PUT, GET o DELETE
+* Dimensioni degli oggetti
+* La regola ILM applicata agli oggetti
+* L'indirizzo IP di origine delle richieste dei client
+
+
+I log di controllo vengono scritti in file di testo che puoi analizzare utilizzando lo strumento di analisi dei log che preferisci. Questo ti permette di capire meglio le attività dei client o di implementare modelli di addebito e fatturazione più sofisticati.
+
+Vedi link:../audit/index.html["${post_edited_translations.segment}"] per maggiori informazioni.
+
+
+
+[[use-prometheus-metrics]]
+== Usa le metriche Prometheus
+
+Facoltativamente, puoi usare le metriche Prometheus per generare report sull'attività del tenant.
+
+* In Grid Manager, seleziona *Support* > *Tools* > *Metrics*. Puoi utilizzare dashboard esistenti, come S3 Overview, per esaminare le attività dei client.
++
+
+NOTE: Gli strumenti disponibili nella pagina Metriche sono destinati principalmente all'utilizzo da parte del supporto tecnico. Alcune funzionalità e voci di menu all'interno di questi strumenti sono volutamente non funzionanti.
+
+* Dalla parte superiore di Grid Manager, seleziona l'icona di aiuto e seleziona *API documentation*. Puoi utilizzare le metriche nella sezione Metrics dell'API di Grid Management per creare regole di avviso personalizzate e dashboard per l'attività dei tenant.
+
+
+Vedi link:reviewing-support-metrics.html["Esamina le metriche di supporto"] per maggiori informazioni.

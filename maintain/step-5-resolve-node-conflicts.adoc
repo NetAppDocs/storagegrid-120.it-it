@@ -1,0 +1,111 @@
+---
+permalink: maintain/step-5-resolve-node-conflicts.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, resolve node conflict 
+summary: 'Dal passaggio 5 (Risolvi conflitti nodo) della procedura guidata di decommission del sito, puoi determinare se alcuni nodi nel tuo sistema StorageGRID sono disconnessi o se alcuni nodi nel sito selezionato appartengono a un gruppo ad alta disponibilità (HA). Dopo che eventuali conflitti tra nodi sono stati risolti, avvii la procedura di decommission da questa pagina.' 
+---
+= Risolvere i conflitti tra i nodi e avviare la decommission in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Dal passaggio 5 (Risolvi conflitti nodo) della procedura guidata di decommission del sito, puoi determinare se alcuni nodi nel tuo sistema StorageGRID sono disconnessi o se alcuni nodi nel sito selezionato appartengono a un gruppo ad alta disponibilità (HA). Dopo che eventuali conflitti tra nodi sono stati risolti, avvii la procedura di decommission da questa pagina.
+
+.Prima di iniziare
+Devi assicurarti che tutti i nodi del tuo sistema StorageGRID siano nello stato corretto, come segue:
+
+* Tutti i nodi nel tuo sistema StorageGRID devono essere connessi (image:icon_alert_green_checkmark.png["Icon Alert Segno di spunta verde"]).
++
+
+NOTE: Se stai eseguendo un decommission di un sito disconnesso, tutti i nodi del sito che stai rimuovendo devono essere disconnessi e tutti i nodi di tutti gli altri siti devono essere connessi.
+
++
+
+NOTE: La decommission non verrà avviata se uno o più volumi sono offline (smontati) o se sono online (montati) ma in stato di errore.
+
++
+
+NOTE: Se uno o più volumi vanno offline durante una decommission, il processo di decommission si completa dopo che questi volumi sono tornati online.
+
+* Nessun nodo del sito che stai rimuovendo può avere un'interfaccia che appartiene a un gruppo di alta disponibilità (HA).
+
+
+.Informazioni su questa attività
+Se un nodo è elencato per il passaggio 5 (Risoluzione dei conflitti tra nodi), devi correggere il problema prima di poter avviare il decommission.
+
+Prima di iniziare la procedura di decommission del sito da questa pagina, dai un'occhiata alle seguenti considerazioni:
+
+* Devi concedere un tempo adeguato perché la procedura di decommission venga completata.
++
+
+NOTE: Lo spostamento o la cancellazione dei dati degli oggetti da un sito potrebbe richiedere giorni, settimane o persino mesi, a seconda della quantità di dati presenti nel sito, del carico sul sistema, delle latenze di rete e della natura delle modifiche ILM richieste.
+
+* Durante l'esecuzione della procedura di decommissionare del sito:
++
+** Non puoi creare regole ILM che facciano riferimento al sito in fase di decommissionamento. Non puoi nemmeno modificare una regola ILM esistente per farla riferire al sito.
+** Non puoi eseguire altre procedure di manutenzione, come l'espansione o l'aggiornamento.
++
+
+NOTE: Se hai bisogno di eseguire un'altra procedura di manutenzione durante il decommission di un sito connesso, puoi mettere in pausa la procedura mentre i nodi di storage vengono rimossi. Il pulsante *Pausa* è abilitato durante la fase "Decommissioning Replicated and Erasure-Coded Data".
+
+** Se hai bisogno di ripristinare un nodo dopo aver avviato la procedura di decommissionare del sito, devi contattare il supporto tecnico.
+
+
+
+
+.Passaggi
+. Esamina la sezione relativa ai nodi disconnessi del passaggio 5 (Risolvi i conflitti tra nodi) per determinare se uno qualsiasi dei nodi nel tuo sistema StorageGRID ha uno stato di connessione Unknown (image:icon_alarm_blue_unknown.png["Icona Allarme Blu Sconosciuto"]) o Administratively Down (image:icon_alarm_gray_administratively_down.png["Icona Allarme Grigio Amministrativamente Down"]).
++
+image:decommission_site_step_5_disconnected_nodes.png["Fase 5 decommissionare sito: risolvi i conflitti tra nodi"]
+
+. Se uno qualsiasi dei nodi risulta disconnesso, rimettilo online.
++
+Consulta la link:../maintain/grid-node-procedures.html["Procedure dei nodi"]. Contatta il supporto tecnico se hai bisogno di assistenza.
+
+. Quando tutti i nodi disconnessi sono stati rimessi online, rivedi la sezione dei gruppi HA del passaggio 5 (Risolvere i conflitti tra nodi).
++
+Questa tabella elenca tutti i nodi del sito selezionato che appartengono a un gruppo ad alta disponibilità (HA).
+
++
+image:decommission_site_step_5_ha_groups.png["Fase 5 decommissionare sito Gruppi HA"]
+
+. Se vengono visualizzati dei nodi, esegui una delle seguenti operazioni:
++
+** Modifica ciascun gruppo HA interessato per rimuovere l'interfaccia del nodo.
+** Rimuovi un gruppo HA che include solo nodi di questo sito. Consulta le istruzioni per l'amministrazione di StorageGRID.
+
+
++
+Se tutti i nodi sono connessi e nessun nodo del sito selezionato viene utilizzato in un gruppo HA, il campo *Provisioning Passphrase* è abilitato.
+
+. ${post_edited_translations.segment}
++
+Il pulsante *Avvia decommission* viene abilitato.
+
++
+image:decommission_site_step_5_provision_passphrase.png["Fase 5 di decommission del sito Provision Passphrase"]
+
+. Se sei pronto per avviare la procedura di decommission del sito, seleziona *Avvia decommission*.
++
+Un avviso elenca il sito e i nodi che verranno rimossi. Ti viene ricordato che potrebbero essere necessari giorni, settimane o persino mesi per rimuovere completamente il sito.
+
++
+image:decommission_site_step_5_warning.png["Avvertenza fase 5 decommission sito"]
+
+. Leggi l'avviso. Se sei pronto per iniziare, seleziona *OK*.
++
+Viene visualizzato un messaggio durante la generazione della nuova configurazione della griglia. Questo processo potrebbe richiedere del tempo, a seconda del tipo e del numero di nodi della griglia decommissionati.
+
++
+image:decommission_site_step_5_grid_configuration.png["Fase 5 decommissionare sito Configurazione della griglia"]
+
++
+Quando viene generata la nuova configurazione della griglia, appare il passaggio 6 (Monitor Decommission).
+
++
+
+NOTE: Il pulsante *Precedente* rimane disabilitato fino al completamento del decommissionare.
+
+

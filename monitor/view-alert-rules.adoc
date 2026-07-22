@@ -1,0 +1,79 @@
+---
+permalink: monitor/view-alert-rules.html 
+sidebar: sidebar 
+keywords: how to manage alert rules 
+summary: Le regole di avviso definiscono le condizioni che attivano avvisi specifici. StorageGRID include una serie di regole di avviso predefinite, che puoi usare così come sono o modificare, oppure puoi creare regole di avviso personalizzate. 
+---
+= Visualizza le regole di avviso di StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le regole di avviso definiscono le condizioni che attivano link:alerts-reference.html["avvisi specifici"]. StorageGRID include una serie di regole di avviso predefinite, che puoi usare così come sono o modificare, oppure puoi creare regole di avviso personalizzate.
+
+Puoi visualizzare l'elenco di tutte le regole di avviso predefinite e personalizzate per vedere quali condizioni attivano ciascun avviso e se ci sono avvisi disattivati.
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Hai il link:../admin/admin-group-permissions.html["Gestisci gli avvisi o i permessi di accesso root"].
+* Facoltativamente, hai guardato il video:
++
+.Panoramica degli avvisi
+video::2eea81c5-8323-417f-b0a0-b1ff008506c1[panopto]
+
+
+.Passaggi
+. Seleziona *Avvisi* > *Regole*.
++
+Viene visualizzata la pagina Regole di avviso.
+
++
+image:alert_rules_page.png["Pagina delle regole di avviso"]
+
+. Esamina le informazioni nella tabella delle regole di allerta:
++
+[cols="1a,3a"]
+|===
+| Intestazione di colonna | Descrizione 
+
+
+ a| 
+Nome
+ a| 
+Nome e descrizione univoci della regola di avviso. Le regole di avviso personalizzate sono elencate per prime, seguite da quelle predefinite. Il nome della regola di avviso è l'oggetto delle notifiche email.
+
+
+
+ a| 
+Condizioni
+ a| 
+Le espressioni Prometheus che determinano quando viene attivato questo avviso. Un avviso può essere attivato a uno o più dei seguenti livelli di gravità, ma non è richiesta una condizione per ciascun livello di gravità.
+
+** *Critico* image:icon_alert_red_critical.png["Icona avviso rosso critico"]: Esiste una condizione anomala che ha interrotto le normali operazioni di un nodo o servizio StorageGRID. Devi risolvere immediatamente il problema alla radice. Se il problema non viene risolto, potrebbero verificarsi interruzioni del servizio e perdita di dati.
+** *Grave* image:icon_alert_orange_major.png["Icona allerta arancione grave"]: Esiste una condizione anomala che sta influenzando le operazioni in corso o si sta avvicinando alla soglia per un avviso critico. Dovresti esaminare gli avvisi gravi e risolvere eventuali problemi sottostanti per assicurarti che la condizione anomala non interrompa il normale funzionamento di un nodo o servizio StorageGRID.
+** *Minore* image:icon_alert_yellow_minor.png["Icona di allerta gialla minore"]: Il sistema funziona normalmente, ma è presente una condizione anomala che potrebbe influire sulla capacità del sistema di funzionare se persiste. Dovresti monitorare e risolvere gli avvisi minori che non si risolvono da soli per assicurarti che non causino un problema più serio.
+
+
+
+
+ a| 
+Tipo
+ a| 
+Il tipo di regola di avviso:
+
+** *Predefinita*: Una regola di avviso fornita con il sistema. Puoi disabilitare una regola di avviso predefinita o modificarne le condizioni e la durata. Non puoi rimuovere una regola di avviso predefinita.
+** *Predefinito**: Una regola di avviso predefinita che include una condizione o una durata modificata. Se necessario, puoi facilmente ripristinare una condizione modificata al valore predefinito originale.
+** *Personalizzata*: Una regola di avviso che hai creato. Puoi disabilitare, modificare e rimuovere le regole di avviso personalizzate.
+
+
+
+
+ a| 
+Stato
+ a| 
+Indica se questa regola di avviso è attualmente abilitata o disabilitata. Le condizioni per le regole di avviso disabilitate non vengono valutate, quindi non vengono attivati avvisi.
+
+|===
+

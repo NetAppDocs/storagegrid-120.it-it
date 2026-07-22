@@ -1,0 +1,123 @@
+---
+permalink: maintain/applying-hotfix.html 
+sidebar: sidebar 
+keywords: storagegrid, hotfix, software update 
+summary: 'L"hotfix viene applicato automaticamente prima al nodo Admin primario. Poi devi approvare l"applicazione dell"hotfix agli altri nodi della griglia finché tutti i nodi non eseguono la stessa versione del software. Puoi personalizzare la sequenza di approvazione scegliendo di approvare singoli nodi della griglia, gruppi di nodi della griglia o tutti i nodi della griglia.' 
+---
+= Applicare un hotfix in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'hotfix viene applicato automaticamente prima al nodo Admin primario. Poi devi approvare l'applicazione dell'hotfix agli altri nodi della griglia finché tutti i nodi non eseguono la stessa versione del software. Puoi personalizzare la sequenza di approvazione scegliendo di approvare singoli nodi della griglia, gruppi di nodi della griglia o tutti i nodi della griglia.
+
+.Prima di iniziare
+* Hai esaminato il link:storagegrid-hotfix-procedure.html["considerazioni per applicare una hotfix"].
+* ${post_edited_translations.segment}
+* Hai accesso root o il permesso di manutenzione.
+
+
+.Informazioni su questa attività
+* Puoi ritardare l'applicazione di una hotfix a un nodo, ma il processo non è completo finché non applichi la hotfix a tutti i nodi.
+* Non puoi eseguire un aggiornamento del software StorageGRID o un aggiornamento del SANtricity OS finché non hai completato il processo di hotfix.
+
+
+.Passaggi
+. Accedi al Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+. Seleziona *Manutenzione* > *Sistema* > *Aggiornamento software*.
++
+Viene visualizzata la pagina di aggiornamento del software.
+
++
+image:software_update_landing.png["Pagina di destinazione aggiornamento software"]
+
+. Seleziona *Applica hotfix*.
++
+Viene visualizzata la pagina dell'hotfix di StorageGRID.
+
++
+image:hotfix_choose_file.png["Hotfix Scegli file"]
+
+. Seleziona il file hotfix che hai scaricato dal sito di supporto NetApp.
++
+.. Seleziona *Sfoglia*.
+.. Individua e seleziona il file.
++
+`hotfix-install-_version_`
+
+.. Seleziona *Apri*.
++
+Il file è stato caricato. Al termine del caricamento, il nome del file viene visualizzato nel campo Dettagli.
+
++
+
+NOTE: Non cambiare il nome del file perché fa parte del processo di verifica.
+
+
+
+. Inserisci la passphrase di provisioning nella casella di testo.
++
+Il pulsante *Start* si attiva.
+
+. Seleziona *Start*.
++
+Viene visualizzato un avviso che indica che la connessione del browser potrebbe essere temporaneamente persa mentre i servizi sul nodo di amministrazione primario vengono riavviati.
+
+. Seleziona *OK* per iniziare ad applicare l'hotfix al nodo Admin primario.
++
+Quando inizia l'hotfix:
+
++
+.. Vengono eseguite le convalide dell'hotfix, inclusa la verifica della firma del codice.
++
+
+NOTE: Se vengono segnalati errori, risolvili, ricarica il file hotfix e seleziona di nuovo *Avvia*.
+
+.. Viene visualizzata la tabella di avanzamento dell'installazione dell'hotfix.
++
+Questa tabella mostra tutti i nodi della tua grid e la fase attuale dell'installazione dell'hotfix per ciascun nodo. I nodi nella tabella sono raggruppati per tipo (Admin Nodes, Gateway Nodes e Storage Nodes).
+
+.. La barra di avanzamento raggiunge il completamento e il nodo di amministrazione principale viene visualizzato come "Completato".
++
+image:hotfix_progress_table.png["Tabella di avanzamento hotfix"]
+
+
+
+. Facoltativamente, puoi ordinare gli elenchi di nodi in ciascun gruppo in ordine crescente o decrescente per *Sito*, *Nome*, *Avanzamento*, *Fase* o *Dettagli*. Oppure, inserisci un termine nella casella *Cerca* per cercare nodi specifici.
+. Approva i nodi della griglia pronti per l'aggiornamento. I nodi approvati dello stesso tipo vengono aggiornati uno alla volta.
++
+
+CAUTION: Non approvare l'hotfix per un nodo a meno che tu non sia sicuro che il nodo sia pronto per essere aggiornato. Quando l'hotfix viene applicato a un nodo della griglia, alcuni servizi su quel nodo potrebbero essere riavviati. Queste operazioni potrebbero causare interruzioni del servizio per i client che stanno comunicando con il nodo.
+
++
+** Seleziona uno o più pulsanti *Approva* per aggiungere uno o più nodi individuali alla coda di hotfix.
+** Seleziona il pulsante *Approva tutto* all'interno di ciascun gruppo per aggiungere tutti i nodi dello stesso tipo alla coda di hotfix. Se hai inserito dei criteri di ricerca nella casella *Cerca*, il pulsante *Approva tutto* si applica a tutti i nodi selezionati dai criteri di ricerca.
++
+
+NOTE: Il pulsante *Approva tutto* nella parte superiore della pagina approva tutti i nodi elencati nella pagina, mentre il pulsante *Approva tutto* nella parte superiore di un gruppo di tabelle approva solo tutti i nodi di quel gruppo. Se l'ordine in cui i nodi vengono aggiornati è importante, approva i nodi o i gruppi di nodi uno alla volta e aspetta che l'aggiornamento sia completato su ciascun nodo prima di approvare i nodi successivi.
+
+** Seleziona il pulsante *Approva tutto* di primo livello nella parte superiore della pagina per aggiungere tutti i nodi della griglia alla coda di hotfix.
++
+
+NOTE: Devi completare l'hotfix StorageGRID prima di poter avviare un altro aggiornamento software. Se non riesci a completare l'hotfix, contatta il supporto tecnico.
+
+** Seleziona *Rimuovi* o *Rimuovi tutto* per rimuovere un nodo o tutti i nodi dalla coda di hotfix.
++
+Quando la fase passa oltre lo stato "In coda", il pulsante *Rimuovi* viene nascosto e non puoi più rimuovere il nodo dal processo di hotfix.
+
++
+image:approve_all_progresstable.png["Avanzamento hotfix con pulsante di rimozione"]
+
+
+
+. Attendi mentre la hotfix viene applicata a ciascun nodo della griglia approvato.
++
+Quando l'hotfix è stato installato correttamente su tutti i nodi, la tabella di avanzamento dell'installazione dell'hotfix si chiude. Un banner verde mostra la data e l'ora in cui l'hotfix è stato completato.
+
+. Se l'hotfix non può essere applicato a nessun nodo, esamina l'errore per ciascun nodo, risolvi il problema e ripeti questi passaggi.
++
+La procedura non è completa finché l'hotfix non viene applicato correttamente a tutti i nodi. Puoi ripetere il processo di hotfix tutte le volte che vuoi finché non è completo.
+
+

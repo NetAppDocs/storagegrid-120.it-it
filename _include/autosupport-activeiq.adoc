@@ -1,0 +1,9 @@
+= 
+:allow-uri-read: 
+
+
+Active IQ è un digital advisor basato sul cloud che sfrutta l'analisi predittiva e la conoscenza della community dalla base installata di NetApp. Le sue valutazioni continue del rischio, gli avvisi predittivi, le indicazioni prescrittive e le azioni automatizzate ti aiutano a prevenire i problemi prima che si verifichino, portando a un miglioramento dello stato di salute del sistema e a una maggiore disponibilità del sistema.
+
+Se vuoi utilizzare le dashboard e le funzionalità di Active IQ sul sito di supporto NetApp, devi abilitare AutoSupport.
+
+https://docs.netapp.com/us-en/active-iq/index.html["Documentazione di Active IQ Digital Advisor"^]

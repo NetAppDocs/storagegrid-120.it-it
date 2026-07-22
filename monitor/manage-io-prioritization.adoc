@@ -1,0 +1,33 @@
+---
+permalink: monitor/manage-io-prioritization.html 
+sidebar: sidebar 
+keywords: ec repair priority, ec purge priority 
+summary: 'La prioritizzazione di input/output (I/O) ti permette di modificare le priorità relative delle operazioni di I/O sul grid.' 
+---
+= Modifica la priorità di I/O in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La prioritizzazione di input/output (I/O) ti permette di modificare le priorità relative delle operazioni di I/O sul grid.
+
+Per impostazione predefinita, al traffico I/O PUT e GET dei client viene assegnata la massima priorità rispetto alle attività in background come la cancellazione dei dati erasure-coded (EC) e la riparazione EC. Aumentando la priorità delle attività di cancellazione dei dati erasure-coded (EC) e di riparazione EC, queste attività possono essere completate più rapidamente. L'efficacia delle modifiche alla priorità I/O è influenzata dalla frequenza delle richieste dei client, dalle fluttuazioni del traffico di rete e da altre attività di rete in corso.
+
+.Prima di iniziare
+* Esamina la pagina di prioritizzazione I/O per determinare quali opzioni potrebbero influire sul tuo grid.
+* Valuta se il traffico di client in corso può gestire in sicurezza tempi di attesa più lunghi o timeout dei client.
+* Preparati a monitorare l'effetto della modifica delle priorità e ad apportare le modifiche necessarie. Queste modifiche vengono implementate rapidamente, ma potrebbero essere necessarie alcune ore prima che il loro effetto diventi visibile.
+
+
+.Passaggi
+. Seleziona *Support* > *I/O prioritization*.
+. (Facoltativo) Cambia la priorità di eliminazione e riparazione EC, per le operazioni in background che eliminano i dati EC, rispetto ai valori predefiniti.
++
+
+NOTE: Usa la priorità predefinita bassa di eliminazione e riparazione EC per le griglie che hanno nodi basati su RAID.
+
+. Seleziona *Salva*.
+. Monitora link:../monitor/commonly-used-prometheus-metrics.html#where-are-prometheus-metrics-used["metriche"] per valutare l'effetto delle modifiche di priorità.
+

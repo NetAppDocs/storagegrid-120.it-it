@@ -1,0 +1,39 @@
+---
+permalink: tenant/guidelines-for-configuring-openldap-server.html 
+sidebar: sidebar 
+keywords: how to configure open ldap 
+summary: Se vuoi usare un server OpenLDAP per la federazione delle identità, devi configurare impostazioni specifiche sul server OpenLDAP. 
+---
+= Configura un server OpenLDAP per StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se vuoi usare un server OpenLDAP per la federazione delle identità, devi configurare impostazioni specifiche sul server OpenLDAP.
+
+
+
+[[memberof-and-refint-overlays]]
+== Sovrapposizioni Memberof e Refint
+
+È necessario abilitare gli overlay memberof e refint. Per ulteriori informazioni, consulta le istruzioni per la manutenzione dell'appartenenza inversa ai gruppi nella _Guida dell'amministratore del software OpenLDAP_.
+
+
+
+[[indexing]]
+== Indicizzazione
+
+${post_edited_translations.segment}
+
+[listing]
+----
+olcDbIndex: objectClass eq
+olcDbIndex: uid eq,pres,sub
+olcDbIndex: cn eq,pres,sub
+olcDbIndex: entryUUID eq
+----
+Inoltre, assicurati che i campi menzionati nell'aiuto per Nome utente siano indicizzati per prestazioni ottimali.
+
+Consulta le informazioni sulla manutenzione della membership di gruppo inversa nella _Guida dell'amministratore del software OpenLDAP_.

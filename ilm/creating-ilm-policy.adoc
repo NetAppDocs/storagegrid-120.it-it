@@ -1,0 +1,285 @@
+---
+permalink: ilm/creating-ilm-policy.html 
+sidebar: sidebar 
+keywords: how to create ILM policy 
+summary: Crea una o più policy ILM per soddisfare i tuoi requisiti di qualità del servizio. 
+---
+= Crea policy ILM in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Crea una o più policy ILM per soddisfare i tuoi requisiti di qualità del servizio.
+
+Disporre di una singola policy ILM attiva consente di applicare le stesse regole ILM a tutti i tenant e bucket.
+
+Disporre di più policy ILM attive ti permette di applicare le regole ILM appropriate a specifici tenant e bucket per soddisfare molteplici requisiti di qualità del servizio.
+
+
+
+[[create-an-ilm-policy]]
+== Crea una policy ILM
+
+.Informazioni su questa attività
+Prima di creare la tua policy, verifica che link:ilm-policy-overview.html#default-ilm-policy["policy ILM predefinita"] non soddisfi i tuoi requisiti di storage.
+
+
+NOTE: Usa solo le policy fornite dal sistema, 2 copie Policy (per griglie a sito singolo) o 1 Copy per Site (per griglie multisito), nei sistemi di test. Per StorageGRID 11.6 e versioni precedenti, la regola predefinita in questa policy utilizza il pool di storage All Storage Nodes, che contiene tutti i siti. Se il tuo sistema StorageGRID ha più di un sito, due copie di un oggetto potrebbero essere posizionate nello stesso sito.
+
+
+NOTE: Se link:enabling-s3-object-lock-globally.html["L'impostazione globale di blocco degli oggetti S3 è stata abilitata"] si verifica, devi assicurarti che la policy ILM sia conforme ai requisiti dei bucket che hanno S3 Object Lock abilitato. In questa sezione, segui le istruzioni che menzionano S3 Object Lock abilitato.
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Tu hai il link:../admin/admin-group-permissions.html["autorizzazioni di accesso richieste"].
+* Hai link:access-create-ilm-rule-wizard.html["regole ILM create"] in base al fatto che S3 Object Lock sia abilitato.
++
+[role="tabbed-block"]
+====
+.Blocco oggetti S3 non abilitato
+--
+** Hai link:what-ilm-rule-is.html["hai creato le regole ILM"] che vuoi aggiungere alla policy. Se necessario, puoi salvare una policy, creare regole aggiuntive e poi modificare la policy per aggiungere le nuove regole.
+** Hai link:creating-default-ilm-rule.html["hai creato una regola ILM predefinita"] che non contiene alcun filtro.
+
+
+--
+.Blocco oggetto S3 abilitato
+--
+** Il link:enabling-s3-object-lock-globally.html["L'impostazione globale di blocco degli oggetti S3 è già abilitata"] per il sistema StorageGRID.
+** Hai link:what-ilm-rule-is.html["hai creato le regole ILM conformi e non conformi"] che vuoi aggiungere alla policy. Se necessario, puoi salvare una policy, creare regole aggiuntive e poi modificare la policy per aggiungere le nuove regole.
+** Hai link:creating-default-ilm-rule.html["hai creato una regola ILM predefinita"] per la policy che è conforme.
+
+
+--
+====
+* Facoltativamente, hai guardato il video:
+
+
+.Panoramica delle policy ILM
+video::e768d4da-da88-413c-bbaa-b1ff00874d10[panopto]
+Vedi anche link:ilm-policy-overview.html["Usa le policy ILM"].
+
+.Passaggi
+. Seleziona *ILM* > *Policies*.
++
+Se l'impostazione globale S3 Object Lock è abilitata, la pagina delle policy ILM indica quali regole ILM sono conformi.
+
+. Definisci come vuoi creare la policy ILM.
++
+[role="tabbed-block"]
+====
+.Crea una nuova policy
+--
+.. Seleziona *Crea policy*.
+
+
+--
+.Clona la policy esistente
+--
+.. Seleziona la casella di controllo per il criterio da cui vuoi iniziare, poi seleziona *Clona*.
+
+
+--
+.Modifica la policy esistente
+.. Se una policy è inattiva, puoi modificarla. Seleziona la casella di controllo corrispondente alla policy inattiva da cui vuoi iniziare, poi seleziona *Modifica*.
+
+
+====
+
+
+. Nel campo *Policy name*, inserisci un nome univoco per la policy.
+. Facoltativamente, nel campo *Motivo della modifica*, inserisci il motivo per cui stai creando una nuova policy.
+. Per aggiungere regole alla policy, seleziona *Seleziona regole*. Seleziona il nome di una regola per visualizzarne le impostazioni.
++
+--
+Se stai clonando una policy:
+
+** Le regole utilizzate dalla policy che stai clonando sono selezionate.
+** Se la policy che stai clonando utilizzava regole senza filtri che non erano la regola predefinita, ti viene richiesto di rimuovere tutte tranne una di queste regole.
+** Se la regola predefinita utilizzava un filtro, ti verrà chiesto di selezionare una nuova regola predefinita.
+** Se la regola predefinita non era l'ultima, puoi spostare la regola alla fine della nuova policy.
+
+
+--
++
+[role="tabbed-block"]
+====
+.Blocco oggetti S3 non abilitato
+--
+.. Seleziona una regola predefinita per la policy. Per creare una nuova regola predefinita, seleziona *pagina Regole ILM*.
++
+La regola predefinita si applica a tutti gli oggetti che non corrispondono ad altre regole della policy. La regola predefinita non può usare filtri e viene sempre valutata per ultima.
+
++
+
+NOTE: Non usare la regola "Make 2 Copies" come regola predefinita per una policy. La regola "Make 2 Copies" utilizza un singolo pool di storage, All Storage Nodes, che contiene tutti i siti. Se il tuo sistema StorageGRID ha più di un sito, due copie di un oggetto potrebbero essere posizionate nello stesso sito.
+
+
+
+--
+.Blocco oggetto S3 abilitato
+--
+.. Seleziona una regola predefinita per la policy. Per creare una nuova regola predefinita, seleziona *pagina Regole ILM*.
++
+L'elenco delle regole contiene solo le regole conformi e non utilizza alcun filtro.
+
++
+
+NOTE: Non usare la regola "Make 2 Copies" come regola predefinita per una policy. La regola "Make 2 Copies" utilizza un unico pool di storage, All Storage Nodes, che contiene tutti i siti. Se usi questa regola, più copie di un oggetto potrebbero essere posizionate nello stesso sito.
+
+.. Se hai bisogno di una regola "predefinita" diversa per gli oggetti nei bucket S3 non conformi, seleziona *Includi una regola senza filtri per i bucket S3 non conformi* e seleziona una regola non conforme che non utilizza un filtro.
++
+Ad esempio, potresti voler utilizzare un Cloud Storage Pool per memorizzare oggetti in bucket in cui non è abilitato S3 Object Lock.
+
++
+
+NOTE: Puoi selezionare solo una regola non conforme che non utilizza un filtro.
+
+
+
+Vedi anche link:example-7-compliant-ilm-policy-for-s3-object-lock.html["Esempio 7: Criterio ILM conforme per S3 Object Lock"].
+
+--
+====
+
+
+. Quando hai finito di selezionare la regola predefinita, seleziona *Continua*.
+. Nella fase Altre regole, seleziona le altre regole che vuoi aggiungere alla policy. Queste regole utilizzano almeno un filtro (tenant account, nome bucket, filtro avanzato o Noncurrent reference time). Poi seleziona *Select*.
++
+La finestra "Crea una policy" ora elenca le regole che hai selezionato. La regola predefinita è alla fine, con le altre regole sopra di essa.
+
++
+Se il blocco degli oggetti S3 è abilitato e hai anche selezionato una regola "predefinita" non conforme, tale regola viene aggiunta come penultima regola nella policy.
+
++
+
+NOTE: Viene visualizzato un avviso se una regola non conserva gli oggetti per sempre. Quando attivi questa policy, devi confermare che vuoi che StorageGRID elimini gli oggetti quando scadono le istruzioni di posizionamento della regola predefinita (a meno che un ciclo di vita del bucket mantenga gli oggetti per un periodo di tempo più lungo).
+
+. Trascina le righe per le regole non predefinite per determinare l'ordine in cui queste regole verranno valutate.
++
+Non puoi spostare la regola predefinita. Se S3 Object Lock è abilitato, non puoi spostare nemmeno la regola "default" non conforme, se ne è stata selezionata una.
+
++
+
+NOTE: Devi confermare che le regole ILM siano nell'ordine corretto. Quando la policy viene attivata, gli oggetti nuovi ed esistenti vengono valutati dalle regole nell'ordine elencato, partendo dall'alto.
+
+. Se necessario, seleziona *Seleziona regole* per aggiungere o rimuovere regole.
+. Al termine, seleziona *Salva*.
+. Ripeti questi passaggi per creare ulteriori criteri ILM.
+. <<simulate-ilm-policy,Simula una policy ILM>>. Dovresti sempre simulare una policy prima di attivarla per assicurarti che funzioni come previsto.
+
+
+
+
+[[simulate-a-policy]]
+[[simulate-ilm-policy]]
+== Simula una policy
+
+Simula una policy su oggetti di test prima di attivarla e applicarla ai dati di produzione.
+
+.Prima di iniziare
+* Conosci il bucket S3/la chiave dell'oggetto per ogni oggetto che vuoi testare.
+
+
+.Passaggi
+. Utilizzando un client S3 o link:../tenant/use-s3-console.html["Console S3"], importa gli oggetti necessari per testare ogni regola.
+. Nella pagina delle policy di ILM, seleziona la casella di controllo corrispondente alla policy, quindi seleziona *Simula*.
+. Nel campo *Oggetto*, inserisci l'S3 `bucket/object-key` per un oggetto di prova. Ad esempio, `bucket-01/filename.png`.
+. Se il versioning S3 è abilitato, puoi inserire facoltativamente un ID di versione per l'oggetto nel campo *ID versione*.
+. Seleziona *Simula*.
+. Nella sezione Risultati della simulazione, conferma che ogni oggetto sia stato abbinato alla regola corretta.
+. Per determinare quale pool di storage o profilo di codifica di cancellazione è attivo, seleziona il nome della regola corrispondente per andare alla pagina dei dettagli della regola.
+
+
+
+CAUTION: Esamina qualsiasi modifica al posizionamento degli oggetti replicati ed erasure-coded esistenti. Cambiare la posizione di un oggetto esistente potrebbe causare problemi temporanei di risorse quando vengono valutati e implementati i nuovi posizionamenti.
+
+.Risultati
+Qualsiasi modifica alle regole della policy si rifletterà nei risultati della simulazione e mostrerà la nuova corrispondenza e la corrispondenza precedente. La finestra Simula policy conserva gli oggetti che hai testato finché non selezioni *Cancella tutto* o l'icona di rimozione image:icon-x-to-remove.png["Rimuovi icona"] per ciascun oggetto nell'elenco dei risultati della simulazione.
+
+.Informazioni correlate
+link:simulating-ilm-policy-examples.html["Esempi di simulazioni di policy ILM"]
+
+
+
+[[activate-a-policy]]
+[[activate-ilm-policy]]
+== Attiva una policy
+
+Quando attivi una singola nuova policy ILM, gli oggetti esistenti e quelli appena acquisiti sono gestiti da quella policy. Quando attivi più policy, i tag delle policy ILM assegnati ai bucket determinano quali oggetti devono essere gestiti.
+
+Prima di attivare una nuova policy:
+
+. Simula la policy per confermare che si comporta come ti aspetti.
+. Esamina qualsiasi modifica al posizionamento degli oggetti replicati ed erasure-coded esistenti. Cambiare la posizione di un oggetto esistente potrebbe causare problemi temporanei di risorse quando vengono valutati e implementati i nuovi posizionamenti.
+
+
+
+CAUTION: Gli errori in una policy ILM possono causare una perdita di dati irreversibile.
+
+.Informazioni su questa attività
+Quando attivi una policy ILM, il sistema distribuisce la nuova policy a tutti i nodi. Tuttavia, la nuova policy attiva potrebbe non entrare effettivamente in vigore finché tutti i nodi della griglia non sono disponibili a ricevere la nuova policy. In alcuni casi, il sistema aspetta a implementare una nuova policy attiva per assicurarsi che gli oggetti della griglia non vengano rimossi accidentalmente. Nello specifico:
+
+* Se apporti modifiche ai criteri che *aumentano la ridondanza o la durabilità dei dati*, tali modifiche vengono implementate immediatamente. Ad esempio, se attivi un nuovo criterio che include una regola a tre copie anziché a due, tale criterio verrà implementato immediatamente perché aumenta la ridondanza.
+* Se apporti modifiche ai criteri che *potrebbero ridurre la ridondanza o la durabilità dei dati*, tali modifiche non saranno implementate finché tutti i nodi della griglia non saranno disponibili. Ad esempio, se attivi un nuovo criterio che utilizza una regola a due copie anziché a tre, il nuovo criterio verrà visualizzato nella scheda Criteri attivi ma non avrà effetto finché tutti i nodi non saranno online e disponibili.
+
+
+.Passaggi
+Segui i passaggi per attivare una o più policy:
+
+[role="tabbed-block"]
+====
+.Attiva una policy
+--
+Segui questi passaggi se hai una sola policy attiva. Se hai già una o più policy attive e ne stai attivando altre, segui i passaggi per attivare più policy.
+
+. Quando sei pronto ad attivare una policy, seleziona *ILM* > *Policies*.
++
+In alternativa, puoi attivare una singola policy dalla pagina *ILM* > *Policy tags*.
+
+. Nella scheda Criteri, seleziona la casella di controllo corrispondente al criterio che vuoi attivare, quindi seleziona *Attiva*.
+. Segui il passaggio appropriato:
++
+** Se viene visualizzato un messaggio di avviso che ti chiede di confermare che vuoi attivare il criterio, seleziona *OK*.
+** Se viene visualizzato un messaggio di avviso contenente dettagli sulla policy:
++
+... Esamina i dettagli per assicurarti che la policy gestisca i dati come previsto.
+... Se la regola predefinita prevede la conservazione degli oggetti per un numero limitato di giorni, consulta il diagramma di conservazione e poi inserisci quel numero di giorni nella casella di testo.
+... Se la regola predefinita memorizza gli oggetti per sempre, ma una o più altre regole hanno una conservazione limitata, digita *yes* nella casella di testo.
+... Seleziona *Attiva policy*.
+
+
+
+
+
+
+--
+.Attiva più criteri
+--
+Per attivare più criteri, devi creare dei tag per i criteri e assegnare un criterio a ciascun tag. Puoi creare un massimo di 10 tag per i criteri per la tua grid.
+
+
+TIP: Quando si utilizzano più tag di policy, se i tenant riassegnano frequentemente i tag di policy ai bucket, le prestazioni della grid potrebbero risentirne. Se hai tenant non attendibili, valuta di usare solo il tag di policy Default.
+
+. Seleziona *ILM* > *Policy tags*.
+. Seleziona *Create*.
+. Nella finestra di dialogo Crea tag di criterio, digita un nome per il tag e, facoltativamente, una descrizione per il tag.
++
+
+NOTE: I nomi e le descrizioni dei tag sono visibili ai tenant. Scegli valori che aiutino i tenant a prendere una decisione informata quando selezionano i tag delle policy da assegnare ai loro bucket. Ad esempio, se la policy assegnata eliminerà gli oggetti dopo un certo periodo di tempo, puoi comunicarlo nella descrizione. Non includere informazioni sensibili in questi campi.
+
+. Seleziona *Crea tag*.
+. Nella tabella dei tag delle policy ILM, usa il menu a tendina per selezionare una policy da assegnare al tag.
+. Se nella colonna Limitazioni della policy compaiono degli avvisi, seleziona *Visualizza dettagli della policy* per esaminare la policy.
+. Assicurati che ogni policy gestisca i dati come previsto.
+. Seleziona *Attiva i criteri assegnati*. Oppure seleziona *Cancella modifiche* per rimuovere l'assegnazione dei criteri.
+. Nella finestra di dialogo Attiva criteri con nuovi tag, esamina le descrizioni di come ogni tag, criterio e regola gestirà gli oggetti. Apporta le modifiche necessarie per garantire che i criteri gestiscano gli oggetti come previsto.
+. Quando sei sicuro di voler attivare i criteri, digita *yes* nella casella di testo, quindi seleziona *Attiva criteri*.
+
+
+--
+====
+.Informazioni correlate
+link:example-6-changing-ilm-policy.html["Esempio 6: Modifica di una policy ILM"]

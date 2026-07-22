@@ -1,0 +1,21 @@
+---
+permalink: admin/kms-configuring.html 
+sidebar: sidebar 
+keywords: configure kms, key management server, kmip, Key Management Interoperability Protocol 
+summary: 'Un server di gestione delle chiavi (KMS) è un sistema esterno di terze parti che fornisce chiavi di crittografia ai nodi dell"appliance StorageGRID presso il sito StorageGRID associato utilizzando il Key Management Interoperability Protocol (KMIP)' 
+---
+= Scopri i server di gestione delle chiavi in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Un server di gestione delle chiavi (KMS) è un sistema esterno di terze parti che fornisce chiavi di crittografia ai nodi dell'appliance StorageGRID presso il sito StorageGRID associato utilizzando il Key Management Interoperability Protocol (KMIP).
+
+StorageGRID supporta solo alcuni server di gestione delle chiavi. Per un elenco dei prodotti e delle versioni supportati, usa il  https://imt.netapp.com/matrix/#welcome["NetApp Interoperability Matrix Tool (IMT)"^].
+
+Puoi usare uno o più server di gestione delle chiavi per gestire le chiavi di crittografia dei nodi per qualsiasi nodo appliance StorageGRID che abbia l'impostazione *Crittografia nodo* abilitata durante l'installazione. Usare server di gestione delle chiavi con questi nodi appliance ti permette di proteggere i tuoi dati anche se un'appliance viene rimossa dal data center. Dopo che i volumi dell'appliance sono stati crittografati, non puoi accedere ai dati sull'appliance a meno che il nodo possa comunicare con il KMS.
+
+
+CAUTION: StorageGRID non crea né gestisce le chiavi esterne utilizzate per crittografare e decrittografare i nodi dell'appliance. Se vuoi usare un server di gestione delle chiavi esterno per proteggere i dati di StorageGRID, devi sapere come configurare quel server e come gestire le chiavi di crittografia. Eseguire attività di gestione delle chiavi non rientra in queste istruzioni. Se hai bisogno di aiuto, consulta la documentazione del tuo server di gestione delle chiavi o contatta il supporto tecnico.

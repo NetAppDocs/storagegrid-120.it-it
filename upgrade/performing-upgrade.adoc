@@ -1,0 +1,267 @@
+---
+permalink: upgrade/performing-upgrade.html 
+sidebar: sidebar 
+keywords: upgrade, how to perform a software upgrade 
+summary: 'Puoi eseguire l"upgrade a StorageGRID 12.0 e applicare l"ultimo hotfix per quella release contemporaneamente. La pagina di upgrade di StorageGRID fornisce il percorso di upgrade consigliato e i link diretti alle pagine di download corrette.' 
+---
+= Eseguire un aggiornamento StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi eseguire l'upgrade a StorageGRID 12.0 e applicare l'ultimo hotfix per quella release contemporaneamente. La pagina di upgrade di StorageGRID fornisce il percorso di upgrade consigliato e i link diretti alle pagine di download corrette.
+
+.Prima di iniziare
+Hai esaminato tutti gli aspetti e completato tutte le fasi di pianificazione e preparazione.
+
+
+CAUTION: Non avviare l'upgrade se hai urgente bisogno di espandere il tuo storage per aumentare la capacità (se il tuo storage è quasi pieno). Completa la procedura di upgrade in modo tempestivo. Se è necessario un recovery, contatta il supporto tecnico.
+
+
+
+[[access-storagegrid-upgrade-page]]
+== Accedi alla pagina di upgrade di StorageGRID
+
+Come primo passo, accedi alla pagina di upgrade di StorageGRID nel Grid Manager.
+
+.Passaggi
+. Accedi al Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+. Seleziona *Manutenzione* > *Sistema* > *Aggiornamento software*.
+. Dalla tile di upgrade di StorageGRID, seleziona *Aggiorna*.
+
+
+
+
+[[select-files]]
+== Seleziona i file
+
+Il percorso di upgrade nella pagina Upgrade di StorageGRID indica quali versioni principali (ad esempio, 12.0.0) e hotfix (ad esempio, 12.0.0.1) devi installare per arrivare all'ultima release di StorageGRID. Dovresti installare le versioni e gli hotfix raccomandati nell'ordine mostrato.
+
+
+TIP: Se non viene visualizzato alcun percorso di upgrade, il browser potrebbe non essere in grado di accedere al NetApp Support Site, oppure la casella di controllo *Check for software updates* nella pagina AutoSupport (*Support* > *Tools* > *AutoSupport* > *Settings*) potrebbe essere disabilitata.
+
+.Passaggi
+. Per la fase *Seleziona i file*, rivedi il percorso di upgrade.
+. Nella sezione Download files, seleziona ciascun link *Download* per scaricare i file necessari dal sito di supporto NetApp.
++
+Se non viene visualizzato alcun percorso di upgrade, vai a  https://mysupport.netapp.com/site/products/all/details/storagegrid/downloads-tab["Download NetApp: StorageGRID"^] per verificare se è disponibile una nuova versione o un hotfix e per scaricare i file necessari.
+
++
+
+NOTE: Se dovevi scaricare e installare un pacchetto RPM o DEB su tutti gli host Linux, potresti già avere i file di upgrade e hotfix di StorageGRID elencati nel percorso di upgrade.
+
+. Seleziona *Sfoglia* per caricare il file di upgrade della versione su StorageGRID: `NetApp_StorageGRID_12.0.0_Software_uniqueID.upgrade`
++
+Al termine del caricamento e della verifica della firma del codice, accanto al nome del file compare un segno di spunta verde.
+
+. Se hai scaricato un file hotfix, seleziona *Sfoglia* per caricarlo. Il hotfix verrà applicato automaticamente come parte dell'upgrade di versione.
+. Seleziona *Continue*.
+
+
+
+
+[[run-prechecks]]
+== Esegui i controlli preliminari
+
+Eseguire i precheck ti permette di individuare e risolvere eventuali problemi di upgrade prima di iniziare l'upgrade del tuo grid.
+
+.Passaggi
+. Per la fase *Esegui controlli preliminari*, inizia inserendo la passphrase di provisioning per la tua grid.
+. Seleziona *Scarica il pacchetto di ripristino*.
++
+Dovresti scaricare la copia attuale del file del pacchetto di ripristino prima di aggiornare il nodo di amministrazione primario. Il file del pacchetto di ripristino ti permette di ripristinare il sistema se si verifica un errore.
+
+. Una volta scaricato il file, verifica di poter accedere al contenuto, incluso il file  `Passwords.txt`.
+. Copia il file scaricato (`.zip` in due posizioni sicure, protette e separate.
++
+
+CAUTION: Il file del pacchetto di ripristino deve essere protetto perché contiene chiavi di crittografia e password che possono essere utilizzate per ottenere dati dal sistema StorageGRID.
+
+. Seleziona *Esegui controlli preliminari* e attendi il completamento dei controlli preliminari.
+. Esamina i dettagli di ogni precheck segnalato e risolvi eventuali errori. Consulta la  https://kb.netapp.com/hybrid/StorageGRID/Maintenance/StorageGRID_12.0_software_upgrade_resolution_guide["Guida alla risoluzione degli upgrade software di StorageGRID"^] per la release StorageGRID 12.0.
++
+Devi risolvere tutti gli errori di precheck prima di poter aggiornare il sistema. Tuttavia, non è necessario risolvere gli avvisi di precheck prima dell'aggiornamento.
+
++
+
+CAUTION: Se hai aperto porte firewall personalizzate, ricevi una notifica durante la convalida preliminare. Devi contattare il supporto tecnico prima di procedere con l'aggiornamento.
+
+. Se hai apportato modifiche alla configurazione per risolvere i problemi segnalati, seleziona di nuovo *Esegui controlli preliminari* per ottenere risultati aggiornati.
++
+Se tutti gli errori sono stati risolti, ti verrà chiesto di avviare l'aggiornamento.
+
+
+
+
+
+[[start-upgrade-and-upgrade-primary-admin-node]]
+== Avvia l'upgrade e aggiorna il nodo Admin primario
+
+Quando avvii l'aggiornamento, i controlli preliminari vengono eseguiti di nuovo e il nodo Admin primario viene aggiornato automaticamente. Questa parte dell'aggiornamento può richiedere fino a 30 minuti.
+
+
+NOTE: Non potrai accedere ad altre pagine di Grid Manager mentre il nodo di amministrazione principale viene aggiornato. Anche i registri di controllo non saranno disponibili.
+
+.Passaggi
+. Seleziona *Avvia upgrade*.
++
+Viene visualizzato un avviso per ricordarti che perderai temporaneamente l'accesso a Grid Manager.
+
+. Seleziona *OK* per confermare l'avviso e avviare l'upgrade.
+. Attendi che vengano eseguiti i controlli preliminari all'aggiornamento e che il nodo Admin primario venga aggiornato.
++
+
+NOTE: Se vengono segnalati errori durante il controllo preliminare, risolvili e seleziona nuovamente *Avvia upgrade*.
+
++
+Se la griglia dispone di un altro nodo amministratore online e pronto, puoi usarlo per monitorare lo stato del nodo amministratore principale. Non appena il nodo amministratore principale viene aggiornato, puoi approvare gli altri nodi della griglia.
+
+. Se necessario, seleziona *Continua* per accedere alla fase *Aggiorna altri nodi*.
+
+
+
+
+[[upgrade-other-nodes]]
+== Aggiorna gli altri nodi
+
+Devi aggiornare tutti i nodi della griglia, ma puoi eseguire più sessioni di aggiornamento e personalizzare la sequenza di aggiornamento. Ad esempio, potresti preferire aggiornare i nodi del sito A in una sessione e poi aggiornare i nodi del sito B in una sessione successiva. Se scegli di eseguire l'aggiornamento in più sessioni, tieni presente che non puoi iniziare a usare le nuove funzionalità finché tutti i nodi non sono stati aggiornati.
+
+Se l'ordine in cui vengono aggiornati i nodi è importante, approva i nodi o i gruppi di nodi uno alla volta e aspetta che l'aggiornamento sia completato su ciascun nodo prima di approvare il nodo o il gruppo di nodi successivo.
+
+
+CAUTION: Quando avvii l'aggiornamento su un nodo della griglia, i servizi su quel nodo vengono arrestati. Poi, il nodo della griglia viene riavviato. Per evitare interruzioni di servizio per le applicazioni client che comunicano con il nodo, non approvare l'aggiornamento per un nodo a meno che tu non sia sicuro che il nodo sia pronto per essere arrestato e riavviato. Se necessario, pianifica una finestra di manutenzione o avvisa i clienti.
+
+.Passaggi
+. Per la fase *Aggiorna altri nodi*, consulta il Riepilogo, che fornisce l'ora di inizio dell'upgrade nel suo complesso e lo stato di ciascuna attività di upgrade principale.
++
+** *Avvio del servizio di upgrade* è la prima attività di upgrade. Durante questa attività, il file software viene distribuito ai nodi della grid e il servizio di upgrade viene avviato su ciascun nodo.
+** Al termine dell'attività *Avvia servizio di aggiornamento*, si avvia l'attività *Aggiorna altri nodi della griglia* e viene richiesto di scaricare una nuova copia del pacchetto di ripristino.
+
+
+. Quando richiesto, inserisci la tua passphrase di provisioning e scarica una nuova copia del pacchetto di ripristino.
++
+
+CAUTION: Dovresti scaricare una nuova copia del file del pacchetto di ripristino dopo l'aggiornamento del nodo di amministrazione primario. Il file del pacchetto di ripristino ti permette di ripristinare il sistema se si verifica un errore.
+
+. Esamina le tabelle di stato per ogni tipo di nodo. Sono presenti tabelle per i nodi amministrativi non primari, i nodi gateway e i nodi di archiviazione.
++
+Un nodo della griglia può trovarsi in una di queste fasi quando le tabelle vengono visualizzate per la prima volta:
+
++
+** Disimballare l'aggiornamento
+** Download in corso
+** In attesa di approvazione
+
+
+. [[approval-step]]Quando sei pronto a selezionare i nodi della griglia per l'upgrade (o se devi annullare l'approvazione dei nodi selezionati), segui queste istruzioni:
++
+
+NOTE: Per un aggiornamento di StorageGRID 12.0, se vuoi approvare singoli nodi invece di tutti i nodi, la best practice è aggiornare un intero sito prima di passare al sito successivo.
+
++
+[cols="1a,1a"]
+|===
+| Attività | Istruzione 
+
+
+ a| 
+Cerca nodi specifici da approvare, ad esempio tutti i nodi di un determinato sito
+ a| 
+Inserisci la stringa di ricerca nel campo *Cerca*
+
+
+
+ a| 
+Seleziona tutti i nodi da aggiornare
+ a| 
+Seleziona *Approva tutti i nodi*
+
+
+
+ a| 
+Seleziona tutti i nodi dello stesso tipo per l'aggiornamento (ad esempio, tutti i nodi di archiviazione)
+ a| 
+Seleziona il pulsante *Approva tutto* per il tipo di nodo
+
+Se approvi più di un nodo dello stesso tipo, i nodi verranno aggiornati uno alla volta.
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Seleziona il pulsante *Approva* per il nodo
+
+
+
+ a| 
+Rimanda l'aggiornamento su tutti i nodi selezionati
+ a| 
+Seleziona *Annulla approvazione di tutti i nodi*
+
+
+
+ a| 
+Rimanda l'aggiornamento su tutti i nodi selezionati dello stesso tipo
+ a| 
+Seleziona il pulsante *Annulla approvazione tutto* per il tipo di nodo
+
+
+
+ a| 
+Rimanda l'aggiornamento su un singolo nodo
+ a| 
+Seleziona il pulsante *Non approvare* per il nodo
+
+|===
+. Attendi che i nodi approvati procedano attraverso queste fasi di aggiornamento:
++
+** Approvato e in attesa di essere aggiornato
+** Interruzione dei servizi
++
+
+NOTE: Non puoi rimuovere un nodo quando la sua fase raggiunge *Arresto dei servizi*. Il pulsante *Annulla approvazione* è disabilitato.
+
+** Arresto container
+** Pulizia delle immagini Docker
+** Aggiornamento dei pacchetti del sistema operativo di base
++
+
+NOTE: Quando un nodo dell'appliance raggiunge questa fase, il software StorageGRID Appliance Installer sull'appliance viene aggiornato. Questo processo automatizzato garantisce che la versione di StorageGRID Appliance Installer rimanga sincronizzata con la versione del software StorageGRID.
+
+** Riavvio
++
+
+NOTE: Alcuni modelli di appliance potrebbero riavviarsi più volte per aggiornare il firmware e il BIOS.
+
+** Esecuzione dei passaggi dopo il riavvio
+** Avvio dei servizi
+** Fatto
+
+
+. Ripeti l'<<approval-step,fase di approvazione>>operazione tutte le volte necessarie finché tutti i nodi della griglia non sono stati aggiornati.
+
+
+
+
+[[complete-upgrade]]
+== Aggiornamento completo
+
+Quando tutti i nodi della griglia hanno completato le fasi di aggiornamento, l'attività *Aggiorna altri nodi della griglia* viene visualizzata come Completata. Le attività di aggiornamento rimanenti vengono eseguite automaticamente in background.
+
+.Passaggi
+. Non appena l'attività *Abilita funzionalità* è completata (il che avviene rapidamente), puoi iniziare a usare la link:whats-new.html["nuove funzionalità"] nella versione aggiornata di StorageGRID.
+. L'aggiornamento del database Cassandra ha inizio. Questo aggiornamento verrà eseguito in background per uno a tre giorni e il servizio Cassandra verrà arrestato e riavviato su ciascun Storage Node. Durante questo periodo, alcune procedure di manutenzione che coinvolgono lo streaming dei metadati, come l'espansione, saranno disabilitate.
+. Una volta completati i *passaggi finali dell'upgrade*, l'upgrade è terminato. Il primo passaggio, *Select files*, viene visualizzato nuovamente con un banner verde di successo.
+. Verifica che le operazioni della grid siano tornate alla normalità:
++
+.. Controlla che i servizi funzionino normalmente e che non ci siano avvisi imprevisti.
+.. Conferma che le connessioni dei client al sistema StorageGRID funzionano come previsto.
+
+
+
+
+.Informazioni correlate
+link:how-your-system-is-affected-during-upgrade.html["Come il tuo sistema è influenzato durante l'upgrade"]

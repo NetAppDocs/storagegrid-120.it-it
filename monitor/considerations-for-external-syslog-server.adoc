@@ -1,0 +1,281 @@
+---
+permalink: monitor/considerations-for-external-syslog-server.html 
+sidebar: sidebar 
+keywords: syslog server, external syslog server, sizing, sizing syslog server, audit messages 
+summary: 'Un syslog server esterno è un server esterno a StorageGRID che puoi usare per raccogliere le informazioni di audit del sistema in un"unica posizione. Usare un syslog server esterno ti permette di ridurre il traffico di rete sui nodi di amministrazione e di gestire le informazioni di audit in modo più efficiente.' 
+---
+= Server syslog esterni in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Un server syslog esterno è un server esterno a StorageGRID che puoi usare per raccogliere le informazioni di audit del sistema in un'unica posizione. Usare un server syslog esterno ti permette di ridurre il traffico di rete sui nodi di amministrazione e di gestire le informazioni in modo più efficiente. Per StorageGRID, il formato dei pacchetti dei messaggi syslog outbound è conforme alla RFC 3164.
+
+Le tipologie di informazioni di controllo che puoi inviare al syslog server esterno includono:
+
+* Registri di controllo contenenti i messaggi di controllo generati durante il normale funzionamento del sistema
+* Eventi relativi alla sicurezza come accessi ed escalation a root
+* I log dell'applicazione potrebbero essere richiesti se è necessario aprire una richiesta di supporto per risolvere un problema che hai riscontrato
+
+
+
+
+[[when-to-use-an-external-syslog-server]]
+== Quando utilizzare un syslog server esterno
+
+Un syslog server esterno è particolarmente utile se hai una griglia di grandi dimensioni, usi diversi tipi di applicazioni S3 o vuoi conservare tutti i dati di audit. Inviare le informazioni di audit a un syslog server esterno ti permette di:
+
+* Raccogli e gestisci informazioni di audit, come messaggi di audit, log delle applicazioni ed eventi di sicurezza, in modo più efficiente.
+* Riduci il traffico di rete sui tuoi Admin Node perché le informazioni di audit vengono trasferite direttamente dai vari Storage Node al server syslog esterno, senza dover passare attraverso un Admin Node.
++
+
+CAUTION: Quando i log vengono inviati a un syslog server esterno, i singoli log di dimensioni superiori a 8.192 byte vengono troncati alla fine del messaggio per conformarsi alle limitazioni comuni nelle implementazioni dei syslog server esterni.
+
++
+
+NOTE: Per massimizzare le opzioni di recovery di dati in caso di guasto del syslog server esterno, fino a 20 GB di log locali dei record di audit (`localaudit.log` vengono mantenuti su ciascun nodo.
+
+
+
+
+
+[[how-to-configure-an-external-syslog-server]]
+== Come configurare un server syslog esterno
+
+Per sapere come configurare un server syslog esterno, vedi link:../monitor/configure-log-management.html["Configura la gestione dei log e il server syslog esterno"].
+
+Se vuoi configurare e utilizzare il protocollo TLS o RELP/TLS, devi avere i seguenti certificati:
+
+* *Certificati CA del server*: uno o più certificati CA attendibili per la verifica del syslog server esterno in codifica PEM. Se omesso, verrà utilizzato il certificato CA predefinito di Grid.
+* *Certificato client*: Il certificato client per l'autenticazione al server syslog esterno in codifica PEM.
+* *Chiave privata del client*: Chiave privata per il certificato client in codifica PEM.
++
+
+NOTE: Se usi un certificato client, devi usare anche una chiave privata client. Se fornisci una chiave privata crittografata, devi fornire anche la passphrase. Non ci sono vantaggi significativi in termini di sicurezza nell'usare una chiave privata crittografata, perché sia la chiave che la passphrase devono essere memorizzate; per semplicità, è consigliato usare una chiave privata non crittografata, se disponibile.
+
+
+
+
+
+[[how-to-estimate-the-size-of-the-external-syslog-server]]
+== Come stimare le dimensioni del syslog server esterno
+
+Normalmente, la tua grid viene dimensionata per raggiungere un throughput, definito in termini di operazioni S3 al secondo o byte al secondo. Ad esempio, potresti avere la necessità che la tua grid gestisca 1.000 operazioni S3 al secondo, o 2.000 MB al secondo, di ingest e retrieval di oggetti. Dovresti dimensionare il tuo server syslog esterno in base ai requisiti di dati della tua grid.
+
+Questa sezione fornisce alcune formule euristiche che ti aiutano a stimare la frequenza e la dimensione media dei messaggi di log di vario tipo che il server syslog esterno deve essere in grado di gestire, espresse in termini di caratteristiche prestazionali note o desiderate della grid (operazioni S3 al secondo).
+
+
+
+[[use-s3-operations-per-second-in-estimation-formulas]]
+=== Usa le operazioni S3 al secondo nelle formule di stima
+
+Se la tua grid è stata dimensionata per un throughput espresso in byte al secondo, devi convertire questo dimensionamento in operazioni S3 al secondo per poter utilizzare le formule di stima. Per convertire il throughput della grid, devi prima determinare la dimensione media degli oggetti, cosa che puoi fare utilizzando le informazioni presenti nei log di audit e nelle metriche (se disponibili), oppure basandoti sulla tua conoscenza delle applicazioni che utilizzeranno StorageGRID. Ad esempio, se la tua grid è stata dimensionata per raggiungere un throughput di 2.000 MB/secondo e la dimensione media degli oggetti è di 2 MB, allora la tua grid è stata dimensionata per gestire 1.000 operazioni S3 al secondo (2.000 MB / 2 MB).
+
+
+NOTE: Le formule per il dimensionamento del server syslog esterno presentate nelle sezioni seguenti forniscono stime basate sul caso più comune (anziché sul caso peggiore). A seconda della configurazione e del carico di lavoro, potresti vedere un numero di messaggi syslog o un volume di dati syslog superiore o inferiore rispetto a quanto previsto dalle formule. Le formule sono da intendersi esclusivamente come linee guida.
+
+
+
+[[estimation-formulas-for-audit-logs]]
+=== Formule di stima per i registri di controllo
+
+Se non hai altre informazioni sul carico di lavoro S3 oltre al numero di operazioni S3 al secondo che la tua grid dovrebbe supportare, puoi stimare il volume dei log di audit che il syslog server esterno dovrà gestire usando le seguenti formule, supponendo che i livelli di audit siano impostati sui valori predefiniti (tutte le categorie impostate su Normal, tranne Storage, che è impostata su Error):
+
+[listing]
+----
+Audit Log Rate = 2 x S3 Operations Rate
+Audit Log Average Size = 800 bytes
+----
+Ad esempio, se la tua grid è dimensionata per 1.000 operazioni S3 al secondo, il tuo syslog server esterno dovrebbe essere dimensionato per supportare 2.000 messaggi syslog al secondo e dovrebbe essere in grado di ricevere (e di solito memorizzare) dati di audit log a una velocità di 1,6 MB al secondo.
+
+Conoscendo meglio il carico di lavoro, puoi ottenere stime più accurate. Per i log di audit, le variabili aggiuntive più importanti sono la % di operazioni S3 che sono PUT (rispetto a GET) e la dimensione media, in byte, dei seguenti campi S3 (le abbreviazioni di 4 caratteri usate nella tabella sono i nomi dei campi del log di audit):
+
+[cols="1a,1a,1a"]
+|===
+| Codice | Campo | Descrizione 
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Nome account tenant S3 (mittente della richiesta)
+ a| 
+Il nome dell'account tenant per l'utente che ha inviato la richiesta. Vuoto per le richieste anonime.
+
+
+
+ a| 
+SBAC
+ a| 
+Nome account tenant S3 (proprietario del bucket)
+ a| 
+Il nome dell'account tenant per il proprietario del bucket. Usato per identificare l'accesso tra account o l'accesso anonimo.
+
+
+
+ a| 
+S3BK
+ a| 
+Bucket S3
+ a| 
+Il nome del bucket S3.
+
+
+
+ a| 
+S3KY
+ a| 
+Chiave S3
+ a| 
+Il nome della chiave S3, escluso il nome del bucket. Le operazioni sui bucket non includono questo campo.
+
+|===
+Utilizziamo P per rappresentare la percentuale di operazioni S3 che sono PUT, dove 0 ≤ P ≤ 1 (quindi per un carico di lavoro PUT al 100%, P = 1, e per un carico di lavoro GET al 100%, P = 0).
+
+Usa K per rappresentare la dimensione media della somma dei nomi degli account S3, dei bucket S3 e delle chiavi S3. Supponiamo che il nome dell'account S3 sia sempre my-s3-account (13 byte), che i bucket abbiano nomi a lunghezza fissa come /my/application/bucket-12345 (28 byte) e che gli oggetti abbiano chiavi a lunghezza fissa come 5733a5d7-f069-41ef-8fbd-13247494c69c (36 byte). Quindi il valore di K è 90 (13+13+28+36).
+
+Se puoi determinare i valori di P e K, puoi stimare il volume dei log di audit che il server syslog esterno dovrà gestire utilizzando le seguenti formule, supponendo che i livelli di audit siano impostati sui valori predefiniti (tutte le categorie impostate su Normale, tranne Storage, che è impostata su Errore):
+
+[listing]
+----
+Audit Log Rate = ((2 x P) + (1 - P)) x S3 Operations Rate
+Audit Log Average Size = (570 + K) bytes
+----
+Ad esempio, se la tua grid è dimensionata per 1.000 operazioni S3 al secondo, il tuo carico di lavoro è composto per il 50% da PUT, e i nomi degli account S3, dei bucket e degli oggetti hanno una media di 90 byte, il tuo syslog server esterno dovrebbe essere dimensionato per supportare 1.500 messaggi syslog al secondo e dovrebbe essere in grado di ricevere (e di solito memorizzare) i dati del log di audit a una velocità di circa 1 MB al secondo.
+
+
+
+[[estimation-formulas-for-non-default-audit-levels]]
+=== Formule di stima per i livelli di audit non predefiniti
+
+Le formule fornite per i log di controllo presuppongono l'utilizzo delle impostazioni predefinite del livello di controllo (tutte le categorie impostate su Normale, tranne Storage, che è impostata su Errore). Non sono disponibili formule dettagliate per stimare la frequenza e la dimensione media dei messaggi di controllo per impostazioni del livello di controllo diverse da quelle predefinite. Tuttavia, la tabella seguente può essere usata per fare una stima approssimativa della frequenza; puoi usare la formula per la dimensione media fornita per i log di controllo, ma tieni presente che probabilmente otterrai una sovrastima perché i messaggi di controllo "extra" sono, in media, più piccoli dei messaggi di controllo predefiniti.
+
+[cols="1a,1a"]
+|===
+| Condizione | Formula 
+
+
+ a| 
+Replica: tutti i livelli di audit sono impostati su Debug o Normale
+ a| 
+Frequenza dei log di controllo = 8 x Frequenza delle operazioni S3
+
+
+
+ a| 
+Codifica di cancellazione: tutti i livelli di audit sono impostati su Debug o Normale
+ a| 
+Usa la stessa formula delle impostazioni predefinite
+
+|===
+
+
+[[estimation-formulas-for-security-events]]
+=== Formule di stima per eventi di sicurezza
+
+Gli eventi di sicurezza non sono correlati alle operazioni S3 e in genere producono un volume trascurabile di log e dati. Per questi motivi, non vengono fornite formule di stima.
+
+
+
+[[estimation-formulas-for-application-logs]]
+=== Formule di stima per i log delle applicazioni
+
+Se non hai altre informazioni sul carico di lavoro S3 oltre al numero di operazioni S3 al secondo che la tua grid dovrebbe supportare, puoi stimare il volume dei log delle applicazioni che il tuo syslog server esterno dovrà gestire usando le seguenti formule:
+
+[listing]
+----
+Application Log Rate = 3.3 x S3 Operations Rate
+Application Log Average Size = 350 bytes
+----
+Quindi, ad esempio, se la tua grid è dimensionata per 1.000 operazioni S3 al secondo, il tuo syslog server esterno dovrebbe essere dimensionato per supportare 3.300 log applicativi al secondo ed essere in grado di ricevere (e memorizzare) dati di log applicativi a una velocità di circa 1,2 MB al secondo.
+
+Conoscendo meglio il carico di lavoro, è possibile ottenere stime più accurate. Per i log delle applicazioni, le variabili aggiuntive più importanti sono la strategia di protezione dei dati (replica o codifica di cancellazione), la % di operazioni S3 di tipo PUT (rispetto a GET/altro) e la dimensione media, in byte, dei seguenti campi S3 (le abbreviazioni di 4 caratteri utilizzate nella tabella sono i nomi dei campi del log di audit):
+
+[cols="1a,1a,1a"]
+|===
+| Codice | Campo | Descrizione 
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Nome account tenant S3 (mittente della richiesta)
+ a| 
+Il nome dell'account tenant per l'utente che ha inviato la richiesta. Vuoto per le richieste anonime.
+
+
+
+ a| 
+SBAC
+ a| 
+Nome account tenant S3 (proprietario del bucket)
+ a| 
+Il nome dell'account tenant per il proprietario del bucket. Usato per identificare l'accesso tra account o l'accesso anonimo.
+
+
+
+ a| 
+S3BK
+ a| 
+Bucket S3
+ a| 
+Il nome del bucket S3.
+
+
+
+ a| 
+S3KY
+ a| 
+Chiave S3
+ a| 
+Il nome della chiave S3, escluso il nome del bucket. Le operazioni sui bucket non includono questo campo.
+
+|===
+
+
+[[example-sizing-estimations]]
+== Esempi di stime dimensionali
+
+Questa sezione illustra casi di esempio su come utilizzare le formule di stima per le griglie con i seguenti metodi di protezione dei dati:
+
+* Replica
+* Erasure coding
+
+
+
+
+[[if-you-use-replication-for-data-protection]]
+=== Se usi la replica per la protezione dei dati
+
+Sia P la percentuale di operazioni S3 che sono PUT, dove 0 ≤ P ≤ 1 (quindi per un carico di lavoro PUT al 100%, P = 1, e per un carico di lavoro GET al 100%, P = 0).
+
+Sia K la dimensione media della somma dei nomi degli account S3, dei bucket S3 e delle chiavi S3. Supponiamo che il nome dell'account S3 sia sempre my-s3-account (13 byte), che i bucket abbiano nomi a lunghezza fissa come /my/application/bucket-12345 (28 byte) e che gli oggetti abbiano chiavi a lunghezza fissa come 5733a5d7-f069-41ef-8fbd-13247494c69c (36 byte). Allora K ha un valore di 90 (13+13+28+36).
+
+Se puoi determinare i valori di P e K, puoi stimare il volume dei log delle applicazioni che il syslog server esterno dovrà essere in grado di gestire usando le seguenti formule.
+
+[listing]
+----
+Application Log Rate = ((1.1 x P) + (2.5 x (1 - P))) x S3 Operations Rate
+Application Log Average Size = (P x (220 + K)) + ((1 - P) x (240 + (0.2 x K))) Bytes
+----
+Ad esempio, se la tua grid è dimensionata per 1.000 operazioni S3 al secondo, il tuo carico di lavoro è composto per il 50% da PUT, e i nomi degli account S3, dei bucket e degli oggetti hanno una media di 90 byte, il tuo syslog server esterno dovrebbe essere dimensionato per supportare 1800 log applicativi al secondo e riceverà (e di solito memorizzerà) dati applicativi a una velocità di 0.5 MB al secondo.
+
+
+
+[[if-you-use-erasure-coding-for-data-protection]]
+=== Se usi la codifica di cancellazione per la protezione dei dati
+
+Sia P la percentuale di operazioni S3 che sono PUT, dove 0 ≤ P ≤ 1 (quindi per un carico di lavoro PUT al 100%, P = 1, e per un carico di lavoro GET al 100%, P = 0).
+
+Sia K la dimensione media della somma dei nomi degli account S3, dei bucket S3 e delle chiavi S3. Supponiamo che il nome dell'account S3 sia sempre my-s3-account (13 byte), che i bucket abbiano nomi a lunghezza fissa come /my/application/bucket-12345 (28 byte) e che gli oggetti abbiano chiavi a lunghezza fissa come 5733a5d7-f069-41ef-8fbd-13247494c69c (36 byte). Allora K ha un valore di 90 (13+13+28+36).
+
+Se puoi determinare i valori di P e K, puoi stimare il volume dei log delle applicazioni che il syslog server esterno dovrà essere in grado di gestire usando le seguenti formule.
+
+[listing]
+----
+Application Log Rate = ((3.2 x P) + (1.3 x (1 - P))) x S3 Operations Rate
+Application Log Average Size = (P x (240 + (0.4 x K))) + ((1 - P) x (185 + (0.9 x K))) Bytes
+----
+Ad esempio, se la tua grid è dimensionata per 1.000 operazioni S3 al secondo, il tuo carico di lavoro è composto per il 50% da PUT, e i nomi degli account S3, dei bucket e degli oggetti hanno una media di 90 byte, il tuo syslog server esterno dovrebbe essere dimensionato per supportare 2.250 log applicativi al secondo e dovrebbe essere in grado di ricevere (e di solito memorizzare) dati applicativi a una velocità di 0,6 MB al secondo.

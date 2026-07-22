@@ -1,0 +1,58 @@
+---
+permalink: tenant/editing-platform-services-endpoint.html 
+sidebar: sidebar 
+keywords: how to edit platform services endpoint 
+summary: 'Puoi modificare la configurazione di un endpoint dei servizi di piattaforma per cambiarne il nome, l"URI o altri dettagli. Ad esempio, potresti dover aggiornare le credenziali scadute o modificare l"URI in modo che punti a un indice Elasticsearch di backup per il failover. Non puoi modificare l"URN di un endpoint dei servizi di piattaforma.' 
+---
+= Modifica un endpoint dei servizi della piattaforma in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi modificare la configurazione di un endpoint dei servizi di piattaforma per cambiarne il nome, l'URI o altri dettagli. Ad esempio, potresti dover aggiornare le credenziali scadute o modificare l'URI per fare in modo che punti a un indice Elasticsearch di backup per il failover. Non puoi modificare l'URN di un endpoint dei servizi di piattaforma.
+
+.Prima di iniziare
+* Hai effettuato l'accesso al Tenant Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Tu appartieni a un gruppo di utenti che ha il link:tenant-management-permissions.html["Gestisci endpoint o autorizzazione di accesso root"].
+
+
+.Passaggi
+. Seleziona *STORAGE (S3)* > *Platform services endpoints*.
++
+${post_edited_translations.segment}
+
+. Seleziona l'endpoint che desideri modificare.
++
+Viene visualizzata la pagina dei dettagli dell'endpoint.
+
+. Seleziona *Configurazione*.
+. ${post_edited_translations.segment}
++
+
+NOTE: Non puoi modificare l'URN di un endpoint dopo che è stato creato.
+
++
+.. Per modificare il nome visualizzato dell'endpoint, seleziona l'icona di modifica image:icon_edit_tm.png["${post_edited_translations.segment}"].
+.. ${post_edited_translations.segment}
+.. Se necessario, cambia il tipo di autenticazione.
++
+*** Per l'autenticazione tramite chiave di accesso, modifica la chiave come necessario selezionando *Modifica chiave S3* e incollando un nuovo ID della chiave di accesso e una nuova chiave di accesso segreta. Se devi annullare le modifiche, seleziona *Ripristina modifica chiave S3*.
+*** Per l'autenticazione CAP (C2S Access Portal), modifica l'URL delle credenziali temporanee o la passphrase facoltativa della chiave privata del client e carica i nuovi file del certificato e della chiave, se necessario.
++
+
+NOTE: ${post_edited_translations.segment}
+
+
+
+.. ${post_edited_translations.segment}
+
+
+. ${post_edited_translations.segment}
++
+** Se l'endpoint è raggiungibile utilizzando le credenziali specificate, viene visualizzato un messaggio di successo. La connessione all'endpoint viene verificata da un nodo in ciascun sito.
+** Se la convalida dell'endpoint non riesce, viene visualizzato un messaggio di errore. Modifica l'endpoint per correggere l'errore, quindi seleziona *Test e salva le modifiche*.
+
+
+

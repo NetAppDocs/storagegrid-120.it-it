@@ -1,0 +1,46 @@
+---
+permalink: admin/configuring-storage-proxy-settings.html 
+sidebar: sidebar 
+keywords: storage proxy, non-transparent proxy, platform service endpoint 
+summary: 'Se usi i servizi della piattaforma o i Cloud Storage Pools, puoi configurare un proxy non trasparente tra gli Storage Nodes e gli endpoint S3 esterni. Ad esempio, potresti aver bisogno di un proxy non trasparente per permettere l"invio di messaggi dei servizi della piattaforma verso endpoint esterni, come un endpoint su internet.' 
+---
+= Configurare un proxy StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se usi i servizi della piattaforma o i Cloud Storage Pools, puoi configurare un proxy non trasparente tra gli Storage Nodes e gli endpoint S3 esterni. Ad esempio, potresti aver bisogno di un proxy non trasparente per permettere l'invio di messaggi dei servizi della piattaforma verso endpoint esterni, come un endpoint su internet.
+
+
+NOTE: Le impostazioni del proxy di archiviazione configurate non si applicano agli endpoint dei servizi della piattaforma Kafka.
+
+.Prima di iniziare
+* Hai link:admin-group-permissions.html["autorizzazioni di accesso specifiche"].
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+
+
+.Informazioni su questa attività
+Puoi configurare le impostazioni per un singolo proxy di storage.
+
+.Passaggi
+. Seleziona *Configurazione* > *Sicurezza* > *Impostazioni proxy*.
+. Nella scheda *Archiviazione*, seleziona la casella di controllo *Abilita proxy di archiviazione*.
+. ${post_edited_translations.segment}
+. Inserisci il nome host o l'indirizzo IP del proxy server.
+. Facoltativamente, inserisci la porta utilizzata per connetterti al proxy server.
++
+Lascia vuoto questo campo per utilizzare la porta predefinita per il protocollo: 80 per HTTP o 1080 per SOCKS5.
+
+. Seleziona *Salva*.
++
+Dopo aver salvato il proxy di archiviazione, puoi configurare e testare nuovi endpoint per i servizi della piattaforma o i Cloud Storage Pools.
+
++
+
+NOTE: Le modifiche al proxy possono richiedere fino a 10 minuti per avere effetto.
+
+. ${post_edited_translations.segment}
+. Se devi disabilitare un proxy storage, deseleziona la casella di controllo e seleziona *Salva*.
+

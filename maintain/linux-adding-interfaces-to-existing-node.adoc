@@ -1,0 +1,49 @@
+---
+permalink: maintain/linux-adding-interfaces-to-existing-node.html 
+sidebar: sidebar 
+keywords: add interfaces, add client network interface, add admin network interface 
+summary: 'Segui questi passaggi per aggiungere un"interfaccia alla Admin Network o alla Client Network a un nodo Linux dopo che è stato installato.' 
+---
+= Aggiungi interfacce Admin o Client a un nodo Linux in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Segui questi passaggi per aggiungere un'interfaccia alla Admin Network o alla Client Network a un nodo Linux dopo che è stato installato.
+
+Se durante l'installazione non hai configurato ADMIN_NETWORK_TARGET o CLIENT_NETWORK_TARGET nel file di configurazione del nodo sull'host Linux, usa questa procedura per aggiungere l'interfaccia. Per ulteriori informazioni sul file di configurazione del nodo, vedi link:../swnodes/index.html["Installa StorageGRID sui nodi basati su software"].
+
+Devi eseguire questa procedura sul server Linux che ospita il nodo che necessita della nuova assegnazione di rete, non all'interno del nodo. Questa procedura aggiunge solo l'interfaccia al nodo; si verifica un errore di convalida se provi a specificare altri parametri di rete.
+
+Per fornire informazioni sull'indirizzamento, devi usare lo strumento Change IP. Vedi link:changing-nodes-network-configuration.html["Modifica la configurazione di rete del nodo"].
+
+.Passaggi
+. Accedi al server Linux che ospita il nodo.
+. Modifica il file di configurazione del nodo: `/etc/storagegrid/nodes/_node-name_.conf`.
++
+
+NOTE: Non specificare altri parametri di rete, altrimenti otterrai un errore di convalida.
+
++
+.. Aggiungi una voce per la nuova destinazione di rete. Ad esempio:
++
+`CLIENT_NETWORK_TARGET = bond0.3206`
+
+.. Facoltativo: aggiungi una voce per l'indirizzo MAC. Ad esempio:
++
+`CLIENT_NETWORK_MAC = aa:57:61:07:ea:5c`
+
+
+
+. Esegui il comando validate del nodo:
++
+`sudo storagegrid node validate _node-name_`
+
+. Risolvi tutti gli errori di convalida.
+. Esegui il comando di ricaricamento del nodo:
++
+`sudo storagegrid node reload _node-name_`
+
+

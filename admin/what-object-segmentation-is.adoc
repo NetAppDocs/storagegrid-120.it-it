@@ -1,0 +1,26 @@
+---
+permalink: admin/what-object-segmentation-is.html 
+sidebar: sidebar 
+keywords: object segmentation, multipart upload 
+summary: 'La segmentazione degli oggetti è il processo di suddivisione di un oggetto in una raccolta di oggetti più piccoli di dimensioni fisse, per ottimizzare lo spazio di archiviazione e l"utilizzo delle risorse per oggetti di grandi dimensioni. Anche il caricamento multi-part su S3 crea oggetti segmentati, con un oggetto che rappresenta ciascuna parte.' 
+---
+= Scopri la segmentazione degli oggetti in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La segmentazione degli oggetti è il processo di suddivisione di un oggetto in una raccolta di oggetti più piccoli di dimensioni fisse, per ottimizzare lo spazio di archiviazione e l'utilizzo delle risorse per oggetti di grandi dimensioni. Anche il caricamento multi-part su S3 crea oggetti segmentati, con un oggetto che rappresenta ciascuna parte.
+
+${post_edited_translations.segment}
+
+image:object_segmentation_diagram.gif["Flusso di lavoro di segmentazione degli oggetti"]
+
+${post_edited_translations.segment}
+
+Il container e i segmenti non sono necessariamente memorizzati sullo stesso Storage Node. Il container e i segmenti possono essere memorizzati su qualsiasi Storage Node all'interno del pool di storage specificato nella regola ILM.
+
+Ciascun segmento viene trattato dal sistema StorageGRID in modo indipendente e contribuisce al conteggio di attributi quali Managed Objects e Stored Objects. Ad esempio, se un oggetto memorizzato nel sistema StorageGRID viene suddiviso in due segmenti, il valore di Managed Objects aumenta di tre al completamento dell'ingest, come segue:
+
+`segment container + segment 1 + segment 2 = three stored objects`

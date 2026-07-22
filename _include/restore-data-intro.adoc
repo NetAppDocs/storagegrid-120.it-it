@@ -1,0 +1,89 @@
+= Quale procedura devo utilizzare?
+:allow-uri-read: 
+
+
+
+
+[[which-procedure-should-i-use]]
+== Quale procedura devo utilizzare?
+
+Quando possibile, ripristina i dati degli oggetti utilizzando la pagina *Ripristino del volume* in Grid Manager.
+
+* Se i volumi sono elencati in *Manutenzione* > *Ripristino del volume* > *Nodi da ripristinare*, ripristina i dati dell'oggetto utilizzando il link:../maintain/restoring-volume.html["Pagina di ripristino del volume in Grid Manager"].
+* Se i volumi non sono elencati in *Manutenzione* > *Ripristino volumi* > *Nodi da ripristinare*, segui i passaggi seguenti per usare lo  `repair-data` script per ripristinare i dati degli oggetti.
++
+Se il nodo di archiviazione ripristinato contiene un numero di volumi inferiore rispetto al nodo che sta sostituendo, devi usare lo  `repair-data` script.
+
+
+
+
+NOTE: Lo script repair-data è obsoleto e verrà rimosso in una versione futura. Quando possibile, usa link:../maintain/restoring-volume.html["Procedura di ripristino del volume in Grid Manager"].
+
+
+
+[[use-the-repair-data-script-to-restore-object-data]]
+== Usa lo  `repair-data` script per ripristinare i dati dell'oggetto
+
+.Prima di iniziare
+* Hai confermato che il nodo di archiviazione ripristinato ha uno stato di connessione *Connesso* image:icon_alert_green_checkmark.png["icona avviso segno di spunta verde"] nella scheda *Nodi* > *Panoramica* del Grid Manager.
+
+
+.Informazioni su questa attività
+I dati degli oggetti possono essere ripristinati da altri Storage Node o da un Cloud Storage Pool, a condizione che le regole ILM della grid siano state configurate in modo tale da rendere disponibili copie degli oggetti.
+
+Nota quanto segue:
+
+* Se una regola ILM è stata configurata per memorizzare una sola copia replicata e tale copia si trovava su un volume di archiviazione che ha subito un errore, non potrai recuperare l'oggetto.
+* Se l'unica copia rimanente di un oggetto si trova in un Cloud Storage Pool, StorageGRID deve inviare più richieste all'endpoint del Cloud Storage Pool per ripristinare i dati dell'oggetto. Prima di eseguire questa procedura, contatta il supporto tecnico per ottenere aiuto nella stima dei tempi di ripristino e dei relativi costi.
+
+
+
+
+[[about-the-repair-data-script]]
+== Informazioni sul  `repair-data`script
+
+Per ripristinare i dati degli oggetti, esegui lo script  `repair-data`. Questo script avvia il processo di ripristino dei dati degli oggetti e lavora con la scansione ILM per garantire che le regole ILM siano rispettate.
+
+Seleziona *Dati replicati* o *Dati con codifica di cancellazione (EC)* qui sotto per conoscere le diverse opzioni per lo script  `repair-data`, a seconda che tu stia ripristinando dati replicati o dati con codifica di cancellazione. Se devi ripristinare entrambi i tipi di dati, devi eseguire entrambi i set di comandi.
+
+
+NOTE: Per ulteriori informazioni sullo  `repair-data` script, inserisci  `repair-data --help` dalla riga di comando del nodo Admin principale.
+
+
+NOTE: Lo script repair-data è obsoleto e verrà rimosso in una versione futura. Quando possibile, usa link:../maintain/restoring-volume.html["Procedura di ripristino del volume in Grid Manager"].
+
+[role="tabbed-block"]
+====
+.Dati replicati
+--
+Sono disponibili due comandi per il ripristino dei dati replicati, a seconda che tu debba riparare l'intero nodo o solo determinati volumi sul nodo:
+
+`repair-data start-replicated-node-repair`
+
+`repair-data start-replicated-volume-repair`
+
+Puoi monitorare le riparazioni dei dati replicati con questo comando:
+
+`repair-data show-replicated-repair-status`
+
+--
+.Dati codificati con cancellazione (EC)
+--
+Sono disponibili due comandi per il ripristino dei dati con codifica di cancellazione, a seconda che tu debba riparare l'intero nodo o solo determinati volumi sul nodo:
+
+`repair-data start-ec-node-repair`
+
+`repair-data start-ec-volume-repair`
+
+Puoi monitorare le riparazioni dei dati codificati con cancellazione con questo comando:
+
+`repair-data show-ec-repair-status`
+
+
+NOTE: La riparazione dei dati codificati per la cancellazione può iniziare mentre alcuni nodi di archiviazione sono offline. Tuttavia, se non è possibile individuare tutti i dati codificati per la cancellazione, la riparazione non può essere completata. La riparazione si completerà quando tutti i nodi saranno disponibili.
+
+
+NOTE: L'operazione di riparazione EC riserva temporaneamente una grande quantità di storage. Potrebbero essere generati avvisi relativi allo storage, che si risolveranno al termine della riparazione. Se lo storage non è sufficiente per la prenotazione, l'operazione di riparazione EC non andrà a buon fine. Le prenotazioni di storage vengono rilasciate al termine dell'operazione di riparazione EC, indipendentemente dal fatto che questa abbia avuto esito positivo o negativo.
+
+--
+====

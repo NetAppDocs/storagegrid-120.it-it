@@ -1,0 +1,102 @@
+---
+permalink: maintain/starting-storagegrid-appliance-installation.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, appliance, appliance install 
+summary: 'Per installare StorageGRID su un nodo di archiviazione appliance, usi il programma di installazione StorageGRID Appliance, che è incluso nell"appliance.' 
+---
+= Avvia l'installazione dell'appliance StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Per installare StorageGRID su un nodo di archiviazione appliance, usi il programma di installazione StorageGRID Appliance, che è incluso nell'appliance.
+
+.Prima di iniziare
+* L'apparecchio è stato installato in un rack, collegato alle tue reti e acceso.
+* I collegamenti di rete e gli indirizzi IP sono stati configurati per l'appliance usando StorageGRID Appliance Installer.
+* Conosci l'indirizzo IP del nodo Admin primario della StorageGRID grid.
+* ${post_edited_translations.segment}
+* Hai completato queste attività preliminari seguendo le istruzioni di installazione per il tuo dispositivo di archiviazione. Vedi https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/index.html["Guida rapida all'installazione dell'hardware"^].
+* Stai usando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Conosci uno degli indirizzi IP assegnati al controller di calcolo nell'appliance. Puoi utilizzare l'indirizzo IP per la Admin Network (porta di gestione 1 sul controller), la Grid Network o la Client Network.
+
+
+.Informazioni su questa attività
+Per installare StorageGRID su un nodo appliance Storage Node:
+
+* Specifichi o confermi l'indirizzo IP del nodo Admin primario e il nome host (nome di sistema) del nodo.
+* Avvii l'installazione e aspetti mentre i volumi vengono configurati e il software viene installato.
++
+
+NOTE: Quando recuperi un nodo di storage appliance, reinstallalo con lo stesso tipo di storage dell'appliance originale (combinato, solo metadati o solo dati). Se specifichi un tipo di storage diverso, il recovery non andrà a buon fine e dovrai reinstallare l'appliance specificando il tipo di storage corretto.
+
+* A metà del processo, l'installazione si interrompe. Per riprendere l'installazione, devi accedere a Grid Manager e configurare il nodo di archiviazione in sospeso come sostituto del nodo guasto.
+* Dopo aver configurato il nodo, il processo di installazione dell'appliance si completa e l'appliance viene riavviata.
+
+
+.Passaggi
+. Apri un browser e inserisci uno degli indirizzi IP del controller di calcolo dell'appliance.
++
+`https://_Controller_IP_:8443`
+
++
+${post_edited_translations.segment}
+
+. Nella sezione relativa alla connessione al nodo amministratore primario, decidi se devi specificare l'indirizzo IP per il nodo amministratore primario.
++
+Il programma di installazione dell'appliance StorageGRID può rilevare automaticamente questo indirizzo IP, supponendo che il nodo Admin primario, o almeno un altro nodo grid con ADMIN_IP configurato, sia presente sulla stessa sottorete.
+
+. Se questo indirizzo IP non viene visualizzato o devi modificarlo, specifica l'indirizzo:
++
+[cols="1a,2a"]
+|===
+| Opzione | Passaggi 
+
+
+ a| 
+Inserimento manuale dell'indirizzo IP
+ a| 
+.. ${post_edited_translations.segment}
+.. Inserisci manualmente l'indirizzo IP.
+
+
+*Nota*: Per l'installazione, inserisci manualmente l'indirizzo IP del nodo Admin che vuoi usare per installare il nodo. Per il ripristino, usa l'IP del nodo Admin primario se disponibile; altrimenti, usa l'IP di un nodo Admin non primario.
+
+.. Seleziona *Salva*.
+.. Attendi che lo stato della connessione per il nuovo indirizzo IP diventi "pronto".
+
+
+
+
+ a| 
+Rilevamento automatico di tutti i nodi Admin primari connessi
+ a| 
+.. ${post_edited_translations.segment}
+.. Dall'elenco degli indirizzi IP rilevati, seleziona l'Admin Node per la grid in cui verrà distribuito questo appliance Storage Node.
+
+
+*Nota*: Per il ripristino, usa l'indirizzo IP del nodo Admin primario se disponibile; altrimenti usa l'indirizzo IP di un nodo Admin non primario.
+
+.. Seleziona *Salva*.
+.. Attendi che lo stato della connessione per il nuovo indirizzo IP diventi "pronto".
+
+
+|===
+
+
+. Nel campo *Nome del nodo*, inserisci lo stesso hostname (nome di sistema) che è stato usato per il nodo che stai recuperando e fai clic su *Salva*.
+. Nella sezione Installazione, verifica che lo stato corrente sia "Pronto per avviare l'installazione di `_node name_` nella griglia con il Primary Admin Node `_admin_ip_`" e che il pulsante *Avvia installazione* sia abilitato.
++
+Se il pulsante *Avvia installazione* non è abilitato, potresti dover modificare la configurazione di rete o le impostazioni della porta. Per le istruzioni, consulta le istruzioni di manutenzione del tuo appliance.
+
+. Dalla home page di StorageGRID Appliance Installer, fai clic su *Avvia installazione*.
++
+${post_edited_translations.segment}
+
++
+
+NOTE: Se devi accedere manualmente alla pagina di installazione del monitor, fai clic su *Installazione monitor* nella barra dei menu. Vedi  https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/monitoring-appliance-installation.html["Monitoraggio dell'installazione dell'appliance"^].
+
+

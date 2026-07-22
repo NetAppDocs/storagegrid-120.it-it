@@ -1,0 +1,33 @@
+---
+permalink: s3/list-multipart-uploads.html 
+sidebar: sidebar 
+keywords: ListMultipartUploads, uploads, multipart uploads, bucket 
+summary: 'L"operazione ListMultipartUploads elenca i caricamenti multipart in corso per un bucket.' 
+---
+= Operazione S3 ListMultipartUploads e parametri supportati in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'operazione ListMultipartUploads elenca i caricamenti multipart in corso per un bucket.
+
+Sono supportati i seguenti parametri di richiesta:
+
+* `encoding-type`
+* `key-marker`
+* `max-uploads`
+* `prefix`
+* `upload-id-marker`
+* `Host`
+* `Date`
+* `Authorization`
+
+
+
+
+[[versioning]]
+== Versioning
+
+Il caricamento in più parti consiste in operazioni separate per avviare il caricamento, elencare i caricamenti, caricare le parti, assemblare le parti caricate e completare il caricamento. Gli oggetti vengono creati (e versionati, se applicabile) quando viene eseguita l'operazione CompleteMultipartUpload.

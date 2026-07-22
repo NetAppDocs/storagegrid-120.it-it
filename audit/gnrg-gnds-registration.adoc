@@ -1,0 +1,79 @@
+---
+permalink: audit/gnrg-gnds-registration.html 
+sidebar: sidebar 
+keywords: storagegrid, audi, message, GNRG, GNDS Registration 
+summary: Il servizio CMN genera questo messaggio di controllo quando un servizio ha aggiornato o registrato informazioni su se stesso nel sistema StorageGRID. 
+---
+= Messaggio di audit GNRG per la registrazione GNDS in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Il servizio CMN genera questo messaggio di controllo quando un servizio ha aggiornato o registrato informazioni su se stesso nel sistema StorageGRID.
+
+[cols="1a,1a,4a"]
+|===
+| Codice | Campo | Descrizione 
+
+
+ a| 
+RSLT
+ a| 
+Risultato
+ a| 
+Risultato della richiesta di aggiornamento:
+
+* SUCS: Operazione riuscita
+* ${post_edited_translations.segment}
+* ${post_edited_translations.segment}
+
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+ID nodo
+ a| 
+${post_edited_translations.segment}
+
+
+
+ a| 
+GNTP
+ a| 
+${post_edited_translations.segment}
+ a| 
+Il tipo di dispositivo del nodo della griglia (ad esempio, BLDR per un servizio LDR).
+
+
+
+ a| 
+GNDV
+ a| 
+Versione del modello del dispositivo
+ a| 
+La stringa che identifica la versione del modello del dispositivo del nodo della grid nel bundle DMDL.
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Gruppo
+ a| 
+${post_edited_translations.segment}
+
+
+
+ a| 
+GNIA
+ a| 
+Indirizzo IP
+ a| 
+${post_edited_translations.segment}
+
+|===
+${post_edited_translations.segment}

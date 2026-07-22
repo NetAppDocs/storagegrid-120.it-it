@@ -1,0 +1,54 @@
+---
+permalink: monitor/monitoring-load-balancing-operations.html 
+sidebar: sidebar 
+keywords: load balancing, monitoring 
+summary: 'Se usi un bilanciatore di carico per gestire le connessioni client a StorageGRID, dovresti monitorare le operazioni di bilanciamento del carico dopo aver configurato inizialmente il sistema e dopo aver apportato qualsiasi modifica alla configurazione o aver effettuato un"espansione.' 
+---
+= Monitorare le operazioni di bilanciamento del carico in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se usi un bilanciatore di carico per gestire le connessioni client a StorageGRID, dovresti monitorare le operazioni di bilanciamento del carico dopo aver configurato inizialmente il sistema e dopo aver apportato qualsiasi modifica alla configurazione o aver effettuato un'espansione.
+
+.Informazioni su questa attività
+Puoi usare il servizio Load Balancer sui nodi di amministrazione, sui nodi gateway oppure un bilanciatore di carico esterno di terze parti per distribuire le richieste dei client su più nodi di Storage.
+
+Dopo aver configurato il bilanciamento del carico, dovresti verificare che le operazioni di acquisizione e recupero degli oggetti siano distribuite uniformemente tra i nodi di storage. Le richieste distribuite uniformemente garantiscono che StorageGRID rimanga reattivo alle richieste dei client sotto carico e possono aiutare a mantenere le prestazioni dei client.
+
+Se hai configurato un gruppo ad alta disponibilità (HA) di Gateway Nodes o Admin Nodes in modalità attivo-backup, solo un nodo del gruppo distribuisce attivamente le richieste dei client.
+
+Per ulteriori informazioni, vedi link:../admin/configuring-client-connections.html["${post_edited_translations.segment}"].
+
+.Passaggi
+. Se i client S3 si connettono utilizzando il servizio Load Balancer, verifica che i nodi Admin o i nodi Gateway distribuiscano attivamente il traffico come ti aspetti:
++
+.. Selezionare *Nodi*.
+.. Seleziona un nodo gateway o un nodo Admin.
+.. Nella scheda *Panoramica*, controlla se un'interfaccia del nodo è in un gruppo HA e se l'interfaccia del nodo ha il ruolo di Primaria.
++
+I nodi con il ruolo di Primary e i nodi che non fanno parte di un gruppo HA dovrebbero distribuire attivamente le richieste ai client.
+
+.. Per ogni nodo che deve distribuire attivamente le richieste dei client, seleziona il link:viewing-load-balancer-tab.html["Scheda Load Balancer"].
+.. Esamina il grafico del traffico di richieste del Load Balancer dell'ultima settimana per assicurarti che il nodo abbia distribuito attivamente le richieste.
++
+In un gruppo HA attivo-backup, i nodi possono assumere il ruolo di backup di tanto in tanto. Durante quel periodo i nodi non distribuiscono le richieste dei client.
+
+.. Esamina il grafico del tasso di richieste in entrata del bilanciatore di carico per l'ultima settimana per verificare il throughput dell'oggetto del nodo.
+.. Ripeti questi passaggi per ogni Admin Node o Gateway Node nel sistema StorageGRID.
+.. Facoltativamente, puoi usare le policy di classificazione del traffico per visualizzare un'analisi più dettagliata del traffico gestito dal servizio Load Balancer.
+
+
+. Verifica che queste richieste vengano distribuite uniformemente ai Storage Node.
++
+.. Seleziona *_Storage Node_* > *LDR* > *HTTP*.
+.. Esamina il numero di *sessioni in entrata attualmente stabilite*.
+.. Ripeti l'operazione per ogni Storage Node nella grid.
++
+Il numero di sessioni dovrebbe essere approssimativamente uguale su tutti i nodi Storage.
+
+
+
+

@@ -1,0 +1,52 @@
+---
+permalink: maintain/configuring-ip-addresses.html 
+sidebar: sidebar 
+keywords: configure ip address, change IP tool, ethernet, dhcp, ha group 
+summary: Puoi eseguire la configurazione di rete configurando gli indirizzi IP per i nodi della griglia utilizzando lo strumento Change IP. 
+---
+= Linee guida sugli indirizzi IP di StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi eseguire la configurazione di rete configurando gli indirizzi IP per i nodi della griglia utilizzando lo strumento Change IP.
+
+Devi usare lo strumento Change IP per apportare la maggior parte delle modifiche alla configurazione di rete che è stata inizialmente impostata durante la distribuzione della grid. Le modifiche manuali tramite i comandi e i file di rete standard di Linux potrebbero non propagarsi a tutti i servizi StorageGRID e potrebbero non persistere dopo aggiornamenti, riavvii o procedure di recovery dei nodi.
+
+
+NOTE: La procedura di modifica dell'indirizzo IP può essere problematica. Alcune parti della rete potrebbero non essere disponibili fino all'applicazione della nuova configurazione.
+
+
+NOTE: Se stai apportando modifiche solo all'elenco delle sottoreti della rete Grid, usa Grid Manager per aggiungere o modificare la configurazione di rete. Altrimenti, usa lo strumento Change IP se Grid Manager non è accessibile a causa di un problema di configurazione di rete, oppure se stai eseguendo sia una modifica del routing della rete Grid che altre modifiche di rete contemporaneamente.
+
+
+TIP: Se vuoi cambiare l'indirizzo IP della rete Grid per tutti i nodi della griglia, usa il link:changing-ip-addresses-and-mtu-values-for-all-nodes-in-grid.html["procedura speciale per modifiche a livello di griglia"].
+
+
+
+[[ethernet-interfaces]]
+== Interfacce Ethernet
+
+L'indirizzo IP assegnato a eth0 è sempre l'indirizzo IP della Grid Network del nodo grid. L'indirizzo IP assegnato a eth1 è sempre l'indirizzo IP della Admin Network del nodo grid. L'indirizzo IP assegnato a eth2 è sempre l'indirizzo IP della Client Network del nodo grid.
+
+Nota che su alcune piattaforme, come le appliance StorageGRID, eth0, eth1 ed eth2 potrebbero essere interfacce aggregate composte da bridge o bond subordinati di interfacce fisiche o VLAN. Su queste piattaforme, la scheda *SSM* > *Resources* potrebbe mostrare l'indirizzo IP di Grid, Admin e Client Network assegnato ad altre interfacce oltre a eth0, eth1 o eth2.
+
+
+
+[[dhcp]]
+== DHCP
+
+Puoi configurare il DHCP solo durante la fase di deployment. Non puoi configurare il DHCP durante la configurazione. Devi usare le procedure di modifica dell'indirizzo IP se vuoi cambiare indirizzi IP, subnet mask e gateway predefiniti per un nodo della griglia. Usare lo strumento Change IP farà diventare statici gli indirizzi DHCP.
+
+
+
+[[high-availability-ha-groups]]
+== Gruppi ad alta disponibilità (HA)
+
+* Se un'interfaccia Client Network è inclusa in un gruppo HA, non puoi cambiare l'indirizzo IP Client Network per quella interfaccia con un indirizzo che sia al di fuori della subnet configurata per il gruppo HA.
+* Non puoi cambiare l'indirizzo IP della rete client con il valore di un indirizzo IP virtuale esistente assegnato a un gruppo HA configurato sull'interfaccia della rete client.
+* Se un'interfaccia di rete Grid è inclusa in un gruppo HA, non puoi cambiare l'indirizzo IP della rete Grid per quella interfaccia con uno che sia al di fuori della sottorete configurata per il gruppo HA.
+* Non puoi cambiare l'indirizzo IP della rete Grid con il valore di un indirizzo IP virtuale esistente assegnato a un gruppo HA configurato sull'interfaccia di rete Grid.
+

@@ -1,0 +1,52 @@
+---
+permalink: troubleshoot/troubleshooting-load-balancer-caching.html 
+sidebar: sidebar 
+keywords: how to troubleshoot load balancer caching 
+summary: Scopri i possibili problemi con la cache del load balancer e come risolverli. 
+---
+= Scopri i problemi di memorizzazione nella cache del bilanciatore del carico in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Scopri i possibili problemi con la cache del load balancer e come risolverli.
+
+
+
+[[determine-if-a-request-was-a-cache-hit]]
+== Determina se una richiesta è stata un cache hit
+
+* L'intestazione X-Cache viene impostata nella risposta alle richieste gestite dal servizio di cache. Codici possibili:
++
+** `HIT`: L'oggetto è stato servito dalla cache
+** `PARTIAL-HIT`: Il bucket/la chiave aveva un record nella cache, ma non è stato possibile fornire l'intero intervallo richiesto dalla cache
+** `STALE`Il bucket/la chiave aveva un record nella cache, ma l'oggetto è stato aggiornato dall'ultima volta che è stato servito dalla cache.
+** `MISS`: L'oggetto non era presente nella cache
+
+
+* Il  `nginx-gw/endpoint-access.log.gz`record per la richiesta include "unix:/run/cache-svc/cache-svc.sock" per le richieste gestite dalla cache.
+* Il `cache-svc/cache-svc.log` riporta un messaggio come "Request 320390: completed successfully (cache hit)" oppure "Request 320375: completed successfully (cache miss)." Trova il percorso richiesto cercando altri record con la stessa stringa "Request _<number>_".
+
+
+
+
+[[low-cache-hit-rate]]
+== Basso cache hit rate
+
+* Si potrebbero verificare bassi cache hit rate quando viene aggiunto un nuovo workload o quando cambia il working set a cui accede un workload. In queste situazioni, l'hit rate dovrebbe aumentare nel tempo.
+* Se più carichi di lavoro utilizzano la cache, considera di aggiungere criteri di classificazione del traffico per isolare le parti dei carichi di lavoro gestite dalla cache. Le metriche di cache hit rate sono disponibili per ciascun criterio di classificazione del traffico. Se alcuni carichi di lavoro non ottengono buoni cache hit rate, considera di spostarli su altri endpoint in cui la cache non è abilitata.
+* Valuta il tasso di svuotamento della cache. Se la cache è troppo piccola per contenere il working set, si verificheranno alti tassi di svuotamento e questo potrebbe contribuire a un hit rate più basso.
+* Potrebbero essere disponibili opzioni per migliorare gli hit rate di determinati carichi di lavoro nell'ambito di FPVR.
+
+
+
+
+[[low-performance]]
+== Prestazioni scarse
+
+* Valuta l'hit rate della cache. Un basso hit rate della cache può portare a prestazioni complessive basse.
+* Valuta il tasso di eviction della cache. Durante l'eviction alcune risorse di storage vengono utilizzate per rimuovere gli oggetti esistenti dal disco. Se il processo di eviction non riesce a tenere il passo con l'accesso di nuovi oggetti, il sistema potrebbe raggiungere le soglie hard watermark e iniziare a bypassare la cache.
+* Verifica i limiti di rete utilizzando le diagnostiche "Utilizzo di ricezione delle interfacce di rete" e "Utilizzo di trasmissione delle interfacce di rete".
+

@@ -1,0 +1,30 @@
+---
+permalink: monitor/monitoring-put-and-get-performance.html 
+sidebar: sidebar 
+keywords: put, get, performance 
+summary: Puoi monitorare le prestazioni di alcune operazioni, come archivio di oggetti e recupero, per aiutarti a identificare cambiamenti che potrebbero richiedere ulteriori indagini. 
+---
+= Monitorare le prestazioni PUT e GET in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi monitorare le prestazioni di alcune operazioni, come archivio di oggetti e recupero, per aiutarti a identificare cambiamenti che potrebbero richiedere ulteriori indagini.
+
+.Informazioni su questa attività
+Per monitorare le prestazioni delle operazioni PUT e GET, puoi eseguire i comandi S3 direttamente da una workstation oppure utilizzando l'applicazione open source S3tester. Usando questi metodi puoi valutare le prestazioni indipendentemente da fattori esterni a StorageGRID, come problemi con un'applicazione client o con una rete esterna.
+
+Quando esegui test delle operazioni PUT e GET, segui queste linee guida:
+
+* Utilizza dimensioni degli oggetti paragonabili a quelle degli oggetti che solitamente inserisci nella tua grid.
+* Esegui operazioni sia su siti locali che remoti.
+
+
+I messaggi link:../audit/index.html["registro di controllo"] indicano il tempo totale necessario per eseguire determinate operazioni. Ad esempio, per determinare il tempo totale di elaborazione per una richiesta S3 GET, puoi esaminare il valore dell'attributo TIME nel messaggio di audit SGET. Puoi anche trovare l'attributo TIME nei messaggi di audit per le seguenti operazioni S3: DELETE, GET, HEAD, Metadata Updated, POST, PUT
+
+Quando analizzi i risultati, guarda il tempo medio necessario per soddisfare una richiesta, così come il throughput complessivo che puoi ottenere. Ripeti regolarmente gli stessi test e registra i risultati, così puoi individuare tendenze che potrebbero richiedere un'indagine.
+
+* È possibile  https://github.com/s3tester["Scarica S3tester da GitHub"^].
+

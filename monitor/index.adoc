@@ -1,0 +1,46 @@
+---
+permalink: monitor/index.html 
+sidebar: sidebar 
+keywords: monitor StorageGRID 
+summary: Monitora regolarmente il tuo sistema StorageGRID per assicurarti che funzioni come previsto. 
+---
+= Monitora un sistema StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Monitora regolarmente il tuo sistema StorageGRID per assicurarti che funzioni come previsto.
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Hai link:../admin/admin-group-permissions.html["autorizzazioni di accesso specifiche"].
+
+
+
+NOTE: Per modificare le unità di misura dei valori di archiviazione visualizzati in Grid Manager, seleziona il menu a discesa utente nell'angolo in alto a destra di Grid Manager, poi seleziona *Preferenze utente*.
+
+.Informazioni su questa attività
+Queste istruzioni descrivono come:
+
+* link:viewing-dashboard.html["Visualizza e gestisci la dashboard"]
+* link:viewing-nodes-page.html["Visualizza la pagina dei nodi"]
+* link:information-you-should-monitor-regularly.html["Monitora regolarmente questi aspetti del sistema:"]
++
+** link:monitoring-system-health.html["Stato di salute del sistema"]
+** link:monitoring-storage-capacity.html["Capacità di storage"]
+** link:monitoring-information-lifecycle-management.html["Gestione del ciclo di vita delle informazioni"]
+** link:monitoring-network-connections-and-performance.html["Risorse di rete e di sistema"]
+** link:monitoring-tenant-activity.html["Attività tenant"]
+** link:monitoring-load-balancing-operations.html["Operazioni di bilanciamento del carico"]
+** link:grid-federation-monitor-connections.html["Connessioni di federazione di grid"]
+
+
+* link:managing-alerts.html["Gestisci gli avvisi"]
+* link:logs-files-reference.html["Visualizza i file di log"]
+* link:configure-log-management.html["Configura la gestione dei log e il server syslog esterno"]
+* link:considerations-for-external-syslog-server.html["Usa un server syslog esterno"] raccogliere informazioni di audit
+* link:using-snmp-monitoring.html["Usa SNMP per il monitoraggio"]
+* link:manage-io-prioritization.html["Modifica la priorità I/O"]per cambiare le priorità relative delle operazioni di I/O
+

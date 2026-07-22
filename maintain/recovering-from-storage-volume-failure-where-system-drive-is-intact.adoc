@@ -1,0 +1,26 @@
+---
+permalink: maintain/recovering-from-storage-volume-failure-where-system-drive-is-intact.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, storage volume failure, volume failure, system drive intact 
+summary: 'Devi completare una serie di operazioni per recuperare un nodo di archiviazione basato su software in cui uno o più volumi di archiviazione sul nodo di archiviazione sono guasti, ma l"unità di sistema è intatta. Se sono guasti solo i volumi di archiviazione, il nodo di archiviazione è ancora disponibile per il sistema StorageGRID.' 
+---
+= Ripristinare da un errore del volume di archiviazione StorageGRID in cui l'unità di sistema è intatta
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Devi completare una serie di operazioni per recuperare un nodo di archiviazione basato su software in cui uno o più volumi di archiviazione sul nodo di archiviazione sono guasti, ma l'unità di sistema è intatta. Se sono guasti solo i volumi di archiviazione, il nodo di archiviazione è ancora disponibile per il sistema StorageGRID.
+
+
+NOTE: Questa procedura di recovery si applica solo ai nodi di archiviazione basati su software. Se i volumi di archiviazione hanno avuto un errore su un nodo di archiviazione appliance, usa invece la procedura per appliance: link:recovering-storagegrid-appliance-storage-node.html["Recupera il nodo di archiviazione appliance"].
+
+Questa procedura di recovery comprende le seguenti attività:
+
+* link:reviewing-warnings-about-storage-volume-recovery.html["Esamina gli avvisi relativi al recovery del volume di archiviazione"]
+* link:identifying-and-unmounting-failed-storage-volumes.html["Identifica e smonta i volumi di archiviazione non funzionanti"]
+* link:recovering-failed-storage-volumes-and-rebuilding-cassandra-database.html["Recupera i volumi e ricostruisci il database Cassandra"]
+* link:restoring-object-data-to-storage-volume-where-system-drive-is-intact.html["Ripristina i dati dell'oggetto"]
+* link:checking-storage-state-after-recovering-storage-volumes.html["Verifica lo stato di archiviazione"]
+

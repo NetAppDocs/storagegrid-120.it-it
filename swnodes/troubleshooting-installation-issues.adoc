@@ -1,0 +1,104 @@
+---
+permalink: swnodes/troubleshooting-installation-issues.html 
+sidebar: sidebar 
+keywords: how to troubleshoot ubuntu or debian installation 
+summary: 'Se si verificano problemi durante l"installazione del sistema StorageGRID, puoi accedere ai file di registro dell"installazione. Anche il supporto tecnico potrebbe aver bisogno di utilizzare i file di registro dell"installazione per risolvere i problemi.' 
+---
+= Risoluzione dei problemi di installazione di StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se si verificano problemi durante l'installazione del sistema StorageGRID, puoi accedere ai file di registro dell'installazione. Anche il supporto tecnico potrebbe aver bisogno di utilizzare i file di registro dell'installazione per risolvere i problemi.
+
+
+NOTE: "Linux" si riferisce a un'installazione di RHEL, Ubuntu o Debian. Per un elenco delle versioni supportate, vedi  https://imt.netapp.com/matrix/#welcome["NetApp Interoperability Matrix Tool (IMT)"^].
+
+[role="tabbed-block"]
+====
+.Linux
+--
+I seguenti file di log di installazione sono disponibili nel container che esegue ciascun nodo:
+
+* `/var/local/log/install.log` (presente su tutti i nodi della griglia)
+* `/var/local/log/gdu-server.log` (presente sul nodo di amministrazione principale)
+
+
+I seguenti file di registro dell'installazione sono disponibili sull'host:
+
+* `/var/log/storagegrid/daemon.log`
+* `/var/log/storagegrid/nodes/node-name.log`
+
+
+Per sapere come accedere ai file di registro, vedi link:../monitor/collecting-log-files-and-system-data.html["Raccogli i file di log e i dati di sistema"].
+
+--
+.VMware
+--
+Di seguito sono riportati i principali file di registro dell'installazione, che il supporto tecnico potrebbe richiedere per risolvere eventuali problemi.
+
+* `/var/local/log/install.log` (presente su tutti i nodi della griglia)
+* `/var/local/log/gdu-server.log` (presente sul nodo di amministrazione principale)
+
+
+*La prenotazione delle risorse della macchina virtuale richiede una regolazione*
+
+I file OVF includono una prenotazione di risorse progettata per garantire che ogni nodo della griglia disponga di RAM e CPU sufficienti per funzionare in modo efficiente. Se crei macchine virtuali distribuendo questi file OVF su VMware e il numero predefinito di risorse non è disponibile, le macchine virtuali non si avvieranno.
+
+.Informazioni su questa attività
+Se sei certo che l'host VM disponga di risorse sufficienti per ogni nodo della griglia, regola manualmente le risorse allocate a ciascuna macchina virtuale e poi prova ad avviare le macchine virtuali.
+
+.Passaggi
+. Nell'albero del client VMware vSphere Hypervisor, seleziona la macchina virtuale che non è avviata.
+. Fai clic con il pulsante destro del mouse sulla macchina virtuale e seleziona *Modifica impostazioni*.
+. Dalla finestra Proprietà delle macchine virtuali, seleziona la scheda *Risorse*.
+. Regola le risorse allocate alla macchina virtuale:
++
+.. Seleziona *CPU* e poi usa il cursore Prenotazione per regolare i MHz riservati per questa macchina virtuale.
+.. Seleziona *Memoria* e poi usa il cursore Prenotazione per regolare i MB riservati per questa macchina virtuale.
+
+
+. Fare clic su *OK*.
+. Ripeti l'operazione, se necessario, per le altre macchine virtuali ospitate sullo stesso host VM.
+
+
+*La password di installazione temporanea è stata disabilitata*
+
+Quando distribuisci un nodo VMware, puoi specificare facoltativamente una password di installazione temporanea. Devi avere questa password per accedere alla console della VM o usare SSH prima che il nuovo nodo si unisca al grid.
+
+Se hai scelto di disabilitare la password di installazione temporanea, devi eseguire ulteriori passaggi per eseguire il debug dei problemi di installazione.
+
+Puoi fare una delle seguenti cose:
+
+* Ridistribuisci la macchina virtuale, ma specifica una password di installazione temporanea così puoi accedere alla console o usare SSH per eseguire il debug dei problemi di installazione.
+* Usa vCenter per impostare la password:
++
+.. Spegni la macchina virtuale.
+.. Vai su *VM*, seleziona la scheda *Configura* e seleziona *vApp Options*.
+.. Specifica il tipo di password di installazione temporanea da impostare:
++
+*** Seleziona *CUSTOM_TEMPORARY_PASSWORD* per impostare una password temporanea personalizzata.
+*** Seleziona *TEMPORARY_PASSWORD_TYPE* per usare il nome del nodo come password temporanea.
+
+
+.. Seleziona *Imposta valore*.
+.. Imposta la password temporanea:
++
+*** Cambia *CUSTOM_TEMPORARY_PASSWORD* con un valore di password personalizzato.
+*** Aggiorna *TEMPORARY_PASSWORD_TYPE* con il valore *Usa nome del nodo*.
+
+
+.. Riavvia la macchina virtuale per applicare la nuova password.
+
+
+
+
+--
+====
+.Informazioni correlate
+* Per sapere come accedere ai file di registro, vedi link:../monitor/logs-files-reference.html["Riferimento ai file di registro"].
+* link:../troubleshoot/index.html["Risolvi i problemi di un sistema StorageGRID"]
+* Se hai bisogno di ulteriore assistenza, contatta  https://mysupport.netapp.com/site/global/dashboard["NetApp Supporto"^].
+

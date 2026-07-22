@@ -1,0 +1,169 @@
+---
+permalink: ilm/example-5-ilm-rules-and-policy-for-strict-ingest-behavior.html 
+sidebar: sidebar 
+keywords: strict ingest example, example ILM rule, information lifecycle rule examples 
+summary: Puoi usare un location filter e il comportamento di ingestione Strict in una regola per impedire che gli oggetti vengano salvati in una specifica posizione del data center. 
+---
+= Regole e policy ILM per il comportamento di acquisizione rigoroso in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi usare un location filter e il comportamento di ingestione Strict in una regola per impedire che gli oggetti vengano salvati in una specifica posizione del data center.
+
+In questo esempio, un tenant con sede a Parigi non vuole archiviare alcuni oggetti al di fuori dell'UE per motivi normativi. Altri oggetti, inclusi tutti gli oggetti provenienti da altri account tenant, possono essere archiviati sia nel data center di Parigi che in quello statunitense.
+
+
+CAUTION: Le seguenti regole e policy ILM sono solo esempi. Esistono molti modi per configurare le regole ILM. Prima di attivare una nuova policy, simulala per confermare che funzionerà come previsto per proteggere i contenuti dalla perdita.
+
+.Informazioni correlate
+* link:data-protection-options-for-ingest.html["Opzioni di ingest"]
+* link:create-ilm-rule-select-ingest-behavior.html["Crea regola ILM: seleziona il comportamento di acquisizione"]
+
+
+
+
+[[ilm-rule-1-for-example-5-strict-ingest-to-guarantee-paris-data-center]]
+== Regola ILM 1 per esempio 5: Ingestione rigorosa per garantire il data center di Parigi
+
+Questa regola ILM di esempio utilizza il comportamento di acquisizione rigoroso per garantire che gli oggetti salvati da un tenant con sede a Parigi in bucket S3 con la regione impostata su eu-west-3 region (Paris) non vengano mai archiviati nel data center US.
+
+Questa regola si applica agli oggetti che appartengono al tenant Paris e che hanno la regione del bucket S3 impostata su eu-west-3 (Paris).
+
+[cols="1a,2a"]
+|===
+| Definizione della regola | Esempio di valore 
+
+
+ a| 
+Account tenant
+ a| 
+tenant di Paris
+
+
+
+ a| 
+Filtro avanzato
+ a| 
+Vincolo di posizione uguale a eu-west-3
+
+
+
+ a| 
+Pool di storage
+ a| 
+Sito 1 (Paris)
+
+
+
+ a| 
+Nome regola
+ a| 
+Ingestione rigorosa per garantire il data center di Parigi
+
+
+
+ a| 
+Tempo di riferimento
+ a| 
+Tempo di ingestione
+
+
+
+ a| 
+Posizionamenti
+ a| 
+Il giorno 0, tieni per sempre due copie replicate nella Site 1 (Paris)
+
+
+
+ a| 
+Comportamento di ingest
+ a| 
+Rigoroso. Usa sempre i posizionamenti di questa regola durante l'inserimento. L'inserimento fallisce se non è possibile memorizzare due copie dell'oggetto nel data center di Parigi.
+
+|===
+image:ilm_rule_1_example_5_strict_ingest.png["Esempio 5 della regola 1 di ILM Ingest rigoroso"]
+
+
+
+[[ilm-rule-2-for-example-5-balanced-ingest-for-other-objects]]
+== Regola ILM 2 per esempio 5: Ingest bilanciato per altri oggetti
+
+Questa regola ILM di esempio utilizza il comportamento di acquisizione bilanciata per garantire un'efficienza ILM ottimale per tutti gli oggetti non corrispondenti alla prima regola. Due copie di tutti gli oggetti corrispondenti a questa regola verranno memorizzate: una nel data center US e una nel data center di Parigi. Se la regola non può essere soddisfatta immediatamente, le copie provvisorie vengono memorizzate in qualsiasi posizione disponibile.
+
+Questa regola si applica agli oggetti che appartengono a qualsiasi tenant e a qualsiasi regione.
+
+[cols="1a,2a"]
+|===
+| Definizione della regola | Esempio di valore 
+
+
+ a| 
+Account tenant
+ a| 
+Ignora
+
+
+
+ a| 
+Filtro avanzato
+ a| 
+_Non specificato_
+
+
+
+ a| 
+Pool di storage
+ a| 
+Sito 1 (Paris) e Sito 2 (US)
+
+
+
+ a| 
+Nome regola
+ a| 
+2 copie 2 data center
+
+
+
+ a| 
+Tempo di riferimento
+ a| 
+Tempo di ingestione
+
+
+
+ a| 
+Posizionamenti
+ a| 
+Il giorno 0, conserva per sempre due copie replicate in due data center
+
+
+
+ a| 
+Comportamento di ingest
+ a| 
+Bilanciato. Gli oggetti che corrispondono a questa regola vengono posizionati secondo le istruzioni di posizionamento della regola stessa, se possibile. Altrimenti, vengono create copie provvisorie in qualsiasi posizione disponibile.
+
+|===
+
+
+[[ilm-policy-for-example-5-combining-ingest-behaviors]]
+== Policy ILM per l'esempio 5: combinare i comportamenti di ingest
+
+L'esempio di policy ILM include due regole che presentano comportamenti di acquisizione differenti.
+
+Una policy ILM che utilizza due diversi comportamenti di acquisizione potrebbe includere regole ILM come le seguenti:
+
+* Archivia gli oggetti appartenenti al tenant Paris e con la regione del bucket S3 impostata su eu-west-3 (Paris) solo nel data center di Parigi. L'acquisizione fallisce se il data center di Parigi non è disponibile.
+* Archivia tutti gli altri oggetti (inclusi quelli appartenenti al tenant Paris ma con una regione bucket diversa) sia nel data center statunitense che in quello di Parigi. Crea copie provvisorie in qualsiasi posizione disponibile se non è possibile soddisfare le istruzioni di posizionamento.
+
+
+Quando simuli la policy di esempio, ti aspetti che gli oggetti di test vengano valutati come segue:
+
+* Tutti gli oggetti che appartengono al tenant Paris e che hanno la regione del bucket S3 impostata su eu-west-3 vengono individuati dalla prima regola e archiviati nel data center di Parigi. Poiché la prima regola utilizza Strict ingest, questi oggetti non vengono mai archiviati nel data center statunitense. Se i Storage Nodes del data center di Parigi non sono disponibili, l'ingestione fallisce.
+* Tutti gli altri oggetti vengono abbinati dalla seconda regola, inclusi gli oggetti che appartengono al tenant Paris e che non hanno la regione del bucket S3 impostata su eu-west-3. Una copia di ciascun oggetto viene salvata in ogni data center. Tuttavia, poiché la seconda regola utilizza Balanced ingest, se un data center non è disponibile, vengono salvate due copie intermedie in una qualsiasi posizione disponibile.
+

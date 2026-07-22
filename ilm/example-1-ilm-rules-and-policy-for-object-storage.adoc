@@ -1,0 +1,128 @@
+---
+permalink: ilm/example-1-ilm-rules-and-policy-for-object-storage.html 
+sidebar: sidebar 
+keywords: example ILM rule, information lifecycle rule examples 
+summary: Puoi usare le seguenti regole e la seguente policy di esempio come punto di partenza quando definisci una policy ILM per soddisfare i tuoi requisiti di protezione e conservazione degli oggetti. 
+---
+= Regole e policy ILM per la protezione e la conservazione di base degli oggetti in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi usare le seguenti regole e la seguente policy di esempio come punto di partenza quando definisci una policy ILM per soddisfare i tuoi requisiti di protezione e conservazione degli oggetti.
+
+
+CAUTION: Le seguenti regole e policy ILM sono solo esempi. Esistono molti modi per configurare le regole ILM. Prima di attivare una nuova policy, simulala per confermare che funzionerà come previsto per proteggere i contenuti dalla perdita.
+
+
+
+[[ilm-rule-1-for-example-1-copy-object-data-to-two-sites]]
+== Regola ILM 1 per l'esempio 1: copia i dati dell'oggetto in due siti
+
+Questa regola ILM di esempio copia i dati degli oggetti nei pool di storage in due siti.
+
+[cols="1a,2a"]
+|===
+| Definizione della regola | Esempio di valore 
+
+
+ a| 
+Pool di storage in un unico sito
+ a| 
+Due pool di storage, ciascuno contenente siti diversi, denominati Site 1 e Site 2.
+
+
+
+ a| 
+Nome regola
+ a| 
+Due copie due siti
+
+
+
+ a| 
+Tempo di riferimento
+ a| 
+Tempo di ingestione
+
+
+
+ a| 
+Posizionamenti
+ a| 
+Dal giorno 0 in poi, tieni una copia replicata presso il Sito 1 e una copia replicata presso il Sito 2.
+
+|===
+La sezione di analisi delle regole del diagramma di retention afferma:
+
+* La protezione contro la perdita di sito di StorageGRID sarà applicata per tutta la durata di questa regola.
+* Gli oggetti elaborati da questa regola non verranno eliminati da ILM.
+
+
+image:ilm_rule_two_copies_two_data_centers.png["Regola ILM 1 per l'esempio 1: copia i dati dell'oggetto in due siti"]
+
+
+
+[[ilm-rule-2-for-example-1-erasure-coding-profile-with-bucket-matching]]
+== Regola ILM 2 per l'esempio 1: Profilo di erasure coding con corrispondenza del bucket
+
+Questo esempio di regola ILM utilizza un profilo di erasure coding e un bucket S3 per determinare dove e per quanto tempo l'oggetto viene archiviato.
+
+[cols="1a,2a"]
+|===
+| Definizione della regola | Esempio di valore 
+
+
+ a| 
+Pool di storage con più siti
+ a| 
+* Un unico pool di storage su tre siti (Siti 1, 2, 3)
+* Usa lo schema di codifica a cancellazione 6+3
+
+
+
+
+ a| 
+Nome regola
+ a| 
+Bucket S3 finance-records
+
+
+
+ a| 
+Tempo di riferimento
+ a| 
+Tempo di ingestione
+
+
+
+ a| 
+Posizionamenti
+ a| 
+Per gli oggetti nel bucket S3 denominato finance-records, crea una copia con codifica di cancellazione nel pool specificato dal profilo di codifica di cancellazione. Conserva questa copia per sempre.
+
+|===
+image:ilm_rule_ec_for_s3_bucket_finance_records.png["Regola ILM 2 per esempio 1: profilo di erasure-coding con corrispondenza del bucket"]
+
+
+
+[[ilm-policy-for-example-1]]
+== Policy ILM per l'esempio 1
+
+In pratica, la maggior parte delle policy ILM sono semplici, anche se il sistema StorageGRID consente di progettare policy ILM sofisticate e complesse.
+
+Una tipica policy ILM per una grid multisito potrebbe includere regole ILM come le seguenti:
+
+* Al momento dell'ingest, memorizza tutti gli oggetti appartenenti al bucket S3 denominato `finance-records` in un pool di storage che contiene tre siti. Usa la codifica di cancellazione 6+3.
+* Se un oggetto non corrisponde alla prima regola ILM, usa la regola ILM predefinita della policy, Two Copies Two Data Centers, per archiviare una copia di quell'oggetto nel Sito 1 e una copia nel Sito 2.
++
+image:policy_1_configured_policy.png["Policy ILM per l'esempio 1"]
+
+
+
+.Informazioni correlate
+* link:ilm-policy-overview.html["Usa le policy ILM"]
+* link:creating-ilm-policy.html["${post_edited_translations.segment}"]
+

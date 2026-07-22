@@ -1,0 +1,32 @@
+---
+permalink: swnodes/how-grid-nodes-discover-primary-admin-node.html 
+sidebar: sidebar 
+keywords: how grid nodes discover the primary Admin Node 
+summary: 'I nodi della griglia comunicano con il nodo Admin primario per la configurazione e la gestione. Ogni nodo della griglia deve conoscere l"indirizzo IP del nodo Admin primario sulla Grid Network.' 
+---
+= Come i nodi della griglia scoprono il nodo di amministrazione primario in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+I nodi della griglia comunicano con il nodo Admin primario per la configurazione e la gestione. Ogni nodo della griglia deve conoscere l'indirizzo IP del nodo Admin primario sulla Grid Network.
+
+Per garantire che un nodo della griglia possa accedere al nodo di amministrazione primario, puoi fare una delle seguenti cose durante la distribuzione del nodo:
+
+* Puoi usare il parametro ADMIN_IP per inserire manualmente l'indirizzo IP del nodo Admin primario.
+* Puoi omettere il parametro ADMIN_IP per fare in modo che il nodo Grid rilevi automaticamente il valore. Il rilevamento automatico è particolarmente utile quando la Grid Network utilizza DHCP per assegnare l'indirizzo IP al primary Admin Node.
+
+
+Il rilevamento automatico del nodo Admin primario viene effettuato utilizzando un multicast domain name system (mDNS). Quando il nodo Admin primario si avvia per la prima volta, pubblica il suo indirizzo IP utilizzando mDNS. Gli altri nodi sulla stessa sottorete possono quindi richiedere l'indirizzo IP e acquisirlo automaticamente. Tuttavia, poiché il traffico IP multicast normalmente non è instradabile tra sottoreti, i nodi su altre sottoreti non possono acquisire direttamente l'indirizzo IP del nodo Admin primario.
+
+[NOTE]
+====
+Se usi il rilevamento automatico:
+
+* Devi includere l'impostazione ADMIN_IP per almeno un nodo della griglia su tutte le sottoreti a cui il nodo Admin primario non è direttamente collegato. Questo nodo della griglia pubblicherà quindi l'indirizzo IP del nodo Admin primario così che gli altri nodi della sottorete possano scoprirlo tramite mDNS.
+* Assicurati che la tua infrastruttura di rete supporti il passaggio del traffico IP multicast all'interno di una sottorete.
+
+
+====

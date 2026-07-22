@@ -1,0 +1,25 @@
+---
+permalink: maintain/checking-storage-state-after-recovering-sga.html 
+sidebar: sidebar 
+keywords: storagegrid, recovery, node recovery, storage state 
+summary: 'Dopo aver ripristinato un appliance Storage Node, devi verificare che lo stato desiderato dell"appliance Storage Node sia impostato su online e assicurarti che lo stato sarà online per impostazione predefinita ogni volta che il server Storage Node viene riavviato.' 
+---
+= Verifica lo stato dello storage dopo il ripristino di un nodo di storage dell'appliance StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Dopo aver ripristinato un appliance Storage Node, devi verificare che lo stato desiderato dell'appliance Storage Node sia impostato su online e assicurarti che lo stato sarà online per impostazione predefinita ogni volta che il server Storage Node viene riavviato.
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Il nodo di archiviazione è stato ripristinato e il recovery di dati è completo.
+
+
+.Passaggi
+. ${post_edited_translations.segment}
+. ${post_edited_translations.segment}
+. Seleziona *Salva*.
+

@@ -1,0 +1,57 @@
+---
+permalink: maintain/convert-to-data-only-node.html 
+sidebar: sidebar 
+keywords: storagegrid, convert node, data-only node 
+summary: Per migliorare le prestazioni, puoi convertire i nodi di archiviazione non-ADC più lenti in nodi di archiviazione solo dati. 
+---
+= Convertire un nodo di storage StorageGRID in un nodo di soli dati
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Per migliorare le prestazioni, puoi convertire i nodi di archiviazione non-ADC più lenti in nodi di archiviazione solo dati.
+
+Utilizzare un nodo di archiviazione esclusivamente per i dati può avere senso se i tuoi nodi di archiviazione hanno caratteristiche prestazionali diverse. Ad esempio, per aumentare potenzialmente le prestazioni, potresti avere nodi di archiviazione solo dati ad elevata capacità con dischi rotanti, accompagnati da nodi di archiviazione solo metadati dalle performance elevate.
+
+Inoltre, puoi ottenere una maggiore capacità di metadati rimuovendo i nodi con poca RAM da Cassandra, il che aumenta il limite di capacità di metadati per nodo. Consulta link:../admin/managing-object-metadata-storage.html["Gestisci l'archiviazione dei metadati degli oggetti"].
+
+Quando converti nodi contenenti solo dati, la grid deve contenere un minimo di tre nodi Storage combinati o contenenti solo metadati per sito.
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Hai il link:../admin/admin-group-permissions.html["Permesso di manutenzione o di accesso root"].
+* Il nodo di archiviazione che vuoi convertire non contiene il servizio ADC oppure hai link:../maintain/move-adc-service.html["spostato il servizio ADC"] su un altro nodo.
+* Il nodo di archiviazione non è un nodo solo metadati né un nodo solo dati.
+* Il nodo di archiviazione che vuoi convertire non contiene il servizio ADC oppure hai link:../maintain/move-adc-service.html["spostato il servizio ADC"] su un altro nodo.
+* C'è spazio metadati sufficiente sugli altri nodi del sito (oppure hai link:../expand/index.html["hai ampliato la tua griglia"]) per ospitare i metadati che migreranno dal Storage Node che stai convertendo.
++
+[CAUTION]
+====
+** Se i metadati che migrano ad altri nodi sullo stesso sito superano la dimensione del link:../admin/managing-object-metadata-storage.html["spazio riservato per i metadati"], la griglia diventerà instabile.
+** Dopo che avvii la conversione, non potrai più espandere la griglia.
+
+
+====
+
+
+.Informazioni su questa attività
+Usa questa procedura per convertire uno o più nodi di storage combinati che non contengono il servizio ADC in nodi solo dati.
+
+Oltre a convertire il nodo di Storage, questa procedura decommissiona Cassandra dal nodo. Tutti i metadati migreranno verso nodi di Storage combinati o solo-metadati. A seconda della quantità di metadati da migrare, questa procedura potrebbe richiedere fino a diversi giorni per nodo per essere completata.
+
+
+TIP: In genere, puoi convertire fino a 10 nodi alla volta se l'utilizzo dei metadati per nodo è inferiore a 1 TB. Se l'utilizzo dei metadati per nodo è superiore a 1 TB, converti fino a 5 nodi per procedura.
+
+.Passaggi
+. Annota gli ID dei nodi di Storage non ADC che vuoi convertire.
+. Dalla parte superiore di Grid Manager, seleziona l'icona di aiuto e seleziona *API documentation*.
+. ${post_edited_translations.segment}
+. Seleziona l' `POST /private/convert-to-data-only-node/start`operazione. Consulta link:../admin/using-grid-management-api.html#issue-api-requests["Invia richieste API"]per maggiori informazioni.
++
+Ogni nodo si riavvierà durante la procedura.
+
+. Puoi usare `GET /private/convert-to-data-only-node` per monitorare la procedura. Se si verificano errori, seleziona `POST /private/convert-to-data-only-node/retry` per riprovare la procedura.
+. link:../maintain/downloading-recovery-package.html["Scarica un pacchetto di ripristino"] dopo aver completato questa procedura.
+

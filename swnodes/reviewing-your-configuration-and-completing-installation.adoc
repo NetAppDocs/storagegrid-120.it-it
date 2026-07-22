@@ -1,0 +1,47 @@
+---
+permalink: swnodes/reviewing-your-configuration-and-completing-installation.html 
+sidebar: sidebar 
+keywords: how to review your configuration and complete installation 
+summary: 'Devi rivedere attentamente le informazioni di configurazione che hai inserito per assicurarti che l"installazione si completi correttamente.' 
+---
+= Rivedi la configurazione di StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Devi rivedere attentamente le informazioni di configurazione che hai inserito per assicurarti che l'installazione si completi correttamente.
+
+.Passaggi
+. Visualizza la pagina *Riepilogo*.
++
+image:11_gmi_installer_summary_page.gif["Pagina di riepilogo dell'installer di Grid Manager"]
+
+. Verifica che tutte le informazioni di configurazione della griglia siano corrette. Usa i link "Modifica" nella pagina "Riepilogo" per tornare indietro e correggere eventuali errori.
+. Fai clic su *Installa*.
++
+
+NOTE: Se un nodo è configurato per utilizzare la Client Network, il gateway predefinito per quel nodo passa dalla Grid Network alla Client Network quando fai clic su *Install*. Se perdi la connettività, devi assicurarti di accedere al primary Admin Node tramite una subnet accessibile. Vedi link:../network/index.html["Linee guida di rete"] per dettagli.
+
+. Fai clic su *Scarica il pacchetto di ripristino*.
++
+Quando l'installazione raggiunge il punto in cui viene definita la topologia della griglia, ti viene richiesto di scaricare il file Recovery Package (`.zip` e di confermare che puoi accedere correttamente al contenuto di questo file. Devi scaricare il file Recovery Package così puoi recuperare il sistema StorageGRID se uno o più nodi della griglia si guastano. L'installazione continua in background, ma non puoi completare l'installazione e accedere al sistema StorageGRID finché non scarichi e verifichi questo file.
+
+. Verifica di poter estrarre il contenuto del  `.zip` file e poi salvalo in due posizioni sicure, protette e separate.
++
+
+CAUTION: Il file del pacchetto di ripristino deve essere protetto perché contiene chiavi di crittografia e password che possono essere utilizzate per ottenere dati dal sistema StorageGRID.
+
+. Seleziona la casella di controllo *Ho scaricato e verificato correttamente il file del pacchetto di ripristino* e fai clic su *Avanti*.
++
+Se l'installazione è ancora in corso, viene visualizzata la pagina di stato. Questa pagina indica lo stato di avanzamento dell'installazione per ciascun nodo della griglia.
+
++
+image:12_gmi_installer_status_page.gif["${post_edited_translations.segment}"]
+
++
+Quando tutti i nodi della griglia raggiungono la fase Complete, viene visualizzata la pagina di accesso per il Grid Manager.
+
+. Accedi a Grid Manager utilizzando l'utente "root" e la password che hai specificato durante l'installazione.
+

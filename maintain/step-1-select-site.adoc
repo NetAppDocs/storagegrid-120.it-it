@@ -1,0 +1,107 @@
+---
+permalink: maintain/step-1-select-site.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, select site 
+summary: Per determinare se un sito può essere decommissionato, inizia accedendo alla procedura guidata Decommission Site. 
+---
+= Seleziona un sito da decommissionare in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Per determinare se un sito può essere decommissionato, inizia accedendo alla procedura guidata Decommission Site.
+
+.Prima di iniziare
+* Hai ottenuto tutto il materiale necessario.
+* Hai esaminato le considerazioni per la rimozione di un sito.
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Hai il link:../admin/admin-group-permissions.html["Autorizzazione di accesso root o autorizzazione di manutenzione e ILM"].
+
+
+.Passaggi
+. Seleziona *Manutenzione* > *Attività* > *Decommission*.
+. Seleziona *Decommission Site*.
++
+Viene visualizzato il passaggio 1 (Seleziona sito) della procedura guidata di decommissionamento del sito. Questo passaggio include un elenco alfabetico dei siti nel tuo sistema StorageGRID.
+
++
+image:decommission_site_step_select_site.png["Decommissionare sito - Passaggio 1 Seleziona sito"]
+
+. Consulta i valori nella colonna *Capacità di archiviazione utilizzata* per vedere quanto spazio di archiviazione stai usando attualmente per i dati degli oggetti in ciascun sito.
++
+La capacità di archiviazione utilizzata è una stima. Se i nodi sono offline, la capacità di archiviazione utilizzata è l'ultimo valore noto per il sito.
+
++
+** Per il decommission di un sito connesso, questo valore rappresenta la quantità di dati degli oggetti che dovranno essere spostati in altri siti o eliminati da ILM prima che tu possa decommissionare in sicurezza questo sito.
+** Per un decommission di un sito disconnesso, questo valore rappresenta la quantità di spazio di archiviazione dati del sistema che diventerà inaccessibile quando decommissioni questo sito.
++
+
+NOTE: Se la tua policy ILM è stata progettata per proteggere dalla perdita di un singolo sito, le copie dei dati degli oggetti dovrebbero comunque esistere nei siti rimanenti.
+
+
+
+. Esamina i motivi nella colonna *Decommission Possible* per determinare quali siti possono essere decommissionati attualmente.
++
+
+NOTE: Se ci sono più motivi per cui un sito non può essere decommissionato, viene mostrato il motivo più critico.
+
++
+[cols="1a,1a,1a"]
+|===
+| Decommission Possibile motivo | Descrizione | Passaggio successivo 
+
+
+ a| 
+Segno di spunta verde (image:icon_alert_green_checkmark.png["Icon Alert Segno di spunta verde"])
+ a| 
+Puoi decommissionare questo sito.
+ a| 
+Vai a <<decommission_possible,il passo successivo>>.
+
+
+
+ a| 
+No. Questo sito contiene il nodo Admin principale.
+ a| 
+Non puoi decommissionare un sito che contiene il nodo amministrativo primario.
+ a| 
+Nessuno. Non puoi eseguire questa procedura.
+
+
+
+ a| 
+No. Questo sito contiene uno o più Archive Node.
+ a| 
+Non puoi decommissionare un sito che contiene un Archive Node.
+ a| 
+Nessuno. Non puoi eseguire questa procedura.
+
+
+
+ a| 
+No. Tutti i nodi di questo sito sono disconnessi. Contatta il tuo referente commerciale NetApp.
+ a| 
+Non puoi eseguire il decommission di un sito connesso a meno che ogni nodo del sito sia connesso (image:icon_alert_green_checkmark.png["Icon Alert Segno di spunta verde"]).
+ a| 
+Se vuoi decommissionare un sito disconnesso, devi contattare il tuo referente commerciale NetApp, che esaminerà le tue esigenze e abiliterà il resto della procedura guidata di decommission del sito.
+
+*IMPORTANTE*: Non mettere mai offline i nodi online per rimuovere un sito. Perderai i dati.
+
+|===
++
+L'esempio mostra un sistema StorageGRID con tre siti. Il segno di spunta verde (image:icon_alert_green_checkmark.png["Icon Alert Segno di spunta verde"]) per i siti di Raleigh e Sunnyvale indica che puoi decommissionare quei siti. Tuttavia, non puoi decommissionare il sito di Vancouver perché contiene il nodo Admin primario.
+
+
+
+[[decommission_possible]]
+. Se è possibile decommissionare, seleziona il pulsante di opzione per il sito.
++
+Il pulsante *Avanti* è abilitato.
+
+. Seleziona *Next*.
++
+Viene visualizzato il passaggio 2 (Visualizza dettagli).
+
+

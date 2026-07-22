@@ -1,0 +1,40 @@
+---
+permalink: admin/configuring-storagegrid-certificates-for-fabricpool.html 
+sidebar: sidebar 
+keywords: fabricpool, ONTAP certificates 
+summary: 'Per i client S3 che eseguono una convalida rigorosa del nome host e non supportano la disattivazione di tale convalida, come i client ONTAP che utilizzano FabricPool, puoi generare o caricare un certificato server quando configuri l"endpoint del load balancer.' 
+---
+= Configura i certificati StorageGRID per FabricPool
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Per i client S3 che eseguono una convalida rigorosa del nome host e non supportano la disabilitazione di tale convalida, come i client ONTAP che utilizzano FabricPool, puoi generare o caricare un certificato server quando configuri l'endpoint del bilanciatore di carico.
+
+.Prima di iniziare
+* Hai link:admin-group-permissions.html["autorizzazioni di accesso specifiche"].
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+
+
+.Informazioni su questa attività
+Quando crei un endpoint per il bilanciamento del carico, puoi generare un certificato server autofirmato oppure caricare un certificato firmato da una certificate authority (CA) riconosciuta. Negli ambienti di produzione, dovresti usare un certificato firmato da una CA riconosciuta. I certificati firmati da una CA possono essere ruotati senza interruzioni. Sono anche più sicuri perché offrono una migliore protezione contro gli attacchi man-in-the-middle.
+
+I seguenti passaggi forniscono linee guida generali per i client S3 che utilizzano FabricPool. Per informazioni e procedure più dettagliate, vedi link:../fabricpool/index.html["Configura StorageGRID per FabricPool"].
+
+.Passaggi
+. Facoltativamente, puoi configurare un gruppo ad alta disponibilità (HA) da utilizzare per FabricPool.
+. Crea un endpoint del bilanciatore di carico S3 che FabricPool possa utilizzare.
++
+Quando crei un endpoint di bilanciamento del carico HTTPS, ti viene chiesto di caricare il certificato del server, la chiave privata del certificato e, facoltativamente, il bundle di CA.
+
+. Collega StorageGRID come livello cloud in ONTAP.
++
+Specifica la porta dell'endpoint del bilanciatore di carico e il fully qualified domain name utilizzato nel certificato CA che hai caricato. Poi, fornisci il certificato CA.
+
++
+
+NOTE: Se il certificato StorageGRID è stato emesso da una CA intermedia, devi fornire il certificato della CA intermedia. Se il certificato StorageGRID è stato emesso direttamente dalla Root CA, devi fornire il certificato della Root CA.
+
+

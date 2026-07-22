@@ -1,0 +1,24 @@
+---
+permalink: expand/adding-storage-capacity-for-replicated-objects.html 
+sidebar: sidebar 
+keywords: replication, replicated, copies, capacity, storage nodes, expand, expansion, StorageGRID 
+summary: 'Se la policy di gestione del ciclo di vita delle informazioni (ILM) per la tua implementazione include una regola che crea copie replicate degli oggetti, devi considerare quanto storage aggiungere e dove aggiungere i nuovi volumi di storage o Storage Node.' 
+---
+= Pianificazione dell'espansione per i dati replicati in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se la policy di gestione del ciclo di vita delle informazioni (ILM) per la tua implementazione include una regola che crea copie replicate degli oggetti, devi considerare quanto storage aggiungere e dove aggiungere i nuovi volumi di storage o Storage Node.
+
+Per indicazioni su dove aggiungere ulteriore storage, esamina le regole ILM che creano copie replicate. Se le regole ILM creano due o più copie di oggetti, pianifica di aggiungere storage in ogni posizione in cui vengono create le copie degli oggetti. Come semplice esempio, se hai una grid a due siti e una regola ILM che crea una copia di oggetto in ciascun sito, devi link:../expand/adding-storage-volumes-to-storage-nodes.html["aggiungi spazio di storage"] in ogni sito per aumentare la capacità complessiva di oggetti della grid. Per informazioni sulla replica degli oggetti, vedi link:../ilm/what-replication-is.html["Che cos'è la replicazione"].
+
+Per ragioni di prestazioni, dovresti cercare di mantenere bilanciati la capacità di storage e la potenza di calcolo tra i vari siti. Quindi, in questo esempio, dovresti aggiungere lo stesso numero di Storage Node a ciascun sito oppure volumi di storage aggiuntivi in ogni sito.
+
+Se hai una policy ILM più complessa che include regole che posizionano gli oggetti in posizioni diverse in base a criteri come il nome del bucket, o regole che cambiano la posizione degli oggetti nel tempo, la tua analisi di dove è richiesto lo storage per l'espansione sarà simile, ma più complessa.
+
+Tracciare un grafico della velocità con cui viene consumata la capacità di storage complessiva può aiutarti a capire quanto storage aggiungere nell'espansione e quando sarà necessario lo spazio di storage aggiuntivo. Puoi utilizzare il Grid Manager per link:../monitor/monitoring-storage-capacity.html["monitorare e visualizzare la capacità di storage"].
+
+Quando pianifichi il momento di un'espansione, ricorda di considerare quanto tempo potrebbe volerci per procurare e installare storage aggiuntivo. Per semplificare la pianificazione dell'espansione, considera di aggiungere Storage Node quando i Storage Node esistenti raggiungono il 70% della capacità.

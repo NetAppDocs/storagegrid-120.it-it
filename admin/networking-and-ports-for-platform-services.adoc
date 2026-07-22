@@ -1,0 +1,48 @@
+---
+permalink: admin/networking-and-ports-for-platform-services.html 
+sidebar: sidebar 
+keywords: platform services, ports for platform services, 443, 80 
+summary: Se consenti a un tenant di utilizzare i servizi della piattaforma, devi configurare la rete per il grid per assicurarti che i messaggi dei servizi della piattaforma possano essere recapitati alle loro destinazioni. 
+---
+= Rete e porte per i servizi della piattaforma StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se consenti a un tenant di utilizzare i servizi della piattaforma, devi configurare la rete per il grid per assicurarti che i messaggi dei servizi della piattaforma possano essere recapitati alle loro destinazioni.
+
+Puoi abilitare i servizi della piattaforma per un account tenant S3 quando crei o aggiorni l'account tenant. Se i servizi della piattaforma sono abilitati, il tenant può creare endpoint che fungono da destinazione per la replica CloudMirror, le notifiche di eventi o i messaggi di integrazione della ricerca provenienti dai suoi bucket S3. Questi messaggi dei servizi della piattaforma vengono inviati dai nodi di storage che eseguono il servizio ADC agli endpoint di destinazione.
+
+Ad esempio, i tenant potrebbero configurare i seguenti tipi di endpoint di destinazione:
+
+* ${post_edited_translations.segment}
+* ${post_edited_translations.segment}
+* Un cluster Kafka in locale
+* Un endpoint webhook esterno o ospitato localmente che supporta richieste di notifica HTTP POST.
++
+Questo endpoint può essere ospitato su vari server web, framework o strumenti di elaborazione dati come Fluentd.
+
+* ${post_edited_translations.segment}
+* ${post_edited_translations.segment}
+
+
+Per garantire che i messaggi dei servizi della piattaforma possano essere consegnati, devi configurare la rete o le reti che contengono i nodi di archiviazione ADC. Devi assicurarti che le seguenti porte possano essere utilizzate per inviare i messaggi dei servizi della piattaforma agli endpoint di destinazione.
+
+Per impostazione predefinita, i messaggi dei servizi della piattaforma vengono inviati sulle seguenti porte:
+
+* *80*: Per gli URI degli endpoint che iniziano con http (la maggior parte degli endpoint)
+* *443*: Per gli URI degli endpoint che iniziano con https (la maggior parte degli endpoint)
+* *9092*: Per gli URI degli endpoint che iniziano con http o https (solo endpoint Kafka)
+
+
+I tenant possono specificare una porta diversa quando creano o modificano un endpoint.
+
+
+NOTE: Se un'implementazione StorageGRID viene utilizzata come destinazione per la replica CloudMirror, i messaggi di replica potrebbero essere ricevuti su una porta diversa da 80 o 443. Assicurati che la porta utilizzata per S3 dall'implementazione StorageGRID di destinazione sia specificata nell'endpoint.
+
+Se usi un proxy server non trasparente, devi anche link:configuring-storage-proxy-settings.html["configura le impostazioni del proxy di archiviazione"] consentire l'invio di messaggi a endpoint esterni, come un endpoint su internet.
+
+.Informazioni correlate
+link:../tenant/index.html["Usa un tenant account"]

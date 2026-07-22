@@ -1,0 +1,110 @@
+---
+permalink: maintain/updating-subnets-for-grid-network.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, subnet, grid network, update subnets 
+summary: 'StorageGRID mantiene un elenco delle sottoreti di rete utilizzate per la comunicazione tra i nodi della griglia sulla Grid Network (eth0). Queste voci includono le sottoreti utilizzate per la Grid Network da ciascun sito nel tuo sistema StorageGRID, così come eventuali sottoreti utilizzate per NTP, DNS, LDAP o altri server esterni accessibili tramite il gateway della Grid Network. Quando aggiungi nodi della griglia o un nuovo sito in un"espansione, potresti dover aggiornare o aggiungere sottoreti alla Grid Network.' 
+---
+= Aggiorna le sottoreti per StorageGRID Grid Network
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID mantiene un elenco delle sottoreti di rete utilizzate per la comunicazione tra i nodi della griglia sulla Grid Network (eth0). Queste voci includono le sottoreti utilizzate per la Grid Network da ciascun sito nel tuo sistema StorageGRID, così come eventuali sottoreti utilizzate per NTP, DNS, LDAP o altri server esterni accessibili tramite il gateway della Grid Network. Quando aggiungi nodi della griglia o un nuovo sito in un'espansione, potresti dover aggiornare o aggiungere sottoreti alla Grid Network.
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Hai il link:../admin/admin-group-permissions.html["Permesso di manutenzione o di accesso root"].
+* ${post_edited_translations.segment}
+* Hai gli indirizzi di rete, in notazione CIDR, delle subnet che vuoi configurare.
+
+
+.Informazioni su questa attività
+Se stai eseguendo un'attività di espansione che include l'aggiunta di una nuova sottorete, devi aggiungere la nuova sottorete all'elenco delle sottoreti della Grid Network prima di iniziare la procedura di espansione. Altrimenti, dovrai annullare l'espansione, aggiungere la nuova sottorete e avviare di nuovo l'espansione.
+
+[NOTE]
+====
+${post_edited_translations.segment}
+
+* 192.168.130.101
+* 192.168.130.121
+* 192.168.131.101
+* 192.168.131.121
+* 192.168.130.102
+* 192.168.130.122
+* 192.168.131.102
+* 192.168.131.122
+* 198.51.100.2
+* 198.51.100.4
+
+
+${post_edited_translations.segment}
+
+* 192.168.130.0/24 perché questo intervallo di sottorete contiene gli indirizzi IP 192.168.130.101 e 192.168.130.102
+* ${post_edited_translations.segment}
+* ${post_edited_translations.segment}
+
+
+====
+
+
+[[add-a-subnet]]
+== Aggiungi una sottorete
+
+.Passaggi
+. Seleziona *Manutenzione* > *Rete* > *Grid Network*.
+. Seleziona *Aggiungi un'altra sottorete* per aggiungere una nuova sottorete in notazione CIDR.
++
+Ad esempio, inserisci  `10.96.104.0/22`.
+
+. ${post_edited_translations.segment}
+. ${post_edited_translations.segment}
++
+.. ${post_edited_translations.segment}
+.. ${post_edited_translations.segment}
++
+
+CAUTION: Il file del pacchetto di ripristino deve essere protetto perché contiene chiavi di crittografia e password che possono essere utilizzate per ottenere dati dal sistema StorageGRID. Viene utilizzato anche per ripristinare il nodo Admin primario.
+
+
+
+
+
+${post_edited_translations.segment}
+
+
+
+[[edit-a-subnet]]
+== Modifica una sottorete
+
+.Passaggi
+. Seleziona *Manutenzione* > *Rete* > *Grid Network*.
+. Seleziona la sottorete che desideri modificare ed effettua le modifiche necessarie.
+. Inserisci la passphrase di provisioning e seleziona *Salva*.
+. Nella finestra di dialogo di conferma, seleziona *Sì*.
+. ${post_edited_translations.segment}
++
+.. ${post_edited_translations.segment}
+.. ${post_edited_translations.segment}
+
+
+
+
+
+
+[[delete-a-subnet]]
+== Elimina una sottorete
+
+.Passaggi
+. Seleziona *Manutenzione* > *Rete* > *Grid Network*.
+. Seleziona l'icona di eliminazione image:icon-x-to-remove.png["icona di eliminazione"] accanto alla sottorete.
+. Inserisci la passphrase di provisioning e seleziona *Salva*.
+. Nella finestra di dialogo di conferma, seleziona *Sì*.
+. ${post_edited_translations.segment}
++
+.. ${post_edited_translations.segment}
+.. ${post_edited_translations.segment}
+
+
+

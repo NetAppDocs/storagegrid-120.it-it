@@ -1,0 +1,26 @@
+---
+permalink: tenant/deleting-group.html 
+sidebar: sidebar 
+keywords: how to delete tenant group 
+summary: Puoi eliminare un gruppo dal sistema. Gli utenti che appartengono solo a quel gruppo non potranno più accedere a Tenant Manager né utilizzare il tenant account. 
+---
+= Eliminare un gruppo tenant di StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi eliminare un gruppo dal sistema. Gli utenti che appartengono solo a quel gruppo non potranno più accedere a Tenant Manager né utilizzare il tenant account.
+
+.Prima di iniziare
+* Hai effettuato l'accesso al Tenant Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Appartieni a un gruppo di utenti che dispone dell'autorizzazione di accesso Root. Vedi link:tenant-management-permissions.html["Autorizzazioni per la gestione dei tenant"].
+
+
+.Passaggi
+. ${post_edited_translations.segment}
+. Seleziona la casella di controllo per ogni gruppo che vuoi eliminare.
+. Seleziona *Azioni* > *Elimina gruppo*.
+. Seleziona *Elimina gruppo*.
+

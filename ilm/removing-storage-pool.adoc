@@ -1,0 +1,30 @@
+---
+permalink: ilm/removing-storage-pool.html 
+sidebar: sidebar 
+keywords: remove storage pool 
+summary: Puoi rimuovere un pool di storage che non viene utilizzato. 
+---
+= Rimuovere un pool di storage in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi rimuovere un pool di storage che non viene utilizzato.
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Tu hai il link:../admin/admin-group-permissions.html["autorizzazioni di accesso richieste"].
+
+
+.Passaggi
+. Seleziona *ILM* > *pool di storage*.
+. Guarda la colonna "Utilizzo ILM" nella tabella per capire se puoi rimuovere il pool di storage.
++
+Non puoi rimuovere un pool di storage se viene utilizzato in una regola ILM o in un profilo di erasure coding. Se necessario, seleziona *storage pool name* > *ILM usage* per vedere dove viene utilizzato il pool di storage.
+
+. Se il pool di storage che vuoi rimuovere non è in uso, seleziona la casella di controllo.
+. Seleziona *Rimuovi*.
+. Seleziona *OK*.
+

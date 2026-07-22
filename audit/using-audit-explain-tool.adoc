@@ -1,0 +1,98 @@
+---
+permalink: audit/using-audit-explain-tool.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, tool, audit-explain, audit explain, translate audit messages, translate messages, translate audit message, translate message 
+summary: Puoi usare lo strumento audit-explain per tradurre i messaggi di audit presenti nel registro di audit in un formato di facile lettura. 
+---
+= Utilizzare lo strumento audit-explain per tradurre i messaggi di audit di StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi usare lo  `audit-explain` strumento per tradurre i messaggi di audit presenti nel registro di audit in un formato facile da leggere.
+
+.Prima di iniziare
+* Hai link:../admin/admin-group-permissions.html["autorizzazioni di accesso specifiche"].
+* Devi avere il file `Passwords.txt`.
+* ${post_edited_translations.segment}
+
+
+.Informazioni su questa attività
+Lo strumento `audit-explain`, disponibile sull'Admin Node primario, fornisce riepiloghi semplificati dei messaggi di audit in un log di audit.
+
+
+NOTE: Lo strumento `audit-explain` è destinato principalmente all'uso da parte del supporto tecnico durante le operazioni di risoluzione dei problemi. L'elaborazione `audit-explain` delle query può consumare una grande quantità di potenza della CPU, il che potrebbe influire sulle operazioni di StorageGRID.
+
+Questo esempio mostra l'output tipico dello  `audit-explain` strumento. Questi quattro link:sput-s3-put.html["SPUT"] messaggi di audit sono stati generati quando il tenant con account ID 92484777680322627870 ha utilizzato richieste S3 PUT per creare un bucket chiamato "bucket1" e aggiungere tre oggetti a quel bucket.
+
+[listing]
+----
+SPUT S3 PUT bucket bucket1 account:92484777680322627870 usec:124673
+SPUT S3 PUT object bucket1/part1.txt tenant:92484777680322627870  cbid:9DCB157394F99FE5 usec:101485
+SPUT S3 PUT object bucket1/part2.txt tenant:92484777680322627870  cbid:3CFBB07AB3D32CA9 usec:102804
+SPUT S3 PUT object bucket1/part3.txt tenant:92484777680322627870  cbid:5373D73831ECC743 usec:93874
+----
+Lo  `audit-explain` strumento può fare quanto segue:
+
+* Elabora i log di controllo, sia semplici che compressi. Ad esempio:
++
+`audit-explain audit.log`
+
++
+`audit-explain 2019-08-12.txt.gz`
+
+* Elabora più file contemporaneamente. Ad esempio:
++
+`audit-explain audit.log 2019-08-12.txt.gz 2019-08-13.txt.gz`
+
++
+`audit-explain /var/local/audit/export/*`
+
+* Accetta input da una pipe, che ti consente di filtrare e pre-elaborare l'input utilizzando il  `grep` comando o altri mezzi. Ad esempio:
++
+`grep SPUT audit.log | audit-explain`
+
++
+`grep bucket-name audit.log | audit-explain`
+
+
+
+Poiché i file di log di controllo possono essere molto grandi e lenti da analizzare, puoi risparmiare tempo filtrando le parti che vuoi esaminare ed eseguendo  `audit-explain` su quelle parti, invece che sull'intero file.
+
+[NOTE]
+====
+Lo  `audit-explain` strumento non accetta file compressi come input tramite pipe. Per elaborare i file compressi, specifica i loro nomi come argomenti della riga di comando oppure usa lo  `zcat` strumento per decomprimere prima i file. Ad esempio:
+
+`zcat audit.log.gz | audit-explain`
+
+====
+Usa l' `help (-h)`opzione per vedere le opzioni disponibili. Per esempio:
+
+`$ audit-explain -h`
+
+.Passaggi
+. Accedi al nodo amministratore principale:
++
+.. Inserisci il seguente comando: `ssh admin@_primary_Admin_Node_IP_`
+.. Inserisci la password indicata nel file  `Passwords.txt`.
+.. Inserisci il seguente comando per passare all'utente root: `su -`
+.. Inserisci la password indicata nel file  `Passwords.txt`.
++
+Quando sei connesso come root, il prompt cambia da  `$` a  `#`.
+
+
+
+. Inserisci il seguente comando, dove  `/var/local/audit/export/audit.log` rappresenta il nome e il percorso del file o dei file che desideri analizzare:
++
+`$ audit-explain /var/local/audit/export/audit.log`
+
++
+Lo  `audit-explain` strumento stampa interpretazioni leggibili dall'uomo di tutti i messaggi presenti nel file o nei file specificati.
+
++
+
+NOTE: Per ridurre la lunghezza delle righe e migliorare la leggibilità, i timestamp non vengono visualizzati per impostazione predefinita. Se vuoi vedere i timestamp, usa l'opzione timestamp (`-t`.
+
+

@@ -1,0 +1,67 @@
+---
+permalink: s3/s3-rest-api-supported-operations-and-limitations.html 
+sidebar: sidebar 
+keywords: s3 rest api supported operations, s3 rest api limitations 
+summary: 'Il sistema StorageGRID implementa l"API Simple Storage Service (API Version 2006-03-01) con supporto per la maggior parte delle operazioni, ma con alcune limitazioni. Devi comprendere i dettagli di implementazione quando integri applicazioni client S3 REST API.' 
+---
+= Operazioni supportate e limitazioni dell'API REST S3 in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Il sistema StorageGRID implementa l'API Simple Storage Service (API Version 2006-03-01) con supporto per la maggior parte delle operazioni, ma con alcune limitazioni. Devi comprendere i dettagli di implementazione quando integri applicazioni client S3 REST API.
+
+Il sistema StorageGRID supporta sia le richieste in stile virtual hosted che quelle in stile path.
+
+
+
+[[date-handling]]
+== Gestione delle date
+
+L'implementazione StorageGRID dell'API REST S3 supporta solo formati di data HTTP validi.
+
+Il sistema StorageGRID supporta solo formati di data HTTP validi per le intestazioni che accettano valori di data. La parte oraria della data può essere specificata nel formato Greenwich Mean Time (GMT) o nel formato Universal Coordinated Time (UTC) senza offset di fuso orario (+0000 deve essere specificato). Se includi l' `x-amz-date`intestazione nella tua richiesta, questa sovrascrive qualsiasi valore specificato nell'intestazione Date della richiesta. Quando usi AWS Signature Version 4, l' `x-amz-date`intestazione deve essere presente nella richiesta firmata perché l'intestazione Date non è supportata.
+
+
+
+[[common-request-headers]]
+== Intestazioni di richiesta comuni
+
+Il sistema StorageGRID supporta le intestazioni di richiesta comuni definite da  https://docs.aws.amazon.com/AmazonS3/latest/API/RESTCommonRequestHeaders.html["Riferimento API di Amazon Simple Storage Service: intestazioni di richiesta comuni"^], con una sola eccezione.
+
+[cols="1a,2a"]
+|===
+| Intestazione della richiesta | Implementazione 
+
+
+ a| 
+Autorizzazione
+ a| 
+Supporto completo per AWS Signature Version 2
+
+Supporto per AWS Signature Version 4, con le seguenti eccezioni:
+
+* Quando fornisci il valore effettivo del checksum del payload `x-amz-content-sha256`, il valore viene accettato senza convalida, come se il valore `UNSIGNED-PAYLOAD` fosse stato fornito per l'intestazione. Quando fornisci un valore di intestazione `x-amz-content-sha256` che implica lo streaming `aws-chunked` (ad esempio, STREAMING-AWS4-HMAC-SHA256-PAYLOAD), le firme dei chunk non vengono verificate rispetto ai dati del chunk.
+
+
+|===
+
+
+[[common-response-headers]]
+== Intestazioni di risposta comuni
+
+Il sistema StorageGRID supporta tutte le intestazioni di risposta comuni definite dal _Simple Storage Service API Reference_, con una sola eccezione.
+
+[cols="1a,2a"]
+|===
+| Intestazione di risposta | Implementazione 
+
+
+ a| 
+x-amz-id-2
+ a| 
+Non utilizzato
+
+|===

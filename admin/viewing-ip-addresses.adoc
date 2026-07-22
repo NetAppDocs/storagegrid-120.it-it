@@ -1,0 +1,31 @@
+---
+permalink: admin/viewing-ip-addresses.html 
+sidebar: sidebar 
+keywords: ip address, view ip addresses for nodes, what is node ip address 
+summary: 'Puoi visualizzare l"indirizzo IP di ciascun nodo della griglia nel tuo sistema StorageGRID. Puoi quindi usare questo indirizzo IP per accedere al nodo della griglia dalla riga di comando ed eseguire varie procedure di manutenzione.' 
+---
+= Visualizza gli indirizzi IP in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi visualizzare l'indirizzo IP di ciascun nodo della griglia nel tuo sistema StorageGRID. Puoi quindi usare questo indirizzo IP per accedere al nodo della griglia dalla riga di comando ed eseguire varie procedure di manutenzione.
+
+.Prima di iniziare
+Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+
+.Informazioni su questa attività
+Per informazioni sulla modifica degli indirizzi IP, vedi link:../maintain/configuring-ip-addresses.html["Configura gli indirizzi IP"].
+
+.Passaggi
+. ${post_edited_translations.segment}
+. ${post_edited_translations.segment}
++
+Gli indirizzi IP di quel nodo della griglia sono elencati in una tabella.
+
++
+image:nodes_page_overview_tab_extended.png["Indirizzi IP della pagina nodi"]
+
+

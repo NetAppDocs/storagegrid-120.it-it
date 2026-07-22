@@ -1,0 +1,26 @@
+---
+permalink: troubleshoot/troubleshooting-lost-and-missing-object-data.html 
+sidebar: sidebar 
+keywords: how to troubleshoot lost object data, how to troubleshoot missing object data 
+summary: 'Gli oggetti possono essere recuperati per diversi motivi, tra cui richieste di lettura da un"applicazione client, verifiche in background dei dati degli oggetti replicati, rivalutazioni ILM e il ripristino dei dati degli oggetti durante il recovery di uno Storage Node.' 
+---
+= Scopri i dati degli oggetti persi e mancanti in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Gli oggetti possono essere recuperati per diversi motivi, tra cui richieste di lettura da un'applicazione client, verifiche in background dei dati degli oggetti replicati, rivalutazioni ILM e il ripristino dei dati degli oggetti durante il recovery di uno Storage Node.
+
+Il sistema StorageGRID utilizza le informazioni sulla posizione nei metadati di un oggetto per determinare da quale posizione recuperare l'oggetto. Se non viene trovata una copia dell'oggetto nella posizione prevista, il sistema tenta di recuperare un'altra copia dell'oggetto da un'altra posizione del sistema, supponendo che la policy ILM contenga una regola per creare due o più copie dell'oggetto.
+
+Se il recupero ha esito positivo, il sistema StorageGRID sostituisce la copia mancante dell'oggetto. In caso contrario, viene attivato l'avviso *Oggetti potenzialmente persi*, come segue:
+
+* Nel caso di copie replicate, se non è possibile recuperare un'altra copia, l'oggetto viene considerato perso e viene attivato l'avviso.
+* Nel caso di copie con codifica di cancellazione, se non è possibile recuperare una copia dalla posizione prevista, l'attributo Corrupt Copies Detected (ECOR) viene incrementato di uno prima di tentare di recuperare una copia da un'altra posizione. Se non viene trovata alcuna altra copia, viene attivato l'avviso.
+
+
+Dovresti indagare immediatamente su tutti gli avvisi di *Oggetti potenzialmente persi* per determinare la causa principale della perdita e per capire se l'oggetto potrebbe ancora esistere in un nodo di storage offline o comunque attualmente non disponibile. Vedi link:../troubleshoot/investigating-potentially-lost-objects.html["Indaga su eventuali oggetti smarriti"]. Gli avvisi di oggetti persi potrebbero essere attivati erroneamente per precauzione.
+
+Nel caso in cui i dati di un oggetto senza copie vengano persi, non esiste una soluzione di recupero. Tuttavia, devi link:../troubleshoot/investigating-potentially-lost-objects.html#reset-lost-obj-count["reimposta il contatore degli oggetti potenzialmente persi"] impedire che gli oggetti persi noti mascherino eventuali nuovi oggetti persi.

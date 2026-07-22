@@ -1,0 +1,57 @@
+---
+permalink: audit/svrf-object-store-verify-fail.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, SVRF, Object Store Verify Fail 
+summary: 'Questo messaggio viene visualizzato ogni volta che un blocco di contenuto non supera il processo di verifica. Ogni volta che i dati degli oggetti replicati vengono letti o scritti su disco, vengono eseguiti diversi controlli di verifica e integrità per garantire che i dati inviati all"utente richiedente siano identici ai dati originariamente acquisiti nel sistema. Se uno di questi controlli fallisce, il sistema mette automaticamente in quarantena i dati degli oggetti replicati corrotti per impedirne il recupero.' 
+---
+= Messaggio di controllo SVRF per errori di verifica dell'archivio di oggetti in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Questo messaggio viene visualizzato ogni volta che un blocco di contenuto non supera il processo di verifica. Ogni volta che i dati degli oggetti replicati vengono letti o scritti su disco, vengono eseguiti diversi controlli di verifica e integrità per garantire che i dati inviati all'utente richiedente siano identici ai dati originariamente acquisiti nel sistema. Se uno di questi controlli fallisce, il sistema mette automaticamente in quarantena i dati degli oggetti replicati corrotti per impedirne il recupero.
+
+[cols="1a,1a,4a"]
+|===
+| Codice | Campo | Descrizione 
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Identificatore del blocco di contenuto
+ a| 
+L'identificativo univoco del blocco di contenuto la cui verifica non è andata a buon fine.
+
+
+
+ a| 
+RSLT
+ a| 
+${post_edited_translations.segment}
+ a| 
+${post_edited_translations.segment}
+
+CRCF: controllo di ridondanza ciclica (CRC) non riuscito.
+
+${post_edited_translations.segment}
+
+EHSH: Hash del contenuto crittografato inatteso.
+
+PHSH: Hash del contenuto originale inatteso.
+
+SEQC: Sequenza dati errata sul disco.
+
+PERR: Struttura del file su disco non valida.
+
+${post_edited_translations.segment}
+
+FNAM: Nome file non valido.
+
+|===
+
+NOTE: Questo messaggio deve essere monitorato attentamente. Gli errori di verifica del contenuto possono indicare imminenti guasti hardware.
+
+Per determinare quale operazione ha generato il messaggio, consulta il valore del campo AMID (ID modulo). Ad esempio, un valore SVFY indica che il messaggio è stato generato dal modulo Storage Verifier, cioè dalla verifica in background, e STOR indica che il messaggio è stato generato dal recupero dei contenuti.

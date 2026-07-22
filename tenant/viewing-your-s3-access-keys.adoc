@@ -1,0 +1,34 @@
+---
+permalink: tenant/viewing-your-s3-access-keys.html 
+sidebar: sidebar 
+keywords: how to view your s3 access key 
+summary: 'Se utilizzi un tenant S3 e hai le autorizzazioni appropriate, puoi visualizzare un elenco delle tue chiavi di accesso S3. Puoi ordinare l"elenco in base alla data di scadenza, così puoi vedere quali chiavi scadranno presto. Se serve, puoi creare nuove chiavi o eliminare quelle che non usi più.' 
+---
+= Visualizza le tue chiavi di accesso S3 in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se stai utilizzando un tenant S3 e hai le link:tenant-management-permissions.html["${post_edited_translations.segment}"], puoi visualizzare un elenco delle tue chiavi di accesso S3. Puoi ordinare l'elenco per data di scadenza, così puoi vedere quali chiavi scadranno presto. Se necessario, puoi link:creating-your-own-s3-access-keys.html["crea nuove chiavi"] o link:deleting-your-own-s3-access-keys.html["elimina chiavi"] quelle che non usi più.
+
+
+CAUTION: È possibile accedere ai bucket e agli oggetti S3 appartenenti al tuo account utilizzando l'ID della chiave di accesso e la chiave di accesso segreta visualizzati per il tuo account nel Tenant Manager. Per questo motivo, proteggi le chiavi di accesso come faresti con una password. Ruota le chiavi di accesso regolarmente, rimuovi le chiavi inutilizzate dal tuo account e non condividerle mai con altri utenti.
+
+.Prima di iniziare
+* Hai effettuato l'accesso al Tenant Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Fai parte di un gruppo di utenti che ha il privilegio "Gestisci le tue credenziali S3" link:tenant-management-permissions.html["${post_edited_translations.segment}"].
+
+
+.Passaggi
+. ${post_edited_translations.segment}
+. Dalla pagina Le mie chiavi di accesso, ordina le chiavi di accesso esistenti per *Expiration time* o *Access key ID*.
+. Se necessario, crea nuove chiavi o elimina quelle che non usi più.
++
+Se crei nuove chiavi prima della scadenza di quelle esistenti, puoi iniziare a utilizzarle senza perdere temporaneamente l'accesso agli oggetti dell'account.
+
++
+Le chiavi scadute vengono rimosse automaticamente.
+
+

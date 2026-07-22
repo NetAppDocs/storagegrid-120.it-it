@@ -1,0 +1,58 @@
+---
+permalink: ilm/verifying-ilm-policy-with-object-metadata-lookup.html 
+sidebar: sidebar 
+keywords: verify ilm policy, object metadata lookup 
+summary: Dopo aver attivato una policy ILM, importa oggetti di test rappresentativi nel sistema StorageGRID, quindi esegui una ricerca dei metadati degli oggetti per confermare che le copie vengano create come previsto e posizionate nelle posizioni corrette. 
+---
+= Verifica una policy ILM con la ricerca dei metadati degli oggetti in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Dopo aver attivato una policy ILM, importa oggetti di test rappresentativi nel sistema StorageGRID, quindi esegui una ricerca dei metadati degli oggetti per confermare che le copie vengano create come previsto e posizionate nelle posizioni corrette.
+
+.Prima di iniziare
+Hai un identificatore di oggetto, che può essere uno dei seguenti:
+
+* *UUID*: L'Universally Unique Identifier dell'oggetto.
+* *CBID*: Identificativo univoco dell'oggetto all'interno di StorageGRID. Puoi ottenere il CBID di un oggetto dal registro di audit. Inserisci il CBID tutto in maiuscolo.
+* *Bucket S3 e chiave dell'oggetto*: Quando un oggetto viene acquisito tramite l'interfaccia S3, l'applicazione client utilizza una combinazione di bucket e chiave dell'oggetto per archiviare e identificare l'oggetto. Se il bucket S3 è versionato e vuoi cercare una versione specifica di un oggetto S3 utilizzando il bucket e la chiave dell'oggetto, hai l'*ID di versione*.
+
+
+.Passaggi
+. Acquisisci l'oggetto.
+. Seleziona *ILM* > *Object metadata lookup*.
+. Inserisci l'identificativo dell'oggetto nel campo *Identifier*. Puoi inserire un UUID, un CBID o una chiave bucket/object-key S3.
+. Facoltativamente, inserisci un ID di versione per l'oggetto (solo S3).
+. Seleziona *Look Up*.
++
+Vengono visualizzati i risultati della ricerca dei metadati dell'oggetto. Questa pagina elenca le seguenti tipologie di informazioni:
+
++
+** Metadati di sistema, come l'ID dell'oggetto (UUID), il tipo di risultato (oggetto, indicatore di eliminazione, bucket S3) e la dimensione logica dell'oggetto. Consulta lo screenshot di esempio qui sotto per maggiori dettagli.
+** ${post_edited_translations.segment}
+** Per gli oggetti S3, tutte le coppie chiave-valore dei tag associate all'oggetto.
+** ${post_edited_translations.segment}
+** Per le copie di oggetti con codifica di cancellazione, la posizione di archiviazione corrente di ciascun frammento.
+** Per le copie di oggetti in un Cloud Storage Pool, la posizione dell'oggetto, incluso il nome del bucket esterno e l'identificativo univoco dell'oggetto.
+** Per gli oggetti segmentati e gli oggetti composti da più parti, viene visualizzato un elenco dei segmenti dell'oggetto, inclusi gli identificatori dei segmenti e le dimensioni dei dati. Per gli oggetti con più di 100 segmenti, vengono mostrati solo i primi 100 segmenti.
+** Tutti i metadati degli oggetti nel formato di storage interno non elaborato. Questi metadati raw includono metadati di sistema interni che non è garantito persistano da una release all'altra.
+
+
+. Conferma che l'oggetto sia memorizzato nella posizione o nelle posizioni corrette e che sia il tipo di copia corretto.
++
+Se l'opzione Audit è abilitata, puoi anche monitorare il registro di controllo per il messaggio ORLM Object Rules Met. Il messaggio di audit ORLM può darti più informazioni sullo stato del processo di valutazione ILM, ma non può darti informazioni sulla correttezza del posizionamento dei dati dell'oggetto o sulla completezza della policy ILM. Devi valutare tu stesso questo aspetto. Per dettagli, vedi link:../audit/index.html["${post_edited_translations.segment}"].
+
+
+
+Il seguente esempio mostra i risultati della ricerca dei metadati di un oggetto di test S3 archiviato come due copie replicate.
+
+
+NOTE: La seguente screenshot è un esempio. I risultati varieranno a seconda della versione di StorageGRID.
+
+image:object_lookup_results.png["Risultati ricerca oggetto"]
+
+.Informazioni correlate
+link:../s3/index.html["${post_edited_translations.segment}"]

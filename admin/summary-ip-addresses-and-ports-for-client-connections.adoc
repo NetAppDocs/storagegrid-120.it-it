@@ -1,0 +1,131 @@
+---
+permalink: admin/summary-ip-addresses-and-ports-for-client-connections.html 
+sidebar: sidebar 
+keywords: ip addresses for client, how to connect to storagegrid, ports, vip 
+summary: ${post_edited_translations.segment} 
+---
+= Indirizzi IP e porte per le connessioni client StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+${post_edited_translations.segment}
+
+Le applicazioni client possono connettersi a StorageGRID utilizzando l'indirizzo IP di un nodo grid e il numero di porta del servizio su quel nodo. In alternativa, puoi creare gruppi di high availability (HA) di nodi di bilanciamento del carico per fornire connessioni ad alta disponibilità che utilizzano indirizzi IP virtuali (VIP). Se desideri connetterti a StorageGRID utilizzando un fully qualified domain name (FQDN) anziché un indirizzo IP o VIP, puoi configurare le voci DNS.
+
+Questa tabella riassume i diversi modi in cui i client possono connettersi a StorageGRID e gli indirizzi IP e le porte utilizzati per ciascun tipo di connessione. Se hai già creato gli endpoint del bilanciatore del carico e i gruppi ad alta disponibilità (HA), consulta <<Dove trovare gli indirizzi IP>> per individuare questi valori nel Grid Manager.
+
+[cols="1a,1a,1a,1a"]
+|===
+| ${post_edited_translations.segment} | ${post_edited_translations.segment} | indirizzo IP | Porta 
+
+
+ a| 
+Gruppo HA
+ a| 
+${post_edited_translations.segment}
+ a| 
+${post_edited_translations.segment}
+ a| 
+${post_edited_translations.segment}
+
+
+
+ a| 
+Nodo amministratore
+ a| 
+${post_edited_translations.segment}
+ a| 
+Indirizzo IP del nodo amministratore
+ a| 
+${post_edited_translations.segment}
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+${post_edited_translations.segment}
+ a| 
+Indirizzo IP del nodo gateway
+ a| 
+${post_edited_translations.segment}
+
+
+
+ a| 
+Nodo di archiviazione
+ a| 
+LDR
+ a| 
+Indirizzo IP del nodo di archiviazione
+ a| 
+Porte S3 predefinite:
+
+* ${post_edited_translations.segment}
+* ${post_edited_translations.segment}
+
+
+|===
+
+
+[[example-urls]]
+== ${post_edited_translations.segment}
+
+${post_edited_translations.segment}
+
+`https://_VIP-of-HA-group:LB-endpoint-port_`
+
+Ad esempio, se l'indirizzo IP virtuale del gruppo HA è 192.0.2.5 e il numero di porta dell'endpoint del bilanciatore di carico è 10443, allora un'applicazione potrebbe utilizzare il seguente URL per connettersi a StorageGRID:
+
+`\https://192.0.2.5:10443`
+
+
+
+[[where-to-find-ip-addresses]]
+== Dove trovare gli indirizzi IP
+
+. Accedi al Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+. Per trovare l'indirizzo IP di un nodo della griglia:
++
+.. Selezionare *Nodi*.
+.. ${post_edited_translations.segment}
+.. Seleziona la scheda *Overview*.
+.. ${post_edited_translations.segment}
+.. ${post_edited_translations.segment}
++
+Puoi stabilire connessioni dalle applicazioni client a uno qualsiasi degli indirizzi IP presenti nell'elenco:
+
++
+*** *eth0:* Rete Grid
+*** *eth1:* Rete amministrativa (opzionale)
+*** *eth2:* Rete client (opzionale)
++
+
+NOTE: Se stai visualizzando un nodo Admin o un nodo Gateway e questo è il nodo attivo in un gruppo ad alta disponibilità, l'indirizzo IP virtuale del gruppo HA viene mostrato su eth2.
+
+
+
+
+
+. ${post_edited_translations.segment}
++
+.. ${post_edited_translations.segment}
+.. ${post_edited_translations.segment}
+
+
+. Per trovare il numero di porta di un endpoint del Load Balancer:
++
+.. ${post_edited_translations.segment}
+.. Annota il numero di porta dell'endpoint che vuoi usare.
++
+
+NOTE: Se il numero di porta è 80 o 443, l'endpoint viene configurato solo sui nodi Gateway, perché queste porte sono riservate sui nodi Admin. Tutte le altre porte vengono configurate sia sui nodi Gateway che sui nodi Admin.
+
+.. Seleziona il nome dell'endpoint dalla tabella.
+.. Conferma che il *tipo di client* (S3) corrisponde all'applicazione client che userà l'endpoint.
+
+
+

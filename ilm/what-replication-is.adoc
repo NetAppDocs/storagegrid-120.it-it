@@ -1,0 +1,31 @@
+---
+permalink: ilm/what-replication-is.html 
+sidebar: sidebar 
+keywords: replication, object copies 
+summary: La replica è uno dei due metodi che StorageGRID utilizza per archiviare i dati degli oggetti. Quando gli oggetti corrispondono a una regola ILM che utilizza la replica, il sistema crea copie esatte dei dati degli oggetti e le archivia sui nodi di storage. 
+---
+= Scopri la replica in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La replica è uno dei due metodi utilizzati da StorageGRID per memorizzare i dati degli oggetti (l'altro metodo è la codifica di cancellazione). Quando gli oggetti corrispondono a una regola ILM che utilizza la replica, il sistema crea copie esatte dei dati degli oggetti e le memorizza sui nodi di Storage.
+
+Quando configuri una regola ILM per creare copie replicate, specifichi quante copie devono essere create, dove devono essere collocate e per quanto tempo devono essere conservate in ciascuna posizione.
+
+Nell'esempio seguente, la regola ILM specifica che due copie replicate di ciascun oggetto devono essere inserite in un pool di storage che contiene tre Storage Nodes.
+
+image:ilm_replication_make_2_copies.png["Regola delle 2 copie"]
+
+Quando StorageGRID associa gli oggetti a questa regola, crea due copie dell'oggetto, posizionando ciascuna copia su un diverso Storage Node nel pool di storage. Le due copie possono essere posizionate su due qualsiasi dei tre Storage Node disponibili. In questo caso, la regola ha posizionato le copie dell'oggetto sui Storage Node 2 e 3. Poiché sono presenti due copie, l'oggetto può essere recuperato se uno qualsiasi dei nodi nel pool di storage dovesse guastarsi.
+
+
+NOTE: StorageGRID può memorizzare una sola copia replicata di un oggetto su ciascun Storage Node. Se la tua grid include tre Storage Node e crei una regola ILM a 4 copie, verranno create solo tre copie, una per ciascun Storage Node. L'avviso *ILM placement unachievable* viene attivato per indicare che la regola ILM non è stata applicata completamente.
+
+.Informazioni correlate
+* link:what-erasure-coding-is.html["Cos'è la codifica di cancellazione"]
+* link:what-storage-pool-is.html["Cos'è un pool di storage"]
+* link:using-multiple-storage-pools-for-cross-site-replication.html["Abilita la protezione dalla perdita del sito tramite replica e erasure coding"]
+

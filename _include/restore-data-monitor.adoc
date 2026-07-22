@@ -1,0 +1,78 @@
+= 
+:allow-uri-read: 
+
+
+[role="tabbed-block"]
+====
+.Dati replicati
+--
+* Per ottenere una stima della % di completamento della riparazione replicata, aggiungi l' `show-replicated-repair-status`opzione al comando repair-data.
++
+`repair-data show-replicated-repair-status`
+
+* Per verificare se le riparazioni sono complete:
++
+.. Seleziona *Nodes* > *_Storage Node being repaired_* > *ILM*.
+.. Esamina gli attributi nella sezione Valutazione. Quando le riparazioni sono complete, l'attributo *In attesa - Tutti* indica 0 oggetti.
+
+
+* Per monitorare la riparazione in modo più dettagliato:
++
+.. Selezionare *Nodi*.
+.. Seleziona *_grid name_* > *ILM*.
+.. Posiziona il cursore sul grafico della coda ILM per visualizzare il valore dell'attributo *Frequenza di scansione (oggetti/sec)*, che indica la velocità con cui gli oggetti nella griglia vengono scansionati e messi in coda per ILM.
+.. Nella sezione Coda ILM, guarda i seguenti attributi:
++
+*** *Periodo di scansione - stimato*: Tempo stimato per completare una scansione ILM completa di tutti gli oggetti.
++
+Una scansione completa non garantisce che ILM sia stato applicato a tutti gli oggetti.
+
+*** *Tentativi di riparazione*: il numero totale di operazioni di riparazione di oggetti tentate per i dati replicati considerati ad alto rischio. Gli oggetti ad alto rischio sono tutti gli oggetti di cui rimane una sola copia, sia che sia specificato dalla policy ILM sia a seguito della perdita di copie. Questo conteggio aumenta ogni volta che un nodo di storage tenta di riparare un oggetto ad alto rischio. Le riparazioni ILM ad alto rischio hanno la priorità se la grid diventa occupata.
++
+Lo stesso oggetto di riparazione potrebbe incrementare nuovamente se la replica non riesce dopo la riparazione. Questi attributi possono essere utili quando monitori l'avanzamento del ripristino del volume dello Storage Node. Se il numero di riparazioni tentate ha smesso di aumentare ed è stata completata una scansione completa, la riparazione probabilmente è terminata.
+
+
+
+.. In alternativa, invia una query Prometheus per  `storagegrid_ilm_scan_period_estimated_minutes` e  `storagegrid_ilm_repairs_attempted`.
+
+
+
+
+--
+.Dati codificati con cancellazione (EC)
+--
+Per monitorare la riparazione dei dati codificati con erasure coding e riprovare eventuali richieste che potrebbero non essere andate a buon fine:
+
+. Determina lo stato delle riparazioni dei dati codificati per la cancellazione:
++
+** Seleziona *Support* > *Tools* > *Metrics* per visualizzare il tempo stimato di completamento e la % di completamento per il lavoro corrente. Quindi, seleziona *EC Overview* nella sezione Grafana. Consulta le dashboard *Grid EC Job Estimated Time to Completion* e *Grid EC Job Percentage Completed*.
+** Utilizza questo comando per vedere lo stato di una specifica  `repair-data` operazione:
++
+`repair-data show-ec-repair-status --repair-id repair ID`
+
+** Utilizza questo comando per elencare tutte le riparazioni:
++
+`repair-data show-ec-repair-status`
+
++
+L'output elenca le informazioni, tra cui  `repair ID`, per tutte le riparazioni eseguite in precedenza e quelle attualmente in corso.
+
+
+
+. Se l'output indica che l'operazione di riparazione non è riuscita, usa l'opzione  `--repair-id` per riprovare la riparazione.
++
+Questo comando riprova una riparazione del nodo non riuscita, utilizzando l'ID di riparazione 6949309319275667690:
+
++
+`repair-data start-ec-node-repair --repair-id 6949309319275667690`
+
++
+Questo comando riprova una riparazione del volume non riuscita, usando l'ID di riparazione 6949309319275667690:
+
++
+`repair-data start-ec-volume-repair --repair-id 6949309319275667690`
+
+
+
+--
+====

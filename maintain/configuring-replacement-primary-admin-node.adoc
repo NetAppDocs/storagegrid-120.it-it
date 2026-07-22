@@ -1,0 +1,60 @@
+---
+permalink: maintain/configuring-replacement-primary-admin-node.html 
+sidebar: sidebar 
+keywords: storagegrid, primary admin node, replace primary admin node, replacing primary admin node 
+summary: Il nodo sostitutivo deve essere configurato come nodo Admin primario per il tuo sistema StorageGRID. 
+---
+= Configura un nodo Admin primario sostitutivo in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Il nodo sostitutivo deve essere configurato come nodo Admin primario per il tuo sistema StorageGRID.
+
+.Prima di iniziare
+* Per i nodi di amministrazione primari ospitati su macchine virtuali, la macchina virtuale è stata distribuita, accesa e inizializzata.
+* Per i nodi di amministrazione primari ospitati su un'appliance di servizi, hai sostituito l'appliance e hai installato il software. Vedi il  https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/index.html["istruzioni di installazione per il tuo appliance"^].
+* Hai il backup più recente del file del pacchetto di ripristino (`sgws-recovery-package-_id-revision_.zip`).
+* ${post_edited_translations.segment}
+
+
+.Passaggi
+. Apri il tuo browser web e vai a  `\https://primary_admin_node_ip`.
+. Gestisci una password di installazione temporanea all'occorrenza:
++
+** Se hai già impostato una password utilizzando uno di questi metodi, inseriscila per procedere.
++
+*** Un utente ha impostato la password durante l'accesso al programma di installazione in precedenza
+*** Per i sistemi bare metal, la password è stata importata automaticamente dal file di configurazione del nodo a `/etc/storagegrid/nodes/_<node_name>_.conf`
+*** Per le macchine virtuali, la password SSH/console è stata importata automaticamente dalle proprietà OVF
+
+
+** Se non hai impostato una password, puoi impostarne una per proteggere l'installer di StorageGRID.
+
+
+. Fai clic su *Ripristina un nodo Admin primario non funzionante*.
++
+image:install_or_recover_primary_admin_node.png["Installa o ripristina il nodo amministratore primario"]
+
+. Carica il backup più recente del pacchetto di ripristino:
++
+.. Fai clic su *Sfoglia*.
+.. Individua il file del pacchetto di ripristino più recente per il tuo sistema StorageGRID e fai clic su *Apri*.
+
+
+. ${post_edited_translations.segment}
+. Fai clic su *Avvia ripristino*.
++
+Il processo di ripristino ha inizio. Il Grid Manager potrebbe risultare non disponibile per alcuni minuti mentre vengono avviati i servizi necessari. Quando il ripristino è completo, viene visualizzata la pagina di accesso.
+
+. Se il single sign-on (SSO) è abilitato per il tuo sistema StorageGRID e la relying party trust per l'Admin Node che hai ripristinato era configurata per usare il certificato predefinito dell'interfaccia di gestione, aggiorna (o elimina e ricrea) la relying party trust del nodo in Active Directory Federation Services (AD FS). Usa il nuovo certificato server predefinito che è stato generato durante il processo di ripristino dell'Admin Node.
++
+
+NOTE: Per configurare una relying party trust, vedi link:../admin/configure-sso.html["Configura single sign-on"]. Per accedere al certificato server predefinito, accedi alla shell dei comandi dell'Admin Node. Vai alla directory  `/var/local/mgmt-api` e seleziona il file  `server.crt`.
+
+
+
+
+CAUTION: Dopo aver ripristinato un nodo amministratore primario, link:assess-hotfix-requirement-during-primary-admin-node-recovery.html["determina se devi applicare una hotfix"].

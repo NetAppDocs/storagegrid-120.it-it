@@ -1,0 +1,43 @@
+---
+permalink: maintain/preparing-appliance-storage-node-for-reinstallation.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, appliance, reinstallation appliance, reinstall appliance 
+summary: 'Quando ripristini un appliance Storage Node, devi prima preparare l"appliance per la reinstallazione del software StorageGRID.' 
+---
+= Preparare il nodo di archiviazione dell'appliance StorageGRID per la reinstallazione
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Quando ripristini un appliance Storage Node, devi prima preparare l'appliance per la reinstallazione del software StorageGRID.
+
+.Passaggi
+. Accedi al nodo di storage non funzionante:
++
+.. Inserisci il seguente comando: `ssh admin@_grid_node_IP_`
+.. Inserisci la password indicata nel file  `Passwords.txt`.
+.. Inserisci il seguente comando per passare all'utente root: `su -`
+.. Inserisci la password indicata nel file  `Passwords.txt`.
+
+
++
+Quando sei connesso come root, il prompt cambia da  `$` a  `#`.
+
+. Prepara il nodo di archiviazione dell'appliance per l'installazione del software StorageGRID. `sgareinstall`
+. Quando ti verrà chiesto di continuare, inserisci: `y`
++
+L'appliance si riavvia e la sessione SSH termina. In genere, ci vogliono circa 5 minuti prima che StorageGRID Appliance Installer diventi disponibile, anche se in alcuni casi potresti dover aspettare fino a 30 minuti.
+
++
+
+CAUTION: Non tentare di accelerare il riavvio spegnendo e riaccendendo l'apparecchio o ripristinandolo in altro modo. Potresti interrompere gli aggiornamenti automatici del BIOS, del BMC o di altri firmware.
+
++
+Il nodo di archiviazione StorageGRID dell'appliance Storage Node viene ripristinato e i dati sul nodo di archiviazione non sono più accessibili. Gli indirizzi IP configurati durante il processo di installazione originale dovrebbero rimanere invariati; tuttavia, ti consigliamo di confermarlo al termine della procedura.
+
++
+Dopo l'esecuzione del comando  `sgareinstall`, tutti gli account, le password e le chiavi SSH fornite da StorageGRID vengono rimossi e vengono generate nuove chiavi host.
+
+

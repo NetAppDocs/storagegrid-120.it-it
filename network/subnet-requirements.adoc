@@ -1,0 +1,50 @@
+---
+permalink: network/subnet-requirements.html 
+sidebar: sidebar 
+keywords: network subnets 
+summary: Segui questi requisiti e linee guida per le subnet di rete. 
+---
+= Requisiti di subnet per StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Segui questi requisiti e linee guida per le subnet di rete.
+
+
+NOTE: Ciascuna rete deve essere connessa alla propria sottorete che non si sovrappone ad alcuna altra rete sul nodo.
+
+Le seguenti restrizioni vengono imposte dal Grid Manager durante la fase di implementazione. Sono fornite qui per agevolare la pianificazione della rete prima dell'implementazione.
+
+* La subnet mask per qualsiasi indirizzo IP di rete non può essere 255.255.255.254 o 255.255.255.255 (/31 o /32 nella notazione CIDR).
+* La sottorete definita dall'indirizzo IP e dalla maschera di sottorete (CIDR) di un'interfaccia di rete non può sovrapporsi alla sottorete di nessun'altra interfaccia configurata sullo stesso nodo.
+* ${post_edited_translations.segment}
++
+** 192.168.130.101
+** 192.168.130.121
+** 192.168.131.101
+** 192.168.131.121
+** 192.168.130.102
+** 192.168.130.122
+** 192.168.131.102
+** 192.168.131.122
+** 198.51.100.2
+** 198.51.100.4
+
+
++
+${post_edited_translations.segment}
+
++
+** 192.168.130.0/24 perché questo intervallo di sottorete contiene gli indirizzi IP 192.168.130.101 e 192.168.130.102
+** ${post_edited_translations.segment}
+** ${post_edited_translations.segment}
+
+
+* La sottorete Grid Network per ciascun nodo deve essere inclusa nel GNSL.
+* La sottorete di Admin Network non può sovrapporsi alla sottorete di Grid Network, alla sottorete di Client Network o a qualsiasi sottorete del GNSL.
+* Le sottoreti dell'AESL non possono sovrapporsi ad alcuna sottorete del GNSL.
+* La sottorete Client Network non può sovrapporsi alla sottorete Grid Network, alla sottorete Admin Network, a nessuna sottorete nella GNSL o a nessuna sottorete nella AESL.
+

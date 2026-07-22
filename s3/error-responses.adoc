@@ -1,0 +1,380 @@
+---
+permalink: s3/error-responses.html 
+sidebar: sidebar 
+keywords: error, error responses 
+summary: 'Il sistema StorageGRID supporta tutte le risposte di errore standard dell"API REST S3 che si applicano. Inoltre, l"implementazione di StorageGRID aggiunge diverse risposte personalizzate.' 
+---
+= Risposte di errore dell'API REST S3 di StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Il sistema StorageGRID supporta tutte le risposte di errore standard dell'API REST S3 che si applicano. Inoltre, l'implementazione di StorageGRID aggiunge diverse risposte personalizzate.
+
+
+
+[[supported-s3-api-error-codes]]
+== Codici di errore API S3 supportati
+
+[cols="1a,1a"]
+|===
+| Nome | stato HTTP 
+
+
+ a| 
+AccessDenied
+ a| 
+403 Vietato
+
+
+
+ a| 
+BadDigest
+ a| 
+400 Richiesta non valida
+
+
+
+ a| 
+BucketAlreadyExists
+ a| 
+409 Conflitto
+
+
+
+ a| 
+BucketNotEmpty
+ a| 
+409 Conflitto
+
+
+
+ a| 
+IncompleteBody
+ a| 
+400 Richiesta non valida
+
+
+
+ a| 
+InternalError
+ a| 
+500 Errore interno del server
+
+
+
+ a| 
+InvalidAccessKeyId
+ a| 
+403 Vietato
+
+
+
+ a| 
+InvalidArgument
+ a| 
+400 Richiesta non valida
+
+
+
+ a| 
+InvalidBucketName
+ a| 
+400 Richiesta non valida
+
+
+
+ a| 
+InvalidBucketState
+ a| 
+409 Conflitto
+
+
+
+ a| 
+InvalidDigest
+ a| 
+400 Richiesta non valida
+
+
+
+ a| 
+InvalidEncryptionAlgorithmError
+ a| 
+400 Richiesta non valida
+
+
+
+ a| 
+InvalidPart
+ a| 
+400 Richiesta non valida
+
+
+
+ a| 
+InvalidPartOrder
+ a| 
+400 Richiesta non valida
+
+
+
+ a| 
+InvalidRange
+ a| 
+416 Intervallo richiesto non soddisfacibile
+
+
+
+ a| 
+InvalidRequest
+ a| 
+400 Richiesta non valida
+
+
+
+ a| 
+InvalidStorageClass
+ a| 
+400 Richiesta non valida
+
+
+
+ a| 
+InvalidTag
+ a| 
+400 Richiesta non valida
+
+
+
+ a| 
+InvalidURI
+ a| 
+400 Richiesta non valida
+
+
+
+ a| 
+KeyTooLong
+ a| 
+400 Richiesta non valida
+
+
+
+ a| 
+XML non valido
+ a| 
+400 Richiesta non valida
+
+
+
+ a| 
+MetadataTooLarge
+ a| 
+400 Richiesta non valida
+
+
+
+ a| 
+MethodNotAllowed
+ a| 
+405 Metodo non consentito
+
+
+
+ a| 
+MissingContentLength
+ a| 
+411 Lunghezza richiesta
+
+
+
+ a| 
+MissingRequestBodyError
+ a| 
+400 Richiesta non valida
+
+
+
+ a| 
+MissingSecurityHeader
+ a| 
+400 Richiesta non valida
+
+
+
+ a| 
+NoSuchBucket
+ a| 
+404 Non trovato
+
+
+
+ a| 
+NoSuchKey
+ a| 
+404 Non trovato
+
+
+
+ a| 
+NoSuchUpload
+ a| 
+404 Non trovato
+
+
+
+ a| 
+NotImplemented
+ a| 
+501 Non implementato
+
+
+
+ a| 
+NoSuchBucketPolicy
+ a| 
+404 Non trovato
+
+
+
+ a| 
+ObjectLockConfigurationNotFoundError
+ a| 
+404 Non trovato
+
+
+
+ a| 
+PreconditionFailed
+ a| 
+412 Precondizione non soddisfatta
+
+
+
+ a| 
+RequestTimeTooSkewed
+ a| 
+403 Vietato
+
+
+
+ a| 
+ServiceUnavailable
+ a| 
+503 Servizio non disponibile
+
+
+
+ a| 
+SignatureDoesNotMatch
+ a| 
+403 Vietato
+
+
+
+ a| 
+TooManyBuckets
+ a| 
+400 Richiesta non valida
+
+
+
+ a| 
+UserKeyMustBeSpecified
+ a| 
+400 Richiesta non valida
+
+|===
+
+
+[[storagegrid-custom-error-codes]]
+== Codici di errore personalizzati di StorageGRID
+
+[cols="2a,2a,1a"]
+|===
+| Nome | Descrizione | stato HTTP 
+
+
+ a| 
+XBucketLifecycleNotAllowed
+ a| 
+La configurazione del ciclo di vita del bucket non è consentita in un bucket Compliant legacy
+ a| 
+400 Richiesta non valida
+
+
+
+ a| 
+XBucketPolicyParseException
+ a| 
+Impossibile analizzare il JSON della bucket policy ricevuta.
+ a| 
+400 Richiesta non valida
+
+
+
+ a| 
+XComplianceConflict
+ a| 
+Operazione negata a causa di impostazioni di Compliance obsolete.
+ a| 
+403 Vietato
+
+
+
+ a| 
+XComplianceRiduzioneRidondanzaVietato
+ a| 
+La ridondanza ridotta non è consentita nel bucket Compliant legacy
+ a| 
+400 Richiesta non valida
+
+
+
+ a| 
+XMaxBucketPolicyLengthExceeded
+ a| 
+La tua policy supera la lunghezza massima consentita per la policy del bucket.
+ a| 
+400 Richiesta non valida
+
+
+
+ a| 
+XMissingInternalRequestHeader
+ a| 
+Manca un'intestazione in una richiesta interna.
+ a| 
+400 Richiesta non valida
+
+
+
+ a| 
+XNoSuchBucketCompliance
+ a| 
+Il bucket specificato non ha la Compliance legacy abilitata.
+ a| 
+404 Non trovato
+
+
+
+ a| 
+XNotAcceptable
+ a| 
+La richiesta contiene una o più intestazioni di accettazione che non possono essere soddisfatte.
+ a| 
+406 Non accettabile
+
+
+
+ a| 
+XNotImplemented
+ a| 
+La richiesta che hai fornito implica una funzionalità che non è implementata.
+ a| 
+501 Non implementato
+
+|===

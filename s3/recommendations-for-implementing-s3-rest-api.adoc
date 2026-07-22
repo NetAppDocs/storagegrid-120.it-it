@@ -1,0 +1,64 @@
+---
+permalink: s3/recommendations-for-implementing-s3-rest-api.html 
+sidebar: sidebar 
+keywords: implement s3 rest api 
+summary: 'Dovresti seguire queste raccomandazioni quando implementi l"API REST S3 per l"utilizzo con StorageGRID.' 
+---
+= Raccomandazioni per l'implementazione dell'API REST S3 con StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Dovresti seguire queste raccomandazioni quando implementi l'API REST S3 per l'utilizzo con StorageGRID.
+
+
+
+[[recommendations-for-heads-to-non-existent-objects]]
+== Raccomandazioni per HEAD su oggetti inesistenti
+
+Se la tua applicazione verifica regolarmente se un oggetto esiste in un percorso in cui non ti aspetti che l'oggetto esista effettivamente, dovresti usare la consistenza "Available" link:consistency.html["coerenza"]. Ad esempio, dovresti usare la consistenza "Available" se la tua applicazione esegue HEAD su una posizione prima di scriverci tramite PUT.
+
+Altrimenti, se l'operazione HEAD non trova l'oggetto, potresti ricevere un numero elevato di errori 500 Internal Server Error se due o più Storage Node nello stesso sito non sono disponibili o se un remote site non è raggiungibile.
+
+Puoi impostare la coerenza "Available" per ciascun bucket usando la richiesta link:put-bucket-consistency-request.html["Coerenza PUT Bucket"], oppure puoi specificare la coerenza nell'intestazione della richiesta per una singola operazione API.
+
+
+
+[[recommendations-for-object-keys]]
+== Raccomandazioni per le chiavi degli oggetti
+
+Segui questi suggerimenti per i nomi delle chiavi degli oggetti, in base a quando il bucket è stato creato per la prima volta.
+
+.Bucket creati in StorageGRID 11.4 o versioni precedenti
+* Non utilizzare valori casuali come primi quattro caratteri delle chiavi degli oggetti. Ciò è in contrasto con la precedente raccomandazione di AWS per i prefissi delle chiavi. Utilizza invece prefissi non casuali e non univoci, come  `image`.
+* Se segui la precedente raccomandazione di AWS di utilizzare caratteri casuali e univoci nei prefissi delle chiavi, anteponi il nome della directory alle chiavi degli oggetti. Ovvero, utilizza questo formato:
++
+`mybucket/mydir/f8e3-image3132.jpg`
+
++
+Invece di questo formato:
+
++
+`mybucket/f8e3-image3132.jpg`
+
+
+
+.Bucket creati in StorageGRID 11.4 o versioni successive
+Non è necessario limitare i nomi delle chiavi degli oggetti per rispettare le best practice in termini di prestazioni. Nella maggior parte dei casi, puoi usare valori casuali per i primi quattro caratteri dei nomi delle chiavi degli oggetti.
+
+
+TIP: Un'eccezione a questa regola è rappresentata da un carico di lavoro S3 che rimuove continuamente tutti gli oggetti dopo un breve periodo di tempo. Per ridurre al minimo l'impatto sulle prestazioni in questo caso d'uso, varia una parte iniziale del nome della chiave ogni alcune migliaia di oggetti, ad esempio usando la data. Ad esempio, supponi che un client S3 scriva normalmente 2.000 oggetti al secondo e che la policy ILM o la policy di ciclo di vita del bucket rimuova tutti gli oggetti dopo tre giorni. Per ridurre al minimo l'impatto sulle prestazioni, potresti assegnare i nomi alle chiavi seguendo uno schema come questo: `/mybucket/mydir/_yyyymmddhhmmss_-_random_UUID_.jpg`
+
+
+
+[[recommendations-for-range-reads]]
+== Consigli per le "range reads"
+
+Se la link:../admin/configuring-stored-object-compression.html["${post_edited_translations.segment}"] è abilitata, le applicazioni client S3 dovrebbero evitare di eseguire operazioni GetObject che specificano un intervallo di byte da restituire. Queste operazioni di "lettura di intervallo" sono inefficienti perché StorageGRID deve effettivamente decomprimere gli oggetti per accedere ai byte richiesti. Le operazioni GetObject che richiedono un piccolo intervallo di byte da un oggetto molto grande sono particolarmente inefficienti; ad esempio, è inefficiente leggere un intervallo di 10 MB da un oggetto compresso di 50 GB.
+
+${post_edited_translations.segment}
+
+
+NOTE: ${post_edited_translations.segment}

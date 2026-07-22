@@ -1,0 +1,97 @@
+---
+permalink: s3/get-bucket-consistency-request.html 
+sidebar: sidebar 
+keywords: S3 REST API, S3 operations, GET bucket consistency 
+summary: La richiesta GET Bucket consistency ti permette di determinare la coerenza applicata a uno specifico bucket. 
+---
+= Recupera il livello di coerenza del bucket in StorageGRID con la richiesta GET Bucket consistency
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La richiesta GET Bucket consistency ti permette di determinare la coerenza applicata a uno specifico bucket.
+
+La coerenza predefinita è impostata per garantire la lettura dopo la scrittura per gli oggetti appena creati.
+
+Devi avere l'autorizzazione s3:GetBucketConsistency, oppure essere l'utente root, per completare questa operazione.
+
+
+
+[[request-example]]
+== Esempio di richiesta
+
+[listing, subs="specialcharacters,quotes"]
+----
+GET /bucket?x-ntap-sg-consistency HTTP/1.1
+Date: _date_
+Authorization: _authorization string_
+Host: _host_
+----
+
+
+[[response]]
+== Risposta
+
+Nella risposta XML,  `<Consistency>` verrà restituito uno dei seguenti valori:
+
+[cols="1a,2a"]
+|===
+| Coerenza | Descrizione 
+
+
+ a| 
+tutto
+ a| 
+Tutti i nodi ricevono i dati immediatamente, oppure la richiesta non andrà a buon fine.
+
+
+
+ a| 
+forte globale
+ a| 
+Garantisce la coerenza di lettura dopo scrittura per tutte le richieste dei client su tutti i siti.
+
+
+
+ a| 
+strong-site
+ a| 
+Garantisce la coerenza di lettura dopo scrittura per tutte le richieste dei client all'interno di un sito.
+
+
+
+ a| 
+lettura dopo una nuova scrittura
+ a| 
+(Predefinito) Garantisce la coerenza di lettura dopo la scrittura per i nuovi oggetti e la coerenza finale per gli aggiornamenti degli oggetti. Offre elevata disponibilità e garanzie di protezione dei dati. Consigliato nella maggior parte dei casi.
+
+
+
+ a| 
+disponibile
+ a| 
+Garantisce la coerenza finale sia per i nuovi oggetti che per gli aggiornamenti degli oggetti. Per i bucket S3, usalo solo se necessario (ad esempio, per un bucket che contiene valori di log che vengono letti raramente o per operazioni HEAD o GET su chiavi che non esistono). Non supportato per i bucket S3 FabricPool.
+
+|===
+
+
+[[response-example]]
+== Esempio di risposta
+
+[listing]
+----
+HTTP/1.1 200 OK
+Date: Fri, 18 Sep 2020 01:02:18 GMT
+Connection: CLOSE
+Server: StorageGRID/11.5.0
+x-amz-request-id: 12345
+Content-Length: 127
+Content-Type: application/xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<Consistency xmlns="http://s3.storagegrid.com/doc/2015-02-01/">read-after-new-write</Consistency>
+----
+.Informazioni correlate
+link:consistency.html["Coerenza"]

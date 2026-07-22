@@ -1,0 +1,67 @@
+---
+permalink: tenant/understanding-cloudmirror-replication-service.html 
+sidebar: sidebar 
+keywords: cloudmirror replication 
+summary: Puoi abilitare la replica CloudMirror per un bucket S3 se desideri che StorageGRID replichi gli oggetti specificati aggiunti al bucket in uno o più bucket di destinazione. 
+---
+= Scopri il servizio di replica CloudMirror di StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi abilitare la replica CloudMirror per un bucket S3 se vuoi che StorageGRID replichi gli oggetti specificati aggiunti al bucket in uno o più bucket di destinazione esterni.
+
+Ad esempio, potresti utilizzare la replica CloudMirror per duplicare specifici record dei clienti in Amazon S3 e poi sfruttare i servizi AWS per eseguire analisi sui tuoi dati.
+
+
+NOTE: La replica CloudMirror non è supportata se il bucket di origine ha S3 Object Lock abilitato.
+
+
+
+[[cloudmirror-and-ilm]]
+== CloudMirror e ILM
+
+La replica CloudMirror funziona in modo indipendente dalle policy ILM attive della grid. Il servizio CloudMirror replica gli oggetti man mano che vengono memorizzati nel bucket di origine e li consegna al bucket di destinazione il prima possibile. La consegna degli oggetti replicati viene avviata quando l'ingest dell'oggetto ha esito positivo.
+
+
+
+[[cloudmirror-and-cross-grid-replication]]
+== CloudMirror e replicazione cross-grid
+
+La replica CloudMirror presenta importanti somiglianze e differenze con la funzionalità di replica cross-grid. Consulta link:../admin/grid-federation-compare-cgr-to-cloudmirror.html["Confronta la replica cross-grid e la replica CloudMirror"].
+
+
+
+[[cloudmirror-and-s3-buckets]]
+== CloudMirror e bucket S3
+
+CloudMirror replication viene in genere configurata per utilizzare un bucket S3 esterno come destinazione. Tuttavia, puoi anche configurare la replica per utilizzare un'altra implementazione di StorageGRID o qualsiasi servizio compatibile con S3.
+
+bucket esistenti:: Quando abiliti la replica CloudMirror per un bucket esistente, vengono replicati solo i nuovi oggetti aggiunti a quel bucket. Gli oggetti già presenti nel bucket non vengono replicati. Per forzare la replica degli oggetti esistenti, puoi aggiornare i metadati dell'oggetto eseguendo una copia dell'oggetto.
++
+--
+
+NOTE: Se usi la replica CloudMirror per copiare oggetti in una destinazione Amazon S3, tieni presente che Amazon S3 limita la dimensione dei metadati definiti dall'utente all'interno di ogni intestazione della richiesta PUT a 2 KB. Se un oggetto ha metadati definiti dall'utente superiori a 2 KB, quell'oggetto non verrà replicato.
+
+--
+Bucket di destinazione multipli:: Per replicare gli oggetti in un singolo bucket su più bucket di destinazione, specifica la destinazione per ciascuna regola nell'XML di configurazione della replica. Non puoi replicare un oggetto su più di un bucket contemporaneamente.
+Bucket con versione o senza versione:: Puoi configurare la replica CloudMirror su bucket con o senza versione. I bucket di destinazione possono essere con o senza versione. Puoi usare qualsiasi combinazione di bucket con e senza versione. Ad esempio, puoi specificare un bucket con versione come destinazione per un bucket di origine senza versione, o viceversa. Puoi anche replicare tra bucket senza versione.
+
+
+
+
+[[deletion-replication-loops-and-events]]
+== ${post_edited_translations.segment}
+
+Comportamento di eliminazione:: È uguale al comportamento di eliminazione del servizio Amazon S3, Cross-Region Replication (CRR). L'eliminazione di un oggetto in un bucket di origine non elimina mai un oggetto replicato nella destinazione. Se sia il bucket di origine che quello di destinazione sono dotati di controllo delle versioni, il marcatore di eliminazione viene replicato. Se il bucket di destinazione non è dotato di controllo delle versioni, l'eliminazione di un oggetto nel bucket di origine non replica il marcatore di eliminazione nel bucket di destinazione né elimina l'oggetto di destinazione.
+${post_edited_translations.segment}:: Man mano che gli oggetti vengono replicati nel bucket di destinazione, StorageGRID li contrassegna come "repliche". Un bucket StorageGRID di destinazione non replicherà nuovamente gli oggetti contrassegnati come repliche, proteggendoti da loop di replica accidentali. Questo contrassegno di replica è interno a StorageGRID e non ti impedisce di sfruttare AWS CRR quando utilizzi un bucket Amazon S3 come destinazione.
++
+--
+
+NOTE: L'intestazione personalizzata utilizzata per contrassegnare una replica è  `x-ntap-sg-replica`. Questa marcatura impedisce un mirror a cascata. StorageGRID supporta un CloudMirror bidirezionale tra due grid.
+
+--
+${post_edited_translations.segment}:: L'unicità e l'ordine degli eventi nel bucket di destinazione non sono garantiti. Più di una copia identica di un oggetto di origine potrebbe essere consegnata alla destinazione a seguito di operazioni eseguite per garantire il successo della consegna. In rari casi, quando lo stesso oggetto viene aggiornato simultaneamente da due o più siti StorageGRID diversi, l'ordine delle operazioni sul bucket di destinazione potrebbe non corrispondere all'ordine degli eventi sul bucket di origine.
+

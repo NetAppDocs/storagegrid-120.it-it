@@ -1,0 +1,166 @@
+---
+permalink: maintain/adding-to-or-changing-subnet-lists-on-admin-network.html 
+sidebar: sidebar 
+keywords: storagegrid, subnet list, admin network 
+summary: 'Puoi aggiungere, eliminare o modificare le subnet nell"elenco delle subnet della rete amministrativa di uno o più nodi.' 
+---
+= Aggiungere o modificare gli elenchi di sottoreti sulla rete di amministrazione in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi aggiungere, eliminare o modificare le subnet nell'elenco delle subnet della rete amministrativa di uno o più nodi.
+
+.Prima di iniziare
+* Hai il file  `Passwords.txt`.
+
+
+Puoi aggiungere, eliminare o modificare le subnet per tutti i nodi nell'elenco delle subnet della rete amministrativa.
+
+[NOTE]
+====
+${post_edited_translations.segment}
+
+* 192.168.130.101
+* 192.168.130.121
+* 192.168.131.101
+* 192.168.131.121
+* 192.168.130.102
+* 192.168.130.122
+* 192.168.131.102
+* 192.168.131.122
+* 198.51.100.2
+* 198.51.100.4
+
+
+${post_edited_translations.segment}
+
+* 192.168.130.0/24 perché questo intervallo di sottorete contiene gli indirizzi IP 192.168.130.101 e 192.168.130.102
+* ${post_edited_translations.segment}
+* ${post_edited_translations.segment}
+
+
+====
+.Passaggi
+. L'accesso SSH esterno è bloccato per impostazione predefinita. Se necessario, link:../admin/manage-external-ssh-access.html["${post_edited_translations.segment}"].
+. Accedi al nodo amministratore principale:
++
+.. Inserisci il seguente comando: `ssh admin@_primary_Admin_Node_IP_`
+.. Inserisci la password indicata nel file  `Passwords.txt`.
+.. Inserisci il seguente comando per passare all'utente root: `su -`
+.. Inserisci la password indicata nel file  `Passwords.txt`.
+
+
++
+Quando sei connesso come root, il prompt cambia da  `$` a  `#`.
+
+. Avvia lo strumento Cambia IP inserendo il seguente comando: `change-ip`
+. Inserisci la passphrase di provisioning quando richiesto.
++
+Viene visualizzato il menu principale.
+
++
+image:change_ip_tool_main_menu.png["screenshot che mostra la schermata di benvenuto dello strumento per la modifica dell'indirizzo IP"]
+
+. Facoltativamente, puoi limitare le reti/i nodi su cui vengono eseguite le operazioni. Scegli una delle seguenti opzioni:
++
+** Seleziona i nodi da modificare scegliendo *1*, se vuoi filtrare su nodi specifici su cui eseguire l'operazione. Seleziona una delle seguenti opzioni:
++
+*** *1*: Nodo singolo (seleziona per nome)
+*** *2*: Nodo singolo (seleziona per sito, poi per nome)
+*** *3*: Nodo singolo (seleziona tramite IP corrente)
+*** *4*: Tutti i nodi di un sito
+*** *5*: Tutti i nodi nella griglia
+*** *0*: Torna indietro
+
+
+** Lascia "all" selezionato. Dopo aver effettuato la selezione, viene visualizzata la schermata del menu principale. Il campo Selected nodes riflette la tua nuova selezione e ora tutte le operazioni selezionate verranno eseguite solo su questo elemento.
+
+
+. Nel menu principale, seleziona l'opzione per modificare le sottoreti per la Admin Network (opzione *3*).
+. Scegli una delle seguenti:
++
+--
+** Aggiungi una sottorete inserendo questo comando: `add CIDR`
+** Elimina una sottorete inserendo questo comando: `del CIDR`
+** Imposta l'elenco delle sottoreti inserendo questo comando: `set CIDR`
+
+
+--
++
+--
+
+NOTE: Per tutti i comandi, puoi inserire più indirizzi utilizzando questo formato: `add CIDR, CIDR`
+
+Esempio: `add 172.14.0.0/16, 172.15.0.0/16, 172.16.0.0/16`
+
+
+TIP: Puoi ridurre la quantità di testo da digitare usando la "freccia su" per richiamare i valori inseriti in precedenza nel prompt di input corrente e poi modificarli se necessario.
+
+L'esempio seguente mostra come aggiungere sottoreti all'elenco delle sottoreti della Admin Network:
+
+image:change_ip_tool_aesl_sample_input.gif["strumento di cambio IP esempio aesl"]
+
+--
+. Quando sei pronto, digita *q* per tornare alla schermata del menu principale. Le modifiche restano in sospeso finché non le cancelli o le applichi.
++
+
+NOTE: Se al passaggio 3 hai selezionato una delle modalità di selezione "tutti" dei nodi, premi *Invio* (senza *q*) per passare al nodo successivo nell'elenco.
+
+. Scegli una delle seguenti:
++
+** Seleziona l'opzione *5* per visualizzare le modifiche in un output isolato che mostra solo l'elemento modificato. Le modifiche vengono evidenziate in verde (aggiunte) o in rosso (eliminazioni), come mostrato nell'esempio di output qui sotto:
++
+image:change_ip_tool_aesl_sample_output.png["screenshot descritta dal testo circostante"]
+
+** Seleziona l'opzione *6* per mostrare le modifiche nell'output che visualizza la configurazione completa. Le modifiche sono evidenziate in verde (aggiunte) o in rosso (eliminazioni). *Nota:* Alcuni emulatori di terminale potrebbero mostrare aggiunte ed eliminazioni con la formattazione barrata.
++
+Quando provi a modificare l'elenco delle subnet, viene visualizzato il seguente messaggio:
+
++
+[listing]
+----
+CAUTION: The Admin Network subnet list on the node might contain /32 subnets derived from automatically applied routes that aren't persistent. Host routes (/32 subnets) are applied automatically if the IP addresses provided for external services such as NTP or DNS aren't reachable using default StorageGRID routing, but are reachable using a different interface and gateway. Making and applying changes to the subnet list will make all automatically applied subnets persistent. If you don't want that to happen, delete the unwanted subnets before applying changes. If you know that all /32 subnets in the list were added intentionally, you can ignore this caution.
+----
++
+Se non hai assegnato esplicitamente le subnet dei server NTP e DNS a una rete, StorageGRID crea automaticamente una route host (/32) per la connessione. Se, ad esempio, preferisci avere una route /16 o /24 per la connessione outbound a un DNS server o a un server NTP, dovresti eliminare la route /32 creata automaticamente e aggiungere le route che desideri. Se non elimini la route host creata automaticamente, questa verrà mantenuta anche dopo che avrai applicato qualsiasi modifica all'elenco delle subnet.
+
+
+
++
+
+NOTE: Sebbene sia possibile utilizzare queste route host rilevate automaticamente, in genere dovresti configurare manualmente le route DNS e NTP per garantire la connettività.
+
+. Seleziona l'opzione *7* per convalidare tutte le modifiche in sospeso.
++
+Questa convalida garantisce che vengano rispettate le regole per le reti Grid, Admin e Client, come l'utilizzo di sottoreti sovrapposte.
+
+. Facoltativamente, seleziona l'opzione *8* per salvare tutte le modifiche in sospeso e tornare più tardi per continuare a modificarle.
++
+Questa opzione ti permette di chiudere lo strumento Cambia IP e riavviarlo più tardi, senza perdere le modifiche non ancora applicate.
+
+. Esegui una delle seguenti operazioni:
++
+** Seleziona l'opzione *9* se vuoi annullare tutte le modifiche senza salvare o applicare la nuova configurazione di rete.
+** Seleziona l'opzione *10* se sei pronto ad applicare le modifiche e a predisporre la nuova configurazione di rete. Durante la fase di predisposizione, l'output visualizza lo stato di avanzamento dell'applicazione degli aggiornamenti, come mostrato nell'esempio seguente:
++
+[listing]
+----
+Generating new grid networking description file...
+
+Running provisioning...
+
+Updating grid network configuration on Name
+----
+
+
+. Scarica un nuovo pacchetto di ripristino dal Grid Manager.
++
+.. ${post_edited_translations.segment}
+.. ${post_edited_translations.segment}
+
+
+. Se hai consentito l'accesso SSH esterno, link:../admin/manage-external-ssh-access.html["blocco accesso"] quando hai finito di aggiungere o modificare gli elenchi di sottoreti.
+

@@ -1,0 +1,22 @@
+= 
+:allow-uri-read: 
+
+
+
+NOTE: Per l'installazione dell'appliance, questi file sono necessari solo se vuoi evitare traffico di rete. L'appliance può scaricare i file necessari dal nodo di amministrazione dove esegui la procedura di ripristino.
+
+[cols="1a,1a"]
+|===
+| ${post_edited_translations.segment} | Descrizione 
+
+
+| ./debs/storagegrid-webscale-images-version-SHA.deb  a| 
+Pacchetto DEB per installare le immagini dei nodi StorageGRID sui tuoi dispositivi.
+
+
+
+| ./debs/storagegrid-webscale-images-version-SHA.deb.md5  a| 
+Checksum MD5 per il file `/debs/storagegridwebscale-
+images-version-SHA.deb`.
+
+|===

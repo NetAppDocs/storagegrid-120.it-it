@@ -1,0 +1,66 @@
+---
+permalink: swnodes/cpu-and-ram-requirements.html 
+sidebar: sidebar 
+keywords: cpu, ram, cpu cores 
+summary: ${post_edited_translations.segment} 
+---
+= Requisiti di CPU e RAM per StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+${post_edited_translations.segment}
+
+${post_edited_translations.segment}
+
+* ${post_edited_translations.segment}
+* ${post_edited_translations.segment}
++
+** ${post_edited_translations.segment}
+** ${post_edited_translations.segment}
+
+
+
+
+Le risorse dei nodi basati su software che contengono solo metadati devono corrispondere alle risorse dei nodi di storage esistenti. Ad esempio:
+
+* Se il sito StorageGRID esistente utilizza appliance SG6000 o SG6100, i nodi software dedicati esclusivamente ai metadati devono soddisfare i seguenti requisiti minimi:
++
+** 128 GB di RAM
+** CPU a 8 core
+** 8 TB SSD o storage equivalente per il database Cassandra (rangedb/0)
+
+
+* Se il sito StorageGRID esistente utilizza nodi di storage virtuali con 24 GB di RAM, CPU a 8 core e 3 TB o 4 TB di storage per i metadati, i nodi software dedicati esclusivamente ai metadati dovrebbero utilizzare risorse simili (24 GB di RAM, CPU a 8 core e 4 TB di storage per i metadati (rangedb/0)).
+
+
+Quando aggiungi un nuovo sito StorageGRID, la capacità totale dei metadati del nuovo sito dovrebbe, almeno, corrispondere a quella dei siti StorageGRID esistenti e le risorse del nuovo sito dovrebbero corrispondere ai nodi di storage dei siti StorageGRID esistenti.
+
+
+NOTE: "Linux" si riferisce a un'installazione di RHEL, Ubuntu o Debian. Per un elenco delle versioni supportate, vedi  https://imt.netapp.com/matrix/#welcome["NetApp Interoperability Matrix Tool (IMT)"^].
+
+[role="tabbed-block"]
+====
+.Linux
+--
+Assicurati che il numero di nodi StorageGRID che intendi eseguire su ciascun host fisico o virtuale non superi il numero di core della CPU o la RAM fisica disponibile. Se gli host non sono dedicati all'esecuzione di StorageGRID (scelta sconsigliata), assicurati di considerare i requisiti di risorse delle altre applicazioni.
+
+--
+.VMware
+--
+VMware supporta un nodo per macchina virtuale. Assicurati che il nodo StorageGRID non superi la RAM fisica disponibile. Ciascuna macchina virtuale deve essere dedicata all'esecuzione di StorageGRID.
+
+--
+====
+
+CAUTION: Monitora regolarmente l'utilizzo della CPU e della memoria per assicurarti che queste risorse continuino a soddisfare il tuo carico di lavoro. Ad esempio, raddoppiare l'allocazione di RAM e CPU per i nodi di storage virtuali fornirebbe risorse simili a quelle fornite per i nodi appliance StorageGRID. Inoltre, se la quantità di metadati per nodo supera i 500 GB, prendi in considerazione l'aumento della RAM per nodo a 48 GB o più. Per informazioni sulla gestione dello storage dei metadati degli oggetti, sull'aumento dell'impostazione Metadata Reserved Space e sul monitoraggio dell'utilizzo di CPU e memoria, consulta le istruzioni per link:../admin/index.html["amministrare"], link:../monitor/index.html["monitoraggio"], e link:../upgrade/index.html["aggiornare"] StorageGRID.
+
+Se l'hyperthreading è abilitato sugli host fisici sottostanti, puoi fornire 8 core virtuali (4 core fisici) per nodo. Se l'hyperthreading non è abilitato sugli host fisici sottostanti, devi fornire 8 core fisici per nodo.
+
+Se usi macchine virtuali come host e hai il controllo sulle dimensioni e sul numero di VM, dovresti usare una singola VM per ogni nodo StorageGRID e dimensionare la VM di conseguenza.
+
+(Solo per RHEL, Debian e Ubuntu) Per le implementazioni in produzione, non dovresti eseguire più Storage Node sullo stesso storage fisico o host virtuale. Ogni Storage Node in una singola implementazione di StorageGRID dovrebbe trovarsi nel proprio dominio di errore isolato. Puoi massimizzare la durabilità e la disponibilità dei dati degli oggetti se ti assicuri che un singolo guasto hardware possa influire solo su un singolo Storage Node.
+
+Vedi anche link:storage-and-performance-requirements.html["Requisiti di storage e prestazioni"].

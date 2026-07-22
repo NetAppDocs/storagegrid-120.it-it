@@ -1,0 +1,270 @@
+---
+permalink: ilm/example-6-changing-ilm-policy.html 
+sidebar: sidebar 
+keywords: change ILM policy, example ILM policy, information lifecycle policy example 
+summary: Se hai bisogno di modificare la protezione dei dati o aggiungi nuovi siti, puoi creare e attivare una nuova policy ILM. 
+---
+= Come la modifica di una policy ILM influisce sulle prestazioni di StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se hai bisogno di modificare la protezione dei dati o aggiungi nuovi siti, puoi creare e attivare una nuova policy ILM.
+
+Prima di modificare una policy, devi capire come le modifiche al posizionamento di ILM possono influire temporaneamente sulle prestazioni complessive di un sistema StorageGRID.
+
+In questo esempio, è stato aggiunto un nuovo sito StorageGRID in un'espansione ed è necessario implementare una nuova policy ILM attiva per archiviare i dati nel nuovo sito. Per implementare una nuova policy attiva, prima link:creating-ilm-policy.html["crea una policy"]. Dopo, devi link:../ilm/creating-ilm-policy.html#simulate-ilm-policy["simulare"] e poi link:../ilm/creating-ilm-policy.html#activate-ilm-policy["attivare"] la nuova policy.
+
+
+CAUTION: Le seguenti regole e policy ILM sono solo esempi. Esistono molti modi per configurare le regole ILM. Prima di attivare una nuova policy, simulala per confermare che funzionerà come previsto per proteggere i contenuti dalla perdita.
+
+
+
+[[how-changing-an-ilm-policy-affects-performance]]
+== Come la modifica di una politica ILM influisce sulle prestazioni
+
+Quando attivi una nuova policy ILM, le prestazioni del tuo sistema StorageGRID potrebbero risentirne temporaneamente, soprattutto se le istruzioni di posizionamento della nuova policy richiedono lo spostamento di molti oggetti esistenti in nuove posizioni.
+
+Quando attivi una nuova policy ILM, StorageGRID la usa per gestire tutti gli oggetti, inclusi quelli esistenti e quelli appena acquisiti. Prima di attivare una nuova policy ILM, controlla eventuali modifiche al posizionamento degli oggetti replicati e con codifica di cancellazione esistenti. Cambiare la posizione di un oggetto esistente potrebbe causare problemi temporanei di risorse quando vengono valutati e implementati i nuovi posizionamenti.
+
+Per garantire che una nuova policy ILM non influisca sul posizionamento degli oggetti replicati e codificati per la cancellazione esistenti, puoi link:create-ilm-rule-enter-details.html#use-advanced-filters-in-ilm-rules["crea una regola ILM con un filtro per il tempo di acquisizione"]. Ad esempio, *L'ora di inserimento _è uguale o successiva a_ _<date and time>_*, così la nuova regola si applica solo agli oggetti inseriti a partire dalla data e ora specificate.
+
+Le tipologie di modifiche alle policy ILM che possono influire temporaneamente sulle prestazioni di StorageGRID includono le seguenti:
+
+* Applicare un profilo di codifica di cancellazione diverso a oggetti già codificati con questo metodo.
++
+
+NOTE: StorageGRID considera ogni profilo di codifica di cancellazione come unico e non riutilizza i frammenti di codifica di cancellazione quando viene utilizzato un nuovo profilo.
+
+* Modificare il tipo di copie richieste per gli oggetti esistenti; ad esempio, convertire una grande % di oggetti replicati in oggetti con codifica di cancellazione.
+* Spostare copie di oggetti esistenti in una posizione completamente diversa; ad esempio, spostare un gran numero di oggetti da o verso un Cloud Storage Pool o da o verso un sito remoto.
+
+
+
+
+[[active-ilm-policy-for-example-6-data-protection-at-two-sites]]
+== Policy ILM attiva per esempio 6: Protezione dei dati in due siti
+
+In questo esempio, la policy ILM attiva è stata inizialmente progettata per un sistema StorageGRID a due siti e utilizza due regole ILM.
+
+image:policy_6_active_policy.png["Esempio di policy ILM 6 policy attiva"]
+
+In questa policy ILM, gli oggetti appartenenti al Tenant A sono protetti tramite codifica di cancellazione 2+1 in un singolo sito, mentre gli oggetti appartenenti a tutti gli altri tenant sono protetti su due siti utilizzando la replica a 2 copie.
+
+
+
+[[rule-1-one-site-erasure-coding-for-tenant-a]]
+=== Regola 1: Codifica di cancellazione a sito singolo per il tenant A
+
+[cols="1a,2a"]
+|===
+| Definizione della regola | Esempio di valore 
+
+
+ a| 
+Nome regola
+ a| 
+Codifica di cancellazione a sito unico per il tenant A
+
+
+
+ a| 
+Account tenant
+ a| 
+Tenant A
+
+
+
+ a| 
+Pool di storage
+ a| 
+Sito 1
+
+
+
+ a| 
+Posizionamenti
+ a| 
+Codifica di cancellazione 2+1 in Site 1 dal giorno 0 per sempre
+
+|===
+
+
+[[rule-2-two-site-replication-for-other-tenants]]
+=== Regola 2: Replica su due siti per altri tenant
+
+[cols="1a,2a"]
+|===
+| Definizione della regola | Esempio di valore 
+
+
+ a| 
+Nome regola
+ a| 
+Replica su due siti per altri tenant
+
+
+
+ a| 
+Account tenant
+ a| 
+Ignora
+
+
+
+ a| 
+Pool di storage
+ a| 
+Sito 1 e Sito 2
+
+
+
+ a| 
+Posizionamenti
+ a| 
+Due copie replicate dal giorno 0 all'infinito: una copia presso Site 1 e una copia presso Site 2.
+
+|===
+
+
+[[ilm-policy-for-example-6-data-protection-at-three-sites]]
+== Politica ILM per l'esempio 6: Protezione dei dati in tre sedi
+
+In questo esempio, la policy ILM viene sostituita con una nuova policy per un sistema StorageGRID a tre siti.
+
+Dopo aver eseguito un'espansione per aggiungere il nuovo sito, l'amministratore della griglia ha creato due nuovi pool di storage: un pool di storage per il Sito 3 e un pool di storage contenente tutti e tre i siti (non è lo stesso del pool di storage predefinito All Storage Nodes). Poi, l'amministratore ha creato due nuove regole ILM e una nuova policy ILM, progettata per proteggere i dati in tutti e tre i siti.
+
+Quando questa nuova policy ILM viene attivata, gli oggetti appartenenti al Tenant A sono protetti tramite codifica di cancellazione 2+1 in tre siti, mentre gli oggetti appartenenti ad altri tenant (e gli oggetti di dimensioni inferiori appartenenti al Tenant A) sono protetti in tre siti utilizzando la replica a 3 copie.
+
+
+
+[[rule-1-three-site-erasure-coding-for-tenant-a]]
+=== Regola 1: Codifica di cancellazione a tre siti per il tenant A
+
+[cols="1a,2a"]
+|===
+| Definizione della regola | Esempio di valore 
+
+
+ a| 
+Nome regola
+ a| 
+Codifica di cancellazione a tre siti per il tenant A
+
+
+
+ a| 
+Account tenant
+ a| 
+Tenant A
+
+
+
+ a| 
+Pool di storage
+ a| 
+Tutti e 3 i siti (include il sito 1, il sito 2 e il sito 3)
+
+
+
+ a| 
+Posizionamenti
+ a| 
+Codifica di cancellazione 2+1 in tutti e 3 i siti dal giorno 0 per sempre
+
+|===
+
+
+[[rule-2-three-site-replication-for-other-tenants]]
+=== Regola 2: Replica su tre siti per altri tenant
+
+[cols="1a,2a"]
+|===
+| Definizione della regola | Esempio di valore 
+
+
+ a| 
+Nome regola
+ a| 
+Replica su tre siti per altri tenant
+
+
+
+ a| 
+Account tenant
+ a| 
+Ignora
+
+
+
+ a| 
+Pool di storage
+ a| 
+Sito 1, Sito 2 e Sito 3
+
+
+
+ a| 
+Posizionamenti
+ a| 
+Tre copie replicate dal giorno 0 all'infinito: una copia presso il Sito 1, una copia presso il Sito 2 e una copia presso il Sito 3.
+
+|===
+
+
+[[activating-the-ilm-policy-for-example-6]]
+== Attivare la policy ILM per l'esempio 6
+
+Quando attivi una nuova policy ILM, gli oggetti esistenti potrebbero essere spostati in nuove posizioni oppure potrebbero essere create nuove copie degli oggetti esistenti, in base alle istruzioni di posizionamento contenute nelle regole nuove o aggiornate.
+
+
+CAUTION: Gli errori in una policy ILM possono causare una perdita di dati irreversibile. Esamina attentamente e simula la policy prima di attivarla per confermare che funzionerà come previsto.
+
+
+CAUTION: Quando attivi una nuova policy ILM, StorageGRID la usa per gestire tutti gli oggetti, inclusi quelli esistenti e quelli appena acquisiti. Prima di attivare una nuova policy ILM, controlla eventuali modifiche al posizionamento degli oggetti replicati e con codifica di cancellazione esistenti. Cambiare la posizione di un oggetto esistente potrebbe causare problemi temporanei di risorse quando vengono valutati e implementati i nuovi posizionamenti.
+
+
+
+[[what-happens-when-erasure-coding-instructions-change]]
+=== Cosa succede quando cambiano le istruzioni di codifica di cancellazione
+
+Nella policy ILM attualmente attiva per questo esempio, gli oggetti appartenenti al Tenant A sono protetti utilizzando la codifica di cancellazione 2+1 presso il Sito 1. Nella nuova policy ILM, gli oggetti appartenenti al Tenant A saranno protetti utilizzando la codifica di cancellazione 2+1 presso i Siti 1, 2 e 3.
+
+Quando viene attivata la nuova policy ILM, si verificano le seguenti operazioni ILM:
+
+* I nuovi oggetti acquisiti dal Tenant A vengono suddivisi in due frammenti di dati e viene aggiunto un frammento di parità. Poi, ciascuno dei tre frammenti viene memorizzato in un sito diverso.
+* Gli oggetti esistenti appartenenti al tenant A vengono rivalutati durante il processo di scansione ILM in corso. Poiché le istruzioni di posizionamento ILM utilizzano un nuovo profilo di erasure coding, vengono creati frammenti di erasure coding completamente nuovi e distribuiti ai tre siti.
++
+
+NOTE: I frammenti 2+1 esistenti nel Sito 1 non vengono riutilizzati. StorageGRID considera ogni profilo di erasure coding come univoco e non riutilizza i frammenti di erasure coding quando viene utilizzato un nuovo profilo.
+
+
+
+
+
+[[what-happens-when-replication-instructions-change]]
+=== Cosa succede quando cambiano le istruzioni di replica
+
+Nella policy ILM attualmente attiva per questo esempio, gli oggetti appartenenti ad altri tenant sono protetti utilizzando due copie replicate nei pool di storage presso i siti 1 e 2. Nella nuova policy ILM, gli oggetti appartenenti ad altri tenant saranno protetti utilizzando tre copie replicate nei pool di storage presso i siti 1, 2 e 3.
+
+Quando viene attivata la nuova policy ILM, si verificano le seguenti operazioni ILM:
+
+* Quando un tenant diverso da Tenant A acquisisce un nuovo oggetto, StorageGRID crea tre copie e ne salva una in ciascun sito.
+* Gli oggetti esistenti appartenenti a questi altri tenant vengono rivalutati durante il processo di scansione ILM in corso. Poiché le copie degli oggetti esistenti presso il Site 1 e il Site 2 continuano a soddisfare i requisiti di replica della nuova regola ILM, StorageGRID deve creare una sola nuova copia dell'oggetto per il Site 3.
+
+
+
+
+[[performance-impact-of-activating-this-policy]]
+=== Impatto sulle prestazioni dell'attivazione di questa policy
+
+Quando la policy ILM in questo esempio viene attivata, le prestazioni complessive di questo sistema StorageGRID saranno temporaneamente influenzate. Saranno necessari livelli di risorse di grid superiori alla norma per creare nuovi frammenti con codifica di cancellazione per gli oggetti esistenti del tenant A e nuove copie replicate nel sito 3 per gli oggetti esistenti degli altri tenant.
+
+A seguito della modifica della policy ILM, le richieste di lettura e scrittura dei client potrebbero temporaneamente presentare latenze superiori alla norma. Le latenze torneranno ai livelli normali una volta che le istruzioni di posizionamento saranno completamente implementate sulla griglia.
+
+Per evitare problemi di risorse durante l'attivazione di una nuova policy ILM, puoi usare il filtro avanzato "Tempo di acquisizione" in qualsiasi regola che potrebbe cambiare la posizione di un gran numero di oggetti esistenti. Imposta il tempo di acquisizione su un valore maggiore o uguale al momento approssimativo in cui la nuova policy entrerà in vigore per assicurarti che gli oggetti esistenti non vengano spostati inutilmente.
+
+
+NOTE: Contatta il supporto tecnico se hai bisogno di rallentare o aumentare la velocità con cui gli oggetti vengono elaborati dopo una modifica della policy ILM.

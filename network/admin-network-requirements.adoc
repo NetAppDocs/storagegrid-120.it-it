@@ -1,0 +1,22 @@
+---
+permalink: network/admin-network-requirements.html 
+sidebar: sidebar 
+keywords: admin network requirements, guidelines for admin network, aesl 
+summary: La rete amministrativa è facoltativa. Se vuoi configurare una rete amministrativa, segui questi requisiti e linee guida. 
+---
+= Requisiti della rete Admin per StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La rete amministrativa è facoltativa. Se vuoi configurare una rete amministrativa, segui questi requisiti e linee guida.
+
+Gli utilizzi tipici della rete di amministrazione includono connessioni di gestione, AutoSupport, KMS e connessioni a server critici come NTP, DNS e LDAP se queste connessioni non sono fornite tramite la rete Grid o la rete client.
+
+
+NOTE: La Admin Network e l'AESL possono essere univoche per ciascun nodo, purché i servizi di rete e i client desiderati siano raggiungibili.
+
+
+NOTE: Devi definire almeno una sottorete sulla Admin Network per abilitare le connessioni in entrata da sottoreti esterne. Le route statiche vengono generate automaticamente su ciascun nodo per ogni sottorete nell'AESL.

@@ -1,0 +1,28 @@
+---
+permalink: maintain/recovering-from-primary-admin-node-failures.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, primary admin node failure 
+summary: 'Per ripristinare il sistema in caso di errore del nodo di amministrazione primario, devi completare una serie specifica di attività. Il nodo di amministrazione primario ospita il servizio Configuration Management Node (CMN) per la grid.' 
+---
+= Ripristina dai guasti del nodo amministratore primario di StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Per ripristinare il sistema in caso di errore del nodo di amministrazione primario, devi completare una serie specifica di attività. Il nodo di amministrazione primario ospita il servizio Configuration Management Node (CMN) per la grid.
+
+
+CAUTION: Devi riparare o sostituire tempestivamente un nodo di amministrazione primario guasto, altrimenti potresti non riuscire a eseguire alcune procedure di manutenzione.
+
+Segui questi high-level passaggi per ripristinare un nodo amministratore primario:
+
+. link:copying-audit-logs-from-failed-primary-admin-node.html["Copia i log di controllo dal nodo Admin primario guasto"]
+. link:replacing-primary-admin-node.html["Sostituisci il nodo Admin primario"]
+. link:configuring-replacement-primary-admin-node.html["Configura il nodo amministratore primario sostitutivo"]
+. link:assess-hotfix-requirement-during-primary-admin-node-recovery.html["Determina se è necessario un hotfix per il nodo di amministrazione primario ripristinato"]
+. link:restoring-audit-log-on-recovered-primary-admin-node.html["Ripristina il registro di controllo sul nodo amministratore primario ripristinato"]
+. link:restoring-admin-node-database-primary-admin-node.html["Ripristina il database Admin Node quando recuperi un nodo Admin Node primario"]
+. link:restoring-prometheus-metrics-primary-admin-node.html["Ripristina le metriche Prometheus durante il ripristino di un nodo di amministrazione primario"]
+

@@ -1,0 +1,32 @@
+---
+permalink: primer/ingest-data-flow.html 
+sidebar: sidebar 
+keywords: StorageGRID, object data, ingest 
+summary: 'Un"operazione di acquisizione o salvataggio consiste in un flusso di dati definito tra il client e il sistema StorageGRID.' 
+---
+= Come StorageGRID gestisce l'ingestione degli oggetti
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Un'operazione di acquisizione o salvataggio consiste in un flusso di dati definito tra il client e il sistema StorageGRID.
+
+
+
+[[data-flow]]
+== Flusso di dati
+
+Quando un client inserisce un oggetto nel sistema StorageGRID, il servizio LDR sui nodi di archiviazione elabora la richiesta e memorizza i metadati e i dati su disco.
+
+image:ingest_data_flow.png["Ingestione con posizionamento sincrono"]
+
+. L'applicazione client crea l'oggetto e lo invia al sistema StorageGRID tramite una richiesta HTTP PUT.
+. L'oggetto viene valutato in base alla policy ILM del sistema.
+. Il servizio LDR salva i dati dell'oggetto come copia replicata o come copia con codifica di cancellazione. (Il diagramma mostra una versione semplificata del salvataggio di una copia replicata su disco.)
+. Il servizio LDR invia i metadati dell'oggetto all'archivio dei metadati.
+. Il metadata store salva i metadati degli oggetti su disco.
+. Il repository dei metadati propaga copie dei metadati degli oggetti ad altri Storage Node. Anche queste copie vengono salvate su disco.
+. Il servizio LDR restituisce al client una risposta HTTP 200 OK per confermare che l'oggetto è stato acquisito.
+

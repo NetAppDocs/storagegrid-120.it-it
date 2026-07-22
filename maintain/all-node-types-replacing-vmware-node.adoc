@@ -1,0 +1,78 @@
+---
+permalink: maintain/all-node-types-replacing-vmware-node.html 
+sidebar: sidebar 
+keywords: replace VMware node 
+summary: Quando recuperi un nodo StorageGRID guasto che era ospitato su VMware, rimuovi il nodo guasto e distribuisci un nodo di ripristino. 
+---
+= Sostituire un nodo VMware in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Quando recuperi un nodo StorageGRID guasto che era ospitato su VMware, rimuovi il nodo guasto e distribuisci un nodo di ripristino.
+
+.Prima di iniziare
+Hai stabilito che la macchina virtuale non può essere ripristinata e deve essere sostituita.
+
+.Informazioni su questa attività
+Utilizzi il VMware vSphere Web Client per rimuovere per prima cosa la macchina virtuale associata al nodo della griglia guasto. Poi puoi distribuire una nuova macchina virtuale.
+
+Questa procedura rappresenta solo una fase del processo di ripristino del nodo della griglia. La procedura di rimozione e ridistribuzione del nodo è la stessa per tutti i nodi VMware, inclusi Admin Nodes, Storage Nodes e Gateway Nodes.
+
+.Passaggi
+. Accedi a VMware vSphere Web Client.
+. Vai alla macchina virtuale del nodo della griglia che ha riscontrato l'errore.
+. Prendi nota di tutte le informazioni necessarie per implementare il nodo di ripristino.
++
+.. Fai clic con il pulsante destro del mouse sulla macchina virtuale, seleziona la scheda *Modifica impostazioni* e prendi nota delle impostazioni in uso.
+.. Seleziona la scheda *vApp Options* per visualizzare e annotare le impostazioni di rete del nodo della griglia.
+
+
+. Se il nodo della griglia guasto è un nodo di archiviazione, verifica se qualcuno dei dischi rigidi virtuali utilizzati per l'archiviazione dei dati è integro e conservali per ricollegarli al nodo della griglia ripristinato.
+. Spegni la macchina virtuale.
+. Seleziona *Azioni* > *Tutte le azioni vCenter* > *Elimina dal disco* per eliminare la macchina virtuale.
+. Distribuisci una nuova macchina virtuale che fungerà da nodo sostitutivo e connettila a una o più reti StorageGRID. Per istruzioni, consulta link:../swnodes/deploying-storagegrid-node-as-virtual-machine.html["Distribuire un nodo StorageGRID come macchina virtuale"].
++
+Quando distribuisci il nodo, puoi opzionalmente rimappare le porte del nodo o aumentare le impostazioni di CPU o memoria.
+
++
+
+NOTE: Dopo aver distribuito il nuovo nodo, puoi aggiungere nuovi dischi virtuali in base alle tue esigenze di archiviazione, ricollegare eventuali dischi rigidi virtuali conservati dal nodo della griglia guasto precedentemente rimosso, oppure entrambe le cose.
+
+. Completa la procedura di ripristino del nodo, in base al tipo di nodo che stai ripristinando.
++
+[cols="1a,2a"]
+|===
+| Tipo di nodo | Vai a 
+
+
+ a| 
+Nodo amministrativo primario
+ a| 
+link:configuring-replacement-primary-admin-node.html["Configura il nodo Admin primario sostitutivo"]
+
+
+
+ a| 
+Nodo amministrativo non primario
+ a| 
+link:selecting-start-recovery-to-configure-non-primary-admin-node.html["Seleziona Avvia ripristino per configurare il nodo Admin non primario"]
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+link:selecting-start-recovery-to-configure-gateway-node.html["Seleziona Avvia ripristino per configurare il nodo gateway"]
+
+
+
+ a| 
+Nodo di archiviazione
+ a| 
+link:selecting-start-recovery-to-configure-storage-node.html["Seleziona Avvia ripristino per configurare il nodo di archiviazione"]
+
+|===
+

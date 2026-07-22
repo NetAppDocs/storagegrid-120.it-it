@@ -1,0 +1,99 @@
+---
+permalink: monitor/monitoring-network-connections-and-performance.html 
+sidebar: sidebar 
+keywords: monitoring, monitoring network connections, network, network performance 
+summary: 'L"integrità e la larghezza di banda della rete tra nodi e siti, e l"utilizzo delle risorse da parte dei singoli nodi della griglia, sono fondamentali per un funzionamento efficiente.' 
+---
+= Monitora le risorse di rete e di sistema in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'integrità e la larghezza di banda della rete tra nodi e siti, e l'utilizzo delle risorse da parte dei singoli nodi della griglia, sono fondamentali per un funzionamento efficiente.
+
+
+
+[[monitor-network-connections-and-performance]]
+== Monitora le connessioni di rete e le prestazioni
+
+La connettività di rete e la larghezza di banda sono particolarmente importanti se la tua policy di gestione del ciclo di vita delle informazioni (ILM) copia oggetti replicati tra siti o memorizza oggetti con codifica di cancellazione utilizzando uno schema che offre protezione in caso di perdita del sito. Se la rete tra i siti non è disponibile, la latenza di rete è troppo elevata o la larghezza di banda è insufficiente, alcune regole ILM potrebbero non essere in grado di posizionare gli oggetti dove previsto. Questo può causare errori di acquisizione (quando è selezionata l'opzione di acquisizione rigorosa per le regole ILM), oppure prestazioni di acquisizione scadenti e arretrati ILM.
+
+Utilizza Grid Manager per monitorare la connettività e le prestazioni della rete, così puoi risolvere subito eventuali problemi.
+
+Inoltre, considera link:../admin/managing-traffic-classification-policies.html["creare policy di classificazione del traffico di rete"] così puoi monitorare il traffico relativo a specifici tenant, bucket, subnet o endpoint del bilanciatore di carico. Puoi impostare criteri di limitazione del traffico secondo le tue esigenze.
+
+.Passaggi
+. Selezionare *Nodi*.
++
+Viene visualizzata la pagina Nodi. Ogni nodo della griglia è elencato in formato tabellare.
+
++
+image:nodes_menu.png["Menu Nodi"]
+
+. Seleziona il nome della griglia, un sito specifico del data center o un nodo della griglia, quindi seleziona la scheda *Network*.
++
+Il grafico del traffico di rete fornisce un riepilogo del traffico di rete complessivo per l'intera griglia, per il sito del data center o per il nodo.
+
++
+image:nodes_page_network_traffic_graph.png["Grafico del traffico di rete della pagina nodi"]
+
++
+.. Se hai selezionato un nodo della griglia, scorri verso il basso per visualizzare la sezione *Interfacce di rete* della pagina.
++
+image:nodes_page_network_interfaces.png["Pagina nodi Interfacce di rete"]
+
+.. Per i nodi della griglia, scorri verso il basso per consultare la sezione *Network Communication* della pagina.
++
+Le tabelle Ricezione e Trasmissione mostrano quanti byte e pacchetti sono stati ricevuti e inviati attraverso ciascuna rete, oltre ad altre metriche di ricezione e trasmissione.
+
++
+image:nodes_page_network_communication.png["Pagina nodi comunicazione di rete"]
+
+
+
+. Utilizza le metriche associate alle tue politiche di classificazione del traffico per monitorare il traffico di rete.
++
+.. Seleziona *Configurazione* > *Rete* > *Classificazione del traffico*.
++
+Viene visualizzata la pagina "Politiche di classificazione del traffico" e le politiche esistenti sono elencate nella tabella.
+
++
+image:traffic_classification_policies_main_screen_w_examples.png["Politica del traffico per esempio di grafico"]
+
+.. Per visualizzare i grafici che mostrano le metriche di rete associate a una policy, seleziona il pulsante di opzione a sinistra della policy e poi fai clic su *Metriche*.
+.. Esamina i grafici per comprendere il traffico di rete associato alla policy.
++
+Se una politica di classificazione del traffico è progettata per limitare il traffico di rete, analizza con quale frequenza il traffico viene limitato e decidi se la politica continua a soddisfare le tue esigenze. Di tanto in tanto, link:../admin/managing-traffic-classification-policies.html["adatta ciascuna politica di classificazione del traffico secondo necessità"].
+
+
+
+
+
+.Informazioni correlate
+* link:viewing-network-tab.html["Visualizza la scheda Rete"]
+* link:monitoring-system-health.html#monitor-node-connection-states["Monitora lo stato di connessione dei nodi"]
+
+
+
+
+[[monitor-node-level-resources]]
+== Monitora le risorse a livello di nodo
+
+Monitora i singoli nodi della griglia per verificarne i livelli di utilizzo delle risorse. Se i nodi sono costantemente sovraccarichi, potrebbero essere necessari più nodi per un funzionamento efficiente.
+
+.Passaggi
+. Dalla pagina *Nodi*, seleziona il nodo.
+. Seleziona la scheda *Hardware* per visualizzare i grafici relativi all'utilizzo della CPU e della memoria.
++
+image:nodes_page_hardware_tab_graphs.png["Pagina nodi, scheda Hardware"]
+
+. Per visualizzare un intervallo di tempo diverso, seleziona uno dei controlli sopra il grafico. Puoi visualizzare le informazioni disponibili per intervalli di 1 ora, 1 giorno, 1 settimana o 1 mese. Puoi anche impostare un intervallo personalizzato, che ti permette di specificare intervalli di date e orari.
+. Se il nodo è ospitato su un'appliance di storage o un'appliance di servizi, scorri verso il basso per visualizzare le tabelle dei componenti. Lo stato di tutti i componenti dovrebbe essere "Nominale". Esamina i componenti che presentano uno stato diverso.
+
+
+.Informazioni correlate
+* link:viewing-hardware-tab.html#view-information-about-appliance-storage-nodes["Visualizza informazioni sui nodi di storage dell'appliance"]
+* link:viewing-hardware-tab.html#view-information-about-appliance-admin-nodes-and-gateway-nodes["Visualizza le informazioni sui nodi Admin e sui nodi Gateway dell'appliance"]
+

@@ -1,0 +1,178 @@
+---
+permalink: admin/configuring-client-connections.html 
+sidebar: sidebar 
+keywords: s3 connection, connect to storagegrid, s3 setup wizard 
+summary: Come amministratore della griglia, gestisci le opzioni di configurazione che controllano come le applicazioni client S3 si connettono al tuo sistema StorageGRID per archiviare e recuperare dati. 
+---
+= Configura le connessioni client S3 a StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Come amministratore della griglia, gestisci le opzioni di configurazione che controllano come le applicazioni client S3 si connettono al tuo sistema StorageGRID per archiviare e recuperare dati.
+
+
+TIP: I dettagli relativi a Swift sono stati rimossi da questa versione del sito della documentazione. Vedi https://docs.netapp.com/us-en/storagegrid-118/admin/configuring-client-connections.html["StorageGRID 11.8: Configura le connessioni client S3 e Swift"^].
+
+
+
+[[configuration-tasks]]
+== Attività di configurazione
+
+. Esegui le attività preliminari in StorageGRID, in base a come l'applicazione client si connetterà a StorageGRID.
+
+
+[role="tabbed-block"]
+====
+.Compiti richiesti
+--
+Devi ottenere:
+
+* indirizzi IP
+* ${post_edited_translations.segment}
+* Certificato SSL
+
+
+--
+.Attività facoltative
+--
+Facoltativamente, configura:
+
+* Federazione di identità
+* SSO
+
+
+--
+====
+. Utilizza StorageGRID per ottenere i valori necessari all'applicazione per connettersi alla grid. Puoi usare il setup wizard S3 oppure configurare manualmente ogni entità StorageGRID. +
+
+
+[role="tabbed-block"]
+====
+.Usa setup wizard
+--
+${post_edited_translations.segment}
+
+--
+.Configura manualmente
+--
+. Crea un gruppo ad alta disponibilità
+. ${post_edited_translations.segment}
+. Crea account tenant
+. ${post_edited_translations.segment}
+. Configura regola e criterio ILM
+
+
+--
+====
+. Utilizza l'applicazione S3 per completare la connessione a StorageGRID. Crea voci DNS per associare gli indirizzi IP ai domain name che intendi utilizzare.
++
+Se necessario, esegui ulteriori configurazioni dell'applicazione.
+
+. Esegui attività ricorrenti nell'applicazione e in StorageGRID per gestire e monitorare lo storage a oggetti nel tempo.
+
+
+
+
+[[information-needed-to-attach-storagegrid-to-a-client-application]]
+== Informazioni necessarie per collegare StorageGRID a un'applicazione client
+
+Prima di poter collegare StorageGRID a un'applicazione client S3, devi eseguire alcuni passaggi di configurazione in StorageGRID e ottenere determinati valori.
+
+
+
+[[what-values-do-i-need]]
+=== Di quali valori hai bisogno?
+
+La tabella seguente mostra i valori che devi configurare in StorageGRID e dove tali valori vengono utilizzati dall'applicazione S3 e dal DNS server.
+
+[cols="1a,1a,1a"]
+|===
+| Valore | Dove configuri il valore | ${post_edited_translations.segment} 
+
+
+ a| 
+Indirizzi IP virtuali (VIP)
+ a| 
+${post_edited_translations.segment}
+ a| 
+Voce DNS
+
+
+
+ a| 
+Porta
+ a| 
+StorageGRID > Endpoint del bilanciatore di carico
+ a| 
+${post_edited_translations.segment}
+
+
+
+ a| 
+Certificato SSL
+ a| 
+StorageGRID > Endpoint del bilanciatore di carico
+ a| 
+${post_edited_translations.segment}
+
+
+
+ a| 
+Nome server (FQDN)
+ a| 
+StorageGRID > Endpoint del bilanciatore di carico
+ a| 
+* ${post_edited_translations.segment}
+* Voce DNS
+
+
+
+
+ a| 
+ID della chiave di accesso S3 e chiave di accesso segreta
+ a| 
+StorageGRID > Tenant e bucket
+ a| 
+${post_edited_translations.segment}
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+StorageGRID > Tenant e bucket
+ a| 
+${post_edited_translations.segment}
+
+|===
+
+
+[[how-do-i-get-these-values]]
+=== Come posso ottenere questi valori?
+
+A seconda delle tue esigenze, puoi fare una delle seguenti cose per ottenere le informazioni di cui hai bisogno:
+
+* *Usa il link:use-s3-setup-wizard.html["setup wizard S3"]*. La setup wizard ti aiuta a configurare rapidamente i valori richiesti in StorageGRID e genera uno o due file che puoi usare quando configuri l'applicazione S3. La procedura guidata ti accompagna nei passaggi necessari e ti aiuta a verificare che le impostazioni siano conformi alle best practice di StorageGRID.
++
+
+NOTE: Se stai configurando un'applicazione S3, è consigliato usare il setup wizard a meno che tu non abbia esigenze particolari o che la tua implementazione richieda una personalizzazione significativa.
+
+* *Usa l'link:../fabricpool/use-fabricpool-setup-wizard.html["setup wizard di FabricPool"]*. Simile alla setup wizard, la FabricPool setup wizard ti aiuta a configurare rapidamente i valori richiesti e genera un file che puoi usare quando configuri un livello cloud FabricPool in ONTAP.
++
+
+NOTE: Se hai intenzione di utilizzare StorageGRID come sistema di storage a oggetti per un cloud tier FabricPool, si consiglia di utilizzare il setup wizard di FabricPool a meno che tu non sappia di avere requisiti speciali o che la tua implementazione richieda una personalizzazione significativa.
+
+* *Configura gli elementi manualmente*. Se ti stai connettendo a un'applicazione S3 e preferisci non utilizzare la setup wizard, puoi ottenere i valori richiesti eseguendo la configurazione manualmente. Segui questi passaggi:
++
+.. Configura il gruppo ad alta disponibilità (HA) che desideri utilizzare per l'applicazione S3. Vedi link:configure-high-availability-group.html["Configura i gruppi ad alta disponibilità"].
+.. Crea l'endpoint del bilanciatore di carico che l'applicazione S3 userà. Vedi link:configuring-load-balancer-endpoints.html["${post_edited_translations.segment}"].
+.. Crea l'account tenant che l'applicazione S3 utilizzerà. Vedi link:creating-tenant-account.html["Crea un tenant account"].
+.. Per un tenant S3, accedi all'account tenant e genera un ID chiave di accesso e una chiave di accesso segreta per ciascun utente che accederà all'applicazione. Consulta link:../tenant/creating-your-own-s3-access-keys.html["Crea le tue chiavi di accesso"].
+.. Crea uno o più bucket S3 all'interno dell'account tenant. Per S3, consulta link:../tenant/creating-s3-bucket.html["Crea bucket S3"].
+.. Per aggiungere istruzioni di posizionamento specifiche per gli oggetti appartenenti al nuovo tenant o bucket/container, crea una nuova regola ILM e attiva una nuova policy ILM per utilizzare tale regola. Vedi link:../ilm/access-create-ilm-rule-wizard.html["Crea regola ILM"] e link:../ilm/creating-ilm-policy.html["Crea criteri ILM"].
+
+
+

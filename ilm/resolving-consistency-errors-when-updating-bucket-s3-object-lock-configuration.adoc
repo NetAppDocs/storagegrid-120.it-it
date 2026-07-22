@@ -1,0 +1,36 @@
+---
+permalink: ilm/resolving-consistency-errors-when-updating-bucket-s3-object-lock-configuration.html 
+sidebar: sidebar 
+keywords: consistency error, s3 object lock and consistency 
+summary: Se un sito del data center o più Storage Node in un sito diventano non disponibili, potresti dover aiutare gli utenti tenant S3 ad applicare modifiche alla configurazione di S3 Object Lock o di Compliance legacy. 
+---
+= Risolvi gli errori di coerenza durante l'aggiornamento delle impostazioni di S3 Object Lock o di Compliance legacy in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se un sito del data center o più Storage Node in un sito diventano non disponibili, potresti dover aiutare gli utenti tenant S3 ad applicare modifiche alla configurazione di S3 Object Lock o di Compliance legacy.
+
+Gli utenti tenant che dispongono di bucket con S3 Object Lock (o Compliance legacy) abilitato possono modificare determinate impostazioni. Ad esempio, un utente tenant che utilizza S3 Object Lock potrebbe dover mettere una versione di un oggetto sotto blocco legale.
+
+Quando un utente tenant aggiorna le impostazioni di un bucket S3 o di una versione di oggetto, StorageGRID tenta di aggiornare immediatamente i metadati del bucket o dell'oggetto in tutta la grid. Se il sistema non riesce ad aggiornare i metadati perché un sito del data center o più Storage Node non sono disponibili, restituisce un errore:
+
+[listing]
+----
+503: Service Unavailable
+Unable to update compliance settings because the settings can't be consistently applied on enough storage services. Contact your grid administrator for assistance.
+----
+Per risolvere questo errore, segui questi passaggi:
+
+. Cerca di rendere nuovamente disponibili tutti i nodi di Storage o i siti il prima possibile.
+. Se non riesci a rendere disponibili un numero sufficiente di Storage Node in ciascun sito, contatta il supporto tecnico, che può aiutarti a recuperare i nodi e a garantire che le modifiche vengano applicate in modo coerente su tutta la grid.
+. Una volta risolto il problema di fondo, ricorda all'utente del tenant di riprovare a modificare la configurazione.
+
+
+.Informazioni correlate
+* link:../tenant/index.html["Usa un tenant account"]
+* link:../s3/index.html["${post_edited_translations.segment}"]
+* link:../maintain/index.html["Recupera e mantieni"]
+

@@ -1,0 +1,60 @@
+---
+permalink: admin/use-s3-setup-wizard.html 
+sidebar: sidebar 
+keywords: S3, S3 setup wizard 
+summary: 'Puoi usare la setup wizard per configurare StorageGRID come sistema di storage a oggetti per un"applicazione S3.' 
+---
+= Considerazioni e requisiti relativi alla procedura guidata di configurazione S3 di StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi usare la setup wizard per configurare StorageGRID come sistema di storage a oggetti per un'applicazione S3.
+
+
+
+[[when-to-use-the-s3-setup-wizard]]
+== Quando usare la setup wizard
+
+La setup wizard ti accompagna in ogni fase della configurazione di StorageGRID per l'utilizzo con un'applicazione S3. Come parte del completamento della setup wizard, scarichi file che puoi utilizzare per inserire i valori nell'applicazione S3. Usa la setup wizard per configurare il tuo sistema più rapidamente e per assicurarti che le impostazioni siano conformi alle best practice di StorageGRID.
+
+Se hai il link:admin-group-permissions.html["Permesso di accesso root"], puoi completare la setup wizard quando inizi a usare StorageGRID Grid Manager, oppure puoi accedere e completare la wizard in qualsiasi momento successivo. A seconda delle tue esigenze, puoi anche configurare manualmente alcuni o tutti gli elementi richiesti e poi usare la wizard per raccogliere i valori di cui un'applicazione S3 ha bisogno.
+
+
+
+[[before-using-the-wizard]]
+== Prima di utilizzare la procedura guidata
+
+Prima di utilizzare la procedura guidata, assicurati di aver completato questi prerequisiti.
+
+Ottieni indirizzi IP e configura le interfacce VLAN:: Se configurerai un gruppo ad alta disponibilità (HA), sai a quali nodi si connetterà l'applicazione S3 e quale rete StorageGRID verrà utilizzata. Sai anche quali valori inserire per il CIDR della subnet, l'indirizzo IP del gateway e gli indirizzi IP virtuali (VIP).
++
+--
+Se prevedi di utilizzare una LAN virtuale per separare il traffico dall'applicazione S3, hai già configurato l'interfaccia VLAN. Vedi link:../admin/configure-vlan-interfaces.html["Configura le interfacce VLAN"].
+
+--
+Configura la federazione delle identità e il single sign-on:: Se prevedi di utilizzare la federazione delle identità o il single sign-on (SSO) per il tuo sistema StorageGRID, hai abilitato queste funzionalità. Sai anche quale gruppo federato deve avere access root per il tenant account che verrà utilizzato dall'applicazione S3. Vedi link:../admin/using-identity-federation.html["${post_edited_translations.segment}"] e link:../admin/how-sso-works.html["Configura single sign-on"].
+Ottieni e configura i nomi di dominio:: Sai quale fully qualified domain name (FQDN) usare per StorageGRID. Le voci del name server DNS mapperanno questo FQDN agli indirizzi IP virtuali (VIP) del gruppo HA che crei usando la procedura guidata.
++
+--
+Se intendi utilizzare le richieste in stile ospitato virtuale di S3, dovresti avere link:../admin/configuring-s3-api-endpoint-domain-names.html["nomi di dominio degli endpoint S3 configurati"]. L'utilizzo delle richieste in stile ospitato virtuale è consigliato.
+
+--
+Esamina i requisiti per il bilanciamento del carico e il certificato di sicurezza:: Se intendi utilizzare il load balancer StorageGRID, hai già esaminato le considerazioni generali sul bilanciamento del carico. Hai a disposizione i certificati da caricare o i valori necessari per generare un certificato.
++
+--
+Se vuoi usare un endpoint di bilanciamento del carico esterno (di terze parti), devi avere il fully qualified domain name (FQDN), la porta e il certificato per quel bilanciatore di carico.
+
+--
+${post_edited_translations.segment}:: Se vuoi consentire al tenant S3 di clonare i dati dell'account e replicare gli oggetti del bucket in un'altra griglia utilizzando una connessione di federazione di griglia, conferma quanto segue prima di avviare lo wizard:
++
+--
+* Hai link:grid-federation-manage-connection.html["hai configurato la connessione alla federazione di griglia"].
+* Lo stato della connessione è *Connected*.
+* ${post_edited_translations.segment}
+
+
+--
+

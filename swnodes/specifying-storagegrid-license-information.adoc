@@ -1,0 +1,33 @@
+---
+permalink: swnodes/specifying-storagegrid-license-information.html 
+sidebar: sidebar 
+keywords: how to specify StorageGRID license information 
+summary: Devi specificare il nome per il tuo sistema StorageGRID e caricare il file di licenza fornito da NetApp. 
+---
+= Specifica le informazioni di licenza di StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Devi specificare il nome per il tuo sistema StorageGRID e caricare il file di licenza fornito da NetApp.
+
+.Passaggi
+. Nella pagina Licenza, inserisci un nome significativo per il tuo sistema StorageGRID nel campo *Nome Grid*.
++
+Dopo l'installazione, il nome viene visualizzato nella parte superiore del menu Nodi.
+
+. Seleziona *Sfoglia*, individua il file di licenza NetApp (`NLF-_unique-id_.txt` e seleziona *Apri*.
++
+Il file di licenza viene convalidato e il numero di serie viene visualizzato.
+
++
+
+NOTE: L'archivio di installazione di StorageGRID include una licenza gratuita che non prevede alcun diritto al supporto per il prodotto. Puoi aggiornare a una licenza che offre supporto dopo l'installazione.
+
++
+image:2_gmi_installer_license_page.png["Pagina della licenza dell'installer StorageGRID"]
+
+. Seleziona *Next*.
+

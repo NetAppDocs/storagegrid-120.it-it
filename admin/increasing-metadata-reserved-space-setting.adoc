@@ -1,0 +1,87 @@
+---
+permalink: admin/increasing-metadata-reserved-space-setting.html 
+sidebar: sidebar 
+keywords: increase metadata reserved space setting 
+summary: 'Potresti essere in grado di aumentare l"impostazione di sistema Metadata Reserved Space se i tuoi Storage Nodes soddisfano requisiti specifici per RAM e spazio disponibile.' 
+---
+= Aumentare l'impostazione Metadata Reserved Space in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Potresti essere in grado di aumentare l'impostazione di sistema Metadata Reserved Space se i tuoi Storage Nodes soddisfano requisiti specifici per RAM e spazio disponibile.
+
+.Cosa ti servirà
+* Hai effettuato l'accesso a Grid Manager utilizzando un link:web-browser-requirements.html["browser web supportato"].
+* Hai il link:admin-group-permissions.html["Autorizzazione di accesso root o autorizzazione di configurazione della griglia Other"].
+
+
+.Informazioni su questa attività
+Potresti essere in grado di aumentare manualmente l'impostazione dello spazio riservato ai metadati a livello di sistema fino a 8 TB.
+
+Puoi aumentare il valore dell'impostazione Spazio riservato ai metadati a livello di sistema solo se entrambe queste affermazioni sono vere:
+
+* Ciascun nodo di Storage in qualsiasi sito del tuo sistema dispone di 128 GB o più di RAM.
+* ${post_edited_translations.segment}
+
+
+Tieni presente che, se aumenti questo valore, ridurrai contemporaneamente lo spazio disponibile per lo storage a oggetti sul volume di archiviazione 0 di tutti i Storage Node. Per questo motivo, potresti preferire impostare il Metadata Reserved Space su un valore inferiore a 8 TB, in base alle tue esigenze previste per i metadati degli oggetti.
+
+
+NOTE: In generale, è meglio usare un valore più alto invece di uno più basso. Se l'impostazione Spazio riservato ai metadati è troppo grande, puoi diminuirla in seguito. Al contrario, se aumenti il valore in seguito, il sistema potrebbe dover spostare i dati degli oggetti per liberare spazio.
+
+Per una spiegazione dettagliata di come l'impostazione Spazio riservato ai metadati influisce sullo spazio consentito per l'archiviazione dei metadati degli oggetti su un particolare Storage Node, vedi link:managing-object-metadata-storage.html["Gestisci l'archiviazione dei metadati degli oggetti"].
+
+.Passaggi
+. Determina l'impostazione corrente dello spazio riservato ai metadati.
++
+.. Seleziona *Configurazione* > *Sistema* > *Impostazioni di archiviazione*.
+.. Nota il valore di *Spazio riservato ai metadati*.
+
+
+. Assicurati di avere spazio disponibile sufficiente sul volume di archiviazione 0 di ciascun Storage Node per aumentare questo valore.
++
+.. Selezionare *Nodi*.
+.. Seleziona il primo Storage Node nella grid.
+.. ${post_edited_translations.segment}
+.. Nella sezione Volumi, individua la voce */var/local/rangedb/0*.
+.. Verifica che il valore disponibile sia uguale o maggiore della differenza tra il nuovo valore che vuoi usare e il valore corrente di Metadata Reserved Space.
++
+Ad esempio, se l'impostazione Spazio riservato per i metadati è attualmente di 4 TB e vuoi aumentarla a 6 TB, il valore Disponibile deve essere 2 TB o superiore.
+
+.. ${post_edited_translations.segment}
++
+*** Se uno o più nodi di archiviazione non dispongono di spazio disponibile sufficiente, il valore dello spazio riservato ai metadati non può essere aumentato. Non continuare con questa procedura.
+*** Se ogni nodo di archiviazione dispone di spazio disponibile sufficiente sul volume 0, vai al passaggio successivo.
+
+
+
+
+. ${post_edited_translations.segment}
++
+.. Selezionare *Nodi*.
+.. Seleziona il primo Storage Node nella grid.
+.. Seleziona la scheda *Hardware*.
+.. Passa il cursore sul grafico dell'utilizzo della memoria. Assicurati che *Total Memory* sia di almeno 128 GB.
+.. ${post_edited_translations.segment}
++
+*** Se uno o più nodi di archiviazione non dispongono di memoria totale sufficiente, il valore dello spazio riservato ai metadati non può essere aumentato. Non continuare con questa procedura.
+*** ${post_edited_translations.segment}
+
+
+
+
+. ${post_edited_translations.segment}
++
+.. Seleziona *Configurazione* > *Sistema* > *Impostazioni di archiviazione*.
+.. Seleziona *Spazio riservato ai metadati*.
+.. Inserisci il nuovo valore.
++
+${post_edited_translations.segment}
+
+.. Seleziona *Salva*.
+
+
+

@@ -1,0 +1,67 @@
+---
+permalink: maintain/how-site-recovery-is-performed-by-technical-support.html 
+sidebar: sidebar 
+keywords: storagegrid, site recovery, technical support, tech support 
+summary: Se un intero sito StorageGRID o se più Storage Node smettono di funzionare, devi contattare il supporto tecnico. Il supporto tecnico valuterà la tua situazione, svilupperà un piano di recovery e poi recupererà i nodi o il sito guasti in modo da soddisfare i tuoi obiettivi aziendali, ottimizzare i tempi di recovery e prevenire inutili perdite di dati. 
+---
+= Come il supporto tecnico ripristina un sito StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se un intero sito StorageGRID o se più Storage Node smettono di funzionare, devi contattare il supporto tecnico. Il supporto tecnico valuterà la tua situazione, svilupperà un piano di recovery e poi recupererà i nodi o il sito guasti in modo da soddisfare i tuoi obiettivi aziendali, ottimizzare i tempi di recovery e prevenire inutili perdite di dati.
+
+
+CAUTION: Il recovery del sito può essere eseguito solo dal supporto tecnico.
+
+I sistemi StorageGRID sono resilienti a un'ampia varietà di guasti e puoi eseguire con successo molte procedure di recovery e manutenzione da solo. Tuttavia, è difficile creare una semplice procedura di recovery del sito generalizzata perché i passaggi dettagliati dipendono da fattori specifici della tua situazione. Per esempio:
+
+* *I tuoi obiettivi aziendali*: Dopo la perdita completa di un sito StorageGRID, dovresti valutare il modo migliore per raggiungere i tuoi obiettivi aziendali. Ad esempio, vuoi ricostruire il sito perso nello stesso luogo? Vuoi sostituire il sito StorageGRID perso in una nuova posizione? La situazione di ogni cliente è diversa e il tuo piano di recovery deve essere progettato per rispondere alle tue priorità.
+* *Natura esatta dell'errore*: Prima di iniziare un recovery del sito, verifica se ci sono nodi nel sito guasto che sono integri o se ci sono Storage Node che contengono oggetti recuperabili. Se ricostruisci nodi o volumi di storage che contengono dati validi, potresti causare una perdita di dati non necessaria.
+* *Policy ILM attive*: Il numero, il tipo e la posizione delle copie degli oggetti nella tua griglia sono controllati dalle policy ILM attive. Le specifiche delle tue policy ILM possono influire sulla quantità di dati recuperabili, così come sulle tecniche specifiche necessarie per il recovery.
++
+
+CAUTION: Se un sito contiene l'unica copia di un oggetto e il sito viene perso, anche l'oggetto viene perso.
+
+* *Coerenza del bucket (o container)*: La coerenza applicata a un bucket (o container) influisce sul fatto che StorageGRID replichi completamente i metadati degli oggetti su tutti i nodi e i siti prima di comunicare a un client che l'ingestione dell'oggetto è andata a buon fine. Se il valore di coerenza consente la coerenza eventuale, alcuni metadati degli oggetti potrebbero essere stati persi a causa di un errore del sito. Questo può influire sulla quantità di dati recuperabili e potenzialmente sui dettagli della procedura di recovery.
+* *Cronologia delle modifiche recenti*: I dettagli della tua procedura di recovery possono essere influenzati dal fatto che fossero in corso procedure di manutenzione al momento del guasto o che siano state apportate modifiche recenti alle tue policy ILM. Il supporto tecnico deve valutare la cronologia recente del tuo grid, così come la situazione attuale, prima di iniziare un recovery del sito.
+
+
+
+CAUTION: Il recovery del sito può essere eseguito solo dal supporto tecnico.
+
+Questa è una panoramica generale del processo che il supporto tecnico utilizza per recuperare un sito non funzionante:
+
+. Supporto tecnico:
++
+.. Effettui una valutazione dettagliata del guasto.
+.. Collaboro con te per analizzare i tuoi obiettivi aziendali.
+.. Elabora un piano di recovery personalizzato in base alla tua situazione.
+
+
+. Se il nodo di amministrazione primario si guasta, il supporto tecnico lo recupera.
+. Il supporto tecnico ripristina tutti i Storage Node seguendo questa procedura:
++
+.. Sostituisci l'hardware o le macchine virtuali del nodo di archiviazione secondo necessità.
+.. Ripristina i metadati degli oggetti nel sito non funzionante.
+.. Ripristina i dati degli oggetti nei Storage Node recuperati.
++
+
+CAUTION: Si verificherà una perdita di dati se si utilizzano le procedure di recovery per un singolo Storage Node guasto.
+
++
+
+NOTE: Quando un intero sito è andato in errore, il supporto tecnico utilizza comandi specializzati per ripristinare con successo gli oggetti e i metadati degli oggetti.
+
+
+
+. Il supporto tecnico recupera gli altri nodi guasti.
++
+Dopo che i metadati e i dati degli oggetti sono stati recuperati, il supporto tecnico utilizza procedure standard per recuperare i Gateway Node o gli Admin Node non primari che hanno avuto un guasto.
+
+
+
+.Informazioni correlate
+link:site-decommissioning.html["Decommission del sito"]

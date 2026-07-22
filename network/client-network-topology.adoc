@@ -1,0 +1,27 @@
+---
+permalink: network/client-network-topology.html 
+sidebar: sidebar 
+keywords: client network topology 
+summary: 'La configurazione di una rete client è facoltativa. Utilizzare una rete client permette di separare il traffico di rete client (ad esempio, S3) dal traffico interno della grid, rendendo la rete della grid più sicura. Il traffico amministrativo può essere gestito dalla rete client o dalla rete della grid quando la rete Admin non è configurata.' 
+---
+= Topologia di rete client per StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La configurazione di una rete client è facoltativa. Utilizzare una rete client permette di separare il traffico di rete client (ad esempio, S3) dal traffico interno della grid, rendendo la rete della grid più sicura. Il traffico amministrativo può essere gestito dalla rete client o dalla rete della grid quando la rete Admin non è configurata.
+
+Quando configuri la Client Network, imposti l'indirizzo IP host, la subnet mask e l'indirizzo IP del Gateway per l'interfaccia eth2 del nodo configurato. La Client Network di ciascun nodo può essere indipendente dalla Client Network di qualsiasi altro nodo.
+
+Se configuri una Client Network per un nodo durante l'installazione, il gateway predefinito del nodo passa dal gateway della Grid Network al gateway della Client Network quando l'installazione è completata. Se una Client Network viene aggiunta in seguito, il gateway predefinito del nodo cambia allo stesso modo.
+
+In questo esempio, la Client Network viene utilizzata per le richieste dei client S3 e per le funzioni amministrative, mentre la Grid Network è dedicata alle operazioni interne di gestione degli oggetti.
+
+image:grid_client_networks.png["Reti client Grid"]
+
+image:grid_client_networks_ips.png["Indirizzi IP delle reti client Grid"]
+
+.Informazioni correlate
+link:../maintain/changing-nodes-network-configuration.html["Modifica la configurazione di rete del nodo"]

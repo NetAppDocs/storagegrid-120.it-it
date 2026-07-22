@@ -1,0 +1,98 @@
+= 
+:allow-uri-read: 
+
+
+[cols="1a,1a"]
+|===
+| ${post_edited_translations.segment} | Descrizione 
+
+
+| ./vsphere/README  a| 
+Un file di testo che descrive tutti i file contenuti nel file di download di StorageGRID.
+
+
+
+| ${post_edited_translations.segment}  a| 
+${post_edited_translations.segment}
+
+
+
+| ./vsphere/NetApp-SG-version-SHA.vmdk  a| 
+Il file del disco della macchina virtuale che viene utilizzato come modello per creare macchine virtuali dei nodi della griglia.
+
+
+
+| ./vsphere/vsphere-primary-admin.ovf ./vsphere/vsphere-primary-admin.mf  a| 
+Il file modello Open Virtualization Format (`.ovf` e il file manifest (`.mf` per la distribuzione del nodo di amministrazione primario.
+
+
+
+| ./vsphere/vsphere-non-primary-admin.ovf ./vsphere/vsphere-non-primary-admin.mf  a| 
+Il file modello (`.ovf` e il file manifesto (`.mf` per la distribuzione di nodi Admin non primari.
+
+
+
+| ./vsphere/vsphere-gateway.ovf ./vsphere/vsphere-gateway.mf  a| 
+Il file template (`.ovf`) e il file manifest (`.mf`) per distribuire i nodi Gateway.
+
+
+
+| ./vsphere/vsphere-storage.ovf ./vsphere/vsphere-storage.mf  a| 
+Il file template (`.ovf`) e il file manifest (`.mf`) per la distribuzione di Storage Node basati su macchine virtuali.
+
+
+
+| ${post_edited_translations.segment} | Descrizione 
+
+
+| ${post_edited_translations.segment}  a| 
+Uno script Bash utilizzato per automatizzare il deployment dei nodi della grid virtuale.
+
+
+
+| ./vsphere/deploy-vsphere-ovftool-sample.ini  a| 
+Un esempio di file di configurazione da utilizzare con lo script  `deploy-vsphere-ovftool.sh`.
+
+
+
+| ./vsphere/configure-storagegrid.py  a| 
+Uno script Python utilizzato per automatizzare la configurazione di un sistema StorageGRID.
+
+
+
+| ${post_edited_translations.segment}  a| 
+${post_edited_translations.segment}
+
+
+
+| ./vsphere/storagegrid-ssoauth.py  a| 
+Ecco un esempio di script Python che puoi utilizzare per accedere all'API di gestione della griglia quando il single sign-on (SSO) è abilitato. Puoi utilizzare questo script anche per l'integrazione con Ping Federate.
+
+
+
+| ./vsphere/configure-storagegrid.sample.json  a| 
+Un esempio di file di configurazione da utilizzare con lo script  `configure-storagegrid.py`.
+
+
+
+| ./vsphere/configure-storagegrid.blank.json  a| 
+Un file di configurazione vuoto da utilizzare con lo  `configure-storagegrid.py` script.
+
+
+
+| ./vsphere/storagegrid-ssoauth-azure.py  a| 
+${post_edited_translations.segment}
+
+
+
+| ./vsphere/storagegrid-ssoauth-azure.js  a| 
+Uno script di supporto richiamato dallo script Python di accompagnamento `storagegrid-ssoauth-azure.py` per eseguire interazioni SSO con Azure.
+
+
+
+| ./vsphere/extras/api-schemas  a| 
+${post_edited_translations.segment}
+
+${post_edited_translations.segment}
+
+|===

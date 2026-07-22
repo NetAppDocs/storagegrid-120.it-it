@@ -1,0 +1,65 @@
+---
+permalink: expand/configuring-expanded-storagegrid-system.html 
+sidebar: sidebar 
+keywords: expansion, configuration, StorageGRID 
+summary: 'Dopo aver completato un"espansione, devi eseguire ulteriori passaggi di integrazione e configurazione.' 
+---
+= Configura i nodi e i siti appena aggiunti in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Dopo aver completato un'espansione, devi eseguire ulteriori passaggi di integrazione e configurazione.
+
+.Informazioni su questa attività
+Devi completare le attività di configurazione elencate di seguito per i nodi o i siti della griglia che stai aggiungendo durante l'espansione. Alcune attività potrebbero essere facoltative, a seconda delle opzioni selezionate durante l'installazione e l'amministrazione del sistema e di come vuoi configurare i nodi e i siti aggiunti durante l'espansione.
+
+.Passaggi
+. Se hai aggiunto un sito:
++
+** link:../ilm/creating-storage-pool.html["Crea un pool di storage"] per il sito e per ogni livello di storage che hai selezionato per i nuovi Storage Nodes.
+** Conferma che la policy ILM soddisfi i nuovi requisiti. Se sono necessarie modifiche alle regole, link:../ilm/access-create-ilm-rule-wizard.html["crea nuove regole"] e link:../ilm/creating-ilm-policy.html["aggiorna la policy ILM"]. Se le regole sono già corrette, link:../ilm/creating-ilm-policy.html#activate-ilm-policy["attivare una nuova policy"] senza modifiche alle regole per assicurarti che StorageGRID utilizzi i nuovi nodi.
+** Conferma che i server Network Time Protocol (NTP) siano accessibili da quel sito. Vedi link:../maintain/configuring-ntp-servers.html["Gestisci i server NTP"].
++
+
+CAUTION: Assicurati che almeno due nodi in ogni sito possano accedere ad almeno quattro sorgenti NTP esterne. Se in un sito solo un nodo può raggiungere le sorgenti NTP, si verificheranno problemi di temporizzazione se quel nodo si guasta. Inoltre, designare due nodi per sito come sorgenti NTP primarie garantisce una temporizzazione precisa se un sito è isolato dal resto del grid.
+
+
+
+. Se hai aggiunto uno o più Storage Node a un sito esistente:
++
+** link:../ilm/viewing-storage-pool-details.html["Visualizza i dettagli del pool di storage"]per confermare che ogni nodo aggiunto sia incluso nei pool di storage previsti e utilizzato nelle regole ILM previste.
+** Conferma che la policy ILM soddisfi i nuovi requisiti. Se sono necessarie modifiche alle regole, link:../ilm/access-create-ilm-rule-wizard.html["crea nuove regole"] e link:../ilm/creating-ilm-policy.html["aggiorna la policy ILM"]. Se le regole sono già corrette, link:../ilm/creating-ilm-policy.html#activate-ilm-policy["attivare una nuova policy"] senza modifiche alle regole per assicurarti che StorageGRID utilizzi i nuovi nodi.
+** link:verifying-storage-node-is-active.html["Verifica che il nodo di storage sia attivo"] e in grado di ingerire oggetti.
+** Se non sei riuscito ad aggiungere il numero consigliato di Storage Node, ribilancia i dati codificati con cancellazione. Vedi link:rebalancing-erasure-coded-data-after-adding-storage-nodes.html["Ribilancia i dati codificati con cancellazione dopo l'aggiunta dei nodi di storage"].
+
+
+. Se hai aggiunto un nodo Gateway:
++
+** Se per le connessioni client vengono utilizzati gruppi ad alta disponibilità (HA), puoi aggiungere facoltativamente il nodo Gateway a un gruppo HA. Seleziona *Configurazione* > *Rete* > *Gruppi ad alta disponibilità* per visualizzare l'elenco dei gruppi HA esistenti e aggiungere il nuovo nodo. Vedi link:../admin/configure-high-availability-group.html["Configura i gruppi ad alta disponibilità"].
+
+
+. Se hai aggiunto un nodo amministratore:
++
+.. Se il single sign-on (SSO) è abilitato per il tuo sistema StorageGRID, crea una relying party trust per il nuovo nodo Admin. Non puoi accedere al nodo finché non crei questa relying party trust. Vedi link:../admin/configure-sso.html["Configura single sign-on"].
+.. Se prevedi di utilizzare il servizio Load Balancer sui nodi Admin, puoi aggiungere il nuovo nodo Admin a un gruppo HA. Seleziona *Configuration* > *Network* > *High availability groups* per visualizzare l'elenco dei gruppi HA esistenti e aggiungere il nuovo nodo. Vedi link:../admin/configure-high-availability-group.html["Configura i gruppi ad alta disponibilità"].
+.. Facoltativamente, puoi copiare il database dell'Admin Node dal nodo di amministrazione primario al nodo di amministrazione di espansione se vuoi mantenere coerenti le informazioni sugli attributi e di audit su ciascun Admin Node. Vedi link:copying-admin-node-database.html["Copia il database Admin Node"].
+.. Opzionalmente, copia il database Prometheus dall'Admin Node primario all'Admin Node di espansione se desideri mantenere coerenti le metriche storiche su ciascun Admin Node. Vedi link:copying-prometheus-metrics.html["${post_edited_translations.segment}"].
+.. Facoltativamente, puoi copiare i log di controllo esistenti dal nodo Admin primario al nodo Admin di espansione se vuoi mantenere coerenti le informazioni di log storiche su ciascun nodo Admin. Vedi link:copying-audit-logs.html["${post_edited_translations.segment}"].
+
+
+. ${post_edited_translations.segment}
++
+Se la Rete Client sul nodo di espansione non è attendibile, le connessioni al nodo sulla Rete Client devono essere effettuate utilizzando un endpoint del bilanciatore del carico. Vedi link:../admin/configuring-load-balancer-endpoints.html["${post_edited_translations.segment}"] e link:../admin/manage-firewall-controls.html["Gestisci i controlli del firewall"].
+
+. Configura il DNS.
++
+Se hai specificato le impostazioni DNS separatamente per ciascun nodo della griglia, devi aggiungere impostazioni DNS personalizzate per singolo nodo per i nuovi nodi. Consulta link:../maintain/modifying-dns-configuration-for-single-grid-node.html["${post_edited_translations.segment}"].
+
+
+
+Per garantire il corretto funzionamento, specifica due o tre DNS server. Se ne specifichi più di tre, è possibile che ne vengano utilizzati solo tre a causa di limitazioni note del sistema operativo su alcune piattaforme. Se hai restrizioni di routing nel tuo ambiente, puoi link:../maintain/modifying-dns-configuration-for-single-grid-node.html["personalizza l'elenco dei DNS server"] per fare in modo che i singoli nodi (di solito tutti i nodi di un sito) utilizzino un set diverso di massimo tre DNS server.
+
+Se possibile, usa DNS server a cui ogni sito può accedere localmente per garantire che un sito isolato possa risolvere i fully qualified domain (FQDN) per le destinazioni esterne.

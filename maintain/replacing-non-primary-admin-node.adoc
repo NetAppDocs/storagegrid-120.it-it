@@ -1,0 +1,51 @@
+---
+permalink: maintain/replacing-non-primary-admin-node.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, replace non-primary admin node, replacing non-primary admin node, non-primary admin node 
+summary: 'Per ripristinare un nodo amministrativo non primario, devi prima sostituire l"hardware fisico o virtuale.' 
+---
+= Sostituire il nodo di amministrazione non primario di StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Per ripristinare un nodo amministrativo non primario, devi prima sostituire l'hardware fisico o virtuale.
+
+Puoi sostituire un nodo amministrativo non primario guasto con un nodo amministrativo non primario in esecuzione sulla stessa piattaforma, oppure puoi sostituire un nodo amministrativo non primario in esecuzione su VMware o su un host Linux con un nodo amministrativo non primario ospitato su un'appliance di servizi.
+
+Usa la procedura che corrisponde alla piattaforma di sostituzione che scegli per il nodo. Dopo che hai completato la procedura di sostituzione del nodo (che va bene per tutti i tipi di nodo), quella procedura ti guiderà al passaggio successivo per il ripristino del nodo Admin non primario.
+
+[cols="1a,2a"]
+|===
+| Piattaforma di sostituzione | ${post_edited_translations.segment} 
+
+
+ a| 
+VMware
+ a| 
+link:all-node-types-replacing-vmware-node.html["Sostituisci un nodo VMware"]
+
+
+
+ a| 
+Linux
+ a| 
+link:all-node-types-replacing-linux-node.html["Sostituisci un nodo Linux"]
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+link:replacing-failed-node-with-services-appliance.html["Sostituisci un appliance di servizi"]
+
+
+
+ a| 
+OpenStack
+ a| 
+I file del disco della macchina virtuale e gli script forniti da NetApp per OpenStack non sono più supportati per le operazioni di ripristino. Se devi ripristinare un nodo in esecuzione in una distribuzione OpenStack, scarica i file per il tuo sistema operativo Linux. Poi, segui la procedura per link:all-node-types-replacing-linux-node.html["sostituire un nodo Linux"].
+
+|===

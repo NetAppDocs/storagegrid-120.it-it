@@ -1,0 +1,56 @@
+---
+permalink: maintain/copying-audit-logs-from-failed-non-primary-admin-node.html 
+sidebar: sidebar 
+keywords: storagegrid, audit log, copy audit log, copying audit log, non-primary admin node, non primary admin node 
+summary: Se puoi copiare i log di audit dal nodo Admin guasto, dovresti conservarli per mantenere la registrazione dell’attività e dell’utilizzo del grid. Puoi ripristinare i log di audit conservati sul nodo Admin non primario recuperato dopo che è tornato operativo. 
+---
+= Copia i log di controllo da un nodo di amministrazione StorageGRID non primario guasto
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se puoi copiare i log di audit dal nodo Admin guasto, dovresti conservarli per mantenere la registrazione dell'attività e dell'utilizzo del sistema nella grid. Puoi ripristinare i log di audit conservati sul nodo Admin non primario recuperato dopo che è tornato operativo.
+
+Questa procedura copia i file di log di controllo dal nodo Admin guasto in una posizione temporanea su un nodo della griglia separato. Questi file di log di controllo conservati possono poi essere copiati sul nodo Admin sostitutivo. I file di log di controllo non vengono copiati automaticamente sul nuovo nodo Admin.
+
+A seconda del tipo di errore, potresti non riuscire a copiare i log di audit da un Admin Node guasto. Se la distribuzione ha solo un Admin Node, l'Admin Node ripristinato inizia a registrare gli eventi nel file di log di audit in un nuovo file vuoto e i dati registrati in precedenza vengono persi. Se la distribuzione include più di un Admin Node, puoi recuperare i log di audit da un altro Admin Node.
+
+
+NOTE: Se al momento non puoi accedere ai log di controllo sul nodo Admin guasto, potresti riuscire ad accedervi più tardi, ad esempio dopo il ripristino dell'host.
+
+. Se possibile, accedi al nodo di amministrazione non funzionante. In caso contrario, accedi al nodo di amministrazione principale o a un altro nodo di amministrazione, se disponibile.
++
+.. Inserisci il seguente comando: `ssh admin@grid_node_IP`
+.. Inserisci la password indicata nel file  `Passwords.txt`.
+.. Inserisci il seguente comando per passare all'utente root: `su -`
+.. Inserisci la password indicata nel file  `Passwords.txt`.
+
+
++
+Quando sei connesso come root, il prompt cambia da  `$` a  `#`.
+
+. Interrompi il servizio AMS per impedirgli di creare un nuovo file di log:``service ams stop``
+. ${post_edited_translations.segment}
++
+`cd /var/local/audit/export/`
+
+. Rinomina il file audit.log di origine con un nome file univoco e numerato. Ad esempio, rinomina il file audit.log in  `2023-10-25.txt.1`.
++
+[listing]
+----
+ls -l
+mv audit.log 2023-10-25.txt.1
+----
+. Riavvia il servizio AMS: `service ams start`
+. Crea la directory in cui copiare tutti i file di log di audit in una posizione temporanea su un nodo della griglia separato: `ssh admin@grid_node_IP mkdir -p /var/local/tmp/saved-audit-logs`
++
+Quando richiesto, inserisci la password per admin.
+
+. Copia tutti i file di log di audit nella posizione temporanea: `scp -p * admin@grid_node_IP:/var/local/tmp/saved-audit-logs`
++
+Quando richiesto, inserisci la password per admin.
+
+. Disconnettiti come root: `exit`
+

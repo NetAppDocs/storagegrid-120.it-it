@@ -1,0 +1,88 @@
+---
+permalink: tenant/tenant-management-permissions.html 
+sidebar: sidebar 
+keywords: tenant management permissions 
+summary: 'Prima di creare un gruppo di tenant, considera quali autorizzazioni desideri assegnare a tale gruppo. Le autorizzazioni di gestione del tenant determinano quali attività gli utenti possono eseguire utilizzando il Tenant Manager o l"API di gestione del tenant. Un utente può appartenere a uno o più gruppi. Le autorizzazioni sono cumulative se un utente appartiene a più gruppi.' 
+---
+= Autorizzazioni di gestione del tenant StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Prima di creare un gruppo di tenant, considera quali autorizzazioni desideri assegnare a tale gruppo. Le autorizzazioni di gestione del tenant determinano quali attività gli utenti possono eseguire utilizzando il Tenant Manager o l'API di gestione del tenant. Un utente può appartenere a uno o più gruppi. Le autorizzazioni sono cumulative se un utente appartiene a più gruppi.
+
+Per accedere al Tenant Manager o per utilizzare l'API Tenant Management, gli utenti devono appartenere a un gruppo che dispone di almeno un'autorizzazione. Tutti gli utenti che possono accedere possono eseguire le seguenti attività:
+
+* Visualizza la dashboard
+* ${post_edited_translations.segment}
+
+
+${post_edited_translations.segment}
+
+
+NOTE: Se un utente appartiene a più gruppi e uno qualsiasi di essi è impostato su Sola lettura, l'utente avrà accesso in sola lettura a tutte le impostazioni e funzionalità selezionate.
+
+Puoi assegnare le seguenti autorizzazioni a un gruppo.
+
+[cols="1a,3a,3a"]
+|===
+| Permesso | Descrizione | Dettagli 
+
+
+ a| 
+Accesso root
+ a| 
+Fornisce accesso completo al Tenant Manager e al Tenant Management API.
+ a| 
+
+
+
+ a| 
+Gestisci le tue credenziali S3
+ a| 
+${post_edited_translations.segment}
+ a| 
+Gli utenti che non dispongono di questa autorizzazione non vedono l'opzione di menu *STORAGE (S3)* > *My S3 access keys*.
+
+
+
+ a| 
+Visualizza tutti i bucket
+ a| 
+Consente agli utenti di visualizzare tutti i bucket e le configurazioni dei bucket.
+ a| 
+Gli utenti che non dispongono dell'autorizzazione "Visualizza tutti i bucket" o "Gestisci tutti i bucket" non vedono l'opzione di menu *Bucket*.
+
+Questa autorizzazione è sostituita dall'autorizzazione Manage all buckets. Non influisce sulle policy di gruppo o dei bucket S3 utilizzate dai client S3 o dalla Console S3.
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+${post_edited_translations.segment}
+ a| 
+Gli utenti che non dispongono dell'autorizzazione "Visualizza tutti i bucket" o "Gestisci tutti i bucket" non vedono l'opzione di menu *Bucket*.
+
+Questa autorizzazione sostituisce l'autorizzazione Visualizza tutti i bucket. Non influisce sulle policy dei bucket o dei gruppi S3 utilizzate dai client S3 o dalla S3 Console.
+
+
+
+ a| 
+Gestisci gli endpoint
+ a| 
+Consente agli utenti di utilizzare il Tenant Manager o l'API di gestione dei tenant per creare o modificare gli endpoint dei servizi della piattaforma, che vengono utilizzati come destinazione per i servizi della piattaforma StorageGRID.
+ a| 
+Gli utenti che non dispongono di questa autorizzazione non vedono l'opzione di menu *Endpoint dei servizi della piattaforma*.
+
+
+
+ a| 
+Usa la scheda Console S3
+ a| 
+${post_edited_translations.segment}
+ a| 
+
+|===

@@ -1,0 +1,61 @@
+---
+permalink: maintain/vmware-adding-trunk-or-access-interfaces-to-node.html 
+sidebar: sidebar 
+keywords: add extra interface to node, access interface, VM interface 
+summary: Puoi aggiungere ulteriori interfacce trunk o di accesso a un nodo VM dopo che è stato installato. Le interfacce che aggiungi vengono visualizzate nella pagina delle interfacce VLAN e nella pagina dei gruppi HA. 
+---
+= Aggiungi interfacce trunk o di accesso a un nodo VMware in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi aggiungere un'interfaccia trunk o di accesso a un nodo VM dopo che il nodo è stato installato. Le interfacce che aggiungi vengono visualizzate nella pagina delle interfacce VLAN e nella pagina dei gruppi HA.
+
+.Prima di iniziare
+* Hai accesso alle istruzioni per link:../swnodes/index.html["installare StorageGRID sulla tua piattaforma VMware"].
+* Hai macchine virtuali VMware per Admin Node e Gateway Node.
+* Hai una sottorete di rete che non viene utilizzata come Grid, Admin o Client Network.
+* Hai il file  `Passwords.txt`.
+* Hai link:../admin/admin-group-permissions.html["autorizzazioni di accesso specifiche"].
+
+
+
+CAUTION: Non tentare di aggiungere interfacce a un nodo mentre è in corso un aggiornamento software, una procedura di ripristino o una procedura di espansione.
+
+.Informazioni su questa attività
+Segui questi passaggi per aggiungere una o più interfacce aggiuntive a un nodo VMware dopo che il nodo è stato installato. Ad esempio, potresti voler aggiungere un'interfaccia trunk a un nodo Admin o Gateway, così puoi usare le interfacce VLAN per separare il traffico appartenente a diverse applicazioni o tenant. Oppure potresti voler aggiungere un'interfaccia di accesso da usare in un gruppo ad alta disponibilità (HA).
+
+Se aggiungi un'interfaccia trunk, devi configurare un'interfaccia VLAN in StorageGRID. Se aggiungi un'interfaccia di accesso, puoi aggiungere l'interfaccia direttamente a un gruppo HA; non devi configurare un'interfaccia VLAN.
+
+Il nodo potrebbe risultare non disponibile per un breve periodo quando aggiungi interfacce.
+
+.Passaggi
+. In vCenter, aggiungi una nuova scheda di rete (tipo VMXNET3) a una VM del nodo Admin e del nodo Gateway. Seleziona le caselle di controllo *Connected* e *Connect At Power On*.
++
+image:vcenter.png["vCenter"]
+
+. Utilizza SSH per accedere al nodo Admin o al nodo Gateway.
+. Usa  `ip link show` per confermare che la nuova interfaccia di rete ens256 è stata rilevata.
++
+[listing]
+----
+ip link show
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1400 qdisc mq state UP mode DEFAULT group default qlen 1000
+    link/ether 00:50:56:a0:4e:5b brd ff:ff:ff:ff:ff:ff
+3: eth1: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ether 00:50:56:a0:fa:ce brd ff:ff:ff:ff:ff:ff
+4: eth2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1400 qdisc mq state UP mode DEFAULT group default qlen 1000
+    link/ether 00:50:56:a0:d6:87 brd ff:ff:ff:ff:ff:ff
+5: ens256: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq master ens256vrf state UP mode DEFAULT group default qlen 1000
+    link/ether 00:50:56:a0:ea:88 brd ff:ff:ff:ff:ff:ff
+----
+
+
+.Dopo aver finito
+* Se hai aggiunto una o più interfacce trunk, vai a link:../admin/configure-vlan-interfaces.html["configurare le interfacce VLAN"] per configurare una o più interfacce VLAN per ogni nuova interfaccia principale.
+* Se hai aggiunto una o più interfacce di accesso, vai a link:../admin/configure-high-availability-group.html["configurare i gruppi ad alta disponibilità"] per aggiungere le nuove interfacce direttamente ai gruppi HA.
+

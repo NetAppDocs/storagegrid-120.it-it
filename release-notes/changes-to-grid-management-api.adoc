@@ -1,0 +1,56 @@
+---
+permalink: release-notes/changes-to-grid-management-api.html 
+sidebar: sidebar 
+keywords: grid management api, api, api version, swagger, rest api, usageCacheDuration 
+summary: 'StorageGRID 12.0 utilizza la versione 4 dell"API di gestione della griglia. La versione 4 depreca la versione 3. Tuttavia, le versioni 1, 2 e 3 sono ancora supportate.' 
+---
+= Modifiche all'API di gestione della griglia in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID 12.0 utilizza la versione 4 della Grid Management API. La versione 4 rende obsoleta la versione 3; tuttavia, le versioni 1, 2 e 3 sono ancora supportate.
+
+
+NOTE: Puoi continuare a usare le versioni obsolete dell'API di gestione con StorageGRID 12.0; tuttavia, il supporto per queste versioni dell'API verrà rimosso in una versione futura di StorageGRID. Dopo l'aggiornamento a StorageGRID 12.0, puoi disattivare le API obsolete usando l' `PUT /grid/config/management`API.
+
+Per saperne di più, vai su link:../admin/using-grid-management-api.html["Usa l'API di gestione della griglia"].
+
+
+
+[[new-endpoints-for-branch-buckets]]
+== Nuovi endpoint per i bucket di filiale
+
+Sono stati aggiunti i seguenti endpoint per consentirti di link:../tenant/what-is-branch-bucket.html["gestisci i bucket dei branch"]:
+
+`GET /org/containers/{branchBucketName}/branch`
+
+`PUT /org/containers/{branchBucketName}/branch`
+
+
+
+[[new-private-endpoints-for-move-adc]]
+== Nuovi endpoint privati per Move ADC
+
+Sono stati aggiunti i seguenti endpoint privati per permetterti di link:../maintain/move-adc-service.html["sposta il servizio ADC"] da un nodo di storage a un altro nello stesso sito:
+
+`/private/move-adc`
+
+`/private/move-adc/start`
+
+`/private/move-adc/retry`
+
+
+
+[[new-private-endpoints-for-convert-to-data-only-node]]
+== Nuovi endpoint privati per Convert to data-only node
+
+I seguenti endpoint privati sono stati aggiunti per permetterti di link:../maintain/convert-to-data-only-node.html["converti uno o più nodi di Storage combinati"] che non contengono il servizio ADC nei nodi solo dati.
+
+`/private/convert-to-data-only-node`
+
+`/private/convert-to-data-only-node/start`
+
+`/private/convert-to-data-only-node/retry`

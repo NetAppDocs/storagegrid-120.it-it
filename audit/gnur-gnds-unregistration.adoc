@@ -1,0 +1,42 @@
+---
+permalink: audit/gnur-gnds-unregistration.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, GNUR, GNDS Unregistration 
+summary: Il servizio CMN genera questo messaggio di controllo quando un servizio ha annullato la registrazione delle informazioni su se stesso dal sistema StorageGRID. 
+---
+= Messaggio di audit GNUR per l'annullamento della registrazione GNDS in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Il servizio CMN genera questo messaggio di controllo quando un servizio ha annullato la registrazione delle informazioni su se stesso dal sistema StorageGRID.
+
+[cols="1a,1a,4a"]
+|===
+| Codice | Campo | Descrizione 
+
+
+ a| 
+RSLT
+ a| 
+Risultato
+ a| 
+Risultato della richiesta di aggiornamento:
+
+* SUCS: Operazione riuscita
+* ${post_edited_translations.segment}
+* ${post_edited_translations.segment}
+
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+ID nodo
+ a| 
+${post_edited_translations.segment}
+
+|===

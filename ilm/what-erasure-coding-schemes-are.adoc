@@ -1,0 +1,354 @@
+---
+permalink: ilm/what-erasure-coding-schemes-are.html 
+sidebar: sidebar 
+keywords: erasure-coding scheme 
+summary: Gli schemi di codifica a cancellazione controllano quanti frammenti di dati e quanti frammenti di parità vengono creati per ciascun oggetto. 
+---
+= Scopri gli schemi di codifica di cancellazione in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Gli schemi di codifica a cancellazione controllano quanti frammenti di dati e quanti frammenti di parità vengono creati per ciascun oggetto.
+
+Quando crei o modifichi una regola ILM, selezioni uno schema di erasure coding disponibile. StorageGRID crea automaticamente gli schemi di erasure coding in base a quanti Storage Node e siti compongono il pool di storage che vuoi usare.
+
+
+
+[[data-protection]]
+== Protezione dei dati
+
+Il sistema StorageGRID utilizza l'algoritmo di codifica di cancellazione Reed-Solomon. L'algoritmo suddivide un oggetto in  `k` frammenti di dati e calcola  `m` frammenti di parità.
+
+I  `k + m = n`frammenti sono distribuiti tra  `n`Storage Nodes per fornire la protezione dei dati come segue:
+
+* Per recuperare o riparare un oggetto,  `k` sono necessari dei frammenti.
+* Un oggetto può tollerare fino a  `m` frammenti persi o corrotti. Maggiore è il valore di  `m`, maggiore è la tolleranza ai guasti.
+
+
+La migliore protezione dei dati è garantita dallo schema di codifica di cancellazione con la più alta tolleranza ai guasti di nodi o volumi all'interno di un pool di storage.
+
+
+
+[[storage-overhead]]
+== Overhead dello storage
+
+L'overhead dello storage di uno schema di codifica a cancellazione si calcola dividendo il numero di frammenti di parità (`m` per il numero di frammenti di dati (`k`. Puoi usare l'overhead dello storage per calcolare quanto spazio su disco richiede ciascun oggetto codificato a cancellazione:
+
+`_disk space_ = _object size_ + (_object size_ * _storage overhead_)`
+
+Ad esempio, se memorizzi un oggetto da 10 MB utilizzando lo schema 4+2 (che presenta un overhead dello storage del 50%), l'oggetto consuma 15 MB di grid storage. Se memorizzi lo stesso oggetto da 10 MB utilizzando lo schema 6+2 (che presenta un overhead dello storage del 33%), l'oggetto consuma circa 13,3 MB.
+
+Seleziona lo schema di codifica di cancellazione con il valore totale più basso di `k+m` che soddisfa le tue esigenze. Gli schemi di codifica di cancellazione con un numero inferiore di frammenti sono più efficienti dal punto di vista computazionale perché:
+
+* Vengono creati e distribuiti (o recuperati) meno frammenti per ogni oggetto
+* Mostrano prestazioni migliori perché la dimensione del frammento è maggiore
+* Possono richiedere l'aggiunta di un minor numero di nodi in unlink:../expand/index.html["espansione quando è necessario più storage"]
+
+
+
+
+[[guidelines-for-storage-pools]]
+== Linee guida per i pool di storage
+
+Quando selezioni il pool di storage da usare per una regola che creerà una copia con codifica di cancellazione, segui queste linee guida per i pool di storage:
+
+* Il pool di storage deve includere tre o più siti, oppure esattamente un sito.
++
+
+NOTE: Non puoi usare la codifica di cancellazione se il pool di storage include due siti.
+
++
+** <<Schemi di codifica di cancellazione per pool di storage contenenti tre o più siti,Schemi di codifica di cancellazione per pool di storage contenenti tre o più siti>>
+** <<Schemi di codifica a cancellazione per pool di storage a sito singolo,Schemi di codifica a cancellazione per pool di storage a sito singolo>>
+
+
+* Non usare un pool di storage che includa il sito All Sites.
+* Il pool di storage dovrebbe includere almeno  `_k+m_ +1` Storage Nodes in grado di memorizzare dati oggetto.
++
+
+NOTE: I nodi di archiviazione possono essere configurati durante l'installazione per contenere dati degli oggetti e metadati ("nodo di archiviazione combinato"), solo metadati degli oggetti o solo dati degli oggetti. Per ulteriori informazioni, consulta link:../primer/what-storage-node-is.html#types-of-storage-nodes["Tipi di nodi di archiviazione"].
+
++
+Il numero minimo di Storage Node richiesti è `k+m`. Tuttavia, avere almeno un Storage Node aggiuntivo può aiutare a prevenire errori di acquisizione o arretrati ILM se un Storage Node richiesto non è temporaneamente disponibile.
+
+
+
+
+
+[[erasure-coding-schemes-for-storage-pools-containing-three-or-more-sites]]
+== Schemi di codifica di cancellazione per pool di storage contenenti tre o più siti
+
+La tabella seguente descrive gli schemi di codifica di cancellazione attualmente supportati da StorageGRID per i pool di storage che includono tre o più siti. Tutti questi schemi offrono protezione in caso di perdita di un sito. Un sito può andare perso e l'oggetto sarà comunque accessibile.
+
+Per gli schemi di codifica di cancellazione che forniscono protezione dalla perdita del sito, il numero consigliato di nodi di archiviazione nel pool di storage supera `_k+m_ +1` perché ogni sito richiede un minimo di tre nodi di archiviazione.
+
+[cols="1a,1a,1a,1a,1a,1a"]
+|===
+| Schema di codifica a cancellazione (_k+m_) | Numero minimo di siti distribuiti | Numero consigliato di Storage Node in ciascun sito | Numero totale consigliato di Storage Node | Protezione contro la perdita del sito? | Overhead dello storage 
+
+
+ a| 
+4+2
+ a| 
+3
+ a| 
+3
+ a| 
+9
+ a| 
+Sì
+ a| 
+50%
+
+
+
+ a| 
+6+2
+ a| 
+4
+ a| 
+3
+ a| 
+12
+ a| 
+Sì
+ a| 
+33%
+
+
+
+ a| 
+8+2
+ a| 
+5
+ a| 
+3
+ a| 
+15
+ a| 
+Sì
+ a| 
+25%
+
+
+
+ a| 
+6+3
+ a| 
+3
+ a| 
+4
+ a| 
+12
+ a| 
+Sì
+ a| 
+50%
+
+
+
+ a| 
+9+3
+ a| 
+4
+ a| 
+4
+ a| 
+16
+ a| 
+Sì
+ a| 
+33%
+
+
+
+ a| 
+2+1
+ a| 
+3
+ a| 
+3
+ a| 
+9
+ a| 
+Sì
+ a| 
+50%
+
+
+
+ a| 
+4+1
+ a| 
+5
+ a| 
+3
+ a| 
+15
+ a| 
+Sì
+ a| 
+25%
+
+
+
+ a| 
+6+1
+ a| 
+7
+ a| 
+3
+ a| 
+21
+ a| 
+Sì
+ a| 
+17%
+
+
+
+ a| 
+7+5
+ a| 
+3
+ a| 
+5
+ a| 
+15
+ a| 
+Sì
+ a| 
+71%
+
+|===
+
+NOTE: StorageGRID richiede un minimo di tre Storage Node per sito. Per utilizzare lo schema 7+5, ogni sito richiede un minimo di quattro Storage Node. Si consiglia di utilizzare cinque Storage Node per sito.
+
+Quando scegli uno schema di codifica di cancellazione che offre la protezione del sito, bilancia l'importanza relativa dei seguenti fattori:
+
+* *Numero di frammenti*: Le prestazioni e la flessibilità di espansione sono generalmente migliori quando il numero totale di frammenti è inferiore.
+* *Tolleranza ai guasti*: La tolleranza ai guasti aumenta con un maggior numero di segmenti di parità (ovvero, quando  `m` ha un valore più elevato.)
+* *Traffico di rete*: Durante il ripristino da guasti, l'utilizzo di uno schema con più frammenti (ovvero, un totale più elevato per  `k+m`) crea più traffico di rete.
+* *Overhead dello storage*: Gli schemi con un overhead maggiore richiedono più spazio di storage per oggetto.
+
+
+Ad esempio, quando decidi tra uno schema 4+2 e uno schema 6+3 (entrambi con overhead dello storage del 50%), scegli lo schema 6+3 se hai bisogno di una tolleranza ai guasti aggiuntiva. Scegli invece lo schema 4+2 se le risorse di rete sono limitate. Se tutti gli altri fattori sono uguali, scegli il 4+2 perché ha un numero totale di frammenti inferiore.
+
+
+NOTE: Se non sei sicuro di quale schema utilizzare, seleziona 4+2 o 6+3 oppure contatta il supporto tecnico.
+
+
+
+[[erasure-coding-schemes-for-one-site-storage-pools]]
+== Schemi di codifica a cancellazione per pool di storage a sito singolo
+
+Un pool di storage con un solo sito supporta tutti gli schemi di codifica di cancellazione definiti per tre o più siti, a condizione che il sito disponga di un numero sufficiente di Storage Node.
+
+Il numero minimo di Storage Node richiesti è  `k+m`, ma è consigliato un pool di storage con  `k+m +1` Storage Node. Ad esempio, lo schema di erasure-coding 2+1 richiede un pool di storage con un minimo di tre Storage Node, ma è consigliato utilizzarne quattro.
+
+[cols="1a,1a,1a,1a"]
+|===
+| Schema di codifica a cancellazione (_k+m_) | Numero minimo di Storage Node | Numero consigliato di Storage Node | Overhead dello storage 
+
+
+ a| 
+4+2
+ a| 
+6
+ a| 
+7
+ a| 
+50%
+
+
+
+ a| 
+6+2
+ a| 
+8
+ a| 
+9
+ a| 
+33%
+
+
+
+ a| 
+8+2
+ a| 
+10
+ a| 
+11
+ a| 
+25%
+
+
+
+ a| 
+6+3
+ a| 
+9
+ a| 
+10
+ a| 
+50%
+
+
+
+ a| 
+9+3
+ a| 
+12
+ a| 
+13
+ a| 
+33%
+
+
+
+ a| 
+2+1
+ a| 
+3
+ a| 
+4
+ a| 
+50%
+
+
+
+ a| 
+4+1
+ a| 
+5
+ a| 
+6
+ a| 
+25%
+
+
+
+ a| 
+6+1
+ a| 
+7
+ a| 
+8
+ a| 
+17%
+
+
+
+ a| 
+7+5
+ a| 
+12
+ a| 
+13
+ a| 
+71%
+
+|===

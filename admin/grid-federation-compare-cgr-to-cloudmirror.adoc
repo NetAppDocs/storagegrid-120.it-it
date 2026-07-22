@@ -1,0 +1,143 @@
+---
+permalink: admin/grid-federation-compare-cgr-to-cloudmirror.html 
+sidebar: sidebar 
+keywords: cross-grid replication, cloudmirror replication 
+summary: Quando inizi a utilizzare la federazione di grid, esamina le somiglianze e le differenze tra la replica cross-grid e il servizio di replica CloudMirror di StorageGRID. 
+---
+= Confronta la replica cross-grid e la replica CloudMirror in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Quando inizi a utilizzare Grid Federation, esamina le somiglianze e le differenze tra link:grid-federation-what-is-cross-grid-replication.html["replicazione cross-grid"] e la link:../tenant/understanding-cloudmirror-replication-service.html["StorageGRID CloudMirror servizio di replica"].
+
+
+NOTE: Non puoi usare CloudMirror su un bucket replicato tramite replica cross-grid, e viceversa.
+
+[cols="1a,3a,3a"]
+|===
+|  | Replicazione cross-grid | servizio di replica CloudMirror 
+
+
+ a| 
+Qual è lo scopo principale?
+ a| 
+Un sistema StorageGRID funge da sistema di ripristino di emergenza. Gli oggetti in un bucket possono essere replicati tra le griglie in una o entrambe le direzioni.
+ a| 
+Consente a un tenant di replicare automaticamente gli oggetti da un bucket in StorageGRID (source) a un bucket S3 esterno (destinazione).
+
+La replica CloudMirror crea una copia indipendente di un oggetto in un'infrastruttura S3 indipendente. Questa copia indipendente non viene utilizzata come backup, ma viene spesso ulteriormente elaborata nel cloud.
+
+
+
+ a| 
+Come si configura?
+ a| 
+. ${post_edited_translations.segment}
+. Aggiungi nuovi account tenant, che vengono clonati automaticamente nell'altra griglia.
+. Aggiungi nuovi gruppi di tenant e utenti, che vengono anch'essi clonati.
+. Crea i bucket corrispondenti su ciascuna griglia e abilita la replica tra griglie in una o entrambe le direzioni.
+
+ a| 
+. Un utente tenant configura la replica CloudMirror definendo un endpoint CloudMirror (indirizzo IP, credenziali e così via) utilizzando il Tenant Manager o l'API S3.
+. Qualsiasi bucket di proprietà di quell'account tenant può essere configurato per puntare all'endpoint CloudMirror.
+
+
+
+
+ a| 
+Chi è responsabile della configurazione?
+ a| 
+* Un amministratore della grid configura la connessione e i tenant.
+* Gli utenti del tenant configurano gruppi, utenti, chiavi e bucket.
+
+ a| 
+In genere, un tenant.
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Un bucket S3 corrispondente e identico sull'altro sistema StorageGRID nella connessione di federazione grid.
+ a| 
+* ${post_edited_translations.segment}
+* ${post_edited_translations.segment}
+
+
+
+
+ a| 
+È necessario il versioning degli oggetti?
+ a| 
+Sì, sia il bucket di origine che quello di destinazione devono avere la gestione delle versioni degli oggetti abilitata.
+ a| 
+No, la replica CloudMirror supporta qualsiasi combinazione di bucket non versionati e versionati sia sull'origine che sulla destinazione.
+
+
+
+ a| 
+Cosa fa sì che gli oggetti vengano spostati verso la destinazione?
+ a| 
+Gli oggetti vengono replicati automaticamente quando vengono aggiunti a un bucket che ha la replica tra griglie abilitata.
+ a| 
+Gli oggetti vengono replicati automaticamente quando vengono aggiunti a un bucket configurato con un endpoint CloudMirror. Gli oggetti che esistevano nel bucket di origine prima che il bucket venisse configurato con l'endpoint CloudMirror non vengono replicati, a meno che non vengano modificati.
+
+
+
+ a| 
+Come vengono replicati gli oggetti?
+ a| 
+La replica tra griglie crea oggetti versionati e replica l'ID di versione dal bucket di origine al bucket di destinazione. Questo permette di mantenere l'ordine delle versioni su entrambe le griglie.
+ a| 
+La replica CloudMirror non richiede bucket con abilitazione del controllo delle versioni, pertanto CloudMirror può mantenere l'ordinamento solo per una chiave all'interno di un sito. Non vi è alcuna garanzia che l'ordinamento venga mantenuto per le richieste a un oggetto in un sito diverso.
+
+
+
+ a| 
+Cosa succede se un oggetto non può essere replicato?
+ a| 
+L'oggetto è in coda per la replica, soggetto ai limiti di archiviazione dei metadati.
+ a| 
+L'oggetto viene messo in coda per la replica, soggetto ai limiti dei servizi della piattaforma (vedi link:manage-platform-services-for-tenants.html["Raccomandazioni per l'utilizzo dei servizi della piattaforma"]).
+
+
+
+ a| 
+I metadati di sistema dell'oggetto vengono replicati?
+ a| 
+Sì, quando un oggetto viene replicato sull'altra grid, vengono replicati anche i suoi metadati di sistema. I metadati saranno identici su entrambe le grid.
+ a| 
+No, quando un oggetto viene replicato nel bucket esterno, i suoi metadati di sistema vengono aggiornati. I metadati saranno diversi tra le varie posizioni, a seconda del momento dell'ingestione e del comportamento dell'infrastruttura S3 indipendente.
+
+
+
+ a| 
+Come recuperi gli oggetti?
+ a| 
+Le applicazioni possono recuperare o leggere oggetti effettuando una richiesta al bucket su una delle due grid.
+ a| 
+Le applicazioni possono recuperare o leggere oggetti effettuando una richiesta a StorageGRID o alla destinazione S3. Ad esempio, supponi di usare la replica CloudMirror per copiare gli oggetti in un'organizzazione partner. Il partner può usare le proprie applicazioni per leggere o aggiornare gli oggetti direttamente dalla destinazione S3. Non è necessario usare StorageGRID.
+
+
+
+ a| 
+Cosa succede se elimini un oggetto?
+ a| 
+* Le richieste di eliminazione che includono un ID di versione non vengono mai replicate nella grid di destinazione.
+* Le richieste di eliminazione che non includono un ID di versione aggiungono un indicatore di eliminazione al bucket di origine, che può essere facoltativamente replicato nella grid di destinazione.
+* Se la replica tra griglie è configurata solo in una direzione, gli oggetti nel bucket di destinazione possono essere eliminati senza influire sulla fonte.
+
+ a| 
+${post_edited_translations.segment}
+
+* Se entrambi i bucket sono versionati, una richiesta di eliminazione aggiunge un indicatore di eliminazione in entrambe le posizioni.
+* ${post_edited_translations.segment}
+* Se nessuno dei due bucket è versionato, una richiesta di eliminazione cancellerà l'oggetto dall'origine ma non dalla destinazione.
+
+
+${post_edited_translations.segment}
+
+|===

@@ -1,0 +1,26 @@
+---
+permalink: network/post-installation-guidelines.html 
+sidebar: sidebar 
+keywords: networking after installation, dhcp networking 
+summary: 'Dopo aver completato l"implementazione e la configurazione del nodo della griglia, segui queste linee guida per le modifiche all"indirizzamento DHCP e alla configurazione di rete.' 
+---
+= Linee guida post-installazione per StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Dopo aver completato l'implementazione e la configurazione del nodo della griglia, segui queste linee guida per le modifiche all'indirizzamento DHCP e alla configurazione di rete.
+
+* Se per l'assegnazione degli indirizzi IP hai usato DHCP, configura una prenotazione DHCP per ogni indirizzo IP sulle reti utilizzate.
++
+Puoi configurare il DHCP solo durante la fase di implementazione. Non puoi configurare il DHCP durante la configurazione.
+
++
+
+CAUTION: I nodi si riavviano quando la configurazione della Grid Network viene modificata dal DHCP, il che può causare interruzioni se una modifica DHCP interessa più nodi contemporaneamente.
+
+* Devi usare le procedure di modifica IP se vuoi cambiare gli indirizzi IP, le maschere di sottorete e i gateway predefiniti per un nodo del grid. Vedi link:../maintain/configuring-ip-addresses.html["Configura gli indirizzi IP"].
+* Se apporti modifiche alla configurazione di rete, incluse modifiche al routing e al gateway, la connettività dei client al nodo Admin primario e agli altri nodi del grid potrebbe andare persa. A seconda delle modifiche di rete applicate, potresti dover ristabilire queste connessioni.
+

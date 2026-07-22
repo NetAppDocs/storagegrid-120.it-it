@@ -1,0 +1,221 @@
+---
+permalink: expand/performing-expansion.html 
+sidebar: sidebar 
+keywords: expand, expansion procedure, StorageGRID 
+summary: ${post_edited_translations.segment} 
+---
+= Esegui un'espansione di StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+${post_edited_translations.segment}
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* ${post_edited_translations.segment}
+* Hai distribuito tutti i nodi della griglia che vengono aggiunti in questa espansione.
+* Hai il link:../admin/admin-group-permissions.html["Permesso di manutenzione o di accesso root"].
+* Se stai aggiungendo nodi di storage, hai confermato che tutte le operazioni di ripristino dei dati eseguite come parte di un ripristino sono completate. Vedi link:../maintain/checking-data-repair-jobs.html["Verifica i lavori di riparazione dei dati"].
+* Se stai aggiungendo nodi di archiviazione e vuoi assegnare un livello di archiviazione personalizzato a quei nodi, hai già link:../ilm/creating-and-assigning-storage-grades.html["creato il grado di storage personalizzato"]. Hai anche o il permesso di accesso root oppure sia il permesso di manutenzione che quello ILM.
+* Se stai aggiungendo un nuovo sito, hai rivisto e aggiornato le regole ILM. Devi assicurarti che le copie degli oggetti non vengano memorizzate nel nuovo sito fino al completamento dell'espansione. Ad esempio, se una regola utilizza il pool di storage (*All Storage Nodes*), devi link:../ilm/creating-storage-pool.html["${post_edited_translations.segment}"] che contenga solo i nodi di storage esistenti e link:../ilm/working-with-ilm-rules-and-ilm-policies.html["aggiornare le regole ILM"] e la policy ILM per usare quel nuovo pool di storage. Altrimenti, gli oggetti verranno copiati nel nuovo sito non appena il primo nodo di quel sito diventa attivo.
+
+
+.Informazioni su questa attività
+L'espansione include queste principali attività utente:
+
+. Configura l'espansione.
+. Avvia l'espansione.
+. Scarica un nuovo file del pacchetto di ripristino.
+. ${post_edited_translations.segment}
++
+
+CAUTION: Alcuni passaggi e fasi di espansione potrebbero richiedere un tempo significativo su una griglia di grandi dimensioni. Ad esempio, lo streaming di Cassandra verso un nuovo Storage Node potrebbe richiedere solo pochi minuti se il database Cassandra è vuoto. Tuttavia, se il database Cassandra include una grande quantità di metadati degli oggetti, questa fase potrebbe richiedere diverse ore o anche di più. Non riavviare alcun Storage Node durante le fasi "Expanding the Cassandra cluster" o "Starting Cassandra and streaming data".
+
+
+
+.Passaggi
+. ${post_edited_translations.segment}
++
+Viene visualizzata la pagina Espansione griglia. La sezione Nodi in sospeso elenca i nodi pronti per essere aggiunti.
+
++
+image:grid_expansion_page.png["screenshot che mostra la pagina Grid Expansion"]
+
+. Seleziona *Configura espansione*.
++
+Viene visualizzata la finestra di dialogo Site Selection.
+
+. Seleziona il tipo di espansione che stai avviando:
++
+** Se stai aggiungendo un nuovo sito, seleziona *Nuovo* e inserisci il nome del nuovo sito.
+** Se stai aggiungendo uno o più nodi a un sito esistente, seleziona *Esistente*.
+
+
+. Seleziona *Salva*.
+. Esamina l'elenco *Nodi in sospeso* e verifica che mostri tutti i nodi della griglia che hai distribuito.
++
+Se necessario, puoi posizionare il cursore sull'indirizzo MAC della Grid Network di un nodo per vedere i dettagli su quel nodo.
+
++
+image:grid_node_details.png["screenshot dei dettagli del nodo della griglia"]
+
++
+
+NOTE: Se un nodo risulta mancante, verifica che sia stato distribuito correttamente.
+
+. Dall'elenco dei nodi in sospeso, approva i nodi che vuoi aggiungere a questa espansione.
++
+.. Seleziona il pulsante di opzione accanto al primo nodo della grid in sospeso che vuoi approvare.
+.. Seleziona *Approva*.
++
+${post_edited_translations.segment}
+
+.. Se necessario, modifica le impostazioni generali:
++
+[cols="1a,2a"]
+|===
+| Campo | Descrizione 
+
+
+ a| 
+Sito
+ a| 
+Il nome del sito a cui verrà associato il nodo della griglia. Se aggiungi più nodi, assicurati di selezionare il sito corretto per ciascun nodo. Se aggiungi un nuovo sito, tutti i nodi vengono aggiunti al nuovo sito.
+
+
+
+ a| 
+Nome
+ a| 
+Il nome di sistema del nodo. I nomi di sistema sono necessari per le operazioni interne di StorageGRID e non possono essere modificati.
+
+
+
+ a| 
+Tipo di storage (solo Storage Nodes)
+ a| 
+*** ${post_edited_translations.segment}
+*** *Solo dati*: Nodo di storage contenente solo dati oggetto (nessun metadati)
+*** ${post_edited_translations.segment}
+
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Il ruolo del Network Time Protocol (NTP) del nodo della griglia:
+
+*** Seleziona *Automatico* (impostazione predefinita) per assegnare automaticamente il ruolo NTP al nodo. Il ruolo Primary verrà assegnato ai nodi Admin, ai nodi Storage con servizi ADC, ai nodi Gateway e a tutti i nodi grid con indirizzi IP non statici. Il ruolo Client verrà assegnato a tutti gli altri nodi grid.
+*** Seleziona *Primario* per assegnare manualmente il ruolo NTP primario al nodo. Almeno due nodi in ogni sito dovrebbero avere il ruolo Primario per garantire l'accesso ridondante del sistema alle sorgenti di temporizzazione esterne.
+*** ${post_edited_translations.segment}
+
+
+
+
+ a| 
+Servizio ADC (nodi Storage combinati o solo metadati)
+ a| 
+Se questo Storage Node eseguirà il servizio Administrative Domain Controller (ADC). Il servizio ADC tiene traccia della posizione e della disponibilità dei servizi grid. Almeno tre Storage Node in ciascun sito devono includere il servizio ADC.
+
+*** Seleziona *Sì* se il Storage Node che stai sostituendo include il servizio ADC. Poiché non puoi decommissionare un Storage Node se rimarrebbero troppo pochi servizi ADC, questa impostazione garantisce che un nuovo servizio ADC sia disponibile prima che il vecchio servizio venga rimosso.
+*** Puoi link:../maintain/move-adc-service.html["${post_edited_translations.segment}"] per garantire che venga raggiunto il quorum del servizio ADC.
+*** Seleziona *Automatico* per far decidere al sistema se questo nodo richiede il servizio ADC.
+
+
+Scopri il link:../maintain/understanding-adc-service-quorum.html["quorum ADC"].
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Utilizza il livello di storage *Default* oppure seleziona il livello di storage personalizzato che vuoi assegnare a questo nuovo nodo.
+
+I livelli di archiviazione vengono utilizzati dai pool di storage di ILM, quindi la tua selezione può influire su quali oggetti verranno posizionati sullo Storage Node.
+
+|===
+.. Se necessario, modifica le impostazioni per la Grid Network, l'Admin Network e la Client Network.
++
+*** *Indirizzo IPv4 (CIDR)*: l'indirizzo di rete CIDR per l'interfaccia di rete. Ad esempio: 172.16.10.100/24
++
+
+NOTE: Se scopri che i nodi hanno indirizzi IP duplicati sulla Grid Network mentre stai approvando i nodi, devi annullare l'espansione, ridistribuire le macchine virtuali o gli appliance con un IP non duplicato e riavviare l'espansione.
+
+*** *Gateway*: Il gateway predefinito del nodo della griglia. Ad esempio: 172.16.10.1
+*** *Sottoreti (CIDR)*: Una o più sottoreti per l'Admin Network.
+
+
+.. Seleziona *Salva*.
++
+${post_edited_translations.segment}
+
++
+*** Per modificare le proprietà di un nodo della griglia approvato, seleziona il pulsante di opzione corrispondente e seleziona *Modifica*.
+*** Per riportare un nodo della griglia approvato nell'elenco dei nodi in sospeso, seleziona il pulsante di opzione corrispondente e seleziona *Ripristina*.
+*** Per rimuovere definitivamente un nodo della griglia approvato, spegni il nodo. Poi seleziona il suo pulsante di opzione e seleziona *Rimuovi*.
+
+
+.. Ripeti questi passaggi per ogni nodo della griglia in sospeso che vuoi approvare.
++
+
+NOTE: Se possibile, approva tutte le note della griglia in sospeso ed esegui un'unica espansione. Se esegui più espansioni di piccole dimensioni, ci vorrà più tempo.
+
+
+
+. Dopo aver approvato tutti i nodi della griglia, inserisci la *Provisioning Passphrase* e seleziona *Expand*.
++
+Dopo alcuni minuti, questa pagina si aggiorna per visualizzare lo stato della procedura di espansione. Quando sono in corso operazioni che interessano singoli nodi della griglia, la sezione Stato dei nodi della griglia elenca lo stato corrente di ciascun nodo della griglia.
+
++
+
+NOTE: Durante la fase "Installazione dei nodi della griglia" per una nuova appliance, StorageGRID Appliance Installer mostra il passaggio dell'installazione dalla Fase 3 alla Fase 4, Finalizzazione dell'installazione. Al termine della Fase 4, il controller si riavvia.
+
++
+
+NOTE: L'espansione di un sito include un'attività aggiuntiva per configurare Cassandra per il nuovo sito.
+
+. Non appena compare il link *Scarica il pacchetto di ripristino*, scarica il file del pacchetto di ripristino.
++
+Devi scaricare una copia aggiornata del file del pacchetto di ripristino il prima possibile dopo aver apportato modifiche alla topologia della griglia al sistema StorageGRID. Il file del pacchetto di ripristino ti consente di ripristinare il sistema se si verifica un guasto.
+
++
+.. ${post_edited_translations.segment}
+.. Inserisci la passphrase di provisioning e seleziona *Start Download*.
+.. Al termine del download, apri il `.zip` file e verifica di poter accedere al contenuto, incluso il `Passwords.txt` file.
+.. Copia il file del pacchetto di ripristino scaricato (`.zip` in due posizioni sicure, protette e separate.
++
+
+CAUTION: Il file del pacchetto di ripristino deve essere protetto perché contiene chiavi di crittografia e password che possono essere utilizzate per ottenere dati dal sistema StorageGRID.
+
+
+
+. Se stai aggiungendo Storage Nodes a un sito esistente o aggiungendo un sito, monitora le fasi di Cassandra, che si verificano quando i servizi vengono avviati sui nuovi nodi della grid.
++
+
+CAUTION: Non riavviare alcun Storage Node durante le fasi "Espansione del cluster Cassandra" o "Avvio di Cassandra e streaming dei dati". Queste fasi potrebbero richiedere molte ore per essere completate per ciascun nuovo Storage Node, specialmente se i Storage Node esistenti contengono una grande quantità di metadati degli oggetti.
+
++
+[role="tabbed-block"]
+====
+.Aggiunta di nodi di storage
+--
+${post_edited_translations.segment}
+
+Questa percentuale stima quanto è completa l'operazione di streaming di Cassandra, in base alla quantità totale di dati Cassandra disponibili e alla quantità già scritta sul nuovo nodo.
+
+--
+.Aggiunta sito
+--
+Se stai aggiungendo un nuovo sito, usa  `nodetool status` per monitorare l'avanzamento dello streaming di Cassandra e per vedere quanti metadati sono stati copiati nel nuovo sito durante la fase "Expanding the Cassandra cluster". Il carico totale dei dati sul nuovo sito dovrebbe essere entro circa il 20% del totale di un sito attuale.
+
+--
+====
+. Continua a monitorare l'espansione finché tutte le attività non sono completate e il pulsante *Configura espansione* ricompare.
+
+
+.Dopo aver finito
+A seconda dei tipi di nodi grid che hai aggiunto, esegui ulteriori passaggi di integrazione e configurazione. Vedi link:configuring-expanded-storagegrid-system.html["Passaggi di configurazione successivi all'espansione"].

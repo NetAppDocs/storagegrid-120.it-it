@@ -1,0 +1,198 @@
+---
+permalink: tenant/manage-branch-buckets.html 
+sidebar: sidebar 
+keywords: how to create branch bucket 
+summary: Utilizza il Tenant Manager per creare e visualizzare i dettagli dei bucket delle filiali. 
+---
+= Gestisci i bucket di filiale di StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Utilizza il Tenant Manager per creare e visualizzare i dettagli dei bucket delle filiali.
+
+.Prima di iniziare
+* Hai effettuato l'accesso al Tenant Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Appartieni a un gruppo di utenti che ha accesso Root o link:tenant-management-permissions.html["Gestisci l'autorizzazione per tutti i bucket"]. Queste autorizzazioni sovrascrivono le impostazioni delle autorizzazioni nelle policy di gruppo o di bucket.
+* Il bucket di base da cui vuoi creare un ramo ha link:../tenant/changing-bucket-versioning.html["versioning abilitato"].
+* Sei il proprietario del bucket di base.
+
+
+.Informazioni su questa attività
+Nota le seguenti informazioni sui bucket di ramo:
+
+* Le autorizzazioni per impostare le proprietà di blocco degli oggetti S3 di bucket o oggetti possono essere concesse da link:../s3/use-access-policies.html["criterio del bucket o criterio di gruppo"].
+* ${post_edited_translations.segment}
+
+
+
+CAUTION: Dopo che hai configurato e creato un bucket di filiale, non puoi più modificarne la configurazione.
+
+
+
+[[create-branch-bucket]]
+== ${post_edited_translations.segment}
+
+.Passaggi
+. ${post_edited_translations.segment}
+. ${post_edited_translations.segment}
+. ${post_edited_translations.segment}
++
+${post_edited_translations.segment}
+
+
+
+
+
+[[enter-details]]
+== Inserisci i dettagli
+
+.Passaggi
+. ${post_edited_translations.segment}
++
+[cols="1a,3a"]
+|===
+| Campo | Descrizione 
+
+
+ a| 
+Nome del bucket del branch
+ a| 
+${post_edited_translations.segment}
+
+** Deve essere univoco in ogni sistema StorageGRID (non solo all'interno dell'account del tenant).
+** Deve essere conforme al DNS.
+** Devi inserire almeno 3 e non più di 63 caratteri.
+** ${post_edited_translations.segment}
+** Le richieste di tipo virtual hosted non devono contenere punti. I punti causeranno problemi con la verifica del certificato wildcard del server.
+
+
+Per ulteriori informazioni, consultare il https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html["${post_edited_translations.segment}"^].
+
+*Nota*: Non puoi cambiare il nome dopo aver creato il bucket del ramo.
+
+
+
+ a| 
+Regione (non puoi modificarla per i bucket di branch)
+ a| 
+La regione del bucket del branch.
+
+La regione del bucket di diramazione deve corrispondere alla regione del bucket di base, pertanto questo campo è disabilitato per i bucket di diramazione.
+
+
+
+ a| 
+Prima del tempo
+ a| 
+L'orario limite per cui le versioni degli oggetti create nel bucket di base sono accessibili dal bucket di diramazione. Il bucket di diramazione fornisce accesso alle versioni degli oggetti create prima dell'orario limite.
+
+Prima di time deve essere una data e un'ora trascorse. Non può essere una data futura.
+
+
+
+ a| 
+Tipo di bucket branch
+ a| 
+** *Lettura/scrittura*: Puoi aggiungere o eliminare oggetti o versioni di oggetti nel bucket del branch.
+** *Sola lettura*: Non puoi modificare gli oggetti nel bucket del branch.
+
+
+*Nota*: puoi impostare il tipo di bucket branch su sola lettura solo se il bucket branch è vuoto. Se il tipo di un bucket branch esistente è impostato su lettura-scrittura e non vi hai ancora scritto, puoi modificare il tipo in sola lettura.
+
+|===
+. Seleziona *Continue*.
+
+
+
+
+[[manage-object-settings-optional]]
+== Gestisci le impostazioni dell'oggetto (facoltativo)
+
+Le impostazioni degli oggetti per un bucket di filiale non influiscono sulle versioni degli oggetti nel bucket di base.
+
+.Passaggi
+. Se l'impostazione globale di S3 Object Lock è abilitata, puoi abilitare facoltativamente S3 Object Lock anche per il bucket della filiale. Per abilitare S3 Object Lock, il bucket della filiale deve essere un bucket di lettura/scrittura.
++
+Abilita S3 Object Lock per un bucket di filiale solo se devi conservare gli oggetti per un periodo di tempo determinato, ad esempio per soddisfare specifici requisiti normativi. S3 Object Lock è un'impostazione permanente che ti aiuta a impedire che gli oggetti vengano eliminati o sovrascritti per un periodo di tempo determinato o a tempo indeterminato.
+
++
+
+CAUTION: Una volta abilitata l'impostazione Blocco oggetti S3 per un bucket, non può essere disabilitata. Chiunque disponga delle autorizzazioni corrette può aggiungere oggetti al bucket del branch che non possono essere modificati. Potresti non riuscire a eliminare questi oggetti o il bucket del branch stesso.
+
+. Se hai selezionato *Abilita blocco oggetto S3*, puoi facoltativamente abilitare *periodo di conservazione predefinito* per il bucket del ramo.
++
+
+NOTE: L'amministratore della grid deve darti l'autorizzazione per link:../tenant/using-s3-object-lock.html["usare funzionalità specifiche di S3 Object Lock"].
+
++
+Quando l'impostazione *Conservazione predefinita* è abilitata, i nuovi oggetti aggiunti al bucket del ramo saranno automaticamente protetti dall'eliminazione o dalla sovrascrittura. L'impostazione *Conservazione predefinita* non si applica agli oggetti che hanno il proprio periodo di conservazione.
+
++
+.. Se è abilitata l'opzione *Conservazione predefinita*, specifica una *Modalità di conservazione predefinita* per il bucket del ramo.
++
+[cols="1a,2a"]
+|===
+| Modalità di conservazione predefinita | Descrizione 
+
+
+ a| 
+Governance
+ a| 
+*** Gli utenti con l' `s3:BypassGovernanceRetention`autorizzazione possono usare l' `x-amz-bypass-governance-retention: true`intestazione della richiesta per bypassare le impostazioni di conservazione.
+*** Questi utenti possono eliminare una versione di un oggetto prima che venga raggiunta la data di conservazione prevista.
+*** Questi utenti possono aumentare, diminuire o rimuovere la retain-until-date di un oggetto.
+
+
+
+
+ a| 
+Conformità
+ a| 
+*** L'oggetto non può essere eliminato fino al raggiungimento della sua retain-until-date.
+*** La data di conservazione dell'oggetto può essere aumentata, ma non può essere diminuita.
+*** La data di conservazione dell'oggetto non può essere rimossa fino al raggiungimento di tale data.
+
+
+*Nota*: L'amministratore della grid deve consentirti di utilizzare la modalità di conformità.
+
+|===
+.. Se l'opzione *Conservazione predefinita* è abilitata, specifica il *periodo di conservazione predefinito* per il bucket della filiale.
++
+Il *periodo di conservazione predefinito* indica per quanto tempo devono essere conservati i nuovi oggetti aggiunti al bucket del ramo, a partire dal momento in cui vengono acquisiti. Specifica un valore che sia inferiore o uguale al periodo di conservazione massimo per il tenant, come impostato dall'amministratore della grid.
+
++
+Un _periodo di conservazione massimo_, che può variare da 1 giorno a 100 anni, viene impostato quando l'amministratore della griglia crea il tenant. Quando imposti un _periodo di conservazione predefinito_, non può superare il valore impostato per il periodo di conservazione massimo. Se necessario, chiedi all'amministratore della griglia di aumentare o diminuire il periodo di conservazione massimo.
+
+
+
+. Facoltativamente, seleziona *Abilita limite di capacità*.
++
+Il limite di capacità rappresenta la capacità massima disponibile per il bucket di filiale. Questo valore rappresenta una quantità logica (dimensione dell'oggetto), non una quantità fisica (dimensione su disco).
+
++
+Se non viene impostato alcun limite, la capacità del bucket di diramazione è illimitata. Consulta link:../tenant/understanding-tenant-manager-dashboard.html#bucket-capacity-usage["${post_edited_translations.segment}"] per maggiori informazioni.
+
++
+
+NOTE: Questa impostazione si applica solo agli oggetti inseriti direttamente nel bucket di diramazione e non agli oggetti visibili dal bucket di base attraverso il bucket di diramazione.
+
+. Facoltativamente, seleziona *Abilita limite al numero di oggetti*.
++
+Il limite di conteggio degli oggetti rappresenta il numero massimo di oggetti che il bucket del ramo può contenere. Questo valore rappresenta una quantità logica (conteggio degli oggetti). Se non viene impostato alcun limite, il conteggio degli oggetti è illimitato.
+
++
+
+NOTE: Questa impostazione si applica solo agli oggetti inseriti direttamente nel bucket di diramazione e non agli oggetti visibili dal bucket di base attraverso il bucket di diramazione.
+
+. Seleziona *Create bucket*.
++
+Il bucket del ramo viene creato e aggiunto alla tabella nella pagina Buckets.
+
+. Facoltativamente, seleziona *Vai alla pagina dei dettagli del bucket* link:viewing-s3-bucket-details.html["visualizza i dettagli del branch bucket"] e configura ulteriormente.
++
+Nella pagina dei dettagli del bucket, alcune opzioni di configurazione relative alla modifica degli oggetti sono disabilitate per i bucket di sola lettura.
+
+

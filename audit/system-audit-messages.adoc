@@ -1,0 +1,172 @@
+---
+permalink: audit/system-audit-messages.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, messages, system, ECOC, ETAF, GNRG, GNUR, GTED, GTST, GTSU, LLST, OLST, SADD, SADE, SVRF, SVRU, SYSD, SYST, SYSU, VLST 
+summary: 'I messaggi di audit appartenenti alla categoria di audit di sistema vengono utilizzati per eventi relativi al sistema di audit stesso, agli stati dei nodi della griglia, all"attività delle attività a livello di sistema (attività di griglia) e alle operazioni di backup dei servizi.' 
+---
+= Messaggi di audit per gli eventi di sistema in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+I messaggi di audit appartenenti alla categoria di audit di sistema vengono utilizzati per eventi relativi al sistema di audit stesso, agli stati dei nodi della griglia, all'attività delle attività a livello di sistema (attività di griglia) e alle operazioni di backup dei servizi.
+
+[cols="1a,2a,1a"]
+|===
+| Codice | Titolo e descrizione del messaggio | Vedi 
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+${post_edited_translations.segment}
+ a| 
+link:ecmc-missing-erasure-coded-data-fragment.html["${post_edited_translations.segment}"]
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Frammento di dati con codifica di cancellazione corrotto: indica che è stato rilevato un frammento di dati con codifica di cancellazione corrotto.
+ a| 
+link:ecoc-corrupt-erasure-coded-data-fragment.html["${post_edited_translations.segment}"]
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+${post_edited_translations.segment}
+ a| 
+link:etaf-security-authentication-failed.html["${post_edited_translations.segment}"]
+
+
+
+ a| 
+GNRG
+ a| 
+Registrazione GNDS: Un servizio ha aggiornato o registrato informazioni su se stesso nel sistema StorageGRID.
+ a| 
+link:gnrg-gnds-registration.html["GNRG: Registrazione GNDS"]
+
+
+
+ a| 
+GNUR
+ a| 
+${post_edited_translations.segment}
+ a| 
+link:gnur-gnds-unregistration.html["GNUR: Annullamento della registrazione GNDS"]
+
+
+
+ a| 
+GTED
+ a| 
+Attività di griglia terminata: il servizio CMN ha terminato l'elaborazione dell'attività di griglia.
+ a| 
+link:gted-grid-task-ended.html["GTED: Attività di griglia terminata"]
+
+
+
+ a| 
+GTST
+ a| 
+Attività di griglia avviata: il servizio CMN ha iniziato a elaborare l'attività di griglia.
+ a| 
+link:gtst-grid-task-started.html["GTST: Attività di griglia avviata"]
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Attività di griglia inviata: un'attività di griglia è stata inviata al servizio CMN.
+ a| 
+link:gtsu-grid-task-submitted.html["GTSU: Attività di griglia inviata"]
+
+
+
+ a| 
+LLST
+ a| 
+Posizione persa: questo messaggio di controllo viene generato quando una posizione viene persa.
+ a| 
+link:llst-location-lost.html["${post_edited_translations.segment}"]
+
+
+
+ a| 
+OLST
+ a| 
+${post_edited_translations.segment}
+ a| 
+link:olst-system-detected-lost-object.html["OLST: Il sistema ha rilevato un oggetto smarrito"]
+
+
+
+ a| 
+SADD
+ a| 
+${post_edited_translations.segment}
+ a| 
+link:sadd-security-audit-disable.html["SADD: Disabilita controllo di sicurezza"]
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Abilitazione controllo di sicurezza: la registrazione dei messaggi di audit è stata ripristinata.
+ a| 
+link:sade-security-audit-enable.html["SADE: Abilita controllo di sicurezza"]
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Verifica dell'archivio di oggetti non riuscita: un blocco di contenuto non ha superato i controlli di verifica.
+ a| 
+link:svrf-object-store-verify-fail.html["${post_edited_translations.segment}"]
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Object Store Verify Unknown: rilevati dati oggetto imprevisti nell'archivio di oggetti.
+ a| 
+link:svru-object-store-verify-unknown.html["${post_edited_translations.segment}"]
+
+
+
+ a| 
+SYSD
+ a| 
+Arresto del nodo: è stato richiesto uno spegnimento.
+ a| 
+link:sysd-node-stop.html["SYSD: Arresto del nodo"]
+
+
+
+ a| 
+SISTEMA
+ a| 
+Arresto del nodo: un servizio ha avviato un arresto controllato.
+ a| 
+link:syst-node-stopping.html["SYST: Arresto del nodo"]
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Avvio nodo: un servizio è stato avviato; la natura dell'arresto precedente è indicata nel messaggio.
+ a| 
+link:sysu-node-start.html["${post_edited_translations.segment}"]
+
+|===

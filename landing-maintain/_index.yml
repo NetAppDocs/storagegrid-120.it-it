@@ -1,0 +1,37 @@
+---
+indexpage:
+  title: "${post_edited_translations.segment}"
+  summary: Puoi eseguire procedure di manutenzione per ripristinare il tuo sistema
+    StorageGRID in caso di guasti o per mantenerlo aggiornato ed efficiente.
+  keywords: maintain grid, recovery package
+  lead: Puoi eseguire procedure di manutenzione per ripristinare il tuo sistema StorageGRID
+    in caso di guasti o per mantenerlo aggiornato ed efficiente.
+  tiles:
+  - title: Inizia
+    links:
+    - title: "${post_edited_translations.segment}"
+      url: "../maintain/index.html"
+    - title: Scarica il pacchetto di ripristino
+      url: "../maintain/downloading-recovery-package.html"
+  - title: "${post_edited_translations.segment}"
+    links:
+    - title: Tipi di decommission
+      url: "../maintain/decommission-procedure.html"
+    - title: Rimuovi un nodo della griglia
+      url: "../maintain/grid-node-decommissioning.html"
+    - title: "${post_edited_translations.segment}"
+      url: "../maintain/considerations-for-removing-site.html"
+  - title: "${post_edited_translations.segment}"
+    links:
+    - title: "${post_edited_translations.segment}"
+      url: "../maintain/rename-grid-site-node-overview.html"
+    - title: Procedure dei nodi
+      url: "../maintain/grid-node-procedures.html"
+    - title: "${post_edited_translations.segment}"
+      url: "../maintain/updating-subnets-for-grid-network.html"
+    - title: "${post_edited_translations.segment}"
+      url: "../maintain/linux-migrating-grid-node-to-new-host.html"
+  - title: Esegui la manutenzione delle appliance StorageGRID
+    links:
+    - title: Documentazione degli appliance StorageGRID
+      url: https://docs.netapp.com/us-en/storagegrid-appliances/

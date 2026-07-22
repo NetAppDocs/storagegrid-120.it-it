@@ -1,0 +1,162 @@
+---
+permalink: swnodes/installing-linux.html 
+sidebar: sidebar 
+keywords: how to install Linux 
+summary: Devi installare StorageGRID su tutti gli host grid Linux. Per un elenco delle versioni supportate, usa lo NetApp Interoperability Matrix Tool. 
+---
+= Installa StorageGRID su host grid Linux
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Devi installare StorageGRID su tutti gli host grid Linux. Per un elenco delle versioni supportate, usa lo NetApp Interoperability Matrix Tool.
+
+.Prima di iniziare
+Assicurati che il tuo sistema operativo soddisfi i requisiti minimi di versione del kernel di StorageGRID, come indicato di seguito. Usa il comando  `uname -r` per ottenere la versione del kernel del tuo sistema operativo oppure consulta il tuo fornitore del sistema operativo.
+
+
+NOTE: "Linux" si riferisce a un'installazione di RHEL, Ubuntu o Debian. Per un elenco delle versioni supportate, vedi  https://imt.netapp.com/matrix/#welcome["NetApp Interoperability Matrix Tool (IMT)"^].
+
+[role="tabbed-block"]
+====
+.RHEL
+--
+[cols="1a,2a,2a"]
+|===
+| Versione RHEL | Versione minima del kernel | Nome pacchetto kernel 
+
+
+ a| 
+8.8 (obsoleto)
+ a| 
+4.18.0-477.10.1.el8_8.x86_64
+ a| 
+kernel-4.18.0-477.10.1.el8_8.x86_64
+
+
+
+ a| 
+8,10
+ a| 
+4.18.0-553.el8_10.x86_64
+ a| 
+kernel-4.18.0-553.el8_10.x86_64
+
+
+
+ a| 
+9.0 (obsoleto)
+ a| 
+5.14.0-70.22.1.el9_0.x86_64
+ a| 
+kernel-5.14.0-70.22.1.el9_0.x86_64
+
+
+
+ a| 
+9.2 (obsoleto)
+ a| 
+5.14.0-284.11.1.el9_2.x86_64
+ a| 
+kernel-5.14.0-284.11.1.el9_2.x86_64
+
+
+
+ a| 
+9,4
+ a| 
+5.14.0-427.18.1.el9_4.x86_64
+ a| 
+kernel-5.14.0-427.18.1.el9_4.x86_64
+
+
+
+ a| 
+9,6
+ a| 
+5.14.0-570.18.1.el9_6.x86_64
+ a| 
+kernel-5.14.0-570.18.1.el9_6.x86_64
+
+|===
+--
+.Ubuntu
+--
+*Nota:* Il supporto per le versioni 18.04 e 20.04 di Ubuntu è stato deprecato e verrà rimosso in una release futura.
+
+[cols="1a,2a,3a"]
+|===
+| Versione Ubuntu | Versione minima del kernel | Nome pacchetto kernel 
+
+
+ a| 
+22.04.1
+ a| 
+5.15.0-47-generic
+ a| 
+linux-image-5.15.0-47-generic/jammy-updates,jammy-security,now 5.15.0-47.51
+
+
+
+ a| 
+24,04
+ a| 
+6.8.0-31-generic
+ a| 
+linux-image-6.8.0-31-generic/noble,now 6.8.0-31.31
+
+|===
+--
+.Debian
+--
+*Nota:* Il supporto per la versione 11 di Debian è stato deprecato e verrà rimosso in una release futura.
+
+[cols="1a,2a,2a"]
+|===
+| Versione Debian | Versione minima del kernel | Nome pacchetto kernel 
+
+
+ a| 
+11 (obsoleto)
+ a| 
+5.10.0-18-amd64
+ a| 
+linux-image-5.10.0-18-amd64/stable,now 5.10.150-1
+
+
+
+ a| 
+12
+ a| 
+6.1.0-9-amd64
+ a| 
+linux-image-6.1.0-9-amd64/stable,now 6.1.27-1
+
+|===
+--
+====
+.Passaggi
+. Installa Linux su tutti gli host di griglia fisici o virtuali seguendo le istruzioni del distributore o la tua procedura standard.
++
+
+NOTE: Non installare alcun ambiente desktop grafico.
+
++
+** Se usi il programma di installazione Linux standard per installare RHEL, seleziona la configurazione software "compute node", se disponibile, oppure l'ambiente di base "minimal install".
+** Durante l'installazione di Ubuntu, devi selezionare le *utilità di sistema standard*. Ti consigliamo di selezionare *OpenSSH server* per abilitare l'accesso SSH ai tuoi host Ubuntu. Tutte le altre opzioni possono rimanere deselezionate.
+
+
+. Assicurati che tutti gli host abbiano accesso ai repository dei pacchetti, incluso il canale Extras per RHEL.
+. Se lo swap è abilitato:
++
+.. Eseguire il seguente comando: `$ sudo swapoff --all`
+.. Rimuovi tutte le voci di swap  `/etc/fstab` per rendere permanenti le impostazioni.
++
+
+NOTE: La mancata disattivazione completa dello swap può ridurre drasticamente le prestazioni.
+
+
+
+

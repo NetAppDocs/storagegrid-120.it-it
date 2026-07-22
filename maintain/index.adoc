@@ -1,0 +1,35 @@
+---
+permalink: maintain/index.html 
+sidebar: sidebar 
+keywords: maintain overview, maintenance overview, about maintain, about maintenance 
+summary: 'Le attività di manutenzione della griglia includono il decommissionare un nodo o un sito, la ridenominazione di una griglia, di un nodo o di un sito e la manutenzione della rete. Puoi anche eseguire procedure relative all"host e al middleware e procedure sui nodi della griglia.' 
+---
+= Manutenzione della grid StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le attività di manutenzione della griglia includono il decommissionare un nodo o un sito, la ridenominazione di una griglia, di un nodo o di un sito e la manutenzione delle reti. Puoi anche eseguire procedure per host e middleware e procedure per i nodi della griglia.
+
+
+NOTE: In queste istruzioni, "Linux" si riferisce a una distribuzione di Red Hat® Enterprise Linux® (RHEL), Ubuntu® o Debian®. Per un elenco delle versioni supportate, vedi la  https://imt.netapp.com/matrix/#welcome["Tool NetApp Interoperability Matrix"^].
+
+
+
+[[before-you-begin]]
+== Prima di iniziare
+
+* Hai una conoscenza approfondita del sistema StorageGRID.
+* Hai esaminato la topologia del tuo sistema StorageGRID e ne comprendi la configurazione a griglia.
+* Comprendi che devi seguire scrupolosamente tutte le istruzioni e prestare attenzione a tutti gli avvertimenti.
+* Devi sapere che le procedure di manutenzione non descritte non sono supportate o richiedono un intervento di servizi.
+
+
+
+
+[[maintenance-procedures-for-appliances]]
+== Procedure di manutenzione per le appliance
+
+Per le procedure hardware, vedi  https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/index.html["istruzioni di manutenzione per la tua appliance StorageGRID"^].

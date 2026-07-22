@@ -1,0 +1,31 @@
+---
+permalink: expand/adding-grid-nodes-to-add-capabilities.html 
+sidebar: sidebar 
+keywords: grid nodes, expand, expansion, site, add, StorageGRID 
+summary: Puoi aggiungere ridondanza o funzionalità aggiuntive a un sistema StorageGRID aggiungendo nuovi nodi della griglia ai siti esistenti. 
+---
+= Linee guida per l'aggiunta di nodi grid in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi aggiungere ridondanza o funzionalità aggiuntive a un sistema StorageGRID aggiungendo nuovi nodi della griglia ai siti esistenti.
+
+Ad esempio, potresti scegliere di aggiungere nodi Gateway da utilizzare in un gruppo ad alta disponibilità (HA), oppure potresti aggiungere un nodo Admin in un sito remoto per consentire il monitoraggio tramite un nodo locale.
+
+Puoi aggiungere uno o più dei seguenti tipi di nodi a uno o più siti esistenti in un'unica operazione di espansione:
+
+* Nodi amministrativi non primari
+* Nodi di storage
+* ${post_edited_translations.segment}
+
+
+Quando ti prepari ad aggiungere nodi alla griglia, tieni presente le seguenti limitazioni:
+
+* Il nodo amministratore primario viene distribuito durante l'installazione iniziale. Non puoi aggiungere un nodo amministratore primario durante un'espansione.
+* Puoi aggiungere Storage Nodes e altri tipi di nodi nella stessa espansione.
+* Quando aggiungi Storage Node, devi pianificare attentamente il numero e la posizione dei nuovi nodi. Vedi link:../expand/guidelines-for-adding-object-capacity.html["Linee guida per l'aggiunta di capacità oggetto"].
+* Se l'opzione *Imposta nuovo nodo predefinito* è *Non attendibile* nella scheda Reti client non attendibili della pagina di controllo del firewall, le applicazioni client che si connettono ai nodi di espansione tramite la Client Network devono connettersi utilizzando una porta endpoint del bilanciatore di carico (*Configurazione* > *Sicurezza* > *Controllo firewall*). Vedi le istruzioni per link:../admin/configure-firewall-controls.html["modifica le impostazioni di sicurezza per il nuovo nodo"] e per link:../admin/configuring-load-balancer-endpoints.html["configura gli endpoint del bilanciatore di carico"].
+

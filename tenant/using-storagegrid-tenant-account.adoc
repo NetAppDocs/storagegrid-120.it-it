@@ -1,0 +1,68 @@
+---
+permalink: tenant/using-storagegrid-tenant-account.html 
+sidebar: sidebar 
+keywords: how to use tenant account 
+summary: 'Un tenant account consente di utilizzare l"API REST di Simple Storage Service (S3) per archiviare e recuperare oggetti in un sistema StorageGRID.' 
+---
+= Usa l'account tenant di StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Un tenant account consente di utilizzare l'API REST di Simple Storage Service (S3) per archiviare e recuperare oggetti in un sistema StorageGRID.
+
+Ogni tenant account ha i propri gruppi federati o locali, utenti, bucket S3 e oggetti.
+
+
+TIP: I dettagli relativi a Swift sono stati rimossi da questa versione del sito della documentazione. Vedi  https://docs.netapp.com/us-en/storagegrid-118/tenant/using-storagegrid-tenant-account.html["StorageGRID 11.8: Usa l'account tenant di StorageGRID"^].
+
+Opzionalmente, puoi utilizzare gli account tenant per separare gli oggetti memorizzati in base a diverse entità. Ad esempio, puoi utilizzare più account tenant per uno di questi casi d'uso:
+
+* *Caso d'uso aziendale:* Se il sistema StorageGRID viene utilizzato all'interno di un'azienda, lo storage a oggetti della grid potrebbe essere suddiviso in base ai diversi reparti dell'organizzazione. Ad esempio, potrebbero esserci account tenant per il reparto Marketing, il reparto Customer Support, il reparto Human Resources e così via.
++
+
+NOTE: Se usi il protocollo client S3, puoi anche usare i bucket S3 e le bucket policy per separare gli oggetti tra i reparti di un'azienda. Non devi creare account tenant separati. Consulta le istruzioni per implementare link:../s3/use-access-policies.html["Bucket S3 e policy dei bucket"] per maggiori informazioni.
+
+* *Caso d'uso del service provider:* Se il sistema StorageGRID viene utilizzato da un service provider, lo storage a oggetti della grid potrebbe essere segregato dalle diverse entità che noleggiano lo storage. Ad esempio, potrebbero esserci tenant account per Company A, Company B, Company C e così via.
+
+
+
+
+[[create-tenant-accounts]]
+== Crea account tenant
+
+Gli account tenant vengono creati da un amministratore della griglia StorageGRID utilizzando il Grid Manager. Quando crei un account tenant, l'amministratore della griglia specifica le seguenti informazioni:
+
+* Nome visualizzato per il tenant (l'ID account del tenant viene assegnato automaticamente e non può essere modificato).
+* Se l'account tenant utilizzerà il protocollo S3 o Swift.
+* Per gli account tenant S3: se l'account tenant è autorizzato a utilizzare i servizi di piattaforma. Se l'uso dei servizi di piattaforma è consentito, la grid deve essere configurata per supportarne l'utilizzo.
+* Facoltativamente, puoi impostare una quota di archiviazione per il tenant account: il numero massimo di gigabyte, terabyte o petabyte disponibili per gli oggetti del tenant. La quota di archiviazione di un tenant rappresenta una quantità logica (dimensione dell'oggetto), non una quantità fisica (dimensione su disco).
+* ${post_edited_translations.segment}
+* Se single sign-on (SSO) non è in uso per il sistema StorageGRID, se l'account tenant utilizzerà la propria fonte di identità o condividerà la fonte di identità della grid, e la password iniziale per l'utente root locale del tenant.
+
+
+Inoltre, gli amministratori della griglia possono abilitare l'impostazione S3 Object Lock per il sistema StorageGRID se gli account tenant S3 devono essere conformi ai requisiti normativi. Quando S3 Object Lock è abilitato, tutti gli account tenant S3 possono creare e gestire bucket conformi.
+
+
+
+[[configure-s3-tenants]]
+== Configura i tenant S3
+
+Dopo che è stato creato un account tenant S3, puoi accedere a Tenant Manager per eseguire attività come le seguenti:
+
+* Configurazione della federazione delle identità (a meno che la fonte delle identità non sia condivisa con la griglia) o creazione di gruppi e utenti locali
+* Gestione delle chiavi di accesso S3
+* Creazione e gestione di bucket S3, inclusi bucket conformi
+* Utilizzo dei servizi della piattaforma (se abilitato)
+* Monitoraggio dell'utilizzo dello spazio di archiviazione
+
+
+
+TIP: Sebbene tu possa creare e gestire bucket S3 con Tenant Manager, devi avere le chiavi di accesso S3 e usare l'API REST di S3 per acquisire e gestire gli oggetti.
+
+.Informazioni correlate
+* link:../admin/index.html["${post_edited_translations.segment}"]
+* link:../s3/index.html["${post_edited_translations.segment}"]
+

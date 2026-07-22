@@ -1,0 +1,43 @@
+---
+permalink: swnodes/understanding-apparmor-profile-installation.html 
+sidebar: sidebar 
+keywords: how to install AppArmor profile 
+summary: Se stai utilizzando un ambiente Ubuntu autodistribuito e usi il sistema di controllo degli accessi obbligatorio AppArmor, i profili AppArmor associati ai pacchetti che installi sul sistema base potrebbero essere bloccati dai corrispondenti pacchetti installati con StorageGRID. 
+---
+= Scopri i profili AppArmor per StorageGRID su Ubuntu e Debian
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se stai utilizzando un ambiente Ubuntu autodistribuito e usi il sistema di controllo degli accessi obbligatorio AppArmor, i profili AppArmor associati ai pacchetti che installi sul sistema base potrebbero essere bloccati dai corrispondenti pacchetti installati con StorageGRID.
+
+Per impostazione predefinita, i profili AppArmor vengono installati per i pacchetti che installi sul sistema operativo di base. Quando esegui questi pacchetti dal container del sistema StorageGRID, i profili AppArmor vengono bloccati. I pacchetti di base DHCP, MySQL, NTP e tcdump sono in conflitto con AppArmor e anche altri pacchetti di base potrebbero essere in conflitto.
+
+Hai due opzioni per la gestione dei profili AppArmor:
+
+* Disabilita i profili individuali per i pacchetti installati sul sistema di base che si sovrappongono ai pacchetti nel container di StorageGRID. Quando disabiliti i profili individuali, nei file di log di StorageGRID viene visualizzata una voce che indica che AppArmor è abilitato.
++
+Usa i seguenti comandi:
+
++
+[listing]
+----
+sudo ln -s /etc/apparmor.d/<profile.name> /etc/apparmor.d/disable/
+sudo apparmor_parser -R /etc/apparmor.d/<profile.name>
+----
++
+*Esempio:*
+
++
+[listing]
+----
+sudo ln -s /etc/apparmor.d/bin.ping /etc/apparmor.d/disable/
+sudo apparmor_parser -R /etc/apparmor.d/bin.ping
+----
+* Disabilita AppArmor completamente. Per Ubuntu 9.10 o versioni successive, segui le istruzioni nella community online di Ubuntu: https://help.ubuntu.com/community/AppArmor#Disable_AppArmor_framework["Disabilita AppArmor"^]. Disabilitare completamente AppArmor potrebbe non essere possibile nelle versioni più recenti di Ubuntu.
++
+Dopo che hai disabilitato AppArmor, non compariranno voci che indicano che AppArmor è abilitato nei file di registro di StorageGRID.
+
+

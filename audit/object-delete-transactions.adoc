@@ -1,0 +1,60 @@
+---
+permalink: audit/object-delete-transactions.html 
+sidebar: sidebar 
+keywords: object delete transaction, S3 delete, SDEL, WDEL 
+summary: 'Puoi identificare le transazioni di eliminazione degli oggetti nel registro di controllo individuando i messaggi di controllo specifici dell"API S3.' 
+---
+= Messaggi di audit per le transazioni di eliminazione degli oggetti in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi identificare le transazioni di eliminazione degli oggetti nel registro di controllo individuando i messaggi di controllo specifici dell'API S3.
+
+Non tutti i messaggi di controllo generati durante una transazione di eliminazione sono elencati nelle tabelle seguenti. Sono inclusi solo i messaggi necessari per tracciare la transazione di eliminazione.
+
+
+
+[[s3-delete-audit-messages]]
+== ${post_edited_translations.segment}
+
+[cols="1a,1a,2a,1a,2a"]
+|===
+| Codice | Nome | Descrizione | Traccia | Vedi 
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Eliminazione S3
+ a| 
+${post_edited_translations.segment}
+ a| 
+CBID, S3KY
+ a| 
+link:sdel-s3-delete.html["SDEL: S3 DELETE"]
+
+|===
+
+
+[[example-s3-object-deletion]]
+== Esempio: eliminazione di un oggetto S3
+
+Quando un client S3 elimina un oggetto da un Storage Node (servizio LDR), viene generato un messaggio di audit e salvato nel registro di audit.
+
+
+NOTE: Nell'esempio seguente non sono elencati tutti i messaggi di audit generati durante una transazione di eliminazione. Sono elencati solo quelli relativi alla transazione di eliminazione S3 (SDEL).
+
+
+
+[[sdel-s3-delete]]
+=== SDEL: Eliminazione S3
+
+L'eliminazione di un oggetto inizia quando il client invia una richiesta DeleteObject a un servizio LDR. Il messaggio contiene il bucket da cui eliminare l'oggetto e la chiave S3 dell'oggetto, utilizzata per identificarlo.
+
+[listing, subs="specialcharacters,quotes"]
+----
+2017-07-17T21:17:58.959669[AUDT:[RSLT(FC32):SUCS][TIME(UI64):14316][SAIP(IPAD):"10.96.112.29"][S3AI(CSTR):"70899244468554783528"][SACC(CSTR):"test"][S3AK(CSTR):"SGKHyalRU_5cLflqajtaFmxJn946lAWRJfBF33gAOg=="][SUSR(CSTR):"urn:sgws:identity::70899244468554783528:root"][SBAI(CSTR):"70899244468554783528"][SBAC(CSTR):"test"]\[S3BK\(CSTR\):"example"\]\[S3KY\(CSTR\):"testobject-0-7"\][CBID\(UI64\):0x339F21C5A6964D89][CSIZ(UI64):30720][AVER(UI32):10][ATIM(UI64):150032627859669][ATYP\(FC32\):SDEL][ANID(UI32):12086324][AMID(FC32):S3RQ][ATID(UI64):4727861330952970593]]
+----

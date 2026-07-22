@@ -1,0 +1,37 @@
+---
+permalink: maintain/rebooting-grid-node-from-command-shell.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, reboot node, command shell reboot 
+summary: 'Se hai bisogno di monitorare più da vicino l"operazione di riavvio o se non riesci ad accedere a Grid Manager, puoi accedere al nodo della griglia ed eseguire il comando di riavvio di Server Manager dalla shell dei comandi.' 
+---
+= Riavvia il nodo StorageGRID dalla shell dei comandi
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se hai bisogno di monitorare più da vicino l'operazione di riavvio o se non riesci ad accedere a Grid Manager, puoi accedere al nodo della griglia ed eseguire il comando di riavvio di Server Manager dalla shell dei comandi.
+
+.Prima di iniziare
+Hai il file  `Passwords.txt`.
+
+.Passaggi
+. Accedi al nodo della griglia:
++
+.. Inserisci il seguente comando: `ssh admin@_grid_node_IP_`
+.. Inserisci la password indicata nel file  `Passwords.txt`.
+.. Inserisci il seguente comando per passare all'utente root: `su -`
+.. Inserisci la password indicata nel file  `Passwords.txt`.
+
+
++
+Quando sei connesso come root, il prompt cambia da  `$` a  `#`.
+
+. Facoltativamente, interrompi i servizi: `service servermanager stop`
++
+L'arresto dei servizi è un passaggio facoltativo, ma consigliato. L'arresto dei servizi può richiedere fino a 15 minuti, quindi potresti voler accedere al sistema da remoto per monitorare il processo di arresto prima di riavviare il nodo nel passaggio successivo.
+
+. Riavvia il nodo della griglia: `reboot`
+. Disconnettiti dalla shell dei comandi: `exit`
+

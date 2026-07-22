@@ -1,0 +1,47 @@
+---
+permalink: admin/signing-out-of-grid-manager.html 
+sidebar: sidebar 
+keywords: grid manager, sign on, log out 
+summary: Quando hai finito di lavorare con Grid Manager, devi disconnetterti per assicurarti che gli utenti non autorizzati non possano accedere al sistema StorageGRID. La chiusura del browser potrebbe non disconnetterti dal sistema, in base alle impostazioni dei cookie del browser. 
+---
+= Disconnettiti da StorageGRID Grid Manager
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Quando hai finito di lavorare con Grid Manager, devi disconnetterti per garantire che gli utenti non autorizzati non possano accedere al sistema StorageGRID. La chiusura del browser potrebbe non disconnetterti dal sistema, a seconda delle impostazioni dei cookie del browser.
+
+.Passaggi
+. Seleziona il tuo nome utente nell'angolo in alto a destra.
++
+image:sign_out.png["${post_edited_translations.segment}"]
+
+. Seleziona *Esci*.
++
+[cols="1a,2a"]
+|===
+| Opzione | Descrizione 
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Sei uscito dal nodo di amministrazione.
+
+Viene visualizzata la pagina di accesso di Grid Manager.
+
+*Nota:* Se hai effettuato l'accesso a più di un nodo amministratore, devi disconnetterti da ciascun nodo.
+
+
+
+ a| 
+SSO abilitato
+ a| 
+Hai effettuato il logout da tutti i nodi di amministrazione a cui stavi accedendo. Viene visualizzata la pagina di accesso di StorageGRID. *Grid Manager* è elencato come predefinito nel menu a tendina *Recent Accounts* e il campo *Account ID* mostra 0.
+
+*Nota:* Se l'SSO è abilitato e hai effettuato l'accesso anche al Tenant Manager, devi anche link:../tenant/signing-out-of-tenant-manager.html["esci dall'account tenant"] per link:how-sso-works.html["disconnettiti da SSO"].
+
+|===
+

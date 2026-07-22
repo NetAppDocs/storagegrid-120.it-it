@@ -1,0 +1,92 @@
+---
+permalink: tenant/signing-in-to-tenant-manager.html 
+sidebar: sidebar 
+keywords: how to sign in to tenant manager 
+summary: 'Accedi al Tenant Manager inserendo l"URL del tenant nella barra degli indirizzi di un browser web supportato.' 
+---
+= ${post_edited_translations.segment}
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Accedi al Tenant Manager inserendo l'URL del tenant nella barra degli indirizzi di un link:../admin/web-browser-requirements.html["browser web supportato"].
+
+.Prima di iniziare
+* Hai le tue credenziali di accesso.
+* Disponi di un URL per accedere a Tenant Manager, fornito dall'amministratore della grid. L'URL sarà simile a uno di questi esempi:
++
+`\https://FQDN_or_Admin_Node_IP/`
+
++
+`\https://FQDN_or_Admin_Node_IP:port/`
+
++
+`\https://FQDN_or_Admin_Node_IP/?accountId=20-digit-account-id`
+
++
+`\https://FQDN_or_Admin_Node_IP:port/?accountId=20-digit-account-id`
+
++
+L'URL include sempre un fully qualified domain name (FQDN), l'indirizzo IP di un Admin Node o l'indirizzo IP virtuale di un gruppo HA di Admin Node. Potrebbe anche includere un numero di porta, l'ID dell'account tenant a 20 cifre o entrambi.
+
+* ${post_edited_translations.segment}
+* Stai usando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* I cookie sono abilitati nel tuo browser web.
+* Appartieni a un gruppo di utenti che ha link:tenant-management-permissions.html["autorizzazioni di accesso specifiche"].
+
+
+.Passaggi
+. Avvia un link:../admin/web-browser-requirements.html["browser web supportato"].
+. ${post_edited_translations.segment}
+. ${post_edited_translations.segment}
+. Accedi al Tenant Manager.
++
+La schermata di accesso visualizzata dipende dall'URL inserito e dal fatto che single sign-on (SSO) sia stato configurato o meno per StorageGRID.
+
++
+[role="tabbed-block"]
+====
+.Non usi SSO
+--
+${post_edited_translations.segment}
+
+** La pagina di accesso di Grid Manager. Seleziona il link *Accesso tenant*.
+** La pagina di accesso di Tenant Manager. Il campo *Account* potrebbe essere già compilato.
++
+... ${post_edited_translations.segment}
+... ${post_edited_translations.segment}
+... Seleziona *Accedi*.
++
+Viene visualizzata la dashboard del Tenant Manager.
+
+... ${post_edited_translations.segment}
+
+
+
+
+--
+.Utilizzare SSO
+--
+${post_edited_translations.segment}
+
+** La pagina single sign-on della tua organizzazione.
++
+Inserisci le tue credenziali SSO standard e seleziona *Accedi*.
+
+** La pagina di accesso SSO per il Tenant Manager.
++
+... ${post_edited_translations.segment}
+... Seleziona *Accedi*.
+... Accedi con le tue credenziali SSO standard sulla pagina di accesso SSO della tua organizzazione.
++
+Viene visualizzata la dashboard del Tenant Manager.
+
+
+
+
+
+--
+====
+

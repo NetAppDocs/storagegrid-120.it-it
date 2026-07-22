@@ -1,0 +1,36 @@
+= 
+:allow-uri-read: 
+
+
+La directory dei log di controllo e i nodi applicabili dipendono dalle impostazioni di destinazione dei log di controllo.
+
+[cols="1a,2a"]
+|===
+| Opzione | Destinazione 
+
+
+ a| 
+Nodi locali (predefiniti)
+ a| 
+`/var/local/log/localaudit.log`
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+* Nodi amministrativi (primario e non primario): `/var/local/audit/export/audit.log`
+* Tutti i nodi: Il `/var/local/log/localaudit.log` file è in genere vuoto o mancante in questa modalità.
+
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+`/var/local/log/localaudit.log`
+
+|===
+In base alle tue impostazioni di destinazione dell'audit, inserisci: `cd /var/local/log` o `/var/local/audit/export/`
+
+Per saperne di più, consulta link:../monitor/configure-log-management.html#select-log-location["${post_edited_translations.segment}"].

@@ -1,0 +1,487 @@
+---
+permalink: troubleshoot/index.html 
+sidebar: sidebar 
+keywords: how to troubleshoot a StorageGRID system 
+summary: 'Se riscontri un problema durante l"utilizzo di un sistema StorageGRID, consulta i suggerimenti e le linee guida in questa sezione per ricevere assistenza nell"individuazione e nella risoluzione del problema.' 
+---
+= Risolvi i problemi di un sistema StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se riscontri un problema durante l'utilizzo di un sistema StorageGRID, consulta i suggerimenti e le linee guida in questa sezione per ricevere assistenza nell'individuazione e nella risoluzione del problema.
+
+Spesso puoi risolvere i problemi da solo; tuttavia, potresti dover segnalare alcuni problemi al supporto tecnico.
+
+
+
+[[defineproblemdefine-the-problem]]
+== [[define_problem]]Definisci il problema
+
+Il primo passo per risolvere un problema è definirlo chiaramente.
+
+Questa tabella fornisce esempi dei tipi di informazioni che potresti raccogliere per definire un problema:
+
+[cols="1a,1a"]
+|===
+| Domanda | Risposta tipo 
+
+
+ a| 
+Cosa sta facendo o non facendo il sistema StorageGRID? Quali sono i suoi sintomi?
+ a| 
+Le applicazioni client segnalano che non è possibile importare oggetti in StorageGRID.
+
+
+
+ a| 
+Quando è iniziato il problema?
+ a| 
+L'inserimento dell'oggetto è stato negato per la prima volta intorno alle 14:50 dell'8 gennaio 2020.
+
+
+
+ a| 
+Come hai notato per la prima volta il problema?
+ a| 
+Notificato dall'applicazione client. Ricevute anche notifiche di avviso via email.
+
+
+
+ a| 
+Il problema si verifica sempre o solo a volte?
+ a| 
+Il problema è ancora in corso.
+
+
+
+ a| 
+Se il problema si verifica regolarmente, quali passaggi lo causano
+ a| 
+Il problema si verifica ogni volta che un client tenta di ingerire un oggetto.
+
+
+
+ a| 
+Se il problema si verifica in modo intermittente, quando si manifesta? Annota gli orari di ogni episodio di cui sei a conoscenza.
+ a| 
+Il problema non è intermittente.
+
+
+
+ a| 
+Hai già riscontrato questo problema? Quante volte hai avuto questo problema in passato?
+ a| 
+È la prima volta che vedo questo problema.
+
+|===
+
+
+[[assess-the-risk-and-impact-on-the-system]]
+== Valuta il rischio e l'impatto sul sistema
+
+Dopo aver definito il problema, valuta il rischio e l'impatto sul sistema StorageGRID. Ad esempio, la presenza di avvisi critici non significa necessariamente che il sistema non stia erogando i servizi essenziali.
+
+Questa tabella riassume l'impatto che il problema in questione sta avendo sul funzionamento del sistema:
+
+[cols="1a,1a"]
+|===
+| Domanda | Risposta tipo 
+
+
+ a| 
+Il sistema StorageGRID può acquisire contenuti?
+ a| 
+No.
+
+
+
+ a| 
+Le applicazioni client possono recuperare contenuti?
+ a| 
+Alcuni oggetti possono essere recuperati e altri no.
+
+
+
+ a| 
+I dati sono a rischio?
+ a| 
+No.
+
+
+
+ a| 
+La capacità di svolgere l'attività commerciale è gravemente compromessa?
+ a| 
+Sì, perché le applicazioni client non possono memorizzare oggetti nel sistema StorageGRID e i dati non possono essere recuperati in modo coerente.
+
+|===
+
+
+[[collect-data]]
+== Raccogli dati
+
+Dopo aver definito il problema e valutato il rischio e l'impatto, raccogli i dati per l'analisi. Il tipo di dati più utili da raccogliere dipende dalla natura del problema.
+
+[cols="1a,2a,1a"]
+|===
+| Tipologia di dati da raccogliere | Perché raccogliere questi dati | Istruzioni 
+
+
+ a| 
+Crea una cronologia delle modifiche recenti
+ a| 
+Le modifiche al tuo sistema StorageGRID, alla sua configurazione o al suo ambiente possono causare nuovi comportamenti.
+ a| 
+* <<create_timeline,Crea una cronologia delle modifiche recenti>>
+
+
+
+
+ a| 
+Rivedi gli avvisi
+ a| 
+Gli avvisi possono aiutarti a individuare rapidamente la causa principale di un problema fornendo indizi importanti sui problemi sottostanti che potrebbero esserne all'origine.
+
+Esamina l'elenco degli avvisi correnti per vedere se StorageGRID ha identificato la causa principale di un problema per te.
+
+Esamina gli avvisi attivati in passato per ulteriori informazioni.
+ a| 
+* link:../monitor/monitoring-system-health.html#view-current-and-resolved-alerts["Visualizza gli avvisi correnti e risolti"]
+
+
+
+
+ a| 
+Stabilisci i parametri di riferimento
+ a| 
+Raccogli informazioni sui livelli normali di vari valori operativi. Questi valori di riferimento, e le deviazioni da essi, possono fornire indizi preziosi.
+ a| 
+* <<establish-baselines,Stabilisci i parametri di riferimento>>
+
+
+
+
+ a| 
+Esegui test di ingestione e recupero
+ a| 
+Per risolvere i problemi di prestazioni relativi all'acquisizione e al recupero, usa una workstation per archiviare e recuperare gli oggetti. Confronta i risultati con quelli ottenuti usando l'applicazione client.
+ a| 
+* link:../monitor/monitoring-put-and-get-performance.html["Monitora le prestazioni PUT e GET"]
+
+
+
+
+ a| 
+Esamina i messaggi di audit
+ a| 
+Esamina i messaggi di audit per seguire nel dettaglio le operazioni di StorageGRID. Le informazioni contenute nei messaggi di audit possono essere utili per risolvere molti tipi di problemi, inclusi quelli relativi alle prestazioni.
+ a| 
+* link:../monitor/reviewing-audit-messages.html["Esamina i messaggi di audit"]
+
+
+
+
+ a| 
+Controlla la posizione degli oggetti e l'integrità dello storage
+ a| 
+Se riscontri problemi di archiviazione, verifica che gli oggetti vengano posizionati dove ti aspetti. Controlla l'integrità dei dati degli oggetti su un Storage Node.
+ a| 
+* link:../monitor/monitoring-object-verification-operations.html["Monitora le operazioni di verifica degli oggetti"]
+* link:../troubleshoot/confirming-object-data-locations.html["Conferma la posizione dei dati degli oggetti"]
+* link:../troubleshoot/verifying-object-integrity.html["Verifica l'integrità dell'oggetto"]
+
+
+
+
+ a| 
+Raccogli dati per il supporto tecnico
+ a| 
+Il supporto tecnico potrebbe chiederti di raccogliere dati o di esaminare informazioni specifiche per facilitare la risoluzione dei problemi.
+ a| 
+* link:../monitor/collecting-log-files-and-system-data.html["Raccogli i file di log e i dati di sistema"]
+* link:../monitor/manually-triggering-autosupport-message.html["Avvia manualmente un pacchetto AutoSupport"]
+* link:../monitor/reviewing-support-metrics.html["Esamina le metriche di supporto"]
+
+
+|===
+
+
+[[createtimelinecreate-a-timeline-of-recent-changes]]
+=== [[create_timeline]]Crea una cronologia delle modifiche recenti
+
+Quando si verifica un problema, dovresti considerare cosa è cambiato di recente e quando sono avvenuti questi cambiamenti.
+
+* Le modifiche al tuo sistema StorageGRID, alla sua configurazione o al suo ambiente possono causare nuovi comportamenti.
+* Una cronologia delle modifiche può aiutarti a identificare quali modifiche potrebbero essere responsabili di un problema e come ciascuna modifica potrebbe averne influenzato lo sviluppo.
+
+
+Crea una tabella delle modifiche recenti apportate al tuo sistema che includa informazioni su quando si è verificata ciascuna modifica e tutti i dettagli rilevanti, come ad esempio cosa stava succedendo mentre la modifica era in corso:
+
+[cols="1a,1a,2a"]
+|===
+| Tempo di cambiamento | Tipo di modifica | Dettagli 
+
+
+ a| 
+Ad esempio:
+
+* Quando hai avviato il ripristino del nodo?
+* Quando hai completato l'aggiornamento del software?
+* Hai interrotto il processo?
+
+ a| 
+Cos'è successo? Cosa hai fatto?
+ a| 
+Documenta tutti i dettagli rilevanti relativi alla modifica. Ad esempio:
+
+* Dettagli delle modifiche alla rete.
+* Quale hotfix hai installato.
+* Come sono cambiati i carichi di lavoro dei client.
+
+
+Assicurati di annotare se più modifiche sono state apportate contemporaneamente. Ad esempio, questa modifica è stata effettuata mentre era in corso un aggiornamento?
+
+|===
+
+
+==== Esempi di cambiamenti recenti significativi
+
+Ecco alcuni esempi di cambiamenti potenzialmente significativi:
+
+* Il sistema StorageGRID è stato installato, ampliato o ripristinato di recente?
+* Il sistema è stato aggiornato di recente? È stato applicato un hotfix?
+* Hai riparato o sostituito di recente qualche componente hardware?
+* La policy ILM è stata aggiornata?
+* Il carico di lavoro del client è cambiato?
+* L'applicazione client o il suo comportamento sono cambiati?
+* Hai modificato i bilanciatori di carico o hai aggiunto o rimosso un gruppo ad alta disponibilità di Admin Node o Gateway Node?
+* Hai avviato delle attività che potrebbero richiedere molto tempo per essere completate? Esempi includono:
++
+** Ripristino di un nodo di archiviazione guasto
+** Dismissione del nodo di archiviazione
+
+
+* Hai apportato modifiche all'autenticazione degli utenti, come l'aggiunta di un tenant o la modifica della configurazione LDAP?
+* La migrazione dei dati è in corso?
+* Hai abilitato o modificato di recente i servizi della piattaforma?
+* Hai attivato la conformità di recente?
+* Hai aggiunto o rimosso dei Cloud Storage Pools?
+* Hai apportato modifiche alla compressione o alla crittografia dello storage?
+* Ci sono state modifiche all'infrastruttura di rete? Ad esempio, VLAN, router o DNS.
+* Hai apportato modifiche alle fonti NTP?
+* Hai apportato modifiche alle interfacce Grid, Admin o Client Network?
+* Hai apportato altre modifiche al sistema StorageGRID o al suo ambiente?
+
+
+
+
+[[establish-baselines]]
+=== Stabilisci i parametri di riferimento
+
+Puoi stabilire dei valori di riferimento per il tuo sistema registrando i livelli normali di diversi parametri operativi. In futuro, puoi confrontare i valori attuali con questi valori di riferimento per aiutarti a individuare e risolvere valori anomali.
+
+[cols="1a,1a,2a"]
+|===
+| Proprietà | Valore | Come ottenere 
+
+
+ a| 
+Consumo medio di storage
+ a| 
+GB consumati/giorno
+
+% consumato/giorno
+ a| 
+Vai al Grid Manager. Nella pagina Nodi, seleziona l'intera griglia o un sito e vai alla scheda Storage.
+
+Nel grafico "Spazio di archiviazione utilizzato - Dati oggetto", individua un periodo in cui la linea è abbastanza stabile. Posiziona il cursore sul grafico per stimare quanto spazio di archiviazione consumi ogni giorno.
+
+Puoi raccogliere queste informazioni per l'intero sistema o per un data center specifico.
+
+
+
+ a| 
+Consumo medio di metadati
+ a| 
+GB consumati/giorno
+
+% consumato/giorno
+ a| 
+Vai al Grid Manager. Nella pagina Nodi, seleziona l'intera griglia o un sito e vai alla scheda Storage.
+
+Nel grafico "Spazio di archiviazione utilizzato - Metadati degli oggetti", individua un periodo in cui la linea è abbastanza stabile. Posiziona il cursore sul grafico per stimare quanta memoria di archiviazione per i metadati viene consumata ogni giorno.
+
+Puoi raccogliere queste informazioni per l'intero sistema o per un data center specifico.
+
+
+
+ a| 
+Frequenza delle operazioni S3
+ a| 
+Operazioni/secondo
+ a| 
+Nella dashboard di Grid Manager, seleziona *Prestazioni* > *Operazioni S3 per i nodi di archiviazione*.
+
+Per visualizzare i tassi e i conteggi di ingest e retrieval per un sito o un nodo specifico, seleziona *Nodes* > *_site or Storage Node_* > *Objects*. Posiziona il cursore sul grafico di ingest e retrieval S3.
+
+
+
+ a| 
+Tasso di valutazione ILM
+ a| 
+Oggetti/secondo
+ a| 
+Dalla pagina Nodi, seleziona *_grid_* > *ILM*.
+
+Sul grafico della coda ILM, individua un periodo in cui la linea è abbastanza stabile. Posiziona il cursore sul grafico per stimare un valore di riferimento per *Evaluation rate* del tuo sistema.
+
+
+
+ a| 
+Frequenza di scansione ILM
+ a| 
+Oggetti/secondo
+ a| 
+Seleziona *Nodes* > *_grid_* > *ILM*.
+
+Sul grafico della coda ILM, individua un periodo in cui la linea è abbastanza stabile. Posiziona il cursore sul grafico per stimare un valore di riferimento per *Scan rate* del tuo sistema.
+
+
+
+ a| 
+Oggetti accodati dalle operazioni del client
+ a| 
+Oggetti/secondo
+ a| 
+Seleziona *Nodes* > *_grid_* > *ILM*.
+
+Sul grafico della coda ILM, individua un periodo in cui la linea è abbastanza stabile. Posiziona il cursore sul grafico per stimare un valore di riferimento per *Oggetti in coda (provenienti da operazioni client)* per il tuo sistema.
+
+
+
+ a| 
+Latenza media delle query
+ a| 
+Millisecondi
+ a| 
+Seleziona *Nodi* > *_Nodo di storage_* > *Oggetti*. Nella tabella Query, visualizza il valore della Latenza media.
+
+|===
+
+
+[[analyze-data]]
+== ${post_edited_translations.segment}
+
+${post_edited_translations.segment}
+
+L'analisi dipende dal problema specifico, ma in generale:
+
+* ${post_edited_translations.segment}
+* ${post_edited_translations.segment}
+* ${post_edited_translations.segment}
+
+
+
+
+[[escalation-information-checklist]]
+== ${post_edited_translations.segment}
+
+Se non riesci a risolvere il problema autonomamente, contatta il supporto tecnico. Prima di contattare il supporto tecnico, raccogli le informazioni elencate nella tabella seguente per facilitare la risoluzione del problema.
+
+[cols="1a,2a,4a"]
+|===
+| image:feature_checkmark.gif["segno di spunta"] | Articolo | Note 
+
+
+ a| 
+ a| 
+Dichiarazione del problema
+ a| 
+Quali sono i sintomi del problema? Quando è iniziato il problema? Si verifica in modo costante o intermittente? Se intermittente, in quali momenti si è verificato?
+
+<<define_problem,Definisci il problema>>
+
+
+
+ a| 
+ a| 
+${post_edited_translations.segment}
+ a| 
+Qual è la gravità del problema? Qual è l'impatto sull'applicazione client?
+
+* ${post_edited_translations.segment}
+* ${post_edited_translations.segment}
+
+
+
+
+ a| 
+ a| 
+${post_edited_translations.segment}
+ a| 
+Seleziona *Manutenzione* > *Sistema* > *Licenza*. L'ID sistema StorageGRID viene visualizzato come parte della licenza corrente.
+
+
+
+ a| 
+ a| 
+Versione software
+ a| 
+${post_edited_translations.segment}
+
+
+
+ a| 
+ a| 
+Personalizzazione
+ a| 
+Riassumi come è configurato il tuo sistema StorageGRID. Ad esempio, elenca quanto segue:
+
+* La griglia utilizza la compressione dello storage, la crittografia dello storage o la conformità?
+* ILM crea oggetti replicati o con codifica di cancellazione? ILM garantisce la ridondanza del sito? Le regole di ILM utilizzano i comportamenti di acquisizione Balanced, Strict o Dual Commit?
+
+
+
+
+ a| 
+ a| 
+File di registro e dati di sistema
+ a| 
+Raccogli i file di log e i dati di sistema per il tuo sistema. Seleziona *Supporto* > *Strumenti* > *Raccolta log*.
+
+${post_edited_translations.segment}
+
+Se stai raccogliendo i log solo per i nodi selezionati, assicurati di includere almeno un Storage Node che disponga del servizio ADC. I primi tre Storage Node installati in un sito includono il servizio ADC.
+
+
+
+ a| 
+ a| 
+Informazioni di base
+ a| 
+Raccogli informazioni di base sulle operazioni di acquisizione, sulle operazioni di recupero e sul consumo di storage.
+
+<<establish-baselines,Stabilisci i parametri di riferimento>>
+
+
+
+ a| 
+ a| 
+Cronologia delle modifiche recenti
+ a| 
+${post_edited_translations.segment}
+
+<<create_timeline,Crea una cronologia delle modifiche recenti>>
+
+
+
+ a| 
+ a| 
+Storia degli sforzi per diagnosticare il problema
+ a| 
+${post_edited_translations.segment}
+
+|===

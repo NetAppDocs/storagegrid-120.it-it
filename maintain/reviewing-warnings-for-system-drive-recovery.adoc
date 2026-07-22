@@ -1,0 +1,35 @@
+---
+permalink: maintain/reviewing-warnings-for-system-drive-recovery.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, system drive warning, storage node 
+summary: 'Prima di ripristinare un"unità di sistema guasta di un nodo di StorageGRID, rivedi gli avvisi e le considerazioni generali per il recovery del nodo grid e i seguenti avvisi specifici.' 
+---
+= Avvisi per il ripristino dell'unità di sistema del nodo di storage StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Prima di ripristinare un'unità di sistema guasta di un nodo di archiviazione, esamina gli avvisi generali link:warnings-and-considerations-for-grid-node-recovery.html["Avvertenze e considerazioni per il ripristino dei nodi della grid"] e i seguenti avvisi specifici.
+
+I nodi di archiviazione dispongono di un database Cassandra che include metadati degli oggetti. Il database Cassandra potrebbe essere ricostruito se:
+
+* Un volume di archiviazione si guasta e viene ripristinato.
+* L'unità di sistema e uno o più volumi di archiviazione si guastano e vengono ripristinati.
+
+
+Quando Cassandra viene ricostruita, il sistema utilizza le informazioni provenienti da altri Storage Node. Se Cassandra è stata ricostruita di recente, i dati di Cassandra potrebbero non essere ancora coerenti in tutto il grid. Se troppi Storage Node sono offline:
+
+* Alcuni dati di Cassandra potrebbero non essere disponibili.
+* Potrebbe verificarsi una perdita di dati.
+
+
+
+CAUTION: Se più di un nodo di Storage non funziona (o è offline), contatta il supporto tecnico. Non eseguire la seguente procedura di ripristino. Potresti perdere dei dati. Per ulteriori informazioni, consulta link:how-site-recovery-is-performed-by-technical-support.html["Come il supporto tecnico ripristina un sito"].
+
+
+CAUTION: Se questo Storage Node è in modalità di manutenzione di sola lettura per consentire il recupero degli oggetti da parte di un altro Storage Node con volumi di archiviazione guasti, ripristina i volumi sullo Storage Node con volumi di archiviazione guasti prima di ripristinare questo Storage Node guasto. Vedi le istruzioni per link:recovering-from-storage-volume-failure-where-system-drive-is-intact.html["Ripristina da un errore del volume di archiviazione quando l'unità di sistema è intatta"].
+
+
+CAUTION: Se le regole ILM sono configurate per memorizzare una sola copia replicata e tale copia si trova su un volume di archiviazione guasto, non potrai recuperare l'oggetto.

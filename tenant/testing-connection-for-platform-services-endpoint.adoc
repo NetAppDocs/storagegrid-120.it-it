@@ -1,0 +1,39 @@
+---
+permalink: tenant/testing-connection-for-platform-services-endpoint.html 
+sidebar: sidebar 
+keywords: how to test platform services endpoint connection 
+summary: ${post_edited_translations.segment} 
+---
+= Verifica la connessione per un endpoint dei servizi della piattaforma StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+${post_edited_translations.segment}
+
+.Prima di iniziare
+* Hai effettuato l'accesso al Tenant Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Tu appartieni a un gruppo di utenti che ha il link:tenant-management-permissions.html["Gestisci endpoint o autorizzazione di accesso root"].
+
+
+.Informazioni su questa attività
+${post_edited_translations.segment}
+
+.Passaggi
+. Seleziona *STORAGE (S3)* > *Platform services endpoints*.
++
+${post_edited_translations.segment}
+
+. ${post_edited_translations.segment}
++
+Viene visualizzata la pagina dei dettagli dell'endpoint.
+
+. Seleziona *Test connessione*.
++
+** Se l'endpoint è raggiungibile con le credenziali specificate, viene visualizzato un messaggio di successo. La connessione all'endpoint viene convalidata da un nodo in ciascun sito.
+** Viene visualizzato un messaggio di errore se la convalida dell'endpoint non riesce. Se devi modificare l'endpoint per correggere l'errore, seleziona *Configurazione* e aggiorna le informazioni. Poi seleziona *Verifica e salva le modifiche*.
+
+
+

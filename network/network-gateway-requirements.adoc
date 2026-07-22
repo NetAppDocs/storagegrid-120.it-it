@@ -1,0 +1,19 @@
+---
+permalink: network/network-gateway-requirements.html 
+sidebar: sidebar 
+keywords: network gateway requirements 
+summary: Segui questi requisiti e linee guida per i gateway o i router di rete. 
+---
+= Requisiti del gateway di rete per StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Segui questi requisiti e linee guida per i gateway o i router di rete.
+
+* Se impostato, il gateway per una determinata rete deve trovarsi all'interno della sottorete di quella specifica rete.
+* Se configuri un'interfaccia utilizzando l'indirizzamento statico, devi specificare un indirizzo gateway diverso da 0.0.0.0.
+* Se non hai un gateway, la best practice è impostare l'indirizzo del gateway sull'indirizzo IP dell'interfaccia di rete.
+

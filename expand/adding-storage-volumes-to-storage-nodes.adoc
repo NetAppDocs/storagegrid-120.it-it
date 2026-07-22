@@ -1,0 +1,50 @@
+---
+permalink: expand/adding-storage-volumes-to-storage-nodes.html 
+sidebar: sidebar 
+keywords: storage volumes, expand, expansion, add, storage nodes, adding storage capacity, StorageGRID 
+summary: Puoi espandere la capacità di storage dei Storage Node che sono al di sotto del numero massimo supportato di volumi. Potresti dover aggiungere volumi di storage a più di un Storage Node per soddisfare i requisiti ILM per le copie replicate o con erasure coding. 
+---
+= Aggiungi volumi di storage al tuo sistema StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi espandere la capacità di storage dei Storage Node che sono al di sotto del numero massimo supportato di volumi. Potresti dover aggiungere volumi di storage a più di un Storage Node per soddisfare i requisiti ILM per le copie replicate o con erasure coding.
+
+.Prima di iniziare
+Prima di aggiungere volumi di storage, rivedi la link:guidelines-for-adding-object-capacity.html["linee guida per l'aggiunta di capacità oggetto"] per assicurarti di sapere dove aggiungere i volumi per soddisfare i requisiti della tua policy ILM.
+
+
+NOTE: Queste istruzioni si applicano solo ai nodi di storage basati su software. Vedi  https://docs.netapp.com/us-en/storagegrid-appliances/sg6000/adding-expansion-shelf-to-deployed-sg6060.html["Aggiungi shelf di espansione a SG6060 già implementato"^] o  https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/adding-expansion-shelf-to-deployed-sg6160.html["Aggiungi shelf di espansione a SG6160 già implementato"^] per scoprire come aggiungere volumi di storage a SG6060 o SG6160 installando shelf di espansione. Gli altri appliance Storage Nodes non possono essere espansi.
+
+.Informazioni su questa attività
+Lo storage sottostante di un nodo di archiviazione è suddiviso in volumi di archiviazione. I volumi di archiviazione sono dispositivi di storage a blocchi che vengono formattati dal sistema StorageGRID e montati per memorizzare oggetti. Ogni nodo di archiviazione può supportare fino a 48 volumi di archiviazione, che sono chiamati _object stores_ nel Grid Manager.
+
+
+NOTE: I metadati degli oggetti vengono sempre memorizzati nell'archivio di oggetti 0.
+
+Ogni archivio di oggetti è montato su un volume corrispondente al suo ID. Ad esempio, l'archivio di oggetti con ID 0000 corrisponde al  `/var/local/rangedb/0` punto di montaggio.
+
+Prima di aggiungere nuovi volumi di storage, usa Grid Manager per visualizzare gli archivi di oggetti correnti per ciascun Storage Node e i relativi punti di montaggio. Puoi usare queste informazioni quando aggiungi volumi di storage.
+
+.Passaggi
+. Seleziona *Nodi* > *_site_* > *_Storage Node_* > *Storage*.
+. Scorri verso il basso per visualizzare la quantità di spazio di storage disponibile per ciascun volume e archivio di oggetti.
++
+Per i nodi di storage dell'appliance, il Worldwide Name di ciascun disco corrisponde all'identificatore globale del volume (WWID) visualizzato quando visualizzi le proprietà standard del volume in SANtricity OS (il software di gestione connesso allo storage controller).
+
++
+Per aiutarti a interpretare le statistiche di lettura e scrittura del disco relative ai punti di montaggio dei volumi, la prima parte del nome mostrato nella colonna *Nome* della tabella Dispositivi disco (cioè _sdc_, _sdd_, _sde_ e così via) corrisponde al valore mostrato nella colonna *Dispositivo* della tabella Volumi.
+
++
+image:nodes_page_storage_tables_vol_expansion.png["Tabelle di storage della pagina nodi"]
+
+. Segui le istruzioni per la tua piattaforma per aggiungere nuovi volumi di storage allo Storage Node.
++
+** link:vmware-adding-storage-volumes-to-storage-node.html["VMware: Aggiungi volumi di storage al nodo di storage"]
+** link:linux-adding-direct-attached-or-san-volumes-to-storage-node.html["Linux: Aggiungi volumi collegati direttamente o SAN allo Storage Node"]
+
+
+

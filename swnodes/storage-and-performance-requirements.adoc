@@ -1,0 +1,447 @@
+---
+permalink: swnodes/storage-and-performance-requirements.html 
+sidebar: sidebar 
+keywords: storage requirements, performance requirements, host storage, host volumes, netapp ontap, fabricpool 
+summary: Devi comprendere i requisiti di archiviazione dei nodi StorageGRID, così puoi fornire spazio sufficiente per supportare la configurazione iniziale e la futura espansione dello storage. 
+---
+= Requisiti di storage e prestazioni per StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Devi comprendere i requisiti di archiviazione dei nodi StorageGRID, così puoi fornire spazio sufficiente per supportare la configurazione iniziale e la futura espansione dello storage.
+
+I requisiti di storage e prestazioni variano in base alla tua implementazione del nodo basata su software.
+
+
+NOTE: "Linux" si riferisce a un'installazione di RHEL, Ubuntu o Debian. Per un elenco delle versioni supportate, vedi  https://imt.netapp.com/matrix/#welcome["NetApp Interoperability Matrix Tool (IMT)"^].
+
+
+
+[[storage-categories]]
+== Categorie di storage
+
+I nodi StorageGRID richiedono tre categorie logiche di archiviazione:
+
+* *Pool di container* -- Storage di livello prestazioni (10K SAS o SSD) per i container dei nodi, che verrà assegnato al driver di storage del motore di container quando installerai e configurerai il motore di container sugli host che supporteranno i tuoi nodi StorageGRID.
+* *Dati di sistema* -- Storage di livello prestazioni (SAS da 10K o SSD) per lo storage persistente per nodo dei dati di sistema e dei log delle transazioni, che i servizi host di StorageGRID consumeranno e mapperanno nei singoli nodi.
+* *Dati oggetto* -- Storage di livello prestazioni (SAS o SSD da 10K) e storage di massa di livello capacità (NL-SAS/SATA) per lo storage persistente dei dati oggetto e dei metadati oggetto.
+
+
+Devi usare dispositivi a blocchi con supporto RAID per tutte le categorie di storage. Dischi non ridondanti, SSD o JBOD non sono supportati. Puoi usare storage RAID condiviso o locale per qualsiasi categoria di storage; tuttavia, se vuoi usare la funzionalità di migrazione dei nodi in StorageGRID, devi archiviare sia i dati di sistema che i dati degli oggetti su storage condiviso. Per maggiori informazioni, vedi link:node-container-migration-requirements.html["Requisiti per la migrazione dei container dei nodi"].
+
+
+
+[[performance-requirements]]
+== Requisiti di prestazione
+
+Le prestazioni dei volumi utilizzati per il container pool, i dati di sistema e i metadati degli oggetti influiscono significativamente sulle prestazioni complessive del sistema. Dovresti utilizzare storage di livello performance (10K SAS o SSD) per questi volumi per garantire prestazioni del disco adeguate in termini di latenza, operazioni di input/output al secondo (IOPS) e throughput. Puoi utilizzare storage di livello capacity (NL-SAS/SATA) per lo storage persistente dei dati degli oggetti.
+
+I volumi utilizzati per il container pool, i dati di sistema e i dati degli oggetti devono avere la cache write-back abilitata. La cache deve risiedere su un supporto protetto o persistente.
+
+
+
+[[requirements-for-hosts-that-use-netapp-ontap-storage]]
+== Requisiti per gli host che utilizzano lo storage NetApp ONTAP
+
+Se il nodo StorageGRID utilizza storage assegnato da un sistema NetApp ONTAP, assicurati che il volume non abbia una policy di tiering FabricPool abilitata. Disabilitare il tiering FabricPool per i volumi usati con i nodi StorageGRID semplifica la risoluzione dei problemi e le operazioni di storage.
+
+
+NOTE: Non utilizzare mai FabricPool per trasferire qualsiasi dato relativo a StorageGRID nuovamente su StorageGRID stesso. Il tiering dei dati di StorageGRID nuovamente su StorageGRID aumenta la complessità della risoluzione dei problemi e delle operazioni.
+
+
+
+[[number-of-hosts-required]]
+== Numero di host richiesti
+
+Ogni sito StorageGRID richiede un minimo di tre nodi di storage.
+
+
+NOTE: In un ambiente di produzione, non eseguire più di un Storage Node su un singolo host fisico o virtuale. Usare un host dedicato per ciascun Storage Node offre un dominio di errore isolato.
+
+Altri tipi di nodi, come i nodi di amministrazione o i nodi gateway, possono essere distribuiti sugli stessi host oppure su host dedicati, a seconda delle necessità.
+
+
+NOTE: Gli snapshot del disco non possono essere utilizzati per ripristinare i nodi della griglia. Invece, fai riferimento alle link:../maintain/warnings-and-considerations-for-grid-node-recovery.html["ripristino del nodo della griglia"] procedure per ciascun tipo di nodo.
+
+
+
+[[number-of-storage-volumes-for-each-node]]
+== Numero di volumi di storage per ciascun nodo
+
+La tabella seguente mostra il numero di volumi di storage (LUN) necessari per ciascun host e la dimensione minima richiesta per ciascun LUN, in base ai nodi che verranno distribuiti su tale host.
+
+La dimensione massima del LUN testato è 39 TB.
+
+
+NOTE: Questi numeri si riferiscono a ciascun host, non all'intera griglia.
+
+|===
+| Scopo della LUN | Categoria di storage | Numero di LUN | Dimensione minima/LUN 
+
+
+ a| 
+pool di storage del motore dei container
+ a| 
+Pool di container
+ a| 
+1
+ a| 
+Numero totale di nodi × 100 GB
+
+
+
+ a| 
+`/var/local` volume
+ a| 
+Dati di sistema
+ a| 
+1 per ogni nodo su questo host
+ a| 
+100 GB
+
+
+
+ a| 
+Nodo di archiviazione
+ a| 
+Dati oggetto
+ a| 
+3 per ogni Storage Node su questo host
+
+*Nota:* Un nodo di storage basato su software Linux può avere da 1 a 48 volumi di storage. Un nodo di storage basato su software VMware può avere da 1 a 16 volumi di storage. Sono consigliati almeno 3 volumi di storage.
+ a| 
+12 TB (4 TB/LUN, minimo)
+
+Dimensione massima del LUN testato: 39 TB.
+
+Vedi <<storage_req_SN,Requisiti di storage per i nodi di storage>> per maggiori informazioni.
+
+
+
+ a| 
+Nodo di storage (solo metadati)
+ a| 
+Metadati oggetto
+ a| 
+1
+ a| 
+4 TB/LUN, minimo
+
+Dimensione massima del LUN testato: 39 TB.
+
+Vedi <<storage_req_SN,Requisiti di storage per i nodi di storage>> per maggiori informazioni.
+
+*Nota*: È necessario un solo rangedb per i nodi di archiviazione che contengono solo metadati.
+
+
+
+ a| 
+Registri di controllo del nodo amministratore
+ a| 
+Dati di sistema
+ a| 
+1 per ogni Admin Node su questo host
+ a| 
+200 GB
+
+
+
+ a| 
+Tabelle dei nodi amministrativi
+ a| 
+Dati di sistema
+ a| 
+1 per ogni Admin Node su questo host
+ a| 
+200 GB
+
+|===
+
+NOTE: A seconda del livello di controllo configurato, delle dimensioni degli input utente come il nome della chiave dell'oggetto S3 e di quanta quantità di dati del registro di controllo devi conservare, potresti dover aumentare le dimensioni del LUN del registro di controllo su ciascun Admin Node. In genere, una grid genera circa 1 KB di dati di controllo per ogni operazione S3, il che significa che un LUN da 200 GB supporterebbe 70 milioni di operazioni al giorno oppure 800 operazioni al secondo per due o tre giorni.
+
+
+
+[[minimum-storage-space-for-a-host]]
+== Spazio di storage minimo per un host
+
+La tabella seguente mostra lo spazio minimo di storage richiesto per ogni tipo di nodo. Puoi usare questa tabella per determinare la quantità minima di spazio di storage che devi fornire all'host in ciascuna categoria di storage, in base ai nodi che verranno distribuiti su quell'host.
+
+
+NOTE: Gli snapshot del disco non possono essere utilizzati per ripristinare i nodi della griglia. Invece, fai riferimento alle link:../maintain/warnings-and-considerations-for-grid-node-recovery.html["ripristino del nodo della griglia"] procedure per ciascun tipo di nodo.
+
+Ciascun nodo host richiede una LUN da 100 GB per il sistema operativo.
+
+|===
+| Tipo di nodo | Pool di container | Dati di sistema | Dati oggetto 
+
+
+| Nodo di archiviazione  a| 
+100 GB
+ a| 
+100 GB
+ a| 
+4.000 GB
+
+
+
+ a| 
+Nodo amministratore
+ a| 
+100 GB
+ a| 
+500 GB (3 LUN)
+ a| 
+_non applicabile_
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+100 GB
+ a| 
+100 GB
+ a| 
+_non applicabile_
+
+|===
+
+
+[[example-calculating-the-storage-requirements-for-a-host-or-virtual-machine]]
+== Esempio: Calcolo dei requisiti di storage per un host o una macchina virtuale
+
+Supponiamo che tu voglia distribuire tre nodi sullo stesso host o macchina virtuale: un Storage Node, un Admin Node e un Gateway Node. Dovresti fornire all'host almeno nove volumi di storage. Avrai bisogno di almeno 300 GB di storage di livello prestazioni per i container dei nodi, 700 GB di storage di livello prestazioni per i dati di sistema e i log delle transazioni, e 12 TB di storage di livello capacità per i dati degli oggetti.
+
+[role="tabbed-block"]
+====
+.Esempio host Linux
+--
+|===
+| Tipo di nodo | Scopo della LUN | Numero di LUN | Dimensione della LUN 
+
+
+| Nodo di archiviazione  a| 
+pool di storage del motore dei container
+ a| 
+1
+ a| 
+300 GB (100 GB/nodo)
+
+
+
+ a| 
+Nodo di archiviazione
+ a| 
+`/var/local` volume
+ a| 
+1
+ a| 
+100 GB
+
+
+
+| Nodo di archiviazione  a| 
+Dati oggetto
+ a| 
+3
+ a| 
+12 TB (4 TB/LUN)
+
+
+
+ a| 
+Nodo amministratore
+ a| 
+`/var/local` volume
+ a| 
+1
+ a| 
+100 GB
+
+
+
+| Nodo amministratore  a| 
+Registri di controllo del nodo amministratore
+ a| 
+1
+ a| 
+200 GB
+
+
+
+| Nodo amministratore  a| 
+Tabelle dei nodi amministrativi
+ a| 
+1
+ a| 
+200 GB
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+`/var/local` volume
+ a| 
+1
+ a| 
+100 GB
+
+
+
+ a| 
+*Totale*
+ a| 
+ a| 
+*9*
+ a| 
+*Pool di container:* 300 GB
+
+*Dati di sistema:* 700 GB
+
+*Dati oggetto:* 12.000 GB
+
+|===
+--
+.Esempio di macchina virtuale VMware
+--
+|===
+| Tipo di nodo | Scopo della LUN | Numero di LUN | Dimensione della LUN 
+
+
+ a| 
+Nodo di archiviazione
+ a| 
+volume del sistema operativo
+ a| 
+1
+ a| 
+100 GB
+
+
+
+| Nodo di archiviazione  a| 
+Dati oggetto
+ a| 
+3
+ a| 
+12 TB (4 TB/LUN)
+
+
+
+ a| 
+Nodo amministratore
+ a| 
+volume del sistema operativo
+ a| 
+1
+ a| 
+100 GB
+
+
+
+| Nodo amministratore  a| 
+Registri di controllo del nodo amministratore
+ a| 
+1
+ a| 
+200 GB
+
+
+
+| Nodo amministratore  a| 
+Tabelle dei nodi amministrativi
+ a| 
+1
+ a| 
+200 GB
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+volume del sistema operativo
+ a| 
+1
+ a| 
+100 GB
+
+
+
+ a| 
+*Totale*
+ a| 
+ a| 
+*8*
+ a| 
+*Dati di sistema:* 700 GB
+
+*Dati oggetto:* 12.000 GB
+
+|===
+--
+====
+
+
+[[specific-storage-requirements-for-storage-nodes]]
+[[storage_req_SN]]
+== Requisiti di storage specifici per i nodi di storage
+
+Linux e VMware hanno requisiti di storage diversi per i nodi di storage:
+
+* Un nodo di storage basato su software Linux può avere da 1 a 48 volumi di storage
+* Un nodo di storage basato su software VMware può avere da 1 a 16 volumi di storage
+* Si raccomanda di utilizzare tre o più volumi di storage.
+* Ogni volume di storage dovrebbe essere di 4 TB o più grande.
+
+
+
+NOTE: Un nodo di storage dell'appliance può inoltre avere fino a 48 volumi di storage.
+
+Come illustrato nella figura, StorageGRID riserva spazio per i metadati degli oggetti sul volume di storage 0 di ciascun nodo di storage. Lo spazio rimanente sul volume di storage 0 e su qualsiasi altro volume di storage nel nodo di storage viene utilizzato esclusivamente per i dati degli oggetti.
+
+image:metadata_space_storage_node.png["Nodo di storage dello spazio metadati"]
+
+Per garantire ridondanza e proteggere i metadati degli oggetti dalla perdita, StorageGRID memorizza tre copie dei metadati per tutti gli oggetti presenti nel sistema in ogni sito. Le tre copie dei metadati degli oggetti sono distribuite uniformemente su tutti i nodi di storage in ogni sito.
+
+Quando installi una grid con Storage Node solo metadati, la grid deve anche contenere un numero minimo di nodi per lo storage a oggetti. Vedi link:../primer/what-storage-node-is.html#types-of-storage-nodes["Tipi di nodi di archiviazione"] per ulteriori informazioni sugli Storage Node solo metadati.
+
+* Per una griglia a sito singolo, sono configurati almeno due Storage Node per oggetti e metadati.
+* Per una griglia multisito, almeno un nodo di storage per sito è configurato per oggetti e metadati.
+
+
+Quando assegni spazio al volume 0 di un nuovo nodo di storage, devi assicurarti che ci sia spazio sufficiente per la porzione di metadati di tutti gli oggetti di quel nodo.
+
+* Come minimo, devi assegnare almeno 4 TB al volume 0.
++
+
+NOTE: Se usi solo un volume di storage per un nodo di storage e assegni 4 TB o meno al volume, il nodo di storage potrebbe entrare nello stato di sola lettura all'avvio e memorizzare solo i metadati degli oggetti.
+
++
+
+NOTE: Se assegni meno di 500 GB al volume 0 (solo per uso non di produzione), il 10% della capacità del volume di storage è riservato ai metadati.
+
+* Le risorse dei nodi basati su software che contengono solo metadati devono corrispondere alle risorse dei nodi di storage esistenti. Ad esempio:
++
+** Se il sito StorageGRID esistente utilizza appliance SG6000 o SG6100, i nodi software dedicati esclusivamente ai metadati devono soddisfare i seguenti requisiti minimi:
++
+*** 128 GB di RAM
+*** CPU a 8 core
+*** 8 TB SSD o storage equivalente per il database Cassandra (rangedb/0)
+
+
+** Se il sito StorageGRID esistente utilizza nodi di storage virtuali con 24 GB di RAM, CPU a 8 core e 3 TB o 4 TB di storage per i metadati, i nodi software dedicati esclusivamente ai metadati dovrebbero utilizzare risorse simili (24 GB di RAM, CPU a 8 core e 4 TB di storage per i metadati (rangedb/0)).
++
+Quando aggiungi un nuovo sito StorageGRID, la capacità totale dei metadati del nuovo sito dovrebbe, almeno, corrispondere a quella dei siti StorageGRID esistenti e le risorse del nuovo sito dovrebbero corrispondere ai nodi di storage dei siti StorageGRID esistenti.
+
+
+
+* Se stai installando un nuovo sistema (StorageGRID 11.6 o superiore) e ogni Storage Node ha 128 GB o più di RAM, assegna 8 TB o più al volume 0. Usare un valore maggiore per il volume 0 può aumentare lo spazio consentito per i metadati su ciascun Storage Node.
+* Quando configuri nodi di storage diversi per un sito, usa la stessa impostazione per il volume 0 se possibile. Se un sito contiene nodi di storage di dimensioni diverse, il nodo di storage con il volume 0 più piccolo determinerà la capacità dei metadati di quel sito.
+
+
+Per maggiori dettagli, vai su link:../admin/managing-object-metadata-storage.html["Gestisci l'archiviazione dei metadati degli oggetti"].

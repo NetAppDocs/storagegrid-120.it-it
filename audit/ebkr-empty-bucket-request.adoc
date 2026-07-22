@@ -1,0 +1,55 @@
+---
+permalink: audit/ebkr-empty-bucket-request.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, EBKR, Empty Bucket Request 
+summary: 'Questo messaggio indica che un utente ha inviato una richiesta per attivare o disattivare il bucket vuoto (cioè per eliminare gli oggetti del bucket o per interrompere l"eliminazione degli oggetti).' 
+---
+= Messaggio di audit EBKR per richieste di bucket vuoti in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Questo messaggio indica che un utente ha inviato una richiesta per attivare o disattivare il bucket vuoto (cioè per eliminare gli oggetti del bucket o per interrompere l'eliminazione degli oggetti).
+
+[cols="1a,1a,4a"]
+|===
+| Codice | Campo | Descrizione 
+
+
+ a| 
+BUID
+ a| 
+UUID del bucket
+ a| 
+L'ID del bucket.
+
+
+
+ a| 
+EBJS
+ a| 
+Configurazione JSON del bucket vuoto
+ a| 
+Contiene il JSON che rappresenta la configurazione corrente di Empty Bucket.
+
+
+
+ a| 
+S3AI
+ a| 
+${post_edited_translations.segment}
+ a| 
+L'ID account tenant dell'utente che ha inviato la richiesta. Un valore vuoto indica accesso anonimo.
+
+
+
+ a| 
+S3BK
+ a| 
+Bucket S3
+ a| 
+Il nome del bucket S3.
+
+|===

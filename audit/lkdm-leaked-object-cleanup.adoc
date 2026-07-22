@@ -1,0 +1,96 @@
+---
+permalink: audit/lkdm-leaked-object-cleanup.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, LKDM, Leaked Object Cleanup 
+summary: Il messaggio di audit LKDM viene generato quando un chunk perso è stato ripulito o eliminato. 
+---
+= Messaggio di audit LKDM per la pulizia degli oggetti trapelati in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Questo messaggio viene generato quando un chunk non valido viene ripulito o eliminato. Un chunk può far parte di un oggetto replicato o di un oggetto con codifica di cancellazione.
+
+[cols="1a,1a,4a"]
+|===
+| Codice | Campo | Descrizione 
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+${post_edited_translations.segment}
+ a| 
+Il percorso del file del chunk trapelato che è stato eliminato.
+
+
+
+ a| 
+CTYP
+ a| 
+Tipo di chunk
+ a| 
+Tipo di chunk:
+
+`ec: Erasure-coded object chunk`
+
+`repl: Replicated object chunk`
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Tipo di perdita
+ a| 
+I cinque tipi di perdite che puoi rilevare:
+
+`object_leaked: Object doesn’t exist in the grid`
+
+`location_leaked: Object exists in the grid, but found location doesn’t belong to object`
+
+`mup_seg_leaked: Multipart upload was stopped or not completed, and the segment/part was left out`
+
+`segment_leaked: Parent UUID/CBID (associated container object) is valid but doesn't contain this segment`
+
+`no_parent: Container object is deleted, but object segment was left out and not deleted`
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Tempo di creazione del chunk
+ a| 
+${post_edited_translations.segment}
+
+
+
+ a| 
+UUID
+ a| 
+Identificatore univoco universale
+ a| 
+L'identificativo dell'oggetto a cui appartiene il chunk.
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Identificatore del blocco di contenuto
+ a| 
+CBID dell'oggetto a cui appartiene il chunk trapelato.
+
+
+
+ a| 
+CSIZ
+ a| 
+Dimensione del contenuto
+ a| 
+La dimensione del chunk in byte.
+
+|===

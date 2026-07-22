@@ -1,0 +1,25 @@
+---
+permalink: maintain/checking-storage-state-after-recovering-storage-node-system-drive.html 
+sidebar: sidebar 
+keywords: storagegrid, storage node recovery, system drive, storage state 
+summary: 'Dopo aver ripristinato l"unità di sistema per un Storage Node, devi verificare che lo stato desiderato del Storage Node sia impostato su online e assicurarti che lo stato sarà online per impostazione predefinita ogni volta che il server del Storage Node viene riavviato.' 
+---
+= Verifica lo stato dello storage dopo il ripristino di un'unità di sistema di un nodo di storage StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Dopo aver ripristinato l'unità di sistema per un Storage Node, devi verificare che lo stato desiderato del Storage Node sia impostato su online e assicurarti che lo stato sarà online per impostazione predefinita ogni volta che il server del Storage Node viene riavviato.
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Il nodo di archiviazione è stato ripristinato e il recovery di dati è completo.
+
+
+.Passaggi
+. ${post_edited_translations.segment}
+. ${post_edited_translations.segment}
+. Seleziona *Salva*.
+

@@ -1,0 +1,23 @@
+---
+permalink: network/grid-network-requirements.html 
+sidebar: sidebar 
+keywords: grid network requirements 
+summary: Segui questi requisiti e queste linee guida per la Grid Network. 
+---
+= Requisiti della Grid Network per StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Segui questi requisiti e queste linee guida per la Grid Network.
+
+* Al momento della distribuzione, ogni nodo della griglia deve essere collegato alla Grid Network e deve poter comunicare con il primary Admin Node usando la configurazione di rete che specifichi quando distribuisci il nodo.
+* Durante il normale funzionamento del grid, ogni nodo del grid deve essere in grado di comunicare con tutti gli altri nodi del grid tramite la Grid Network.
++
+
+NOTE: La rete Grid deve essere direttamente instradabile tra ciascun nodo. La traduzione degli indirizzi di rete (NAT) tra i nodi non è supportata.
+
+* Se la Grid Network è composta da più sottoreti, aggiungile alla Grid Network Subnet List (GNSL). Le route statiche vengono create su tutti i nodi per ogni sottorete presente nella GNSL.
+

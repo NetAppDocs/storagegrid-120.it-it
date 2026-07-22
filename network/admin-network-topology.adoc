@@ -1,0 +1,24 @@
+---
+permalink: network/admin-network-topology.html 
+sidebar: sidebar 
+keywords: admin network topology, using admin network 
+summary: Avere una rete di amministrazione è facoltativo. Un modo per utilizzare una rete di amministrazione e una rete Grid è configurare una rete Grid instradabile e una rete di amministrazione delimitata per ciascun nodo. 
+---
+= Topologia di rete Admin per StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Avere una rete di amministrazione è facoltativo. Un modo per utilizzare una rete di amministrazione e una rete Grid è configurare una rete Grid instradabile e una rete di amministrazione delimitata per ciascun nodo.
+
+Quando configuri la rete di amministrazione, imposti l'indirizzo IP host, la subnet mask e l'indirizzo IP del gateway per l'interfaccia eth1 di ciascun nodo della griglia.
+
+La rete di amministrazione può essere univoca per ciascun nodo e può essere composta da più sottoreti. Ogni nodo può essere configurato con un Admin External Subnet List (AESL). L'AESL elenca le sottoreti raggiungibili tramite la rete di amministrazione per ciascun nodo. L'AESL deve includere anche le sottoreti di tutti i servizi a cui la grid accederà tramite la rete di amministrazione, come NTP, DNS, KMS e LDAP. Per ogni sottorete presente nell'AESL vengono applicate route statiche.
+
+In questo esempio, la Grid Network viene utilizzata per il traffico relativo alle richieste dei client S3 e alla gestione degli oggetti, mentre la Admin Network viene utilizzata per le funzioni amministrative.
+
+image:grid_admin_networks.png["Reti di amministrazione della griglia"]
+
+image:grid_admin_networks_ips.png["Indirizzi IP delle reti di amministrazione della griglia"]

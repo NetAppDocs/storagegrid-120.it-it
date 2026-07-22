@@ -1,0 +1,38 @@
+---
+permalink: ilm/what-erasure-coding-is.html 
+sidebar: sidebar 
+keywords: what is erasure coding, what is ec 
+summary: La codifica di cancellazione è uno dei due metodi che StorageGRID utilizza per memorizzare i dati degli oggetti. Quando gli oggetti corrispondono a una regola ILM che utilizza la codifica di cancellazione, questi vengono suddivisi in frammenti di dati, vengono calcolati ulteriori frammenti di parità e ciascun frammento viene memorizzato su un diverso Storage Node. 
+---
+= Scopri la codifica di cancellazione in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La codifica di cancellazione è uno dei due metodi che StorageGRID utilizza per memorizzare i dati degli oggetti (l'altro metodo è la replica). Quando gli oggetti corrispondono a una regola ILM che utilizza la codifica di cancellazione, questi vengono suddivisi in frammenti di dati, vengono calcolati ulteriori frammenti di parità e ciascun frammento viene memorizzato su un diverso Storage Node.
+
+Quando accedi a un oggetto, questo viene ricostruito utilizzando i frammenti memorizzati. Se un frammento di dati o di parità risulta danneggiato o perso, l'algoritmo di codifica di cancellazione può ricreare quel frammento utilizzando un sottoinsieme dei frammenti di dati e di parità rimanenti.
+
+Quando crei regole ILM, StorageGRID crea profili di codifica di cancellazione che supportano tali regole. Puoi visualizzare un elenco di profili di codifica di cancellazione, link:manage-erasure-coding-profiles.html#rename-an-erasure-coding-profile["rinominare un profilo di erasure-coding"], oppure link:manage-erasure-coding-profiles.html#deactivate-an-erasure-coding-profile["Disattiva un profilo di codifica di cancellazione se non è attualmente utilizzato in nessuna regola ILM"].
+
+L'esempio seguente illustra l'utilizzo di un algoritmo di codifica di cancellazione sui dati di un oggetto. In questo esempio, la regola ILM utilizza uno schema di codifica di cancellazione 4+2. Ogni oggetto viene suddiviso in quattro frammenti di dati uguali e da questi vengono calcolati due frammenti di parità. Ciascuno dei sei frammenti viene memorizzato su un nodo diverso in tre siti di data center per garantire la protezione dei dati in caso di guasti ai nodi o perdita di un sito.
+
+image:ec_three_sites_4_plus_2.png["Codifica di cancellazione Three Sites 4 Plus 2"]
+
+Lo schema di codifica di cancellazione 4+2 può essere configurato in vari modi. Ad esempio, puoi configurare un pool di storage che contiene sei Storage Node. Per link:using-multiple-storage-pools-for-cross-site-replication.html["protezione dalla perdita del sito"], puoi usare un pool di storage che contiene tre siti con tre Storage Node in ciascun sito. Un oggetto può essere recuperato finché almeno quattro dei sei frammenti (dati o parità) rimangono disponibili. Si possono perdere fino a due frammenti senza perdere i dati dell'oggetto. Se un intero sito viene perso, l'oggetto può comunque essere recuperato o riparato, finché tutti gli altri frammenti rimangono accessibili.
+
+image:ec_recoverable_4_plus_2.png["Erasure Coding recuperabile 4 più 2"]
+
+Se perdi più di due Storage Node, l'oggetto non è recuperabile.
+
+image:ec_unrecoverable_4_plus_2.png["Erasure Coding irrecuperabile 4 più 2"]
+
+.Informazioni correlate
+* link:what-replication-is.html["Che cos'è la replicazione"]
+* link:what-storage-pool-is.html["Cos'è un pool di storage"]
+* link:what-erasure-coding-schemes-are.html["Cosa sono gli schemi di codifica a cancellazione"]
+* link:manage-erasure-coding-profiles.html#rename-an-erasure-coding-profile["Rinomina un profilo di codifica di cancellazione"]
+* link:manage-erasure-coding-profiles.html#deactivate-an-erasure-coding-profile["Disattiva un profilo di codifica di cancellazione"]
+

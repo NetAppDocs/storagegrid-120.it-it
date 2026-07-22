@@ -1,0 +1,34 @@
+---
+permalink: s3/authenticating-requests.html 
+sidebar: sidebar 
+keywords: authenticate requests, authenticating, requests 
+summary: 'Il sistema StorageGRID supporta sia l"accesso autenticato che l"accesso anonimo agli oggetti tramite l"API S3.' 
+---
+= Come StorageGRID S3 REST API autentica le richieste
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Il sistema StorageGRID supporta sia l'accesso autenticato che l'accesso anonimo agli oggetti tramite l'API S3.
+
+L'API S3 supporta Signature version 2 e Signature version 4 per l'autenticazione delle richieste API S3.
+
+Le richieste autenticate devono essere firmate utilizzando il tuo access key ID e la tua secret access key.
+
+Il sistema StorageGRID supporta due metodi di autenticazione: l' `Authorization`intestazione HTTP e l'utilizzo di parametri di query.
+
+
+
+[[use-the-http-authorization-header]]
+== Usa l'intestazione HTTP Authorization
+
+L' `Authorization`intestazione HTTP viene utilizzata da tutte le operazioni API S3, tranne le richieste di accesso anonimo dove consentito dalla policy del bucket. L' `Authorization`intestazione contiene tutte le informazioni di firma necessarie per autenticare una richiesta.
+
+
+
+[[use-query-parameters]]
+== Usa i parametri di query
+
+Puoi usare i parametri di query per aggiungere informazioni di autenticazione a un URL. Questa operazione è chiamata presigning dell'URL e può essere usata per concedere accesso temporaneo a risorse specifiche. Gli utenti con l'URL presigned non hanno bisogno di conoscere la chiave di accesso segreta per accedere alla risorsa, il che ti permette di fornire accesso limitato a terze parti a una risorsa.

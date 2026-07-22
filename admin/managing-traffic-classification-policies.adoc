@@ -1,0 +1,112 @@
+---
+permalink: admin/managing-traffic-classification-policies.html 
+sidebar: sidebar 
+keywords: QoS, quality of service, traffic classification, best practices, limit traffic, monitor traffic 
+summary: 'Le politiche di classificazione del traffico consentono di identificare e monitorare diversi tipi di traffico di rete. Queste politiche possono aiutarti a limitare e monitorare il traffico per migliorare le tue offerte di quality-of-service (QoS).' 
+---
+= Politiche di classificazione del traffico in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le politiche di classificazione del traffico consentono di identificare e monitorare diversi tipi di traffico di rete. Queste politiche possono aiutarti a limitare e monitorare il traffico per migliorare le tue offerte di quality-of-service (QoS).
+
+Le policy di classificazione del traffico vengono applicate agli endpoint sul servizio StorageGRID Load Balancer per i Gateway Nodes e gli Admin Nodes. Per creare policy di classificazione del traffico, devi aver già creato gli endpoint del load balancer.
+
+
+
+[[matching-rules]]
+== ${post_edited_translations.segment}
+
+Ogni policy di classificazione del traffico contiene una o più regole di corrispondenza per identificare il traffico di rete correlato a una o più delle seguenti entità:
+
+* ${post_edited_translations.segment}
+* Sottorete
+* ${post_edited_translations.segment}
+* ${post_edited_translations.segment}
+
+
+StorageGRID monitora il traffico che corrisponde a qualsiasi regola all'interno della policy secondo gli obiettivi della regola. Qualsiasi traffico che corrisponde a una qualsiasi regola di una policy viene gestito da quella policy. Al contrario, puoi impostare regole che corrispondano a tutto il traffico tranne che a una specifica entità.
+
+
+
+[[traffic-limiting]]
+== limitazione del traffico
+
+${post_edited_translations.segment}
+
+* larghezza di banda aggregata
+* Larghezza di banda per richiesta
+* ${post_edited_translations.segment}
+* Tasso di richiesta
+
+
+I valori limite vengono applicati per ogni singolo bilanciatore di carico. Se il traffico viene distribuito simultaneamente su più bilanciatori di carico, le velocità massime totali sono un multiplo dei limiti di velocità che specifichi.
+
+
+NOTE: Puoi creare policy per limitare la larghezza di banda aggregata o per limitare la larghezza di banda per richiesta. Tuttavia, StorageGRID non può limitare entrambi i tipi di larghezza di banda contemporaneamente. I limiti della larghezza di banda aggregata potrebbero comportare un ulteriore impatto minore sulle performance del traffico non limitato.
+
+Per i limiti di larghezza di banda aggregata o per singola richiesta, le richieste vengono trasmesse in entrata o in uscita alla velocità che imposti. StorageGRID può applicare solo una velocità, quindi viene applicata la corrispondenza più specifica, in base al tipo di matcher. La larghezza di banda consumata dalla richiesta non viene conteggiata rispetto ad altre policy di corrispondenza meno specifiche che contengono policy di limite di larghezza di banda aggregata. Per tutti gli altri tipi di limite, le richieste dei client vengono ritardate di 250 millisecondi e ricevono una risposta 503 Slow Down per le richieste che superano qualsiasi limite di policy corrispondente.
+
+Nel Grid Manager, puoi visualizzare i grafici del traffico e verificare che le policy stiano applicando i limiti di traffico che ti aspetti.
+
+
+
+[[use-traffic-classification-policies-with-slas]]
+== Usa le policy di classificazione del traffico con gli SLA
+
+Puoi usare le policy di classificazione del traffico insieme ai limiti di capacità e alla protezione dei dati per far rispettare gli accordi sul livello di servizio (SLA) che specificano dettagli su capacità, protezione dei dati e prestazioni.
+
+L'esempio seguente mostra tre livelli di un SLA. Puoi creare criteri di classificazione del traffico per raggiungere gli obiettivi di prestazioni di ciascun livello di SLA.
+
+[cols="1a,1a,1a,1a,1a"]
+|===
+| Livello di servizio | Capacità | Protezione dei dati | ${post_edited_translations.segment} | Costo 
+
+
+ a| 
+Oro
+ a| 
+${post_edited_translations.segment}
+ a| 
+Regola ILM a 3 copie
+ a| 
+25 K richieste/sec
+
+${post_edited_translations.segment}
+ a| 
+${post_edited_translations.segment}
+
+
+
+ a| 
+Argento
+ a| 
+${post_edited_translations.segment}
+ a| 
+2 copie regola ILM
+ a| 
+10 K richieste/sec
+
+1,25 GB/sec (10 Gbps) larghezza di banda
+ a| 
+${post_edited_translations.segment}
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+${post_edited_translations.segment}
+ a| 
+2 copie regola ILM
+ a| 
+${post_edited_translations.segment}
+
+1 GB/sec (8 Gbps) larghezza di banda
+ a| 
+$ al mese
+
+|===

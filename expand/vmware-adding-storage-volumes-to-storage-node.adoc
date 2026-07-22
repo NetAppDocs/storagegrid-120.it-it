@@ -1,0 +1,102 @@
+---
+permalink: expand/vmware-adding-storage-volumes-to-storage-node.html 
+sidebar: sidebar 
+keywords: expand, expansion, storage node, add storage volumes, VMware, StorageGRID 
+summary: Se un nodo di archiviazione include meno di 16 volumi di archiviazione, puoi aumentarne la capacità utilizzando VMware vSphere per aggiungere volumi. 
+---
+= Aggiungi volumi di storage ai nodi di storage VMware in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se un nodo di archiviazione include meno di 16 volumi di archiviazione, puoi aumentarne la capacità utilizzando VMware vSphere per aggiungere volumi.
+
+.Prima di iniziare
+* Hai accesso a link:../swnodes/index.html["${post_edited_translations.segment}"].
+* Hai il file  `Passwords.txt`.
+* Hai link:../admin/admin-group-permissions.html["autorizzazioni di accesso specifiche"].
+
+
+
+CAUTION: Non tentare di aggiungere volumi di storage a un nodo di storage mentre è in corso un aggiornamento software, una procedura di ripristino o un'altra procedura di espansione.
+
+.Informazioni su questa attività
+Il nodo di storage non è disponibile per un breve periodo quando aggiungi volumi di storage. Dovresti eseguire questa procedura su un nodo di storage alla volta per evitare di influire sui servizi di grid rivolti ai client.
+
+.Passaggi
+. Se necessario, installa nuovo hardware di archiviazione e crea nuovi datastore VMware.
+. Aggiungi uno o più dischi rigidi alla macchina virtuale da usare come storage a oggetti.
++
+.. Apri VMware vSphere Client.
+.. Modifica le impostazioni della macchina virtuale per aggiungere uno o più dischi rigidi aggiuntivi.
+
+
++
+I dischi rigidi sono in genere configurati come Virtual Machine Disk (VMDK). I VMDK sono utilizzati più comunemente e sono più facili da gestire, mentre gli RDM potrebbero fornire prestazioni migliori per i carichi di lavoro che utilizzano dimensioni degli oggetti superiori (ad esempio, superiori a 100 MB). Per ulteriori informazioni sull'aggiunta di dischi rigidi alle macchine virtuali, consulta la documentazione di VMware vSphere.
+
+. Riavvia la macchina virtuale utilizzando l'opzione *Restart Guest OS* nel client VMware vSphere o inserendo il seguente comando in una sessione SSH sulla macchina virtuale:``sudo reboot``
++
+
+NOTE: Non usare *Spegni* o *Ripristina* per riavviare la macchina virtuale.
+
+. Configura il nuovo storage per l'utilizzo da parte del nodo di Storage:
++
+.. Accedi al nodo della griglia:
++
+... Inserisci il seguente comando: `ssh admin@_grid_node_IP_`
+... Inserisci la password indicata nel file  `Passwords.txt`.
+... Inserisci il seguente comando per passare all'utente root: `su -`
+... Inserisci la password indicata nel `Passwords.txt` file. Quando effettui l'accesso come root, il prompt cambia da `$` a `#`.
+
+
+.. ${post_edited_translations.segment}
++
+`sudo add_rangedbs.rb`
+
++
+${post_edited_translations.segment}
+
+.. Digita *y* per accettare la formattazione.
+.. ${post_edited_translations.segment}
++
+*** Digita *y* per riformattare.
+*** Inserisci *n* per saltare la riformattazione.
+
+
+
+
++
+Lo  `setup_rangedbs.sh`script viene eseguito automaticamente.
+
+. Verifica che i servizi si avviino correttamente:
++
+.. Visualizza un elenco dello stato di tutti i servizi sul server:
++
+`sudo storagegrid-status`
+
++
+Lo stato viene aggiornato automaticamente.
+
+.. Attendi che tutti i servizi siano in esecuzione o verificati.
+.. Esci dalla schermata di stato:
++
+`Ctrl+C`
+
+
+
+. Verifica che il nodo di archiviazione sia online:
++
+.. Accedi al Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+.. ${post_edited_translations.segment}
+.. ${post_edited_translations.segment}
+.. Seleziona *Salva*.
+
+
+. Per vedere i nuovi object store, seleziona *Storage*.
+. ${post_edited_translations.segment}
+
+
+.Risultato
+Puoi usare la capacità estesa dei nodi di archiviazione per salvare i dati degli oggetti.

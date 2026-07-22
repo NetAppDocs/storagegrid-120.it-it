@@ -1,0 +1,216 @@
+---
+permalink: admin/grid-federation-manage-tenants.html 
+sidebar: sidebar 
+keywords: grid federation, manage tenant, use grid federation permission, remove permission, cross grid replication 
+summary: 'Puoi consentire agli account tenant S3 di utilizzare una connessione di federazione grid tra due sistemi StorageGRID. Quando ai tenant è consentito utilizzare una connessione, sono necessari passaggi speciali per modificare i dettagli del tenant o per rimuovere in modo permanente l"autorizzazione del tenant a utilizzare la connessione.' 
+---
+= Gestisci i tenant autorizzati per la federazione di grid StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi consentire agli account tenant S3 di utilizzare una connessione grid federation tra due sistemi StorageGRID. Quando ai tenant è consentito utilizzare una connessione, sono necessari passaggi speciali per modificare i dettagli del tenant o per rimuovere in modo permanente l'autorizzazione del tenant a utilizzare la connessione.
+
+.Prima di iniziare
+* Hai effettuato l'accesso al Grid Manager su una delle due griglie utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Hai link:admin-group-permissions.html["Permesso di accesso root"] per la griglia a cui hai effettuato l'accesso.
+* Hai link:grid-federation-create-connection.html["hai creato una connessione di federazione della griglia"] tra due griglie.
+* Hai esaminato i workflow per link:grid-federation-what-is-account-clone.html["clonazione account"] e link:grid-federation-what-is-cross-grid-replication.html["replicazione cross-grid"].
+* Come richiesto, hai già configurato single sign-on (SSO) o la federazione delle identità per entrambe le griglie nella connessione. Vedi link:grid-federation-what-is-account-clone.html["Cos'è un account clone"].
+
+
+
+
+[[create-a-permitted-tenant]]
+== Crea un tenant consentito
+
+Se vuoi consentire a un tenant account nuovo o esistente di utilizzare una connessione di grid federation per la clonazione dell'account e la replica cross-grid, segui le istruzioni generali per link:creating-tenant-account.html["crea un nuovo tenant S3"] o link:editing-tenant-account.html["modifica un tenant account"] e tieni presente quanto segue:
+
+* Puoi creare il tenant da una qualsiasi delle due griglie della connessione. La griglia in cui viene creato un tenant è la _griglia di origine del tenant_.
+* Lo stato della connessione deve essere *Connesso*.
+* Quando il tenant viene creato o modificato per abilitare l'autorizzazione *Usa connessione di federazione griglia* e poi salvato sulla prima griglia, un tenant identico viene replicato automaticamente sull'altra griglia. La griglia in cui il tenant viene replicato è la _destinazione del tenant_.
+* I tenant su entrambe le griglie avranno lo stesso ID account a 20 cifre, nome, descrizione, quota e autorizzazioni. Facoltativamente, puoi usare il campo *Description* per aiutarti a identificare quale sia il tenant di origine e quale quello di destinazione. Ad esempio, questa descrizione per un tenant creato su Grid 1 apparirà anche per il tenant replicato su Grid 2: "This tenant was created on Grid 1."
+* Per motivi di sicurezza, la password per un utente root locale non viene copiata nella grid di destinazione.
++
+
+TIP: Prima che un utente root locale possa accedere al tenant replicato sulla grid di destinazione, un amministratore di grid per tale grid deve link:changing-password-for-tenant-local-root-user.html["cambia la password per l'utente root"].
+
+* ${post_edited_translations.segment}
++
+** Dalla grid di origine del tenant, crea gruppi e utenti locali, che vengono clonati automaticamente nella grid di destinazione del tenant. Vedi link:../tenant/grid-federation-account-clone.html["${post_edited_translations.segment}"].
+** Crea nuove chiavi di accesso S3, che possono essere facoltativamente clonate nella grid di destinazione del tenant. Vedi link:../tenant/grid-federation-clone-keys-with-api.html["${post_edited_translations.segment}"].
+** Crea bucket identici su entrambe le griglie nella connessione e abilita la replica tra griglie in una direzione o in entrambe le direzioni. Vedi link:../tenant/grid-federation-manage-cross-grid-replication.html["${post_edited_translations.segment}"].
+
+
+
+
+
+
+[[view-a-permitted-tenant]]
+== Visualizza un tenant consentito
+
+Puoi vedere i dettagli di un tenant autorizzato a usare una connessione di federazione di griglia.
+
+.Passaggi
+. Seleziona *tenant*.
+. Dalla pagina Tenant, seleziona il nome del tenant per visualizzare la pagina dei dettagli del tenant.
++
+Se questa è la grid di origine del tenant (ovvero, se il tenant è stato creato su questa grid), viene visualizzato un banner per ricordarti che il tenant è stato clonato su un'altra grid. Se modifichi o elimini questo tenant, le modifiche non verranno sincronizzate con l'altra grid.
+
++
+image:grid-federation-tenant-detail.png["${post_edited_translations.segment}"]
+
+. Facoltativamente, seleziona la scheda *Grid federation* per link:../monitor/grid-federation-monitor-connections.html["monitorare la connessione alla federazione di grid"].
+
+
+
+
+[[edit-a-permitted-tenant]]
+== Modifica un tenant consentito
+
+Se devi modificare un tenant che dispone dell'autorizzazione *Usa connessione di federazione grid*, segui le istruzioni generali link:editing-tenant-account.html["modifica di un tenant account"] e tieni presente quanto segue:
+
+* Se un tenant ha l'autorizzazione *Usa connessione grid federation*, puoi modificare i dettagli del tenant da una qualsiasi delle grid nella connessione. Tuttavia, le modifiche apportate non verranno copiate sull'altra grid. Se vuoi mantenere i dettagli del tenant sincronizzati tra le grid, devi apportare le stesse modifiche su entrambe le grid.
+* Non puoi rimuovere l'autorizzazione *Usa connessione di federazione Grid* quando modifichi un tenant.
+* ${post_edited_translations.segment}
+
+
+
+
+[[delete-a-permitted-tenant]]
+== Elimina un tenant consentito
+
+Se devi rimuovere un tenant che ha l'autorizzazione *Usa connessione grid federation*, segui le istruzioni generali per link:deleting-tenant-account.html["${post_edited_translations.segment}"] e tieni presente quanto segue:
+
+* Prima di poter rimuovere il tenant originale dalla griglia di origine, devi rimuovere tutti i bucket dell'account sulla griglia di origine.
+* Prima di poter rimuovere il tenant clonato sulla grid di destinazione, devi rimuovere tutti i bucket dell'account sulla grid di destinazione.
+* Se rimuovi il tenant originale o quello clonato, l'account non potrà più essere utilizzato per la replica tra griglie.
+* Se rimuovi il tenant originale dalla griglia di origine, eventuali gruppi, utenti o chiavi del tenant clonati nella griglia di destinazione non subiranno alcuna modifica. Puoi eliminare il tenant clonato oppure permettergli di gestire autonomamente i propri gruppi, utenti, chiavi di accesso e bucket.
+* Se rimuovi il tenant clonato sulla grid di destinazione, si verificheranno errori di clonazione se vengono aggiunti nuovi gruppi o utenti al tenant originale.
++
+Per evitare questi errori, rimuovi l'autorizzazione del tenant a utilizzare la connessione di federazione della griglia prima di eliminare il tenant da questa griglia.
+
+
+
+
+
+[[remove-grid-federation-connection-permissionremove-use-grid-federation-connection-permission]]
+== [[remove-grid-federation-connection-permission]]Rimuovi l'autorizzazione Usa connessione federazione di griglia
+
+${post_edited_translations.segment}
+
+image:grid-federation-remove-permission.png["${post_edited_translations.segment}"]
+
+Prima di revocare l'autorizzazione di un tenant a utilizzare una connessione di federazione di griglia, tieni presente quanto segue:
+
+* Non puoi rimuovere l'autorizzazione *Usa connessione di federazione grid* se la replica cross-grid è abilitata per uno qualsiasi dei bucket del tenant. Il tenant account deve prima disabilitare la replica cross-grid per tutti i suoi bucket.
+* La rimozione dell'autorizzazione *Usa connessione di federazione griglia* non elimina gli elementi già replicati tra le griglie. Ad esempio, eventuali utenti, gruppi e oggetti del tenant presenti su entrambe le griglie non vengono eliminati da nessuna delle due quando rimuovi l'autorizzazione del tenant. Se vuoi eliminare questi elementi, devi eliminarli manualmente da entrambe le griglie.
+* ${post_edited_translations.segment}
+
+
+
+NOTE: Riattivando l'autorizzazione *Usa connessione di federazione griglia*, la griglia locale diventa la griglia di origine e viene avviata la clonazione sulla griglia remota specificata dalla connessione di federazione griglia selezionata. Se il tenant account esiste già sulla griglia remota, la clonazione genererà un errore di conflitto.
+
+.Prima di iniziare
+* Stai usando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Hai link:admin-group-permissions.html["Permesso di accesso root"] per entrambe le griglie.
+
+
+
+
+[[disable-replication-for-tenant-buckets]]
+=== Disabilita la replica per i bucket tenant
+
+Come primo passo, disabilita la replica cross-grid per tutti i bucket dei tenant.
+
+.Passaggi
+. ${post_edited_translations.segment}
+. Seleziona *Configurazione* > *Sistema* > *Grid federation*.
+. Seleziona il nome della connessione per visualizzarne i dettagli.
+. Nella scheda *Tenant autorizzati*, verifica se il tenant sta utilizzando la connessione.
+. Se il tenant è elencato, istruiscilo a link:../tenant/grid-federation-manage-cross-grid-replication.html["${post_edited_translations.segment}"] per tutti i suoi bucket su entrambe le griglie nella connessione.
++
+
+TIP: Non puoi rimuovere l'autorizzazione *Usa connessione di federazione griglia* se per i bucket di un tenant è abilitata la replica tra griglie. Il tenant deve disabilitare la replica tra griglie per i propri bucket su entrambe le griglie.
+
+
+
+
+
+[[remove-permission-for-tenant]]
+=== Rimuovi l'autorizzazione per tenant
+
+${post_edited_translations.segment}
+
+.Passaggi
+. Accedi al Grid Manager dal nodo Admin principale.
+. Rimuovi l'autorizzazione dalla pagina Grid federation o dalla pagina Tenants.
++
+[role="tabbed-block"]
+====
+.Pagina della federazione Grid
+--
+.. Seleziona *Configurazione* > *Sistema* > *Grid federation*.
+.. Seleziona il nome della connessione per visualizzare la pagina dei dettagli.
+.. Nella scheda *Tenant autorizzati*, seleziona il pulsante di opzione per il tenant.
+.. Seleziona *Rimuovi autorizzazione*.
+
+
+--
+.Pagina dei tenant
+--
+.. Seleziona *tenant*.
+.. ${post_edited_translations.segment}
+.. Nella scheda *Federazione Grid*, seleziona il pulsante di opzione per la connessione.
+.. Seleziona *Rimuovi autorizzazione*.
+
+
+--
+====
+. Esamina gli avvisi nella finestra di dialogo di conferma e seleziona *Rimuovi*.
++
+** Se l'autorizzazione può essere revocata, verrai reindirizzato alla pagina dei dettagli e viene visualizzato un messaggio di conferma. Questo tenant non può più utilizzare la connessione di grid federation.
+** ${post_edited_translations.segment}
++
+image:grid-federation-remove-permission-error.png["Viene visualizzato un messaggio di errore se il tenant ha CGR abilitato per un bucket"]
+
++
+Puoi fare una delle seguenti cose:
+
++
+*** (Consigliato.) Accedi al Tenant Manager e disattiva la replica per ciascuno dei bucket del tenant. Vedi link:../tenant/grid-federation-manage-cross-grid-replication.html["${post_edited_translations.segment}"]. Quindi, ripeti i passaggi per rimuovere l'autorizzazione *Utilizza connessione grid*.
+*** Rimuovi l'autorizzazione forzatamente. Vedi la sezione successiva.
+
+
+
+
+. ${post_edited_translations.segment}
+
+
+
+
+[[forceremovepermissionremove-the-permission-by-force]]
+== [[force_remove_permission]]Rimuovi il permesso con la forza
+
+${post_edited_translations.segment}
+
+Prima di revocare con la forza il permesso di un tenant, tieni presente le considerazioni generali per <<remove-grid-federation-connection-permission,rimuovere il permesso>> così come queste ulteriori considerazioni:
+
+* Se rimuovi forzatamente l'autorizzazione *Use grid federation connection*, tutti gli oggetti in attesa di replica sull'altra grid (acquisiti ma non ancora replicati) continueranno a essere replicati. Per impedire a questi oggetti in corso di raggiungere il bucket di destinazione, devi rimuovere l'autorizzazione del tenant anche sull'altra grid.
+* Qualsiasi oggetto inserito nel bucket di origine dopo aver rimosso l'autorizzazione *Usa connessione di federazione Grid* non verrà mai replicato nel bucket di destinazione.
+
+
+.Passaggi
+. Accedi al Grid Manager dal nodo Admin principale.
+. Seleziona *Configurazione* > *Sistema* > *Grid federation*.
+. Seleziona il nome della connessione per visualizzare la pagina dei dettagli.
+. Nella scheda *Tenant autorizzati*, seleziona il pulsante di opzione per il tenant.
+. Seleziona *Rimuovi autorizzazione*.
+. Esamina gli avvisi nella finestra di dialogo di conferma e seleziona *Force remove*.
++
+Viene visualizzato un messaggio di successo. Questo tenant non può più utilizzare la connessione di federazione della griglia.
+
+. Se necessario, vai sull'altro grid e ripeti questi passaggi per forzare la rimozione dell'autorizzazione per lo stesso account tenant sull'altro grid. Ad esempio, dovresti ripetere questi passaggi sull'altro grid per impedire agli oggetti in corso di raggiungere il bucket di destinazione.
+

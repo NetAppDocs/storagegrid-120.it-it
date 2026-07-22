@@ -1,0 +1,28 @@
+---
+permalink: harden/index.html 
+sidebar: sidebar 
+keywords: StorageGRID, hardening guidelines, system, security 
+summary: 'L"hardening del sistema è il processo di eliminazione del maggior numero possibile di rischi per la sicurezza da un sistema StorageGRID.' 
+---
+= Scopri il rafforzamento del sistema per StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'hardening del sistema è il processo di eliminazione del maggior numero possibile di rischi per la sicurezza da un sistema StorageGRID.
+
+Durante l'installazione e la configurazione di StorageGRID, usa queste linee guida per raggiungere qualsiasi obiettivo di sicurezza prescritto in termini di riservatezza, integrità e disponibilità.
+
+Dovresti già adottare le best practice standard del settore per la protezione dei sistemi. Ad esempio, usi password complesse per StorageGRID, usi HTTPS invece di HTTP e abiliti l'autenticazione basata su certificati dove disponibile. Queste best practice devono includere la sicurezza fisica e ambientale che limita l'accesso fisico e protegge il data center fisico e l'infrastruttura di supporto. Devi anche fare riferimento a tutti gli standard e le raccomandazioni normative applicabili alla tua attività e alla tua area geografica.
+
+StorageGRID segue le https://security.netapp.com/policy/["Policy di gestione delle vulnerabilità NetApp"^]. Le vulnerabilità segnalate vengono verificate e risolte secondo il processo di risposta agli incidenti di sicurezza del prodotto.
+
+Quando rafforzi la sicurezza di un sistema StorageGRID, considera quanto segue:
+
+* *Quale delle tre reti StorageGRID* hai implementato. Tutti i sistemi StorageGRID devono utilizzare la Grid Network, ma potresti anche utilizzare la Admin Network, la Client Network o entrambe. Ogni rete presenta diverse considerazioni di sicurezza.
+* *Il tipo di piattaforme* che usi per i singoli nodi nel tuo sistema StorageGRID. I nodi StorageGRID possono essere distribuiti su macchine virtuali VMware, all'interno di un engine di container su host Linux o come appliance hardware dedicate. Ogni tipo di piattaforma ha il proprio set di best practice per la protezione.
+* *Quanto sono affidabili gli account dei tenant*. Se sei un service provider con account dei tenant non affidabili, avrai problematiche di sicurezza diverse rispetto a quando utilizzi solo tenant interni affidabili.
+* *Quali requisiti e convenzioni di sicurezza* segue la tua organizzazione. Potresti dover rispettare specifici requisiti normativi o aziendali.
+

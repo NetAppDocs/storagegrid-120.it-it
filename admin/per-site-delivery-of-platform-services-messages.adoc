@@ -1,0 +1,24 @@
+---
+permalink: admin/per-site-delivery-of-platform-services-messages.html 
+sidebar: sidebar 
+keywords: platform services message delivery 
+summary: Tutte le operazioni relative ai servizi della piattaforma vengono eseguite sito per sito. 
+---
+= Consegna per sito dei messaggi dei servizi della piattaforma StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Tutte le operazioni relative ai servizi della piattaforma vengono eseguite sito per sito.
+
+In altre parole, se un tenant utilizza un client per eseguire un'operazione di creazione tramite API S3 su un oggetto, connettendosi a un Gateway Node presso il Data Center Site 1, la notifica relativa a tale azione viene attivata e inviata dal Data Center Site 1.
+
+image:notification_multiple_sites.gif["Diagramma che mostra che un'azione sull'oggetto nel sito 1 attiva una notifica dal sito 1"]
+
+Se successivamente il client esegue un'operazione di eliminazione tramite API S3 sullo stesso oggetto dal Data Center Site 2, la notifica relativa all'eliminazione viene attivata e inviata dal Data Center Site 2.
+
+image:notifications_site_2.gif["${post_edited_translations.segment}"]
+
+Assicurati che la rete in ogni sito sia configurata in modo che i messaggi dei servizi della piattaforma possano essere recapitati alle rispettive destinazioni.

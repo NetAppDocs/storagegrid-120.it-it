@@ -1,0 +1,81 @@
+---
+permalink: monitor/collecting-log-files-and-system-data.html 
+sidebar: sidebar 
+keywords: how to collect system data, how to collect logs 
+summary: Puoi recuperare i file di log di StorageGRID e i dati di sistema, inclusi i dati di configurazione, e inviarli al supporto tecnico. 
+---
+= Raccogli i file di registro StorageGRID e i dati di sistema
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi recuperare i file di log di StorageGRID e i dati di sistema, inclusi i dati di configurazione, e inviarli al supporto tecnico.
+
+.Prima di iniziare
+* Hai effettuato l'accesso a Grid Manager su qualsiasi nodo Admin utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Hai link:../admin/admin-group-permissions.html["autorizzazioni di accesso specifiche"].
+* ${post_edited_translations.segment}
+
+
+.Informazioni su questa attività
+Utilizza Grid Manager per raccogliere link:logs-files-reference.html["file di log"], dati di sistema e dati di configurazione da qualsiasi nodo della griglia per il periodo di tempo che selezioni. I dati vengono raccolti e archiviati in un `.tar.gz` file che puoi quindi scaricare sul tuo computer locale o inviare al supporto tecnico.
+
+Facoltativamente, puoi modificare la destinazione dei log di audit e inviare le informazioni di audit a un server syslog esterno. I log locali dei record di audit continuano a essere generati e archiviati quando è configurato un server syslog esterno. Vedi link:../monitor/configure-log-management.html["Configura la gestione dei log e il server syslog esterno"].
+
+.Passaggi
+. Seleziona *Support* > *Tools* > *Log collection*. Viene visualizzata una tabella di nodi.
+. Seleziona i nodi della griglia per i quali vuoi raccogliere i file di log.
++
+Puoi ordinare per nome del nodo, sito e tipo di nodo. Le colonne Sito e Tipo di nodo contengono filtri per selezionare singoli siti e tipi di nodo.
+
+. Seleziona *Continue*.
+. Seleziona l'intervallo di date e orari dei dati da includere nei file di log.
++
+Se selezioni un periodo di tempo molto lungo o raccogli i log da tutti i nodi di una griglia di grandi dimensioni, l'archivio dei log potrebbe diventare troppo grande per essere memorizzato su un nodo o troppo grande per essere raccolto da un Admin Node per il download. Se si verifica uno di questi scenari, riavvia la raccolta dei log con un set di dati più piccolo.
+
+. Seleziona i tipi di log che desideri raccogliere.
++
+** *Log delle applicazioni*: Log specifici delle applicazioni che il supporto tecnico utilizza più frequentemente per la risoluzione dei problemi. I log raccolti rappresentano un sottoinsieme dei log delle applicazioni disponibili.
+** *Registri di controllo*: Registri contenenti i messaggi di controllo generati durante il normale funzionamento del sistema.
+** *Traccia di rete*: Log utilizzati per il debug della rete.
+** *Database Prometheus*: metriche delle serie temporali dai servizi su tutti i nodi.
+
+
+. Facoltativamente, utilizza la casella di testo *Note* per inserire note sui file di log che stai raccogliendo.
++
+Puoi usare queste note per fornire informazioni di supporto tecnico sul problema che ti ha spinto a raccogliere i file di log. Le tue note vengono aggiunte a un file chiamato  `info.txt`, insieme ad altre informazioni sulla raccolta dei file di log. Il file  `info.txt` viene salvato nel pacchetto di archivio dei file di log.
+
+. Nella casella di testo *Passphrase di provisioning*, inserisci la passphrase di provisioning per il tuo sistema StorageGRID.
+. Seleziona *Raccogli log*.
++
+Puoi usare la pagina di raccolta dei log per monitorare l'avanzamento della raccolta dei file di log per ogni nodo della griglia.
+
++
+Se ricevi un messaggio di errore relativo alle dimensioni del file di log, prova a raccogliere i log per un periodo di tempo più breve o per un numero inferiore di nodi.
+
+. Se la raccolta dei log non riesce:
++
+** Se viene visualizzato il messaggio "Raccolta dei log non riuscita", puoi riprovare la raccolta dei log oppure terminare la sessione senza riprovare.
+** Se viene visualizzato il messaggio "Raccolta dei log parzialmente non riuscita", puoi riprovare la raccolta dei log, terminare la sessione, scaricare il file di log o inviare il file di log a AutoSupport.
+
+
+. Quando la raccolta dei file di log è completa:
++
+** Seleziona *Scarica* per scaricare il `.tar.gz` file.
+** Seleziona *Invia a AutoSupport* per inviare il file  `.tar.gz` al supporto tecnico.
++
+Il  `.tar.gz`file contiene tutti i file di log di tutti i nodi della griglia in cui la raccolta dei log è andata a buon fine. Il  `.tar.gz`file combinato contiene un archivio di file di log per ciascun nodo della griglia.
+
++
+L'oggetto del pacchetto AutoSupport è  `USER_TRIGGERED_SUPPORT_BUNDLE`.
+
+
+
+. Seleziona *Fine*.
++
+
+CAUTION: Il  `.tar.gz`file viene eliminato quando selezioni *Fine*. Assicurati di scaricare o inviare prima il file.
+
+

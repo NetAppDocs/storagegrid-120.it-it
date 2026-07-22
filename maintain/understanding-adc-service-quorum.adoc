@@ -1,0 +1,29 @@
+---
+permalink: maintain/understanding-adc-service-quorum.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, adc, adc quorum 
+summary: 'Potresti non riuscire a decommissionare determinati nodi di storage in un sito se, dopo il decommissionamento, rimarrebbero troppo pochi servizi Administrative Domain Controller (ADC).' 
+---
+= Cos'è il quorum ADC di StorageGRID?
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Potresti non riuscire a decommissionare determinati nodi di storage in un sito se, dopo il decommissionamento, rimarrebbero troppo pochi servizi Administrative Domain Controller (ADC).
+
+Il servizio ADC, presente su alcuni nodi di archiviazione, gestisce le informazioni sulla topologia della griglia e fornisce servizi di configurazione alla griglia. Il sistema StorageGRID richiede che un quorum di servizi ADC sia disponibile in ogni sito e in ogni momento.
+
+Non puoi decommissionare un nodo di archiviazione se la sua rimozione impedirebbe il raggiungimento del quorum ADC. Per soddisfare il quorum ADC durante un decommissioning, almeno tre nodi di archiviazione in ciascun sito devono avere il servizio ADC. Se un sito ha più di tre nodi di archiviazione con il servizio ADC, la maggioranza semplice di tali nodi deve rimanere disponibile dopo il decommissioning: `((0.5 * _Storage Nodes with ADC_) + 1)`
+
+
+CAUTION: Presta attenzione quando decommissioni i Storage Node in un grid che contiene nodi basati su software di soli metadati. Se decommissioni tutti i nodi configurati per memorizzare _sia_ oggetti che metadati, la capacità di memorizzare oggetti viene rimossa dal grid. Consulta link:../primer/what-storage-node-is.html#types-of-storage-nodes["Tipi di nodi di archiviazione"] per ulteriori informazioni sui Storage Node di soli metadati.
+
+Ad esempio, supponiamo che un sito includa attualmente sei Storage Node con servizi ADC e tu voglia decommissionare tre Storage Node. A causa del requisito di quorum ADC, devi completare due procedure di decommission, come segue:
+
+* Nella prima procedura di decommission, devi assicurarti che rimangano disponibili quattro Storage Node con servizi ADC: `((0.5 * 6) + 1)`. Questo significa che puoi decommissionare inizialmente solo due Storage Node.
+* Nella seconda procedura di decommission, puoi rimuovere il terzo Storage Node perché il quorum ADC ora richiede che rimangano disponibili solo tre servizi ADC: `((0.5 * 4) + 1)`.
+
+
+Se è necessario decommissionare un nodo di archiviazione, è possibile continuare a soddisfare il requisito di quorum ADC link:../release-notes/changes-to-grid-management-api.html#new-private-endpoints-for-move-adc["Spostare il servizio ADC su un altro nodo di archiviazione nello stesso sito"] o aggiungendo un nuovo nodo di archiviazione in un link:../expand/index.html["espansione"] e specificando che deve disporre di un servizio ADC. Successivamente, è possibile decommissionare il nodo di archiviazione esistente senza influire sul quorum.

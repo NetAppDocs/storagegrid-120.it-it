@@ -1,0 +1,50 @@
+---
+permalink: ilm/enabling-s3-object-lock-globally.html 
+sidebar: sidebar 
+keywords: enable s3 object lock, object lock 
+summary: 'Se un tenant S3 deve rispettare i requisiti normativi durante il salvataggio dei dati degli oggetti, devi abilitare S3 Object Lock per l"intero sistema StorageGRID. Abilitando l"impostazione globale S3 Object Lock, qualsiasi utente tenant S3 può creare e gestire bucket e oggetti con S3 Object Lock.' 
+---
+= Abilita S3 Object Lock a livello globale in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se un tenant S3 deve rispettare i requisiti normativi durante il salvataggio dei dati degli oggetti, devi abilitare S3 Object Lock per l'intero sistema StorageGRID. Abilitando l'impostazione globale S3 Object Lock, qualsiasi utente tenant S3 può creare e gestire bucket e oggetti con S3 Object Lock.
+
+.Prima di iniziare
+* Hai link:../admin/admin-group-permissions.html["Permesso di accesso root"].
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Hai esaminato il flusso di lavoro S3 Object Lock e ne comprendi le considerazioni.
+* Hai confermato che la regola predefinita nella policy ILM attiva è conforme. Consulta link:creating-default-ilm-rule.html["Crea una regola ILM predefinita"] per i dettagli.
+
+
+.Informazioni su questa attività
+Un amministratore della griglia deve abilitare l'impostazione globale Blocco oggetti S3 per consentire agli utenti del tenant di creare nuovi bucket con Blocco oggetti S3 abilitato. Una volta abilitata, questa impostazione non può essere disabilitata.
+
+Rivedi le impostazioni di conformità dei tenant esistenti dopo aver abilitato l'impostazione globale S3 Object Lock. Quando abiliti questa impostazione, le impostazioni di S3 Object Lock per singolo tenant dipendono dalla versione di StorageGRID in vigore al momento della creazione del tenant.
+
+
+NOTE: L'impostazione globale di conformità è obsoleta. Se hai abilitato questa impostazione utilizzando una versione precedente di StorageGRID, l'impostazione S3 Object Lock viene abilitata automaticamente. Puoi continuare a utilizzare StorageGRID per gestire le impostazioni dei bucket conformi esistenti; tuttavia, non puoi creare nuovi bucket conformi. Per dettagli, vedi  https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/StorageGRID/How_to_manage_legacy_Compliant_buckets_in_StorageGRID_11.5["NetApp Knowledge Base: Come gestire i bucket Compliant legacy in StorageGRID 11.5"^].
+
+.Passaggi
+. Seleziona *Configurazione* > *Sistema* > *S3 Object Lock*.
++
+Viene visualizzata la pagina delle impostazioni di blocco degli oggetti S3.
+
+. Seleziona *Abilita S3 Object Lock*.
+. Seleziona *Applica*.
++
+Viene visualizzata una finestra di dialogo di conferma che ti ricorda che non puoi disabilitare S3 Object Lock dopo che è stato abilitato.
+
+. Se sei sicuro di voler abilitare in modo permanente S3 Object Lock per l'intero sistema, seleziona *OK*.
++
+Quando selezioni *OK*:
+
++
+** Se la regola predefinita nella policy ILM attiva è conforme, S3 Object Lock è ora abilitato per l'intera griglia e non può essere disabilitato.
+** Se la regola predefinita non è conforme, viene visualizzato un errore. Devi creare e attivare una nuova policy ILM che includa una regola conforme come regola predefinita. Seleziona *OK*. Poi crea una nuova policy, simulala e attivala. Vedi link:creating-ilm-policy.html["Crea criteri ILM"] per le istruzioni.
+
+
+

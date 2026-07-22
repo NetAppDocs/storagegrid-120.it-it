@@ -1,0 +1,35 @@
+---
+permalink: maintain/replacing-failed-node-with-services-appliance.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, replace failed node, services appliance 
+summary: 'Puoi usare un"appliance di servizi per recuperare un Gateway Node guasto, un Admin Node non primario guasto o un Admin Node primario guasto che era ospitato su VMware, un host Linux o un"appliance di servizi. Questa procedura è un passaggio della procedura di recupero del nodo della griglia.' 
+---
+= Sostituire il nodo StorageGRID guasto con l'appliance di servizi
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi usare un'appliance di servizi per recuperare un Gateway Node guasto, un Admin Node non primario guasto o un Admin Node primario guasto che era ospitato su VMware, un host Linux o un'appliance di servizi. Questa procedura è un passaggio della procedura di recupero del nodo della griglia.
+
+.Prima di iniziare
+* Hai stabilito che una delle seguenti situazioni è vera:
++
+** Impossibile ripristinare la macchina virtuale che ospita il nodo.
+** L'host Linux fisico o virtuale per il nodo della griglia si è guastato e deve essere sostituito.
+** L'appliance di servizio che ospita il nodo della griglia deve essere sostituita.
+
+
+* Hai confermato che la versione di StorageGRID Appliance Installer sull'appliance di servizi corrisponde alla versione del software del tuo sistema StorageGRID. Vedi  https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/verifying-and-upgrading-storagegrid-appliance-installer-version.html["Verifica e aggiorna la versione di StorageGRID Appliance Installer"^].
+
+
+
+NOTE: Non installare sia un dispositivo di servizio SG110 che un dispositivo di servizio SG1100, oppure sia un dispositivo di servizio SG100 che un dispositivo di servizio SG1000, nello stesso sito. Potresti riscontrare prestazioni imprevedibili.
+
+.Informazioni su questa attività
+Puoi utilizzare un'appliance di servizi per ripristinare un nodo della griglia guasto nei seguenti casi:
+
+* Il nodo guasto era ospitato su VMware o Linux (link:installing-services-appliance-platform-change-only.html["cambio di piattaforma"])
+* Il nodo guasto era ospitato su un'appliance di servizi (link:preparing-appliance-for-reinstallation-platform-replacement-only.html["sostituzione della piattaforma"])
+

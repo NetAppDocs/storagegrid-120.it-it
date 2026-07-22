@@ -1,0 +1,63 @@
+---
+permalink: tenant/creating-your-own-s3-access-keys.html 
+sidebar: sidebar 
+keywords: how to create your own S3 access key 
+summary: 'Se utilizzi un tenant S3 e hai l"autorizzazione appropriata, puoi creare le tue chiavi di accesso S3. Devi avere una chiave di accesso per accedere ai tuoi bucket e oggetti.' 
+---
+= Crea le tue chiavi di accesso S3 in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se utilizzi un tenant S3 e hai l'autorizzazione appropriata, puoi creare le tue chiavi di accesso S3. Devi avere una chiave di accesso per accedere ai tuoi bucket e oggetti.
+
+.Prima di iniziare
+* Hai effettuato l'accesso al Tenant Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Appartieni a un gruppo di utenti che ha il link:tenant-management-permissions.html["Gestisci le tue credenziali S3 o i permessi di accesso root"].
+
+
+.Informazioni su questa attività
+Puoi creare una o più chiavi di accesso S3 che ti permettono di creare e gestire bucket per il tuo tenant account. Dopo aver creato una nuova chiave di accesso, aggiorna l'applicazione con il nuovo access key ID e la secret access key. Per sicurezza, non creare più chiavi del necessario ed elimina quelle che non usi. Se hai solo una chiave e sta per scadere, crea una nuova chiave prima che la vecchia scada, poi elimina quella vecchia.
+
+Ogni chiave può avere un tempo di scadenza specifico o nessuna scadenza. Segui queste linee guida per il tempo di scadenza:
+
+* Imposta una data di scadenza per le tue chiavi per limitare l'accesso a un determinato periodo di tempo. Impostare una scadenza breve può aiutarti a ridurre il rischio se il tuo access key ID e la tua secret access key vengono accidentalmente esposti. Le chiavi scadute vengono rimosse automaticamente.
+* Se il rischio per la sicurezza nel tuo ambiente è basso e non hai bisogno di creare periodicamente nuove chiavi, non devi impostare una data di scadenza per le tue chiavi. Se in seguito decidi di creare nuove chiavi, elimina manualmente le vecchie chiavi.
+
+
+
+CAUTION: È possibile accedere ai bucket e agli oggetti S3 appartenenti al tuo account utilizzando l'ID della chiave di accesso e la chiave di accesso segreta visualizzati per il tuo account nel Tenant Manager. Per questo motivo, proteggi le chiavi di accesso come faresti con una password. Ruota le chiavi di accesso regolarmente, rimuovi le chiavi inutilizzate dal tuo account e non condividerle mai con altri utenti.
+
+.Passaggi
+. ${post_edited_translations.segment}
++
+Viene visualizzata la pagina "Le mie chiavi di accesso" e vengono elencate tutte le chiavi di accesso esistenti.
+
+. ${post_edited_translations.segment}
+. Esegui una delle seguenti operazioni:
++
+** Seleziona *Non impostare una data di scadenza* per creare una chiave che non scadrà. (Predefinito)
+** Seleziona *Imposta una data di scadenza* e imposta la data e l'ora di scadenza.
++
+
+NOTE: La data di scadenza può essere al massimo di cinque anni dalla data odierna. L'orario di scadenza può essere di minimo un minuto dall'ora attuale.
+
+
+
+. Seleziona *Crea access key*.
++
+Viene visualizzata la finestra di dialogo "Chiave di accesso per il download", che elenca l'ID della chiave di accesso e la chiave di accesso segreta.
+
+. Copia l'ID della chiave di accesso e la chiave di accesso segreta in un luogo sicuro, oppure seleziona *Download .csv* per salvare un file foglio di calcolo contenente l'ID della chiave di accesso e la chiave di accesso segreta.
++
+
+CAUTION: Non chiudere questa finestra di dialogo finché non hai copiato o scaricato queste informazioni. Non potrai copiare o scaricare le chiavi dopo la chiusura della finestra di dialogo.
+
+. Seleziona *Fine*.
++
+La nuova chiave è elencata nella pagina My access keys.
+
+. Se il tuo account tenant dispone dell'autorizzazione *Usa connessione di federazione della griglia*, puoi facoltativamente utilizzare l'API di gestione dei tenant per clonare manualmente le chiavi di accesso S3 dal tenant sulla griglia di origine al tenant sulla griglia di destinazione. Vedi link:grid-federation-clone-keys-with-api.html["${post_edited_translations.segment}"].
+

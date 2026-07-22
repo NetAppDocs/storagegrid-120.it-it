@@ -1,0 +1,181 @@
+---
+permalink: ilm/managing-objects-with-s3-object-lock.html 
+sidebar: sidebar 
+keywords: s3 object lock, manage objects with object lock 
+summary: Come amministratore della griglia, puoi abilitare S3 Object Lock per il tuo sistema StorageGRID e implementare una policy ILM conforme per aiutarti a garantire che gli oggetti in specifici bucket S3 non vengano eliminati o sovrascritti per un periodo di tempo specificato. 
+---
+= Come S3 Object Lock protegge gli oggetti in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Come amministratore della griglia, puoi abilitare S3 Object Lock per il tuo sistema StorageGRID e implementare una policy ILM conforme per assicurarti che gli oggetti in specifici bucket S3 non vengano eliminati o sovrascritti per un periodo di tempo specificato.
+
+
+
+[[what-is-s3-object-lock]]
+== Che cos'è S3 Object Lock?
+
+La funzionalità StorageGRID S3 Object Lock è una soluzione di protezione degli oggetti equivalente a S3 Object Lock in Amazon Simple Storage Service (Amazon S3).
+
+Quando l'impostazione globale S3 Object Lock è abilitata per un sistema StorageGRID, un tenant account S3 può creare bucket con o senza S3 Object Lock abilitato. Se un bucket ha S3 Object Lock abilitato, il versioning del bucket è obbligatorio e viene abilitato automaticamente.
+
+*Un bucket senza S3 Object Lock* può contenere solo oggetti per i quali non sono specificate impostazioni di conservazione. Nessun oggetto ingerito avrà impostazioni di conservazione.
+
+Un bucket con S3 Object Lock può contenere oggetti con o senza impostazioni di conservazione specificate dalle applicazioni client S3. Alcuni oggetti acquisiti avranno impostazioni di conservazione.
+
+*Un bucket con S3 Object Lock e periodo di conservazione predefinito configurato* può avere oggetti caricati con impostazioni di conservazione specificate e nuovi oggetti senza impostazioni di conservazione. I nuovi oggetti utilizzano l'impostazione predefinita, perché l'impostazione di conservazione non è stata configurata a livello di oggetto.
+
+In pratica, tutti gli oggetti appena acquisiti hanno impostazioni di conservazione quando è configurato il periodo di conservazione predefinito. Gli oggetti esistenti senza impostazioni di conservazione rimangono invariati.
+
+
+
+[[retention-modes]]
+=== Modalità di retention
+
+La funzionalità S3 Object Lock di StorageGRID supporta due modalità di conservazione per applicare diversi livelli di protezione agli oggetti. Queste modalità sono equivalenti alle modalità di conservazione di Amazon S3.
+
+* In modalità conformità:
++
+** L'oggetto non può essere eliminato fino al raggiungimento della sua retain-until-date.
+** La data di conservazione dell'oggetto può essere aumentata, ma non può essere diminuita.
+** La data di conservazione dell'oggetto non può essere rimossa fino al raggiungimento di tale data.
+
+
+* In modalità governance:
++
+** Gli utenti con autorizzazioni speciali possono utilizzare un'intestazione di bypass nelle richieste per modificare determinate impostazioni di conservazione.
+** Questi utenti possono eliminare una versione di un oggetto prima che venga raggiunta la data di conservazione prevista.
+** Questi utenti possono aumentare, diminuire o rimuovere la retain-until-date di un oggetto.
+
+
+
+
+
+
+[[retention-settings-for-object-versions]]
+=== Impostazioni di conservazione per le versioni degli oggetti
+
+Se crei un bucket con la funzionalità S3 Object Lock abilitata, puoi usare l'applicazione client S3 per specificare facoltativamente le seguenti impostazioni di conservazione per ogni oggetto aggiunto al bucket:
+
+* *Modalità di conservazione*: conformità o governance.
+* *Retain-until-date*: Se la retain-until-date di una versione dell'oggetto è nel futuro, l'oggetto può essere recuperato, ma non può essere eliminato.
+* *Blocco legale*: L'applicazione di un blocco legale a una versione di un oggetto blocca immediatamente quell'oggetto. Ad esempio, potresti dover applicare un blocco legale a un oggetto che è collegato a un'indagine o a una controversia legale. Un blocco legale non ha una data di scadenza, ma rimane in vigore finché non viene esplicitamente rimosso. I blocchi legali sono indipendenti dalla retain-until-date.
++
+
+NOTE: Se un oggetto è soggetto a un blocco legale, nessuno può eliminare l'oggetto, indipendentemente dalla sua modalità di conservazione.
+
++
+Per i dettagli sulle impostazioni dell'oggetto, vedi link:../s3/use-s3-api-for-s3-object-lock.html["Utilizza l'API REST S3 per configurare S3 Object Lock"].
+
+
+
+
+
+[[default-retention-setting-for-buckets]]
+=== Impostazione di conservazione predefinita per i bucket
+
+Se crei un bucket con S3 Object Lock abilitato, puoi facoltativamente specificare le seguenti impostazioni predefinite per il bucket:
+
+* *Modalità di conservazione predefinita*: conformità o governance.
+* *Periodo di conservazione predefinito*: per quanto tempo le nuove versioni degli oggetti aggiunte a questo bucket devono essere conservate, a partire dal giorno in cui vengono aggiunte.
+
+
+Le impostazioni predefinite del bucket si applicano solo ai nuovi oggetti che non hanno le proprie impostazioni di conservazione. Gli oggetti esistenti nel bucket non vengono influenzati quando aggiungi o modifichi queste impostazioni predefinite.
+
+Vedi link:../tenant/creating-s3-bucket.html["Crea un bucket S3"] e link:../tenant/update-default-retention-settings.html["Aggiorna la conservazione predefinita del blocco oggetto S3"].
+
+
+
+[[comparing-s3-object-lock-to-legacy-compliance]]
+== Confronto tra S3 Object Lock e la Compliance legacy
+
+La funzionalità S3 Object Lock sostituisce la funzionalità Compliance che era disponibile nelle versioni precedenti di StorageGRID. Poiché la funzionalità S3 Object Lock è conforme ai requisiti di Amazon S3, depreca la funzionalità proprietaria Compliance di StorageGRID, che ora viene chiamata "legacy Compliance".
+
+
+NOTE: L'impostazione globale di conformità è obsoleta. Se hai abilitato questa impostazione utilizzando una versione precedente di StorageGRID, l'impostazione S3 Object Lock viene abilitata automaticamente. Puoi continuare a utilizzare StorageGRID per gestire le impostazioni dei bucket conformi esistenti; tuttavia, non puoi creare nuovi bucket conformi. Per dettagli, vedi  https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/StorageGRID/How_to_manage_legacy_Compliant_buckets_in_StorageGRID_11.5["NetApp Knowledge Base: Come gestire i bucket Compliant legacy in StorageGRID 11.5"^].
+
+Se hai utilizzato la funzione Compliance legacy in una versione precedente di StorageGRID, consulta la tabella seguente per scoprire come si confronta con la funzionalità S3 Object Lock in StorageGRID.
+
+[cols="1a,1a,1a"]
+|===
+|  | Blocco oggetto S3 | Conformità (legacy) 
+
+
+ a| 
+Come abiliti questa funzionalità a livello globale?
+ a| 
+Dal Grid Manager, seleziona *Configurazione* > *Sistema* > *S3 Object Lock*.
+ a| 
+Non più supportata.
+
+
+
+ a| 
+Come abiliti questa funzionalità per un bucket?
+ a| 
+Devi abilitare S3 Object Lock quando crei un nuovo bucket utilizzando il Tenant Manager, l'API di gestione del tenant o l'API REST S3.
+ a| 
+Non più supportata.
+
+
+
+ a| 
+È supportata la gestione delle versioni dei bucket?
+ a| 
+Sì. Il versioning del bucket è obbligatorio e viene abilitato automaticamente quando S3 Object Lock è abilitato per il bucket.
+ a| 
+No.
+
+
+
+ a| 
+Come imposti la conservazione degli oggetti?
+ a| 
+Gli utenti possono impostare una data di conservazione per ogni versione dell'oggetto, oppure possono impostare un periodo di conservazione predefinito per ogni bucket.
+ a| 
+Devi impostare un periodo di conservazione per l'intero bucket. Il periodo di conservazione si applica a tutti gli oggetti nel bucket.
+
+
+
+ a| 
+È possibile modificare il periodo di conservazione?
+ a| 
+* In modalità conformità, la retain-until-date per una versione di un oggetto può essere aumentata, ma mai diminuita.
+* In modalità governance, gli utenti con autorizzazioni speciali possono ridurre o persino rimuovere le impostazioni di conservazione di un oggetto.
+
+ a| 
+Il periodo di conservazione di un bucket può essere aumentato, ma mai diminuito.
+
+
+
+ a| 
+Dove si controlla il legal hold?
+ a| 
+Puoi applicare o rimuovere un blocco legale per qualsiasi versione dell'oggetto nel bucket.
+ a| 
+Un sequestro legale viene applicato al bucket e riguarda tutti gli oggetti nel bucket.
+
+
+
+ a| 
+Quando puoi eliminare gli oggetti?
+ a| 
+* In modalità conformità, una versione di un oggetto può essere eliminata dopo il raggiungimento della retain-until-date, a condizione che l'oggetto non sia soggetto a legal hold.
+* In modalità governance, gli utenti con autorizzazioni speciali possono eliminare un oggetto prima che venga raggiunta la sua retain-until-date, a condizione che l'oggetto non sia soggetto a legal hold.
+
+ a| 
+Un oggetto può essere eliminato dopo la scadenza del periodo di conservazione, a condizione che il bucket non sia soggetto a blocco legale. Gli oggetti possono essere eliminati automaticamente o manualmente.
+
+
+
+ a| 
+La configurazione del ciclo di vita del bucket è supportata?
+ a| 
+Sì
+ a| 
+No
+
+|===

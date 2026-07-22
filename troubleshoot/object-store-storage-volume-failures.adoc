@@ -1,0 +1,20 @@
+---
+permalink: troubleshoot/object-store-storage-volume-failures.html 
+sidebar: sidebar 
+keywords: how to confirm object location, object metadata lookup 
+summary: Lo storage sottostante su un Storage Node è suddiviso in archivi di oggetti. Gli archivi di oggetti sono noti anche come volumi di storage. 
+---
+= Scopri i guasti dell'archivio di oggetti per i volumi di storage in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Lo storage sottostante su un Storage Node è suddiviso in archivi di oggetti. Gli archivi di oggetti sono noti anche come volumi di storage.
+
+Puoi visualizzare le informazioni sull'archivio di oggetti per ciascun Storage Node. Seleziona *Nodes* > *_Storage Node_* > *Storage*.
+
+image:nodes_page_storage_nodes_storage_tables.png["${post_edited_translations.segment}"]
+
+A seconda della natura del guasto, i problemi relativi a un volume di archiviazione potrebbero riflettersi in link:../monitor/alerts-reference.html["avvisi relativi al volume di storage"]. Se un volume di archiviazione si guasta, dovresti riparare il volume di archiviazione guasto per ripristinare la piena funzionalità del nodo di storage il prima possibile. Se necessario, puoi andare alla scheda *Configuration* e link:../maintain/checking-storage-state-after-recovering-storage-volumes.html["imposta il nodo di archiviazione in modalità di sola lettura"] così che il sistema StorageGRID possa utilizzarlo per il recupero dei dati mentre ti prepari per un ripristino completo del server.

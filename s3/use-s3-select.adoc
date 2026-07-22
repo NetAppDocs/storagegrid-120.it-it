@@ -1,0 +1,165 @@
+---
+permalink: s3/use-s3-select.html 
+sidebar: sidebar 
+keywords: use S3 Select, S3 Select 
+summary: StorageGRID supporta le seguenti clausole Amazon S3 Select, tipi di dati, operatori e parole chiave riservate per il comando SelectObjectContent. 
+---
+= Operazioni Amazon S3 Select supportate in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID supporta le seguenti clausole Amazon S3 Select, tipi di dati e operatori per il link:select-object-content.html["comando SelectObjectContent"].
+
+
+NOTE: Gli articoli non elencati non sono supportati.
+
+Per la sintassi, vedi link:select-object-content.html["SelectObjectContent"]. Per ulteriori informazioni su S3 Select, vedi  https://docs.aws.amazon.com/AmazonS3/latest/userguide/selecting-content-from-objects.html["Documentazione AWS per S3 Select"^].
+
+Solo gli account tenant che hanno S3 Select abilitato possono eseguire query SelectObjectContent. Vedi link:../admin/manage-s3-select-for-tenant-accounts.html["Considerazioni e requisiti per l'utilizzo di S3 Select"].
+
+
+
+[[clauses]]
+== Clausole
+
+* elenco SELECT
+* clausola FROM
+* clausola WHERE
+* clausola LIMIT
+
+
+
+
+[[data-types]]
+== Tipi di dati
+
+* bool
+* intero
+* stringa
+* galleggiante
+* decimale, numerico
+* timestamp
+
+
+
+
+[[operators]]
+== Operatori
+
+
+
+[[logical-operators]]
+=== Operatori logici
+
+* E
+* NON
+* O
+
+
+
+
+[[comparison-operators]]
+=== Operatori di confronto
+
+* <
+* >
+* <=
+* >=
+* =
+* =
+* <>
+* !=
+* FRA
+* IN
+
+
+
+
+[[pattern-matching-operators]]
+=== Operatori di pattern matching
+
+* MI PIACE
+* _
+* %
+
+
+
+
+[[unitary-operators]]
+=== Operatori unitari
+
+* È NULL
+* NON È NULLO
+
+
+
+
+[[math-operators]]
+=== Operatori matematici
+
+* +
+* -
+* *
+* /
+* %
+
+
+StorageGRID segue la precedenza degli operatori di Amazon S3 Select.
+
+
+
+[[aggregate-functions]]
+== Funzioni aggregate
+
+* AVG()
+* COUNT(*)
+* MAX()
+* MIN()
+* SOMMA()
+
+
+
+
+[[conditional-functions]]
+== Funzioni condizionali
+
+* ${post_edited_translations.segment}
+* ${post_edited_translations.segment}
+* NULLIF
+
+
+
+
+[[conversion-functions]]
+== Funzioni di conversione
+
+* ${post_edited_translations.segment}
+
+
+
+
+[[date-functions]]
+== Funzioni data
+
+* ${post_edited_translations.segment}
+* ${post_edited_translations.segment}
+* ESTRAI
+* ${post_edited_translations.segment}
+* ${post_edited_translations.segment}
+* UTCNOW
+
+
+
+
+[[string-functions]]
+== Funzioni di stringa
+
+* CHAR_LENGTH, CHARACTER_LENGTH
+* ${post_edited_translations.segment}
+* ${post_edited_translations.segment}
+* ${post_edited_translations.segment}
+* ${post_edited_translations.segment}
+

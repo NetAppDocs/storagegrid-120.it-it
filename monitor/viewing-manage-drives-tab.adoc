@@ -1,0 +1,25 @@
+---
+permalink: monitor/viewing-manage-drives-tab.html 
+sidebar: sidebar 
+keywords: Manage drives tab, hardware diagnostics, fail drive, logically replace drive 
+summary: La scheda Gestisci unità consente di accedere ai dettagli ed eseguire attività di risoluzione dei problemi e manutenzione sulle unità negli apparati che supportano questa funzionalità. 
+---
+= Visualizza la scheda Gestisci unità di StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La scheda Gestisci unità consente di accedere ai dettagli ed eseguire attività di risoluzione dei problemi e manutenzione sulle unità negli apparati che supportano questa funzionalità.
+
+Tramite la scheda Gestisci unità, puoi eseguire le seguenti operazioni:
+
+* Visualizza la disposizione delle unità di archiviazione dati nell'appliance
+* Visualizza una tabella che elenca la posizione di ciascuna unità, il tipo, lo stato, la versione del firmware e il numero di serie
+* Esegui le funzioni di risoluzione dei problemi e di manutenzione su ciascun drive
+
+
+Per accedere alla scheda Gestisci unità, devi avere il link:../admin/admin-group-permissions.html["Autorizzazione di amministratore dell'appliance di storage o permesso di accesso root"].
+
+Per informazioni sull'utilizzo della scheda Gestisci unità, vedi  https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/manage-drives-tab.html["Usa la scheda Gestisci unità"^].

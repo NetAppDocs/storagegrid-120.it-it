@@ -1,0 +1,70 @@
+---
+permalink: tenant/changing-bucket-versioning.html 
+sidebar: sidebar 
+keywords: how to change bucket versioning, disabled versioning, enabled versioning, suspended versioning 
+summary: Se usi un tenant S3, puoi modificare lo stato di versioning per i bucket S3. 
+---
+= Modifica la versione degli oggetti per un bucket S3 in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se usi un tenant S3, puoi modificare lo stato di versioning per i bucket S3.
+
+.Prima di iniziare
+* Hai effettuato l'accesso al Tenant Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Appartieni a un gruppo di utenti che ha le link:tenant-management-permissions.html["Gestisci tutti i bucket o autorizzazione di accesso root"]. Queste autorizzazioni sovrascrivono le impostazioni delle autorizzazioni nelle policy di gruppo o di bucket.
+* Hai verificato che il numero richiesto di Storage Node e siti sia disponibile. Se due o più Storage Node non sono disponibili in un sito, o se un sito non è disponibile, potrebbe non essere possibile modificare queste impostazioni.
+
+
+.Informazioni su questa attività
+Puoi abilitare o sospendere il versioning degli oggetti per un bucket. Dopo che hai abilitato il versioning per un bucket, non può più tornare a uno stato senza versioning. Tuttavia, puoi sospendere il versioning per il bucket.
+
+* Disabilitato: il versioning non è mai stato abilitato
+* Abilitato: la gestione delle versioni è abilitata
+* Sospeso: la gestione delle versioni era precedentemente abilitata ed è sospesa
+
+
+Per ulteriori informazioni, consulta quanto segue:
+
+* link:../s3/object-versioning.html["Versioning degli oggetti"]
+* link:../ilm/example-4-ilm-rules-and-policy-for-s3-versioned-objects.html["Regole e politiche ILM per gli oggetti versionati S3 (Esempio 4)"]
+* link:../ilm/how-objects-are-deleted.html["Come vengono eliminati gli oggetti"]
+
+
+.Passaggi
+. ${post_edited_translations.segment}
+. Seleziona il nome del bucket dalla tabella.
++
+Viene visualizzata la pagina dei dettagli del bucket.
+
+. Dalla scheda *Opzioni bucket*, seleziona la sezione *Versionamento oggetti*.
+. Seleziona uno stato di versioning per gli oggetti in questo bucket.
++
+Il versioning degli oggetti deve rimanere abilitato per un bucket utilizzato per la replica cross-grid. Se è abilitato S3 Object Lock o la conformità legacy, le opzioni di *Object versioning* sono disabilitate.
+
++
+[cols="1a,3a"]
+|===
+| Opzione | Descrizione 
+
+
+ a| 
+Abilita il versioning
+ a| 
+Abilita il versioning degli oggetti se desideri archiviare ogni versione di ciascun oggetto in questo bucket. Puoi quindi recuperare le versioni precedenti di un oggetto secondo necessità.
+
+Gli oggetti già presenti nel bucket verranno versionati quando vengono modificati da un utente.
+
+
+
+ a| 
+Sospendi il versioning
+ a| 
+Sospendi il controllo delle versioni degli oggetti se non vuoi più che vengano create nuove versioni degli oggetti. Puoi comunque recuperare le versioni degli oggetti esistenti.
+
+|===
+. Seleziona *Salva modifiche*.
+

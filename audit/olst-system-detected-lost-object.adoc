@@ -1,0 +1,73 @@
+---
+permalink: audit/olst-system-detected-lost-object.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, OLST, System Detected Lost Object 
+summary: ${post_edited_translations.segment} 
+---
+= Messaggio di audit OLST per oggetti persi rilevati dal sistema in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+${post_edited_translations.segment}
+
+[cols="1a,1a,4a"]
+|===
+| Codice | Campo | Descrizione 
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Identificatore del blocco di contenuto
+ a| 
+Il CBID dell'oggetto smarrito.
+
+
+
+ a| 
+NOID
+ a| 
+ID nodo
+ a| 
+Se disponibile, l'ultima posizione nota diretta o near-line dell'oggetto smarrito. È possibile avere solo l'ID del nodo senza l'ID del volume se le informazioni sul volume non sono disponibili.
+
+
+
+ a| 
+PATH
+ a| 
+Bucket/chiave S3
+ a| 
+Se disponibili, il nome del bucket S3 e il nome della chiave S3.
+
+
+
+ a| 
+RSLT
+ a| 
+Risultato
+ a| 
+Questo campo ha il valore NONE. RSLT è un campo obbligatorio del messaggio, ma non è rilevante per questo messaggio. Viene utilizzato NONE anziché SUCS così che questo messaggio non venga filtrato.
+
+
+
+ a| 
+UUID
+ a| 
+ID univoco universale
+ a| 
+L'identificativo dell'oggetto smarrito all'interno del sistema StorageGRID.
+
+
+
+ a| 
+VOLI
+ a| 
+ID volume
+ a| 
+${post_edited_translations.segment}
+
+|===

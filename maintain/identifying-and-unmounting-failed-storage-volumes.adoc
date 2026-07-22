@@ -1,0 +1,100 @@
+---
+permalink: maintain/identifying-and-unmounting-failed-storage-volumes.html 
+sidebar: sidebar 
+keywords: storagegrid, storage volume, failed storage volume, unmount failed volume 
+summary: Quando recuperi un nodo di storage con volumi di storage guasti, devi identificare e smontare i volumi guasti. Devi verificare che solo i volumi di storage guasti vengano riformattati come parte della procedura di recovery. 
+---
+= Identifica e smonta i volumi di storage non funzionanti in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Quando recuperi un nodo di storage con volumi di storage guasti, devi identificare e smontare i volumi guasti. Devi verificare che solo i volumi di storage guasti vengano riformattati come parte della procedura di recovery.
+
+.Prima di iniziare
+Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+
+.Informazioni su questa attività
+Dovresti recuperare i volumi di storage guasti il prima possibile.
+
+Il primo passo del processo di recovery consiste nell'individuare i volumi che si sono scollegati, che devono essere smontati o che presentano errori di I/O. Se i volumi danneggiati sono ancora collegati ma presentano un file system casualmente corrotto, il sistema potrebbe non rilevare alcuna corruzione nelle parti del disco non utilizzate o non allocate.
+
+
+NOTE: Devi completare questa procedura prima di eseguire passaggi manuali per recuperare i volumi, come aggiungere o riconnettere i dischi, arrestare il nodo, avviare il nodo o riavviare. Altrimenti, quando esegui lo script  `reformat_storage_block_devices.rb`, potresti riscontrare un errore del file system che causa il blocco o il fallimento dello script.
+
+
+NOTE: Ripara l'hardware e collega correttamente i dischi prima di eseguire il comando  `reboot`.
+
+
+CAUTION: Identifica con attenzione i volumi di storage danneggiati. Userai queste informazioni per verificare quali volumi devono essere riformattati. Dopo che un volume è stato riformattato, i dati presenti sul volume non possono essere recuperati.
+
+Per ripristinare i volumi di storage danneggiati, devi conoscere sia i nomi dei dispositivi dei volumi di storage danneggiati sia i loro ID volume.
+
+Durante l'installazione, a ciascun dispositivo di storage viene assegnato un file system UUID (identificatore univoco universale del file system) e viene montato in una directory rangedb sul Storage Node utilizzando tale file system UUID. Il file system UUID e la directory rangedb sono elencati nel  `/etc/fstab` file. Il punto di montaggio, il nome del dispositivo e la dimensione del volume vengono visualizzati nel Grid Manager.
+
+.Passaggi
+. Completa i seguenti passaggi per registrare i volumi di storage non funzionanti e i relativi nomi dei dispositivi:
++
+.. Seleziona *Nodes* > *_site_* > *_failed Storage Node_* > *Storage*.
+.. Scorri verso il basso per individuare la tabella Volumi e la tabella Archivi oggetti e registra le seguenti informazioni per ogni volume con stato Sconosciuto o Offline.
++
+*** Dalla tabella Volumi, annota il punto di montaggio, il dispositivo e le dimensioni.
+*** Dalla tabella degli archivi di oggetti, annota il  `object_store_ID`.
++
+Il  `object_store_ID` è l'ID del volume di storage guasto. Ad esempio, specifica  `0` nel comando per un archivio di oggetti con ID 0000.
+
+
+
+
+
+. Accedi al nodo di storage non funzionante:
++
+.. Inserisci il seguente comando: `ssh admin@_grid_node_IP_`
+.. Inserisci la password indicata nel file  `Passwords.txt`.
+.. Inserisci il seguente comando per passare all'utente root: `su -`
+.. Inserisci la password indicata nel file  `Passwords.txt`.
++
+Quando sei connesso come root, il prompt cambia da  `$` a  `#`.
+
+
+
+. Esegui il seguente script per smontare un volume di storage guasto:
++
+`sn-unmount-volume object_store_ID`
+
+. Se richiesto, premi *y* per arrestare il servizio Cassandra in base al volume di storage 0.
++
+
+NOTE: Se il servizio Cassandra è già arrestato, non viene visualizzato alcun messaggio. Il servizio Cassandra viene arrestato solo per il volume 0.
+
++
+[listing]
+----
+root@Storage-180:~/var/local/tmp/storage~ # sn-unmount-volume 0
+Services depending on storage volume 0 (cassandra) aren't down.
+Services depending on storage volume 0 must be stopped before running this script.
+Stop services that require storage volume 0 [y/N]? y
+Shutting down services that require storage volume 0.
+Services requiring storage volume 0 stopped.
+Unmounting /var/local/rangedb/0
+/var/local/rangedb/0 is unmounted.
+----
++
+In pochi secondi, il volume viene smontato. Vengono visualizzati messaggi che indicano ogni fase del processo. Il messaggio finale indica che il volume viene smontato.
+
+. Se lo smontaggio non riesce perché il volume è occupato, puoi forzare lo smontaggio usando l' `--use-umountof`opzione:
++
+
+NOTE: Forzare lo smontaggio usando l' `--use-umountof`opzione potrebbe causare comportamenti imprevisti o arresti anomali dei processi o dei servizi che utilizzano il volume.
+
++
+[listing]
+----
+root@Storage-180:~ # sn-unmount-volume --use-umountof /var/local/rangedb/2
+Unmounting /var/local/rangedb/2 using umountof
+/var/local/rangedb/2 is unmounted.
+Informing LDR service of changes to storage volumes
+----
+

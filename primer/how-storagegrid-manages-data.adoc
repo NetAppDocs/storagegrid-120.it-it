@@ -1,0 +1,79 @@
+---
+permalink: primer/how-storagegrid-manages-data.html 
+sidebar: sidebar 
+keywords: StorageGRID, how storagegrid manages data, what an object is, how object data is protected 
+summary: 'Con lo storage a oggetti, l"unità di storage è un oggetto, anziché un file o un blocco. A differenza della gerarchia ad albero di un file system o dello storage a blocchi, lo storage a oggetti organizza i dati in un layout piatto e non strutturato.' 
+---
+= Che cos'è un oggetto StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Con lo storage a oggetti, l'unità di storage è un oggetto, anziché un file o un blocco. A differenza della gerarchia ad albero di un file system o dello storage a blocchi, lo storage a oggetti organizza i dati in un layout piatto e non strutturato.
+
+Lo storage a oggetti disaccoppia la posizione fisica dei dati dal metodo utilizzato per memorizzarli e recuperarli.
+
+Ogni oggetto in uno storage a oggetti è composto da due parti: dati dell'oggetto e metadati.
+
+image:object_conceptual_drawing.png["Oggetto"]
+
+
+
+[[what-is-object-data]]
+== Che cosa sono i dati a oggetti?
+
+I dati relativi a un oggetto possono essere di qualsiasi tipo; ad esempio, una fotografia, un filmato o una cartella clinica.
+
+
+
+[[what-is-object-metadata]]
+== Che cosa sono i metadati degli oggetti?
+
+I metadati degli oggetti sono tutte le informazioni che descrivono un oggetto. StorageGRID utilizza i metadati degli oggetti per tenere traccia della posizione di tutti gli oggetti nella griglia e per gestire il ciclo di vita di ciascun oggetto nel tempo.
+
+I metadati degli oggetti includono informazioni come le seguenti:
+
+* Metadati di sistema, inclusi un ID univoco per ogni oggetto (UUID), il nome dell'oggetto, il nome del bucket S3, il nome o l'ID dell'account tenant, la dimensione logica dell'oggetto, la data e l'ora in cui l'oggetto è stato creato per la prima volta e la data e l'ora dell'ultima modifica dell'oggetto.
+* La posizione di storage corrente di ciascuna copia dell'oggetto o frammento codificato per la cancellazione.
+* Qualsiasi metadati utente associato all'oggetto.
+
+
+I metadati degli oggetti sono personalizzabili ed espandibili, il che li rende flessibili per l'utilizzo da parte delle applicazioni.
+
+Per informazioni dettagliate su come e dove StorageGRID memorizza i metadati, vai a link:../admin/managing-object-metadata-storage.html["Gestisci l'archiviazione dei metadati degli oggetti"].
+
+
+
+[[how-is-object-data-protected]]
+== Come sono protetti i dati a oggetti?
+
+Il sistema StorageGRID ti offre due meccanismi per proteggere i dati degli oggetti dalla perdita: la replica e la codifica di cancellazione.
+
+
+
+[[replication]]
+=== Replica
+
+Quando StorageGRID associa gli oggetti a una regola di gestione del ciclo di vita delle informazioni (ILM) configurata per creare copie replicate, il sistema crea copie esatte dei dati degli oggetti e le memorizza sui nodi di storage o sui Cloud Storage Pools. Le regole ILM determinano il numero di copie create, dove vengono archiviate e per quanto tempo vengono conservate dal sistema. Se una copia viene persa, ad esempio a causa della perdita di un nodo di storage, l'oggetto è comunque disponibile se ne esiste una copia altrove nel sistema StorageGRID.
+
+Nell'esempio seguente, la regola "Crea 2 copie" specifica che due copie replicate di ciascun oggetto vengano inserite in un pool di storage che contiene tre Storage Node.
+
+image:ilm_replication_make_2_copies.png["Regola delle 2 copie"]
+
+
+
+[[erasure-coding]]
+=== Erasure coding
+
+Quando StorageGRID associa gli oggetti a una regola ILM configurata per creare copie con codifica di cancellazione, suddivide i dati dell'oggetto in frammenti di dati, calcola ulteriori frammenti di parità e memorizza ciascun frammento su un diverso Storage Node. Quando accedi a un oggetto, viene ricostruito utilizzando i frammenti memorizzati. Se un frammento di dati o di parità risulta danneggiato o perso, l'algoritmo di codifica di cancellazione può ricreare quel frammento utilizzando un sottoinsieme dei frammenti di dati e di parità rimanenti. Le regole ILM e i profili di codifica di cancellazione determinano lo schema di codifica di cancellazione utilizzato.
+
+L'esempio seguente illustra l'utilizzo della codifica di cancellazione sui dati di un oggetto. In questo esempio, la regola ILM utilizza uno schema di codifica di cancellazione 4+2. Ogni oggetto viene suddiviso in quattro frammenti di dati uguali e da questi vengono calcolati due frammenti di parità. Ciascuno dei sei frammenti viene memorizzato su un diverso Storage Node distribuito su tre data center, per garantire la protezione dei dati in caso di guasti ai nodi o perdita di siti.
+
+image:ec_three_sites_4_plus_2.png["Erasure Coded Tre siti 4 più 2"]
+
+.Informazioni correlate
+* link:../ilm/index.html["Gestisci gli oggetti con ILM"]
+* link:using-information-lifecycle-management.html["Usa la gestione del ciclo di vita delle informazioni"]
+

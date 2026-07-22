@@ -1,0 +1,31 @@
+---
+permalink: admin/updating-storagegrid-license-information.html 
+sidebar: sidebar 
+keywords: storagegrid license, update license, add storage capacity 
+summary: Devi aggiornare le informazioni sulla licenza per il tuo sistema StorageGRID ogni volta che i termini della licenza cambiano. Ad esempio, devi aggiornare le informazioni sulla licenza se acquisti capacità di storage aggiuntiva per la tua grid. 
+---
+= Aggiorna le informazioni sulla licenza di StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Devi aggiornare le informazioni sulla licenza per il tuo sistema StorageGRID ogni volta che i termini della licenza cambiano. Ad esempio, devi aggiornare le informazioni sulla licenza se acquisti capacità di storage aggiuntiva per la tua grid.
+
+.Prima di iniziare
+* ${post_edited_translations.segment}
+* Hai link:admin-group-permissions.html["autorizzazioni di accesso specifiche"].
+* ${post_edited_translations.segment}
+
+
+.Passaggi
+. ${post_edited_translations.segment}
+. Nella sezione Aggiorna licenza, seleziona *Sfoglia*.
+. Individua e seleziona il nuovo file di licenza (`.txt`).
++
+Il nuovo file di licenza viene convalidato e visualizzato.
+
+. ${post_edited_translations.segment}
+. Seleziona *Salva*.
+

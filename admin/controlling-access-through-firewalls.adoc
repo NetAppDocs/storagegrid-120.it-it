@@ -1,0 +1,66 @@
+---
+permalink: admin/controlling-access-through-firewalls.html 
+sidebar: sidebar 
+keywords: firewall access, firewall ports, external firewall 
+summary: Puoi aprire o chiudere porte specifiche sul firewall esterno. 
+---
+= Controlla l'accesso a StorageGRID tramite un firewall esterno
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi aprire o chiudere porte specifiche sul firewall esterno.
+
+Puoi controllare l'accesso alle interfacce utente e alle API sui nodi Admin StorageGRID aprendo o chiudendo porte specifiche sul firewall esterno. Ad esempio, potresti voler impedire ai tenant di connettersi al Grid Manager sul firewall, oltre a utilizzare altri metodi per controllare l'accesso al sistema.
+
+Se vuoi configurare il firewall interno di StorageGRID, vedi link:../admin/configure-firewall-controls.html["Configura il firewall interno"].
+
+[cols="1a,1a,2a"]
+|===
+| Porta | Descrizione | Se la porta è aperta... 
+
+
+ a| 
+443
+ a| 
+Porta HTTPS predefinita per i nodi Admin
+ a| 
+${post_edited_translations.segment}
+
+*Nota:* Anche la porta 443 viene utilizzata per parte del traffico interno.
+
+
+
+ a| 
+8443
+ a| 
+Porta Grid Manager con restrizioni sui nodi di amministrazione
+ a| 
+* I browser web e i client API di gestione possono accedere a Grid Manager e all'API di gestione di Grid tramite HTTPS.
+* I browser web e i client API di gestione non possono accedere a Tenant Manager o alla Tenant Management API.
+* Le richieste di contenuti interni verranno respinte.
+
+
+
+
+ a| 
+9443
+ a| 
+Porta Tenant Manager con restrizioni sugli Admin Node
+ a| 
+* I browser web e i client API di gestione possono accedere a Tenant Manager e all'API di gestione Tenant tramite HTTPS.
+* I browser web e i client API di gestione non possono accedere a Grid Manager o alla Grid Management API.
+* Le richieste di contenuti interni verranno respinte.
+
+
+|===
+
+TIP: Il single sign-on (SSO) non è disponibile sulle porte con restrizioni di Grid Manager o Tenant Manager. Devi usare la porta HTTPS predefinita (443) se vuoi che gli utenti si autentichino con il single sign-on.
+
+.Informazioni correlate
+* link:signing-in-to-grid-manager.html["Accedi al Grid Manager"]
+* link:creating-tenant-account.html["Crea account tenant"]
+* link:../network/external-communications.html["Comunicazioni esterne"]
+

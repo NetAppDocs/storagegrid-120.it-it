@@ -1,0 +1,114 @@
+---
+permalink: audit/gtsu-grid-task-submitted.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, GTSU, Grid Task Submitted 
+summary: ${post_edited_translations.segment} 
+---
+= Messaggio di audit GTSU per le attività di grid inviate in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+${post_edited_translations.segment}
+
+[cols="1a,1a,4a"]
+|===
+| Codice | Campo | Descrizione 
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+ID attività
+ a| 
+Identifica in modo univoco un'attività di griglia generata e ti permette di gestirla durante tutto il suo ciclo di vita.
+
+*Nota:* L'ID attività viene assegnato al momento della generazione di un'attività di griglia, non al momento del suo invio. È possibile che una determinata attività di griglia venga inviata più volte e, in questo caso, il campo ID attività non è sufficiente per collegare in modo univoco i messaggi di controllo Submitted, Started e Ended.
+
+
+
+ a| 
+TTYP
+ a| 
+${post_edited_translations.segment}
+ a| 
+${post_edited_translations.segment}
+
+
+
+ a| 
+TVER
+ a| 
+${post_edited_translations.segment}
+ a| 
+${post_edited_translations.segment}
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Descrizione dell'attività
+ a| 
+Una descrizione comprensibile all'uomo dell'attività della grid.
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Valido dopo il timestamp
+ a| 
+L'istante più remoto (UINT64 microsecondi dal 1° gennaio 1970 - ora UNIX) in cui il grid task è valido.
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+${post_edited_translations.segment}
+ a| 
+L'ora più recente (UINT64 microsecondi dal 1° gennaio 1970 - ora UNIX) in cui l'attività di griglia è valida.
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Fonte
+ a| 
+La fonte del compito:
+
+* TXTB: L'attività di griglia è stata inviata tramite il sistema StorageGRID come blocco di testo firmato.
+* GRIGLIA: L'attività di griglia è stata inviata tramite il servizio interno di invio delle attività di griglia.
+
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Tipo di attivazione
+ a| 
+${post_edited_translations.segment}
+
+* AUTO: L'attività di griglia è stata inviata per l'attivazione automatica.
+* IN SOSPESO: L'attività di griglia è stata inserita nella tabella in sospeso. Questa è l'unica possibilità per la sorgente TXTB.
+
+
+
+
+ a| 
+RSLT
+ a| 
+Risultato
+ a| 
+Il risultato dell'invio:
+
+* SUCS: L'attività di grid è stata inviata correttamente.
+* ERRORE: L'attività è stata spostata direttamente nella tabella storica.
+
+
+|===

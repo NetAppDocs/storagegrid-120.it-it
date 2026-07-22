@@ -1,0 +1,35 @@
+---
+permalink: fabricpool/configure-dns-server.html 
+sidebar: sidebar 
+keywords: fabricPool, StorageGRID, dns, vip, virtual ip, fqdn, server name 
+summary: ${post_edited_translations.segment} 
+---
+= Configura le voci del DNS server per StorageGRID con FabricPool
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Dopo aver configurato i gruppi ad alta disponibilità, gli endpoint del bilanciamento del carico e i domain name dell'endpoint S3, devi assicurarti che il DNS includa le voci necessarie per StorageGRID. Devi includere una voce DNS per ciascun nome nel certificato di sicurezza e per ciascun indirizzo IP che potresti utilizzare.
+
+Vedi link:../admin/managing-load-balancing.html["Considerazioni sul bilanciamento del carico"].
+
+
+
+[[dns-entries-for-storagegrid-server-name]]
+== Voci DNS per il nome del server StorageGRID
+
+Aggiungi le voci DNS per associare il nome del server StorageGRID (fully qualified domain name) a ciascun indirizzo IP di StorageGRID che utilizzerai. Gli indirizzi IP che inserisci nel DNS dipendono dal fatto che tu stia utilizzando o meno un gruppo HA di nodi di bilanciamento del carico:
+
+* Se hai configurato un gruppo HA, ONTAP si connetterà agli indirizzi IP virtuali di quel gruppo HA.
+* Se non usi un gruppo HA, ONTAP può connettersi al servizio StorageGRID Load Balancer utilizzando l'indirizzo IP di qualsiasi Gateway Node o Admin Node.
+* Se il nome del server corrisponde a più di un indirizzo IP, ONTAP stabilisce connessioni client con tutti gli indirizzi IP (fino a un massimo di 16 indirizzi IP). Gli indirizzi IP vengono selezionati in modo round-robin quando vengono stabilite le connessioni.
+
+
+
+
+[[dns-entries-for-virtual-hosted-style-requests]]
+== Voci DNS per richieste in stile virtual hosted
+
+Se hai definito link:../admin/configuring-s3-api-endpoint-domain-names.html["${post_edited_translations.segment}"] e intendi utilizzare richieste in stile virtual hosted, aggiungi le voci DNS per tutti i domain name degli endpoint S3 richiesti, inclusi eventuali nomi wildcard.

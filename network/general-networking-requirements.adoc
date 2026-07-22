@@ -1,0 +1,52 @@
+---
+permalink: network/general-networking-requirements.html 
+sidebar: sidebar 
+keywords: networking requirements, storagegrid networks 
+summary: Tutte le implementazioni di StorageGRID devono essere in grado di supportare le seguenti connessioni. 
+---
+= Requisiti di rete generali per StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Tutte le implementazioni di StorageGRID devono essere in grado di supportare le seguenti connessioni.
+
+Queste connessioni possono avvenire tramite le reti Grid, Admin o Client, oppure tramite combinazioni di queste reti come illustrato negli esempi di topologia di rete.
+
+* *Connessioni di gestione*: Connessioni in entrata da un amministratore al nodo, solitamente tramite SSH. Accesso tramite browser web a Grid Manager, Tenant Manager e StorageGRID Appliance Installer.
+* *Connessioni al server NTP*: Connessione UDP in uscita che riceve una risposta UDP in entrata.
++
+Almeno un server NTP deve essere raggiungibile dal nodo di amministrazione primario.
+
+* *Connessioni DNS server*: Connessione UDP in uscita che riceve una risposta UDP in entrata.
+* *Connessioni al server LDAP/Active Directory*: Connessione TCP in uscita dal servizio Identity sui nodi Storage.
+* *AutoSupport*: Connessione TCP in uscita dai nodi di amministrazione verso  `support.netapp.com` o un proxy configurato dal cliente.
+* *Server di gestione delle chiavi esterno*: Connessione TCP in uscita da ciascun nodo dell'appliance con crittografia del nodo abilitata.
+* Connessioni TCP in entrata dai client S3.
+* Richieste in uscita dai servizi della piattaforma StorageGRID, come la replica CloudMirror o dai Cloud Storage Pools.
+
+
+Se StorageGRID non riesce a contattare nessuno dei server NTP o DNS configurati utilizzando le regole di routing predefinite, tenterà automaticamente di connettersi su tutte le reti (Grid, Admin e Client) purché siano specificati gli indirizzi IP dei server DNS e NTP. Se i server NTP o DNS sono raggiungibili su una qualsiasi rete, StorageGRID creerà automaticamente regole di routing aggiuntive per garantire che quella rete venga utilizzata per tutti i successivi tentativi di connessione.
+
+
+TIP: Sebbene tu possa utilizzare queste route host rilevate automaticamente, in generale dovresti configurare manualmente le route DNS e NTP per garantire la connettività nel caso in cui il rilevamento automatico fallisca.
+
+Se non sei pronto a configurare le reti Admin e Client opzionali durante la distribuzione, puoi configurarle quando approvi i nodi della griglia durante le fasi di configurazione. Inoltre, puoi configurare queste reti dopo il completamento dell'installazione utilizzando lo strumento Change IP (vedi link:../maintain/configuring-ip-addresses.html["Configura gli indirizzi IP"]).
+
+
+
+[[connections-for-admin-nodes-and-gateway-nodes]]
+== Connessioni per Admin Nodes e Gateway Nodes
+
+I nodi di amministrazione devono essere sempre protetti da client non attendibili, come quelli presenti su Internet. Devi assicurarti che nessun client non attendibile possa accedere a nessun nodo di amministrazione sulla Grid Network, sulla Admin Network o sulla Client Network.
+
+I nodi amministratori e i nodi gateway che vuoi aggiungere ai gruppi di alta disponibilità devono essere configurati con un indirizzo IP statico. Vedi link:../admin/managing-high-availability-groups.html["Gestisci i gruppi ad alta disponibilità"].
+
+
+
+[[using-network-address-translation-nat]]
+== Utilizzo della traduzione degli indirizzi di rete (NAT)
+
+Non usare la traduzione degli indirizzi di rete (NAT) sulla Grid Network tra i nodi della griglia o tra i siti StorageGRID. Quando usi indirizzi IPv4 privati per la Grid Network, quegli indirizzi devono essere direttamente instradabili da ogni nodo della griglia in ogni sito. Se necessario, però, puoi usare il NAT tra client esterni e nodi della griglia, ad esempio per fornire un indirizzo IP pubblico a un Gateway Node. L'uso del NAT per collegare un segmento di rete pubblica è supportato solo quando utilizzi un'applicazione di tunneling trasparente per tutti i nodi della griglia, cioè i nodi della griglia non devono conoscere gli indirizzi IP pubblici.

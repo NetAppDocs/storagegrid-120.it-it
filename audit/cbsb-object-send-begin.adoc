@@ -1,0 +1,98 @@
+---
+permalink: audit/cbsb-object-send-begin.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, CBSB, Object Send Begin 
+summary: 'Durante il normale funzionamento del sistema, i blocchi di contenuto vengono continuamente trasferiti tra nodi diversi man mano che i dati vengono consultati, replicati e conservati. Quando viene avviato il trasferimento di un blocco di contenuto da un nodo all"altro, l"entità di origine emette questo messaggio.' 
+---
+= Messaggio di audit CBSB per l'inizio dell'invio dell'oggetto in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Durante il normale funzionamento del sistema, i blocchi di contenuto vengono continuamente trasferiti tra nodi diversi man mano che i dati vengono consultati, replicati e conservati. Quando viene avviato il trasferimento di un blocco di contenuto da un nodo all'altro, l'entità di origine emette questo messaggio.
+
+[cols="1a,1a,4a"]
+|===
+| Codice | Campo | Descrizione 
+
+
+ a| 
+CNID
+ a| 
+Identificatore di connessione
+ a| 
+L'identificativo univoco della sessione/connessione nodo-nodo.
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Identificatore del blocco di contenuto
+ a| 
+${post_edited_translations.segment}
+
+
+
+ a| 
+CTDR
+ a| 
+Direzione di trasferimento
+ a| 
+Indica se il trasferimento CBID è stato avviato tramite push o pull:
+
+PUSH: L'operazione di trasferimento è stata richiesta dall'entità mittente.
+
+PULL: L'operazione di trasferimento è stata richiesta dall'entità ricevente.
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Entità di origine
+ a| 
+L'ID del nodo sorgente (mittente) del trasferimento CBID.
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Entità di destinazione
+ a| 
+L'ID del nodo di destinazione (ricevente) del trasferimento CBID.
+
+
+
+ a| 
+CTSS
+ a| 
+Inizio conteggio sequenza
+ a| 
+Indica il primo numero di sequenza richiesto. Se ha successo, il trasferimento inizia da questo numero di sequenza.
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+${post_edited_translations.segment}
+ a| 
+Indica l'ultimo conteggio di sequenza richiesto. In caso di esito positivo, il trasferimento viene considerato completato quando questo conteggio di sequenza è stato ricevuto.
+
+
+
+ a| 
+RSLT
+ a| 
+Stato di inizio trasferimento
+ a| 
+${post_edited_translations.segment}
+
+SUCS: trasferimento avviato con successo.
+
+|===
+Questo messaggio di audit indica che è stata avviata un'operazione di trasferimento dati da nodo a nodo su un singolo elemento di contenuto, identificato dal relativo Content Block Identifier. L'operazione richiede dati da "Start Sequence Count" a "Expected End Sequence Count". I nodi di invio e ricezione sono identificati dai relativi ID nodo. Puoi utilizzare queste informazioni per tracciare il flusso di dati del sistema e, se combinate con i messaggi di audit dello storage, per verificare il numero di repliche.

@@ -1,0 +1,75 @@
+---
+permalink: admin/grid-management-api-operations.html 
+sidebar: sidebar 
+keywords: Grid Management API,  API operations 
+summary: 'L"API di gestione della griglia organizza le operazioni API disponibili nelle seguenti sezioni.' 
+---
+= Operazioni Grid Management API in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+${post_edited_translations.segment}
+
+
+NOTE: ${post_edited_translations.segment}
+
+* *accounts*: Operazioni per gestire gli account tenant di archiviazione, inclusa la creazione di nuovi account e il recupero dell'utilizzo dello storage per un determinato account.
+* *alert-history*: Operazioni sugli avvisi risolti.
+* ${post_edited_translations.segment}
+* *alert-rules*: Operazioni sulle regole di alert.
+* *alert-silences*: Operazioni sui silenziamenti di allerta.
+* ${post_edited_translations.segment}
+* ${post_edited_translations.segment}
+* *auth*: Operazioni per eseguire l'autenticazione della sessione utente.
++
+L'API Grid Management supporta lo schema di autenticazione Bearer Token. Per accedere, fornisci un nome utente e una password nel corpo JSON della richiesta di autenticazione (cioè  `POST /api/v3/authorize`). Se l'utente viene autenticato correttamente, viene restituito un token di sicurezza. Questo token deve essere fornito nell'intestazione delle richieste API successive ("Authorization: Bearer _token_"). Il token scade dopo 16 ore.
+
++
+
+NOTE: Se il single sign-on è abilitato per il sistema StorageGRID, devi eseguire passaggi diversi per autenticarti. Vedi "Autenticazione nell'API se il single sign-on è abilitato".
+
++
+Consulta "Proteggere da Cross-Site Request Forgery" per informazioni su come migliorare la sicurezza con autenticazione.
+
+* ${post_edited_translations.segment}
+* *config*: Operazioni relative alla release del prodotto e alle versioni della Grid Management API. Puoi visualizzare la versione della release del prodotto e le versioni principali della Grid Management API supportate da quella release, e puoi disabilitare le versioni obsolete dell'API.
+* *funzionalità-disattivate*: Operazioni per visualizzare le funzionalità che potrebbero essere state disattivate.
+* *dns-servers*: Operazioni per elencare e modificare i server DNS esterni configurati.
+* *dettagli unità*: Operazioni sulle unità per modelli specifici di storage appliance.
+* *endpoint-domain-names*: Operazioni per elencare e modificare i nomi di dominio degli endpoint S3.
+* *codifica di cancellazione*: Operazioni sui profili di codifica di cancellazione.
+* *espansione*: Operazioni su espansione (a livello di procedura).
+* *expansion-nodes*: Operazioni sull'espansione (a livello di nodo).
+* *expansion-sites*: Operazioni di espansione (a livello di sito).
+* *grid-networks*: Operazioni per visualizzare e modificare l'elenco delle reti Grid.
+* *grid-passwords*: Operazioni per la gestione delle password della griglia.
+* *gruppi*: Operazioni per gestire i gruppi di amministratori Grid locali e per recuperare i gruppi di amministratori Grid federati da un LDAP server esterno.
+* *identity-source*: Operazioni per configurare un'origine di identità esterna e per sincronizzare manualmente le informazioni di gruppi e utenti federati.
+* ${post_edited_translations.segment}
+* *in-progress-procedures*: Recupera le procedure di manutenzione attualmente in corso.
+* *licenza*: Operazioni per recuperare e aggiornare la licenza di StorageGRID.
+* *logs*: Operazioni per la raccolta e il download dei file di log.v
+* *metrics*: Operazioni sulle metriche di StorageGRID, incluse query di metriche istantanee in un singolo momento e query di metriche su un intervallo di tempo. La Grid Management API utilizza lo strumento di monitoraggio dei sistemi Prometheus come backend data source. Per informazioni sulla creazione di query Prometheus, consulta il sito web di Prometheus.
++
+
+NOTE: Le metriche che includono ``_private_`` nei loro nomi sono destinate esclusivamente all'uso interno. Queste metriche sono soggette a modifiche tra le versioni di StorageGRID senza preavviso.
+
+* ${post_edited_translations.segment}
+* *node-health*: Operazioni sullo stato di salute del nodo.
+* ${post_edited_translations.segment}
+* *ntp-servers*: Operazioni per elencare o aggiornare i server esterni Network Time Protocol (NTP).
+* *oggetti*: Operazioni su oggetti e metadati degli oggetti.
+* *recupero*: Operazioni per la procedura di recupero.
+* ${post_edited_translations.segment}
+* *regioni*: Operazioni per visualizzare e creare regioni.
+* *s3-object-lock*: Operazioni sulle impostazioni globali di S3 Object Lock.
+* ${post_edited_translations.segment}
+* ${post_edited_translations.segment}
+* ${post_edited_translations.segment}
+* *classi-di-traffico*: Operazioni per le policy di classificazione del traffico.
+* ${post_edited_translations.segment}
+* *Utenti*: Operazioni per visualizzare e gestire gli utenti di Grid Manager.
+

@@ -1,0 +1,24 @@
+---
+permalink: upgrade/checking-systems-condition-before-upgrading-software.html 
+sidebar: sidebar 
+keywords: upgrade, grid tasks, firewall, ports 
+summary: 'Prima di aggiornare un sistema StorageGRID, verifica che il sistema sia pronto per l"upgrade. Assicurati che il sistema funzioni normalmente e che tutti i nodi della grid siano operativi.' 
+---
+= Controlla le condizioni del tuo sistema StorageGRID prima di eseguire l'aggiornamento
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Prima di aggiornare un sistema StorageGRID, verifica che il sistema sia pronto per l'upgrade. Assicurati che il sistema funzioni normalmente e che tutti i nodi della griglia siano operativi.
+
+.Passaggi
+. Accedi al Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+. Verifica la presenza di eventuali avvisi attivi e risolvili.
+. Consulta link:../network/internal-grid-node-communications.html["Comunicazioni interne dei nodi della grid"] e link:../network/external-communications.html["Comunicazioni esterne"] per assicurarti che tutte le porte necessarie per StorageGRID 12.0 siano aperte prima di eseguire l'aggiornamento.
++
+
+NOTE: Non sono necessarie porte aggiuntive per l'aggiornamento a StorageGRID 12.0.
+
+

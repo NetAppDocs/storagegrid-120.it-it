@@ -1,0 +1,49 @@
+---
+permalink: ilm/editing-cloud-storage-pool.html 
+sidebar: sidebar 
+keywords: edit cloud storage pool 
+summary: 'Puoi modificare un Cloud Storage Pool per cambiarne il nome, l"endpoint del servizio o altri dettagli. Tuttavia, non puoi cambiare il bucket S3 o il container Azure di un Cloud Storage Pool.' 
+---
+= Modifica un pool di storage cloud in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi modificare un pool di storage cloud per cambiarne il nome, l'endpoint del servizio o altri dettagli; tuttavia, non puoi cambiare il bucket S3 o il container Azure per un pool di storage cloud.
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Hai link:../admin/admin-group-permissions.html["autorizzazioni di accesso specifiche"].
+* Hai esaminato il link:considerations-for-cloud-storage-pools.html["Considerazioni sui Cloud Storage Pool"].
+
+
+.Passaggi
+. Seleziona *ILM* > *Storage pools* > *Cloud Storage Pools*.
++
+La tabella Cloud Storage Pools elenca i Cloud Storage Pools esistenti.
+
+. Seleziona la casella di controllo corrispondente al Cloud Storage Pool che vuoi modificare, poi seleziona *Azioni* > *Modifica*.
++
+In alternativa, seleziona il nome del Cloud Storage Pool, quindi seleziona *Modifica*.
+
+. Se necessario, modifica il nome del Cloud Storage Pool, l'endpoint del servizio, le credenziali per l'autenticazione o il metodo di verifica del certificato.
++
+
+NOTE: Non puoi cambiare il tipo di provider, il bucket S3 o il container Azure per un pool di storage cloud.
+
++
+Se in precedenza hai caricato un certificato server o client, puoi espandere la sezione *Dettagli certificato* per visualizzare il certificato attualmente in uso.
+
+. Seleziona *Salva*.
++
+Quando salvi un Cloud Storage Pool, StorageGRID verifica che il bucket o container e l'endpoint del servizio esistano e che siano raggiungibili utilizzando le credenziali che hai specificato.
+
++
+Se la convalida del Cloud Storage Pool non riesce, viene visualizzato un messaggio di errore. Ad esempio, potrebbe essere segnalato un errore in caso di errore relativo al certificato.
+
++
+Consulta le istruzioni per link:troubleshooting-cloud-storage-pools.html["Risoluzione dei problemi relativi ai Cloud Storage Pools"], risolvi il problema e poi prova a salvare nuovamente il Cloud Storage Pool.
+
+

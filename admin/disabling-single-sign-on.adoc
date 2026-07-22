@@ -1,0 +1,33 @@
+---
+permalink: admin/disabling-single-sign-on.html 
+sidebar: sidebar 
+keywords: disable sso, disable single sign on 
+summary: 'Puoi disabilitare il single sign-on (SSO) se non vuoi più utilizzare questa funzionalità. Devi disabilitare il single sign-on prima di poter disabilitare la federazione delle identità.' 
+---
+= Disabilita SSO in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi disabilitare il single sign-on (SSO) se non vuoi più utilizzare questa funzionalità. Devi disabilitare il single sign-on prima di poter disabilitare la federazione delle identità.
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Hai link:admin-group-permissions.html["autorizzazioni di accesso specifiche"].
+
+
+.Passaggi
+. Seleziona *Configurazione* > *Controllo accessi* > *Single sign-on*.
++
+Viene visualizzata la pagina di single sign-on.
+
+. Seleziona *Disabilita SSO*.
+. Seleziona *Sì*.
++
+${post_edited_translations.segment}
+
+
+
+La prossima volta che effettuerai l'accesso a StorageGRID, verrà visualizzata la pagina di accesso di StorageGRID e dovrai inserire il nome utente e la password di un utente StorageGRID locale o federato.

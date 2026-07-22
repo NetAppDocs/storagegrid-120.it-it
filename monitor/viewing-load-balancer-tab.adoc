@@ -1,0 +1,56 @@
+---
+permalink: monitor/viewing-load-balancer-tab.html 
+sidebar: sidebar 
+keywords: load balancer tab 
+summary: La scheda Bilanciamento del carico include grafici di prestazioni e diagnostica relativi al funzionamento del servizio Load Balancer. 
+---
+= Visualizza la scheda del bilanciatore del carico StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La scheda Bilanciamento del carico include grafici di prestazioni e diagnostica relativi al funzionamento del servizio Load Balancer.
+
+La scheda Bilanciamento del carico viene visualizzata per i nodi Admin e i nodi Gateway, per ogni sito e per l'intera grid. Per ogni sito, la scheda Bilanciamento del carico fornisce un riepilogo aggregato delle statistiche per tutti i nodi di quel sito. Per l'intera grid, la scheda Bilanciamento del carico fornisce un riepilogo aggregato delle statistiche per tutti i siti.
+
+Se non viene eseguita alcuna operazione di I/O tramite il servizio Load Balancer, oppure se non è configurato alcun load balancer, i grafici visualizzano "Nessun dato".
+
+image:nodes_page_load_balancer_tab.png["Scheda Bilanciamento del carico della pagina nodi"]
+
+
+
+[[request-traffic]]
+== Traffico di richiesta
+
+Questo grafico fornisce una media mobile di 3 minuti del throughput dei dati trasmessi tra gli endpoint del bilanciatore di carico e i client che effettuano le richieste, in bit al secondo.
+
+
+NOTE: Questo valore viene aggiornato al termine di ogni richiesta. Di conseguenza, questo valore potrebbe differire dal throughput in real-time in caso di basse frequenze di richiesta o per richieste di lunga durata. Puoi consultare la scheda Network per ottenere una visione più realistica del comportamento attuale della rete.
+
+
+
+[[incoming-request-rate]]
+== Tasso di richieste in entrata
+
+Questo grafico fornisce una media mobile di 3 minuti del numero di nuove richieste al secondo, suddivise per tipo di richiesta (GET, PUT, HEAD e DELETE). Questo valore viene aggiornato quando le intestazioni di una nuova richiesta sono state validate.
+
+
+
+[[average-request-duration-non-error]]
+== Durata media della richiesta (senza errori)
+
+Questo grafico fornisce una media mobile di 3 minuti della durata delle richieste, suddivisa per tipo di richiesta (GET, PUT, HEAD e DELETE). La durata di ciascuna richiesta inizia quando l'intestazione della richiesta viene analizzata dal servizio Load Balancer e termina quando il corpo completo della risposta viene restituito al client.
+
+
+
+[[error-response-rate]]
+== Tasso di risposta agli errori
+
+Questo grafico fornisce una media mobile di 3 minuti del numero di risposte di errore restituite ai client al secondo, suddiviso per codice di risposta di errore.
+
+.Informazioni correlate
+* link:monitoring-load-balancing-operations.html["Monitora le operazioni di bilanciamento del carico"]
+* link:../admin/index.html["${post_edited_translations.segment}"]
+

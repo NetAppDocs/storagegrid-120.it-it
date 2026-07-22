@@ -1,0 +1,52 @@
+---
+permalink: admin/editing-traffic-classification-policy.html 
+sidebar: sidebar 
+keywords: edit traffic classification policy 
+summary: Puoi modificare un criterio di classificazione del traffico per cambiarne il nome o la descrizione, oppure per creare, modificare o eliminare regole o limiti relativi al criterio. 
+---
+= Modificare una policy di classificazione del traffico StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi modificare un criterio di classificazione del traffico per cambiarne il nome o la descrizione, oppure per creare, modificare o eliminare regole o limiti relativi al criterio.
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Hai il link:admin-group-permissions.html["Permesso di accesso root"].
+
+
+.Passaggi
+. Seleziona *Configurazione* > *Rete* > *Classificazione del traffico*.
++
+Viene visualizzata la pagina delle policy di classificazione del traffico e le policy esistenti sono elencate in una tabella.
+
+. Modifica i criteri utilizzando il menu Azioni o la pagina dei dettagli. Vedi link:../admin/creating-traffic-classification-policies.html["creare politiche di classificazione del traffico"] per cosa inserire.
++
+[role="tabbed-block"]
+====
+.Menu azioni
+--
+.. Seleziona la casella di controllo per la policy.
+.. Seleziona *Azioni* > *Modifica*.
+
+
+--
+.Pagina dei dettagli
+--
+.. ${post_edited_translations.segment}
+.. Seleziona il pulsante *Modifica* accanto al nome della policy.
+
+
+--
+====
+. Nella fase "Inserisci il nome della policy", puoi modificare facoltativamente il nome o la descrizione della policy e selezionare *Continua*.
+. Per la fase Aggiungi regole di corrispondenza, puoi aggiungere una regola o modificare il *Tipo* e il *Valore di corrispondenza* della regola esistente, quindi seleziona *Continua*.
+. ${post_edited_translations.segment}
+. Esamina la policy aggiornata e seleziona *Salva e continua*.
++
+Le modifiche apportate ai criteri sono state salvate e il traffico di rete viene ora gestito in base ai criteri di classificazione del traffico. Puoi visualizzare i grafici del traffico e verificare che i criteri applichino i limiti di traffico che ti aspetti.
+
+

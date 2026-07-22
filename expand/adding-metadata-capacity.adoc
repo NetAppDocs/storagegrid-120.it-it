@@ -1,0 +1,75 @@
+---
+permalink: expand/adding-metadata-capacity.html 
+sidebar: sidebar 
+keywords: metadata capacity, add, adding, expand, expansion, guidelines, Storage Nodes, metadata storage, StorageGRID 
+summary: Per garantire che sia disponibile spazio sufficiente per i metadati degli oggetti, potresti dover eseguire una procedura di espansione per aggiungere nuovi Storage Node in ciascun sito. 
+---
+= Linee guida per l'aggiunta di capacità di metadati in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Per garantire che sia disponibile spazio sufficiente per i metadati degli oggetti, potresti dover eseguire una procedura di espansione per aggiungere nuovi Storage Node in ciascun sito.
+
+StorageGRID riserva spazio per i metadati degli oggetti sul volume 0 di ciascun nodo di archiviazione. Tre copie di tutti i metadati degli oggetti vengono mantenute in ogni sito, distribuite uniformemente su tutti i nodi di archiviazione.
+
+Puoi usare Grid Manager per monitorare la capacità dei metadati dei nodi di Storage e per stimare la velocità con cui la capacità dei metadati viene consumata. Inoltre, l'avviso *Low metadata storage* viene attivato per un nodo di Storage quando lo spazio dei metadati utilizzato raggiunge determinate soglie.
+
+Tieni presente che la capacità di metadati degli oggetti di una griglia potrebbe esaurirsi più velocemente della sua capacità di storage a oggetti, a seconda di come usi la griglia. Ad esempio, se di solito acquisisci un gran numero di piccoli oggetti o aggiungi grandi quantità di metadati utente o tag agli oggetti, potresti dover aggiungere Storage Node per aumentare la capacità di metadati anche se rimane sufficiente capacità di storage a oggetti.
+
+Per ulteriori informazioni, consulta quanto segue:
+
+* link:../admin/managing-object-metadata-storage.html["Gestisci l'archiviazione dei metadati degli oggetti"]
+* link:../monitor/monitoring-storage-capacity.html#monitor-object-metadata-capacity-for-each-storage-node["Monitora la capacità dei metadati degli oggetti per ciascun Storage Node"]
+
+
+
+
+[[guidelines-for-increasing-metadata-capacity]]
+== Linee guida per aumentare la capacità dei metadati
+
+Prima di aggiungere Storage Node per aumentare la capacità dei metadati, consulta le seguenti linee guida e limitazioni:
+
+* Supponendo che sia disponibile una capacità di storage a oggetti sufficiente, avere più spazio disponibile per i metadati degli oggetti aumenta il numero di oggetti che puoi archiviare nel tuo sistema StorageGRID.
+* Puoi aumentare la capacità di metadati di una griglia aggiungendo uno o più Storage Node a ciascun sito.
+* Lo spazio effettivamente riservato ai metadati degli oggetti su un determinato Storage Node dipende dall'opzione di storage Metadata Reserved Space (impostazione a livello di sistema), dalla quantità di RAM allocata al nodo e dalle dimensioni del volume 0 del nodo.
+* Non puoi aumentare la capacità dei metadati aggiungendo volumi di storage ai nodi di storage esistenti, perché i metadati vengono memorizzati solo sul volume 0.
+* Non puoi aumentare la capacità dei metadati aggiungendo un nuovo sito.
+* StorageGRID conserva tre copie di tutti i metadati in ogni sito. Per questo motivo, la capacità di metadati del sistema è limitata dalla capacità di metadati del sito più piccolo.
+* Quando aggiungi capacità di metadati, dovresti aggiungere lo stesso numero di Storage Node a ciascun sito.
+
+
+I nodi di storage solo metadati hanno requisiti hardware specifici:
+
+* Quando usi le appliance StorageGRID, i nodi che gestiscono solo metadati possono essere configurati solo su appliance SGF6112 con dodici unità da 1,9 TB o dodici unità da 3,8 TB.
+* Quando usi nodi basati su software, le risorse dei nodi solo metadati devono corrispondere alle risorse dei nodi di storage esistenti. Per esempio:
++
+** Se il sito StorageGRID esistente utilizza appliance SG6000 o SG6100, i nodi software dedicati esclusivamente ai metadati devono soddisfare i seguenti requisiti minimi:
++
+*** 128 GB di RAM
+*** CPU a 8 core
+*** 8 TB SSD o storage equivalente per il database Cassandra (rangedb/0)
+
+
+** Se il sito StorageGRID esistente utilizza nodi di storage virtuali con 24 GB di RAM, CPU a 8 core e 3 TB o 4 TB di storage per i metadati, i nodi software dedicati esclusivamente ai metadati dovrebbero utilizzare risorse simili (24 GB di RAM, CPU a 8 core e 4 TB di storage per i metadati (rangedb/0)).
+
+
+* Quando aggiungi un nuovo sito StorageGRID, la capacità totale dei metadati del nuovo sito dovrebbe, almeno, corrispondere a quella dei siti StorageGRID esistenti e le risorse del nuovo sito dovrebbero corrispondere ai nodi di storage dei siti StorageGRID esistenti.
+
+
+Vedi la link:../admin/managing-object-metadata-storage.html["descrizione di cosa sia lo spazio riservato ai metadati"].
+
+
+
+[[how-metadata-is-redistributed-when-you-add-storage-nodes]]
+== Come vengono ridistribuiti i metadati quando aggiungi Storage Node
+
+Quando aggiungi Storage Nodes in un'espansione, StorageGRID ridistribuisce i metadati degli oggetti esistenti ai nuovi nodi in ogni sito, aumentando così la capacità complessiva dei metadati della grid. Non è richiesta alcuna azione da parte dell'utente.
+
+La figura seguente mostra come StorageGRID ridistribuisce i metadati degli oggetti quando aggiungi Storage Node durante un'espansione. La parte sinistra della figura rappresenta il volume 0 di tre Storage Node prima di un'espansione. I metadati stanno occupando una porzione relativamente ampia dello spazio di metadati disponibile per ciascun nodo e l'avviso *Low metadata storage* è stato attivato.
+
+La parte destra della figura mostra come i metadati esistenti vengono ridistribuiti dopo l'aggiunta di due Storage Node al sito. La quantità di metadati su ciascun nodo è diminuita, l'alert *Low metadata storage* non viene più attivato e lo spazio disponibile per i metadati è aumentato.
+
+image:metadata_space_after_expansion.png["Diagramma dei metadati ridistribuiti dopo l'aggiunta di due Storage Node"]

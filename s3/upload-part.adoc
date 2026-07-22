@@ -1,0 +1,64 @@
+---
+permalink: s3/upload-part.html 
+sidebar: sidebar 
+keywords: s3 UploadPart operation 
+summary: 'L"operazione UploadPart carica una parte di un caricamento multipart per un oggetto.' 
+---
+= Intestazioni di richiesta supportate e non supportate per le operazioni S3 UploadPart in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'operazione UploadPart carica una parte di un caricamento multipart per un oggetto.
+
+
+
+[[supported-request-headers]]
+== Intestazioni di richiesta supportate
+
+Sono supportate le seguenti intestazioni di richiesta:
+
+* `x-amz-checksum-sha256`
+* `Content-Length`
+* `Content-MD5`
+
+
+
+
+[[request-headers-for-server-side-encryption]]
+== Intestazioni di richiesta per la crittografia lato server
+
+Se hai specificato la crittografia SSE-C per la richiesta CreateMultipartUpload, devi includere anche le seguenti intestazioni di richiesta in ogni richiesta UploadPart:
+
+* `x-amz-server-side-encryption-customer-algorithm`: Specifica `AES256`.
+* `x-amz-server-side-encryption-customer-key`: Specifica la stessa chiave di crittografia che hai fornito nella richiesta CreateMultipartUpload.
+* `x-amz-server-side-encryption-customer-key-MD5`: Specifica lo stesso digest MD5 che hai fornito nella richiesta CreateMultipartUpload.
+
+
+
+CAUTION: Le chiavi di crittografia che fornisci non vengono mai memorizzate. Se perdi una chiave di crittografia, perdi anche l'oggetto corrispondente. Prima di usare chiavi fornite dal cliente per proteggere i dati degli oggetti, consulta le considerazioni in link:using-server-side-encryption.html["${post_edited_translations.segment}"].
+
+Se hai specificato un checksum SHA-256 durante la richiesta CreateMultipartUpload, devi includere anche la seguente intestazione di richiesta in ogni richiesta UploadPart:
+
+* `x-amz-checksum-sha256`: Specifica il checksum SHA-256 per questa parte.
+
+
+
+
+[[unsupported-request-headers]]
+== Intestazioni di richiesta non supportate
+
+Le seguenti intestazioni di richiesta non sono supportate:
+
+* `x-amz-sdk-checksum-algorithm`
+* `x-amz-trailer`
+
+
+
+
+[[versioning]]
+== Versioning
+
+Il caricamento in più parti consiste in operazioni separate per avviare il caricamento, elencare i caricamenti, caricare le parti, assemblare le parti caricate e completare il caricamento. Gli oggetti vengono creati (e versionati, se applicabile) quando viene eseguita l'operazione CompleteMultipartUpload.

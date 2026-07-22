@@ -1,0 +1,158 @@
+---
+permalink: admin/troubleshooting-platform-services.html 
+sidebar: sidebar 
+keywords: troubleshoot platform services, platform services endpoint error 
+summary: Gli endpoint utilizzati nei servizi della piattaforma vengono creati e gestiti dagli utenti tenant nel Tenant Manager. Tuttavia, se un tenant ha problemi a configurare o utilizzare i servizi della piattaforma, puoi usare il Grid Manager per aiutare a risolvere il problema. 
+---
+= Risoluzione dei problemi dei servizi della piattaforma StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Gli endpoint utilizzati nei servizi della piattaforma vengono creati e gestiti dagli utenti tenant nel Tenant Manager. Tuttavia, se un tenant ha problemi a configurare o utilizzare i servizi della piattaforma, puoi usare il Grid Manager per aiutare a risolvere il problema.
+
+
+
+[[issues-with-new-endpoints]]
+== Problemi con i nuovi endpoint
+
+Prima che un tenant possa utilizzare i servizi della piattaforma, deve creare uno o più endpoint utilizzando il Tenant Manager. Ciascun endpoint rappresenta una destinazione esterna per un servizio della piattaforma, come un bucket S3 di StorageGRID, un bucket di Amazon Web Services, un topic di Amazon Simple Notification Service, un topic di Kafka o un cluster Elasticsearch ospitato localmente o su AWS. Ciascun endpoint include sia la posizione della risorsa esterna sia le credenziali necessarie per accedere a tale risorsa.
+
+Quando un tenant crea un endpoint, il sistema StorageGRID verifica che l'endpoint esista e che sia raggiungibile utilizzando le credenziali specificate. La connessione all'endpoint viene convalidata da un nodo in ciascun sito.
+
+Se la convalida dell'endpoint non riesce, viene visualizzato un messaggio di errore che spiega il motivo della mancata convalida. L'utente tenant dovrebbe risolvere il problema e poi provare a creare di nuovo l'endpoint.
+
+
+NOTE: La creazione dell'endpoint non andrà a buon fine se i servizi della piattaforma non sono abilitati per il tenant account.
+
+
+
+[[issues-with-existing-endpoints]]
+== Problemi con gli endpoint esistenti
+
+Se si verifica un errore quando StorageGRID tenta di raggiungere un endpoint esistente, viene visualizzato un messaggio nella dashboard in Tenant Manager.
+
+image:tenant_dashboard_endpoint_error.png["${post_edited_translations.segment}"]
+
+Gli utenti del tenant possono andare alla pagina Endpoint per vedere il messaggio di errore più recente per ciascun endpoint e per capire quanto tempo fa si è verificato l'errore. La colonna *Ultimo errore* mostra il messaggio di errore più recente per ciascun endpoint e indica quanto tempo fa si è verificato l'errore. Gli errori che includono l'icona image:icon_alert_red_critical.png["Icona X rossa"] si sono verificati negli ultimi 7 giorni.
+
+image:endpoints_last_error.png["screenshot della pagina Endpoints che mostra la colonna Last Error"]
+
+
+NOTE: Alcuni messaggi di errore nella colonna *Ultimo errore* potrebbero includere un logID tra parentesi. Un amministratore della griglia o il supporto tecnico possono utilizzare questo ID per individuare informazioni più dettagliate sull'errore nel bycast.log.
+
+
+
+[[issues-related-to-proxy-servers]]
+== Problemi relativi ai proxy server
+
+Se hai configurato un link:configuring-storage-proxy-settings.html["proxy di storage"] tra i nodi di archiviazione e gli endpoint del servizio della piattaforma, potrebbero verificarsi errori se il tuo proxy server non consente i messaggi provenienti da StorageGRID. Per risolvere questi problemi, controlla le impostazioni del tuo proxy server per assicurarti che i messaggi relativi al servizio della piattaforma non siano bloccati.
+
+
+
+[[determine-if-an-error-has-occurred]]
+== ${post_edited_translations.segment}
+
+Se si sono verificati errori dell'endpoint negli ultimi 7 giorni, la dashboard nel Tenant Manager visualizza un messaggio di avviso. Puoi andare alla pagina Endpoint per visualizzare ulteriori dettagli sull'errore.
+
+
+
+[[client-operations-fail]]
+== Operazioni del client non riuscite
+
+Alcuni problemi relativi ai servizi di piattaforma potrebbero causare il fallimento delle operazioni client sul bucket S3. Ad esempio, le operazioni client S3 non riusciranno se il servizio interno Replicated State Machine (RSM) si interrompe o se ci sono troppi messaggi dei servizi di piattaforma in coda per la consegna.
+
+Per verificare lo stato dei servizi:
+
+. ${post_edited_translations.segment}
+. Verifica la presenza di avvisi attivi nella tabella Avvisi.
+. Risolvi eventuali avvisi attivi. Se necessario, contatta il supporto tecnico.
+
+
+
+
+[[recoverable-and-unrecoverable-endpoint-errors]]
+== Errori degli endpoint recuperabili e non recuperabili
+
+Dopo la creazione degli endpoint, possono verificarsi errori nelle richieste del servizio di piattaforma per vari motivi. Alcuni errori sono recuperabili con l'intervento dell'utente. Ad esempio, possono verificarsi errori recuperabili per i seguenti motivi:
+
+* Le credenziali dell'utente sono state eliminate o sono scadute.
+* Il bucket di destinazione non esiste.
+* Impossibile recapitare la notifica.
+
+
+Se StorageGRID riscontra un errore recuperabile, la richiesta di servizio della piattaforma verrà ritentata fino a quando non avrà esito positivo.
+
+Altri errori sono irreversibili. Ad esempio, errori irreversibili possono verificarsi per i seguenti motivi:
+
+* L'endpoint è stato eliminato.
+* Un endpoint webhook destinazione risponde a una richiesta di notifica con un `400 Bad Request` errore.
+
+
+Se StorageGRID riscontra un errore irreversibile dell'endpoint:
+
+* Nel Grid Manager, vai su *Support* > *Tools* > *Metrics* > *Grafana* > *Platform Services Overview* per visualizzare i dettagli dell'errore.
+* Nel Tenant Manager, vai su *STORAGE (S3)* > *Platform Services Endpoints* per visualizzare i dettagli dell'errore.
+* Controlla il  `/var/local/log/bycast-err.log` per errori correlati. I Storage Node che hanno il servizio ADC contengono questo file di log.
+
+
+
+
+[[platform-services-messages-cant-be-delivered]]
+== Impossibile recapitare i messaggi dei servizi della piattaforma
+
+Se la destinazione riscontra un problema che le impedisce di accettare i messaggi dei servizi di piattaforma, l'operazione client sul bucket ha esito positivo, ma il messaggio dei servizi di piattaforma non viene consegnato. Ad esempio, questo errore potrebbe verificarsi se le credenziali vengono aggiornate sulla destinazione in modo tale che StorageGRID non possa più autenticarsi al servizio di destinazione.
+
+Verifica la presenza di avvisi correlati.
+
+
+
+[[slower-performance-for-platform-service-requests]]
+== Prestazioni più lente per le richieste di servizi della piattaforma
+
+Il software StorageGRID potrebbe limitare le richieste S3 in entrata per un bucket se il tasso con cui vengono inviate le richieste supera il tasso con cui l'endpoint di destinazione può riceverle. La limitazione si verifica solo quando c'è un accumulo di richieste in attesa di essere inviate all'endpoint di destinazione.
+
+L'unico effetto visibile è che le richieste S3 in entrata impiegheranno più tempo per essere eseguite. Se inizi a rilevare prestazioni significativamente più lente, dovresti ridurre il tasso di acquisizione o usare un endpoint con una capacità maggiore. Se il backlog delle richieste continua a crescere, le operazioni S3 del client (come le richieste PUT) alla fine non andranno a buon fine.
+
+Le richieste CloudMirror hanno maggiori probabilità di essere influenzate dalle prestazioni dell'endpoint di destinazione perché in genere comportano un trasferimento di dati maggiore rispetto alle richieste di integrazione della ricerca o di notifica degli eventi.
+
+
+
+[[platform-service-requests-fail]]
+== Le richieste di servizio della piattaforma non riescono
+
+Per visualizzare il tasso di errore delle richieste per i servizi della piattaforma:
+
+. Selezionare *Nodi*.
+. ${post_edited_translations.segment}
+. ${post_edited_translations.segment}
++
+image:nodes_page_site_level_platform_services.gif["Servizi della piattaforma a livello di sito nella pagina dei nodi"]
+
+
+
+
+
+[[platform-services-unavailable-alert]]
+== Avviso di indisponibilità dei servizi della piattaforma
+
+${post_edited_translations.segment}
+
+${post_edited_translations.segment}
+
+Per risolvere questo avviso, individua quali Storage Nodes nel sito includono il servizio RSM. (Il servizio RSM è presente sui Storage Nodes che includono anche il servizio ADC.) Assicurati quindi che la maggioranza semplice di tali Storage Nodes sia in esecuzione e disponibile.
+
+
+NOTE: Se in un sito si verifica un guasto in più di un Storage Node che contiene il servizio RSM, perdi tutte le richieste di servizio della piattaforma in sospeso per quel sito.
+
+
+
+[[additional-troubleshooting-guidance-for-platform-services-endpoints]]
+== ${post_edited_translations.segment}
+
+Per ulteriori informazioni, vedi link:../tenant/troubleshooting-platform-services-endpoint-errors.html["Usa un tenant account > Risolvi i problemi degli endpoint dei servizi della piattaforma"].
+
+.Informazioni correlate
+link:../troubleshoot/index.html["Risoluzione dei problemi del sistema StorageGRID"]

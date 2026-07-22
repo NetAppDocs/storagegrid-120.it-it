@@ -1,0 +1,33 @@
+---
+permalink: swnodes/specifying-domain-name-system-server-information.html 
+sidebar: sidebar 
+keywords: how to specify domain name system server information, dns 
+summary: Devi specificare le informazioni DNS per il tuo sistema StorageGRID, così puoi accedere ai server esterni usando i nomi host invece degli indirizzi IP. 
+---
+= Specificare le informazioni del DNS server per StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Devi specificare le informazioni DNS per il tuo sistema StorageGRID, così puoi accedere ai server esterni usando i nomi host invece degli indirizzi IP.
+
+.Informazioni su questa attività
+La specifica  https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/checking-dns-server-configuration.html["Informazioni sul DNS server"^]ti permette di usare nomi host Fully Qualified Domain Name (FQDN) invece degli indirizzi IP per le notifiche email e AutoSupport.
+
+Per garantire il corretto funzionamento, specifica due o tre DNS server. Se ne specifichi più di tre, è possibile che ne vengano utilizzati solo tre a causa di limitazioni note del sistema operativo su alcune piattaforme. Se hai restrizioni di routing nel tuo ambiente, puoi link:../maintain/modifying-dns-configuration-for-single-grid-node.html["personalizza l'elenco dei DNS server"] per fare in modo che i singoli nodi (di solito tutti i nodi di un sito) utilizzino un set diverso di massimo tre DNS server.
+
+Se possibile, usa DNS server a cui ogni sito può accedere localmente per garantire che un sito isolato possa risolvere i fully qualified domain (FQDN) per le destinazioni esterne.
+
+.Passaggi
+. Specifica l'indirizzo IPv4 di almeno un DNS server nella casella di testo *Server 1*.
+. Se necessario, seleziona il segno più accanto all'ultima voce per aggiungere ulteriori voci server.
++
+image:9_gmi_installer_dns_page.gif["${post_edited_translations.segment}"]
+
++
+La best practice è specificare almeno due DNS server. Puoi specificare fino a sei DNS server.
+
+. Seleziona *Next*.
+

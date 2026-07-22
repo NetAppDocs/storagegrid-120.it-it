@@ -1,0 +1,89 @@
+---
+permalink: admin/manage-link-costs.html 
+sidebar: sidebar 
+keywords: link cost, site latency, manage link costs, prioritize sites 
+summary: I costi dei link ti consentono di stabilire la priorità del sito del data center che fornisce un servizio richiesto quando esistono due o più siti di data center. Puoi regolare i costi dei link per riflettere la latenza tra i siti. 
+---
+= Gestisci i costi dei collegamenti in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+I costi dei link ti consentono di stabilire la priorità del sito del data center che fornisce un servizio richiesto quando esistono due o più siti di data center. Puoi regolare i costi dei link per riflettere la latenza tra i siti.
+
+
+
+[[what-are-link-costs]]
+== Quali sono i costi di collegamento?
+
+* ${post_edited_translations.segment}
+* ${post_edited_translations.segment}
+* I costi del link vengono utilizzati dal servizio Load Balancer sui nodi Admin e sui nodi Gateway per indirizzare le connessioni client. Vedi link:../admin/managing-load-balancing.html["Considerazioni sul bilanciamento del carico"].
+
+
+Il diagramma mostra una griglia a tre siti con costi di collegamento configurati tra i siti:
+
+image:link_costs.gif["Diagramma concettuale dei costi di collegamento tra data center"]
+
+* Il servizio Load Balancer sui nodi Admin e Gateway distribuisce equamente le connessioni client a tutti i nodi di archiviazione nello stesso sito del data center e a qualsiasi sito di data center con un costo di collegamento pari a 0.
++
+Nell'esempio, un Gateway Node nel data center sito 1 (DC1) distribuisce equamente le connessioni client ai Storage Node di DC1 e ai Storage Node di DC2. Un Gateway Node in DC3 invia le connessioni client solo ai Storage Node di DC3.
+
+* Quando recuperi un oggetto che esiste in più copie replicate, StorageGRID recupera la copia nel data center con il costo di collegamento più basso.
++
+${post_edited_translations.segment}
+
+
+
+I costi dei collegamenti sono numeri relativi arbitrari, senza un'unità di misura specifica. Ad esempio, un costo di collegamento di 50 viene usato meno preferenzialmente rispetto a un costo di collegamento di 25. La tabella mostra i costi dei collegamenti comunemente usati.
+
+[cols="1a,1a,2a"]
+|===
+| Collegamento | Costo del collegamento | Note 
+
+
+ a| 
+Tra siti di data center fisici
+ a| 
+25 (predefinito)
+ a| 
+Data center collegati tramite un collegamento WAN.
+
+
+
+ a| 
+Tra siti di data center logici nella stessa posizione fisica
+ a| 
+0
+ a| 
+${post_edited_translations.segment}
+
+|===
+
+
+[[update-link-costs]]
+== ${post_edited_translations.segment}
+
+${post_edited_translations.segment}
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Hai il link:admin-group-permissions.html["Altra autorizzazione di configurazione della griglia"].
+
+
+.Passaggi
+. Seleziona *Support* > *Other* > *Link cost*.
++
+image:configuring_link_costs.png["Costo del collegamento"]
+
+. Seleziona un sito in *Origine del collegamento* e inserisci un valore di costo compreso tra 0 e 100 in *Destinazione del collegamento*.
++
+Non puoi cambiare il costo del collegamento se la sorgente è la stessa della destinazione.
+
++
+Per annullare le modifiche, seleziona image:nms_revert.gif["${post_edited_translations.segment}"]*Revert*.
+
+. Seleziona *Applica modifiche*.
+

@@ -1,0 +1,94 @@
+---
+permalink: audit/object-storage-audit-messages.html 
+sidebar: sidebar 
+keywords: audit, object storage, object management, object retrieval, node transfer, verification, BROR, CBSE, CBRE, CGRR, EBDL, EBKR, SCMT, SREM 
+summary: 'Dovresti conoscere i messaggi di audit appartenenti alla categoria di audit dello storage a oggetti. Questi sono eventi relativi all"archiviazione e alla gestione degli oggetti all"interno del sistema StorageGRID. Questi includono storage a oggetti e recuperi, trasferimenti da nodo della griglia a nodo della griglia e verifiche.' 
+---
+= Messaggi di controllo per gli eventi di storage a oggetti in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+I messaggi di audit appartenenti alla categoria di audit dello storage a oggetti vengono utilizzati per gli eventi correlati allo storage e alla gestione degli oggetti all'interno del sistema StorageGRID. Questi includono lo storage e il recupero di oggetti, i trasferimenti da nodo grid a nodo grid e le verifiche.
+
+
+NOTE: I codici di audit vengono rimossi dal prodotto e dalla documentazione man mano che le funzionalità vengono deprecate. Se incontri un codice di audit che non è elencato qui, controlla le versioni precedenti di questo argomento per le versioni precedenti di SG. Ad esempio, https://docs.netapp.com/us-en/storagegrid-118/audit/object-storage-audit-messages.html["Messaggi di audit dello storage a oggetti StorageGRID 11.8"^].
+
+[cols="1a,2a,1a"]
+|===
+| Codice | Descrizione | Vedi 
+
+
+ a| 
+BROR
+ a| 
+Richiesta di sola lettura del bucket: un bucket è entrato o uscito dalla modalità di sola lettura.
+ a| 
+link:bror-bucket-read-only-request.html["BROR: Richiesta di sola lettura del bucket"]
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Fine invio oggetto: l'entità sorgente ha completato un'operazione di trasferimento dati da nodo griglia a nodo griglia.
+ a| 
+link:cbse-object-send-end.html["CBSE: Fine invio oggetto"]
+
+
+
+ a| 
+CBRE
+ a| 
+Fine ricezione oggetto: l'entità di destinazione ha completato un'operazione di trasferimento dati da nodo griglia a nodo griglia.
+ a| 
+link:cbre-object-receive-end.html["CBRE: Fine ricezione oggetto"]
+
+
+
+ a| 
+CGRR
+ a| 
+Richiesta di replica tra griglie: StorageGRID ha tentato un'operazione di replica tra griglie per replicare oggetti tra bucket in una connessione di federazione di griglia.
+ a| 
+link:cgrr-cross-grid-replication-request.html["CGRR: Richiesta di replica cross-grid"]
+
+
+
+ a| 
+EBDL
+ a| 
+${post_edited_translations.segment}
+ a| 
+link:ebdl-empty-bucket-delete.html["EBDL: Eliminazione del bucket vuoto"]
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Richiesta di svuotamento del bucket: un utente ha inviato una richiesta per attivare o disattivare lo svuotamento del bucket (ovvero per eliminare gli oggetti del bucket o per interrompere l'eliminazione degli oggetti).
+ a| 
+link:ebkr-empty-bucket-request.html["${post_edited_translations.segment}"]
+
+
+
+ a| 
+SCMT
+ a| 
+${post_edited_translations.segment}
+ a| 
+link:scmt-object-store-commit.html["SCMT: Richiesta di commit dell'object store"]
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+${post_edited_translations.segment}
+ a| 
+link:srem-object-store-remove.html["${post_edited_translations.segment}"]
+
+|===

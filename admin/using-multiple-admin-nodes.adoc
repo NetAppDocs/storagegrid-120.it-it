@@ -1,0 +1,30 @@
+---
+permalink: admin/using-multiple-admin-nodes.html 
+sidebar: sidebar 
+keywords: admin nodes, more than one admin node, multiple admin nodes 
+summary: ${post_edited_translations.segment} 
+---
+= Utilizzare più nodi Admin in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+${post_edited_translations.segment}
+
+Se un Admin Node diventa non disponibile, l'elaborazione degli attributi continua, gli avvisi vengono comunque attivati e le notifiche email e i pacchetti AutoSupport vengono comunque inviati. Tuttavia, la presenza di più Admin Node non fornisce protezione di failover, tranne che per le notifiche e i pacchetti AutoSupport.
+
+image:admin_node_redundancy.png["Diagramma di ridondanza del nodo amministratore"]
+
+Ci sono due opzioni per continuare a visualizzare e configurare il sistema StorageGRID se un Admin Node si guasta:
+
+* ${post_edited_translations.segment}
+* Se un system administrator ha configurato un gruppo di Admin Node ad alta disponibilità, i client web possono continuare ad accedere a Grid Manager o Tenant Manager utilizzando l'indirizzo IP virtuale del gruppo HA. Vedi link:managing-high-availability-groups.html["Gestisci i gruppi ad alta disponibilità"].
++
+
+NOTE: Quando si utilizza un gruppo HA, l'accesso viene interrotto se l'Admin Node attivo si guasta. Gli utenti devono accedere nuovamente dopo che l'indirizzo IP virtuale del gruppo HA esegue il failover su un altro Admin Node nel gruppo.
+
+
+
+Alcune attività di manutenzione possono essere eseguite solo utilizzando l'Admin Node primario. Se l'Admin Node primario si guasta, deve essere ripristinato prima che il sistema StorageGRID sia nuovamente completamente operativo.

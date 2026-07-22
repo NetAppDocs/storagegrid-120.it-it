@@ -1,0 +1,209 @@
+---
+permalink: admin/admin-group-permissions.html 
+sidebar: sidebar 
+keywords: admin group permissions 
+summary: 'Quando crei gruppi di utenti admin, selezioni una o più autorizzazioni per controllare l"accesso a specifiche funzionalità di Grid Manager. Puoi poi assegnare ogni utente a uno o più di questi gruppi admin per decidere quali attività può svolgere.' 
+---
+= Autorizzazioni del gruppo amministratore in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Quando crei gruppi di utenti admin, selezioni una o più autorizzazioni per controllare l'accesso a specifiche funzionalità di Grid Manager. Puoi poi assegnare ogni utente a uno o più di questi gruppi admin per decidere quali attività può svolgere.
+
+Devi assegnare almeno un'autorizzazione a ciascun gruppo; altrimenti, gli utenti appartenenti a quel gruppo non potranno accedere a Grid Manager o alla Grid Management API.
+
+Per impostazione predefinita, qualsiasi utente che appartiene a un gruppo che dispone di almeno un'autorizzazione può eseguire le seguenti attività:
+
+* Accedi al Grid Manager
+* Visualizza la dashboard
+* Visualizza le pagine dei nodi
+* Visualizza gli avvisi correnti e risolti
+* Cambiare la propria password (solo per utenti locali)
+* Visualizza alcune informazioni fornite nelle pagine di configurazione e manutenzione
+
+
+
+
+[[interaction-between-permissions-and-access-mode]]
+== Interazione tra autorizzazioni e modalità di accesso
+
+Per tutte le autorizzazioni, l'impostazione *Modalità di accesso* del gruppo determina se puoi modificare le impostazioni ed eseguire operazioni oppure se puoi solo visualizzare le impostazioni e le funzionalità correlate. Se appartieni a più gruppi e uno qualsiasi di essi è impostato su *Sola lettura*, avrai accesso in sola lettura a tutte le impostazioni e funzionalità selezionate.
+
+Le sezioni seguenti descrivono le autorizzazioni che puoi assegnare quando crei o modifichi un gruppo di amministratori. Qualsiasi funzionalità non esplicitamente menzionata richiede l'autorizzazione *Root access*.
+
+
+
+[[root-access]]
+== Accesso root
+
+Questa autorizzazione consente l'accesso a tutte le funzionalità di amministrazione della griglia.
+
+
+
+[[change-tenant-root-password]]
+== Cambia la password di root del tenant
+
+Questa autorizzazione fornisce l'accesso all'opzione *Modifica password root* nella pagina Tenant, consentendoti di controllare chi può modificare la password per l'utente root locale del tenant. Questa autorizzazione viene utilizzata anche per la migrazione delle chiavi S3 quando la funzionalità di importazione delle chiavi S3 è abilitata. Gli utenti che non hanno questa autorizzazione non possono visualizzare l'opzione *Modifica password root*.
+
+
+NOTE: Per concedere l'accesso alla pagina Tenant, che contiene l'opzione *Cambia password di root*, assegna anche l'autorizzazione *Account Tenant*.
+
+
+
+[[ilm]]
+== ILM
+
+Questa autorizzazione consente l'accesso alle seguenti opzioni del menu *ILM*:
+
+* Regole
+* ${post_edited_translations.segment}
+* Tag dei criteri
+* Pool di storage
+* classi di storage
+* Regioni
+* ${post_edited_translations.segment}
+
+
+
+NOTE: ${post_edited_translations.segment}
+
+
+
+[[maintenance]]
+== Manutenzione
+
+Gli utenti devono avere l'autorizzazione di manutenzione per usare queste opzioni:
+
+* *Configurazione* > *Controllo accessi*:
++
+** ${post_edited_translations.segment}
+
+
+* *Configurazione* > *Rete*:
++
+** ${post_edited_translations.segment}
+
+
+* *Manutenzione* > *Attività*:
++
+** ${post_edited_translations.segment}
+** Espansione
+** Verifica dell'esistenza dell'oggetto
+** Recupero
+
+
+* ${post_edited_translations.segment}
++
+** ${post_edited_translations.segment}
+** ${post_edited_translations.segment}
+
+
+* *Support* > *Strumenti*:
++
+** ${post_edited_translations.segment}
+
+
+
+
+Gli utenti che non dispongono dell'autorizzazione di manutenzione possono visualizzare, ma non modificare, queste pagine:
+
+* ${post_edited_translations.segment}
++
+** Server DNS
+** ${post_edited_translations.segment}
+** Server NTP
+
+
+* ${post_edited_translations.segment}
++
+** Licenza
+
+
+* *Configurazione* > *Rete*:
++
+** ${post_edited_translations.segment}
+
+
+* ${post_edited_translations.segment}
++
+** Certificati
+
+
+* ${post_edited_translations.segment}
++
+** Server di audit e syslog
+
+
+
+
+
+
+[[manage-alerts]]
+== Gestisci gli avvisi
+
+Questa autorizzazione consente di accedere alle opzioni per la gestione degli avvisi. Gli utenti devono disporre di questa autorizzazione per gestire i silenziamenti, le notifiche di avviso e le regole di avviso.
+
+
+
+[[metrics-query]]
+== ${post_edited_translations.segment}
+
+${post_edited_translations.segment}
+
+* *Support* > *Strumenti* > *Metriche* page
+* Query personalizzate delle metriche di Prometheus usando la sezione *Metriche* della Grid Management API
+* Schede del dashboard di Grid Manager che contengono metriche
+
+
+
+
+[[object-metadata-lookup]]
+== ${post_edited_translations.segment}
+
+Questa autorizzazione consente l'accesso alla pagina *ILM* > *Ricerca metadati oggetto*.
+
+
+
+[[other-grid-configuration]]
+== Altre configurazioni della griglia
+
+${post_edited_translations.segment}
+
+* *ILM*:
++
+** classi di storage
+
+
+* *Configurazione* > *Sistema*:
+* *Assistenza* > *Altro*:
++
+** Costo del collegamento
+
+
+
+
+
+
+[[storage-appliance-administrator]]
+== ${post_edited_translations.segment}
+
+Questa autorizzazione consente di:
+
+* Accesso a E-Series SANtricity System Manager sulle appliance di storage tramite Grid Manager.
+* La possibilità di eseguire attività di risoluzione dei problemi e di manutenzione nella scheda Gestisci unità per i dispositivi che supportano queste operazioni.
+
+
+
+
+[[tenant-accounts]]
+== Account tenant
+
+${post_edited_translations.segment}
+
+* ${post_edited_translations.segment}
+* Visualizza le politiche di classificazione del traffico esistenti
+* ${post_edited_translations.segment}
+

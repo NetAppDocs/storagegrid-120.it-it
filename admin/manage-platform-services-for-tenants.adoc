@@ -1,0 +1,76 @@
+---
+permalink: admin/manage-platform-services-for-tenants.html 
+sidebar: sidebar 
+keywords: platform service, cloudmirror replication, event notification, search integration service 
+summary: I servizi della piattaforma includono la replica CloudMirror, le notifiche degli eventi e il servizio di integrazione della ricerca. 
+---
+= Scopri i servizi della piattaforma StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+I servizi della piattaforma includono la replica CloudMirror, le notifiche degli eventi e il servizio di integrazione della ricerca.
+
+Se abiliti i servizi della piattaforma per gli account tenant S3, devi configurare la tua grid in modo che i tenant possano accedere alle risorse esterne necessarie per utilizzare questi servizi.
+
+I servizi della piattaforma non sono supportati per link:../tenant/what-is-branch-bucket.html["${post_edited_translations.segment}"].
+
+
+
+[[cloudmirror-replication]]
+== replicazione CloudMirror
+
+Il servizio di replica CloudMirror di StorageGRID viene utilizzato per eseguire il mirroring di oggetti specifici da un bucket StorageGRID a una destinazione esterna specificata.
+
+Ad esempio, potresti utilizzare la replica CloudMirror per duplicare specifici record dei clienti in Amazon S3 e poi sfruttare i servizi AWS per eseguire analisi sui tuoi dati.
+
+La replica CloudMirror presenta alcune importanti somiglianze e differenze con la funzionalità di replica cross-grid. Per saperne di più, vedi link:../admin/grid-federation-compare-cgr-to-cloudmirror.html["Confronta la replica cross-grid e la replica CloudMirror"].
+
+
+NOTE: CloudMirror replication non è supportata se il bucket di origine ha S3 Object Lock abilitato.
+
+
+
+[[notifications]]
+== Notifiche
+
+Le notifiche di evento per bucket vengono utilizzate per inviare notifiche relative ad azioni specifiche eseguite su oggetti a un cluster Kafka esterno specificato, a un endpoint webhook o ad Amazon Simple Notification Service.
+
+Ad esempio, puoi configurare avvisi da inviare agli amministratori per ogni oggetto aggiunto a un bucket, dove gli oggetti rappresentano file di registro associati a un evento critico del sistema.
+
+
+NOTE: Sebbene sia possibile configurare la notifica degli eventi su un bucket con S3 Object Lock abilitato, i metadati S3 Object Lock (inclusi Retain Until Date e lo stato di Legal Hold) degli oggetti non saranno inclusi nei messaggi di notifica.
+
+
+
+[[search-integration-service]]
+== servizio di integrazione della ricerca
+
+Il servizio di integrazione della ricerca viene utilizzato per inviare i metadati degli oggetti S3 a un indice Elasticsearch specificato, dove i metadati possono essere ricercati o analizzati utilizzando il servizio esterno.
+
+Ad esempio, potresti configurare i tuoi bucket in modo che inviino i metadati degli oggetti S3 a un servizio Elasticsearch remoto. Potresti quindi utilizzare Elasticsearch per eseguire ricerche tra i bucket e condurre analisi sofisticate dei modelli presenti nei metadati degli oggetti.
+
+
+NOTE: Sebbene l'integrazione con Elasticsearch possa essere configurata su un bucket con S3 Object Lock abilitato, i metadati S3 Object Lock (inclusi la data di conservazione e lo stato di blocco legale) degli oggetti non saranno inclusi nei messaggi di notifica.
+
+I servizi della piattaforma offrono ai tenant la possibilità di utilizzare risorse di storage esterne, servizi di notifica e servizi di ricerca o analisi con i propri dati. Poiché la posizione di destinazione dei servizi della piattaforma è in genere esterna alla tua distribuzione StorageGRID, devi decidere se vuoi permettere ai tenant di utilizzare questi servizi. Se lo fai, devi abilitare l'uso dei servizi della piattaforma quando crei o modifichi gli account dei tenant. Devi anche configurare la tua rete in modo che i messaggi dei servizi della piattaforma generati dai tenant possano raggiungere le loro destinazioni.
+
+
+
+[[recommendations-for-using-platform-services]]
+== Raccomandazioni per l'utilizzo dei servizi della piattaforma
+
+Prima di utilizzare i servizi della piattaforma, tieni presente le seguenti raccomandazioni:
+
+* Se un bucket S3 nel sistema StorageGRID ha sia il versioning che la replica CloudMirror abilitati, dovresti abilitare anche il versioning del bucket S3 per l'endpoint di destinazione. Questo permette alla replica CloudMirror di generare versioni simili degli oggetti sull'endpoint.
+* Non dovresti usare più di 100 tenant attivi con richieste S3 che richiedono la replica CloudMirror, notifiche e integrazione della ricerca. Avere più di 100 tenant attivi può causare prestazioni più lente del client S3.
+* Le richieste a un endpoint che non possono essere completate verranno messe in coda fino a un massimo di 500.000 richieste. Questo limite è equamente ripartito tra i tenant attivi. Ai nuovi tenant è consentito superare temporaneamente questo limite di 500.000, così i tenant appena creati non vengono penalizzati ingiustamente.
+
+
+.Informazioni correlate
+* link:../tenant/what-platform-services-are.html["Gestisci i servizi della piattaforma"]
+* link:configuring-storage-proxy-settings.html["Configura le impostazioni del proxy di storage"]
+* link:../monitor/index.html["Monitora StorageGRID"]
+

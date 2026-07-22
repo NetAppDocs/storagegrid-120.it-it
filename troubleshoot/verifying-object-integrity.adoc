@@ -1,0 +1,176 @@
+---
+permalink: troubleshoot/verifying-object-integrity.html 
+sidebar: sidebar 
+keywords: how to verify object integrity, object existence check, background verification 
+summary: 'Il sistema StorageGRID verifica l"integrità dei dati degli oggetti sui nodi di archiviazione, controllando la presenza di oggetti danneggiati o mancanti.' 
+---
+= Verificare l'integrità dei dati degli oggetti in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Il sistema StorageGRID verifica l'integrità dei dati degli oggetti sui nodi di archiviazione, controllando la presenza di oggetti danneggiati o mancanti.
+
+Esistono due processi di verifica: la verifica in background e il controllo dell'esistenza degli oggetti (precedentemente chiamato verifica in primo piano). Questi processi lavorano insieme per garantire l'integrità dei dati. La verifica in background viene eseguita automaticamente e controlla continuamente la correttezza dei dati degli oggetti. Il controllo dell'esistenza degli oggetti può essere attivato da un utente per verificare più rapidamente l'esistenza (ma non la correttezza) degli oggetti.
+
+
+
+[[what-is-background-verification]]
+== Che cos'è la verifica dei precedenti?
+
+Il processo di verifica in background controlla automaticamente e continuamente i nodi di archiviazione Storage Nodes alla ricerca di copie corrotte dei dati degli oggetti e tenta automaticamente di riparare eventuali problemi rilevati.
+
+La verifica in background controlla l'integrità degli oggetti replicati e degli oggetti codificati con cancellazione, come segue:
+
+* *Oggetti replicati*: Se il processo di verifica in background rileva un oggetto replicato danneggiato, la copia danneggiata viene rimossa dalla sua posizione e messa in quarantena altrove sul Storage Node. Poi, viene generata una nuova copia non danneggiata e posizionata per soddisfare le policy ILM attive. La nuova copia potrebbe non essere posizionata sullo Storage Node utilizzato per la copia originale.
+
+
+
+NOTE: I dati degli oggetti danneggiati vengono messi in quarantena anziché eliminati dal sistema, così puoi ancora accedervi. Per ulteriori informazioni su come accedere ai dati degli oggetti in quarantena, contatta il supporto tecnico.
+
+* *Oggetti con codifica di cancellazione*: Se il processo di verifica in background rileva che un frammento di un oggetto con codifica di cancellazione è danneggiato, StorageGRID tenta automaticamente di ricostruire il frammento mancante sul posto, sullo stesso Storage Node, utilizzando i frammenti di dati e di parità rimanenti. Se il frammento danneggiato non può essere ricostruito, si tenta di recuperare un'altra copia dell'oggetto. Se il recupero ha successo, viene eseguita una valutazione ILM per creare una copia sostitutiva dell'oggetto con codifica di cancellazione.
++
+Il processo di verifica in background controlla solo gli oggetti sui nodi di storage. Non controlla gli oggetti in un Cloud Storage Pool. Gli oggetti devono avere più di quattro giorni per poter essere sottoposti a verifica in background.
+
+
+
+La verifica in background viene eseguita a una velocità continua, progettata per non interferire con le normali attività di sistema. La verifica in background non può essere interrotta. Tuttavia, puoi aumentare la velocità della verifica in background per verificare più rapidamente il contenuto di uno Storage Node se sospetti un problema.
+
+
+
+[[alerts-related-to-background-verification]]
+== Avvisi relativi alla verifica in background
+
+Se il sistema rileva un oggetto danneggiato che non può correggere automaticamente (perché il danneggiamento impedisce l'identificazione dell'oggetto), viene attivato l'avviso *Unidentified corrupt object detected*.
+
+Se la verifica in background non riesce a sostituire un oggetto danneggiato perché non riesce a trovarne un'altra copia, viene attivato l'avviso *Oggetti potenzialmente persi*.
+
+
+
+[[what-is-object-existence-check]]
+== Che cos'è il controllo di esistenza di un oggetto?
+
+Il controllo di esistenza degli oggetti verifica se tutte le copie replicate previste degli oggetti e i frammenti codificati per la cancellazione esistono su un Storage Node. Il controllo di esistenza degli oggetti non verifica i dati degli oggetti stessi (questo lo fa la verifica in background); invece, offre un modo per verificare l'integrità dei dispositivi di archiviazione, soprattutto se un recente problema hardware potrebbe aver influenzato l'integrità dei dati.
+
+A differenza della verifica in background, che avviene automaticamente, devi avviare manualmente un processo di verifica dell'esistenza di un oggetto.
+
+Il controllo di esistenza dell'oggetto legge i metadati di ogni oggetto memorizzato in StorageGRID e verifica l'esistenza sia delle copie replicate dell'oggetto sia dei frammenti di oggetto codificati con cancellazione. Eventuali dati mancanti vengono gestiti come segue:
+
+* *Copie replicate*: Se manca una copia dei dati di un oggetto replicato, StorageGRID tenta automaticamente di sostituirla con una copia memorizzata altrove nel sistema. Il nodo di storage esegue una valutazione ILM su una copia esistente, che determinerà che la policy ILM corrente non è più soddisfatta per questo oggetto perché manca un'altra copia. Viene generata una nuova copia e posizionata per soddisfare le policy ILM attive del sistema. Questa nuova copia potrebbe non essere posizionata nella stessa posizione in cui era memorizzata la copia mancante.
+* *Frammenti codificati per la cancellazione*: Se manca un frammento di un oggetto codificato per la cancellazione, StorageGRID tenta automaticamente di ricostruire il frammento mancante sul posto, sullo stesso Storage Node, utilizzando i frammenti rimanenti. Se il frammento mancante non può essere ricostruito (perché sono andati persi troppi frammenti), ILM tenta di trovare un'altra copia dell'oggetto, che può utilizzare per generare un nuovo frammento codificato per la cancellazione.
+
+
+
+
+[[run-object-existence-check]]
+== Esegui il controllo di esistenza dell'oggetto
+
+Crei ed esegui un solo job di verifica dell'esistenza di un oggetto alla volta. Quando crei un job, selezioni gli Storage Node e i volumi che vuoi verificare. Selezioni anche la consistenza per il job.
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Hai il link:../admin/admin-group-permissions.html["Permesso di manutenzione o di accesso root"].
+* Hai verificato che i Storage Node che vuoi controllare siano online. Seleziona *Nodes* per visualizzare la tabella dei nodi. Assicurati che non compaiano icone di avviso accanto al nome del nodo per i nodi che vuoi controllare.
+* Hai verificato che le seguenti procedure *non* sono in esecuzione sui nodi che vuoi controllare:
++
+** Espansione della griglia per aggiungere un nodo di storage
+** Decommission del nodo di storage
+** Ripristino di un volume di storage guasto
+** Ripristino di un nodo di storage con un'unità di sistema guasta
+** ribilanciamento EC
+** Clonazione del nodo appliance
+
+
+
+
+Il controllo dell'esistenza dell'oggetto non fornisce informazioni utili mentre queste procedure sono in corso.
+
+.Informazioni su questa attività
+Un'operazione di verifica dell'esistenza di un oggetto può richiedere giorni o settimane per essere completata, a seconda del numero di oggetti nella grid, dei Storage Node e dei volumi selezionati e della coerenza selezionata. Puoi eseguire solo un'operazione alla volta, ma puoi selezionare più Storage Node e volumi contemporaneamente.
+
+.Passaggi
+. Seleziona *Manutenzione* > *Attività* > *Verifica esistenza oggetto*.
+. Seleziona *Crea processo*. Viene visualizzata la procedura guidata Crea un processo di verifica dell'esistenza dell'oggetto.
+. Seleziona i nodi contenenti i volumi che desideri verificare. Per selezionare tutti i nodi online, seleziona la casella di controllo *Nome del nodo* nell'intestazione della colonna.
++
+Puoi cercare per nome del nodo o per sito.
+
++
+Non puoi selezionare nodi che non sono collegati alla griglia.
+
+. Seleziona *Continue*.
+. Seleziona uno o più volumi per ciascun nodo nell'elenco. Puoi cercare i volumi utilizzando il numero del volume di archiviazione o il nome del nodo.
++
+Per selezionare tutti i volumi per ciascun nodo selezionato, seleziona la casella di controllo *Storage volume* nell'intestazione della colonna.
+
+. Seleziona *Continue*.
+. Seleziona la consistenza per il job.
++
+La coerenza determina quante copie dei metadati dell'oggetto vengono utilizzate per la verifica dell'esistenza dell'oggetto.
+
++
+** *Sito forte*: Due copie dei metadati in un unico sito.
+** *Strong-global*: Due copie dei metadati in ogni sito.
+** *Tutti* (impostazione predefinita): Tutte e tre le copie dei metadati in ciascun sito.
++
+Per ulteriori informazioni sulla coerenza, consulta le descrizioni nella procedura guidata.
+
+
+
+. Seleziona *Continue*.
+. Rivedi e verifica le tue selezioni. Puoi selezionare *Precedente* per tornare a una fase precedente della procedura guidata e aggiornare le tue selezioni.
++
+Viene generato un processo di verifica dell'esistenza dell'oggetto che viene eseguito fino a quando non si verifica una delle seguenti condizioni:
+
++
+** Il lavoro è completato.
+** Puoi mettere in pausa o annullare un'attività. Puoi riprendere un'attività che hai messo in pausa, ma non puoi riprendere un'attività che hai annullato.
+** Il processo si blocca. Viene attivato l'avviso *Verifica esistenza oggetto bloccata*. Segui le azioni correttive specificate per l'avviso.
+** L'operazione non riesce. Viene attivato l'avviso *Verifica dell'esistenza dell'oggetto non riuscita*. Segui le azioni correttive specificate per l'avviso.
+** Viene visualizzato un messaggio "Servizio non disponibile" o "Errore interno del server". Dopo un minuto, aggiorna la pagina per continuare a monitorare il job.
++
+
+NOTE: Se necessario, puoi uscire dalla pagina di verifica dell'esistenza dell'oggetto e ritornarvi per continuare a monitorare il job.
+
+
+
+. Durante l'esecuzione del job, visualizza la scheda *Active job* e prendi nota del valore di Missing object copies detected.
++
+Questo valore rappresenta il numero totale di copie mancanti di oggetti replicati e oggetti codificati con cancellazione con uno o più frammenti mancanti.
+
++
+Se il numero di copie di oggetti mancanti rilevate è superiore a 100, potrebbe esserci un problema con lo storage del nodo di archiviazione.
+
+. Una volta completato il lavoro, esegui tutte le azioni aggiuntive necessarie:
++
+** Se il numero di copie di oggetti mancanti rilevate è zero, non sono stati riscontrati problemi. Non è richiesta alcuna azione.
+** Se il numero di copie di oggetti mancanti rilevate è maggiore di zero e l'avviso *Oggetti potenzialmente persi* non è stato attivato, significa che tutte le copie mancanti sono state riparate dal sistema. Verifica che eventuali problemi hardware siano stati risolti per evitare danni futuri alle copie degli oggetti.
+** Se il numero di copie di oggetti mancanti rilevate è maggiore di zero e l'avviso *Oggetti potenzialmente persi* è stato attivato, l'integrità dei dati potrebbe essere compromessa. Contatta il supporto tecnico.
+** Puoi esaminare le copie di oggetti potenzialmente perse utilizzando grep per estrarre i messaggi di audit LLST: `grep LLST audit_file_name`.
++
+Questa procedura è simile a quella per link:../troubleshoot/investigating-potentially-lost-objects.html["analisi di oggetti potenzialmente persi"], anche se per le copie degli oggetti cerchi  `LLST` invece di  `OLST`.
+
+
+
+. Se hai selezionato la coerenza strong-site o strong-global per il job, aspetta circa tre settimane per la coerenza dei metadati e poi esegui di nuovo il job sugli stessi volumi.
++
+Quando StorageGRID ha avuto il tempo di raggiungere la coerenza dei metadati per i nodi e i volumi inclusi nel job, la riesecuzione del job potrebbe eliminare copie di oggetti mancanti segnalate erroneamente o far sì che vengano controllate copie di oggetti aggiuntive se erano state omesse.
+
++
+.. Seleziona *Manutenzione* > *Verifica esistenza oggetto* > *Cronologia interventi*.
+.. Determina quali processi sono pronti per essere rieseguiti:
++
+... Guarda la colonna *Ora di fine* per vedere quali processi sono stati eseguiti più di tre settimane fa.
+... Per questi lavori, esamina la colonna Controllo coerenza per strong-site o strong-global.
+
+
+.. Seleziona la casella di controllo per ogni processo che vuoi rieseguire, poi seleziona *Riesegui*.
+.. Nella procedura guidata di riesecuzione dei processi, controlla i nodi e i volumi selezionati e la coerenza.
+.. Quando sei pronto a rieseguire i processi, seleziona *Riesegui*.
+
+
+
+
+Viene visualizzata la scheda Lavori attivi. Tutti i lavori che hai selezionato vengono rieseguiti come un unico lavoro con coerenza strong-site. Un campo *Lavori correlati* nella sezione Dettagli elenca gli ID dei lavori originali.

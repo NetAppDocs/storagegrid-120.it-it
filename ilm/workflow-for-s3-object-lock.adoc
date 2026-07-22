@@ -1,0 +1,52 @@
+---
+permalink: ilm/workflow-for-s3-object-lock.html 
+sidebar: sidebar 
+keywords: object lock workflow 
+summary: Come amministratore della griglia, devi coordinarti strettamente con gli utenti tenant per assicurarti che gli oggetti siano protetti in modo da soddisfare i loro requisiti di conservazione. 
+---
+= Flusso di lavoro S3 Object Lock in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Come amministratore della griglia, devi coordinarti strettamente con gli utenti tenant per assicurarti che gli oggetti siano protetti in modo da soddisfare i loro requisiti di conservazione.
+
+
+NOTE: L'applicazione delle impostazioni del tenant all'intera griglia potrebbe richiedere 15 minuti o più, a seconda della connettività di rete, dello stato dei nodi e delle operazioni di Cassandra.
+
+I seguenti elenchi per gli amministratori della griglia e gli utenti tenant contengono le high-level attività per l'utilizzo della funzionalità S3 Object Lock.
+
+Amministratore della grid::
++
+--
+* Abilita l'impostazione globale di S3 Object Lock per l'intero sistema StorageGRID.
+* Assicurati che le policy di information lifecycle management (ILM) siano _conformi_; cioè che soddisfino i link:../ilm/managing-objects-with-s3-object-lock.html["requisiti dei bucket con S3 Object Lock abilitato"].
+* Se necessario, consenti a un tenant di utilizzare Compliance come modalità di conservazione. Altrimenti, è consentita solo la modalità Governance.
+* Se necessario, imposta un periodo massimo di conservazione per un tenant.
+
+
+--
+Utente tenant::
++
+--
+* Esamina le considerazioni relative a bucket e oggetti con S3 Object Lock.
+* Se necessario, contatta l'amministratore della grid per abilitare l'impostazione globale S3 Object Lock e impostare le autorizzazioni.
+* Crea bucket con S3 Object Lock abilitato.
+* Facoltativamente, puoi configurare le impostazioni di conservazione predefinite per un bucket:
++
+** Modalità di conservazione predefinita: Governance o Compliance, se consentita dall'amministratore della grid.
+** Periodo di conservazione predefinito: deve essere inferiore o uguale al periodo di conservazione massimo impostato dall'amministratore della griglia.
+
+
+* Utilizza l'applicazione client S3 per aggiungere oggetti e, facoltativamente, impostare la conservazione specifica per ciascun oggetto:
++
+** Modalità di conservazione. Governance o Compliance, se consentito dall'amministratore del grid.
+** Data di conservazione: deve essere inferiore o uguale al periodo di conservazione massimo impostato dall'amministratore della griglia.
+
+
+
+
+--
+

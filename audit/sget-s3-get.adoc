@@ -1,0 +1,241 @@
+---
+permalink: audit/sget-s3-get.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, SGET, S3 GET 
+summary: Quando un client S3 avvia una transazione GET, viene inviata una richiesta per recuperare un oggetto o elencare gli oggetti in un bucket. Questo messaggio viene emesso dal server se la transazione ha esito positivo. 
+---
+= Messaggio di audit SGET per le transazioni S3 GET in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Quando un client S3 effettua una transazione GET, viene fatta una richiesta per recuperare un oggetto o elencare gli oggetti in un bucket, oppure per rimuovere una sottorisorsa di un bucket/oggetto. Questo messaggio viene emesso dal server se la transazione ha esito positivo.
+
+[cols="1a,1a,4a"]
+|===
+| Codice | Campo | Descrizione 
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Identificatore del blocco di contenuto
+ a| 
+L'identificativo univoco del blocco di contenuto richiesto. Se il CBID è sconosciuto, questo campo viene impostato a 0. Le operazioni sui bucket non includono questo campo.
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Intestazione di controllo della coerenza
+ a| 
+Il valore dell'intestazione HTTP Consistency-Control, se presente nella richiesta.
+
+
+
+ a| 
+CNID
+ a| 
+Identificatore di connessione
+ a| 
+L'identificativo univoco del sistema per la connessione TCP/IP.
+
+
+
+ a| 
+CSIZ
+ a| 
+${post_edited_translations.segment}
+ a| 
+La dimensione dell'oggetto recuperato in byte. Le operazioni sui bucket non includono questo campo.
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+${post_edited_translations.segment}
+ a| 
+Elenco dei nomi e dei valori delle intestazioni delle richieste HTTP registrate come selezionato durante la configurazione.
+
+ `X-Forwarded-For` viene incluso automaticamente se è presente nella richiesta e se il  `X-Forwarded-For` valore è diverso dall'indirizzo IP del mittente della richiesta (campo di audit SAIP).
+
+
+
+ a| 
+LITY
+ a| 
+ListObjectsV2
+ a| 
+È stata richiesta una risposta in formato _v2_. Per i dettagli, vedi https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectsV2.html["AWS ListObjectsV2"^]. Solo per operazioni GET bucket.
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Numero di child
+ a| 
+Include chiavi e prefissi comuni. Solo per operazioni GET sui bucket.
+
+
+
+ a| 
+RANG
+ a| 
+Lettura dell'intervallo
+ a| 
+Solo per operazioni di lettura di intervalli. Indica l'intervallo di byte letto da questa richiesta. Il valore dopo la barra (/) mostra la dimensione dell'intero oggetto.
+
+
+
+ a| 
+RSLT
+ a| 
+${post_edited_translations.segment}
+ a| 
+Risultato della transazione GET. Il risultato è sempre:
+
+SUCS: Operazione riuscita
+
+
+
+ a| 
+S3AI
+ a| 
+ID account tenant S3 (mittente della richiesta)
+ a| 
+L'ID account tenant dell'utente che ha inviato la richiesta. Un valore vuoto indica accesso anonimo.
+
+
+
+ a| 
+S3AK
+ a| 
+ID della chiave di accesso S3 (mittente della richiesta)
+ a| 
+L'ID della chiave di accesso S3 con hash per l'utente che ha inviato la richiesta. Un valore vuoto indica un accesso anonimo.
+
+
+
+ a| 
+S3BK
+ a| 
+Bucket S3
+ a| 
+Il nome del bucket S3.
+
+
+
+ a| 
+S3KY
+ a| 
+Chiave S3
+ a| 
+Il nome della chiave S3, escluso il nome del bucket. Le operazioni sui bucket non includono questo campo.
+
+
+
+ a| 
+S3SR
+ a| 
+Sottorisorsa S3
+ a| 
+Il bucket o la sottorisorsa oggetto su cui stai operando, se applicabile.
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Nome account tenant S3 (mittente della richiesta)
+ a| 
+Il nome dell'account tenant per l'utente che ha inviato la richiesta. Vuoto per le richieste anonime.
+
+
+
+ a| 
+SAIP
+ a| 
+${post_edited_translations.segment}
+ a| 
+${post_edited_translations.segment}
+
+
+
+ a| 
+SBAC
+ a| 
+Nome account tenant S3 (proprietario del bucket)
+ a| 
+Il nome dell'account tenant per il proprietario del bucket. Usato per identificare l'accesso tra account o l'accesso anonimo.
+
+
+
+ a| 
+SBAI
+ a| 
+ID account tenant S3 (proprietario del bucket)
+ a| 
+L'ID account tenant del proprietario del bucket di destinazione. Usato per identificare l'accesso cross-account o l'accesso anonimo.
+
+
+
+ a| 
+SUSR
+ a| 
+URN utente S3 (mittente della richiesta)
+ a| 
+L'ID account tenant e il nome utente dell'utente che effettua la richiesta. L'utente può essere un utente locale o un utente LDAP. Per esempio: `urn:sgws:identity::03393893651506583485:root`
+
+${post_edited_translations.segment}
+
+
+
+ a| 
+TEMPO
+ a| 
+Tempo
+ a| 
+Tempo totale di elaborazione della richiesta in microsecondi.
+
+
+
+ a| 
+TLIP
+ a| 
+Indirizzo IP del bilanciatore di carico affidabile
+ a| 
+Se la richiesta è stata instradata da un bilanciatore di carico Layer 7 affidabile, l'indirizzo IP del bilanciatore di carico.
+
+
+
+ a| 
+TRNC
+ a| 
+Troncato o non troncato
+ a| 
+Imposta su false se sono stati restituiti tutti i risultati. Imposta su true se sono disponibili altri risultati da restituire. Solo per le operazioni GET bucket.
+
+
+
+ a| 
+UUID
+ a| 
+Identificatore univoco universale
+ a| 
+L'identificativo dell'oggetto all'interno del sistema StorageGRID.
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+ID versione
+ a| 
+L'ID versione della versione specifica di un oggetto che è stata richiesta. Le operazioni sui bucket e sugli oggetti nei bucket senza versione non includono questo campo.
+
+|===

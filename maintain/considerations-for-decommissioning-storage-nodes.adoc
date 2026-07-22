@@ -1,0 +1,82 @@
+---
+permalink: maintain/considerations-for-decommissioning-storage-nodes.html 
+sidebar: sidebar 
+keywords: storage node decommission, considerations, appliance node clone 
+summary: Prima di decommissionare un nodo di Storage, valuta se puoi invece clonare il nodo. Poi, se decidi di decommissionare il nodo, verifica come StorageGRID gestisce oggetti e metadati durante la procedura di decommission. 
+---
+= Considerazioni sulla decommission dei nodi di archiviazione in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Prima di decommissionare un nodo di Storage, valuta se puoi invece clonare il nodo. Poi, se decidi di decommissionare il nodo, verifica come StorageGRID gestisce oggetti e metadati durante la procedura di decommission.
+
+
+
+[[when-to-clone-a-node-instead-of-decommissioning-it]]
+== Quando clonare un nodo invece di decommissionarlo
+
+Se vuoi sostituire un vecchio appliance Storage Node con un appliance più recente o più grande, considera di clonare il nodo dell'appliance invece di aggiungere un nuovo appliance in un'espansione e poi decommissionare quello vecchio.
+
+La clonazione dei nodi appliance ti permette di sostituire facilmente un nodo appliance esistente con un'appliance compatibile nello stesso sito StorageGRID. Il processo di cloning trasferisce tutti i dati alla nuova appliance, la mette in servizio e lascia la vecchia appliance in uno stato di pre-installazione.
+
+Puoi clonare un nodo appliance se hai bisogno di:
+
+* Sostituisci un'appliance che sta raggiungendo la fine del suo ciclo di vita.
+* Aggiorna un nodo esistente per sfruttare la tecnologia migliorata dell'appliance.
+* Aumenta la capacità di grid storage senza cambiare il numero di Storage Node nel tuo sistema StorageGRID.
+* Migliora l'efficienza dello storage, ad esempio cambiando la modalità RAID.
+
+
+Vedi  https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/how-appliance-node-cloning-works.html["Clonazione del nodo appliance"^] per i dettagli.
+
+
+
+[[considerations-for-connected-storage-nodes]]
+== Considerazioni relative ai nodi di storage connessi
+
+Esamina le considerazioni per decommissionare un nodo Storage connesso.
+
+* Non dovresti decommissionare più di 10 Storage Node in una singola procedura di Decommission Node.
+* Il sistema deve, in ogni momento, includere un numero sufficiente di Storage Node per soddisfare i requisiti operativi, inclusi il link:understanding-adc-service-quorum.html["quorum ADC"] e l'attivo link:reviewing-ilm-policy-and-storage-configuration.html["Policy ILM"]. Per soddisfare questa restrizione, potresti dover aggiungere un nuovo Storage Node in un'operazione di espansione prima di poter decommissionare uno Storage Node esistente.
++
+Presta attenzione quando decommissioni i Storage Node in un grid che contiene nodi basati su software di soli metadati. Se decommissioni tutti i nodi configurati per memorizzare _sia_ oggetti che metadati, la capacità di memorizzare oggetti viene rimossa dal grid. Consulta link:../primer/what-storage-node-is.html#types-of-storage-nodes["Tipi di nodi di archiviazione"] per ulteriori informazioni sui Storage Node di soli metadati.
+
+* Quando rimuovi un nodo di storage, grandi volumi di dati degli oggetti vengono trasferiti sulla rete. Anche se questi trasferimenti non dovrebbero influire sul normale funzionamento del sistema, possono influire sulla quantità totale di larghezza di banda consumata dal sistema StorageGRID.
+* Le attività associate al decommissionare di un nodo di storage hanno una priorità inferiore rispetto alle attività associate al normale funzionamento del sistema. Questo significa che il decommissionare non interferisce con il normale funzionamento del sistema StorageGRID e non deve essere pianificato per un periodo di inattività del sistema. Poiché il decommissionare viene eseguito in background, è difficile stimare quanto tempo richiederà il completamento del processo. In generale, il decommissionare si conclude più rapidamente quando il sistema è tranquillo o se viene rimosso un solo nodo di storage alla volta.
+* Decommissionare un nodo di storage potrebbe richiedere giorni o settimane. Pianifica questa procedura di conseguenza. Anche se il processo di decommission è progettato per non influire sulle operazioni di sistema, può limitare altre procedure. In generale, dovresti eseguire eventuali aggiornamenti o espansioni di sistema pianificati prima di rimuovere i nodi di grid.
+* Se devi eseguire un'altra procedura di manutenzione mentre i nodi di storage vengono rimossi, puoi link:pausing-and-resuming-decommission-process-for-storage-nodes.html["metti in pausa la procedura di decommissionare"] interromperla e riprenderla dopo che l'altra procedura è stata completata.
++
+
+NOTE: Il pulsante *Pausa* è abilitato solo quando si raggiungono le fasi di valutazione ILM o di decommissionare dei dati codificati per la cancellazione; tuttavia, la valutazione ILM (migrazione dei dati) continuerà a essere eseguita in background.
+
+* Non puoi eseguire operazioni di riparazione dei dati su nessun nodo della grid quando è in corso un'attività di decommission.
+* Non dovresti apportare modifiche a una policy ILM mentre un nodo di storage viene decommissionato.
+* Per rimuovere i dati in modo permanente e sicuro, devi cancellare le unità dello Storage Node dopo che la procedura di decommissionare è stata completata.
+
+
+
+
+[[considerations-for-disconnected-storage-nodes]]
+[[considerations-disconnected-storage-nodes]]
+== Considerazioni per i nodi di storage disconnessi
+
+Esamina le considerazioni per decommissionare un nodo Storage disconnesso.
+
+* Non decommissionare un nodo disconnesso a meno che tu non sia sicuro che non possa essere riattivato o recuperato.
++
+
+CAUTION: Non eseguire questa procedura se pensi che sia possibile recuperare i dati dell'oggetto dal nodo. Invece, contatta il supporto tecnico per verificare se il ripristino del nodo è possibile.
+
+* Quando decommissioni un nodo di storage disconnesso, StorageGRID utilizza i dati di altri nodi di storage per ricostruire i dati degli oggetti e i metadati che erano presenti sul nodo disconnesso.
+* Potresti perdere dati se decommissioni più di un nodo di storage disconnesso. Il sistema potrebbe non riuscire a ricostruire i dati se non rimangono disponibili abbastanza copie degli oggetti, frammenti codificati per la cancellazione o metadati degli oggetti. Quando decommissioni nodi di storage in una grid con nodi software che memorizzano solo metadati, decommissionare tutti i nodi configurati per archiviare sia oggetti che metadati rimuove tutto lo storage a oggetti dalla grid. Vedi link:../primer/what-storage-node-is.html#types-of-storage-nodes["Tipi di nodi di archiviazione"] per ulteriori informazioni sui nodi di storage che memorizzano solo metadati.
++
+
+CAUTION: Se hai più di un nodo di archiviazione disconnesso che non riesci a ripristinare, contatta il supporto tecnico per determinare la procedura migliore.
+
+* Quando decommissioni un nodo di storage disconnesso, StorageGRID avvia processi di riparazione dei dati al termine del processo di decommissioning. Questi processi tentano di ricostruire i dati degli oggetti e i metadati che erano archiviati sul nodo disconnesso.
+* Quando decommissioni un nodo di Storage disconnesso, la procedura di decommissionamento si completa relativamente in fretta. Tuttavia, i job di riparazione dei dati possono richiedere giorni o settimane per essere eseguiti e non sono monitorati dalla procedura di decommissionamento. Devi monitorare manualmente questi job e riavviarli se necessario. Vedi link:checking-data-repair-jobs.html["Verifica i lavori di riparazione dei dati"].
+* Se decommissioni un nodo di storage disconnesso che contiene l'unica copia di un oggetto, l'oggetto andrà perso. I processi di riparazione dei dati possono ricostruire e recuperare gli oggetti solo se è presente almeno una copia replicata o un numero sufficiente di frammenti codificati per la cancellazione sui nodi di storage attualmente connessi.
+

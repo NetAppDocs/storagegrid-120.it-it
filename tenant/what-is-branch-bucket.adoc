@@ -1,0 +1,112 @@
+---
+permalink: tenant/what-is-branch-bucket.html 
+sidebar: sidebar 
+keywords: how to create branch bucket 
+summary: Un bucket di ramo fornisce accesso agli oggetti in un bucket come esistevano in un determinato momento. 
+---
+= Scopri i bucket di ramo di StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Un bucket di ramo fornisce accesso agli oggetti in un bucket come esistevano in un determinato momento.
+
+Crei un bucket di diramazione da un bucket esistente. Dopo che hai creato un bucket di diramazione, il bucket originale da cui è stato creato viene chiamato _bucket di base_. Inoltre, puoi creare un bucket di diramazione da un altro bucket di diramazione.
+
+Un bucket di filiale fornisce accesso ai dati protetti, ma non funge da backup. Per continuare a proteggere i dati, usa queste funzionalità sui bucket di base:
+
+* link:../tenant/using-s3-object-lock.html["Blocco oggetto S3"]
+* link:../admin/grid-federation-what-is-cross-grid-replication.html["Replicazione cross-grid"] per bucket di base
+* link:../tenant/manage-bucket-policy.html["Politiche dei bucket"] per i bucket versionati per eliminare le vecchie versioni degli oggetti
+
+
+Nota le seguenti caratteristiche dei bucket di ramificazione:
+
+* Puoi accedere agli oggetti nei bucket di filiale usando link:../tenant/use-s3-console.html["Console S3 per scaricare oggetti"].
+* Quando i client accedono agli oggetti in un bucket di una filiale, link:../s3/use-access-policies.html["politiche di accesso"]sono le policy del bucket della filiale, piuttosto che quelle del bucket di base, a determinare se l'accesso viene concesso o negato.
+* Gli oggetti creati in un bucket di base vengono valutati in base a come link:../ilm/access-create-ilm-rule-wizard.html["Regole ILM"] si applicano al bucket di base. Gli oggetti creati in un bucket di diramazione vengono valutati in base a come le regole ILM si applicano al bucket di diramazione.
+* La replica tra griglie non è supportata per i bucket di branch.
+* I servizi della piattaforma non sono supportati per i bucket branch.
+
+
+
+
+[[examples-for-branch-bucket-usage]]
+== Esempi di utilizzo del bucket branch
+
+* Puoi usare un bucket di diramazione per rimuovere oggetti danneggiati creando un bucket di diramazione da un momento precedente al verificarsi del danneggiamento e poi indirizzando le applicazioni al bucket di diramazione invece che al bucket di base che contiene oggetti danneggiati.
+* Stai salvando dati in un bucket versionato. C'è stata una vulnerabilità accidentale che ha causato l'ingestione di molti oggetti indesiderati dopo il tempo _T_. Puoi creare un bucket di diramazione per il valore del tempo Before, _T_, e reindirizzare le operazioni dei client a quel bucket di diramazione. Così, solo gli oggetti ingeriti prima del tempo Before _T_ sono esposti ai client.
+
+
+
+
+[[operations-on-objects-in-branch-buckets]]
+== Operazioni sugli oggetti nei bucket di branch
+
+* Un'operazione PUT su un bucket branch crea un oggetto nel branch.
+* Un'operazione GET su un bucket di branch recupera un oggetto dal branch. Se l'oggetto non esiste nel bucket di branch, viene recuperato dal bucket di base.
+* L'eliminazione degli oggetti dai bucket branch avviene come segue:
++
+[cols="1a,1a,2a,2a,2a"]
+|===
+| Operazione | Target | Risultato | Visibilità degli oggetti nel bucket di base | Visibilità degli oggetti nel bucket del branch 
+
+
+ a| 
+Elimina senza ID versione
+ a| 
+Bucket di base
+ a| 
+Il marcatore di eliminazione viene creato solo per il bucket di base
+ a| 
+HEAD/GET restituisce Oggetto non esiste, ma puoi comunque accedere a versioni specifiche
+ a| 
+HEAD/GET restituisce Oggetto esiste e puoi ancora accedere a versioni specifiche
+
+Il marcatore di eliminazione sarebbe stato creato dopo il bucket del ramo `beforeTime`.
+
+
+
+ a| 
+Elimina con ID versione
+ a| 
+Bucket di base
+ a| 
+La versione specifica dell'oggetto viene eliminata sia per il bucket base che per il bucket branch.
+ a| 
+HEAD/GET restituisce La versione dell'oggetto non esiste
+ a| 
+HEAD/GET restituisce La versione dell'oggetto non esiste
+
+
+
+ a| 
+Elimina senza ID versione
+ a| 
+Bucket del branch
+ a| 
+Il marcatore di eliminazione viene creato solo per il bucket branch
+ a| 
+HEAD/GET restituisce l'oggetto (l'oggetto base del bucket non viene modificato)
+ a| 
+HEAD/GET restituisce Oggetto inesistente
+
+
+
+ a| 
+Elimina con ID versione
+ a| 
+Bucket del branch
+ a| 
+La versione specifica dell'oggetto viene eliminata solo per il bucket branch
+ a| 
+HEAD/GET restituisce una versione specifica dell'oggetto (l'oggetto del bucket di base non è interessato)
+ a| 
+HEAD/GET restituisce La versione dell'oggetto non esiste
+
+|===
+
+
+Consultare anche link:../ilm/how-objects-are-deleted.html#delete-s3-versioned-objects["Come vengono eliminati gli oggetti versionati di S3"].

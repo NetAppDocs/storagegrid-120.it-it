@@ -1,0 +1,51 @@
+---
+permalink: s3/put-bucket-last-access-time-request.html 
+sidebar: sidebar 
+keywords: S3 REST API, S3 operations, put bucket last access time request 
+summary: 'La richiesta PUT Bucket last access time consente di abilitare o disabilitare gli aggiornamenti dell"ultimo orario di accesso per singoli bucket.' 
+---
+= Abilita e disabilita gli aggiornamenti dell'ora dell'ultimo accesso in StorageGRID con la richiesta PUT Bucket last access time
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La richiesta PUT Bucket last access time consente di abilitare o disabilitare gli aggiornamenti dell'ora dell'ultimo accesso per i singoli bucket. La disabilitazione degli aggiornamenti dell'ora dell'ultimo accesso migliora le prestazioni ed è l'impostazione predefinita per tutti i bucket creati con la versione 10.3.0 o successive.
+
+Devi avere l'autorizzazione s3:PutBucketLastAccessTime per un bucket, oppure essere account root, per completare questa operazione.
+
+
+NOTE: A partire dalla versione 10.3 di StorageGRID, gli aggiornamenti all'ora dell'ultimo accesso sono disabilitati per impostazione predefinita per tutti i nuovi bucket. Se hai bucket creati con una versione precedente di StorageGRID e vuoi che corrispondano al nuovo comportamento predefinito, devi disabilitare esplicitamente gli aggiornamenti all'ora dell'ultimo accesso per ciascuno di questi bucket precedenti. Puoi abilitare o disabilitare gli aggiornamenti all'ora dell'ultimo accesso utilizzando la richiesta PUT Bucket last access time o dalla pagina dei dettagli di un bucket in Tenant Manager. Vedi link:../tenant/enabling-or-disabling-last-access-time-updates.html["Attiva o disattiva gli aggiornamenti dell'ora dell'ultimo accesso"].
+
+Se gli aggiornamenti dell'ora dell'ultimo accesso sono disabilitati per un bucket, alle operazioni su tale bucket viene applicato il seguente comportamento:
+
+* GetObject, GetObjectAcl, GetObjectTagging e HeadObject non aggiornano l'ora dell'ultimo accesso. L'oggetto non viene aggiunto alle code per la valutazione della gestione del ciclo di vita delle informazioni (ILM).
+* CopyObject e PutObjectTagging richieste che aggiornano solo i metadati aggiornano anche l'ora dell'ultimo accesso. L'oggetto viene aggiunto alle code per la valutazione ILM.
+* Se gli aggiornamenti all'ora dell'ultimo accesso sono disabilitati per il bucket di origine, le richieste CopyObject non aggiornano l'ora dell'ultimo accesso per il bucket di origine. L'oggetto copiato non viene aggiunto alle code per la valutazione ILM per il bucket di origine. Tuttavia, per la destinazione, le richieste CopyObject aggiornano sempre l'ora dell'ultimo accesso. La copia dell'oggetto viene aggiunta alle code per la valutazione ILM.
+* CompleteMultipartUpload aggiorna l'ora dell'ultimo accesso. L'oggetto completato viene aggiunto alle code per la valutazione ILM.
+
+
+
+
+[[request-examples]]
+== Esempi di richieste
+
+Questo esempio abilita l'ora dell'ultimo accesso per un bucket.
+
+[listing, subs="specialcharacters,quotes"]
+----
+PUT /bucket?x-ntap-sg-lastaccesstime=enabled HTTP/1.1
+Date: _date_
+Authorization: _authorization string_
+Host: _host_
+----
+Questo esempio disabilita l'ora dell'ultimo accesso per un bucket.
+
+[listing, subs="specialcharacters,quotes"]
+----
+PUT /bucket?x-ntap-sg-lastaccesstime=disabled HTTP/1.1
+Date: _date_
+Authorization: _authorization string_
+Host: _host_
+----

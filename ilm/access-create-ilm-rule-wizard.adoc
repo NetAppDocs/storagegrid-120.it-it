@@ -1,0 +1,46 @@
+---
+permalink: ilm/access-create-ilm-rule-wizard.html 
+sidebar: sidebar 
+keywords: create ILM rule, information lifecycle rule 
+summary: Usi la procedura guidata Crea regola ILM per creare una regola ILM. 
+---
+= Accedi alla procedura guidata Crea una regola ILM in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le regole ILM ti permettono di gestire il posizionamento dei dati degli oggetti nel tempo. Per creare una regola ILM, usi la procedura guidata "Crea una regola ILM".
+
+
+NOTE: Se vuoi creare la regola ILM predefinita per una policy, segui link:creating-default-ilm-rule.html["Istruzioni per creare una regola ILM predefinita"] invece.
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Hai link:../admin/admin-group-permissions.html["autorizzazioni di accesso specifiche"].
+* Se vuoi specificare a quali tenant account si applica questa regola, hai link:../admin/admin-group-permissions.html["Autorizzazione account tenant"] o conosci l'ID dell'account per ciascun account.
+* Se vuoi che la regola filtri gli oggetti in base ai metadati dell'ultimo accesso, gli aggiornamenti dell'ora dell'ultimo accesso devono essere abilitati dal bucket S3.
+* Hai configurato tutti i Cloud Storage Pools che intendi utilizzare. Vedi link:creating-cloud-storage-pool.html["Crea Cloud Storage Pool"].
+* Hai familiarità con il link:data-protection-options-for-ingest.html["opzioni di ingest"].
+* Se devi creare una regola conforme da utilizzare con S3 Object Lock, hai familiarità con link:requirements-for-s3-object-lock.html["requisiti per S3 Object Lock"].
+* Facoltativamente, hai guardato il video:
++
+.Panoramica delle regole ILM
+video::9872d38f-80b3-4ad4-9f79-b1ff008760c7[panopto]
+
+
+.Informazioni su questa attività
+Quando crei le regole ILM:
+
+* Considera la topologia del sistema StorageGRID e le configurazioni di storage.
+* Considera quali tipi di copie di oggetti vuoi creare (replicate o codificate con cancellazione) e il numero di copie di ciascun oggetto richieste.
+* Determina quali tipi di metadati degli oggetti vengono utilizzati nelle applicazioni che si connettono al sistema StorageGRID. Le regole ILM filtrano gli oggetti in base ai loro metadati.
+* Valuta dove vuoi che vengano collocate le copie degli oggetti nel tempo.
+* Decidi quale opzione di ingest utilizzare (Balanced, Strict o Dual commit).
+
+
+.Passaggi
+. Seleziona *ILM* > *Regole*.
+. Seleziona *Crea*. link:create-ilm-rule-enter-details.html["Passaggio 1 (Inserisci i dettagli)"]Viene visualizzata la procedura guidata Crea una regola ILM.
+

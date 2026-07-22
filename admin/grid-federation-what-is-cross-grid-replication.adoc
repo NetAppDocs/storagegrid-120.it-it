@@ -1,0 +1,264 @@
+---
+permalink: admin/grid-federation-what-is-cross-grid-replication.html 
+sidebar: sidebar 
+keywords: cross-grid replication, cgr, disaster recovery, grid federation 
+summary: 'La replica cross-grid è la replica automatica di oggetti tra bucket S3 selezionati in due sistemi StorageGRID connessi tramite una connessione di federazione grid. Per la replica cross-grid è necessario il clone dell"account.' 
+---
+= Scopri la replica cross-grid in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La replica cross-grid è la replica automatica di oggetti tra bucket S3 selezionati in due sistemi StorageGRID connessi in una link:grid-federation-overview.html["connessione di federazione della griglia"]. link:grid-federation-what-is-account-clone.html["${post_edited_translations.segment}"] è necessaria per la replica cross-grid.
+
+
+
+[[workflow-for-cross-grid-replication]]
+== Flusso di lavoro per la replica cross-grid
+
+Il diagramma di flusso riassume i passaggi per configurare la replica cross-grid tra bucket su due griglie.
+
+image:grid-federation-cgr-workflow.png["Flusso di lavoro di replica cross-grid"]
+
+
+
+[[requirements-for-cross-grid-replication]]
+== ${post_edited_translations.segment}
+
+Se un account tenant dispone dell'autorizzazione *Utilizza connessione di federazione grid* per utilizzare uno o più link:grid-federation-overview.html["${post_edited_translations.segment}"], un utente tenant con autorizzazione di accesso Root può creare bucket negli account tenant corrispondenti su ciascuna grid. Questi bucket:
+
+* Possono avere nomi diversi l'uno dall'altro
+* Puoi avere regioni diverse
+* Devi avere il versioning abilitato
+* Deve essere vuoto
+
+
+Dopo che entrambi i bucket sono stati creati, puoi configurare la replica cross-grid per uno o entrambi i bucket.
+
+.Saperne di più
+link:../tenant/grid-federation-manage-cross-grid-replication.html["${post_edited_translations.segment}"]
+
+
+
+[[how-cross-grid-replication-works]]
+== ${post_edited_translations.segment}
+
+${post_edited_translations.segment}
+
+
+
+[[replication-in-one-direction]]
+=== Replicazione in una direzione
+
+Se abiliti la replica tra griglie per un bucket solo su una griglia, gli oggetti aggiunti a quel bucket (il bucket di origine) vengono replicati nel bucket corrispondente sull'altra griglia (il bucket di destinazione). Tuttavia, gli oggetti aggiunti al bucket di destinazione non vengono replicati di nuovo nell'origine. Nella figura, la replica tra griglie è abilitata  `my-bucket` da Grid 1 a Grid 2, ma non nella direzione opposta.
+
+image:grid-federation-cross-grid-replication-one-direction.png["${post_edited_translations.segment}"]
+
+
+
+[[replication-in-both-directions]]
+=== Replicazione in entrambe le direzioni
+
+Se abiliti la replica tra griglie per lo stesso bucket su entrambe le griglie, gli oggetti aggiunti a uno dei bucket vengono replicati sull'altra griglia. Nella figura, la replica tra griglie è abilitata per `my-bucket` in entrambe le direzioni.
+
+image:grid-federation-cross-grid-replication.png["Immagine che mostra la replicazione in una direzione rispetto alla replicazione in entrambe le direzioni"]
+
+
+
+[[what-happens-when-objects-are-ingested]]
+=== Cosa succede quando vengono ingeriti gli oggetti?
+
+Quando un client S3 aggiunge un oggetto a un bucket per cui è abilitata la replica cross-grid, accade quanto segue:
+
+. StorageGRID replica automaticamente l'oggetto dal bucket di origine al bucket di destinazione. Il tempo necessario per eseguire questa operazione di replica in background dipende da diversi fattori, tra cui il numero di altre operazioni di replica in sospeso.
++
+Il client S3 può verificare lo stato di replica di un oggetto inviando una richiesta GetObject o HeadObject. La risposta include un'intestazione di risposta specifica di StorageGRID `x-ntap-sg-cgr-replication-status`, che presenta uno dei seguenti valori:
+
++
+[cols="1a,2a"]
+|===
+| Griglia | ${post_edited_translations.segment} 
+
+
+ a| 
+Fonte
+ a| 
+** *COMPLETATO*: La replica ha avuto successo per tutte le connessioni alla grid.
+** ${post_edited_translations.segment}
+** *ERRORE*: La replica non è in sospeso per nessuna connessione di grid e almeno una è fallita con un errore permanente. Devi risolvere l'errore.
+
+
+
+
+ a| 
+Destinazione
+ a| 
+*REPLICA*: L'oggetto è stato replicato dalla griglia di origine.
+
+|===
++
+
+NOTE: StorageGRID non supporta l `x-amz-replication-status`intestazione.
+
+. StorageGRID utilizza le policy ILM attive di ciascuna griglia per gestire gli oggetti, proprio come farebbe con qualsiasi altro oggetto. Ad esempio, Object A su Grid 1 potrebbe essere memorizzato come due copie replicate e conservato per sempre, mentre la copia di Object A replicata su Grid 2 potrebbe essere memorizzata utilizzando la codifica di cancellazione 2+1 ed eliminata dopo tre anni.
+
+
+
+
+[[what-happens-when-objects-are-deleted]]
+=== Cosa succede quando gli oggetti vengono eliminati?
+
+Come descritto in link:../primer/delete-data-flow.html["Elimina il flusso di dati"], StorageGRID può eliminare un oggetto per uno qualsiasi di questi motivi:
+
+* Il client S3 invia una richiesta di eliminazione.
+* Un utente di Tenant Manager seleziona l'opzione link:../tenant/deleting-s3-bucket-objects.html["Elimina oggetti nel bucket"] per rimuovere tutti gli oggetti da un bucket.
+* ${post_edited_translations.segment}
+* L'ultimo periodo di tempo nella regola ILM per l'oggetto termina e non sono specificati ulteriori posizionamenti.
+
+
+Quando StorageGRID elimina un oggetto a causa di un'operazione Delete objects in bucket, della scadenza del ciclo di vita del bucket o della scadenza del posizionamento ILM, l'oggetto replicato non viene mai eliminato dall'altro grid in una connessione di federazione di grid. Tuttavia, i marcatori di eliminazione aggiunti al bucket di origine dalle eliminazioni dei client S3 possono facoltativamente essere replicati nel bucket di destinazione.
+
+Per capire cosa succede quando un client S3 elimina oggetti da un bucket con la replica cross-grid abilitata, guarda come i client S3 eliminano oggetti dai bucket con il versioning abilitato, come segue:
+
+* Se un client S3 invia una richiesta di eliminazione che include un ID di versione, quella versione dell'oggetto viene rimossa definitivamente. Non viene aggiunto alcun delete marker al bucket.
+* Se un client S3 invia una richiesta di eliminazione che non include un ID versione, StorageGRID non elimina alcuna versione dell'oggetto. Al contrario, aggiunge un indicatore di eliminazione al bucket. L'indicatore di eliminazione fa sì che StorageGRID si comporti come se l'oggetto fosse stato eliminato:
++
+** Una richiesta GetObject senza un ID versione fallisce con `404 No Object Found`
+** Una richiesta GetObject con un ID di versione valido ha esito positivo e restituisce la versione dell'oggetto richiesto.
+
+
+
+
+${post_edited_translations.segment}
+
+* Se la richiesta di eliminazione include un ID di versione, quella versione dell'oggetto viene rimossa definitivamente dalla grid di origine. Tuttavia, StorageGRID non replica le richieste di eliminazione che includono un ID di versione, quindi la stessa versione dell'oggetto non viene eliminata dalla destinazione.
+* ${post_edited_translations.segment}
++
+** Se scegli di replicare i marcatori di eliminazione (impostazione predefinita), un marcatore di eliminazione viene aggiunto al bucket di origine e replicato al bucket di destinazione. In pratica, l'oggetto risulta eliminato su entrambe le griglie.
+** Se scegli di non replicare i marcatori di eliminazione, un marcatore di eliminazione viene aggiunto al bucket di origine ma non viene replicato nel bucket di destinazione. In pratica, gli oggetti eliminati nella grid di origine non vengono eliminati nella grid di destinazione.
+
+
+
+
+Nella figura, *Replica marcatori di eliminazione* è stato impostato su *Sì* quando link:../tenant/grid-federation-manage-cross-grid-replication.html["la replica cross-grid è stata abilitata"]. Le richieste di eliminazione per il bucket di origine che includono un ID di versione non eliminano oggetti dal bucket di destinazione. Le richieste di eliminazione per il bucket di origine che non includono un ID di versione sembrano eliminare oggetti nel bucket di destinazione.
+
+image:grid-federation-cross-grid-replication-delete.png["immagine che mostra la replica dell'eliminazione del client su entrambe le griglie"]
+
+
+NOTE: Se vuoi mantenere sincronizzate le eliminazioni degli oggetti tra le griglie, crea i corrispondenti link:../s3/create-s3-lifecycle-configuration.html["Configurazioni del ciclo di vita S3"] per i bucket su entrambe le griglie.
+
+
+
+[[how-encrypted-objects-are-replicated]]
+=== Come vengono replicati gli oggetti crittografati
+
+Quando usi la replica cross-grid per replicare oggetti tra griglie, puoi crittografare singoli oggetti, usare la crittografia predefinita del bucket o configurare la crittografia a livello di griglia. Puoi aggiungere, modificare o rimuovere le impostazioni di crittografia predefinite del bucket o a livello di griglia prima o dopo aver abilitato la replica cross-grid per un bucket.
+
+Per crittografare i singoli oggetti, puoi usare SSE (crittografia lato server con chiavi gestite da StorageGRID) quando aggiungi gli oggetti al bucket di origine. Usa l' `x-amz-server-side-encryption`intestazione della richiesta e specifica  `AES256`. Vedi link:../s3/using-server-side-encryption.html["${post_edited_translations.segment}"].
+
+
+NOTE: L'utilizzo di SSE-C (crittografia lato server con chiavi fornite dal cliente) non è supportato per la replica tra griglie. L'operazione di ingest fallirà.
+
+Per utilizzare la crittografia predefinita per un bucket, usa una richiesta PutBucketEncryption e imposta il parametro  `SSEAlgorithm` su  `AES256`. La crittografia a livello di bucket si applica a qualsiasi oggetto inserito senza l'intestazione della richiesta  `x-amz-server-side-encryption`. Vedi link:../s3/operations-on-buckets.html["Operazioni sui bucket"].
+
+Per utilizzare la crittografia a livello di griglia, imposta l'opzione *Crittografia degli oggetti memorizzati* su *AES-256*. La crittografia a livello di griglia si applica a tutti gli oggetti che non sono crittografati a livello di bucket o che vengono acquisiti senza l'intestazione della richiesta  `x-amz-server-side-encryption`. Vedi link:../admin/changing-network-options-object-encryption.html["Configura le opzioni di rete e oggetto"].
+
+
+NOTE: SSE non supporta AES-128. Se l'opzione *Crittografia degli oggetti memorizzati* è abilitata per la grid di origine utilizzando l'opzione *AES-128*, l'uso dell'algoritmo AES-128 non viene propagato all'oggetto replicato. Invece, l'oggetto replicato utilizza l'impostazione di crittografia predefinita a livello di bucket o di grid della destinazione, se disponibile.
+
+Quando decidi come crittografare gli oggetti sorgente, StorageGRID applica queste regole:
+
+. Usa l' `x-amz-server-side-encryption`intestazione di ingestione, se presente.
+. ${post_edited_translations.segment}
+. ${post_edited_translations.segment}
+. ${post_edited_translations.segment}
+
+
+Quando decidi come crittografare gli oggetti replicati, StorageGRID applica queste regole in questo ordine:
+
+. Usa la stessa crittografia dell'oggetto sorgente, a meno che quell'oggetto non usi la crittografia AES-128.
+. ${post_edited_translations.segment}
+. ${post_edited_translations.segment}
+. Se non è presente un'impostazione a livello di griglia, non crittografare l'oggetto di destinazione.
+
+
+
+
+[[cross-grid-replication-with-s3-object-lock]]
+[[cgr-with-ol]]
+=== ${post_edited_translations.segment}
+
+${post_edited_translations.segment}
+
+[cols="1a,1a"]
+|===
+| Quando il blocco oggetto S3 sul bucket di origine è... | ${post_edited_translations.segment} 
+
+
+ a| 
+Abilitato
+ a| 
+Abilitato
+
+
+
+ a| 
+Disattivato
+ a| 
+Abilitato
+
+|===
+Quando il blocco degli oggetti S3 sul bucket di origine è abilitato:
+
+* ${post_edited_translations.segment}
++
+.. ${post_edited_translations.segment}
++
+`x-amz-object-lock-mode`
+
++
+`x-amz-object-lock-retain-until-date`
+
+.. Il periodo di conservazione predefinito del bucket di origine, se impostato.
+.. Il periodo di conservazione predefinito del bucket di destinazione, se impostato.
+
+
++
+Le impostazioni di conservazione predefinite del bucket di destinazione non sovrascrivono le impostazioni di conservazione replicate dall'oggetto di origine.
+
+* Puoi impostare lo stato di blocco legale per l'oggetto di destinazione usando  `x-amz-object-lock-legal-hold` durante il caricamento dell'oggetto.
+* Si verifica un errore se il tenant o il bucket di destinazione non supporta le impostazioni di S3 Object Lock dell'oggetto di origine. Fai riferimento a link:../admin/grid-federation-troubleshoot.html#cross-grid-replication-alerts-and-errors["Avvisi ed errori relativi alla replica tra griglie."]
+
+
+${post_edited_translations.segment}
+
+* ${post_edited_translations.segment}
+* L'oggetto di destinazione non può impostare uno stato di blocco legale.
+
+
+
+
+[[putobjecttagging-and-deleteobjecttagging-arent-supported]]
+=== PutObjectTagging e DeleteObjectTagging non sono supportati
+
+Le richieste PutObjectTagging e DeleteObjectTagging non sono supportate per gli oggetti nei bucket che hanno la replica cross-grid abilitata.
+
+Se un client S3 invia una richiesta PutObjectTagging o DeleteObjectTagging, viene restituito `501 Not Implemented`. Il messaggio è `Put(Delete) ObjectTagging isn't available for buckets that have cross-grid replication configured`.
+
+
+
+[[putobjectretention-and-putobjectlegalhold-arent-supported]]
+=== PutObjectRetention e PutObjectLegalHold non sono supportati
+
+PutObjectRetention e PutObjectLegalHold non sono completamente supportate per gli oggetti nei bucket per cui è abilitata la replica cross-grid.
+
+Se un client S3 invia una richiesta PutObjectRetention o PutObjectLegalHold, le impostazioni dell'oggetto di origine vengono modificate, ma le modifiche non vengono applicate alla destinazione.
+
+
+
+[[how-segmented-objects-are-replicated]]
+=== ${post_edited_translations.segment}
+
+La dimensione massima del segmento della grid di origine si applica agli oggetti replicati nella grid di destinazione. Quando gli oggetti vengono replicati in un'altra grid, l'impostazione *Dimensione massima del segmento* (*Configurazione* > *Sistema* > *Opzioni di storage*) della grid di origine viene utilizzata su entrambe le grid. Ad esempio, supponiamo che la dimensione massima del segmento per la grid di origine sia 1 GB, mentre la dimensione massima del segmento della grid di destinazione sia 50 MB. Se importi un oggetto da 2 GB nella grid di origine, quell'oggetto viene salvato come due segmenti da 1 GB. Viene anche replicato nella grid di destinazione come due segmenti da 1 GB, anche se la dimensione massima del segmento di quella grid è 50 MB.

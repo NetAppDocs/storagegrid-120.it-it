@@ -1,0 +1,148 @@
+---
+permalink: s3/consistency.html 
+sidebar: sidebar 
+keywords: consistency, consistency control, consistency values 
+summary: La coerenza garantisce un equilibrio tra la disponibilità degli oggetti e la coerenza di quegli oggetti tra i diversi Storage Node e siti. Puoi modificare la coerenza come richiesto dalla tua applicazione. 
+---
+= Come StorageGRID S3 REST API bilancia disponibilità e coerenza
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La coerenza garantisce un equilibrio tra la disponibilità degli oggetti e la coerenza di quegli oggetti tra i diversi Storage Node e siti. Puoi modificare la coerenza come richiesto dalla tua applicazione.
+
+Per impostazione predefinita, StorageGRID garantisce la coerenza di lettura dopo la scrittura per gli oggetti appena creati. Qualsiasi operazione GET successiva a una PUT completata con successo potrà leggere i dati appena scritti. Le sovrascritture di oggetti esistenti, gli aggiornamenti dei metadati e le eliminazioni sono eventualmente coerenti.
+
+Se vuoi eseguire operazioni sugli oggetti con una consistenza diversa, puoi:
+
+* Specifica una coerenza per <<bucket-consistency,ogni bucket>>.
+* Specifica una coerenza per <<api-operation-consistency-control,ogni operazione API>>.
+* Modifica la coerenza predefinita dell'intera griglia eseguendo una delle seguenti operazioni:
++
+** In Grid Manager, vai a *Configurazione* > *Sistema* > *Impostazioni di archiviazione* > *Coerenza predefinita del bucket*.
+** .
++
+
+NOTE: Una modifica alla coerenza a livello di griglia si applica solo ai bucket creati dopo la modifica dell'impostazione. Per vedere i dettagli di una modifica, guarda il registro di controllo che si trova su  `/var/local/log` (cerca *consistencyLevel*).
+
+
+
+
+
+
+
+[[consistency-values]]
+== Valori di coerenza
+
+La coerenza influisce su come i metadati che StorageGRID utilizza per tracciare gli oggetti vengono distribuiti tra i nodi. La coerenza influisce sulla disponibilità degli oggetti per le richieste dei client.
+
+Puoi impostare la coerenza per un bucket o un'operazione API su uno dei seguenti valori:
+
+* *Tutti*: Tutti i nodi ricevono immediatamente i metadati dell'oggetto oppure la richiesta fallirà.
+* *Strong-global*: Garantisce la coerenza read-after-write per tutte le richieste client su tutti i siti. Quando la semantica del quorum è configurata, si applicano i seguenti comportamenti:
++
+** Consente la tolleranza ai guasti del sito per le richieste dei client quando le griglie hanno tre o più siti. Le griglie con due siti non avranno la tolleranza ai guasti del sito.
+** Le seguenti operazioni S3 non andranno a buon fine se un sito non è disponibile:
++
+*** DeleteBucketEncryption
+*** PutBucketBranch
+*** PutBucketEncryption
+*** PutBucketVersioning
+*** PutObjectLegalHold
+*** PutObjectLockConfiguration
+*** PutObjectRetention
+
+
+
+
++
+Se necessario, puoi  https://kb.netapp.com/hybrid/StorageGRID/Object_Mgmt/Configuring_StorageGRID_quorum_semantics_for_strong-global_consistency["Configura la semantica del quorum di StorageGRID per una strong-global consistency"^].
+
+* *Strong-site*: i metadati degli oggetti vengono distribuiti immediatamente agli altri nodi del sito. Garantisce la coerenza read-after-write per tutte le richieste dei client all'interno di un sito.
+* *Read-after-new-write*: Garantisce la coerenza read-after-write per i nuovi oggetti e la coerenza finale per gli aggiornamenti degli oggetti. Offre elevata disponibilità e garanzie di protezione dei dati. Consigliato nella maggior parte dei casi.
+* *Disponibile*: Fornisce coerenza finale sia per i nuovi oggetti che per gli aggiornamenti degli oggetti. Per i bucket S3, usalo solo se necessario (ad esempio, per un bucket che contiene valori di log che vengono letti raramente o per operazioni HEAD o GET su chiavi che non esistono). Non supportato per i bucket S3 FabricPool.
+
+
+
+
+[[use-read-after-new-write-and-available-consistency]]
+== Usa la coerenza "Read-after-new-write" e "Available"
+
+Quando un'operazione HEAD o GET utilizza la coerenza "Read-after-new-write", StorageGRID esegue la ricerca in più passaggi, come segue:
+
+* Per prima cosa cerca l'oggetto utilizzando una consistenza bassa.
+* Se la ricerca fallisce, la ripeti al valore di coerenza successivo finché non raggiungi una coerenza equivalente al comportamento per strong-global.
+
+
+Se un'operazione HEAD o GET utilizza la coerenza "Read-after-new-write" ma l'oggetto non esiste, la ricerca dell'oggetto raggiungerà sempre una coerenza equivalente al comportamento per strong-global. Poiché questa coerenza richiede che più copie dei metadati dell'oggetto siano disponibili in ogni sito, puoi ricevere un numero elevato di errori 500 Internal Server se due o più Storage Node nello stesso sito non sono disponibili.
+
+A meno che tu non abbia bisogno di garanzie di coerenza simili a quelle di Amazon S3, puoi prevenire questi errori per le operazioni HEAD e GET impostando la coerenza su "Disponibile". Quando un'operazione HEAD o GET utilizza la coerenza "Disponibile", StorageGRID fornisce solo coerenza eventuale. Non riprova un'operazione non riuscita con coerenza crescente, quindi non richiede che siano disponibili più copie dei metadati dell'oggetto.
+
+
+
+[[api-operation-consistency-controlspecify-consistency-for-api-operation]]
+== [[api-operation-consistency-control]]Specifica la coerenza per l'operazione API
+
+Per impostare la coerenza per una singola operazione API, i valori di coerenza devono essere supportati per l'operazione e devi specificare la coerenza nell'intestazione della richiesta. Questo esempio imposta la coerenza su "Strong-site" per un'operazione GetObject.
+
+[listing, subs="specialcharacters,quotes"]
+----
+GET /bucket/object HTTP/1.1
+Date: date
+Authorization: _authorization name_
+Host: _host_
+Consistency-Control: strong-site
+----
+
+NOTE: Devi usare la stessa coerenza sia per le operazioni PutObject che GetObject.
+
+
+
+[[bucket-consistencyspecify-consistency-for-bucket]]
+== [[bucket-consistency]]Specifica la coerenza per il bucket
+
+Per impostare la coerenza per un bucket, puoi usare la richiesta link:put-bucket-consistency-request.html["Coerenza PUT Bucket"] StorageGRID. Oppure puoi farlo link:../tenant/manage-bucket-consistency.html#change-bucket-consistency["cambiare la consistenza di un bucket"] dal Tenant Manager.
+
+Quando imposti la consistenza di un bucket, tieni presente quanto segue:
+
+* L'impostazione della coerenza per un bucket determina quale coerenza viene utilizzata per le operazioni S3 eseguite sugli oggetti nel bucket o sulla configurazione del bucket. Non influisce sulle operazioni sul bucket stesso.
+* La coerenza per una singola operazione API ha la precedenza sulla coerenza per il bucket.
+* In generale, i bucket dovrebbero utilizzare la coerenza predefinita, "Read-after-new-write". Se le richieste non funzionano correttamente, modifica il comportamento del client dell'applicazione se possibile. Oppure configura il client per specificare la coerenza per ogni richiesta API. Imposta la coerenza a livello di bucket solo come ultima risorsa.
+
+
+
+
+[[how-consistency-and-ilm-rules-interacthow-consistency-and-ilm-rules-interact-to-affect-data-protection]]
+== [[how-consistency-and-ILM-rules-interact]]Come interagiscono le regole di coerenza e ILM per influenzare la protezione dei dati
+
+Sia la scelta del livello di coerenza che la regola ILM influiscono sulla modalità di protezione degli oggetti. Queste impostazioni possono interagire.
+
+Ad esempio, il livello di coerenza utilizzato durante la memorizzazione di un oggetto influisce sul posizionamento iniziale dei metadati dell'oggetto, mentre il comportamento di acquisizione selezionato per la regola ILM influisce sul posizionamento iniziale delle copie dell'oggetto. Poiché StorageGRID richiede l'accesso sia ai metadati che ai dati di un oggetto per soddisfare le richieste dei client, la selezione di livelli di protezione corrispondenti per la coerenza e il comportamento di acquisizione può offrire una migliore protezione iniziale dei dati e risposte di sistema più prevedibili.
+
+Le seguenti link:../ilm/data-protection-options-for-ingest.html["opzioni di ingest"] sono disponibili per le regole ILM:
+
+Commit doppio:: StorageGRID crea immediatamente copie provvisorie dell'oggetto e restituisce successo al client. Le copie specificate nella regola ILM vengono create quando possibile.
+Rigoroso:: Tutte le copie specificate nella regola ILM devono essere effettuate prima che il successo venga restituito al client.
+Equilibrato:: StorageGRID tenta di creare tutte le copie specificate nella regola ILM al momento dell'acquisizione; se ciò non è possibile, vengono create copie intermedie e il client riceve una conferma di successo. Le copie specificate nella regola ILM vengono create quando possibile.
+
+
+
+
+[[example-of-how-the-consistency-and-ilm-rule-can-interact]]
+== Esempio di come la coerenza e la regola ILM possono interagire
+
+Supponiamo che tu abbia una griglia a tre siti con la seguente regola ILM e la seguente coerenza:
+
+* *Regola ILM*: Crea tre copie dell'oggetto, una nel sito locale e una in ciascun sito remoto. Usa il comportamento di acquisizione rigoroso.
+* *Coerenza*: Forte-globale (i metadati degli oggetti vengono distribuiti immediatamente a più siti).
+
+
+Quando un client memorizza un oggetto nella griglia, StorageGRID crea tutte e tre le copie dell'oggetto e distribuisce i metadati a più siti prima di restituire conferma al client.
+
+L'oggetto è completamente protetto dalla perdita al momento della ricezione del messaggio di avvenuta acquisizione. Ad esempio, se il sito locale viene perso poco dopo l'acquisizione, copie sia dei dati dell'oggetto che dei metadati dell'oggetto esistono comunque nei siti remoti. L'oggetto è completamente recuperabile dagli altri siti.
+
+Se invece usi la stessa regola ILM e la coerenza strong-site, il client potrebbe ricevere un messaggio di successo dopo che i dati dell'oggetto sono stati replicati nei siti remoti, ma prima che i metadati dell'oggetto vengano distribuiti lì. In questo caso, il livello di protezione dei metadati dell'oggetto non corrisponde al livello di protezione dei dati dell'oggetto. Se il sito locale viene perso poco dopo l'ingestione, i metadati dell'oggetto vengono persi. L'oggetto non può essere recuperato.
+
+La relazione tra coerenza e regole ILM può essere complessa. Contatta NetApp se hai bisogno di assistenza.

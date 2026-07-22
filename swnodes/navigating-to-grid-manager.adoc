@@ -1,0 +1,52 @@
+---
+permalink: swnodes/navigating-to-grid-manager.html 
+sidebar: sidebar 
+keywords: how to navigate to Grid Manager 
+summary: Usi Grid Manager per definire tutte le informazioni necessarie per configurare il tuo sistema StorageGRID. 
+---
+= Accedi a StorageGRID Grid Manager
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Usi Grid Manager per definire tutte le informazioni necessarie per configurare il tuo sistema StorageGRID.
+
+.Prima di iniziare
+Il nodo di amministrazione primario deve essere distribuito e aver completato la sequenza di avvio iniziale.
+
+.Passaggi
+. Apri il tuo browser web e vai a:
++
+`https://_primary_admin_node_ip_`
+
++
+In alternativa, puoi accedere al Grid Manager sulla porta 8443:
+
++
+`https://_primary_admin_node_ip_:8443`
+
++
+Puoi usare l'indirizzo IP del nodo Admin primario sulla Grid Network o sulla Admin Network, a seconda della configurazione di rete. Potresti dover usare l'opzione sicurezza/avanzate del browser per navigare verso un certificato non attendibile.
+
+. Gestisci una password di installazione temporanea all'occorrenza:
++
+** Se hai già impostato una password utilizzando uno di questi metodi, inseriscila per procedere.
++
+*** Un utente ha impostato la password durante l'accesso al programma di installazione in precedenza
+*** Per Linux, la password è stata importata automaticamente dal file di configurazione del nodo a `/etc/storagegrid/nodes/_<node_name>_.conf`
+*** Per VMware, la password SSH/console è stata importata automaticamente dalle proprietà OVF
+
+
+** Se non hai impostato una password, puoi impostarne una per proteggere l'installer di StorageGRID.
+
+
+. Seleziona *Installa un sistema StorageGRID*.
++
+Viene visualizzata la pagina utilizzata per configurare una grid StorageGRID.
+
++
+image:gmi_installer_first_screen.gif["Schermata iniziale dell'installer di StorageGRID"]
+
+

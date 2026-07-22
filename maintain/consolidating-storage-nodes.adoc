@@ -1,0 +1,23 @@
+---
+permalink: maintain/consolidating-storage-nodes.html 
+sidebar: sidebar 
+keywords: storagegrid, storage node, consolidate storage node, consolidating storage node 
+summary: Puoi consolidare i nodi di archiviazione per ridurre il numero di nodi di archiviazione per un sito o una distribuzione, aumentando allo stesso tempo la capacità di archiviazione. 
+---
+= Consolida i nodi di archiviazione StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi consolidare i nodi di archiviazione per ridurre il numero di nodi di archiviazione per un sito o una distribuzione, aumentando allo stesso tempo la capacità di archiviazione.
+
+Quando consolidi i nodi di archiviazione, link:../expand/index.html["espandi il sistema StorageGRID"]aggiungi nuovi nodi di archiviazione con capacità maggiore e poi decommissioni quelli vecchi con capacità inferiore. Durante la procedura di decommission, gli oggetti vengono migrati dai vecchi nodi di archiviazione ai nuovi.
+
+
+NOTE: Se stai consolidando appliance più vecchi e più piccoli con nuovi modelli o appliance di maggiore capacità, valuta  https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/how-appliance-node-cloning-works.html["clonazione del nodo dell'appliance"^] (oppure usa la clonazione del nodo dell'appliance e la procedura di decommission se non stai effettuando una sostituzione uno a uno).
+
+Ad esempio, potresti aggiungere due nuovi Storage Node con capacità maggiore per sostituire tre Storage Node più vecchi. Per prima cosa dovresti usare la procedura di espansione per aggiungere i due nuovi Storage Node più grandi, poi usare la procedura di decommission per rimuovere i tre vecchi Storage Node con capacità inferiore.
+
+Aggiungendo nuova capacità prima di rimuovere i nodi di archiviazione esistenti, garantisci una distribuzione più equilibrata dei dati all'interno del sistema StorageGRID. Riduci anche la possibilità che un nodo di archiviazione esistente venga spinto oltre il livello di watermark di storage.

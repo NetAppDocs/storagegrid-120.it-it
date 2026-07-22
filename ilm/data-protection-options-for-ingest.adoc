@@ -1,0 +1,63 @@
+---
+permalink: ilm/data-protection-options-for-ingest.html 
+sidebar: sidebar 
+keywords: ingest options, balanced ingest, strict ingest, dual-commit ingest 
+summary: Quando crei una regola ILM, puoi proteggere gli oggetti in fase di acquisizione specificando Dual commit, Strict o Balanced. 
+---
+= Opzioni di ingestione ILM in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Quando crei una regola ILM, specifichi una delle tre opzioni per proteggere gli oggetti in fase di acquisizione: Dual commit, Strict o Balanced.
+
+A seconda della tua scelta, StorageGRID crea copie provvisorie e mette in coda gli oggetti per una successiva valutazione ILM, oppure utilizza il posizionamento sincrono e crea immediatamente le copie per soddisfare i requisiti ILM.
+
+
+
+[[flowchart-of-ingest-options]]
+== Diagramma di flusso delle opzioni di ingestione
+
+Il diagramma di flusso mostra cosa accade quando gli oggetti vengono abbinati da una regola ILM che utilizza ciascuna delle tre opzioni di acquisizione.
+
+image:ingest_object_lifecycle.png["Diagramma che mostra come avviene l'ingestione degli oggetti per ciascuna opzione di ingestione"]
+
+
+
+[[dual-commit]]
+== Commit doppio
+
+Quando selezioni l'opzione Dual commit, StorageGRID crea immediatamente copie provvisorie dell'oggetto su due diversi Storage Node e restituisce al client un messaggio di "ingest successful". L'oggetto viene messo in coda per la valutazione ILM e le copie che rispettano le istruzioni di posizionamento della regola vengono create successivamente. Se la policy ILM non può essere elaborata immediatamente dopo il dual commit, la protezione dalla perdita del sito potrebbe richiedere tempo per essere raggiunta.
+
+Usa l'opzione Dual commit in entrambi questi casi:
+
+* Stai usando regole ILM multi-sito e la latenza di ingest dei client è la tua considerazione principale. Quando usi il Dual commit, devi assicurarti che la tua grid possa eseguire il lavoro aggiuntivo di creazione e rimozione delle copie dual-commit se queste non soddisfano l'ILM. Nello specifico:
++
+** Il carico sulla grid deve essere sufficientemente basso da evitare un accumulo di ILM.
+** La griglia deve disporre di risorse hardware in eccesso (IOPS, CPU, memoria, larghezza di banda di rete e così via).
+
+
+* Stai usando regole ILM multi-sito e la connessione WAN tra i siti di solito ha elevata latenza o larghezza di banda limitata. In questo scenario, usare l'opzione Dual commit può aiutare a prevenire i timeout del client. Prima di scegliere l'opzione Dual commit, dovresti testare l'applicazione client con carichi di lavoro realistici.
+
+
+
+
+[[balanced-default]]
+== Bilanciato (impostazione predefinita)
+
+Quando selezioni l'opzione Bilanciata, StorageGRID utilizza anche il posizionamento sincrono durante l'ingest e crea immediatamente tutte le copie specificate nelle istruzioni di posizionamento della regola. A differenza dell'opzione Rigorosa, se StorageGRID non può creare immediatamente tutte le copie, utilizza invece Dual commit. Se la policy ILM utilizza posizionamenti su più siti e non è possibile ottenere una protezione immediata dalla perdita del sito, viene attivato l'avviso *ILM placement unachievable*.
+
+Usa l'opzione Balanced per ottenere la migliore combinazione di protezione dei dati, prestazioni della grid e successo dell'ingest. Balanced è l'opzione predefinita nella procedura guidata di creazione delle regole ILM.
+
+
+
+[[strict]]
+== Rigoroso
+
+Quando selezioni l'opzione Rigorosa, StorageGRID utilizza il posizionamento sincrono durante l'ingest e crea immediatamente tutte le copie degli oggetti specificate nelle istruzioni di posizionamento della regola. L'ingest non riesce se StorageGRID non può creare tutte le copie, ad esempio perché una posizione di storage richiesta non è temporaneamente disponibile. Devi riprovare l'operazione dal client.
+
+Utilizza l'opzione Rigorosa se hai un requisito operativo o normativo che ti impone di archiviare immediatamente gli oggetti solo nelle posizioni indicate nella regola ILM. Ad esempio, per soddisfare un requisito normativo, potresti dover utilizzare l'opzione Rigorosa e un filtro avanzato Location Constraint per garantire che gli oggetti non vengano mai archiviati in determinati data center.
+
+Vedi link:example-5-ilm-rules-and-policy-for-strict-ingest-behavior.html["Esempio 5: Regole e policy ILM per Strict ingest behavior"].

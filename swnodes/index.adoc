@@ -1,0 +1,86 @@
+---
+permalink: swnodes/index.html 
+sidebar: sidebar 
+keywords: about ubuntu, ubuntu overview, vnware, red hat enterprise linux, rhel, quick start 
+summary: Segui questi high-level passaggi per installare un nodo StorageGRID Linux o VMware. 
+---
+= Guida rapida per installare StorageGRID su un nodo basato su software
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Segui questi high-level passaggi per installare un nodo StorageGRID Linux o VMware.
+
+
+NOTE: "Linux" si riferisce a un'installazione di RHEL, Ubuntu o Debian. Per un elenco delle versioni supportate, vedi  https://imt.netapp.com/matrix/#welcome["NetApp Interoperability Matrix Tool (IMT)"^].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Uno"]Preparazione
+[role="quick-margin-list"]
+* Scopri di più link:../primer/storagegrid-architecture-and-network-topology.html["Architettura e topologia di rete di StorageGRID"].
+* Scopri i dettagli di link:../network/index.html["Networking StorageGRID"].
+* Raccogli e prepara il link:required-materials.html["Informazioni e materiali necessari"].
+* (Solo VMware) Installa e configura link:software-requirements.html["VMware vSphere Hypervisor, vCenter e gli host ESX"].
+* Prepara il necessario link:cpu-and-ram-requirements.html["CPU e RAM"].
+* Prevedi link:storage-and-performance-requirements.html["requisiti di archiviazione e prestazioni"].
+* (Solo Linux) link:how-host-wide-settings-change.html["Prepara i server Linux"] che ospiterà i tuoi nodi StorageGRID.
+
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Due"] Distribuzione
+[role="quick-margin-para"]
+Distribuisci i nodi della griglia. Quando distribuisci i nodi della griglia, vengono creati come parte del sistema StorageGRID e connessi a una o più reti.
+
+[role="quick-margin-list"]
+* (Solo Linux) Per distribuire nodi di griglia basati su software sugli host che hai preparato nel passaggio 1, usa la riga di comando Linux e link:creating-node-configuration-files.html["file di configurazione del nodo"].
+* (Solo VMware) Usa il VMware vSphere Web Client, un file .vmdk e una serie di modelli di file .ovf per link:collecting-information-about-your-deployment-environment.html["distribuisci i nodi basati su software come macchine virtuali (VM)"] sui server che hai preparato nel passaggio 1.
+* Per distribuire i nodi dell'appliance StorageGRID, segui le  https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/index.html["Guida rapida all'installazione dell'hardware"^].
+
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Tre"] Configurazione
+[role="quick-margin-para"]
+Quando tutti i nodi sono stati distribuiti, utilizzare Grid Manager per link:navigating-to-grid-manager.html["configura la griglia e completa l'installazione"].
+
+
+
+[[automate-the-installation]]
+== Automatizza l'installazione
+
+
+NOTE: "Linux" si riferisce a un'installazione di RHEL, Ubuntu o Debian. Per un elenco delle versioni supportate, vedi  https://imt.netapp.com/matrix/#welcome["NetApp Interoperability Matrix Tool (IMT)"^].
+
+[role="tabbed-block"]
+====
+.Linux
+--
+Per risparmiare tempo e garantire uniformità, puoi automatizzare l'installazione del servizio host StorageGRID e la configurazione dei nodi della griglia.
+
+* Utilizza un framework di orchestrazione standard come Ansible, Puppet o Chef per automatizzare:
++
+** Installazione di Linux
+** Configurazione di rete e storage
+** Installazione del motore dei container e del servizio host StorageGRID
+** Distribuzione di nodi di grid virtuali
+
+
++
+Vedi link:automating-installation-linux.html#automate-the-installation-and-configuration-of-the-storagegrid-host-service["Automatizza l'installazione e la configurazione del servizio host StorageGRID"].
+
+* Dopo aver distribuito i nodi della griglia, link:automating-installation-linux.html#automate-the-configuration-of-storagegrid["automatizzare la configurazione del sistema StorageGRID"] usando lo script di configurazione Python fornito nell'archivio di installazione.
+* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/automating-appliance-installation-and-configuration.html["Automatizza l'installazione e la configurazione dei nodi della grid appliance"^]
+* Se sei uno sviluppatore avanzato di StorageGRID, automatizza l'installazione dei nodi della griglia utilizzando il link:overview-of-installation-rest-api.html["API REST di installazione"].
+
+
+--
+.VMware
+--
+Per risparmiare tempo e garantire uniformità, puoi automatizzare la distribuzione e la configurazione dei nodi della griglia e la configurazione del sistema StorageGRID.
+
+* link:automating-grid-node-deployment-in-vmware-vsphere.html#automate-grid-node-deployment["Automatizza la distribuzione dei nodi della griglia utilizzando VMware vSphere"].
+* Dopo aver distribuito i nodi della griglia, link:automating-grid-node-deployment-in-vmware-vsphere.html#automate-the-configuration-of-storagegrid["automatizzare la configurazione del sistema StorageGRID"] usando lo script di configurazione Python fornito nell'archivio di installazione.
+* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/automating-appliance-installation-and-configuration.html["Automatizza l'installazione e la configurazione dei nodi della grid appliance"^]
+* Se sei uno sviluppatore avanzato di StorageGRID, automatizza l'installazione dei nodi della griglia utilizzando il link:overview-of-installation-rest-api.html["API REST di installazione"].
+
+
+--
+====

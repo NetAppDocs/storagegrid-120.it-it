@@ -1,0 +1,57 @@
+---
+permalink: tenant/use-s3-console.html 
+sidebar: sidebar 
+keywords: how to use s3 console 
+summary: Puoi usare la console S3 per visualizzare e gestire gli oggetti in un bucket S3. 
+---
+= Usa la console S3 in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi usare la console S3 per visualizzare e gestire gli oggetti in un bucket S3.
+
+S3 Console ti permette di:
+
+* Caricare, scaricare, rinominare, copiare, spostare ed eliminare oggetti
+* Visualizza, ripristina, scarica ed elimina le versioni degli oggetti
+* Cerca oggetti tramite prefisso
+* Gestisci i tag degli oggetti
+* Visualizza metadati oggetto
+* Visualizza, crea, rinomina, copia, sposta ed elimina cartelle
+
+
+[NOTE]
+====
+La console S3 offre un'esperienza utente migliorata per i casi più comuni. Non è pensata per sostituire le operazioni tramite CLI o API in tutte le situazioni.
+
+Se usi S3 Console e le operazioni richiedono troppo tempo (ad esempio minuti o ore), considera:
+
+* Ridurre il numero di oggetti selezionati
+* Utilizzo di metodi non grafici (API o CLI) per accedere ai tuoi dati
+
+
+====
+.Prima di iniziare
+* Hai effettuato l'accesso al Tenant Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Se vuoi gestire gli oggetti, devi appartenere a un gruppo di utenti con l'autorizzazione di accesso Root. In alternativa, appartieni a un gruppo di utenti con l'autorizzazione "Usa la scheda Console S3" e l'autorizzazione "Visualizza tutti i bucket" oppure "Gestisci tutti i bucket". Vedi link:tenant-management-permissions.html["Autorizzazioni per la gestione dei tenant"].
+* È stata configurata una policy S3 Group o Bucket per l'utente. Vedi link:../s3/use-access-policies.html["Usa le policy di accesso per bucket e gruppi"].
+* Conosci l'ID della chiave di accesso dell'utente e la chiave di accesso segreta. Facoltativamente, hai un `.csv` file contenente queste informazioni. Vedi il link:creating-your-own-s3-access-keys.html["istruzioni per la creazione di chiavi di accesso"].
+
+
+.Passaggi
+. Seleziona *Storage* > *Buckets* > *_bucket name_*.
+. Seleziona la scheda Console S3.
+. Incolla l'ID della chiave di accesso e la chiave di accesso segreta nei campi. Altrimenti, seleziona *Carica chiavi di accesso* e seleziona il tuo  `.csv` file.
+. Seleziona *Accedi*.
+. Viene visualizzata la tabella degli oggetti bucket. Puoi gestire gli oggetti come preferisci.
+
+
+.Informazioni aggiuntive
+* *Ricerca per prefisso*: La funzione di ricerca per prefisso cerca solo oggetti che iniziano con una parola specifica relativa alla cartella corrente. La ricerca non include oggetti che contengono la parola altrove. Questa regola si applica anche agli oggetti all'interno delle cartelle. Ad esempio, una ricerca per  `folder1/folder2/somefile-` restituirebbe oggetti che si trovano all'interno della  `folder1/folder2/` cartella e che iniziano con la parola  `somefile-`.
+* *Trascina e rilascia*: Puoi trascinare e rilasciare i file dal gestore file del tuo computer alla S3 Console. Tuttavia, non puoi caricare cartelle.
+* *Operazioni sulle cartelle*: Quando sposti, copi o rinomini una cartella, tutti gli oggetti al suo interno vengono aggiornati uno alla volta, il che potrebbe richiedere tempo.
+* *Cancellazione permanente quando il versioning del bucket è disabilitato*: Quando sovrascrivi o elimini un oggetto in un bucket con il versioning disabilitato, l'operazione è permanente. Vedi link:changing-bucket-versioning.html["Modifica la gestione delle versioni degli oggetti per un bucket"].
+

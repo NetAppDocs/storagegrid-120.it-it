@@ -1,0 +1,57 @@
+---
+permalink: tenant/viewing-and-editing-group-details.html 
+sidebar: sidebar 
+keywords: how to view and edit group 
+summary: Quando visualizzi i dettagli di un gruppo, puoi modificarne il nome visualizzato, le autorizzazioni, i criteri e gli utenti che ne fanno parte. 
+---
+= Visualizza e modifica i dettagli del gruppo di tenant in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Quando visualizzi i dettagli di un gruppo, puoi modificarne il nome visualizzato, le autorizzazioni, i criteri e gli utenti che ne fanno parte.
+
+.Prima di iniziare
+* Hai effettuato l'accesso al Tenant Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Appartieni a un gruppo di utenti che dispone dell'autorizzazione di accesso Root.
+
+
+.Passaggi
+. ${post_edited_translations.segment}
+. Seleziona il nome del gruppo di cui vuoi vedere o modificare i dettagli.
++
+In alternativa, puoi selezionare *Azioni* > *Visualizza dettagli del gruppo*.
+
++
+Viene visualizzata la pagina dei dettagli del gruppo. L'esempio seguente mostra la pagina dei dettagli del gruppo S3.
+
++
+image:tenant_group_details.png["Visualizza i dettagli del gruppo"]
+
+. Apporta le modifiche necessarie alle impostazioni del gruppo.
++
+
+TIP: Per assicurarti che le modifiche vengano salvate, seleziona *Salva modifiche* dopo aver apportato modifiche in ciascuna sezione. Quando le modifiche sono state salvate, compare un messaggio di conferma nell'angolo in alto a destra della pagina.
+
++
+.. Facoltativamente, seleziona il nome visualizzato o l'icona di modifica image:icon_edit_tm.png["Icona di modifica"] per aggiornare il nome visualizzato.
++
+Non puoi cambiare il nome univoco di un gruppo. Non puoi modificare il nome visualizzato di un gruppo federato.
+
+.. Facoltativamente, aggiorna le autorizzazioni.
+.. Per le policy di gruppo, apporta le modifiche appropriate per il tuo tenant S3.
++
+*** Se stai modificando un gruppo per un tenant S3, puoi facoltativamente selezionare un criterio di gruppo S3 diverso. Se selezioni un criterio S3 personalizzato, aggiorna la stringa JSON come richiesto.
+
+
+.. Facoltativamente, aggiungi o rimuovi utenti.
+
+
+. Conferma di aver selezionato *Salva modifiche* per ogni sezione che hai modificato.
+
+
+.Informazioni correlate
+* link:creating-groups-for-s3-tenant.html["Crea gruppi per tenant S3"]
+

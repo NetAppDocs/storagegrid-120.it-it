@@ -1,0 +1,26 @@
+---
+permalink: maintain/decommission-procedure.html 
+sidebar: sidebar 
+keywords: how to decommission 
+summary: Puoi eseguire una procedura di decommission per rimuovere definitivamente i nodi della griglia o un intero sito dal sistema StorageGRID. 
+---
+= Decommissionare un nodo StorageGRID o un sito StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi eseguire una procedura di decommission per rimuovere definitivamente i nodi della griglia o un intero sito dal sistema StorageGRID.
+
+Per rimuovere un nodo della griglia o un sito, esegui una delle seguenti procedure di decommission:
+
+* Esegui un'operazione link:grid-node-decommissioning.html["decommissionare nodo grid"] per rimuovere uno o più nodi, che possono trovarsi in uno o più siti. I nodi che rimuovi possono essere online e connessi al sistema StorageGRID, oppure offline e disconnessi.
+* Esegui una link:considerations-for-removing-site.html["decommissionare sito"] per rimuovere un sito. Esegui un *connected site decommission* se tutti i nodi sono connessi a StorageGRID. Esegui un *disconnected site decommission* se tutti i nodi sono disconnessi da StorageGRID. Se il sito contiene una combinazione di nodi connessi e disconnessi, devi riportare online tutti i nodi offline.
++
+
+CAUTION: Prima di eseguire un decommission di un sito disconnesso, contatta il tuo rappresentante account NetApp. NetApp esaminerà le tue esigenze prima di abilitare tutti i passaggi nella procedura guidata Decommission Site. Non dovresti tentare un decommission di un sito disconnesso se pensi che sia possibile recuperare il sito o recuperare i dati degli oggetti dal sito.
+
+
+
+Prima di decommissionare un nodo della griglia, devi confermare che non siano attivi job di riparazione dei dati. Se qualche riparazione non è riuscita, devi riavviarla e lasciarla completare prima di eseguire la procedura di decommission. Consulta link:../maintain/checking-data-repair-jobs.html["Verifica i lavori di riparazione dei dati"].

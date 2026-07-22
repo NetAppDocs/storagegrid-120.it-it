@@ -1,0 +1,57 @@
+---
+permalink: tenant/configuring-platform-services-endpoints.html 
+sidebar: sidebar 
+keywords: how to configure platform services endpoint 
+summary: Prima di poter configurare un servizio della piattaforma per un bucket, devi configurare almeno un endpoint come destinazione per il servizio della piattaforma. 
+---
+= Configura gli endpoint dei servizi della piattaforma in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Prima di poter configurare un servizio della piattaforma per un bucket, devi configurare almeno un endpoint come destinazione per il servizio della piattaforma.
+
+L'accesso ai servizi della piattaforma è abilitato per singolo tenant da un amministratore StorageGRID. Per creare o utilizzare un endpoint dei servizi della piattaforma, devi essere un utente tenant con autorizzazione "Gestisci endpoint" o accesso Root, in una grid la cui rete è stata configurata per consentire ai nodi di Storage di accedere alle risorse degli endpoint esterni. Per un singolo tenant, puoi configurare un massimo di 500 endpoint dei servizi della piattaforma. Contatta il tuo amministratore StorageGRID per ulteriori informazioni.
+
+
+
+[[what-is-a-platform-services-endpoint]]
+== Che cos'è un endpoint dei servizi di piattaforma?
+
+Un endpoint dei servizi della piattaforma specifica le informazioni di cui StorageGRID ha bisogno per accedere alla destinazione esterna.
+
+Ad esempio, se vuoi replicare oggetti da un bucket StorageGRID a un bucket Amazon S3, devi creare un endpoint dei servizi della piattaforma che includa le informazioni e le credenziali di cui StorageGRID ha bisogno per accedere al bucket di destinazione su Amazon.
+
+Ogni tipo di servizio della piattaforma richiede un endpoint dedicato, quindi devi configurare almeno un endpoint per ogni servizio della piattaforma che vuoi usare. Dopo aver definito un endpoint per i servizi della piattaforma, usi l'URN dell'endpoint come destinazione nel file XML di configurazione usato per abilitare il servizio.
+
+Puoi usare lo stesso endpoint come destinazione per più di un bucket di origine. Ad esempio, puoi configurare diversi bucket di origine per inviare metadati degli oggetti allo stesso endpoint di integrazione della ricerca, così puoi eseguire ricerche su più bucket. Puoi anche configurare un bucket di origine per usare più di un endpoint come destinazione, il che ti permette di fare cose come inviare notifiche sulla creazione di oggetti a un topic di Amazon Simple Notification Service (Amazon SNS) e notifiche sull'eliminazione di oggetti a un secondo topic di Amazon SNS.
+
+
+
+[[endpoints-for-cloudmirror-replication]]
+== Endpoint per la replica CloudMirror
+
+StorageGRID supporta endpoint di replica che rappresentano bucket S3. Questi bucket possono essere ospitati su Amazon Web Services, sulla stessa implementazione di StorageGRID, su un'implementazione remota o su un altro servizio.
+
+
+
+[[endpoints-for-notifications]]
+== Endpoint per le notifiche
+
+StorageGRID supporta gli endpoint Amazon SNS, Kafka e webhook. Gli endpoint Simple Queue Service (SQS) e AWS Lambda non sono supportati.
+
+Per gli endpoint Kafka, il Mutual TLS non è supportato. Di conseguenza, se hai  `ssl.client.auth` impostato su  `required` nella configurazione del tuo broker Kafka, potrebbe causare problemi di configurazione dell'endpoint Kafka.
+
+
+
+[[endpoints-for-the-search-integration-service]]
+== Endpoint per il servizio di integrazione della ricerca
+
+StorageGRID supporta endpoint di integrazione di ricerca che rappresentano cluster Elasticsearch. Questi cluster Elasticsearch possono trovarsi in un data center locale, essere ospitati in un cloud AWS o altrove.
+
+L'endpoint di integrazione della ricerca fa riferimento a uno specifico indice e tipo di Elasticsearch. Devi creare l'indice in Elasticsearch prima di creare l'endpoint in StorageGRID, altrimenti la creazione dell'endpoint non riuscirà. Non serve creare il tipo prima di creare l'endpoint. StorageGRID creerà il tipo, se necessario, quando invia i metadati dell'oggetto all'endpoint.
+
+.Informazioni correlate
+link:../admin/index.html["${post_edited_translations.segment}"]

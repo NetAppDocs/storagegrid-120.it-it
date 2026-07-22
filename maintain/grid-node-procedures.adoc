@@ -1,0 +1,29 @@
+---
+permalink: maintain/grid-node-procedures.html 
+sidebar: sidebar 
+keywords: storagegrid, grid node procedure 
+summary: Potresti dover eseguire procedure di manutenzione relative a specifici nodi della griglia o servizi di nodo. 
+---
+= Procedure di manutenzione dei nodi StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Potresti dover eseguire procedure di manutenzione relative a specifici nodi della griglia o servizi di nodo.
+
+Sposta ADC:: Il link:../maintain/understanding-adc-service-quorum.html["Servizio ADC"] si trova su alcuni nodi di archiviazione. In determinate circostanze di decommission e conversione dei nodi, devi spostare il servizio ADC su un altro nodo di archiviazione nello stesso sito.
+Converti il nodo di storage in un nodo solo dati:: Puoi convertire i nodi di archiviazione che non contengono il servizio ADC in nodi di archiviazione solo dati.
+Riavvio, spegnimento e alimentazione del nodo:: Usi queste procedure per riavviare uno o più nodi, per spegnere e riavviare i nodi o per spegnere e riaccendere i nodi.
+Rimappatura delle porte:: Puoi usare le procedure di rimappatura delle porte per rimuovere le rimappature delle porte da un nodo, ad esempio se vuoi configurare un endpoint di bilanciamento del carico usando una porta che era stata precedentemente rimappata.
+Server Manager:: Server Manager viene eseguito su ogni nodo della griglia per supervisionare l'avvio e l'arresto dei servizi e per garantire che i servizi si uniscano e si disconnettano correttamente dal sistema StorageGRID. Server Manager monitora inoltre i servizi su ogni nodo della griglia e tenterà automaticamente di riavviare i servizi che segnalano errori.
++
+--
+Per eseguire le procedure di Server Manager, di solito devi accedere alla riga di comando del nodo.
+
+
+CAUTION: Dovresti accedere a Server Manager solo se il supporto tecnico te lo ha richiesto.
+
+--
+

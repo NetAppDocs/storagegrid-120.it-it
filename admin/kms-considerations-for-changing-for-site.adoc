@@ -1,0 +1,76 @@
+---
+permalink: admin/kms-considerations-for-changing-for-site.html 
+sidebar: sidebar 
+keywords: kms cluster, copy kms encryption key 
+summary: 'Ciascun server di gestione delle chiavi (KMS) o cluster KMS fornisce una chiave di crittografia a tutti i nodi appliance in un singolo sito o in un gruppo di siti. Se devi modificare il KMS utilizzato per un sito, potrebbe essere necessario copiare la chiave di crittografia da un KMS a un altro.' 
+---
+= Considerazioni sulla modifica del KMS per un sito StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Ciascun server di gestione delle chiavi (KMS) o cluster KMS fornisce una chiave di crittografia a tutti i nodi appliance in un singolo sito o in un gruppo di siti. Se devi modificare il KMS utilizzato per un sito, potrebbe essere necessario copiare la chiave di crittografia da un KMS a un altro.
+
+Se modifichi il KMS utilizzato per un sito, devi assicurarti che i nodi appliance precedentemente crittografati in quel sito possano essere decrittografati utilizzando la chiave memorizzata sul nuovo KMS. In alcuni casi, potrebbe essere necessario copiare la versione corrente della chiave di crittografia dal KMS originale al nuovo KMS. Devi assicurarti che il KMS disponga della chiave corretta per decrittografare i nodi appliance crittografati nel sito.
+
+Ad esempio:
+
+. ${post_edited_translations.segment}
+. Quando il KMS viene salvato, tutti i nodi appliance che hanno l'impostazione *Node Encryption* abilitata si connettono al KMS e richiedono la chiave di crittografia. Questa chiave viene utilizzata per crittografare i nodi appliance in tutti i siti. Questa stessa chiave deve essere utilizzata anche per decrittografare tali appliance.
++
+image:kms_default_key.png["Chiave predefinita KMS"]
+
+. Decidi di aggiungere un KMS specifico del sito per un sito (Data Center 3 nella figura). Tuttavia, poiché i nodi dell'appliance sono già crittografati, si verifica un errore di convalida quando tenti di salvare la configurazione per il KMS specifico del sito. L'errore si verifica perché il KMS specifico del sito non dispone della chiave corretta per decrittografare i nodi in quel sito.
++
+image:kms_wrong_key.png["KMS Chiave errata"]
+
+. Per risolvere il problema, copi la versione corrente della chiave di crittografia dal KMS predefinito al nuovo KMS. (Tecnicamente, copi la chiave originale in una nuova chiave con lo stesso alias. La chiave originale diventa una versione precedente della nuova chiave.) Il KMS specifico del sito ora ha la chiave corretta per decrittografare i nodi dell'appliance nel Data Center 3, quindi può essere salvata in StorageGRID.
++
+image:kms_copied_key.png["Chiave KMS copiata"]
+
+
+
+
+
+[[use-cases-for-changing-which-kms-is-used-for-a-site]]
+== Casi d'uso per cambiare quale KMS viene utilizzato per un sito
+
+La tabella riassume i passaggi necessari per i casi più comuni di modifica del KMS per un sito.
+
+[cols="1a,2a"]
+|===
+| Caso d'uso per la modifica del KMS di un sito | Passaggi necessari 
+
+
+ a| 
+Hai una o più voci KMS specifiche per il sito e vuoi usarne una come KMS predefinito.
+ a| 
+Modifica il KMS specifico del sito. Nel campo *Gestisce le chiavi per*, seleziona *Siti non gestiti da un altro KMS (KMS predefinito)*. Il KMS specifico del sito verrà ora utilizzato come KMS predefinito. Si applicherà a tutti i siti che non hanno un KMS dedicato.
+
+link:kms-editing.html["Modifica un server di gestione delle chiavi (KMS)"]
+
+
+
+ a| 
+Hai un KMS predefinito e aggiungi un nuovo sito in un'espansione. Non vuoi utilizzare il KMS predefinito per il nuovo sito.
+ a| 
+. Se i nodi dell'appliance nella nuova sede sono già stati crittografati dal KMS predefinito, usa il software KMS per copiare la versione corrente della chiave di crittografia dal KMS predefinito a un nuovo KMS.
+. Tramite Grid Manager, aggiungi il nuovo KMS e seleziona il sito.
+
+
+link:kms-adding.html["Aggiungi un server di gestione delle chiavi (KMS)"]
+
+
+
+ a| 
+Vuoi che il KMS per un sito usi un server diverso.
+ a| 
+. Se i nodi dell'appliance presenti nel sito sono già stati crittografati dal KMS esistente, usa il software KMS per copiare la versione corrente della chiave di crittografia dal KMS esistente al nuovo KMS.
+. Tramite Grid Manager, modifica la configurazione KMS esistente e inserisci il nuovo host name o indirizzo IP.
+
+
+link:kms-adding.html["Aggiungi un server di gestione delle chiavi (KMS)"]
+
+|===

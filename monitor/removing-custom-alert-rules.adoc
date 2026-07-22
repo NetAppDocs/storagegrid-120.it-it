@@ -1,0 +1,38 @@
+---
+permalink: monitor/removing-custom-alert-rules.html 
+sidebar: sidebar 
+keywords: how to disable alert rules, how to remove a custom alert rule 
+summary: Puoi rimuovere una regola di avviso personalizzata se non vuoi più usarla. 
+---
+= Rimuovi le regole di avviso personalizzate in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi rimuovere una regola di avviso personalizzata se non vuoi più usarla.
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Hai il link:../admin/admin-group-permissions.html["Gestisci gli avvisi o i permessi di accesso root"].
+
+
+.Passaggi
+. Seleziona *Avvisi* > *Regole*.
++
+Viene visualizzata la pagina Regole di avviso.
+
+. Seleziona il pulsante di opzione per la regola di avviso personalizzata che vuoi rimuovere.
++
+Non puoi rimuovere una regola di avviso predefinita.
+
+. Seleziona *Rimuovi regola personalizzata*.
++
+Viene visualizzata una finestra di dialogo di conferma.
+
+. Seleziona *OK* per rimuovere la regola di avviso.
++
+Tutte le istanze attive dell'avviso verranno risolte entro 10 minuti.
+
+

@@ -1,0 +1,127 @@
+---
+permalink: maintain/stopping-services-and-shutting-down-grid-nodes.html 
+sidebar: sidebar 
+keywords: recover, stop services, shut down nodes, node shutdown 
+summary: Prima di poter spegnere un sistema StorageGRID, devi arrestare tutti i servizi in esecuzione su ciascun nodo della griglia e poi spegnere tutte le macchine virtuali VMware, i motori di container e gli appliance StorageGRID. 
+---
+= Interrompere i servizi e arrestare i nodi StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Prima di poter spegnere un sistema StorageGRID, devi arrestare tutti i servizi in esecuzione su ciascun nodo della griglia e poi spegnere tutte le macchine virtuali VMware, i motori di container e gli appliance StorageGRID.
+
+.Informazioni su questa attività
+Interrompi prima i servizi sui nodi di amministrazione e sui nodi gateway, poi interrompi i servizi sui nodi di archiviazione.
+
+Questo approccio ti permette di usare il nodo Admin primario per monitorare lo stato degli altri nodi della griglia il più a lungo possibile.
+
+
+NOTE: Se un singolo host include più di un nodo della griglia, non spegnere l'host finché non hai arrestato tutti i nodi su quell'host. Se l'host include il nodo Admin primario, spegni quell'host per ultimo.
+
+
+NOTE: Se necessario, puoi link:linux-migrating-grid-node-to-new-host.html["migrare nodi da un host Linux a un altro"] eseguire la manutenzione dell'host senza compromettere la funzionalità o la disponibilità della tua grid.
+
+.Passaggi
+. Ferma tutte le applicazioni client dall'accedere alla griglia.
+. [[log_in_to_gn]]Accedi a ciascun nodo Gateway:
++
+.. Inserisci il seguente comando: `ssh admin@_grid_node_IP_`
+.. Inserisci la password indicata nel file  `Passwords.txt`.
+.. Inserisci il seguente comando per passare all'utente root: `su -`
+.. Inserisci la password indicata nel file  `Passwords.txt`.
++
+Quando sei connesso come root, il prompt cambia da  `$` a  `#`.
+
+
+
+. [[stop_all_services]]Interrompi tutti i servizi in esecuzione sul nodo: `service servermanager stop`
++
+I servizi possono impiegare fino a 15 minuti per spegnersi e potresti voler accedere al sistema da remoto per monitorare il processo di spegnimento.
+
+
+
+. Ripeti i due passaggi precedenti per arrestare i servizi su tutti i Storage Node e sui nodi Admin non primari.
++
+Puoi arrestare i servizi su questi nodi in qualsiasi ordine.
+
++
+
+NOTE: Se impartisci il comando  `service servermanager stop` per arrestare i servizi su un appliance Storage Node, devi spegnere e riaccendere l'appliance per riavviare il nodo.
+
+. Per il nodo amministratore primario, ripeti i passaggi per <<log_in_to_gn,accedere al nodo>> e <<stop_all_services,arresto di tutti i servizi sul nodo>>.
+. Per i nodi che sono in esecuzione su host Linux:
++
+.. Accedi al sistema operativo host.
+.. Arresta il nodo: `storagegrid node stop`
+.. Arresta il sistema operativo host.
+
+
+. Per i nodi in esecuzione su macchine virtuali VMware e per gli appliance Storage Nodes, immetti il comando di arresto: `shutdown -h now`
++
+Esegui questo passaggio indipendentemente dall'esito del comando  `service servermanager stop`.
+
++
+Per quanto riguarda l'appliance, questo comando arresta il controller di calcolo, ma l'appliance rimane accesa. Devi completare il passaggio successivo.
+
+. Se hai nodi appliance:
++
+** Per appliance di servizio o appliance SGF6112
++
+... Spegni l'alimentazione dell'apparecchio.
+... Attendi che il LED blu di alimentazione si spenga.
+
+
+** Per l'appliance SG6160
++
+... Spegni l'alimentazione dello storage controller SG6100-CN.
+... Attendi che il LED blu di alimentazione sullo storage controller SG6100-CN si spenga.
+
+
+** Per l'appliance SG6000
++
+... Attendi che il LED verde "Cache Active" sul retro degli storage controller si spenga.
++
+Questo LED si accende quando è necessario scrivere dati dalla cache sulle unità. Devi aspettare che questo LED si spenga prima di spegnere l'alimentazione.
+
+... Spegni l'apparecchio e aspetta che il LED blu di alimentazione si spenga.
+
+
+** Per l'appliance SG5800
++
+... Attendi che il LED verde "Cache Active" sul retro dello storage controller si spenga.
++
+Questo LED si accende quando è necessario scrivere dati dalla cache sulle unità. Devi aspettare che questo LED si spenga prima di spegnere l'alimentazione.
+
+... Dalla pagina iniziale di SANtricity System Manager, seleziona *Visualizza operazioni in corso*.
+... Assicurati che tutte le operazioni siano state completate prima di continuare con il passaggio successivo.
+... Spegni entrambi gli interruttori di alimentazione sul ripiano del controller e aspetta che tutti i LED sul ripiano del controller si spengano.
+
+
+** Per l'appliance SG5700
++
+... Attendi che il LED verde "Cache Active" sul retro dello storage controller si spenga.
++
+Questo LED si accende quando è necessario scrivere dati dalla cache sulle unità. Devi aspettare che questo LED si spenga prima di spegnere l'alimentazione.
+
+... Spegni l'apparecchio e aspetta che tutte le luci LED e il display a sette segmenti si spengano.
+
+
+
+
+. Se necessario, disconnettiti dalla shell dei comandi: `exit`
++
+La grid StorageGRID è stata ora disattivata.
+
+
+
+.Informazioni correlate
+* https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/index.html["Appliance di storage SGF6112 e SG6160"^]
+* https://docs.netapp.com/us-en/storagegrid-appliances/sg6000/index.html["Appliance di storage SG6000"^]
+* https://docs.netapp.com/us-en/storagegrid-appliances/sg5800/index.html["Appliance di storage SG5800"^]
+* https://docs.netapp.com/us-en/storagegrid-appliances/sg5700/index.html["Appliance di storage SG5700"^]
+* https://docs.netapp.com/us-en/storagegrid-appliances/sg110-1100/index.html["Apparecchiature di servizio SG110 e SG1100"^]
+* https://docs.netapp.com/us-en/storagegrid-appliances/sg100-1000/index.html["Apparecchiature di servizio SG100 e SG1000"^]
+

@@ -1,0 +1,34 @@
+---
+permalink: monitor/monitoring-object-ingest-and-retrieval-rates.html 
+sidebar: sidebar 
+keywords: object ingest rates, object retrieval rates, monitor s3, client operations 
+summary: Puoi monitorare le velocità di acquisizione e recupero degli oggetti, così come le metriche relative al conteggio degli oggetti, alle query e alla verifica. Puoi visualizzare il numero di tentativi riusciti e non riusciti da parte delle applicazioni client di leggere, scrivere e modificare oggetti nel sistema StorageGRID. 
+---
+= Monitorare le operazioni del client S3 in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi monitorare le velocità di acquisizione e recupero degli oggetti, così come le metriche relative al conteggio degli oggetti, alle query e alla verifica. Puoi visualizzare il numero di tentativi riusciti e non riusciti da parte delle applicazioni client di leggere, scrivere e modificare oggetti nel sistema StorageGRID.
+
+.Prima di iniziare
+Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+
+.Passaggi
+. Dalla dashboard, seleziona la scheda *Performance*.
+. Consulta i grafici S3, che riepilogano il numero di operazioni client eseguite dai nodi di archiviazione e il numero di richieste API ricevute dai nodi di archiviazione durante il periodo di tempo selezionato.
+. Seleziona *Nodi* per accedere alla pagina dei nodi.
+. Dalla pagina iniziale dei nodi (livello griglia), seleziona la scheda *Oggetti*.
++
+Il grafico mostra le velocità di acquisizione e recupero S3 per l'intero sistema StorageGRID in byte al secondo e la quantità di dati acquisiti o recuperati. Puoi selezionare un intervallo di tempo o applicare un intervallo personalizzato.
+
+. Per visualizzare le informazioni relative a uno specifico Storage Node, seleziona il nodo dall'elenco a sinistra e seleziona la scheda *Oggetti*.
++
+Il grafico mostra le velocità di acquisizione e recupero per il nodo. La scheda include anche metriche per il conteggio degli oggetti, le query sui metadati e le operazioni di verifica.
+
++
+image:nodes_storage_node_objects_help.png["screenshot di Nodi > _Nodo di archiviazione_ > Oggetti > aiuto attributo"]
+
+

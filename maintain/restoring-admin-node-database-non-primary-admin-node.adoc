@@ -1,0 +1,72 @@
+---
+permalink: maintain/restoring-admin-node-database-non-primary-admin-node.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, restore admin node database, restore database, non-primary admin node 
+summary: Se vuoi conservare le informazioni storiche relative ad attributi e avvisi su un nodo di amministrazione non primario che ha riscontrato un errore, puoi ripristinare il database del nodo di amministrazione dal nodo di amministrazione primario. 
+---
+= Ripristina il database di StorageGRID Admin Node durante il recupero di un nodo Admin non primario
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se vuoi conservare le informazioni storiche relative ad attributi e avvisi su un nodo di amministrazione non primario che ha riscontrato un errore, puoi ripristinare il database del nodo di amministrazione dal nodo di amministrazione primario.
+
+.Prima di iniziare
+* Il nodo di amministrazione ripristinato è installato e in esecuzione.
+* Il sistema StorageGRID include almeno due nodi di amministrazione.
+* Hai il file  `Passwords.txt`.
+* ${post_edited_translations.segment}
+
+
+.Informazioni su questa attività
+Se un Admin Node si guasta, le informazioni storiche memorizzate nel suo database Admin Node vengono perse. Questo database include le seguenti informazioni:
+
+* ${post_edited_translations.segment}
+* Dati storici sugli attributi, utilizzati nei grafici in stile legacy nella pagina Nodes
+
+
+Quando recuperi un nodo di amministrazione, il processo di installazione del software crea un database vuoto per il nodo di amministrazione sul nodo recuperato. Tuttavia, il nuovo database include solo le informazioni relative ai server e ai servizi attualmente presenti nel sistema o aggiunti in seguito.
+
+Se hai ripristinato un nodo amministratore non primario, puoi ripristinare le informazioni storiche copiando il database del nodo amministratore dal nodo amministratore primario (il _nodo amministratore di origine_) al nodo ripristinato.
+
+
+NOTE: La copia del database dell'Admin Node potrebbe richiedere diverse ore. Alcune funzionalità di Grid Manager non saranno disponibili mentre i servizi sono fermi sul nodo di origine.
+
+.Passaggi
+. Accedi al nodo di amministrazione di origine:
++
+.. Inserisci il seguente comando: `ssh admin@_grid_node_IP_`
+.. Inserisci la password indicata nel file  `Passwords.txt`.
+.. Inserisci il seguente comando per passare all'utente root: `su -`
+.. Inserisci la password indicata nel file  `Passwords.txt`.
+
+
+. Esegui il seguente comando dal nodo Admin di origine. Poi, inserisci la passphrase di provisioning se richiesto. `recover-access-points`
+. Dal nodo di amministrazione di origine, arresta il servizio MI: `service mi stop`
+. Dal nodo Admin di origine, arresta il servizio Management Application Program Interface (mgmt-api): `service mgmt-api stop`
+. Completa i seguenti passaggi sul nodo Admin ripristinato:
++
+.. Accedi al nodo di amministrazione ripristinato:
++
+... Inserisci il seguente comando: `ssh admin@_grid_node_IP_`
+... Inserisci la password indicata nel file  `Passwords.txt`.
+... Inserisci il seguente comando per passare all'utente root: `su -`
+... Inserisci la password indicata nel file  `Passwords.txt`.
+
+
+.. Interrompi il servizio MI: `service mi stop`
+.. Interrompi il servizio mgmt-api: `service mgmt-api stop`
+.. Aggiungi la chiave privata SSH all'agente SSH. Inserisci:``ssh-add``
+.. Inserisci la password di accesso SSH indicata nel file  `Passwords.txt`.
+.. Copia il database dal nodo amministratore di origine al nodo amministratore ripristinato: `/usr/local/mi/bin/mi-clone-db.sh Source_Admin_Node_IP`
+.. Quando richiesto, conferma che vuoi sovrascrivere il database MI sul nodo Admin ripristinato.
++
+Il database e i dati storici vengono copiati sul nodo di amministrazione ripristinato. Quando l'operazione di copia è terminata, lo script avvia il nodo di amministrazione ripristinato.
+
+.. Quando non hai più bisogno dell'accesso senza password ad altri server, rimuovi la chiave privata dall'agente SSH. Inserisci:``ssh-add -D``
+
+
+. Riavvia i servizi sul nodo amministratore di origine: `service servermanager start`
+

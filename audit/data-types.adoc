@@ -1,0 +1,61 @@
+---
+permalink: audit/data-types.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, data, types, UI32, UI64, FC32, IPAD, CSTR, IPAD 
+summary: ${post_edited_translations.segment} 
+---
+= Tipi di dati nei messaggi di controllo StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+${post_edited_translations.segment}
+
+[cols="1a,4a"]
+|===
+| Tipo | Descrizione 
+
+
+ a| 
+UI32
+ a| 
+Numero intero lungo senza segno (32 bit); può memorizzare i numeri da 0 a 4,294,967,295.
+
+
+
+ a| 
+UI64
+ a| 
+Numero intero lungo senza segno (64 bit); può memorizzare i numeri da 0 a 18,446,744,073,709,551,615.
+
+
+
+ a| 
+FC32
+ a| 
+Costante di quattro caratteri; un valore intero senza segno a 32 bit rappresentato da quattro caratteri ASCII come "ABCD."
+
+
+
+ a| 
+IPAD
+ a| 
+Usato per gli indirizzi IP.
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Un array di caratteri UTF-8 a lunghezza variabile. I caratteri possono essere codificati secondo le seguenti convenzioni:
+
+* La barra rovesciata è \\.
+* Il ritorno a capo è \r.
+* Le virgolette doppie sono \ʺ.
+* Il carattere di nuova riga è \n.
+* I caratteri possono essere sostituiti dai loro equivalenti esadecimali (nel formato \xHH, dove HH è il valore esadecimale che rappresenta il carattere).
+
+
+|===

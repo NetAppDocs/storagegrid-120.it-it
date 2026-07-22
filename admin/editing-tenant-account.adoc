@@ -1,0 +1,89 @@
+---
+permalink: admin/editing-tenant-account.html 
+sidebar: sidebar 
+keywords: edit tenant account, change tenant name, allow platform services, tenant quota 
+summary: Puoi modificare un account tenant per cambiare il nome visualizzato, la quota di archiviazione o le autorizzazioni del tenant. 
+---
+= Modificare un account tenant di StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi modificare un account tenant per cambiare il nome visualizzato, la quota di archiviazione o le autorizzazioni del tenant.
+
+
+TIP: Se un tenant dispone dell'autorizzazione *Usa connessione di federazione griglia*, puoi modificare i dettagli del tenant da entrambe le griglie della connessione. Tuttavia, le modifiche che fai su una griglia della connessione non verranno copiate sull'altra griglia. Se vuoi mantenere i dettagli del tenant perfettamente sincronizzati tra le griglie, apporta le stesse modifiche su entrambe. Vedi link:grid-federation-manage-tenants.html["Gestisci i tenant autorizzati per la connessione alla federazione di rete"].
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Disponi di link:admin-group-permissions.html["Access root o autorizzazione account tenant"].
+
+
+
+NOTE: L'applicazione delle impostazioni del tenant all'intera griglia potrebbe richiedere 15 minuti o più, a seconda della connettività di rete, dello stato dei nodi e delle operazioni di Cassandra.
+
+.Passaggi
+. Seleziona *tenant*.
++
+image:tenant_accounts_page.png["Pagina degli account tenant"]
+
+. Individua il tenant account che vuoi modificare.
++
+${post_edited_translations.segment}
+
+. Seleziona il tenant. Puoi eseguire una delle seguenti operazioni:
++
+** Seleziona la casella di controllo relativa al tenant e seleziona *Azioni* > *Modifica*.
+** Seleziona il nome del tenant per visualizzare la pagina dei dettagli e seleziona *Modifica*.
+
+
+. ${post_edited_translations.segment}
++
+** *Nome*
+** *Descrizione*
+** ${post_edited_translations.segment}
+
+
+. Seleziona *Continue*.
+. ${post_edited_translations.segment}
++
+** Se disabiliti i *servizi della piattaforma* per un tenant che li sta già utilizzando, i servizi che ha configurato per i suoi bucket S3 smetteranno di funzionare. Non viene inviato alcun messaggio di errore al tenant. Ad esempio, se il tenant ha configurato la replica CloudMirror per un bucket S3, può comunque archiviare oggetti nel bucket, ma le copie di quegli oggetti non verranno più create nel bucket S3 esterno che ha configurato come endpoint. Vedi link:manage-platform-services-for-tenants.html["Gestisci i servizi della piattaforma per gli account tenant S3"].
+** ${post_edited_translations.segment}
++
+Se *Usa la propria fonte di identità* è:
+
++
+*** Disabilitato e selezionato, il tenant ha già abilitato la propria origine di identità. Un tenant deve disabilitare la propria origine di identità prima di poter utilizzare l'origine di identità configurata per Grid Manager.
+*** Disattivato e non selezionato, l'SSO è abilitato per il sistema StorageGRID. Il tenant deve utilizzare l'origine identità configurata per Grid Manager.
+
+
+** Seleziona o deseleziona l'autorizzazione *Consenti S3 Select* secondo necessità. Vedi link:manage-s3-select-for-tenant-accounts.html["Gestisci S3 Select per gli account tenant"].
+** ${post_edited_translations.segment}
++
+... Seleziona la scheda *Grid federation*.
+... Seleziona *Rimuovi autorizzazione*.
+
+
+** ${post_edited_translations.segment}
++
+... Seleziona la scheda *Grid federation*.
+... ${post_edited_translations.segment}
+... Facoltativamente, seleziona *Clona utenti e gruppi locali esistenti* per clonarli nella grid remota. Se lo desideri, puoi interrompere la clonazione in corso o riprovare la clonazione se la clonazione di alcuni utenti o gruppi locali non è riuscita dopo il completamento dell'ultima operazione di clonazione.
+
+
+** Per impostare un periodo di conservazione massimo o abilitare la modalità di conformità:
++
+
+NOTE: Il blocco degli oggetti S3 deve essere abilitato sulla griglia prima che tu possa usare queste impostazioni.
+
++
+... Seleziona la scheda *Blocco oggetto S3*.
+... ${post_edited_translations.segment}
+... Per *Consenti modalità di conformità*, seleziona la casella di controllo.
+
+
+
+
+

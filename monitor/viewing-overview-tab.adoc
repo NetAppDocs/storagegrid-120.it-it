@@ -1,0 +1,64 @@
+---
+permalink: monitor/viewing-overview-tab.html 
+sidebar: sidebar 
+keywords: overview tab 
+summary: La scheda Panoramica fornisce informazioni di base su ciascun nodo. Mostra anche eventuali avvisi che attualmente interessano il nodo. 
+---
+= Visualizza la scheda Panoramica di StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La scheda Panoramica fornisce informazioni di base su ciascun nodo. Mostra anche eventuali avvisi che attualmente interessano il nodo.
+
+La scheda Panoramica viene mostrata per tutti i nodi.
+
+
+
+[[node-information]]
+== Informazioni sul nodo
+
+La sezione Informazioni sul nodo della scheda Panoramica elenca le informazioni di base sul nodo.
+
+image:nodes_page_overview_tab.png["Scheda Panoramica della pagina Nodes"]
+
+Le informazioni generali relative a un nodo includono quanto segue:
+
+* *Nome visualizzato* (mostrato solo se il nodo è stato rinominato): Il nome visualizzato corrente del nodo. Usa la procedura link:../maintain/rename-grid-site-node-overview.html["Rinomina la griglia, i siti e i nodi"] per aggiornare questo valore.
+* *Nome del sistema*: Il nome che hai inserito per il nodo durante l'installazione. I nomi del sistema vengono utilizzati per le operazioni interne di StorageGRID e non possono essere modificati.
+* *Tipo*: Il tipo di nodo: Admin Node, primary Admin Node, Storage Node o Gateway Node.
+* *ID*: L'identificativo univoco del nodo, noto anche come UUID.
+* *Stato della connessione*: Uno dei tre stati. L'icona per lo stato più grave viene mostrata.
++
+** *Sconosciuto* image:icon_alarm_blue_unknown.png["icona blu con punto interrogativo"]: Per un motivo sconosciuto, il nodo non è connesso alla grid oppure uno o più servizi sono inaspettatamente non disponibili. Ad esempio, la connessione di rete tra i nodi è stata persa, manca l'alimentazione o un servizio non è disponibile. Potrebbe anche essere attivato l'avviso *Unable to communicate with node*. Potrebbero essere attivi anche altri avvisi. Questa situazione richiede un intervento immediato.
++
+
+NOTE: Durante le operazioni di arresto gestito, un nodo potrebbe apparire come "Sconosciuto". Puoi ignorare lo stato "Sconosciuto" in questi casi.
+
+** *Inattivo per motivi amministrativi* image:icon_alarm_gray_administratively_down.png["icona grigia con punto interrogativo"]: Il nodo non è connesso alla grid per un motivo previsto. Ad esempio, il nodo o i servizi sul nodo sono stati arrestati correttamente, il nodo si sta riavviando oppure il software viene aggiornato. Potrebbero anche essere attivi uno o più avvisi.
+** *Connesso* image:icon_alert_green_checkmark.png["icona avviso segno di spunta verde"]: Il nodo è connesso alla griglia.
+
+
+* *Spazio di archiviazione utilizzato*: Solo per Storage Nodes.
++
+** *Dati oggetto*: la percentuale dello spazio totale utilizzabile per i dati oggetto che è stata utilizzata sullo Storage Node.
+** *Metadati degli oggetti*: la % dello spazio totale consentito per i metadati degli oggetti che hai utilizzato sullo Storage Node.
+
+
+* *Versione del software*: La versione di StorageGRID installata sul nodo.
+* *Gruppi HA*: Solo per Admin Node e Gateway Nodes. Mostrato se un'interfaccia di rete sul nodo è inclusa in un gruppo ad alta disponibilità e se tale interfaccia è l'interfaccia primaria.
+* *Indirizzi IP*: Gli indirizzi IP del nodo. Fai clic su *Mostra indirizzi IP aggiuntivi* per visualizzare gli indirizzi IPv4 e IPv6 del nodo e le mappature delle interfacce.
+
+
+
+
+[[alerts]]
+== Avvisi
+
+La sezione Avvisi della scheda Panoramica elenca tutti gli avvisi link:monitoring-system-health.html#view-current-and-resolved-alerts["avvisi che attualmente interessano questo nodo e che non sono stati silenziati"]. Seleziona il nome dell'avviso per visualizzare ulteriori dettagli e azioni consigliate.
+
+image:nodes_page_alerts_table.png["Tabella degli avvisi della pagina dei nodi"]
+
+Sono inclusi anche gli avvisi per link:monitoring-system-health.html#monitor-node-connection-states["stati di connessione del nodo"].

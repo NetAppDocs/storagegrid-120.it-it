@@ -1,0 +1,101 @@
+---
+permalink: admin/requirements-for-sso.html 
+sidebar: sidebar 
+keywords: sso requirements, single sign on requirements, identity federation requirements for sso, pingfederate, entra id, ad fs 
+summary: Prima di abilitare il single sign-on per un sistema StorageGRID, rivedi i requisiti e le considerazioni. 
+---
+= Requisiti e considerazioni per StorageGRID SSO
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Prima di abilitare il single sign-on (SSO) per un sistema StorageGRID, rivedi i requisiti e le considerazioni.
+
+
+
+[[identity-provider-requirements]]
+== Requisiti dell'identity provider
+
+StorageGRID supporta i seguenti provider di identità SSO (IdP):
+
+* Active Directory Federation Service (AD FS)
+* Microsoft Entra ID
+* PingFederate
+
+
+Devi configurare la federazione delle identità per il sistema StorageGRID prima di poter configurare un provider di identità SSO. Il tipo di servizio LDAP che usi per la federazione delle identità determina quale tipo di SSO puoi implementare.
+
+[cols="1a,1a"]
+|===
+| Tipo di servizio LDAP configurato | ${post_edited_translations.segment} 
+
+
+ a| 
+Active Directory
+ a| 
+* Active Directory
+* Entra ID
+* PingFederate
+
+
+
+
+ a| 
+Entra ID
+ a| 
+Entra ID
+
+|===
+
+
+[[ad-fs-requirements]]
+=== Requisiti AD FS
+
+Puoi usare una qualsiasi delle seguenti versioni di AD FS:
+
+* Windows Server 2022 AD FS
+* Windows Server 2019 AD FS
+* Windows Server 2016 AD FS
+
+
+
+NOTE: Windows Server 2016 dovrebbe utilizzare la  https://support.microsoft.com/en-us/help/3201845/cumulative-update-for-windows-10-version-1607-and-windows-server-2016["Aggiornamento KB3201845"^], o superiore.
+
+
+
+[[additional-requirements]]
+=== Requisiti aggiuntivi
+
+* Transport Layer Security (TLS) 1.2 o 1.3
+* Microsoft .NET Framework, versione 3.5.1 o superiore
+
+
+
+
+[[considerations-for-entra-id]]
+=== Considerazioni per Entra ID
+
+Se usi Entra ID come tipo di single sign-on e gli utenti hanno nomi principali utente che non usano sAMAccountName come prefisso, possono verificarsi problemi di accesso se StorageGRID perde la connessione con il LDAP server. Per permettere agli utenti di accedere, devi ripristinare la connessione al LDAP server.
+
+
+
+[[server-certificate-requirements]]
+== Requisiti del certificato del server
+
+Per impostazione predefinita, StorageGRID utilizza un certificato di interfaccia di gestione su ciascun Admin Node per proteggere l'accesso a Grid Manager, Tenant Manager, Grid Management API e Tenant Management API. Quando configuri relying party trusts (AD FS), enterprise applications (Entra ID) o service provider connections (PingFederate) per StorageGRID, usi il certificato del server come certificato di firma per le richieste StorageGRID.
+
+Se non l'hai ancora fatto link:configuring-custom-server-certificate-for-grid-manager-tenant-manager.html["ho configurato un certificato personalizzato per l'interfaccia di gestione"], dovresti farlo ora. Quando installi un certificato server personalizzato, viene utilizzato per tutti gli Admin Node e puoi usarlo in tutte le relying party trust, applicazioni enterprise o connessioni SP di StorageGRID.
+
+
+NOTE: Si sconsiglia di utilizzare il certificato server predefinito di un Admin Node in una relying party trust, enterprise application o connessione SP. Se il nodo si guasta e lo ripristini, viene generato un nuovo certificato server predefinito. Prima di poter accedere al nodo ripristinato, devi aggiornare la relying party trust, enterprise application o connessione SP con il nuovo certificato.
+
+Puoi accedere al certificato server di un Admin Node effettuando l'accesso alla shell dei comandi del nodo e andando nella `/var/local/mgmt-api` directory. Un certificato server personalizzato si chiama `custom-server.crt`. Il certificato server predefinito del nodo si chiama `server.crt`.
+
+
+
+[[port-requirements]]
+== Requisiti delle porte
+
+Il single sign-on (SSO) non è disponibile sulle porte con restrizioni di Grid Manager o Tenant Manager. Devi usare la porta HTTPS predefinita (443) se vuoi che gli utenti si autentichino con il single sign-on. Vedi link:controlling-access-through-firewalls.html["Controlla l'accesso tramite firewall esterno"].

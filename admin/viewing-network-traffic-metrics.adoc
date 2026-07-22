@@ -1,0 +1,69 @@
+---
+permalink: admin/viewing-network-traffic-metrics.html 
+sidebar: sidebar 
+keywords: network traffic, traffic classification policy, monitor traffic 
+summary: ${post_edited_translations.segment} 
+---
+= Visualizza le metriche del traffico di rete in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+${post_edited_translations.segment}
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Disponi di link:admin-group-permissions.html["Access root o autorizzazione account tenant"].
+
+
+.Informazioni su questa attività
+Per qualsiasi criterio di classificazione del traffico esistente, puoi visualizzare le metriche del servizio di bilanciamento del carico per determinare se il criterio sta limitando con successo il traffico sulla rete. I dati nei grafici possono aiutarti a capire se devi modificare il criterio.
+
+Anche se non vengono impostati limiti per una politica di classificazione del traffico, le metriche vengono raccolte e i grafici forniscono informazioni utili per comprendere le tendenze del traffico.
+
+.Passaggi
+. Seleziona *Configurazione* > *Rete* > *Classificazione del traffico*.
++
+${post_edited_translations.segment}
+
+. ${post_edited_translations.segment}
+. Seleziona la scheda *Metriche*.
++
+Vengono visualizzati i grafici relativi alle politiche di classificazione del traffico. I grafici mostrano metriche solo per il traffico che corrisponde alla politica selezionata.
+
++
+${post_edited_translations.segment}
+
++
+** Frequenza delle richieste: questo grafico mostra la quantità di larghezza di banda corrispondente a questa policy gestita da tutti i load balancer. I dati ricevuti includono le intestazioni di richiesta per tutte le richieste e la dimensione dei dati del corpo per le risposte che hanno dati nel corpo. I dati inviati includono le intestazioni di risposta per tutte le richieste e la dimensione dei dati del corpo della risposta per le richieste che includono dati nel corpo della risposta.
++
+
+NOTE: Al termine delle richieste, questo grafico mostra solo l'utilizzo della larghezza di banda. Per richieste lente o relative a oggetti di grandi dimensioni, la larghezza di banda istantanea effettiva potrebbe differire dai valori riportati in questo grafico.
+
+** Tasso di risposta di errore: questo grafico fornisce una percentuale approssimativa con cui le richieste che corrispondono a questa policy restituiscono errori (codice di stato HTTP >= 400) ai client.
+** Durata media delle richieste (senza errori): questo grafico mostra la durata media delle richieste riuscite che corrispondono a questa policy.
+** Utilizzo della larghezza di banda della policy: questo grafico mostra la quantità di larghezza di banda corrispondente a questa policy gestita da tutti i load balancer. I dati ricevuti includono le intestazioni delle richieste per tutte le richieste e la dimensione dei dati del corpo per le risposte che contengono dati del corpo. I dati inviati includono le intestazioni delle risposte per tutte le richieste e la dimensione dei dati del corpo della risposta per le richieste che includono dati del corpo nella risposta.
+
+
+. Posiziona il cursore su un grafico a linee per visualizzare un riquadro con i valori relativi a una specifica porzione del grafico.
+. Seleziona *dashboard Grafana* proprio sotto il titolo Metriche per visualizzare tutti i grafici relativi a una policy. Oltre ai quattro grafici della scheda *Metriche*, puoi visualizzare altri due grafici:
++
+** Frequenza delle richieste di scrittura per dimensione dell'oggetto: la frequenza per le richieste PUT/POST/DELETE che corrispondono a questa policy. Il posizionamento su una singola cella mostra le frequenze al secondo. Le frequenze mostrate nella vista al passaggio del mouse sono troncate a valori interi e potrebbero indicare 0 in presenza di richieste diverse da zero nel bucket.
+** Frequenza delle richieste di lettura in base alla dimensione dell'oggetto: la frequenza delle richieste GET/HEAD che corrispondono a questa policy. Il posizionamento su una singola cella mostra le frequenze al secondo. Le frequenze mostrate nella visualizzazione al passaggio del mouse vengono troncate ai conteggi interi e potrebbero riportare 0 quando nel bucket sono presenti richieste diverse da zero.
+
+
+. ${post_edited_translations.segment}
++
+.. ${post_edited_translations.segment}
+.. ${post_edited_translations.segment}
+.. ${post_edited_translations.segment}
+.. ${post_edited_translations.segment}
++
+Le politiche di classificazione del traffico sono identificate dal loro ID. Gli ID delle politiche sono elencati nella pagina delle politiche di classificazione del traffico.
+
+
+
+. Analizza i grafici per determinare con quale frequenza la policy limita il traffico e se devi modificarla.
+

@@ -1,0 +1,127 @@
+= Verifica la connessione e salva la configurazione
+:allow-uri-read: 
+
+
+. Seleziona *Abilita federazione delle identità*.
+. Nella sezione relativa al tipo di servizio LDAP, seleziona il tipo di servizio LDAP che vuoi configurare.
++
+image:ldap_service_type.png["Pagina di federazione delle identità che mostra le opzioni del tipo di servizio LDAP"]
+
++
+Seleziona *Altro* per configurare i valori per un LDAP server che usa Oracle Directory Server.
+
+. Se hai selezionato *Altro*, compila i campi nella sezione Attributi LDAP. Altrimenti, passa al passaggio successivo.
++
+** *Nome univoco utente*: Il nome dell'attributo che contiene l'identificativo univoco di un utente LDAP. Questo attributo è equivalente a `sAMAccountName` per Active Directory e `uid` per OpenLDAP. Se stai configurando Oracle Directory Server, inserisci `uid`.
+** *UUID utente*: Il nome dell'attributo che contiene l'identificativo univoco permanente di un utente LDAP. Questo attributo è equivalente a `objectGUID` per Active Directory e `entryUUID` per OpenLDAP. Se stai configurando Oracle Directory Server, inserisci `nsuniqueid`. Il valore di ciascun utente per l'attributo specificato deve essere un numero esadecimale di 32 cifre in formato a 16 byte o stringa, dove i trattini vengono ignorati.
+** *Nome univoco del gruppo*: il nome dell'attributo che contiene l'identificativo univoco di un gruppo LDAP. Questo attributo è equivalente a  `sAMAccountName` per Active Directory e  `cn` per OpenLDAP. Se stai configurando Oracle Directory Server, inserisci  `cn`.
+** *UUID del gruppo*: Il nome dell'attributo che contiene l'identificativo univoco permanente di un gruppo LDAP. Questo attributo è equivalente a  `objectGUID` per Active Directory e  `entryUUID` per OpenLDAP. Se stai configurando Oracle Directory Server, inserisci  `nsuniqueid`. Il valore di ciascun gruppo per l'attributo specificato deve essere un numero esadecimale di 32 cifre in formato a 16 byte o stringa, dove i trattini vengono ignorati.
+
+
+. Per tutti i tipi di servizio LDAP, inserisci le informazioni richieste sul server LDAP e sulla connessione di rete nella sezione Configura server LDAP.
++
+** *Hostname*: Il fully qualified domain name (FQDN) o l'indirizzo IP del LDAP server.
+** *Porta*: La porta utilizzata per connettersi al LDAP server.
++
+
+NOTE: La porta predefinita per STARTTLS è 389, e la porta predefinita per LDAPS è 636. Tuttavia, puoi usare qualsiasi porta purché il firewall sia configurato correttamente.
+
+** *Nome utente*: Il full path del distinguished name (DN) dell'utente che si connetterà al LDAP server.
++
+Per Active Directory, puoi anche specificare il Down-Level Logon Name o lo User Principal Name.
+
++
+L'utente specificato deve avere l'autorizzazione per visualizzare l'elenco di gruppi e utenti e per accedere ai seguenti attributi:
+
++
+*** `sAMAccountName` o  `uid`
+*** `objectGUID`, `entryUUID`, o `nsuniqueid`
+*** `cn`
+*** `memberOf` o  `isMemberOf`
+*** *Active Directory*: `objectSid`, `primaryGroupID`, `userAccountControl`, e `userPrincipalName`
+*** *Entra ID*: `accountEnabled` e `userPrincipalName`
+
+
+** *Password*: La password associata al nome utente.
++
+
+NOTE: Se in futuro cambierai la password, dovrai aggiornarla su questa pagina.
+
+** *DN di base del gruppo*: il full path del nome distinto (DN) per un sottoalbero LDAP in cui vuoi cercare i gruppi. Nell'esempio di Active Directory (sotto), tutti i gruppi il cui nome distinto è relativo al DN di base (DC=storagegrid,DC=example,DC=com) possono essere usati come gruppi federati.
++
+
+NOTE: ${post_edited_translations.segment}
+
+** *DN della base utente*: Il full path del nome distinto (DN) di un sottoalbero LDAP in cui vuoi cercare gli utenti.
++
+
+NOTE: I valori del *nome univoco utente* devono essere univoci all'interno del *User Base DN* a cui appartengono.
+
+** ${post_edited_translations.segment}
++
+${post_edited_translations.segment}
+
++
+${post_edited_translations.segment}
+
++
+*** *UserPrincipalName pattern (AD e Entra ID)*: `[USERNAME]@_example_.com`
+*** *Modello di nome di accesso di livello inferiore (AD e Entra ID)*: `_example_\[USERNAME]`
+*** *Modello di nome distinto*: `CN=[USERNAME],CN=Users,DC=_example_,DC=com`
++
+Inserisci *[USERNAME]* esattamente come è scritto.
+
+
+
+
+
+. Nella sezione Transport Layer Security (TLS), seleziona un'impostazione di sicurezza.
++
+** *Usa STARTTLS*: usa STARTTLS per proteggere le comunicazioni con il LDAP server. Questa è l'opzione consigliata per Active Directory, OpenLDAP o Altro, ma questa opzione non è supportata per Microsoft Entra ID.
+** *Usa LDAPS*: L'opzione LDAPS (LDAP su SSL) utilizza TLS per stabilire una connessione al LDAP server. Devi selezionare questa opzione per Microsoft Entra ID.
+** *Non utilizzare TLS*: il traffico di rete tra il sistema StorageGRID e il LDAP server non sarà protetto. Questa opzione non è supportata per Microsoft Entra ID.
++
+
+NOTE: L'utilizzo dell'opzione *Non utilizzare TLS* non è supportato se il tuo server Active Directory impone la firma LDAP. Devi utilizzare STARTTLS o LDAPS.
+
+
+
+. Se hai selezionato STARTTLS o LDAPS, scegli il certificato utilizzato per proteggere la connessione.
++
+** *Utilizza il certificato CA del sistema operativo*: Utilizza il certificato CA Grid predefinito installato sul sistema operativo per proteggere le connessioni.
+** *Utilizza un certificato CA personalizzato*: Utilizza un certificato di sicurezza personalizzato.
++
+Se selezioni questa impostazione, copia e incolla il certificato di sicurezza personalizzato nella casella di testo del certificato CA.
+
+
+
+
+
+
+
+[[test-the-connection-and-save-the-configuration]]
+=== Verifica la connessione e salva la configurazione
+
+Dopo aver inserito tutti i valori, devi testare la connessione prima di poter salvare la configurazione. StorageGRID verifica le impostazioni di connessione per il LDAP server e il formato del nome utente di bind, se ne hai fornito uno.
+
+.Passaggi
+. Seleziona *Test connessione*.
+. Se non hai fornito un formato per il nome utente bind:
++
+** Viene visualizzato il messaggio "Test di connessione riuscito" se le impostazioni di connessione sono valide. Seleziona *Salva* per salvare la configurazione.
+** Viene visualizzato il messaggio "Impossibile stabilire la connessione di prova" se le impostazioni di connessione non sono valide. Seleziona *Chiudi*. Quindi, risolvi eventuali problemi e prova nuovamente la connessione.
+
+
+. Se hai specificato un formato di nome utente di bind, inserisci il nome utente e la password di un utente federato valido.
++
+Ad esempio, inserisci il tuo nome utente e la tua password. Non includere caratteri speciali nel nome utente, come @ o /.
+
++
+image:identity_federation_test_connection.png["Richiesta di federazione delle identità per convalidare il formato del nome utente bind"]
+
++
+** Viene visualizzato il messaggio "Test di connessione riuscito" se le impostazioni di connessione sono valide. Seleziona *Salva* per salvare la configurazione.
+** Viene visualizzato un messaggio di errore se le impostazioni di connessione, il formato del nome utente di bind o il nome utente e la password di test non sono validi. Risolvi eventuali problemi e prova nuovamente la connessione.
+
+
+

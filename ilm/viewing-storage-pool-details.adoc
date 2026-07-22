@@ -1,0 +1,58 @@
+---
+permalink: ilm/viewing-storage-pool-details.html 
+sidebar: sidebar 
+keywords: storage pool, view details 
+summary: Puoi visualizzare i dettagli di un pool di storage per determinare dove viene utilizzato il pool di storage e per vedere quali nodi e livelli di storage sono inclusi. 
+---
+= Visualizza i dettagli del pool di storage in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi visualizzare i dettagli di un pool di storage per determinare dove viene utilizzato il pool di storage e per vedere quali nodi e livelli di storage sono inclusi.
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Hai link:../admin/admin-group-permissions.html["autorizzazioni di accesso specifiche"].
+
+
+.Passaggi
+. Seleziona *ILM* > *pool di storage*.
++
+La tabella dei pool di storage include le seguenti informazioni per ciascun pool di storage che include Storage Nodes:
+
++
+** *Nome*: Il nome univoco visualizzato del pool di storage.
+** *Numero di nodi*: Il numero di nodi nel pool di storage.
+** *Utilizzo dello spazio di archiviazione*: la percentuale dello spazio totale utilizzabile che è stata utilizzata per i dati degli oggetti su questo nodo. Questo valore non include i metadati degli oggetti.
+** *Capacità totale*: la dimensione del pool di storage, che corrisponde alla quantità totale di spazio utilizzabile per i dati degli oggetti per tutti i nodi del pool di storage.
+** *Utilizzo ILM*: Come viene attualmente utilizzato il pool di storage. Un pool di storage potrebbe non essere utilizzato oppure potrebbe essere usato in una o più regole ILM, profili di erasure coding o entrambi.
+
+
+. Per visualizzare i dettagli di uno specifico pool di storage, seleziona il suo nome.
++
+Viene visualizzata la pagina dei dettagli del pool di storage.
+
+. Consulta la scheda *Nodi* per informazioni sui nodi di storage inclusi nel pool di storage.
++
+La tabella include le seguenti informazioni per ciascun nodo:
+
++
+** Nome nodo
+** Nome sito
+** grado di storage
+** Utilizzo dello storage: la % dello spazio totale utilizzabile per i dati degli oggetti che è stata usata per lo Storage Node.
++
+
+NOTE: Lo stesso valore di utilizzo dello storage (%) viene mostrato anche nel grafico Storage Used - Object Data per ciascun Storage Node (seleziona *Nodes* > *_Storage Node_* > *Storage*).
+
+
+
+. Visualizza la scheda *Utilizzo ILM* per vedere se il pool di storage è attualmente utilizzato in qualche regola ILM o profilo di erasure coding.
+. Facoltativamente, vai alla *pagina delle regole ILM* per scoprire e gestire le regole che utilizzano il pool di storage.
++
+Vedi la link:working-with-ilm-rules-and-ilm-policies.html["Istruzioni per lavorare con le regole ILM"].
+
+

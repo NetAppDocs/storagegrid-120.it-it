@@ -1,0 +1,103 @@
+---
+permalink: admin/benefits-of-active-idle-and-concurrent-http-connections.html 
+sidebar: sidebar 
+keywords: active http connection benefits, idle http connection benefits, concurrent http connection benefits 
+summary: Il modo in cui configuri le connessioni HTTP può influire sulle prestazioni del sistema StorageGRID. Le configurazioni variano a seconda che la connessione HTTP sia attiva o inattiva o che tu abbia più connessioni simultanee. 
+---
+= Vantaggi delle connessioni HTTP attive, inattive e simultanee in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Il modo in cui configuri le connessioni HTTP può influire sulle prestazioni del sistema StorageGRID. Le configurazioni variano a seconda che la connessione HTTP sia attiva o inattiva o che tu abbia più connessioni simultanee.
+
+Puoi identificare i vantaggi in termini di prestazioni per i seguenti tipi di connessioni HTTP:
+
+* Connessioni HTTP inattive
+* Connessioni HTTP attive
+* ${post_edited_translations.segment}
+
+
+
+
+[[benefits-of-keeping-idle-http-connections-open]]
+== ${post_edited_translations.segment}
+
+Mantieni aperte le connessioni HTTP quando le applicazioni client sono inattive per consentire transazioni successive. Mantieni aperta una connessione HTTP inattiva per un massimo di 10 minuti. StorageGRID potrebbe chiudere automaticamente una connessione HTTP aperta e inattiva per più di 10 minuti.
+
+Le connessioni HTTP aperte e inattive offrono i seguenti vantaggi:
+
+* Latenza ridotta dal momento in cui il sistema StorageGRID determina che deve eseguire una transazione HTTP al momento in cui il sistema StorageGRID può eseguire la transazione
++
+La riduzione della latenza è il vantaggio principale, soprattutto per quanto riguarda il tempo necessario a stabilire le connessioni TCP/IP e TLS.
+
+* Aumento del tasso di trasferimento dei dati avviando l'algoritmo di slow-start TCP/IP con trasferimenti già effettuati
+* Notifica istantanea di diverse classi di condizioni di errore che interrompono la connettività tra l'applicazione client e il sistema StorageGRID
+
+
+Decidi per quanto tempo mantenere aperta una connessione inattiva, bilanciando i vantaggi di un avvio lento con l'allocazione delle risorse.
+
+
+
+[[benefits-of-active-http-connections]]
+== Vantaggi delle connessioni HTTP attive
+
+${post_edited_translations.segment}
+
+Determinare la durata massima per cui una connessione deve rimanere aperta rappresenta un compromesso tra i vantaggi della persistenza della connessione e l'allocazione ideale della connessione alle risorse interne del sistema.
+
+Per le connessioni client ai nodi di storage, la limitazione delle connessioni HTTP attive offre i seguenti vantaggi:
+
+* ${post_edited_translations.segment}
++
+Nel tempo, una connessione HTTP potrebbe non essere più ottimale man mano che cambiano i requisiti di bilanciamento del carico. Il sistema offre il miglior bilanciamento del carico quando le applicazioni client stabiliscono una connessione HTTP separata per ogni transazione, ma questo metodo annulla i vantaggi significativi associati alle connessioni persistenti.
+
+* Consente alle applicazioni client di indirizzare le transazioni HTTP verso i servizi LDR che dispongono di spazio disponibile.
+* Consente di avviare le procedure di manutenzione.
++
+${post_edited_translations.segment}
+
+
+
+Per le connessioni client al servizio di bilanciamento del carico, limitare la durata delle connessioni aperte può essere utile per consentire l'avvio tempestivo di alcune procedure di manutenzione. Se la durata delle connessioni client non viene limitata, potrebbero essere necessari diversi minuti prima che le connessioni attive vengano terminate automaticamente.
+
+
+
+[[benefits-of-concurrent-http-connections]]
+== ${post_edited_translations.segment}
+
+Dovresti mantenere aperte più connessioni TCP/IP verso il sistema StorageGRID per consentire il parallelismo, che aumenta le prestazioni. Il numero ottimale di connessioni parallele dipende da una varietà di fattori.
+
+Le connessioni HTTP simultanee offrono i seguenti vantaggi:
+
+* ${post_edited_translations.segment}
++
+Le transazioni possono iniziare immediatamente invece di aspettare che altre transazioni siano completate.
+
+* Throughput aumentato
++
+Il sistema StorageGRID può eseguire transazioni parallele e aumentare il throughput aggregato delle transazioni.
+
+
+
+Le applicazioni client dovrebbero stabilire più connessioni HTTP. Quando un'applicazione client deve eseguire una transazione, può selezionare e utilizzare immediatamente qualsiasi connessione stabilita che non stia attualmente elaborando una transazione.
+
+La topologia di ciascun sistema StorageGRID ha un throughput di picco diverso per le transazioni e le connessioni simultanee. Il throughput di picco dipende dalle risorse di calcolo, di rete e di storage, dai collegamenti WAN e dal numero di server, servizi e applicazioni supportati dal sistema StorageGRID.
+
+I sistemi StorageGRID spesso supportano più applicazioni client. Tienilo presente quando determini il numero massimo di connessioni simultanee. Se l'applicazione client è costituita da più entità software che stabiliscono ciascuna connessioni al sistema StorageGRID, somma tutte le connessioni delle varie entità. Potrebbe essere necessario regolare il numero massimo di connessioni simultanee nelle seguenti situazioni:
+
+* ${post_edited_translations.segment}
+* Le applicazioni client che interagiscono con il sistema StorageGRID su una rete con larghezza di banda limitata potrebbero dover ridurre il grado di concorrenza per garantire che le singole transazioni vengano completate in tempi ragionevoli.
+* Quando molte applicazioni client condividono il sistema StorageGRID, potresti dover ridurre il grado di concorrenza per evitare di superare i limiti del sistema.
+
+
+
+
+[[separation-of-http-connection-pools-for-read-and-write-operations]]
+== Separazione dei pool di connessioni HTTP per le operazioni di lettura e scrittura
+
+Puoi usare pool separati di connessioni HTTP per le operazioni di lettura e scrittura e controllare quanta parte di ciascun pool utilizzare. I pool separati di connessioni HTTP ti permettono di controllare meglio le transazioni e bilanciare i carichi.
+
+Le applicazioni client possono creare carichi prevalentemente di recupero (lettura) o di memorizzazione (scrittura). Con pool separati di connessioni HTTP per le transazioni di lettura e scrittura, puoi regolare quante connessioni di ciascun pool dedicare alle transazioni di lettura o scrittura.

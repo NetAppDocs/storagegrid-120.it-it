@@ -1,0 +1,183 @@
+---
+permalink: tenant/grid-federation-manage-cross-grid-replication.html 
+sidebar: sidebar 
+keywords: grid federation, cross-grid replication, use grid federation connection, replicate client delete markers, s3 bucket 
+summary: 'Se al tuo tenant account è stata assegnata l"autorizzazione Use grid federation connection al momento della creazione, puoi utilizzare la replica tra griglie per replicare automaticamente gli oggetti tra i bucket sulla tenant source grid e i bucket sulla tenant destination grid. La replica tra griglie può avvenire in una o entrambe le direzioni.' 
+---
+= Gestisci la replica tra griglie in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se al tuo account tenant è stata assegnata l'autorizzazione *Usa connessione di federazione della griglia* quando è stato creato, puoi utilizzare la replica tra griglie per replicare automaticamente gli oggetti tra i bucket sulla griglia di origine del tenant e i bucket sulla griglia di destinazione del tenant. La replica tra griglie può avvenire in una o in entrambe le direzioni.
+
+
+
+[[workflow-for-cross-grid-replication]]
+== Flusso di lavoro per la replica cross-grid
+
+Il diagramma del flusso di lavoro riassume i passaggi che esegui per configurare la replica cross-grid tra i bucket su due grid. Questi passaggi sono descritti in modo più dettagliato sotto il diagramma.
+
+image:grid-federation-cgr-workflow.png["Flusso di lavoro di replica cross-grid"]
+
+
+
+[[configure-cross-grid-replication]]
+== Configura la replica cross-grid
+
+Prima di poter utilizzare la replica cross-grid, devi accedere ai corrispondenti account tenant su ciascun grid e creare due bucket. Quindi, puoi abilitare la replica cross-grid su uno o su entrambi i bucket.
+
+.Prima di iniziare
+* Hai verificato i requisiti per la replica cross-grid. Fai riferimento a link:../admin/grid-federation-what-is-cross-grid-replication.html["${post_edited_translations.segment}"].
+* Stai usando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* L'account tenant dispone dell'autorizzazione *Utilizza connessione di federazione grid* e su entrambi i grid esistono account tenant identici. Fai riferimento a link:../admin/grid-federation-manage-tenants.html["Gestisci i tenant autorizzati per la connessione alla federazione di rete"].
+* L'utente tenant con cui stai effettuando l'accesso esiste già su entrambe le grid e appartiene a un gruppo di utenti che ha il link:tenant-management-permissions.html["Permesso di accesso root"].
+* ${post_edited_translations.segment}
+
+
+
+
+[[create-two-buckets]]
+=== ${post_edited_translations.segment}
+
+Come primo passo, accedi agli account tenant corrispondenti su ciascuna griglia e crea un bucket su ciascuna griglia.
+
+.Passaggi
+. ${post_edited_translations.segment}
++
+.. Accedi all'account del tenant utilizzando le credenziali di un utente tenant che esiste su entrambe le griglie.
++
+${post_edited_translations.segment}
+
+.. Segui le istruzioni per link:creating-s3-bucket.html["${post_edited_translations.segment}"].
++
+
+TIP: ${post_edited_translations.segment}
+
+.. Nella scheda *Gestisci impostazioni oggetto*, seleziona *Abilita versioning degli oggetti*.
+.. Se S3 Object Lock è abilitato per il tuo sistema StorageGRID, consulta link:../admin/grid-federation-what-is-cross-grid-replication.html#cgr-with-ol["${post_edited_translations.segment}"].
+.. Seleziona *Create bucket*.
+.. Seleziona *Fine*.
+
+
+. ${post_edited_translations.segment}
++
+
+TIP: ${post_edited_translations.segment}
+
+
+
+
+
+[[enable-cross-grid-replication]]
+=== ${post_edited_translations.segment}
+
+Devi eseguire questi passaggi prima di aggiungere qualsiasi oggetto a uno dei due bucket.
+
+.Passaggi
+. Partendo da una griglia i cui oggetti vuoi replicare, abilita link:../admin/grid-federation-what-is-cross-grid-replication.html["${post_edited_translations.segment}"]:
++
+.. ${post_edited_translations.segment}
+.. ${post_edited_translations.segment}
+.. Seleziona il nome del bucket dalla tabella per accedere alla pagina dei dettagli del bucket.
+.. ${post_edited_translations.segment}
+.. Seleziona *Abilita* e rivedi l'elenco dei requisiti.
+.. Se tutti i requisiti sono stati soddisfatti, seleziona la connessione di federazione di griglia che desideri utilizzare.
+.. ${post_edited_translations.segment}
++
+*** *Sì* (impostazione predefinita): viene aggiunto un indicatore di eliminazione al bucket di origine e replicato nel bucket di destinazione.
+*** ${post_edited_translations.segment}
++
+image:grid-federation-cross-grid-replication-client-deletes.png["immagine che mostra la replica dell'eliminazione del client su entrambe le griglie"]
+
++
+
+NOTE: Se la richiesta di eliminazione include un ID di versione, quella versione dell'oggetto viene rimossa definitivamente dal bucket di origine. StorageGRID non replica le richieste di eliminazione che includono un ID di versione, quindi la stessa versione dell'oggetto non viene eliminata dalla destinazione.
+
++
+Consulta link:../admin/grid-federation-what-is-cross-grid-replication.html["${post_edited_translations.segment}"] per i dettagli.
+
+
+
+.. ${post_edited_translations.segment}
++
+*** *Errore* (impostazione predefinita): solo le richieste di replica cross-grid non riuscite sono incluse nell'output di audit.
+*** *Normale*: Sono incluse tutte le richieste di replica tra griglie, il che aumenta significativamente il volume dell'output di audit.
+
+
+.. Rivedi le tue selezioni. Non puoi modificare queste impostazioni a meno che entrambi i bucket non siano vuoti.
+.. Seleziona *Abilita e testa*.
++
+Dopo pochi istanti, viene visualizzato un messaggio di successo. Gli oggetti aggiunti a questo bucket vengono ora replicati automaticamente sull'altro grid. La *replica cross-grid* viene mostrata come funzionalità abilitata nella pagina dei dettagli del bucket.
+
+
+
+. Facoltativamente, vai al bucket corrispondente sull'altra grid e link:../admin/grid-federation-what-is-cross-grid-replication.html["abilita la replica tra griglie in entrambe le direzioni"].
+
+
+
+
+[[test-replication-between-grids]]
+== ${post_edited_translations.segment}
+
+${post_edited_translations.segment}
+
+.Prima di iniziare
+* Stai usando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Tu appartieni a un gruppo di utenti che ha il link:tenant-management-permissions.html["Permesso di accesso root"].
+
+
+.Passaggi
+. ${post_edited_translations.segment}
+. ${post_edited_translations.segment}
+. Seleziona il nome del bucket dalla tabella per accedere alla pagina dei dettagli del bucket.
+. ${post_edited_translations.segment}
+. Seleziona *Test connessione*.
++
+Se la connessione è stabile, viene visualizzato un banner di successo. Altrimenti, viene visualizzato un messaggio di errore che tu e l'amministratore della grid potete usare per risolvere il problema. Per dettagli, consulta link:../admin/grid-federation-troubleshoot.html["Risolvi i problemi relativi agli errori di federazione della griglia"].
+
+. ${post_edited_translations.segment}
+
+
+
+
+[[disable-cross-grid-replication]]
+== Disabilita la replica tra griglie
+
+Puoi interrompere definitivamente la replica tra griglie se non vuoi più copiare oggetti nell'altra griglia.
+
+${post_edited_translations.segment}
+
+* Disabilitare la replica tra griglie non rimuove gli oggetti già copiati tra le griglie. Ad esempio, gli oggetti in  `my-bucket` su Grid 1 che sono stati copiati in  `my-bucket` su Grid 2 non vengono rimossi se disabiliti la replica tra griglie per quel bucket. Se vuoi eliminare questi oggetti, devi rimuoverli manualmente.
+* Se la replica tra griglie è stata abilitata per ciascuno dei bucket (ovvero, se la replica avviene in entrambe le direzioni), puoi disabilitare la replica tra griglie per uno o entrambi i bucket. Ad esempio, potresti voler disabilitare la replica degli oggetti da  `my-bucket` su Grid 1 a  `my-bucket` su Grid 2, continuando invece a replicare gli oggetti da  `my-bucket` su Grid 2 a  `my-bucket` su Grid 1.
+* Devi disabilitare la replica tra griglie prima di poter rimuovere l'autorizzazione di un tenant a utilizzare la connessione di federazione della griglia. Consulta link:../admin/grid-federation-manage-tenants.html["Gestisci i tenant autorizzati"].
+* Se disabiliti la replica tra griglie per un bucket che contiene oggetti, non potrai riattivare la replica tra griglie a meno che tu non elimini tutti gli oggetti sia dal bucket di origine che da quello di destinazione.
++
+
+CAUTION: Non puoi riattivare la replica a meno che entrambi i bucket siano vuoti.
+
+
+
+.Prima di iniziare
+* Stai usando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Tu appartieni a un gruppo di utenti che ha il link:tenant-management-permissions.html["Permesso di accesso root"].
+
+
+.Passaggi
+. Partendo dalla griglia i cui oggetti non vuoi più replicare, interrompi la replica tra griglie per il bucket:
++
+.. ${post_edited_translations.segment}
+.. ${post_edited_translations.segment}
+.. Seleziona il nome del bucket dalla tabella per accedere alla pagina dei dettagli del bucket.
+.. ${post_edited_translations.segment}
+.. ${post_edited_translations.segment}
+.. ${post_edited_translations.segment}
++
+Dopo qualche istante, viene visualizzato un messaggio di conferma. I nuovi oggetti aggiunti a questo bucket non possono più essere replicati automaticamente nell'altra grid. *Cross-grid replication* non viene più visualizzata come funzionalità abilitata nella pagina Buckets.
+
+
+
+. ${post_edited_translations.segment}
+

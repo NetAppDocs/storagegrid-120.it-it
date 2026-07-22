@@ -1,0 +1,31 @@
+---
+permalink: audit/sysd-node-stop.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, SYSD, Node Stop 
+summary: 'Quando un servizio viene arrestato correttamente, viene generato questo messaggio per indicare che è stata richiesta la chiusura. In genere questo messaggio viene inviato solo dopo un successivo riavvio, perché la coda dei messaggi di audit non viene svuotata prima dell"arresto. Se il servizio non è stato riavviato, cerca il messaggio SYST, inviato all"inizio della sequenza di arresto.' 
+---
+= Messaggio di audit SYSD per arresti di nodi regolari in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Quando un servizio viene arrestato correttamente, viene generato questo messaggio per indicare che è stata richiesta la chiusura. In genere questo messaggio viene inviato solo dopo un successivo riavvio, perché la coda dei messaggi di audit non viene svuotata prima dell'arresto. Se il servizio non è stato riavviato, cerca il messaggio SYST, inviato all'inizio della sequenza di arresto.
+
+[cols="1a,1a,4a"]
+|===
+| Codice | Campo | Descrizione 
+
+
+ a| 
+RSLT
+ a| 
+Arresto pulito
+ a| 
+${post_edited_translations.segment}
+
+SUCS: Il sistema è stato arrestato correttamente.
+
+|===
+Il messaggio non indica se il server host è in fase di arresto, ma solo il servizio di reporting. L'RSLT di un SYSD non può indicare un arresto "sporco", perché il messaggio viene generato solo dagli arresti "puliti".

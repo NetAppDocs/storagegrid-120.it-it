@@ -1,0 +1,78 @@
+---
+permalink: audit/client-write-audit-messages.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, messages, client write, OVWR, SDEL, SPOS, SPUT, SUPD, WDEL, WPUT, S3 
+summary: 'I messaggi di audit di scrittura del client vengono registrati quando un"applicazione client S3 effettua una richiesta per creare o modificare un oggetto.' 
+---
+= Messaggi di audit per le operazioni di scrittura del client in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+I messaggi di audit di scrittura del client vengono registrati quando un'applicazione client S3 effettua una richiesta per creare o modificare un oggetto.
+
+[cols="1a,3a,1a,1a"]
+|===
+| Codice | Descrizione | Utilizzato da | Vedi 
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+Sovrascrittura oggetto: registra una transazione per sovrascrivere un oggetto con un altro oggetto.
+ a| 
+${post_edited_translations.segment}
+ a| 
+link:ovwr-object-overwrite.html["OVWR: Sovrascrittura oggetto"]
+
+
+
+ a| 
+${post_edited_translations.segment}
+ a| 
+S3 DELETE: Registra una transazione riuscita per eliminare un oggetto o un bucket.
+
+*Nota:* Se la transazione opera su una sottorisorsa, il messaggio di controllo includerà il campo S3SR.
+ a| 
+${post_edited_translations.segment}
+ a| 
+link:sdel-s3-delete.html["SDEL: S3 DELETE"]
+
+
+
+ a| 
+SPOS
+ a| 
+S3 POST: Registra una transazione riuscita per ripristinare un oggetto da AWS Glacier storage a un Cloud Storage Pool.
+ a| 
+${post_edited_translations.segment}
+ a| 
+link:spos-s3-post.html["${post_edited_translations.segment}"]
+
+
+
+ a| 
+SPUT
+ a| 
+S3 PUT: Registra una transazione riuscita per creare un nuovo oggetto o bucket.
+
+*Nota:* Se la transazione opera su una sottorisorsa, il messaggio di controllo includerà il campo S3SR.
+ a| 
+${post_edited_translations.segment}
+ a| 
+link:sput-s3-put.html["SPUT: S3 PUT"]
+
+
+
+ a| 
+SUPD
+ a| 
+${post_edited_translations.segment}
+ a| 
+${post_edited_translations.segment}
+ a| 
+link:supd-s3-metadata-updated.html["SUPD: Metadati S3 aggiornati"]
+
+|===

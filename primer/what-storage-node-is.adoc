@@ -1,0 +1,253 @@
+---
+permalink: primer/what-storage-node-is.html 
+sidebar: sidebar 
+keywords: StorageGRID, what is a storage node, how many storage nodes 
+summary: I nodi di archiviazione gestiscono e memorizzano i dati e i metadati. I nodi di archiviazione includono i servizi e i processi necessari per archiviare, spostare, verificare e recuperare i dati e i metadati su disco. 
+---
+= Che cos'è un nodo di archiviazione StorageGRID?
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+I nodi di archiviazione gestiscono e memorizzano i dati e i metadati. I nodi di archiviazione includono i servizi e i processi necessari per archiviare, spostare, verificare e recuperare i dati e i metadati su disco.
+
+Ogni sito nel tuo sistema StorageGRID deve avere almeno tre nodi di archiviazione.
+
+
+
+[[types-of-storage-nodes]]
+== Tipi di nodi di archiviazione
+
+Durante l'installazione, puoi selezionare il tipo di Storage Node che vuoi installare. Questi tipi sono disponibili per Storage Node basati su software e per Storage Node basati su appliance che supportano la funzionalità:
+
+* Nodo di archiviazione combinato di dati e metadati
+* Nodo di storage solo metadati
+* Nodo di archiviazione solo dati
+
+
+Puoi selezionare il tipo di Storage Node in queste situazioni:
+
+* Quando installi inizialmente un nodo di archiviazione
+* Quando aggiungi un nodo di storage durante l'espansione del sistema StorageGRID
+
+
+
+
+[[data-and-metadata-storage-node-combined]]
+=== Nodo di archiviazione dati e metadati (combinato)
+
+Per impostazione predefinita, tutti i nuovi Storage Node memorizzeranno sia i dati oggetto che i metadati. Questo tipo di Storage Node è definito Storage Node _combinato_.
+
+
+
+[[metadata-only-storage-node]]
+=== Nodo di storage solo metadati
+
+Utilizzare un nodo di archiviazione esclusivamente per i metadati può avere senso se la tua griglia memorizza un numero molto elevato di piccoli oggetti. Installare una capacità dedicata ai metadati offre un migliore equilibrio tra lo spazio necessario per un numero molto elevato di piccoli oggetti e lo spazio necessario per i metadati di quegli oggetti. Inoltre, i nodi di archiviazione dedicati solo ai metadati, ospitati su appliance dalle performance elevate, possono aumentare le performance.
+
+I nodi di storage solo metadati hanno requisiti hardware specifici:
+
+* Quando usi le appliance StorageGRID, i nodi che gestiscono solo metadati possono essere configurati solo su appliance SGF6112 con dodici unità da 1,9 TB o dodici unità da 3,8 TB.
+* Quando usi nodi basati su software, le risorse dei nodi solo metadati devono corrispondere alle risorse dei nodi di storage esistenti. Per esempio:
++
+** Se il sito StorageGRID esistente utilizza appliance SG6000 o SG6100, i nodi software dedicati esclusivamente ai metadati devono soddisfare i seguenti requisiti minimi:
++
+*** 128 GB di RAM
+*** CPU a 8 core
+*** 8 TB SSD o storage equivalente per il database Cassandra (rangedb/0)
+
+
+** Se il sito StorageGRID esistente utilizza nodi di storage virtuali con 24 GB di RAM, CPU a 8 core e 3 TB o 4 TB di storage per i metadati, i nodi software dedicati esclusivamente ai metadati dovrebbero utilizzare risorse simili (24 GB di RAM, CPU a 8 core e 4 TB di storage per i metadati (rangedb/0)).
+
+
+* Quando aggiungi un nuovo sito StorageGRID, la capacità totale dei metadati del nuovo sito deve essere, almeno, pari a quella dei siti esistenti. Le risorse di un nuovo sito devono corrispondere ai Storage Node dei siti esistenti.
+
+
+
+NOTE: Sebbene i nodi di archiviazione che contengono solo metadati <<ldr-service,Servizio LDR>> possano elaborare le richieste dei client S3, le prestazioni di StorageGRID potrebbero non aumentare.
+
+
+
+[[data-only-storage-node]]
+=== Nodo di archiviazione solo dati
+
+Utilizzare un nodo di archiviazione esclusivamente per i dati può avere senso se i tuoi nodi di archiviazione hanno caratteristiche prestazionali diverse. Ad esempio, per aumentare potenzialmente le prestazioni, potresti avere nodi di archiviazione solo dati ad elevata capacità con dischi rotanti, accompagnati da nodi di archiviazione solo metadati dalle performance elevate.
+
+Inoltre, puoi ottenere una maggiore capacità di metadati rimuovendo i nodi con poca RAM da Cassandra, il che aumenta il limite di capacità di metadati per nodo. Consulta link:../admin/managing-object-metadata-storage.html["Gestisci l'archiviazione dei metadati degli oggetti"].
+
+Puoi convertire un nodo di archiviazione che non contiene <<adc-service,Servizio ADC>> in un nodo di archiviazione solo dati. Consulta link:../maintain/convert-to-data-only-node.html["Convertire un nodo di Storage in un nodo di soli dati"].
+
+
+
+[[required-storage-nodes-per-grid-and-per-site]]
+== Nodi di storage richiesti per grid e per sito
+
+Quando selezioni i nodi di archiviazione da usare nella topologia, tieni presente che la grid o ogni sito nella grid deve contenere quanto segue:
+
+* Per sito (in una griglia a sito singolo o multi-sito): Tre <<adc-service,ADC>> Storage Nodes (puoi usare qualsiasi combinazione di Storage Nodes combinati e Storage Nodes solo metadati)
+* Griglia a sito singolo: almeno due Storage Node di oggetti (può essere qualsiasi combinazione di combined e data-only)
+* Griglia multisito: almeno un Object Storage Node per sito (può essere combinato o solo dati)
+
+
+
+
+[[primary-services-for-storage-nodes]]
+== Servizi principali per i nodi di Storage
+
+La tabella seguente mostra i servizi principali per i nodi di Storage; tuttavia, questa tabella non elenca tutti i servizi dei nodi.
+
+
+NOTE: Alcuni servizi, come il servizio ADC e il servizio RSM, in genere sono presenti solo su tre Storage Node per ogni sito.
+
+[cols="1a,3a"]
+|===
+| Servizio | Funzione chiave 
+
+
+ a| 
+Account (acct)
+ a| 
+Gestisce gli account dei tenant.
+
+I nodi di archiviazione esclusivamente dati non ospitano questo servizio.
+
+
+
+ a| 
+[[adc-service]]Controller di dominio amministrativo (ADC)
+ a| 
+Mantiene la topologia e la configurazione a livello di griglia.
+
+I nodi di archiviazione esclusivamente dati non ospitano questo servizio.
+
+.Dettagli
+[%collapsible]
+====
+Il servizio Administrative Domain Controller (ADC) autentica i nodi della griglia e le loro connessioni reciproche. Il servizio ADC è ospitato su un minimo di tre Storage Nodes in un sito.
+
+Il servizio ADC mantiene le informazioni sulla topologia, inclusi l'ubicazione e la disponibilità dei servizi. Quando un nodo della griglia necessita di informazioni da un altro nodo della griglia o di un'azione da eseguire da parte di un altro nodo della griglia, contatta un servizio ADC per individuare il nodo della griglia più adatto a elaborare la sua richiesta. Inoltre, il servizio ADC conserva una copia dei bundle di configurazione dell'implementazione di StorageGRID, consentendo a qualsiasi nodo della griglia di recuperare le informazioni di configurazione correnti.
+
+Per facilitare le operazioni distribuite e isolate, ogni servizio ADC sincronizza certificati, pacchetti di configurazione e informazioni su servizi e topologia con gli altri servizi ADC nel sistema StorageGRID.
+
+In generale, tutti i nodi della griglia mantengono una connessione ad almeno un servizio ADC. Questo garantisce che i nodi della griglia accedano sempre alle informazioni più aggiornate. Quando i nodi della griglia si connettono, memorizzano nella cache i certificati degli altri nodi della griglia, permettendo ai sistemi di continuare a funzionare con i nodi della griglia noti anche quando un servizio ADC non è disponibile. I nuovi nodi della griglia possono stabilire connessioni solo utilizzando un servizio ADC.
+
+La connessione di ciascun nodo della griglia consente al servizio ADC di raccogliere informazioni sulla topologia. Queste informazioni sul nodo della griglia includono il carico della CPU, lo spazio su disco disponibile (se dispone di storage), i servizi supportati e l'ID del sito del nodo della griglia. Altri servizi chiedono al servizio ADC informazioni sulla topologia tramite query di topologia. Il servizio ADC risponde a ciascuna query con le informazioni più recenti ricevute dal sistema StorageGRID.
+
+====
+
+
+ a| 
+Cassandra
+ a| 
+Archivia e protegge i metadati degli oggetti.
+
+I nodi di archiviazione esclusivamente dati non ospitano questo servizio.
+
+
+
+ a| 
+Cassandra Reaper
+ a| 
+Esegue riparazioni automatiche dei metadati degli oggetti.
+
+I nodi di archiviazione esclusivamente dati non ospitano questo servizio.
+
+
+
+ a| 
+Chunk
+ a| 
+Gestisci i dati codificati tramite cancellazione e i frammenti di parità.
+
+
+
+ a| 
+Data Mover (dmv)
+ a| 
+Sposta i dati nei Cloud Storage Pools.
+
+
+
+ a| 
+Archivio dati distribuito (DDS)
+ a| 
+Monitora l'archiviazione dei metadati degli oggetti.
+
+.Dettagli
+[%collapsible]
+====
+Ciascun nodo di archiviazione include il servizio Distributed Data Store (DDS). Questo servizio si interfaccia con il database Cassandra per eseguire attività in background sui metadati memorizzati nel sistema StorageGRID.
+
+Il servizio DDS tiene traccia del numero totale di oggetti inseriti nel sistema StorageGRID, nonché del numero totale di oggetti inseriti tramite ciascuna delle interfacce supportate dal sistema (S3).
+
+====
+
+
+ a| 
+Identità (idnt)
+ a| 
+Federa le identità utente da LDAP e Active Directory.
+
+I nodi di archiviazione esclusivamente dati non ospitano questo servizio.
+
+
+
+ a| 
+[[ldr-service]]Router di distribuzione locale (LDR)
+ a| 
+Elabora le richieste del protocollo di storage a oggetti e gestisce i dati degli oggetti su disco.
+
+.Dettagli
+[%collapsible]
+====
+Ogni nodo di storage _combinato_, _solo dati_ e _solo metadati_ include il servizio Local Distribution Router (LDR). Questo servizio gestisce le funzioni di trasporto dei contenuti, tra cui la memorizzazione dei dati, l'instradamento e la gestione delle richieste. Il servizio LDR fa la maggior parte del lavoro impegnativo del sistema StorageGRID gestendo i carichi di trasferimento dei dati e le funzioni di traffico dati.
+
+Il servizio LDR gestisce le seguenti attività:
+
+* Query
+* Attività di gestione del ciclo di vita delle informazioni (ILM)
+* Eliminazione dell'oggetto
+* Storage a oggetti
+* Trasferimenti di dati degli oggetti da un altro servizio LDR (Storage Node)
+* Gestione dell'archiviazione dei dati
+* Interfaccia del protocollo S3
+
+
+Il servizio LDR associa inoltre ogni oggetto S3 al suo UUID univoco.
+
+Archivi di oggetti:: L'infrastruttura di storage dati di un servizio LDR è suddivisa in un numero fisso di archivi di oggetti (noti anche come volumi di storage). Ogni archivio di oggetti è un punto di montaggio separato.
++
+--
+Gli object store in un nodo di storage sono identificati da un numero esadecimale compreso tra 0000 e 002F, noto come ID del volume. Nel primo object store (volume 0) è riservato spazio per i metadati degli oggetti in un database Cassandra; lo spazio rimanente su quel volume viene utilizzato per i dati degli oggetti. Tutti gli altri object store sono utilizzati esclusivamente per i dati degli oggetti, che includono copie replicate e frammenti con codifica di cancellazione.
+
+Per garantire un utilizzo uniforme dello spazio per le copie replicate, i dati di un oggetto vengono memorizzati in un archivio di oggetti in base allo spazio di storage disponibile. Quando un archivio di oggetti raggiunge la sua capacità massima, gli archivi di oggetti rimanenti continuano a memorizzare gli oggetti finché non c'è più spazio sullo Storage Node.
+
+--
+Protezione dei metadati:: StorageGRID memorizza i metadati degli oggetti in un database Cassandra, che si interfaccia con il servizio LDR.
++
+--
+Per garantire la ridondanza e quindi la protezione contro la perdita, in ogni sito vengono mantenute tre copie dei metadati degli oggetti. Questa replica non è configurabile ed è eseguita automaticamente. Per dettagli, vedi link:../admin/managing-object-metadata-storage.html["Gestisci l'archiviazione dei metadati degli oggetti"].
+
+--
+
+
+====
+
+
+ a| 
+Macchina a stati replicata (RSM)
+ a| 
+Garantisce che le richieste ai servizi della piattaforma S3 vengano inviate ai rispettivi endpoint.
+
+I nodi di archiviazione esclusivamente dati non ospitano questo servizio.
+
+
+
+ a| 
+Monitoraggio dello stato del server (SSM)
+ a| 
+Monitora il sistema operativo e l'hardware sottostante.
+
+|===

@@ -1,0 +1,47 @@
+---
+permalink: audit/sade-security-audit-enable.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, SADE, Security Audit Enable 
+summary: 'Questo messaggio indica che il servizio di origine (ID nodo) ha ripristinato la registrazione dei messaggi di audit. StorageGRID sta nuovamente raccogliendo e inviando i messaggi di audit.' 
+---
+= Messaggio di audit SADE per l'abilitazione dell'audit di sicurezza in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Questo messaggio indica che il servizio di origine (ID nodo) ha ripristinato la registrazione dei messaggi di audit. StorageGRID sta nuovamente raccogliendo e inviando i messaggi di audit.
+
+[cols="1a,1a,4a"]
+|===
+| Codice | Campo | Descrizione 
+
+
+ a| 
+AETM
+ a| 
+Metodo di attivazione
+ a| 
+${post_edited_translations.segment}
+
+
+
+ a| 
+AEUN
+ a| 
+Nome utente
+ a| 
+Il nome utente che ha eseguito il comando per abilitare la registrazione degli audit.
+
+
+
+ a| 
+RSLT
+ a| 
+Risultato
+ a| 
+Questo campo ha il valore NONE. RSLT è un campo obbligatorio del messaggio, ma non è rilevante per questo messaggio. Viene utilizzato NONE anziché SUCS così che questo messaggio non venga filtrato.
+
+|===
+Il messaggio implica che il logging era stato precedentemente disattivato (SADD), ma ora è stato ripristinato. Questo viene in genere utilizzato solo durante l'acquisizione massiva per migliorare le prestazioni del sistema. A seguito dell'attività massiva, l'auditing viene ripristinato e la possibilità di disattivare l'auditing viene quindi bloccata in modo permanente.

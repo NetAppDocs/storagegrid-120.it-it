@@ -1,0 +1,62 @@
+---
+permalink: harden/hardening-guideline-for-server-certificates.html 
+sidebar: sidebar 
+keywords: StorageGRID, hardening guidelines, certificates 
+summary: 'Dovresti sostituire i certificati predefiniti creati durante l"installazione e selezionare la policy di sicurezza appropriata per le connessioni TLS e SSH.' 
+---
+= Linee guida per l'hardening di TLS e SSH in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Dovresti controllare l'accesso SSH, sostituire i certificati TLS predefiniti e selezionare la policy di sicurezza appropriata per le connessioni TLS e SSH.
+
+
+
+[[hardening-guidelines-for-certificates]]
+== Linee guida per il rafforzamento dei certificati
+
+Dovresti sostituire i certificati predefiniti creati durante l'installazione con i tuoi certificati personalizzati.
+
+Per molte organizzazioni, il certificato digitale autofirmato per l'accesso web a StorageGRID non è conforme alle proprie politiche di sicurezza delle informazioni. Sui sistemi di produzione, dovresti installare un certificato digitale firmato da una CA da utilizzare per l'autenticazione di StorageGRID.
+
+Nello specifico, dovresti utilizzare certificati server personalizzati invece di questi certificati predefiniti:
+
+* *Certificato di interfaccia di gestione*: usato per proteggere l'accesso a Grid Manager, Tenant Manager, Grid Management API e Tenant Management API.
+* *Certificato API S3*: Usato per proteggere l'accesso ai nodi di archiviazione e ai nodi gateway, che le applicazioni client S3 usano per caricare e scaricare i dati degli oggetti.
+
+
+Vedi link:../admin/using-storagegrid-security-certificates.html["Gestisci i certificati di sicurezza"] per dettagli e istruzioni.
+
+
+NOTE: StorageGRID gestisce separatamente i certificati utilizzati per gli endpoint del bilanciatore di carico. Per configurare i certificati del bilanciatore di carico, vedi link:../admin/configuring-load-balancer-endpoints.html["${post_edited_translations.segment}"].
+
+Quando usi certificati server personalizzati, segui queste linee guida:
+
+* I certificati devono avere un `_subjectAltName_` che corrisponde alle voci DNS per StorageGRID. Per dettagli, vedi la sezione 4.2.1.6, "Subject Alternative Name", in https://tools.ietf.org/html/rfc5280#section-4.2.1.6["RFC 5280: Certificato PKIX e profilo CRL"^].
+* Quando possibile, evita l'uso di certificati wildcard. Un'eccezione a questa best practice è il certificato per un endpoint S3 virtual hosted style, che richiede l'uso di un wildcard se i nomi dei bucket non sono noti in anticipo.
+* Quando devi usare i caratteri jolly nei certificati, dovresti adottare ulteriori misure per ridurre i rischi. Usa un modello di caratteri jolly come  `*.s3.example.com`, e non usare il suffisso  `s3.example.com` per altre applicazioni. Questo modello funziona anche con l'accesso S3 in stile percorso, come  `dc1-s1.s3.example.com/mybucket`.
+* Imposta tempi di scadenza brevi per i certificati (ad esempio, 2 mesi) e usa l'API Grid Management per automatizzare la rotazione dei certificati. Questo è particolarmente importante per i certificati wildcard.
+
+
+Inoltre, i client dovrebbero utilizzare un controllo rigoroso del nome host quando comunicano con StorageGRID.
+
+
+
+[[hardening-guidelines-for-tls-and-ssh-policy]]
+== Linee guida per il rafforzamento delle policy TLS e SSH
+
+Puoi selezionare una policy di sicurezza per determinare quali protocolli e algoritmi di crittografia vengono utilizzati per stabilire connessioni TLS sicure con le applicazioni client e connessioni SSH sicure ai servizi interni di StorageGRID.
+
+La policy di sicurezza controlla il modo in cui TLS e SSH crittografano i dati in transito. Come best practice, dovresti disabilitare le opzioni di crittografia che non sono necessarie per la compatibilità delle applicazioni. Usa la policy Modern predefinita, a meno che il tuo sistema non debba essere conforme ai Common Criteria, a FIPS 140-2 o tu abbia bisogno di usare altri algoritmi di crittografia.
+
+Vedi link:../admin/manage-tls-ssh-policy.html["Gestisci le policy TLS e SSH"] per dettagli e istruzioni.
+
+
+
+[[manage-external-ssh-access]]
+== Gestisci l'accesso SSH esterno
+
+Per migliorare la sicurezza del sistema, l'accesso SSH esterno è bloccato per impostazione predefinita. Abilita l'accesso SSH solo quando devi eseguire attività che richiedono l'accesso SSH in entrata, come la risoluzione dei problemi. Consulta link:../admin/manage-external-ssh-access.html["Gestisci l'accesso SSH esterno"] per dettagli e istruzioni.

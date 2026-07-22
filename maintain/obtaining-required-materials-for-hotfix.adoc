@@ -1,0 +1,61 @@
+---
+permalink: maintain/obtaining-required-materials-for-hotfix.html 
+sidebar: sidebar 
+keywords: storagegrid, hotfix 
+summary: Prima di applicare una hotfix, devi procurarti tutto il materiale richiesto. 
+---
+= Procurare i materiali necessari per un hotfix StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Prima di applicare una hotfix, devi procurarti tutto il materiale richiesto.
+
+[cols="1a,2a"]
+|===
+| Articolo | Note 
+
+
+ a| 
+File di hotfix di StorageGRID
+ a| 
+Devi scaricare il file hotfix di StorageGRID.
+
+
+
+ a| 
+* ${post_edited_translations.segment}
+* link:../admin/web-browser-requirements.html["${post_edited_translations.segment}"]
+* ${post_edited_translations.segment}
+
+ a| 
+
+
+
+ a| 
+pacchetto di ripristino (`.zip`) file
+ a| 
+Prima di applicare un hotfix, link:downloading-recovery-package.html["scarica il file del pacchetto di ripristino più recente"] nel caso in cui si verifichino problemi durante l'hotfix. Poi, dopo che l'hotfix è stato applicato, scarica una nuova copia del file del pacchetto di ripristino e salvala in un luogo sicuro. Il file del pacchetto di ripristino aggiornato ti permette di ripristinare il sistema se si verifica un errore.
+
+
+
+| File Passwords.txt  a| 
+Facoltativo e da utilizzare solo se applichi manualmente un hotfix tramite il client SSH. Il  `Passwords.txt` file fa parte del file del pacchetto di ripristino  `.zip`.
+
+
+
+ a| 
+Passphrase di provisioning
+ a| 
+La passphrase viene creata e documentata quando il sistema StorageGRID viene installato per la prima volta. La passphrase di provisioning non è presente nel  `Passwords.txt` file.
+
+
+
+ a| 
+Documentazione correlata
+ a| 
+`readme.txt` file per la hotfix. Questo file è incluso nella pagina di download della hotfix. Assicurati di esaminare il  `readme` file attentamente prima di applicare la hotfix.
+
+|===

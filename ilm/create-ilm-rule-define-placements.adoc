@@ -1,0 +1,178 @@
+---
+permalink: ilm/create-ilm-rule-define-placements.html 
+sidebar: sidebar 
+keywords: ilm rule step 2, define placements 
+summary: 'La fase "Definisci posizionamenti" della procedura guidata "Crea regola ILM" ti permette di definire le istruzioni di posizionamento che determinano per quanto tempo gli oggetti vengono conservati, il tipo di copie (replicate o con codifica di cancellazione), la posizione di archiviazione e il numero di copie.' 
+---
+= Definisci le istruzioni di posizionamento per una regola StorageGRID ILM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La fase *Definisci posizionamenti* della procedura guidata Crea regola ILM ti permette di definire le istruzioni di posizionamento che determinano per quanto tempo gli oggetti vengono conservati, il tipo di copie (replicate o con codifica di cancellazione), la posizione di archiviazione e il numero di copie.
+
+
+NOTE: Le schermate mostrate sono esempi. I risultati potrebbero variare a seconda della versione di StorageGRID.
+
+.Informazioni su questa attività
+Una regola ILM può includere una o più istruzioni di posizionamento. Ogni istruzione di posizionamento si applica a un singolo periodo di tempo. Quando usi più istruzioni, i periodi di tempo devono essere contigui e almeno un'istruzione deve iniziare dal giorno 0. Le istruzioni possono continuare per sempre o fino a quando non ti servono più copie di oggetti.
+
+Ogni istruzione di posizionamento può avere più righe se vuoi creare diversi tipi di copie o usare posizioni diverse durante quel periodo.
+
+In questo esempio, la regola ILM memorizza una copia replicata nel Sito 1 e una copia replicata nel Sito 2 per il primo anno. Dopo un anno, viene creata una copia con codifica di cancellazione 2+1 e salvata in un solo sito.
+
+image:ilm_create_ilm_rule_wizard_2.png["Crea procedura guidata regola ILM - Passaggio 2"]
+
+.Passaggi
+. Per *Tempo di riferimento*, seleziona il tipo di tempo da usare quando calcoli l'ora di inizio di un'istruzione di posizionamento.
++
+[cols="1a,2a"]
+|===
+| Opzione | Descrizione 
+
+
+ a| 
+Tempo di ingestione
+ a| 
+L'ora in cui l'oggetto è stato acquisito.
+
+
+
+ a| 
+Ultimo accesso
+ a| 
+L'ultima volta che l'oggetto è stato recuperato (letto o visualizzato).
+
+Per utilizzare questa opzione, devi abilitare gli aggiornamenti all'ora dell'ultimo accesso per il bucket S3. Consulta link:using-last-access-time-in-ilm-rules.html["Usa l'ora dell'ultimo accesso nelle regole ILM"].
+
+
+
+ a| 
+Ora di creazione definita dall'utente
+ a| 
+Un orario specificato nei metadati definiti dall'utente.
+
+
+
+ a| 
+Tempo non corrente
+ a| 
+"Tempo non corrente" viene selezionato automaticamente se hai selezionato *Sì* alla domanda "Applica questa regola solo alle versioni precedenti degli oggetti (nei bucket S3 con versioning abilitato)?" in link:create-ilm-rule-enter-details.html["Passaggio 1 della procedura guidata Crea una regola ILM"].
+
+|===
++
+Se vuoi creare una regola _conforme_, devi selezionare *Tempo di acquisizione*. Consulta link:managing-objects-with-s3-object-lock.html["Gestisci gli oggetti con S3 Object Lock"].
+
+. Nella sezione *Periodo di tempo e collocazioni*, inserisci un orario di inizio e una durata per il primo periodo di tempo.
++
+Ad esempio, potresti voler specificare dove archiviare gli oggetti per il primo anno (_A partire dal giorno 0, archivia per 365 giorni_). Almeno un'istruzione deve iniziare dal giorno 0.
+
+. Se vuoi creare copie replicate:
++
+.. Dall'elenco a discesa *Archivia oggetti per*, seleziona *replicazione*.
+.. Seleziona il numero di copie che vuoi fare.
++
+Viene visualizzato un avviso se imposti il numero di copie su 1. Una regola ILM che crea una sola copia replicata per qualsiasi periodo di tempo mette i dati a rischio di perdita permanente. Consulta link:why-you-should-not-use-single-copy-replication.html["Perché non dovresti usare la replica a copia singola"].
+
++
+Per evitare il rischio, esegui una o più delle seguenti operazioni:
+
++
+*** Aumenta il numero di copie per il periodo di tempo.
+*** Aggiungi copie ad altri pool di storage o a un Cloud Storage Pool.
+*** Seleziona *codifica di cancellazione* invece di *replicazione*.
++
+Puoi tranquillamente ignorare questo avviso se questa regola crea già più copie per tutti i periodi di tempo.
+
+
+
+.. Nel campo *copie in*, seleziona i pool di storage che vuoi aggiungere.
++
+*Se specifichi un solo pool di storage*, tieni presente che StorageGRID può memorizzare solo una copia replicata di un oggetto su qualsiasi Storage Node. Se la tua grid include tre Storage Node e selezioni 4 come numero di copie, verranno create solo tre copie: una per ciascun Storage Node.
+
++
+L'avviso *Impossibile posizionare ILM* viene attivato per indicare che la regola ILM non può essere applicata completamente.
+
++
+*Se specifichi più di un pool di storage*, tieni a mente queste regole:
+
++
+*** Il numero di copie non può essere superiore al numero di pool di storage.
+*** Se il numero di copie è uguale al numero di pool di storage, una copia dell'oggetto viene memorizzata in ciascun pool di storage.
+*** Se il numero di copie è inferiore al numero di pool di storage, una copia viene memorizzata nel sito di ingest, e poi il sistema distribuisce le copie rimanenti per mantenere bilanciato l'utilizzo del disco tra i pool, assicurando che nessun sito riceva più di una copia di un oggetto.
+*** Se i pool di storage si sovrappongono (contengono gli stessi Storage Node), tutte le copie dell'oggetto potrebbero essere salvate in un solo sito. Per questo motivo, non specificare il pool di storage All Storage Nodes (StorageGRID 11.6 e versioni precedenti) e un altro pool di storage.
+
+
+
+
+. Se vuoi creare una copia con codifica di cancellazione:
++
+.. Dall'elenco a discesa *Memorizza oggetti per*, seleziona *erasure coding*.
++
+
+NOTE: La codifica di cancellazione è più adatta per oggetti di dimensioni superiori a 1 MB. Non usare la codifica di cancellazione per oggetti più piccoli di 200 KB per evitare l'overhead della gestione di frammenti codificati molto piccoli.
+
+.. Se non hai aggiunto un filtro per le dimensioni dell'oggetto con un valore superiore a 200 KB, seleziona *Precedente* per tornare al passaggio 1. Quindi, seleziona *Aggiungi un filtro avanzato* e imposta un filtro *Dimensioni oggetto* con un valore qualsiasi superiore a 200 KB.
+.. Seleziona il pool di storage che desideri aggiungere e lo schema di codifica di cancellazione che vuoi usare.
++
+La posizione di archiviazione per una copia con codifica di cancellazione include il nome dello schema di codifica di cancellazione, seguito dal nome del pool di storage.
+
++
+Gli schemi di codifica di cancellazione disponibili sono limitati dal numero di nodi di archiviazione nel pool di storage che selezioni. Un badge  `Recommended` appare accanto agli schemi che forniscono o il link:../ilm/what-erasure-coding-schemes-are.html["migliore protezione o il più basso overhead dello storage"].
+
+
+
+. Facoltativamente:
++
+.. Seleziona *Aggiungi altro tipo o posizione* per creare copie aggiuntive in posizioni diverse.
+.. Seleziona *Aggiungi un altro periodo di tempo* per aggiungere periodi di tempo diversi.
++
+[NOTE]
+====
+L'eliminazione degli oggetti avviene in base alle seguenti impostazioni:
+
+*** Gli oggetti vengono eliminati automaticamente al termine dell'ultimo periodo di tempo, a meno che un altro periodo di tempo non termini con *forever*.
+*** A seconda delle link:../ilm/example-8-priorities-for-s3-bucket-lifecycle-and-ilm-policy.html#example-of-bucket-lifecycle-taking-priority-over-ilm-policy["impostazioni del periodo di conservazione del bucket e del tenant"] impostazioni, gli oggetti potrebbero non essere eliminati anche se il periodo di conservazione ILM termina.
+
+
+====
+
+
+. Se vuoi archiviare oggetti in un Cloud Storage Pool:
++
+.. Nell'elenco a discesa *Archivia oggetti per*, seleziona *replicazione*.
+.. Seleziona il campo *copie in*, quindi seleziona un Cloud Storage Pool.
++
+Quando usi i Cloud Storage Pools, tieni a mente queste regole:
+
++
+*** Non puoi selezionare più di un Cloud Storage Pool in una singola istruzione di posizionamento. Allo stesso modo, non puoi selezionare un Cloud Storage Pool e un pool di storage nella stessa istruzione di posizionamento.
+*** Puoi memorizzare solo una copia di un oggetto in qualsiasi Cloud Storage Pool. Viene visualizzato un messaggio di errore se imposti *Copies* su 2 o più.
+*** Non puoi archiviare più di una copia di un oggetto contemporaneamente in un Cloud Storage Pool. Viene visualizzato un messaggio di errore se più posizionamenti che utilizzano un Cloud Storage Pool hanno date sovrapposte o se più righe nello stesso posizionamento utilizzano un Cloud Storage Pool.
+*** Puoi archiviare un oggetto in un Cloud Storage Pool mentre lo stesso oggetto viene archiviato come copie replicate o con codifica di cancellazione in StorageGRID. Tuttavia, devi includere più di una riga nell'istruzione di posizionamento per il periodo di tempo, così puoi specificare il numero e i tipi di copie per ciascuna posizione.
+
+
+
+
+. Nel diagramma di retention, conferma le istruzioni di posizionamento.
++
+In questo esempio, la regola ILM memorizza una copia replicata nel Sito 1 e una copia replicata nel Sito 2 per il primo anno. Dopo un anno e per ulteriori 10 anni, una copia con codifica di cancellazione 6+3 verrà salvata in tre siti. Dopo un totale di 11 anni, gli oggetti verranno eliminati da StorageGRID.
+
++
+La sezione di analisi delle regole del diagramma di retention afferma:
+
++
+** La protezione contro la perdita di sito di StorageGRID sarà applicata per tutta la durata di questa regola.
+** Gli oggetti elaborati da questa regola saranno eliminati dopo il giorno 4015.
++
+Fai riferimento a link:using-multiple-storage-pools-for-cross-site-replication.html["Attiva la protezione contro la perdita del sito."]
+
++
+image:ilm_rule_retention_diagram.png["Diagramma di conservazione delle regole ILM"]
+
+
+
+. Seleziona *Continua*. link:create-ilm-rule-select-ingest-behavior.html["Passaggio 3 (Seleziona il comportamento di ingestione)"] Viene visualizzata la procedura guidata Crea una regola ILM.
+

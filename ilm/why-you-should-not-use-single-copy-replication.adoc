@@ -1,0 +1,29 @@
+---
+permalink: ilm/why-you-should-not-use-single-copy-replication.html 
+sidebar: sidebar 
+keywords: dual commit, single commit, number of copies for replication 
+summary: Quando crei una regola ILM per generare copie replicate, dovresti sempre specificare almeno due copie per qualsiasi periodo di tempo nelle istruzioni di posizionamento. 
+---
+= Rischi della replica a copia singola in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Quando crei una regola ILM per generare copie replicate, dovresti sempre specificare almeno due copie per qualsiasi periodo di tempo nelle istruzioni di posizionamento.
+
+
+NOTE: Non usare una regola ILM che crea solo una copia replicata per qualsiasi periodo di tempo. Se esiste solo una copia replicata di un oggetto, quell'oggetto viene perso se un Storage Node si guasta o ha un errore significativo. Perderai anche temporaneamente l'accesso all'oggetto durante le procedure di manutenzione come gli upgrade.
+
+Nell'esempio seguente, la regola ILM "Crea 1 copia" specifica che una copia replicata di un oggetto deve essere inserita in un pool di storage contenente tre Storage Node. Quando viene acquisito un oggetto che corrisponde a questa regola, StorageGRID ne inserisce una singola copia su un solo Storage Node.
+
+image:ilm_replication_make_1_copy.png["Replica ILM Fai 1 copia"]
+
+Quando una regola ILM crea solo una copia replicata di un oggetto, l'oggetto diventa inaccessibile quando il Storage Node non è disponibile. In questo esempio, perderai temporaneamente l'accesso all'oggetto AAA ogni volta che il Storage Node 2 è offline, ad esempio durante un aggiornamento o un'altra procedura di manutenzione. Perderai completamente l'oggetto AAA se il Storage Node 2 si guasta.
+
+image:ilm_replication_make_1_copy_sn_fails.png["Replica ILM: creazione di 1 copia SN non riuscita"]
+
+Per evitare di perdere i dati degli oggetti, dovresti sempre creare almeno due copie di tutti gli oggetti che vuoi proteggere con la replica. Se esistono due o più copie, puoi comunque accedere all'oggetto se un nodo di storage si guasta o va offline.
+
+image:ilm_replication_make_2_copies_sn_fails.png["Replica ILM crea 2 copie SN non riuscita"]

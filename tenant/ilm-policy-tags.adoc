@@ -1,0 +1,59 @@
+---
+permalink: tenant/ilm-policy-tags.html 
+sidebar: sidebar 
+keywords: how to assign ilm policy tag to bucket 
+summary: Scegli un tag di policy ILM da assegnare a un bucket in base ai tuoi requisiti di storage a oggetti. 
+---
+= Applica un tag di policy ILM a un bucket StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Scegli un tag di policy ILM da applicare a un bucket in base ai tuoi requisiti di storage a oggetti.
+
+La policy ILM controlla dove vengono memorizzati i dati degli oggetti e se vengono eliminati dopo un determinato periodo di tempo. Il tuo amministratore di grid crea le policy ILM e le assegna ai tag della policy ILM quando si utilizzano più policy attive.
+
+
+NOTE: Evita di riassegnare frequentemente il tag di policy di un bucket. Altrimenti potrebbero verificarsi problemi di prestazioni.
+
+.Prima di iniziare
+* Hai effettuato l'accesso al Tenant Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Appartieni a un gruppo di utenti che dispone delle link:tenant-management-permissions.html["Autorizzazione di accesso root, gestisci tutti i bucket o visualizza tutti i bucket"]. Queste autorizzazioni sovrascrivono le impostazioni di autorizzazione nelle policy di gruppo o di bucket.
+
+
+.Passaggi
+. ${post_edited_translations.segment}
++
+Viene visualizzata la pagina Bucket. Se necessario, puoi ordinare le informazioni in base a qualsiasi colonna oppure puoi scorrere avanti e indietro l'elenco.
+
+. ${post_edited_translations.segment}
++
+Puoi anche modificare l'assegnazione del tag della policy ILM per un bucket a cui è già stato assegnato un tag.
+
++
+
+NOTE: I valori visualizzati per il numero di oggetti e lo spazio utilizzato sono stime. Queste stime sono influenzate dal momento dell'ingestione, dalla connettività di rete e dallo stato dei nodi. Se i bucket hanno il versioning abilitato, le versioni degli oggetti eliminati sono incluse nel conteggio degli oggetti.
+
+. Nella scheda Opzioni bucket, espandi il menu a fisarmonica Tag policy ILM. Questo menu a fisarmonica viene visualizzato solo se l'amministratore della griglia ha abilitato l'utilizzo di tag policy personalizzati.
+. ${post_edited_translations.segment}
++
+
+CAUTION: La modifica del tag della policy ILM per un bucket attiverà una rivalutazione di ILM di tutti gli oggetti nel bucket. Se la nuova policy conserva gli oggetti per un periodo di tempo limitato, gli oggetti più vecchi saranno eliminati.
+
+. ${post_edited_translations.segment}
+. Seleziona *Salva modifiche*. Un nuovo tag del bucket S3 verrà impostato sul bucket con la chiave `NTAP-SG-ILM-BUCKET-TAG` e il valore del nome del tag del criterio ILM.
++
+
+CAUTION: Assicurati che le tue applicazioni S3 non sovrascrivano o eliminino accidentalmente il nuovo tag del bucket. Se questo tag viene omesso quando si applica un nuovo TagSet al bucket, gli oggetti nel bucket torneranno a essere valutati in base alla policy ILM predefinita.
+
++
+
+CAUTION: Imposta e modifica i tag della policy ILM usando solo il Tenant Manager o l'API di Tenant Manager, dove il tag della policy ILM viene validato. Non modificare il tag della policy ILM usando l'API S3 PutBucketTagging o l'API S3 DeleteBucketTagging. `NTAP-SG-ILM-BUCKET-TAG`
+
++
+
+NOTE: La modifica del tag di policy assegnato a un bucket ha un impatto temporaneo sulle prestazioni mentre gli oggetti vengono rivalutati utilizzando la nuova policy ILM.
+
+

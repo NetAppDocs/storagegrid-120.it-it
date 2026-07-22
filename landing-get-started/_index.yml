@@ -1,0 +1,36 @@
+---
+indexpage:
+  title: Inizia a utilizzare un sistema StorageGRID
+  summary: "${post_edited_translations.segment}"
+  keywords: learn about StorageGRID, introduction to StorageGRID, get started with
+    StorageGRID
+  lead: "${post_edited_translations.segment}"
+  tiles:
+  - title: "${post_edited_translations.segment}"
+    links:
+    - title: "${post_edited_translations.segment}"
+      url: "../primer/index.html"
+    - title: Architettura e topologia di rete
+      url: "../primer/storagegrid-architecture-and-network-topology.html"
+    - title: "${post_edited_translations.segment}"
+      url: "../primer/how-storagegrid-manages-data.html"
+    - title: "${post_edited_translations.segment}"
+      url: "../primer/exploring-grid-manager.html"
+    - title: Esplora Tenant Manager
+      url: "../primer/exploring-tenant-manager.html"
+  - title: Linee guida di rete
+    links:
+    - title: Tipi di rete
+      url: "../network/storagegrid-network-types.html"
+    - title: "${post_edited_translations.segment}"
+      url: "../network/networking-requirements-and-guidelines.html"
+    - title: Comunicazioni interne dei nodi della grid
+      url: "../network/internal-grid-node-communications.html"
+    - title: Comunicazioni esterne
+      url: "../network/external-communications.html"
+  - title: Inizia
+    links:
+    - title: Guida rapida per StorageGRID
+      url: "../primer/quick-start.html"
+    - title: Requisiti del browser web
+      url: "../admin/web-browser-requirements.html"

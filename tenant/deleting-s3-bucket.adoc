@@ -1,0 +1,58 @@
+---
+permalink: tenant/deleting-s3-bucket.html 
+sidebar: sidebar 
+keywords: how to delete S3 bucket 
+summary: ${post_edited_translations.segment} 
+---
+= Eliminare un bucket S3 di StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+${post_edited_translations.segment}
+
+.Prima di iniziare
+* Hai effettuato l'accesso al Tenant Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Appartieni a un gruppo di utenti che ha le link:tenant-management-permissions.html["Gestisci tutti i bucket o autorizzazione di accesso root"]. Queste autorizzazioni sovrascrivono le impostazioni delle autorizzazioni nelle policy di gruppo o di bucket.
+* I bucket che vuoi eliminare sono vuoti. Se i bucket che vuoi eliminare _non_ sono vuoti, link:../tenant/deleting-s3-bucket-objects.html["eliminare oggetti dal bucket"].
+
+
+.Informazioni su questa attività
+Queste istruzioni descrivono come eliminare un bucket S3 utilizzando il Tenant Manager. Puoi anche eliminare i bucket S3 utilizzando il link:understanding-tenant-management-api.html["API di gestione tenant"] o il link:../s3/operations-on-buckets.html["${post_edited_translations.segment}"].
+
+Non puoi eliminare un bucket S3 se contiene oggetti, versioni di oggetti non correnti o marcatori di eliminazione. Per informazioni su come vengono eliminati gli oggetti S3 con versione, consulta link:../ilm/how-objects-are-deleted.html["Come vengono eliminati gli oggetti"].
+
+.Passaggi
+. ${post_edited_translations.segment}
++
+Viene visualizzata la pagina Buckets, che mostra tutti i bucket S3 esistenti.
+
+. ${post_edited_translations.segment}
++
+[role="tabbed-block"]
+====
+.Menu azioni
+--
+.. ${post_edited_translations.segment}
+.. ${post_edited_translations.segment}
+
+
+--
+.Pagina dei dettagli
+--
+.. Seleziona il nome di un bucket per visualizzarne i dettagli.
+.. ${post_edited_translations.segment}
+
+
+--
+====
+. ${post_edited_translations.segment}
++
+StorageGRID verifica che ogni bucket sia vuoto e quindi elimina ogni bucket. Questa operazione potrebbe richiedere alcuni minuti.
+
++
+Se un bucket non è vuoto, viene visualizzato un messaggio di errore. Devi link:../tenant/deleting-s3-bucket-objects.html["elimina tutti gli oggetti e tutti i marcatori di eliminazione nel bucket"] prima di poter eliminare il bucket.
+
+

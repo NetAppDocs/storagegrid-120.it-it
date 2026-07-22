@@ -1,0 +1,26 @@
+---
+permalink: release-notes/changes-to-tenant-management-api.html 
+sidebar: sidebar 
+keywords: tenant management api, api, api version, swagger, rest api 
+summary: StorageGRID 12.0 utilizza la versione 4 della Tenant Management API. La versione 4 depreca la versione 3. Tuttavia, le versioni 1, 2 e 3 sono ancora supportate. 
+---
+= Modifiche all'API di gestione dei tenant in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID 12.0 utilizza la versione 4 dell'API di gestione dei tenant. La versione 4 rende obsoleta la versione 3; tuttavia, le versioni 1, 2 e 3 sono ancora supportate.
+
+
+NOTE: Puoi continuare a usare le versioni obsolete della Tenant Management API con StorageGRID 12.0; tuttavia, il supporto per queste versioni dell'API verrà rimosso in una versione futura di StorageGRID. Dopo l'aggiornamento a StorageGRID 12.0, puoi disattivare le API obsolete usando l' `PUT /grid/config/management`API.
+
+Per saperne di più, vai su link:../tenant/understanding-tenant-management-api.html["Comprendi l'API di gestione dei tenant"].
+
+
+
+[[new-api-for-object-replication]]
+== Nuova API per la replica degli oggetti
+
+Puoi usare l' `/org/cross-grid-replication/{versionId}/replicate`API per replicare manualmente gli oggetti su un bucket esistente per cui hai appena configurato la replica tra griglie.

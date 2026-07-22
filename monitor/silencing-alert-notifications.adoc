@@ -1,0 +1,127 @@
+---
+permalink: monitor/silencing-alert-notifications.html 
+sidebar: sidebar 
+keywords: how to disable alert rules, how to remove a custom alert rule 
+summary: Facoltativamente, puoi configurare i silenziamenti per sopprimere temporaneamente le notifiche di avviso. 
+---
+= Silenzia le notifiche di alert in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Facoltativamente, puoi configurare i silenziamenti per sopprimere temporaneamente le notifiche di avviso.
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Hai il link:../admin/admin-group-permissions.html["Gestisci gli avvisi o i permessi di accesso root"].
+
+
+.Informazioni su questa attività
+Puoi silenziare le regole di avviso sull'intera griglia, su un singolo sito o su un singolo nodo e per uno o più livelli di gravità. Ogni silenziamento sopprime tutte le notifiche per una singola regola di avviso o per tutte le regole di avviso.
+
+Se hai abilitato l'agente SNMP, le funzioni di silenziamento sopprimono anche le trap e le inform SNMP.
+
+
+CAUTION: Fai attenzione quando decidi di disattivare una regola di avviso. Se disattivi un avviso, potresti non rilevare un problema sottostante finché non impedisce il completamento di un'operazione critica.
+
+.Passaggi
+. Seleziona *Avvisi* > *Silenzi*.
++
+Viene visualizzata la pagina Silences.
+
++
+image:alerts_silences_page.png["Pagina Avvisi > Silenziamenti"]
+
+. Seleziona *Create*.
++
+Viene visualizzata la finestra di dialogo Crea Silence.
+
++
+image:alerts_create_silence.png["Avvisi > Crea silenzio"]
+
+. Seleziona o inserisci le seguenti informazioni:
++
+[cols="1a,3a"]
+|===
+| Campo | Descrizione 
+
+
+ a| 
+Regola di alert
+ a| 
+Il nome della regola di avviso che vuoi silenziare. Puoi selezionare qualsiasi regola di avviso predefinita o personalizzata, anche se la regola di avviso è disabilitata.
+
+*Nota:* Seleziona *Tutte le regole* se vuoi silenziare tutte le regole di avviso usando i criteri specificati in questa finestra di dialogo.
+
+
+
+ a| 
+Descrizione
+ a| 
+Facoltativamente, una descrizione del silenzio. Ad esempio, descrivi lo scopo di questo silenzio.
+
+
+
+ a| 
+Durata
+ a| 
+Per quanto tempo desideri che questo silenzio rimanga in vigore, in minuti, ore o giorni. Un silenzio può essere in vigore da 5 minuti a 1.825 giorni (5 anni).
+
+*Nota:* Non dovresti silenziare una regola di avviso per un periodo di tempo prolungato. Se una regola di avviso viene silenziata, potresti non rilevare un problema sottostante finché non impedisce il completamento di un'operazione critica. Tuttavia, potresti dover usare un silenziamento prolungato se un avviso viene attivato da una configurazione specifica e intenzionale, come nel caso degli avvisi *Services appliance link down* e *Storage appliance link down*.
+
+
+
+ a| 
+Gravità
+ a| 
+Quale o quali livelli di gravità dell'avviso devono essere silenziati. Se l'avviso viene attivato a uno dei livelli di gravità selezionati, non vengono inviate notifiche.
+
+
+
+ a| 
+Nodi
+ a| 
+A quale nodo o nodi vuoi applicare questo silenziamento. Puoi sopprimere una regola di avviso o tutte le regole sull'intera griglia, su un singolo sito o su un singolo nodo. Se selezioni l'intera griglia, il silenziamento si applica a tutti i siti e a tutti i nodi. Se selezioni un sito, il silenziamento si applica solo ai nodi di quel sito.
+
+*Nota:* Non puoi selezionare più di un nodo o più di un sito per ogni silenziamento. Devi creare silenziamenti aggiuntivi se vuoi sopprimere la stessa regola di avviso su più di un nodo o più di un sito contemporaneamente.
+
+|===
+. Seleziona *Salva*.
+. Se vuoi modificare o interrompere un silenzio prima che scada, puoi modificarlo o rimuoverlo.
++
+[cols="1a,3a"]
+|===
+| Opzione | Descrizione 
+
+
+ a| 
+Modifica un silenzio
+ a| 
+.. Seleziona *Avvisi* > *Silenzi*.
+.. Dalla tabella, seleziona il pulsante di opzione per il silenzio che vuoi modificare.
+.. Seleziona *Modifica*.
+.. Modifica la descrizione, il tempo rimanente, le gravità selezionate o il nodo interessato.
+.. Seleziona *Salva*.
+
+
+
+
+ a| 
+Rimuovi un silenzio
+ a| 
+.. Seleziona *Avvisi* > *Silenzi*.
+.. Dalla tabella, seleziona il pulsante di opzione per il silenzio che vuoi rimuovere.
+.. Seleziona *Rimuovi*.
+.. Seleziona *OK* per confermare che vuoi rimuovere questo silenzio.
++
+*Nota*: Le notifiche verranno ora inviate quando questo avviso viene attivato (a meno che non siano soppresse da un altro silenzio). Se questo avviso è attualmente attivato, potrebbero essere necessari alcuni minuti prima che le notifiche email o SNMP vengano inviate e che la pagina degli avvisi venga aggiornata.
+
+
+
+|===
+
+
+.Informazioni correlate
+link:configuring-snmp-agent.html["Configura l'agente SNMP"]

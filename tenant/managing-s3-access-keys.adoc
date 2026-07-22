@@ -1,0 +1,22 @@
+---
+permalink: tenant/managing-s3-access-keys.html 
+sidebar: sidebar 
+keywords: how to manage s3 access key 
+summary: Ogni utente di un tenant account S3 deve avere una chiave di accesso per archiviare e recuperare oggetti nel sistema StorageGRID. Una chiave di accesso è composta da un access key ID e da una secret access key. 
+---
+= Gestisci le chiavi di accesso S3 in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Ogni utente di un tenant account S3 deve avere una chiave di accesso per archiviare e recuperare oggetti nel sistema StorageGRID. Una chiave di accesso è composta da un access key ID e da una secret access key.
+
+${post_edited_translations.segment}
+
+* ${post_edited_translations.segment}
+* Gli utenti che dispongono dell'autorizzazione *Root access* possono gestire le chiavi di accesso per l'account root S3 e per tutti gli altri utenti. Le chiavi di accesso root forniscono accesso completo a tutti i bucket e agli oggetti per il tenant, a meno che non sia esplicitamente disabilitato da una bucket policy.
+
+
+StorageGRID supporta l'autenticazione Signature Version 2 e Signature Version 4. L'accesso tra account non è consentito a meno che non sia esplicitamente abilitato da una bucket policy.

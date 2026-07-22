@@ -1,0 +1,136 @@
+---
+permalink: ilm/what-ilm-rule-is.html 
+sidebar: sidebar 
+keywords: what is information lifecycle rule, ilm rule 
+summary: 'Per gestire gli oggetti, crei un insieme di regole di gestione del ciclo di vita delle informazioni (ILM) e le organizzi in una policy ILM.' 
+---
+= Scopri le regole ILM in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Per gestire gli oggetti, crei un insieme di regole di gestione del ciclo di vita delle informazioni (ILM) e le organizzi in una policy ILM.
+
+Ogni oggetto inserito nel sistema viene valutato in base alla policy attiva. Quando una regola della policy corrisponde ai metadati di un oggetto, le istruzioni contenute nella regola determinano le azioni che StorageGRID intraprende per copiare e archiviare tale oggetto.
+
+
+NOTE: I metadati degli oggetti non sono gestiti dalle regole ILM. Al contrario, i metadati degli oggetti vengono memorizzati in un database Cassandra, in quello che viene chiamato un archivio di metadati. Tre copie dei metadati degli oggetti vengono mantenute automaticamente in ogni sito per proteggere i dati dalla perdita.
+
+
+
+[[elements-of-an-ilm-rule]]
+== Elementi di una regola ILM
+
+Una regola ILM ha tre elementi:
+
+* *Criteri di filtraggio*: I filtri di base e avanzati di una regola definiscono a quali oggetti si applica la regola. Se un oggetto corrisponde a tutti i filtri, StorageGRID applica la regola e crea le copie dell'oggetto specificate nelle istruzioni di posizionamento della regola.
+* *Istruzioni di posizionamento*: Le istruzioni di posizionamento di una regola definiscono il numero, il tipo e la posizione delle copie degli oggetti. Ogni regola può includere una sequenza di istruzioni di posizionamento per modificare nel tempo il numero, il tipo e la posizione delle copie degli oggetti. Quando il periodo di tempo per un posizionamento scade, le istruzioni del posizionamento successivo vengono applicate automaticamente dalla successiva valutazione ILM.
+* *Comportamento di acquisizione*: Il comportamento di acquisizione di una regola ti permette di scegliere come vengono protetti gli oggetti filtrati dalla regola durante l'ingestione (quando un client S3 salva un oggetto nella grid).
+
+
+
+
+[[ilm-rule-filtering]]
+== Filtro delle regole ILM
+
+Quando crei una regola ILM, specifichi dei filtri per identificare gli oggetti a cui si applica la regola.
+
+Nel caso più semplice, una regola potrebbe non utilizzare alcun filtro. Qualsiasi regola che non utilizza filtri si applica a tutti gli oggetti, quindi deve essere l'ultima (predefinita) regola in una policy ILM. La regola predefinita fornisce istruzioni di storage per gli oggetti che non corrispondono ai filtri di un'altra regola.
+
+* I filtri di base ti permettono di applicare regole diverse a gruppi di oggetti ampi e distinti. Questi filtri ti permettono di applicare una regola a specifici tenant, a specifici bucket S3 o a entrambi.
++
+I filtri di base offrono un modo semplice per applicare regole diverse a un gran numero di oggetti. Ad esempio, i dati finanziari della tua azienda potrebbero dover essere archiviati per soddisfare i requisiti normativi, mentre i dati del reparto marketing potrebbero dover essere archiviati per facilitare le operazioni quotidiane. Dopo aver creato account tenant separati per ciascun reparto o dopo aver separato i dati dei diversi reparti in bucket S3 distinti, puoi facilmente creare una regola che si applica a tutti i dati finanziari e una seconda regola che si applica a tutti i dati di marketing.
+
+* I filtri avanzati offrono un controllo granulare. Puoi creare filtri per selezionare gli oggetti in base alle seguenti proprietà degli oggetti:
++
+** Tempo di ingestione
+** Ultimo accesso
+** Tutto o parte del nome dell'oggetto (Key)
+** Vincolo di posizione (solo S3)
+** Dimensione dell'oggetto
+** Metadati utente
+** Etichetta oggetto (solo S3)
+
+
+
+
+Puoi filtrare gli oggetti in base a criteri molto specifici. Ad esempio, gli oggetti archiviati dal reparto di diagnostica per immagini di un ospedale potrebbero essere utilizzati frequentemente quando hanno meno di 30 giorni e raramente in seguito, mentre gli oggetti che contengono informazioni sulle visite dei pazienti potrebbero dover essere copiati nel reparto di fatturazione presso la sede centrale della rete sanitaria. Puoi creare filtri che identificano ciascun tipo di oggetto in base al nome dell'oggetto, alle dimensioni, ai tag degli oggetti S3 o a qualsiasi altro criterio pertinente, e poi creare regole separate per archiviare ciascun set di oggetti in modo appropriato.
+
+Puoi combinare i filtri come preferisci all'interno di un'unica regola. Ad esempio, il reparto marketing potrebbe voler archiviare i file immagine di grandi dimensioni in modo diverso rispetto ai dati dei fornitori, mentre il reparto Human Resources potrebbe aver bisogno di archiviare i dati del personale relativi a una specifica area geografica e le informazioni sulle policy in un'unica posizione centrale. In questo caso puoi creare regole che filtrano per tenant account per separare i dati di ciascun reparto, utilizzando i filtri in ogni regola per identificare il tipo specifico di oggetti a cui la regola si applica.
+
+
+
+[[ilm-rule-placement-instructions]]
+== Istruzioni per il posizionamento delle regole ILM
+
+Le istruzioni di posizionamento determinano dove, quando e come vengono memorizzati i dati degli oggetti. Una regola ILM può includere una o più istruzioni di posizionamento. Ciascuna istruzione di posizionamento si applica a un singolo periodo di tempo.
+
+Quando crei le istruzioni di posizionamento:
+
+* Inizi specificando il tempo di riferimento, che determina quando iniziano le istruzioni di posizionamento. Il tempo di riferimento può essere il momento in cui un oggetto viene acquisito, quando vi si accede, quando un oggetto con versione diventa non corrente oppure un momento definito dall'utente.
+* Successivamente, specifichi quando il posizionamento avrà effetto, rispetto al tempo di riferimento. Ad esempio, un posizionamento potrebbe iniziare il giorno 0 e continuare per 365 giorni, rispetto al momento in cui l'oggetto è stato acquisito.
+* Infine, specifichi il tipo di copie (replica o codifica di cancellazione) e la posizione in cui vengono memorizzate. Ad esempio, potresti voler memorizzare due copie replicate in due siti diversi.
+
+
+Ciascuna regola può definire più posizionamenti per un singolo periodo di tempo e posizionamenti diversi per periodi di tempo diversi.
+
+* Per posizionare oggetti in più posizioni durante un singolo periodo di tempo, seleziona *Aggiungi altro tipo o posizione* per aggiungere più di una riga per quel periodo di tempo.
+* Per posizionare gli oggetti in posizioni diverse in periodi di tempo diversi, seleziona *Aggiungi un altro periodo di tempo* per aggiungere il periodo successivo. Quindi, specifica una o più righe all'interno del periodo di tempo.
+
+
+L'esempio mostra due istruzioni di posizionamento nella pagina Definisci posizionamenti della procedura guidata Crea regola ILM.
+
+image:ilm_rule_multiple_placements_in_single_time_period.png["Schermata di posizionamento ILM da Grid Manager"]
+
+La prima istruzione di assegnazione image:icon_number_1.png["Icona numero 1"] ha due righe per il primo anno:
+
+* La prima riga crea due copie replicate dell'oggetto in due siti di data center.
+* La seconda riga crea una copia con codifica di cancellazione 6+3 utilizzando tutti i siti del data center.
+
+
+La seconda istruzione di collocazione image:icon_number_2.png["Icona numero 1"] crea due copie dopo un anno e conserva tali copie per sempre.
+
+Quando definisci l'insieme di istruzioni di posizionamento per una regola, devi assicurarti che almeno un'istruzione di posizionamento inizi al giorno 0, che non ci siano interruzioni tra i periodi di tempo che hai definito e che l'ultima istruzione di posizionamento continui all'infinito o finché non ti servono più copie di oggetti.
+
+Alla scadenza di ciascun periodo di tempo definito nella regola, vengono applicate le istruzioni di posizionamento dei contenuti per il periodo successivo. Vengono create nuove copie degli oggetti e quelle non necessarie vengono eliminate.
+
+
+
+[[ilm-rule-ingest-behavior]]
+== Comportamento di ingest delle regole ILM
+
+Il comportamento di acquisizione controlla se le copie degli oggetti vengono posizionate immediatamente secondo le istruzioni della regola oppure se vengono create copie provvisorie e le istruzioni di posizionamento vengono applicate in un secondo momento. Per le regole ILM sono disponibili i seguenti comportamenti di acquisizione:
+
+* *Bilanciato*: StorageGRID tenta di creare tutte le copie specificate nella regola ILM al momento dell'acquisizione; se ciò non è possibile, vengono create copie intermedie e il client riceve una notifica di successo. Le copie specificate nella regola ILM vengono create quando possibile.
+* *Rigoroso*: Tutte le copie specificate nella regola ILM devono essere effettuate prima che il successo venga restituito al client.
+* *Dual commit*: StorageGRID crea immediatamente copie provvisorie dell'oggetto e restituisce successo al client. Le copie specificate nella regola ILM vengono create quando possibile.
+
+
+.Informazioni correlate
+* link:data-protection-options-for-ingest.html["Opzioni di ingest"]
+* link:advantages-disadvantages-of-ingest-options.html["Vantaggi, svantaggi e limitazioni delle opzioni di ingest"]
+* link:../s3/consistency.html#how-consistency-and-ILM-rules-interact["Come interagiscono la coerenza e le regole ILM per influire sulla protezione dei dati"]
+
+
+
+
+[[example-ilm-rule]]
+== Esempio di regola ILM
+
+Ad esempio, una regola ILM potrebbe specificare quanto segue:
+
+* Si applica solo agli oggetti appartenenti al tenant A.
+* Crea due copie replicate di questi oggetti e conserva ciascuna copia in un sito diverso.
+* Conserva le due copie "per sempre", il che significa che StorageGRID non le eliminerà automaticamente. Al contrario, StorageGRID conserverà questi oggetti finché non vengono eliminati da una richiesta di eliminazione da parte del client o alla scadenza del ciclo di vita del bucket.
+* Usa l'opzione Bilanciata per il comportamento di acquisizione: l'istruzione di posizionamento su due siti viene applicata non appena il tenant A salva un oggetto in StorageGRID, a meno che non sia possibile creare immediatamente entrambe le copie richieste.
++
+Ad esempio, se il Sito 2 non è raggiungibile quando il tenant A salva un oggetto, StorageGRID creerà due copie provvisorie sui nodi di storage del Sito 1. Non appena il Sito 2 diventa disponibile, StorageGRID creerà la copia richiesta in quel sito.
+
+
+
+.Informazioni correlate
+* link:what-storage-pool-is.html["Cos'è un pool di storage"]
+* link:what-cloud-storage-pool-is.html["Cos'è un pool di storage cloud"]
+

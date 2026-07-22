@@ -1,0 +1,67 @@
+---
+permalink: admin/managing-tenants.html 
+sidebar: sidebar 
+keywords: manage tenants, tenant account, what is a tenant 
+summary: 'Un tenant account consente di utilizzare l"API REST di Simple Storage Service (S3) per archiviare e recuperare oggetti in un sistema StorageGRID.' 
+---
+= Account tenant in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Un tenant account consente di utilizzare l'API REST di Simple Storage Service (S3) per archiviare e recuperare oggetti in un sistema StorageGRID.
+
+
+TIP: I dettagli di Swift sono stati rimossi da questa versione del sito di documentazione. Consulta https://docs.netapp.com/us-en/storagegrid-118/admin/managing-tenants.html["${post_edited_translations.segment}"^].
+
+Come amministratore della griglia, crei e gestisci gli account tenant che i client S3 utilizzano per archiviare e recuperare oggetti.
+
+Ogni tenant account dispone di gruppi federati o locali, utenti, bucket S3 e oggetti.
+
+Gli account tenant possono essere utilizzati per separare gli oggetti archiviati in base a entità diverse. Ad esempio, puoi utilizzare più account tenant per ciascuno di questi casi d'uso:
+
+* *Caso d'uso aziendale:* Se stai amministrando un sistema StorageGRID in un'applicazione aziendale, potresti voler suddividere lo storage a oggetti della grid in base ai diversi reparti della tua organizzazione. In questo caso, potresti creare account tenant per il reparto Marketing, il reparto Customer Support, il reparto Human Resources e così via.
++
+
+NOTE: Se utilizzi il protocollo client S3, puoi utilizzare i bucket S3 e le policy dei bucket per segregare gli oggetti tra i reparti di un'azienda. Non è necessario utilizzare gli account tenant. Per ulteriori informazioni, consulta le istruzioni per l'implementazione di link:../s3/use-access-policies.html["Bucket S3 e policy dei bucket"].
+
+* Caso d'uso del service provider: se amministri un sistema StorageGRID come service provider, puoi segregare lo storage a oggetti della griglia in base alle diverse entità che prenderanno in locazione lo storage sulla griglia. In questo caso, creeresti account tenant per Company A, Company B, Company C e così via.
+
+
+Per ulteriori informazioni, vedi link:../tenant/index.html["Usa un tenant account"].
+
+
+
+[[how-do-i-create-a-tenant-account]]
+== Come crei un tenant account?
+
+Usa il Grid manager per creare un tenant account. Quando crei un tenant account, specifichi le seguenti informazioni:
+
+* Informazioni di base, inclusi il nome del tenant, il tipo di client (S3) e l'eventuale quota di storage.
+* Autorizzazioni per il tenant account, ad esempio se il tenant account può utilizzare i servizi della piattaforma S3, configurare la propria origine di identità, utilizzare S3 Select o utilizzare una connessione di grid federation.
+* L'access root iniziale per il tenant, in base al fatto che il sistema StorageGRID utilizzi gruppi e utenti locali, federazione delle identità o single sign-on (SSO).
+
+
+Inoltre, puoi abilitare l'impostazione S3 Object Lock per il sistema StorageGRID se gli account tenant S3 devono essere conformi ai requisiti normativi. Quando S3 Object Lock è abilitato, tutti gli account tenant S3 possono creare e gestire bucket conformi.
+
+
+
+[[what-is-tenant-manager-used-for]]
+== ${post_edited_translations.segment}
+
+Dopo che hai creato il tenant account, gli utenti tenant possono accedere al Tenant Manager per svolgere attività come le seguenti:
+
+* Configura la federazione delle identità (a meno che l'origine dell'identità non sia condivisa con la grid)
+* Gestisci gruppi e utenti
+* Usa la federazione di griglia per clonare gli account e replicare tra griglie
+* ${post_edited_translations.segment}
+* ${post_edited_translations.segment}
+* ${post_edited_translations.segment}
+* Usa S3 Select
+* Monitora l'utilizzo dello storage
+
+
+
+TIP: Anche se gli utenti tenant S3 possono creare e gestire chiavi di accesso S3 e bucket con il Tenant Manager, devono usare un'applicazione client S3 per acquisire e gestire gli oggetti. Vedi link:../s3/index.html["${post_edited_translations.segment}"] per i dettagli.

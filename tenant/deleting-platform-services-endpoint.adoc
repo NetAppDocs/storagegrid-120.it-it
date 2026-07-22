@@ -1,0 +1,36 @@
+---
+permalink: tenant/deleting-platform-services-endpoint.html 
+sidebar: sidebar 
+keywords: how to delete tenant platform services endpoint 
+summary: Puoi eliminare un endpoint se non vuoi più usare il servizio della piattaforma associato. 
+---
+= Eliminare un endpoint dei servizi della piattaforma StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi eliminare un endpoint se non vuoi più usare il servizio della piattaforma associato.
+
+.Prima di iniziare
+* Hai effettuato l'accesso al Tenant Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Tu appartieni a un gruppo di utenti che ha il link:tenant-management-permissions.html["Gestisci endpoint o autorizzazione di accesso root"].
+
+
+.Passaggi
+. Seleziona *STORAGE (S3)* > *Platform services endpoints*.
++
+${post_edited_translations.segment}
+
+. Seleziona la casella di controllo per ogni endpoint che desideri eliminare.
++
+
+NOTE: Se elimini un endpoint dei servizi della piattaforma che è in uso, il servizio della piattaforma associato verrà disabilitato per tutti i bucket che utilizzano tale endpoint. Tutte le richieste non ancora completate verranno scartate. Le nuove richieste continueranno a essere generate finché non modifichi la configurazione del bucket in modo che non faccia più riferimento all'URN eliminato. StorageGRID segnalerà queste richieste come errori irreversibili.
+
+. ${post_edited_translations.segment}
++
+${post_edited_translations.segment}
+
+. ${post_edited_translations.segment}
+

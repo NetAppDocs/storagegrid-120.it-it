@@ -1,0 +1,145 @@
+---
+permalink: maintain/accessing-decommission-nodes-page.html 
+sidebar: sidebar 
+keywords: storagegrid, decommission nodes, decommissioning nodes, maintenance task 
+summary: 'Quando accedi alla pagina Decommission Nodes nel Grid Manager, puoi vedere a colpo d"occhio quali nodi possono essere decommissionati.' 
+---
+= Accedi alla pagina Decommissiona nodi in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Quando accedi alla pagina Decommission Nodes nel Grid Manager, puoi vedere a colpo d'occhio quali nodi possono essere decommissionati.
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Hai il link:../admin/admin-group-permissions.html["Permesso di manutenzione o di accesso root"].
+
+
+
+CAUTION: Presta attenzione quando decommissioni i Storage Node in un grid che contiene nodi basati su software di soli metadati. Se decommissioni tutti i nodi configurati per memorizzare _sia_ oggetti che metadati, la capacità di memorizzare oggetti viene rimossa dal grid. Consulta link:../primer/what-storage-node-is.html#types-of-storage-nodes["Tipi di nodi di archiviazione"] per ulteriori informazioni sui Storage Node di soli metadati.
+
+.Passaggi
+. Seleziona *Manutenzione* > *Attività* > *Decommission*.
+. Seleziona *Decommissiona nodi*.
++
+Viene visualizzata la pagina Decommission Nodes. Da questa pagina puoi:
+
++
+** Determina quali nodi della grid possono essere decommissionati al momento.
+** Visualizza lo stato di salute di tutti i nodi della griglia
+** Ordina l'elenco in ordine crescente o decrescente per *Name*, *Site*, *Type* o *Has ADC*.
+** Inserisci i termini di ricerca per trovare rapidamente nodi specifici.
++
+In questo esempio, la colonna "Decommission Possible" indica che puoi decommissionare il Gateway Node e uno dei quattro Storage Node.
+
++
+image:decommission_nodes_page_all_connected.png["Pagina Decommission Nodes"]
+
+
+
+. Esamina la colonna *Decommission possibile* per ogni nodo che desideri decommissionare.
++
+Se un nodo della griglia può essere decommissionato, questa colonna include un segno di spunta verde e la colonna di sinistra include una casella di controllo. Se un nodo non può essere decommissionato, questa colonna descrive il problema. Se ci sono più motivi per cui un nodo non può essere decommissionato, viene mostrato il motivo più critico.
+
++
+[cols="1a,1a,1a"]
+|===
+| Decommission Possibile motivo | Descrizione | Passaggi per risolvere 
+
+
+ a| 
+No, la decommission del tipo di nodo non è supportata.
+ a| 
+Non puoi decommissionare il nodo Admin primario.
+ a| 
+Nessuno.
+
+
+
+ a| 
+No, almeno un nodo della griglia è disconnesso.
+
+*Nota*: Questo messaggio viene visualizzato solo per i nodi della griglia connessi.
+ a| 
+Non puoi decommissionare un nodo della griglia connesso se qualsiasi nodo della griglia è disconnesso.
+
+La colonna *Salute* include una di queste icone per i nodi della griglia disconnessi:
+
+** image:icon_alarm_gray_administratively_down.png["icona grigia con punto interrogativo"] (grigio): Amministrativamente chiuso
+** image:icon_alarm_blue_unknown.png["icona blu con punto interrogativo"] (blu): Sconosciuto
+
+ a| 
+Devi riattivare tutti i nodi disconnessi o link:decommissioning-disconnected-grid-nodes.html["decommissionare tutti i nodi disconnessi"] prima di poter rimuovere un nodo connesso.
+
+*Nota*: Se la tua griglia contiene più nodi disconnessi, il software richiede di decommissionarli tutti contemporaneamente, il che aumenta la possibilità di risultati imprevisti.
+
+
+
+ a| 
+No, uno o più nodi richiesti sono attualmente disconnessi e devono essere recuperati.
+
+*Nota*: Questo messaggio viene visualizzato solo per i nodi della griglia disconnessi.
+ a| 
+Non puoi decommissionare un nodo della griglia disconnesso se uno o più nodi necessari sono anch'essi disconnessi (ad esempio, un Storage Node necessario per il quorum dell'ADC).
+ a| 
+.. Controlla i messaggi Decommission Possible per tutti i nodi disconnessi.
+.. Determina quali nodi non possono essere decommissionati perché sono necessari.
++
+*** Se lo stato di salute di un nodo richiesto è "Amministrativamente non disponibile", riporta il nodo online.
+*** Se lo stato di salute di un nodo richiesto è sconosciuto, esegui una procedura di ripristino del nodo per recuperare il nodo richiesto.
+
+
+
+
+
+
+ a| 
+No, membro del gruppo HA: _nome gruppo_. Prima di poter decommissionare questo nodo, devi rimuoverlo da tutti i gruppi HA.
+ a| 
+Non puoi decommissionare un nodo Admin o un nodo Gateway se un'interfaccia del nodo appartiene a un gruppo ad alta disponibilità (HA).
+ a| 
+Modifica il gruppo HA per rimuovere l'interfaccia del nodo o rimuovi l'intero gruppo HA. Vedi link:../admin/configure-high-availability-group.html["Configura i gruppi ad alta disponibilità"].
+
+
+
+ a| 
+No, il sito _x_ richiede un minimo di _n_ Storage Node con servizi ADC.
+ a| 
+*Solo Storage Nodes* (Storage Nodes combinati o solo per metadati). Non puoi decommissionare un Storage Node se nel sito rimarrebbero nodi insufficienti a supportare i requisiti di quorum dell'ADC. Tuttavia, puoi spostare il servizio ADC su un altro Storage Node.
+ a| 
+link:../maintain/move-adc-service.html["Sposta il servizio ADC su un altro nodo di archiviazione nello stesso sito"], oppure puoi eseguire un'espansione aggiungendo un nuovo Storage Node al sito e specificando che deve avere un servizio ADC. Consulta link:understanding-adc-service-quorum.html["quorum ADC"].
+
+
+
+ a| 
+No, uno o più profili di codifica di cancellazione richiedono almeno _n_ Storage Node. Se il profilo non viene utilizzato in una regola ILM, puoi disattivarlo.
+ a| 
+*Solo per i nodi di archiviazione*. Non puoi decommissionare un nodo di archiviazione a meno che non rimangano nodi a sufficienza per i profili di erasure-coding esistenti.
+
+Ad esempio, se esiste un profilo di codifica di cancellazione per la codifica di cancellazione 4+2, devono rimanere almeno 6 Storage Nodes.
+ a| 
+Per ciascun profilo di codifica di cancellazione interessato, esegui una delle seguenti operazioni, a seconda di come viene utilizzato il profilo:
+
+** *Utilizzato nelle policy ILM attive*: Esegui un'espansione. Aggiungi un numero sufficiente di nuovi Storage Node per consentire la continuazione della codifica di cancellazione. Vedi le istruzioni per link:../expand/index.html["espandendo la tua griglia"].
+** *Utilizzato in una regola ILM ma non nelle policy ILM attive*: Modifica o elimina la regola e poi disattiva il profilo di erasure coding.
+** *Non utilizzato in alcuna regola ILM*: Disattiva il profilo di erasure coding.
+
+
+*Nota:* Viene visualizzato un messaggio di errore se provi a disattivare un profilo di codifica di cancellazione e i dati degli oggetti sono ancora associati al profilo. Potresti dover aspettare diverse settimane prima di riprovare la procedura di disattivazione.
+
+Scopri di più link:../ilm/manage-erasure-coding-profiles.html["disattivare un profilo di codifica di cancellazione"].
+
+
+
+ a| 
+No, non puoi decommissionare un nodo di archivio a meno che il nodo non sia disconnesso.
+ a| 
+Se un nodo di archivio è ancora connesso, non puoi rimuoverlo.
+ a| 
+*Nota*: Il supporto per i nodi di archivio è stato rimosso. Se devi decommissionare un nodo di archivio, vedi https://docs.netapp.com/us-en/storagegrid-118/maintain/grid-node-decommissioning.html["Decommissionamento dei nodi della griglia (StorageGRID 11.8 doc site)"^]
+
+|===
+

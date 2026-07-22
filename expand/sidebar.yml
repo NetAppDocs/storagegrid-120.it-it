@@ -1,0 +1,62 @@
+---
+section: expand
+title: "${post_edited_translations.segment}"
+url: "/landing-expand/index.html"
+entries:
+- title: Scopri di più sull'espansione
+  pdf-filename: "${post_edited_translations.segment}"
+  url: "/expand/index.html"
+- title: "${post_edited_translations.segment}"
+  entries:
+  - title: Pianificazione dell'espansione per i dati replicati
+    url: "/expand/adding-storage-capacity-for-replicated-objects.html"
+  - title: Pianificazione dell'espansione per i dati codificati con cancellazione
+    url: "/expand/adding-storage-capacity-for-erasure-coded-objects.html"
+  - title: "${post_edited_translations.segment}"
+    url: "/expand/considerations-for-rebalancing-erasure-coded-data.html"
+- title: Linee guida per l'espansione
+  entries:
+  - title: Linee guida per l'aggiunta di capacità oggetto
+    url: "/expand/guidelines-for-adding-object-capacity.html"
+  - title: Linee guida per l'aggiunta di capacità di metadati
+    url: "/expand/adding-metadata-capacity.html"
+  - title: Linee guida per l'aggiunta di nodi alla griglia
+    url: "/expand/adding-grid-nodes-to-add-capabilities.html"
+  - title: Linee guida per aggiungere un nuovo sito
+    url: "/expand/adding-new-site.html"
+- title: "${post_edited_translations.segment}"
+  url: "/expand/gather-required-materials.html"
+- title: Aggiungi nodi della griglia o sito
+  entries:
+  - title: Riepilogo del flusso di lavoro
+    url: "/expand/adding-grid-nodes-to-existing-site-or-adding-new-site.html"
+  - title: "${post_edited_translations.segment}"
+    url: "/expand/updating-subnets-for-grid-network.html"
+  - title: "${post_edited_translations.segment}"
+    url: "/expand/deploying-new-grid-nodes.html"
+  - title: "${post_edited_translations.segment}"
+    url: "/expand/performing-expansion.html"
+- title: "${post_edited_translations.segment}"
+  entries:
+  - title: "${post_edited_translations.segment}"
+    url: "/expand/adding-storage-volumes-to-storage-nodes.html"
+  - title: "${post_edited_translations.segment}"
+    url: "/expand/vmware-adding-storage-volumes-to-storage-node.html"
+  - title: "${post_edited_translations.segment}"
+    url: "/expand/linux-adding-direct-attached-or-san-volumes-to-storage-node.html"
+- title: Configura il sistema espanso
+  entries:
+  - title: "${post_edited_translations.segment}"
+    url: "/expand/configuring-expanded-storagegrid-system.html"
+  - title: "${post_edited_translations.segment}"
+    url: "/expand/verifying-storage-node-is-active.html"
+  - title: "${post_edited_translations.segment}"
+    url: "/expand/copying-admin-node-database.html"
+  - title: "${post_edited_translations.segment}"
+    url: "/expand/copying-prometheus-metrics.html"
+  - title: "${post_edited_translations.segment}"
+    url: "/expand/copying-audit-logs.html"
+  - title: Ribilancia i dati codificati con cancellazione
+    url: "/expand/rebalancing-erasure-coded-data-after-adding-storage-nodes.html"
+- title: "${post_edited_translations.segment}"
+  url: "/expand/contacting-technical-support.html"

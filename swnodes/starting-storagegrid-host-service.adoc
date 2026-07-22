@@ -1,0 +1,45 @@
+---
+permalink: swnodes/starting-storagegrid-host-service.html 
+sidebar: sidebar 
+keywords: how to start host service 
+summary: 'Per avviare i nodi StorageGRID e assicurarti che si riavviino dopo il riavvio dell"host, devi abilitare e avviare il servizio host StorageGRID.' 
+---
+= Avvia il servizio host StorageGRID su Linux
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Per avviare i nodi StorageGRID e assicurarti che si riavviino dopo il riavvio dell'host, devi abilitare e avviare il servizio host StorageGRID.
+
+
+NOTE: "Linux" si riferisce a un'installazione di RHEL, Ubuntu o Debian. Per un elenco delle versioni supportate, vedi  https://imt.netapp.com/matrix/#welcome["NetApp Interoperability Matrix Tool (IMT)"^].
+
+.Passaggi
+. Esegui i seguenti comandi su ciascun host:
++
+[listing]
+----
+sudo systemctl enable storagegrid
+sudo systemctl start storagegrid
+----
+. Esegui il seguente comando per verificare che la distribuzione stia procedendo:
++
+[listing]
+----
+sudo storagegrid node status node-name
+----
+. Se un nodo restituisce lo stato "Non in esecuzione" o "Arrestato", esegui il seguente comando:
++
+[listing]
+----
+sudo storagegrid node start node-name
+----
+. Se in precedenza hai abilitato e avviato il servizio host StorageGRID (o se non sei sicuro che il servizio sia stato abilitato e avviato), esegui anche il seguente comando:
++
+[listing]
+----
+sudo systemctl reload-or-restart storagegrid
+----
+

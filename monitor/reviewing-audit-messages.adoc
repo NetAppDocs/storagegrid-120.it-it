@@ -1,0 +1,36 @@
+---
+permalink: monitor/reviewing-audit-messages.html 
+sidebar: sidebar 
+keywords: how to review audit messages, how to view audit messages 
+summary: I messaggi di audit possono aiutarti a comprendere meglio il funzionamento dettagliato del tuo sistema StorageGRID. Puoi utilizzare i log di audit per risolvere i problemi e valutare le prestazioni. 
+---
+= Esaminare i messaggi di audit di StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+I messaggi di audit possono aiutarti a comprendere meglio il funzionamento dettagliato del tuo sistema StorageGRID. Puoi utilizzare i log di audit per risolvere i problemi e valutare le prestazioni.
+
+Durante il normale funzionamento del sistema, tutti i servizi di StorageGRID generano messaggi di audit, come segue:
+
+* I messaggi di audit del sistema sono correlati al sistema di auditing stesso, agli stati dei nodi della griglia, all'attività delle attività a livello di sistema e alle operazioni di backup dei servizi.
+* I messaggi di controllo dello storage a oggetti sono correlati allo storage e alla gestione degli oggetti all'interno di StorageGRID, inclusi lo storage a oggetti e i recuperi, i trasferimenti da nodo della griglia a nodo della griglia e le verifiche.
+* I messaggi di audit di lettura e scrittura del client vengono registrati quando un'applicazione client S3 effettua una richiesta per creare, modificare o recuperare un oggetto.
+* I messaggi di audit della gestione registrano le richieste degli utenti all'API di Management.
+
+
+Ogni nodo amministratore memorizza i messaggi di audit in file di testo. La cartella condivisa di audit contiene il file attivo (audit.log) e i log di audit compressi dei giorni precedenti. Ogni nodo della griglia memorizza inoltre una copia delle informazioni di audit generate sul nodo stesso.
+
+Puoi accedere ai file di log di audit direttamente dalla riga di comando dell'Admin Node.
+
+StorageGRID può inviare le informazioni di audit per impostazione predefinita, oppure puoi cambiarne la destinazione:
+
+* StorageGRID utilizza come destinazione predefinita per l'audit le destinazioni dei nodi locali.
+* Le voci del registro di controllo di Grid Manager e Tenant Manager potrebbero essere inviate a un nodo di storage.
+* Facoltativamente, puoi modificare la destinazione dei log di audit e inviare le informazioni di audit a un server syslog esterno. I log locali dei record di audit continuano a essere generati e archiviati quando è configurato un server syslog esterno.
+* link:../monitor/configure-log-management.html["Scopri come configurare la gestione dei log"].
+
+
+Per dettagli sul file di log di audit, sul formato dei messaggi di audit, sui tipi di messaggi di audit e sugli strumenti disponibili per analizzare i messaggi di audit, vedi link:../audit/index.html["${post_edited_translations.segment}"].

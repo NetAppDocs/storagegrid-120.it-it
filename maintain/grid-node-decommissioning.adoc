@@ -1,0 +1,65 @@
+---
+permalink: maintain/grid-node-decommissioning.html 
+sidebar: sidebar 
+keywords: storagegrid, decommission, remove grid node 
+summary: Puoi usare la procedura di decommissionare del nodo per rimuovere uno o più nodi della griglia in uno o più siti. Non puoi decommissionare il nodo Admin primario. 
+---
+= Decommission del nodo grid StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi usare la procedura di decommissionare del nodo per rimuovere uno o più nodi della griglia in uno o più siti. Non puoi decommissionare il nodo Admin primario.
+
+
+
+[[when-to-decommission-a-node]]
+== Quando decommissionare un nodo
+
+Usa la procedura di decommission del nodo quando è vera una delle seguenti condizioni:
+
+* Hai aggiunto un nodo di archiviazione più grande in un'espansione e vuoi rimuovere uno o più nodi di archiviazione più piccoli, preservando allo stesso tempo gli oggetti.
++
+
+TIP: Se vuoi sostituire un'appliance più vecchia con una più nuova, valuta  https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/how-appliance-node-cloning-works.html["clonazione del nodo dell'appliance"^] invece di aggiungere una nuova appliance in un'espansione e poi decommissionare quella vecchia.
+
+* Hai bisogno di meno spazio di archiviazione totale.
+* Non hai più bisogno di un nodo gateway.
+* Non hai più bisogno di un nodo Admin non primario.
+* La tua grid include un nodo disconnesso che non puoi recuperare o rimettere online.
+* La tua griglia include un nodo Archive.
+
+
+
+
+[[how-to-decommission-a-node]]
+== Come decommissionare un nodo
+
+Puoi decommissionare i nodi della griglia connessi o i nodi della griglia disconnessi.
+
+Decommissionare i nodi connessi:: In generale, dovresti decommissionare i nodi della griglia solo quando sono connessi al sistema StorageGRID e solo quando tutti i nodi sono in condizioni di salute normali (hanno icone verdi nelle pagine *Nodi* e nella pagina *Decommissiona nodi*).
++
+--
+Per istruzioni, consulta link:decommissioning-connected-grid-nodes.html["Decommissionare i nodi grid collegati"].
+
+--
+Decommissionare i nodi disconnessi:: In alcuni casi, potresti dover decommissionare un nodo della grid che non è attualmente connesso alla grid (uno il cui stato di salute è Unknown o Administratively Down).
++
+--
+Per istruzioni, consulta link:decommissioning-disconnected-grid-nodes.html["Decommissionare i nodi della grid disconnessi"].
+
+--
+
+
+
+
+[[what-to-consider-before-decommissioning-a-node]]
+== Cosa considerare prima di decommissionare un nodo
+
+Prima di eseguire una delle due procedure, esamina le considerazioni relative a ciascun tipo di nodo:
+
+* link:considerations-for-decommissioning-admin-or-gateway-nodes.html["Considerazioni per la decommission dei nodi Admin o Gateway"]
+* link:considerations-for-decommissioning-storage-nodes.html["Considerazioni per la decommissionare di Storage Node"]
+

@@ -1,0 +1,69 @@
+---
+permalink: tenant/update-default-retention-settings.html 
+sidebar: sidebar 
+keywords: update default retention for s3 object lock bucket, default retention mode, default retention period, compliance, governance 
+summary: 'Se hai abilitato S3 Object Lock durante la creazione del bucket, puoi modificare il bucket per cambiare le impostazioni di conservazione predefinite. Puoi abilitare (o disabilitare) la conservazione predefinita e impostare una modalità di conservazione e un periodo di conservazione.' 
+---
+= Aggiorna la conservazione predefinita di S3 Object Lock in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se hai abilitato S3 Object Lock durante la creazione del bucket, puoi modificare il bucket per cambiare le impostazioni di conservazione predefinite. Puoi abilitare (o disabilitare) la conservazione predefinita e impostare una modalità di conservazione e un periodo di conservazione.
+
+.Prima di iniziare
+* Hai effettuato l'accesso al Tenant Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Appartieni a un gruppo di utenti che ha le link:tenant-management-permissions.html["Gestisci tutti i bucket o autorizzazione di accesso root"]. Queste autorizzazioni sovrascrivono le impostazioni delle autorizzazioni nelle policy di gruppo o di bucket.
+* Il blocco degli oggetti S3 è abilitato a livello globale per il tuo sistema StorageGRID e hai abilitato il blocco degli oggetti S3 quando hai creato il bucket. Vedi link:using-s3-object-lock.html["Usa S3 Object Lock per conservare gli oggetti"].
+
+
+.Passaggi
+. ${post_edited_translations.segment}
+. Seleziona il nome del bucket dalla tabella.
++
+Viene visualizzata la pagina dei dettagli del bucket.
+
+. Dalla scheda *Opzioni bucket*, seleziona l'accordion *Blocco oggetto S3*.
+. Facoltativamente, puoi abilitare o disabilitare la *conservazione predefinita* per questo bucket.
++
+Le modifiche a questa impostazione non si applicano agli oggetti già presenti nel bucket né agli oggetti che potrebbero avere il proprio periodo di conservazione.
+
+. ${post_edited_translations.segment}
++
+[cols="1a,2a"]
+|===
+| Modalità di conservazione predefinita | Descrizione 
+
+
+ a| 
+Governance
+ a| 
+** Gli utenti con l' `s3:BypassGovernanceRetention`autorizzazione possono usare l' `x-amz-bypass-governance-retention: true`intestazione della richiesta per bypassare le impostazioni di conservazione.
+** Questi utenti possono eliminare una versione di un oggetto prima che venga raggiunta la data di conservazione prevista.
+** Questi utenti possono aumentare, diminuire o rimuovere la retain-until-date di un oggetto.
+
+
+
+
+ a| 
+Conformità
+ a| 
+** L'oggetto non può essere eliminato fino al raggiungimento della sua retain-until-date.
+** La data di conservazione dell'oggetto può essere aumentata, ma non può essere diminuita.
+** La data di conservazione dell'oggetto non può essere rimossa fino al raggiungimento di tale data.
+
+
+*Nota*: L'amministratore della grid deve consentirti di utilizzare la modalità di conformità.
+
+|===
+. Se l'opzione *Conservazione predefinita* è abilitata, specifica il *periodo di conservazione predefinito* per il bucket.
++
+Il *periodo di conservazione predefinito* indica per quanto tempo i nuovi oggetti aggiunti a questo bucket devono essere conservati, a partire dal momento in cui vengono acquisiti. Specifica un valore che sia inferiore o uguale al periodo di conservazione massimo per il tenant, come impostato dall'amministratore della grid.
+
++
+Un _periodo di conservazione massimo_, che può variare da 1 giorno a 100 anni, viene impostato quando l'amministratore della griglia crea il tenant. Quando imposti un _periodo di conservazione predefinito_, non può superare il valore impostato per il periodo di conservazione massimo. Se necessario, chiedi all'amministratore della griglia di aumentare o diminuire il periodo di conservazione massimo.
+
+. Seleziona *Salva modifiche*.
+

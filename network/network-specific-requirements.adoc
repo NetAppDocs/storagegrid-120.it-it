@@ -1,0 +1,110 @@
+---
+permalink: network/network-specific-requirements.html 
+sidebar: sidebar 
+keywords: network-specific requirements, network specific requirements, network requirements 
+summary: Segui i requisiti per ogni tipo di rete StorageGRID. 
+---
+= Requisiti specifici della rete per StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Segui i requisiti per ogni tipo di rete StorageGRID.
+
+
+
+[[network-gateways-and-routers]]
+== Gateway e router di rete
+
+* Se impostato, il gateway per una determinata rete deve trovarsi all'interno della sottorete di quella specifica rete.
+* Se configuri un'interfaccia utilizzando l'indirizzamento statico, devi specificare un indirizzo gateway diverso da 0.0.0.0.
+* Se non hai un gateway, la best practice è impostare l'indirizzo del gateway sull'indirizzo IP dell'interfaccia di rete.
+
+
+
+
+[[subnets]]
+== Sottoreti
+
+
+NOTE: Ciascuna rete deve essere connessa alla propria sottorete che non si sovrappone ad alcuna altra rete sul nodo.
+
+Le seguenti restrizioni vengono imposte dal Grid Manager durante la fase di implementazione. Sono fornite qui per agevolare la pianificazione della rete prima dell'implementazione.
+
+* La subnet mask per qualsiasi indirizzo IP di rete non può essere 255.255.255.254 o 255.255.255.255 (/31 o /32 nella notazione CIDR).
+* La sottorete definita dall'indirizzo IP e dalla maschera di sottorete (CIDR) di un'interfaccia di rete non può sovrapporsi alla sottorete di nessun'altra interfaccia configurata sullo stesso nodo.
+* ${post_edited_translations.segment}
++
+** 192.168.130.101
+** 192.168.130.121
+** 192.168.131.101
+** 192.168.131.121
+** 192.168.130.102
+** 192.168.130.122
+** 192.168.131.102
+** 192.168.131.122
+** 198.51.100.2
+** 198.51.100.4
+
+
++
+${post_edited_translations.segment}
+
++
+** 192.168.130.0/24 perché questo intervallo di sottorete contiene gli indirizzi IP 192.168.130.101 e 192.168.130.102
+** ${post_edited_translations.segment}
+** ${post_edited_translations.segment}
+
+
+* La sottorete Grid Network per ciascun nodo deve essere inclusa nel GNSL.
+* La sottorete di Admin Network non può sovrapporsi alla sottorete di Grid Network, alla sottorete di Client Network o a qualsiasi sottorete del GNSL.
+* Le sottoreti dell'AESL non possono sovrapporsi ad alcuna sottorete del GNSL.
+* La sottorete Client Network non può sovrapporsi alla sottorete Grid Network, alla sottorete Admin Network, a nessuna sottorete nella GNSL o a nessuna sottorete nella AESL.
+
+
+
+
+[[grid-network]]
+== ${post_edited_translations.segment}
+
+* Al momento della distribuzione, ogni nodo della griglia deve essere collegato alla Grid Network e deve poter comunicare con il primary Admin Node usando la configurazione di rete che specifichi quando distribuisci il nodo.
+* Durante il normale funzionamento del grid, ogni nodo del grid deve essere in grado di comunicare con tutti gli altri nodi del grid tramite la Grid Network.
++
+
+NOTE: La rete Grid deve essere direttamente instradabile tra ciascun nodo. La traduzione degli indirizzi di rete (NAT) tra i nodi non è supportata.
+
+* Se la Grid Network è composta da più sottoreti, aggiungile alla Grid Network Subnet List (GNSL). Le route statiche vengono create su tutti i nodi per ogni sottorete presente nella GNSL.
+* Se l'interfaccia Grid Network è configurata come trunk per supportare le interfacce VLAN, la VLAN nativa del trunk deve essere la VLAN utilizzata per il traffico Grid Network. Tutti i nodi grid devono essere accessibili tramite la VLAN nativa del trunk.
+
+
+
+
+[[admin-network]]
+== Rete di amministrazione
+
+La rete amministrativa è facoltativa. Se vuoi configurare una rete amministrativa, segui questi requisiti e linee guida.
+
+Gli utilizzi tipici della rete di amministrazione includono connessioni di gestione, AutoSupport, KMS e connessioni a server critici come NTP, DNS e LDAP se queste connessioni non sono fornite tramite la rete Grid o la rete client.
+
+
+NOTE: La Admin Network e l'AESL possono essere univoche per ciascun nodo, purché i servizi di rete e i client desiderati siano raggiungibili.
+
+
+NOTE: Devi definire almeno una sottorete sulla Admin Network per abilitare le connessioni in entrata da sottoreti esterne. Le route statiche vengono generate automaticamente su ciascun nodo per ogni sottorete nell'AESL.
+
+
+
+[[client-network]]
+== ${post_edited_translations.segment}
+
+La rete client è facoltativa. Se vuoi configurare una rete client, tieni presente quanto segue.
+
+* La rete client è progettata per supportare il traffico proveniente dai client S3. Se configurata, la gateway della rete client diventa il gateway predefinito del nodo.
+* Se usi una rete client, puoi contribuire a proteggere StorageGRID da attacchi ostili accettando il traffico client in entrata solo sugli endpoint del bilanciatore di carico configurati esplicitamente. Vedi link:../admin/configuring-load-balancer-endpoints.html["${post_edited_translations.segment}"].
+* Se l'interfaccia Client Network è configurata come trunk per supportare le interfacce VLAN, valuta se sia necessario configurare l'interfaccia Client Network (eth2). Se configurata, il traffico Client Network passerà sulla VLAN nativa del trunk, come configurata nello switch.
+
+
+.Informazioni correlate
+link:../maintain/changing-nodes-network-configuration.html["Modifica la configurazione di rete del nodo"]

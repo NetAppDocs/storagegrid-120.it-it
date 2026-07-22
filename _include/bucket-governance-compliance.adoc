@@ -1,0 +1,30 @@
+= 
+:allow-uri-read: 
+
+
+[cols="1a,2a"]
+|===
+| Modalità di conservazione predefinita | Descrizione 
+
+
+ a| 
+Governance
+ a| 
+* Gli utenti con l' `s3:BypassGovernanceRetention`autorizzazione possono usare l' `x-amz-bypass-governance-retention: true`intestazione della richiesta per bypassare le impostazioni di conservazione.
+* Questi utenti possono eliminare una versione di un oggetto prima che venga raggiunta la data di conservazione prevista.
+* Questi utenti possono aumentare, diminuire o rimuovere la retain-until-date di un oggetto.
+
+
+
+
+ a| 
+Conformità
+ a| 
+* L'oggetto non può essere eliminato fino al raggiungimento della sua retain-until-date.
+* La data di conservazione dell'oggetto può essere aumentata, ma non può essere diminuita.
+* La data di conservazione dell'oggetto non può essere rimossa fino al raggiungimento di tale data.
+
+
+*Nota*: L'amministratore della grid deve consentirti di utilizzare la modalità di conformità.
+
+|===

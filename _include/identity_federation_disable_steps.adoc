@@ -1,0 +1,19 @@
+= 
+:allow-uri-read: 
+
+
+Puoi disabilitare temporaneamente o permanentemente la federazione delle identità per gruppi e utenti. Quando la federazione delle identità è disabilitata, non c'è comunicazione tra StorageGRID e l'origine delle identità. Tuttavia, tutte le impostazioni che hai configurato vengono mantenute, permettendoti di riattivare facilmente la federazione delle identità in futuro.
+
+.Informazioni su questa attività
+Prima di disabilitare la federazione delle identità, dovresti tenere presente quanto segue:
+
+* Gli utenti federati non potranno accedere.
+* Gli utenti federati attualmente connessi manterranno l'accesso al sistema StorageGRID fino alla scadenza della loro sessione, ma non potranno accedere dopo la scadenza della sessione.
+* ${post_edited_translations.segment}
+* La casella di controllo *Abilita federazione delle identità* è disabilitata se lo stato del single sign-on (SSO) è *Abilitato* o *Modalità Sandbox*. Lo stato SSO nella pagina Single Sign-on deve essere *Disabilitato* prima di poter disabilitare la federazione delle identità. Vedi link:../admin/disabling-single-sign-on.html["${post_edited_translations.segment}"].
+
+
+.Passaggi
+. Vai alla pagina di federazione delle identità.
+. Deseleziona la casella di controllo *Abilita federazione delle identità*.
+

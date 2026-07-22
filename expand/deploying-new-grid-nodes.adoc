@@ -1,0 +1,187 @@
+---
+permalink: expand/deploying-new-grid-nodes.html 
+sidebar: sidebar 
+keywords: expansion, add nodes, StorageGRID 
+summary: 'La procedura per implementare nuovi nodi della griglia durante un"espansione è la stessa utilizzata al momento della prima installazione della griglia. Devi implementare tutti i nuovi nodi della griglia prima di poter procedere con l"espansione.' 
+---
+= Distribuisci nuovi nodi della griglia in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La procedura per implementare nuovi nodi della griglia durante un'espansione è la stessa utilizzata al momento della prima installazione della griglia. Devi implementare tutti i nuovi nodi della griglia prima di poter procedere con l'espansione.
+
+Quando espandi una griglia, i nodi che aggiungi non devono necessariamente corrispondere ai tipi di nodi esistenti. Puoi aggiungere nodi VMware, nodi basati su container Linux o nodi appliance.
+
+
+
+[[vmware-deploy-grid-nodes]]
+== VMware: Distribuisci i nodi della griglia
+
+Devi distribuire una macchina virtuale in VMware vSphere per ogni nodo VMware che vuoi aggiungere nell'espansione.
+
+.Passaggi
+. link:../swnodes/deploying-storagegrid-node-as-virtual-machine.html["Distribuisci il nuovo nodo come macchina virtuale"] e collegalo a una o più reti StorageGRID.
++
+Quando distribuisci il nodo, puoi opzionalmente rimappare le porte del nodo o aumentare le impostazioni di CPU o memoria.
+
+. Dopo aver distribuito tutti i nuovi nodi VMware, link:performing-expansion.html["esegui la procedura di espansione"].
+
+
+
+
+[[linux-deploy-grid-nodes]]
+== Linux: Distribuisci i nodi della griglia
+
+Puoi distribuire i nodi della griglia su nuovi host Linux o su host Linux esistenti. Se ti servono host Linux aggiuntivi per supportare i requisiti di CPU, RAM e storage dei nodi StorageGRID che vuoi aggiungere alla griglia, preparali nello stesso modo in cui hai preparato gli host quando li hai installati per la prima volta. Poi distribuisci i nodi di espansione nello stesso modo in cui hai distribuito i nodi della griglia durante l'installazione.
+
+.Prima di iniziare
+* Hai le istruzioni per installare StorageGRID per la tua versione di Linux e hai esaminato il link:../swnodes/index.html["${post_edited_translations.segment}"].
+* Se prevedi di implementare nuovi nodi della griglia su host esistenti, hai confermato che gli host esistenti dispongono di CPU, RAM e capacità di archiviazione sufficienti per i nodi aggiuntivi.
+* Hai un piano per ridurre al minimo i domini di guasto. Ad esempio, non dovresti distribuire tutti i nodi Gateway su un singolo host fisico.
++
+
+CAUTION: In un ambiente di produzione, non eseguire più di un Storage Node su un singolo host fisico o virtuale. Usare un host dedicato per ciascun Storage Node offre un dominio di errore isolato.
+
+* Se il nodo StorageGRID utilizza storage assegnato da un sistema NetApp ONTAP, assicurati che il volume non abbia una policy di tiering FabricPool abilitata. Disabilitare il tiering FabricPool per i volumi usati con i nodi StorageGRID semplifica la risoluzione dei problemi e le operazioni di storage.
+
+
+.Passaggi
+. Se stai aggiungendo nuovi host, consulta le istruzioni di installazione per la distribuzione dei nodi StorageGRID.
+. Per distribuire i nuovi host, segui le istruzioni per preparare gli host.
+. ${post_edited_translations.segment}
+. ${post_edited_translations.segment}
+. Se stai aggiungendo nodi a un host Linux esistente, avvia i nuovi nodi utilizzando la CLI del servizio host di storagegrid:``sudo storagegrid node start [<node name\>]``
+
+
+.Dopo aver finito
+Dopo aver distribuito tutti i nuovi nodi della griglia, puoi link:performing-expansion.html["${post_edited_translations.segment}"].
+
+
+
+[[appliances-deploying-storage-gateway-or-non-primary-admin-nodes]]
+== Appliance: distribuzione di storage, gateway o nodi amministrativi non primari
+
+Per installare il software StorageGRID su un nodo appliance, utilizzi lo StorageGRID Appliance Installer, che è incluso nell'appliance. In un'espansione, ciascuna appliance di storage funge da singolo Storage Node e ciascuna appliance di servizi funge da singolo Gateway Node o Admin Node non primario. Qualsiasi appliance può connettersi alla Grid Network, alla Admin Network e alla Client Network.
+
+.Prima di iniziare
+* L'apparecchio è stato installato in un rack o in un armadio, collegato alle tue reti e acceso.
+* Hai completato i  https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/configuring-hardware.html["${post_edited_translations.segment}"^] passaggi.
++
+${post_edited_translations.segment}
+
+* ${post_edited_translations.segment}
+* Il firmware di StorageGRID Appliance Installer sull'appliance sostitutiva è compatibile con la versione del software StorageGRID attualmente in esecuzione sulla tua grid. Se le versioni non sono compatibili, devi aggiornare il firmware di StorageGRID Appliance Installer.
+* Hai un laptop di servizio con un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Conosci uno degli indirizzi IP assegnati al controller di calcolo dell'appliance. Puoi utilizzare l'indirizzo IP per qualsiasi rete StorageGRID collegata.
+
+
+.Informazioni su questa attività
+${post_edited_translations.segment}
+
+* ${post_edited_translations.segment}
+* Avvii l'installazione e aspetti mentre i volumi vengono configurati e il software viene installato.
++
+A metà delle operazioni di installazione dell'appliance, l'installazione si interrompe. Per riprendere l'installazione, accedi a Grid Manager, approvi tutti i nodi della griglia e completi il processo di installazione di StorageGRID.
+
++
+
+NOTE: Se devi distribuire più nodi appliance contemporaneamente, puoi automatizzare il processo di installazione usando lo  `configure-sga.py` Appliance Installation Script.
+
+
+
+.Passaggi
+. Apri un browser e inserisci uno degli indirizzi IP del compute controller del dispositivo.
++
+`https://_Controller_IP_:8443`
+
++
+${post_edited_translations.segment}
+
+. Nella sezione di connessione *Primary Admin Node*, determina se devi specificare l'indirizzo IP per il Primary Admin Node.
++
+Se in precedenza hai installato altri nodi in questo data center, StorageGRID Appliance Installer può rilevare automaticamente questo indirizzo IP, supponendo che il nodo Admin primario, o almeno un altro nodo grid con ADMIN_IP configurato, sia presente sulla stessa sottorete.
+
+. Se questo indirizzo IP non viene visualizzato o devi modificarlo, specifica l'indirizzo:
++
+[cols="1a,2a"]
+|===
+| Opzione | Descrizione 
+
+
+ a| 
+Inserimento manuale dell'indirizzo IP
+ a| 
+.. ${post_edited_translations.segment}
+.. Inserisci manualmente l'indirizzo IP.
+.. Fare clic su *Save*.
+.. Attendi che lo stato della connessione per il nuovo indirizzo IP diventi pronto.
+
+
+
+
+ a| 
+Rilevamento automatico di tutti i nodi Admin primari connessi
+ a| 
+.. ${post_edited_translations.segment}
+.. Attendi che venga visualizzato l'elenco degli indirizzi IP rilevati.
+.. Seleziona il nodo amministratore primario per la grid dove verrà distribuito questo appliance Storage Node.
+.. Fare clic su *Save*.
+.. Attendi che lo stato della connessione per il nuovo indirizzo IP diventi pronto.
+
+
+|===
+. ${post_edited_translations.segment}
++
+Il nome del nodo viene assegnato a questo nodo dell'appliance nel sistema StorageGRID. Viene visualizzato nella pagina Nodi (scheda Panoramica) nel Grid Manager. Se necessario, puoi cambiare il nome quando approvi il nodo.
+
+. Nella sezione *Installazione*, conferma che lo stato corrente sia "Pronto per avviare l'installazione di _nome del nodo_ nella grid con primary Admin Node _admin_ip_" e che il pulsante *Avvia installazione* sia abilitato.
++
+Se il pulsante *Avvia installazione* non è abilitato, potresti dover modificare la configurazione di rete o le impostazioni della porta. Per le istruzioni, consulta le istruzioni di manutenzione del tuo appliance.
+
+. ${post_edited_translations.segment}
++
+${post_edited_translations.segment}
+
+. Se la tua espansione include più nodi appliance, ripeti i passaggi precedenti per ciascun appliance.
++
+
+NOTE: ${post_edited_translations.segment}
+
+. Se devi accedere manualmente alla pagina Monitor Installation, seleziona *Monitor Installation* dalla barra dei menu.
++
+La pagina di installazione del monitor mostra lo stato di avanzamento dell'installazione.
+
++
+La barra di stato blu indica quale attività è attualmente in corso. Le barre di stato verdi indicano le attività completate con successo.
+
++
+
+NOTE: Il programma di installazione garantisce che le attività completate in un'installazione precedente non vengano eseguite di nuovo. Se esegui di nuovo un'installazione, le attività che non devono essere eseguite di nuovo vengono mostrate con una barra di stato verde e lo stato "Ignorato".
+
+. Controlla l'avanzamento delle prime due fasi di installazione.
++
+*1. Configura appliance*
+
++
+Durante questa fase, si verifica uno dei seguenti processi:
+
++
+** ${post_edited_translations.segment}
+** ${post_edited_translations.segment}
++
+*2. Installa il sistema operativo*
+
++
+Durante questa fase, il programma di installazione copia l'immagine di base del sistema operativo per StorageGRID sull'appliance.
+
+
+
+. Continua a monitorare l'avanzamento dell'installazione finché non compare un messaggio nella finestra della console che ti invita a utilizzare Grid Manager per approvare il nodo.
++
+
+NOTE: Attendi che tutti i nodi aggiunti in questa espansione siano pronti per l'approvazione prima di andare su Grid Manager per approvare i nodi.
+
+

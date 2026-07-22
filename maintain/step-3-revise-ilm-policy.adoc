@@ -1,0 +1,100 @@
+---
+permalink: maintain/step-3-revise-ilm-policy.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, revise ilm policies 
+summary: 'Dal passaggio 3 (Revisiona le policy ILM) della procedura guidata di decommission del sito, puoi determinare se il sito è menzionato in una qualsiasi policy ILM.' 
+---
+= Rivedere le politiche ILM per il decommission di un sito in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Dal passaggio 3 (Revisiona le policy ILM) della procedura guidata di decommission del sito, puoi determinare se il sito è menzionato in una qualsiasi policy ILM.
+
+.Prima di iniziare
+Hai una buona comprensione di come link:../ilm/index.html["Gestisci gli oggetti con ILM"]. Sei pratico nella creazione di pool di storage e regole ILM, oltre che nella simulazione e attivazione di una policy ILM.
+
+.Informazioni su questa attività
+StorageGRID non può decommissionare un sito se una qualsiasi regola ILM in una qualsiasi policy (attiva o inattiva) fa riferimento a tale sito.
+
+Se una qualsiasi policy di ILM fa riferimento al sito che vuoi decommissionare, devi rimuovere tali policy o modificarle in modo che soddisfino questi requisiti:
+
+* Proteggi completamente tutti i dati degli oggetti.
+* Non fare riferimento al sito che stai decommissionando.
+* Non usare pool di storage che fanno riferimento al sito o l'opzione Tutti i siti.
+* Non usare profili di codifica di cancellazione che fanno riferimento al sito.
+* Non usare la regola "Make 2 Copies" di StorageGRID 11.6 o versioni precedenti.
+
+
+
+CAUTION: Non creare mai una regola ILM a copia singola per gestire la rimozione di un sito. Una regola ILM che crea una sola copia replicata per qualsiasi periodo di tempo espone i dati al rischio di perdita permanente. Se esiste una sola copia replicata di un oggetto, tale oggetto viene perso se un Storage Node si guasta o presenta un errore significativo. Perderai anche temporaneamente l'accesso all'oggetto durante le procedure di manutenzione, come gli aggiornamenti.
+
+
+TIP: Se stai eseguendo il _decommission di un sito connesso_, devi considerare in che modo StorageGRID deve gestire i dati oggetto attualmente presenti nel sito che desideri rimuovere. A seconda dei tuoi requisiti di protezione dei dati, le nuove regole possono spostare i dati oggetto esistenti in siti diversi oppure possono eliminare le copie di oggetti extra non più necessarie.
+
+Contatta il supporto tecnico se hai bisogno di aiuto per progettare una nuova policy.
+
+.Passaggi
+. Dal passaggio 3 (Rivedi le policy ILM), verifica se qualche policy ILM fa riferimento al sito che hai selezionato per decommissionare.
+. Se non sono elencate policy, seleziona *Avanti* per andare a link:step-4-remove-ilm-references.html["Passaggio 4: rimuovi i riferimenti ILM"].
+. Se sono elencate una o più policy ILM _attive_, clona ciascuna policy esistente oppure crea nuove policy che non fanno riferimento al sito che stai decommissionando:
++
+.. Seleziona il collegamento della policy nella colonna "Nome della policy".
++
+La pagina dei dettagli della policy ILM viene visualizzata in una nuova scheda del browser. La pagina Decommission Site rimarrà aperta nell'altra scheda.
+
+.. Segui queste linee guida e istruzioni secondo necessità:
++
+*** Lavora con le regole ILM:
++
+**** link:../ilm/creating-storage-pool.html["Crea uno o più pool di storage"] che non fanno riferimento al sito.
+**** link:../ilm/working-with-ilm-rules-and-ilm-policies.html["Modifica o sostituisci le regole"] che si riferiscono al sito.
++
+
+NOTE: Non selezionare la regola *Crea 2 copie* perché tale regola utilizza il pool di storage *All Storage Nodes*, che non è consentito.
+
+
+
+*** Lavora con le policy di ILM:
++
+**** link:../ilm/working-with-ilm-rules-and-ilm-policies.html#clone-ilm-policy["Clona una policy ILM esistente"] o link:../ilm/creating-ilm-policy.html["crea una nuova policy ILM"].
+**** Assicurati che la regola predefinita e le altre regole non facciano riferimento al sito.
++
+
+CAUTION: Devi confermare che le regole ILM siano nell'ordine corretto. Quando la policy viene attivata, gli oggetti nuovi ed esistenti vengono valutati dalle regole nell'ordine elencato, partendo dall'alto.
+
+
+
+
+
+.. Acquisisci oggetti di test e simula la policy per assicurarti che vengano applicate le regole corrette.
++
+
+CAUTION: Gli errori in una policy ILM possono causare una perdita di dati irreversibile. Esamina attentamente e simula la policy prima di attivarla per confermare che funzionerà come previsto.
+
++
+
+CAUTION: Quando attivi una nuova policy ILM, StorageGRID la usa per gestire tutti gli oggetti, inclusi quelli esistenti e quelli appena acquisiti. Prima di attivare una nuova policy ILM, controlla eventuali modifiche al posizionamento degli oggetti replicati e con codifica di cancellazione esistenti. Cambiare la posizione di un oggetto esistente potrebbe causare problemi temporanei di risorse quando vengono valutati e implementati i nuovi posizionamenti.
+
+.. Attiva le nuove policy e assicurati che le vecchie policy siano ora inattive.
++
+Se vuoi attivare più criteri, link:../ilm/creating-ilm-policy.html#activate-ilm-policy["Segui i passaggi per creare i tag delle policy ILM"].
+
++
+Se stai eseguendo un decommission di un sito connesso, StorageGRID inizia a rimuovere i dati degli oggetti dal sito selezionato non appena attivi la nuova policy ILM. Lo spostamento o l'eliminazione di tutte le copie degli oggetti potrebbe richiedere settimane. Anche se puoi avviare in sicurezza un decommission di un sito mentre i dati degli oggetti sono ancora presenti nel sito, la procedura di decommission verrà completata più rapidamente e con meno interruzioni e impatti sulle prestazioni se permetti che i dati vengano spostati dal sito prima di iniziare la procedura di decommission vera e propria (selezionando *Start Decommission* al passaggio 5 della procedura guidata).
+
+
+
+. Per ogni policy _inattiva_, modificala o rimuovila selezionando prima il link per ciascuna policy come descritto nei passaggi precedenti.
++
+** link:../ilm/working-with-ilm-rules-and-ilm-policies.html#edit-ilm-policy["Modifica la policy"]quindi non si riferisce al sito da decommissionare.
+** link:../ilm/working-with-ilm-rules-and-ilm-policies.html#remove-ilm-policy["Rimuovi una policy"].
+
+
+. Quando hai finito di apportare modifiche alle regole e alle policy di ILM, non dovrebbero più esserci policy elencate nel passaggio 3 (Rivedi le policy di ILM). Seleziona *Avanti*.
++
+Viene visualizzato il passaggio 4 (Rimuovi riferimenti ILM).
+
+

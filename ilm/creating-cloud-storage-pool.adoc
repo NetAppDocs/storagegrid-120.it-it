@@ -1,0 +1,229 @@
+---
+permalink: ilm/creating-cloud-storage-pool.html 
+sidebar: sidebar 
+keywords: how to create cloud storage pool 
+summary: Un cloud storage pool specifica un singolo bucket Amazon S3 esterno o un altro cloud provider compatibile con S3 oppure un container Azure Blob storage. 
+---
+= Crea un pool di storage cloud in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Un cloud storage pool specifica un singolo bucket Amazon S3 esterno o un altro cloud provider compatibile con S3 oppure un container Azure Blob storage.
+
+Quando crei un Cloud Storage Pool, specifichi il nome e la posizione del bucket o container esterno che StorageGRID userà per archiviare gli oggetti, il tipo di cloud provider (Amazon S3/GCP o Azure Blob storage) e le informazioni di cui StorageGRID ha bisogno per accedere al bucket o container esterno.
+
+StorageGRID convalida il Cloud Storage Pool non appena lo salvi, quindi devi assicurarti che il bucket o container specificato nel Cloud Storage Pool esista e sia raggiungibile.
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Tu hai il link:../admin/admin-group-permissions.html["autorizzazioni di accesso richieste"].
+* Hai esaminato il link:considerations-for-cloud-storage-pools.html["Considerazioni sui Cloud Storage Pool"].
+* Il bucket o container a cui fa riferimento il Cloud Storage Pool esiste già e hai il <<service-endpoint-info,informazioni sull'endpoint del servizio>>.
+* Per accedere al bucket o container, hai l'<<authentication-account-info,informazioni sull'account per il tipo di autenticazione>> che sceglierai.
+
+
+.Passaggi
+. Seleziona *ILM* > *Storage pools* > *Cloud Storage Pools*.
+. Seleziona *Crea*, quindi inserisci le seguenti informazioni:
++
+[cols="1a,3a"]
+|===
+| Campo | Descrizione 
+
+
+ a| 
+Nome del cloud storage pool
+ a| 
+Un nome che descrive brevemente il Cloud Storage Pool e il suo scopo. Usa un nome che sia facile da identificare quando configuri le regole ILM.
+
+
+
+ a| 
+Tipo di provider
+ a| 
+Quale cloud provider utilizzerai per questo Cloud Storage Pool?
+
+** *Amazon S3/GCP*: Seleziona questa opzione per un Amazon S3, Commercial Cloud Services (C2S) S3, Google Cloud Platform (GCP) o un altro provider compatibile con S3.
+** *Azure Blob Storage*
+
+
+
+
+ a| 
+Bucket o container
+ a| 
+Il nome del bucket S3 esterno o container Azure. Non puoi modificare questo valore dopo che il Cloud Storage Pool è stato salvato.
+
+|===
+. [[service-endpoint-info]]In base al tipo di provider selezionato, inserisci le informazioni sull'endpoint del servizio.
++
+[role="tabbed-block"]
+====
+.Amazon S3/GCP
+--
+.. Per il protocollo, seleziona HTTPS o HTTP.
++
+
+NOTE: Non usare connessioni HTTP per dati sensibili.
+
+.. Inserisci il nome host. Esempio:
++
+`s3-_aws-region_.amazonaws.com`
+
+.. Seleziona lo stile URL:
++
+[cols="1a,3a"]
+|===
+| Opzione | Descrizione 
+
+
+ a| 
+Rilevamento automatico
+ a| 
+Tenta di rilevare automaticamente quale stile di URL utilizzare, in base alle informazioni fornite. Ad esempio, se specifichi un indirizzo IP, StorageGRID utilizzerà un URL in stile percorso. Seleziona questa opzione solo se non sai quale stile specifico utilizzare.
+
+
+
+ a| 
+Stile virtual-hosted
+ a| 
+Utilizza un URL in stile virtual-hosted per accedere al bucket. Gli URL in stile virtual-hosted includono il nome del bucket come parte del domain name. Esempio: `+https://bucket-name.s3.company.com/key-name+`
+
+
+
+ a| 
+Stile path
+ a| 
+Utilizza un URL in formato percorso per accedere al bucket. Gli URL in formato percorso includono il nome del bucket alla fine. Esempio: `+https://s3.company.com/bucket-name/key-name+`
+
+*Nota:* L'opzione URL in formato percorso non è consigliata e verrà deprecata in una versione futura di StorageGRID.
+
+|===
+.. Facoltativamente, inserisci il numero di porta oppure usa la porta predefinita: 443 per HTTPS o 80 per HTTP.
+
+
+--
+.Azure Blob Storage
+--
+.. Utilizzando uno dei seguenti formati, inserisci l'URI dell'endpoint del servizio.
++
+*** `+https://host:port+`
+*** `+http://host:port+`
+
+
+
+
+Esempio: `https://_myaccount_.blob.core.windows.net:443`
+
+Se non specifichi una porta, per impostazione predefinita viene utilizzata la porta 443 per HTTPS e la porta 80 per HTTP.
+
+--
+====
+
+
+. [[authentication-account-info]]Seleziona *Continua*. Quindi seleziona il tipo di autenticazione e inserisci le informazioni richieste per l'endpoint del Cloud Storage Pool:
++
+[role="tabbed-block"]
+====
+.Chiave di accesso
+--
+_Per Amazon S3/GCP o altri cloud provider compatibili con S3_
+
+.. *ID chiave di accesso*: Inserisci l'ID della chiave di accesso per l'account che possiede il bucket esterno.
+.. *Chiave di accesso segreta*: Inserisci la chiave di accesso segreta.
+
+
+--
+.IAM Roles Anywhere
+--
+_Per il servizio AWS IAM Roles Anywhere_
+
+StorageGRID utilizza AWS Security Token Service (STS) per generare dinamicamente un token di breve durata per accedere alle risorse AWS.
+
+.. *Regione di AWS IAM Roles Anywhere*: Seleziona la regione per il pool di storage cloud. Ad esempio,  `us-east-1`.
+.. *URN dell'ancora di fiducia*: Inserisci l'URN dell'ancora di fiducia che convalida le richieste di credenziali STS a breve termine. Può essere una CA root o intermedia.
+.. *URN del profilo*: Inserisci l'URN del profilo IAM Roles Anywhere che elenca i ruoli che possono essere assunti da chiunque sia considerato attendibile.
+.. *URN del ruolo*: Inserisci l'URN del ruolo IAM che può essere assunto da chiunque sia considerato affidabile.
+.. *Durata della sessione*: Inserisci la durata delle credenziali di sicurezza temporanee e della sessione del ruolo. Inserisci almeno 15 minuti e non più di 12 ore.
+.. *Certificato CA del server* (facoltativo): uno o più certificati CA attendibili, in formato PEM, per verificare il server IAM Roles Anywhere. Se omesso, il server non viene verificato.
+.. *Certificato dell'entità finale*: la chiave pubblica, in formato PEM, del certificato X509 firmato dall'ancora di fiducia. AWS IAM Roles Anywhere utilizza questa chiave per emettere un token STS.
+.. *Chiave privata dell'entità finale*: La chiave privata per il certificato dell'entità finale.
+
+
+--
+.CAP (portale di accesso C2S)
+--
+_Per il servizio Commercial Cloud Services (C2S) S3_
+
+.. *URL delle credenziali temporanee*: Inserisci l'URL completo che StorageGRID userà per ottenere le credenziali temporanee dal server CAP, inclusi tutti i parametri API obbligatori e facoltativi assegnati al tuo account C2S.
+.. *Certificato CA del server*: Seleziona *Sfoglia* e carica il certificato CA che StorageGRID utilizzerà per verificare il server CAP. Il certificato deve essere codificato in formato PEM ed essere rilasciato da un'autorità di certificazione (CA) governativa appropriata.
+.. *Certificato client*: Seleziona *Sfoglia* e carica il certificato che StorageGRID utilizzerà per identificarsi al server CAP. Il certificato client deve essere codificato in formato PEM, rilasciato da un'autorità di certificazione (CA) governativa appropriata e deve consentire l'accesso al tuo account C2S.
+.. *Chiave privata del client*: Seleziona *Sfoglia* e carica la chiave privata codificata in formato PEM per il certificato client.
+.. Se la chiave privata del client è crittografata, inserisci la passphrase per decrittare la chiave privata del client. Altrimenti, lascia il campo *Passphrase della chiave privata del client* vuoto.
+
+
+
+NOTE: Se il certificato client deve essere crittografato, usa il formato tradizionale per la crittografia. Il formato crittografato PKCS #8 non è supportato.
+
+--
+.Azure Blob Storage
+--
+_Solo per Azure Blob Storage, solo Chiave condivisa_
+
+.. *Nome account*: Inserisci il nome dell'account di storage che possiede il container esterno
+.. *Chiave account*: Inserisci la chiave segreta per l'account di storage
+
+
+Puoi usare il portale di Azure per trovare questi valori.
+
+--
+.Anonimo
+--
+Non sono richieste ulteriori informazioni.
+
+--
+====
+. Seleziona *Continua*. Quindi scegli il tipo di verifica del server che desideri utilizzare:
++
+[cols="1a,2a"]
+|===
+| Opzione | Descrizione 
+
+
+ a| 
+Usa i certificati CA root in Storage Node OS
+ a| 
+Usa i certificati Grid CA installati sul sistema operativo per proteggere le connessioni.
+
+
+
+ a| 
+Usa un certificato CA personalizzato
+ a| 
+Utilizza un certificato CA personalizzato. Seleziona *Sfoglia* e carica il certificato codificato in formato PEM.
+
+
+
+ a| 
+Non verificare il certificato
+ a| 
+Selezionando questa opzione, le connessioni TLS al pool di storage cloud non sono sicure.
+
+|===
+. Seleziona *Salva*.
++
+Quando salvi un pool di storage cloud, StorageGRID esegue le seguenti operazioni:
+
++
+** Verifica che il bucket o container e l'endpoint del servizio esistano e che siano raggiungibili utilizzando le credenziali che hai specificato.
+** Scrive un file di marcatura nel bucket o container per identificarlo come Cloud Storage Pool. Non rimuovere mai questo file, che si chiama  `x-ntap-sgws-cloud-pool-uuid`.
++
+Se la convalida del pool di storage cloud non riesce, ricevi un messaggio di errore che spiega perché la convalida non è riuscita. Ad esempio, potrebbe essere segnalato un errore se c'è un problema con il certificato o se il bucket o container che hai specificato non esiste già.
+
+
+
+. Se si verifica un errore, consulta la link:troubleshooting-cloud-storage-pools.html["Istruzioni per la risoluzione dei problemi relativi ai Cloud Storage Pools"] e risolvi eventuali problemi, poi prova a salvare di nuovo il Cloud Storage Pool.
+

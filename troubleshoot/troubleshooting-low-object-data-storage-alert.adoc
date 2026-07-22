@@ -1,0 +1,84 @@
+---
+permalink: troubleshoot/troubleshooting-low-object-data-storage-alert.html 
+sidebar: sidebar 
+keywords: how to troubleshoot the Low object data storage alert 
+summary: 'L"avviso "Spazio di archiviazione dati oggetto insufficiente" monitora la quantità di spazio disponibile per l"archiviazione dei dati oggetto su ciascun Storage Node.' 
+---
+= Risolvi l'avviso di archiviazione dati oggetto insufficiente in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'avviso *Spazio di archiviazione dati oggetto insufficiente* monitora la quantità di spazio disponibile per l'archiviazione dei dati oggetto su ciascun Storage Node.
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Hai link:../admin/admin-group-permissions.html["autorizzazioni di accesso specifiche"].
+
+
+.Informazioni su questa attività
+L'avviso *Spazio di archiviazione dati oggetto insufficiente* viene attivato quando la quantità totale di dati oggetto replicati e codificati per la cancellazione su un Storage Node soddisfa una delle condizioni configurate nella regola di avviso.
+
+Di default, viene attivato un avviso importante quando questa condizione risulta vera:
+
+[listing]
+----
+(storagegrid_storage_utilization_data_bytes/
+(storagegrid_storage_utilization_data_bytes + storagegrid_storage_utilization_usable_space_bytes)) >=0.90
+----
+In questa condizione:
+
+* `storagegrid_storage_utilization_data_bytes` è una stima della dimensione totale dei dati degli oggetti replicati e codificati con erasure coding per un Storage Node.
+* `storagegrid_storage_utilization_usable_space_bytes` è la quantità totale di storage a oggetti rimanente per un nodo di archiviazione.
+
+
+Se viene attivato un avviso di *Low object data storage*, sia esso di grave o lieve entità, dovresti eseguire una procedura di espansione il prima possibile.
+
+.Passaggi
+. Seleziona *Avvisi* > *Attuali*.
++
+Viene visualizzata la pagina Avvisi.
+
+. Dalla tabella degli avvisi, espandi il gruppo di avvisi *Low object data storage*, se necessario, e seleziona l'avviso che vuoi visualizzare.
++
+
+NOTE: Seleziona l'avviso, non l'intestazione per un gruppo di avvisi.
+
+. Esamina i dettagli nella finestra di dialogo e prendi nota di quanto segue:
++
+** Attivato a tempo
+** Il nome del sito e del nodo
+** I valori attuali delle metriche per questo alert
+
+
+. Seleziona *Nodes* > *_Storage Node or Site_* > *Storage*.
+. Posiziona il cursore sul grafico "Storage Used - Object Data".
++
+Vengono visualizzati i seguenti valori:
+
++
+** *Utilizzato (%)*: La percentuale dello spazio totale utilizzabile che hai usato per i dati degli oggetti.
+** *Utilizzato*: La quantità di spazio totale utilizzabile che hai usato per i dati degli oggetti.
+** *Dati replicati*: una stima della quantità di dati oggetto replicati su questo nodo, sito o grid.
+** *Dati codificati per la cancellazione*: una stima della quantità di dati oggetto codificati per la cancellazione su questo nodo, sito o grid.
+** *Totale*: La quantità totale di spazio utilizzabile su questo nodo, sito o grid. Il valore utilizzato è la  `storagegrid_storage_utilization_data_bytes` metrica.
+
+
++
+image:nodes_page_storage_used_object_data.png["Nodi Pagina Storage utilizzato Dati oggetto"]
+
+. Seleziona i controlli temporali sopra il grafico per visualizzare l'utilizzo dello storage in diversi periodi di tempo.
++
+Analizzare l'utilizzo dello storage nel tempo può aiutarti a capire quanto storage è stato usato prima e dopo che l'avviso è stato attivato e può aiutarti a stimare quanto tempo potrebbe volerci prima che lo spazio rimanente del nodo si riempia.
+
+. Il prima possibile, link:../expand/guidelines-for-adding-object-capacity.html["aggiungere capacità di storage"] sulla tua griglia.
++
+Puoi aggiungere volumi di storage (LUN) ai nodi di storage esistenti oppure puoi aggiungere nuovi nodi di storage.
+
++
+
+NOTE: Per ulteriori informazioni, vedi link:../admin/managing-full-storage-nodes.html["Gestisci nodi di storage completi"].
+
+

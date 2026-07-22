@@ -1,0 +1,29 @@
+---
+section: upgrade
+title: Aggiorna il software StorageGRID
+entries:
+- title: Prima di effettuare l'upgrade
+  pdf-filename: Aggiorna il software StorageGRID
+  url: "/upgrade/index.html"
+- title: "${post_edited_translations.segment}"
+  entries:
+  - title: "${post_edited_translations.segment}"
+    url: "/upgrade/estimating-time-to-complete-upgrade.html"
+  - title: Come il tuo sistema è influenzato durante l'aggiornamento
+    url: "/upgrade/how-your-system-is-affected-during-upgrade.html"
+  - title: "${post_edited_translations.segment}"
+    url: "/upgrade/verifying-installed-version-of-storagegrid.html"
+  - title: Procurati il materiale necessario
+    url: "/upgrade/obtaining-required-materials-for-software-upgrade.html"
+  - title: "${post_edited_translations.segment}"
+    url: "/upgrade/checking-systems-condition-before-upgrading-software.html"
+- title: Aggiorna software
+  entries:
+  - title: Guida rapida all'aggiornamento
+    url: "/upgrade/upgrade-workflow.html"
+  - title: "${post_edited_translations.segment}"
+    url: "/upgrade/linux-installing-rpm-or-deb-package-on-all-hosts.html"
+  - title: Esegui l'aggiornamento
+    url: "/upgrade/performing-upgrade.html"
+- title: Risolvi i problemi di aggiornamento
+  url: "/upgrade/troubleshooting-upgrade-issues.html"

@@ -1,0 +1,32 @@
+= Sovrapposizioni Memberof e Refint
+:allow-uri-read: 
+
+
+Se vuoi usare un server OpenLDAP per la federazione delle identità, devi configurare impostazioni specifiche sul server OpenLDAP.
+
+
+CAUTION: Per le origini di identità diverse da Active Directory o Microsoft Entra ID, StorageGRID non bloccherà automaticamente l'accesso S3 per gli utenti disabilitati esternamente. Per bloccare l'accesso S3, elimina tutte le chiavi S3 dell'utente o rimuovi l'utente da tutti i gruppi.
+
+
+
+[[memberof-and-refint-overlays]]
+=== Sovrapposizioni Memberof e Refint
+
+Le sovrapposizioni memberof e refint devono essere abilitate. Per ulteriori informazioni, consulta le istruzioni per la manutenzione della membership inversa del gruppo nel http://www.openldap.org/doc/admin24/index.html["Documentazione di OpenLDAP: Guida dell'amministratore versione 2.4"^].
+
+
+
+[[indexing]]
+=== Indicizzazione
+
+${post_edited_translations.segment}
+
+* `olcDbIndex: objectClass eq`
+* `olcDbIndex: uid eq,pres,sub`
+* `olcDbIndex: cn eq,pres,sub`
+* `olcDbIndex: entryUUID eq`
+
+
+Inoltre, assicurati che i campi menzionati nell'aiuto per Nome utente siano indicizzati per prestazioni ottimali.
+
+Vedi le informazioni sulla manutenzione dell'appartenenza inversa ai gruppi nel http://www.openldap.org/doc/admin24/index.html["Documentazione di OpenLDAP: Guida dell'amministratore versione 2.4"^].

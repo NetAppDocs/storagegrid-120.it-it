@@ -1,0 +1,40 @@
+---
+permalink: tenant/duplicating-group.html 
+sidebar: sidebar 
+keywords: how to duplicate tenant group 
+summary: Puoi creare nuovi gruppi più rapidamente duplicando un gruppo esistente. 
+---
+= Duplicare un gruppo tenant di StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi creare nuovi gruppi più rapidamente duplicando un gruppo esistente.
+
+.Prima di iniziare
+* Hai effettuato l'accesso al Tenant Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Appartieni a un gruppo di utenti che dispone dell'autorizzazione di accesso Root. Vedi link:tenant-management-permissions.html["Autorizzazioni per la gestione dei tenant"].
+
+
+.Passaggi
+. ${post_edited_translations.segment}
+. Seleziona la casella di controllo per il gruppo che vuoi duplicare.
+. Seleziona *Duplicate group*. Per ulteriori dettagli sulla creazione di un gruppo, consulta le istruzioni per la creazione di gruppi per link:creating-groups-for-s3-tenant.html["un tenant S3"].
+. ${post_edited_translations.segment}
++
+Se il single sign-on (SSO) è abilitato per il tuo sistema StorageGRID, gli utenti appartenenti ai gruppi locali non potranno accedere a Tenant Manager, sebbene possano utilizzare le applicazioni client per gestire le risorse del tenant, in base a link:tenant-management-permissions.html["${post_edited_translations.segment}"].
+
+. ${post_edited_translations.segment}
++
+** *Gruppo locale*: Inserisci sia un nome visualizzato che un nome univoco. Puoi modificare il nome visualizzato in seguito.
+** *Gruppo federato*: Inserisci il nome univoco. Per Active Directory, il nome univoco è il nome associato all'attributo  `sAMAccountName`. Per OpenLDAP, il nome univoco è il nome associato all'attributo  `uid`.
+
+
+. Seleziona *Continue*.
+. Se necessario, modifica le autorizzazioni per questo gruppo.
+. Seleziona *Continue*.
+. Se necessario, se stai duplicando un gruppo per un tenant S3, seleziona facoltativamente una policy diversa dai pulsanti di opzione *Add S3 policy*. Se hai selezionato una policy personalizzata, aggiorna la stringa JSON come richiesto.
+. Seleziona *Crea gruppo*.
+

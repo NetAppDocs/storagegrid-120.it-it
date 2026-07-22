@@ -1,0 +1,171 @@
+---
+permalink: monitor/access-snmp-mib.html 
+sidebar: sidebar 
+keywords: mib, snmp, monitoring 
+summary: I file MIB contengono definizioni e informazioni sulle proprietà delle risorse e dei servizi gestiti per i nodi della tua griglia. Puoi accedere ai file MIB che definiscono gli oggetti e le notifiche per StorageGRID. Questi file possono essere utili per monitorare la tua griglia. 
+---
+= Accedere ai file MIB di StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+I file MIB contengono definizioni e informazioni sulle proprietà delle risorse e dei servizi gestiti per i nodi della tua griglia. Puoi accedere ai file MIB che definiscono gli oggetti e le notifiche per StorageGRID. Questi file possono essere utili per monitorare la tua griglia.
+
+Vedi link:using-snmp-monitoring.html["Usa il monitoraggio SNMP"] per ulteriori informazioni su SNMP e sui file MIB.
+
+
+
+[[access-mib-files]]
+== Accedi ai file MIB
+
+Segui questi passaggi per accedere ai file MIB.
+
+.Passaggi
+. Seleziona *Configurazione* > *Monitoraggio* > *Agente SNMP*.
+. Nella pagina dell'agente SNMP, seleziona il file che vuoi scaricare:
++
+** *NETAPP-STORAGEGRID-MIB.txt*: Definisce la tabella degli avvisi e le notifiche (trap) accessibili su tutti i nodi di amministrazione.
+** *ES-NETAPP-06-MIB.mib*: Definisce oggetti e notifiche per appliance basati su E-Series.
+** *MIB_1_10.zip*: Definisce oggetti e notifiche per dispositivi con interfaccia BMC.
++
+
+TIP: Puoi anche accedere ai file MIB nella seguente posizione su qualsiasi nodo StorageGRID: `/usr/share/snmp/mibs`
+
+
+
+. Per estrarre gli OID di StorageGRID dal file MIB:
++
+.. Ottieni l'OID della radice della MIB di StorageGRID:
++
+`root@user-adm1:~ # snmptranslate -On -IR storagegrid`
+
++
+Risultato:  `.1.3.6.1.4.1.789.28669` (`28669` è sempre l'OID per StorageGRID)
+
+.. Cerca l'OID di StorageGRID nell'intero albero (utilizzando  `paste` per unire le righe):
++
+`root@user-adm1:~ # snmptranslate -Tso | paste -d " " - - | grep 28669`
+
++
+
+TIP: Il comando  `snmptranslate` offre molte opzioni utili per esplorare la MIB. Questo comando è disponibile su qualsiasi nodo StorageGRID.
+
+
+
+
+
+
+
+[[mib-file-contents]]
+== Contenuto del file MIB
+
+Tutti gli oggetti sono sotto l'OID di StorageGRID.
+
+[cols="1a,1a,2a"]
+|===
+| Nome oggetto | ID oggetto (OID) | Descrizione 
+
+
+| .iso.org.dod.internet. + private.enterprises. + netapp.storagegrid | .1.3.6.1.4.1.789.28669  a| 
+Il modulo MIB per le entità NetApp StorageGRID.
+
+|===
+
+
+[[mib-objects]]
+== oggetti MIB
+
+[cols="1a,1a,1a,1a,1a,2a"]
+|===
+| Nome oggetto | ID oggetto (OID) | Tipo | Accesso | Modulo MIB | Descrizione 
+
+
+| activeAlertCount | .1.3.6.1.4.1. + 789.28669.1.3  a| 
+Integer32
+ a| 
+Sola lettura
+ a| 
+NETAPP-STORAGEGRID-MIB
+ a| 
+Il numero di avvisi attivi nella activeAlertTable.
+
+
+
+| activeAlertTable | .1.3.6.1.4.1. + 789.28669.1.4  a| 
+Sequenza di ActiveAlertEntry
+ a| 
+Non accessibile
+ a| 
+NETAPP-STORAGEGRID-MIB
+ a| 
+Una tabella degli avvisi attivi in StorageGRID.
+
+
+
+| activeAlertEntry | .1.3.6.1.4.1. + 789.28669.1.4.1  a| 
+Sequenza
+ a| 
+Non accessibile
+ a| 
+NETAPP-STORAGEGRID-MIB
+ a| 
+Un singolo avviso StorageGRID, indicizzato tramite ID avviso.
+
+
+
+| activeAlertId | .1.3.6.1.4.1. + 789.28669.1.4.1.1  a| 
+stringa di ottetto
+ a| 
+Sola lettura
+ a| 
+NETAPP-STORAGEGRID-MIB
+ a| 
+L'ID dell'avviso. Univoco solo nell'insieme corrente di avvisi attivi.
+
+
+
+| activeAlertName | .1.3.6.1.4.1. + 789.28669.1.4.1.2  a| 
+stringa di ottetto
+ a| 
+Sola lettura
+ a| 
+NETAPP-STORAGEGRID-MIB
+ a| 
+Il nome dell'allerta.
+
+
+
+| activeAlertInstance | .1.3.6.1.4.1. + 789.28669.1.4.1.3  a| 
+stringa di ottetto
+ a| 
+Sola lettura
+ a| 
+NETAPP-STORAGEGRID-MIB
+ a| 
+Il nome dell'entità che ha generato l'avviso, in genere il nome del nodo.
+
+
+
+| activeAlertSeverity | .1.3.6.1.4.1. + 789.28669.1.4.1.4  a| 
+stringa di ottetto
+ a| 
+Sola lettura
+ a| 
+NETAPP-STORAGEGRID-MIB
+ a| 
+La gravità dell'allerta.
+
+
+
+| activeAlertStartTime | .1.3.6.1.4.1. + 789.28669.1.4.1.5  a| 
+Data e ora
+ a| 
+Sola lettura
+ a| 
+NETAPP-STORAGEGRID-MIB
+ a| 
+L'ora in cui è scattato l'allarme.
+
+|===

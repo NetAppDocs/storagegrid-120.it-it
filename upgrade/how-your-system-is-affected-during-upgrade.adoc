@@ -1,0 +1,119 @@
+---
+permalink: upgrade/how-your-system-is-affected-during-upgrade.html 
+sidebar: sidebar 
+keywords: upgrade, firmware, appliance, alert 
+summary: 'Scopri come il tuo sistema StorageGRID sarà influenzato durante l"upgrade.' 
+---
+= In che modo gli aggiornamenti di StorageGRID influiscono sul tuo sistema
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Scopri come il tuo sistema StorageGRID sarà influenzato durante l'upgrade.
+
+
+
+[[external-ssh-access-is-allowed-until-upgrade-completes]]
+== L'accesso SSH esterno è consentito fino al completamento dell'aggiornamento
+
+L'accesso SSH esterno è consentito durante l'upgrade. Quando l'upgrade è completato, l'accesso SSH esterno viene bloccato per impostazione predefinita. Dopo l'upgrade, puoi usare la scheda *Blocca SSH* disponibile nella pagina *Grid Manager* > *Impostazioni di sicurezza* per link:../admin/manage-external-ssh-access.html["gestire l'accesso SSH esterno"]. L'accesso SSH tra i nodi della grid non è influenzato.
+
+
+
+[[storagegrid-upgrades-are-non-disruptive]]
+== Gli upgrade di StorageGRID non sono invasivi
+
+Il sistema StorageGRID può acquisire e recuperare dati dalle applicazioni client durante l'intero processo di aggiornamento. Se approvi l'aggiornamento di tutti i nodi dello stesso tipo (ad esempio, Storage Nodes), i nodi vengono arrestati uno alla volta, quindi non c'è mai un momento in cui tutti i nodi della griglia o tutti i nodi della griglia di un certo tipo siano non disponibili.
+
+Per garantire la disponibilità continua, assicurati che la tua policy ILM contenga regole che specifichino l'archiviazione di più copie di ciascun oggetto. Devi inoltre assicurarti che tutti i client S3 esterni siano configurati per inviare le richieste a uno dei seguenti:
+
+* Un indirizzo IP virtuale di gruppo ad alta disponibilità (HA)
+* Un bilanciatore di carico di terze parti ad alta disponibilità
+* Nodi gateway multipli per ciascun client
+* Nodi di storage multipli per ciascun client
+
+
+
+
+[[client-applications-might-experience-short-term-disruptions]]
+== Le applicazioni client potrebbero subire interruzioni di breve durata
+
+Il sistema StorageGRID può acquisire e recuperare dati dalle applicazioni client durante l'intero processo di aggiornamento; tuttavia, le connessioni dei client ai singoli Gateway Node o Storage Node potrebbero essere temporaneamente interrotte se l'aggiornamento richiede il riavvio dei servizi su tali nodi. La connettività verrà ripristinata al termine del processo di aggiornamento e alla ripresa dei servizi sui singoli nodi.
+
+Potresti dover programmare un periodo di inattività per applicare un aggiornamento se la perdita di connettività per un breve periodo non è accettabile. Puoi usare l'approvazione selettiva per programmare quando vengono aggiornati determinati nodi.
+
+
+NOTE: Puoi utilizzare più gateway e gruppi ad alta disponibilità (HA) per fornire il failover automatico durante il processo di aggiornamento. Vedi le istruzioni per link:../admin/configure-high-availability-group.html["configurare i gruppi ad alta disponibilità"].
+
+
+
+[[background-repairs-wont-run-on-grids-with-mixed-version-nodes]]
+== Le riparazioni in background non vengono eseguite su griglie con nodi di versioni miste
+
+Le riparazioni in background non vengono eseguite durante l'aggiornamento quando la griglia contiene nodi con versioni diverse. Eventuali incongruenze che si verificano durante il fuori servizio del sito non verranno riparate fino al completamento dell'aggiornamento.
+
+
+
+[[appliance-firmware-is-upgraded]]
+== Il firmware dell'appliance è stato aggiornato
+
+Durante l'aggiornamento a StorageGRID 12.0:
+
+* ${post_edited_translations.segment}
+* Gli appliance SG6060 e SGF6024 vengono aggiornati automaticamente alla versione firmware BIOS 3B08.EX e alla versione firmware BMC 4.01.07.
+* Gli appliance SG100 e SG1000 vengono aggiornati automaticamente alla versione firmware BIOS 3B13.EC e alla versione firmware BMC 4.75.07.
+* ${post_edited_translations.segment}
+
+
+
+
+[[ilm-policies-are-handled-differently-according-to-their-status]]
+== ${post_edited_translations.segment}
+
+* ${post_edited_translations.segment}
+* ${post_edited_translations.segment}
+* ${post_edited_translations.segment}
+
+
+
+
+[[alerts-might-be-triggered]]
+== ${post_edited_translations.segment}
+
+Potrebbero essere attivati avvisi all'avvio e all'arresto dei servizi e quando il sistema StorageGRID opera in un ambiente a versioni miste (alcuni nodi della griglia eseguono una versione precedente, mentre altri sono stati aggiornati a una versione successiva). Altri avvisi potrebbero essere attivati al termine dell'aggiornamento.
+
+Ad esempio, potresti visualizzare l'avviso *Impossibile comunicare con il nodo* quando i servizi vengono arrestati, oppure l'avviso *Errore di comunicazione Cassandra* quando alcuni nodi sono stati aggiornati a StorageGRID 12.0 ma altri nodi eseguono ancora StorageGRID 11.9. In genere, questi avvisi scompaiono al termine dell'aggiornamento.
+
+L'avviso *Impossibile posizionare ILM* potrebbe essere attivato quando i nodi di archiviazione vengono arrestati durante l'aggiornamento a StorageGRID 12.0. Questo avviso potrebbe persistere per 1 giorno dopo il completamento dell'aggiornamento.
+
+${post_edited_translations.segment}
+
+
+
+[[configuration-changes-are-restricted]]
+== Le modifiche alla configurazione sono limitate
+
+
+NOTE: Questo elenco si applica specificamente agli upgrade da StorageGRID 11.9 a StorageGRID 12.0. Se stai eseguendo l'upgrade a un'altra release di StorageGRID, consulta l'elenco delle modifiche soggette a restrizioni nelle istruzioni di upgrade per quella release.
+
+Fino al completamento dell'attività *Abilita nuova funzionalità*:
+
+* Non apportare alcuna modifica alla configurazione della griglia.
+* Non attivare né disattivare alcuna nuova funzionalità.
+* Non aggiornare la configurazione di ILM. In caso contrario, potresti riscontrare un comportamento incoerente e imprevisto di ILM.
+* Non applicare un hotfix o ripristinare un nodo della griglia.
++
+
+NOTE: Contatta il supporto tecnico se hai bisogno di ripristinare un nodo durante l'upgrade.
+
+* Non dovresti gestire gruppi HA, interfacce VLAN o endpoint del bilanciatore di carico mentre esegui l'upgrade a StorageGRID 12.0.
+* Non eliminare alcun gruppo HA finché l'upgrade a StorageGRID 12.0 non è completato. Gli indirizzi IP virtuali in altri gruppi HA potrebbero diventare inaccessibili.
+
+
+Fino al completamento dell'attività *Fasi finali dell'upgrade*:
+
+* Non eseguire una procedura di espansione.
+* Non eseguire una procedura di decommission.
+

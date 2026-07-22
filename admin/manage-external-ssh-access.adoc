@@ -1,0 +1,38 @@
+---
+permalink: admin/manage-external-ssh-access.html 
+sidebar: sidebar 
+keywords: security, external, ssh, access 
+summary: 'Gestisci la protezione SSH bloccando o consentendo l"accesso SSH esterno.' 
+---
+= Gestisci l'accesso SSH esterno in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Gestisci l'accesso SSH per il traffico in entrata nella grid bloccando o consentendo l'accesso esterno. Gestire l'accesso SSH esterno non ha alcun impatto sul traffico tra i nodi nella grid.
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Hai link:admin-group-permissions.html["Permesso di accesso root"].
+
+
+.Informazioni su questa attività
+Per migliorare la sicurezza del sistema, l'accesso SSH esterno è bloccato per impostazione predefinita. Se devi eseguire attività che richiedono l'accesso SSH in entrata, come la risoluzione dei problemi, consenti temporaneamente l'accesso esterno. Quando hai finito l'attività, blocca l'accesso esterno.
+
+.Passaggi
+. Seleziona *Configurazione* > *Sicurezza* > *Impostazioni di sicurezza*.
+. Seleziona la scheda *Blocca SSH*.
+. Usa l'opzione *Blocca l'accesso SSH in entrata* per gestire l'accesso SSH esterno:
++
+.. ${post_edited_translations.segment}
+.. Deseleziona la casella di controllo per consentire l'accesso.
++
+
+NOTE: Richiede l'accesso sulla porta 22 tra il laptop di servizio e tutti gli altri nodi della griglia. Rimuovi l'accesso sulla porta 22 quando completi l'attività di manutenzione.
+
+
+
+. Seleziona *Salva*.
+

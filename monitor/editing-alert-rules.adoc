@@ -1,0 +1,121 @@
+---
+permalink: monitor/editing-alert-rules.html 
+sidebar: sidebar 
+keywords: how to edit alert rules 
+summary: Puoi modificare una regola di avviso per cambiare le condizioni di attivazione. Per una regola di avviso personalizzata, puoi anche aggiornare il nome della regola, la descrizione e le azioni consigliate. 
+---
+= Modifica le regole di avviso in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi modificare una regola di avviso per cambiare le condizioni di attivazione. Per una regola di avviso personalizzata, puoi anche aggiornare il nome della regola, la descrizione e le azioni consigliate.
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Hai il link:../admin/admin-group-permissions.html["Gestisci gli avvisi o i permessi di accesso root"].
+
+
+.Informazioni su questa attività
+Quando modifichi una regola di avviso predefinita, puoi cambiare le condizioni per gli avvisi di livello minore, maggiore e critico e la durata. Quando modifichi una regola di avviso personalizzata, puoi anche modificare il nome, la descrizione e le azioni consigliate della regola.
+
+
+CAUTION: Fai attenzione quando decidi di modificare una regola di avviso. Se cambi i valori di attivazione, potresti non rilevare un problema sottostante finché non impedisce il completamento di un'operazione critica.
+
+.Passaggi
+. Seleziona *Avvisi* > *Regole*.
++
+Viene visualizzata la pagina Regole di avviso.
+
+. Seleziona il pulsante di opzione per la regola di avviso che vuoi modificare.
+. Seleziona *Modifica regola*.
++
+Viene visualizzata la finestra di dialogo Modifica regola. Questo esempio mostra una regola di avviso predefinita: i campi Unique Name, Description e Recommended Actions sono disabilitati e non possono essere modificati.
+
++
+image:alert_rules_edit_rule.png["Avvisi > Modifica regola"]
+
+. Seleziona o deseleziona la casella di controllo *Abilitato* per decidere se questa regola di avviso è attualmente abilitata.
++
+Se una regola di avviso è disabilitata, le sue espressioni non vengono valutate e non viene attivato alcun avviso.
+
++
+
+NOTE: Se disattivi la regola di avviso per un avviso attivo, devi aspettare alcuni minuti prima che l'avviso non venga più visualizzato come attivo.
+
++
+
+CAUTION: In generale, disabilitare una regola di avviso predefinita non è consigliabile. Se una regola di avviso è disabilitata, potresti non rilevare un problema sottostante finché non impedisce il completamento di un'operazione critica.
+
+. Per le regole di avviso personalizzate, aggiorna le seguenti informazioni secondo necessità.
++
+
+NOTE: Non puoi modificare queste informazioni per le regole di avviso predefinite.
+
++
+[cols="1a,2a"]
+|===
+| Campo | Descrizione 
+
+
+ a| 
+Nome unico
+ a| 
+Un nome univoco per questa regola. Il nome della regola di avviso viene visualizzato nella pagina Avvisi ed è anche l'oggetto delle notifiche email. I nomi delle regole di avviso possono essere composti da 1 a 64 caratteri.
+
+
+
+ a| 
+Descrizione
+ a| 
+Descrizione del problema riscontrato. La descrizione è il messaggio di avviso visualizzato nella pagina Avvisi e nelle notifiche email. Le descrizioni delle regole di avviso possono essere lunghe da 1 a 128 caratteri.
+
+
+
+ a| 
+Azioni consigliate
+ a| 
+Facoltativamente, puoi specificare le azioni consigliate da intraprendere quando viene attivato questo avviso. Inserisci le azioni consigliate come testo semplice (senza codici di formattazione). Le azioni consigliate per le regole di avviso possono essere comprese tra 0 e 1.024 caratteri.
+
+|===
+. Nella sezione Condizioni, inserisci o aggiorna l'espressione Prometheus per uno o più livelli di gravità dell'allerta.
++
+
+NOTE: Se vuoi ripristinare il valore originale di una condizione per una regola di avviso predefinita modificata, seleziona i tre puntini a destra della condizione modificata.
+
++
+image:alert_rules_edit_revert_to_default.png["Regole di avviso: ripristino di una condizione modificata al valore predefinito"]
+
++
+
+NOTE: Se aggiorni le condizioni per un avviso corrente, le modifiche potrebbero non essere implementate finché la condizione precedente non viene risolta. La prossima volta che una delle condizioni per la regola viene soddisfatta, l'avviso rifletterà i valori aggiornati.
+
++
+Un'espressione di base è solitamente della forma:
+
++
+`[metric] [operator] [value]`
+
++
+Le espressioni possono avere qualsiasi lunghezza, ma nell'interfaccia utente appaiono su un'unica riga. È richiesta almeno un'espressione.
+
++
+Questa espressione fa sì che venga attivato un avviso se la quantità di RAM installata per un nodo è inferiore a 24.000.000.000 di byte (24 GB).
+
++
+`node_memory_MemTotal_bytes < 24000000000`
+
+. Nel campo *Durata*, inserisci la quantità di tempo per cui una condizione deve rimanere in vigore in modo continuativo prima che venga attivato l'avviso e seleziona l'unità di tempo.
++
+Per attivare immediatamente un avviso quando una condizione diventa vera, inserisci *0*. Aumenta questo valore per evitare che condizioni temporanee attivino avvisi.
+
++
+Il valore predefinito è 5 minuti.
+
+. Seleziona *Salva*.
++
+Se hai modificato una regola di avviso predefinita, nella colonna Tipo viene visualizzato *Default*. Se hai disabilitato una regola di avviso predefinita o personalizzata, nella colonna *Status* viene visualizzato *Disabled*.
+
+

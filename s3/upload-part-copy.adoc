@@ -1,0 +1,55 @@
+---
+permalink: s3/upload-part-copy.html 
+sidebar: sidebar 
+keywords: UploadPart, UploadPartCopy, multipart uploads, uploads, 
+summary: 'L"operazione UploadPartCopy carica una parte di un oggetto copiando i dati da un oggetto esistente come origine dati.' 
+---
+= Carica una parte di un oggetto in StorageGRID con l'operazione S3 UploadPartCopy
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'operazione UploadPartCopy carica una parte di un oggetto copiando i dati da un oggetto esistente come origine dati.
+
+L'operazione UploadPartCopy è implementata con tutto il comportamento dell'API REST di Amazon S3. Soggetta a modifiche senza preavviso.
+
+Questa richiesta legge e scrive i dati dell'oggetto specificato in  `x-amz-copy-source-range` all'interno del sistema StorageGRID.
+
+Sono supportate le seguenti intestazioni di richiesta:
+
+* `x-amz-copy-source-if-match`
+* `x-amz-copy-source-if-none-match`
+* `x-amz-copy-source-if-unmodified-since`
+* `x-amz-copy-source-if-modified-since`
+
+
+
+
+[[request-headers-for-server-side-encryption]]
+== Intestazioni di richiesta per la crittografia lato server
+
+Se hai specificato la crittografia SSE-C per la richiesta CreateMultipartUpload, devi includere anche le seguenti intestazioni di richiesta in ogni richiesta UploadPartCopy:
+
+* `x-amz-server-side-encryption-customer-algorithm`: Specifica `AES256`.
+* `x-amz-server-side-encryption-customer-key`: Specifica la stessa chiave di crittografia che hai fornito nella richiesta CreateMultipartUpload.
+* `x-amz-server-side-encryption-customer-key-MD5`: Specifica lo stesso digest MD5 che hai fornito nella richiesta CreateMultipartUpload.
+
+
+Se l'oggetto sorgente è crittografato utilizzando una chiave fornita dal cliente (SSE-C), devi includere le seguenti tre intestazioni nella richiesta UploadPartCopy, così l'oggetto può essere decrittografato e poi copiato:
+
+* `x-amz-copy-source​-server-side​-encryption​-customer-algorithm`: Specifica `AES256`.
+* `x-amz-copy-source​-server-side-encryption-customer-key`Specifica la chiave di crittografia che hai fornito quando hai creato l'oggetto sorgente.
+* `x-amz-copy-source​-server-side-encryption-customer-key-MD5`: Specifica il digest MD5 che hai fornito quando hai creato l'oggetto sorgente.
+
+
+
+CAUTION: Le chiavi di crittografia che fornisci non vengono mai memorizzate. Se perdi una chiave di crittografia, perdi anche l'oggetto corrispondente. Prima di usare chiavi fornite dal cliente per proteggere i dati degli oggetti, consulta le considerazioni in link:using-server-side-encryption.html["${post_edited_translations.segment}"].
+
+
+
+[[versioning]]
+== Versioning
+
+Il caricamento in più parti consiste in operazioni separate per avviare il caricamento, elencare i caricamenti, caricare le parti, assemblare le parti caricate e completare il caricamento. Gli oggetti vengono creati (e versionati, se applicabile) quando viene eseguita l'operazione CompleteMultipartUpload.

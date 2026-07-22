@@ -1,0 +1,100 @@
+---
+permalink: s3/complete-multipart-upload.html 
+sidebar: sidebar 
+keywords: multipart upload, object, object size 
+summary: 'L"operazione CompleteMultipartUpload completa il caricamento di un oggetto suddiviso in più parti assemblando le parti precedentemente caricate.' 
+---
+= Come StorageGRID S3 REST API completa i caricamenti multiparte
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'operazione CompleteMultipartUpload completa il caricamento di un oggetto suddiviso in più parti assemblando le parti precedentemente caricate.
+
+
+NOTE: StorageGRID supporta valori non consecutivi in ordine crescente per il parametro di richiesta  `partNumber` con CompleteMultipartUpload. Il parametro può iniziare con qualsiasi valore.
+
+
+
+[[resolve-conflicts]]
+== Risolvere i conflitti
+
+Le richieste dei client in conflitto, ad esempio due client che scrivono sulla stessa chiave, vengono risolte in base al principio "latest-wins". Il momento in cui viene effettuata la valutazione "latest-wins" si basa su quando il sistema StorageGRID completa una determinata richiesta, e non su quando i client S3 iniziano un'operazione.
+
+
+
+[[supported-request-headers]]
+== Intestazioni di richiesta supportate
+
+Sono supportate le seguenti intestazioni di richiesta:
+
+* `x-amz-checksum-sha256`
+* `x-amz-storage-class`
++
+L' `x-amz-storage-class`intestazione influisce su quante copie di oggetti StorageGRID crea se la regola ILM corrispondente specifica il link:../ilm/data-protection-options-for-ingest.html["Opzione di doppio commit o di acquisizione bilanciata"].
+
+* `STANDARD`
++
+(Predefinito) Specifica un'operazione di ingestione a doppio commit quando la regola ILM utilizza l'opzione Dual commit o quando l'opzione Balanced ripiega sulla creazione di copie intermedie.
+
+* `REDUCED_REDUNDANCY`
++
+Specifica un'operazione di ingest a commit singolo quando la regola ILM utilizza l'opzione Dual commit o quando l'opzione Balanced ripiega sulla creazione di copie intermedie.
+
++
+
+NOTE: Se stai inserendo un oggetto in un bucket con S3 Object Lock abilitato, l' `REDUCED_REDUNDANCY`opzione viene ignorata. Se stai inserendo un oggetto in un bucket Compliant legacy, l' `REDUCED_REDUNDANCY`opzione restituisce un errore. StorageGRID esegue sempre un ingest con doppio commit per garantire che i requisiti di conformità siano soddisfatti.
+
+
+
+
+CAUTION: Se un caricamento in più parti non viene completato entro 15 giorni, l'operazione viene contrassegnata come inattiva e tutti i dati associati vengono eliminati dal sistema.
+
+
+NOTE: Il `ETag` valore restituito non è una somma MD5 dei dati, ma segue l'implementazione dell'API di Amazon S3 del `ETag` valore per gli oggetti multipart.
+
+
+
+[[unsupported-request-headers]]
+== Intestazioni di richiesta non supportate
+
+Le seguenti intestazioni di richiesta non sono supportate:
+
+* `If-Match`
++
+The `If-Match header` è accettato ma non funzionale.
+
+* `If-None-Match`
++
+The `If-None-Match header` è accettato ma non funzionale.
+
+* `x-amz-sdk-checksum-algorithm`
+* `x-amz-trailer`
+
+
+
+
+[[versioning]]
+== Versioning
+
+Questa operazione completa un caricamento in più parti. Se la gestione delle versioni è abilitata per un bucket, la versione dell'oggetto viene creata al termine del caricamento in più parti.
+
+Se il versioning è abilitato per un bucket, un identificativo univoco `versionId` viene generato automaticamente per la versione dell'oggetto memorizzato. Questo `versionId` viene inoltre restituito nella risposta tramite l'intestazione di risposta  `x-amz-version-id`.
+
+Se la gestione delle versioni viene sospesa, la versione dell'oggetto viene memorizzata con un valore nullo `versionId` e se esiste già una versione con valore nullo, verrà sovrascritta.
+
+
+NOTE: Quando la gestione delle versioni è abilitata per un bucket, il completamento di un caricamento multipart crea sempre una nuova versione, anche se sono presenti caricamenti multipart simultanei completati sulla stessa chiave oggetto. Quando la gestione delle versioni non è abilitata per un bucket, è possibile avviare un caricamento multipart e poi far sì che un altro caricamento multipart venga avviato e completato prima sulla stessa chiave oggetto. Nei bucket senza gestione delle versioni, ha la precedenza il caricamento multipart che viene completato per ultimo.
+
+
+
+[[failed-replication-notification-or-metadata-notification]]
+== Replica, notifica o notifica dei metadati non riuscita
+
+Se il bucket in cui avviene il caricamento multipart è configurato per un servizio di piattaforma, il caricamento multipart ha esito positivo anche se l'azione di replica o notifica associata non riesce.
+
+Un tenant può attivare la replica non riuscita o la notifica aggiornando i metadati o i tag dell'oggetto. Un tenant può inviare nuovamente i valori esistenti per evitare di apportare modifiche indesiderate.
+
+Consulta link:../admin/troubleshooting-platform-services.html["Risolvi i problemi dei servizi della piattaforma"].

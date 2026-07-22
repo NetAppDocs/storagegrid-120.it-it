@@ -1,0 +1,55 @@
+---
+permalink: maintain/storagegrid-hotfix-procedure.html 
+sidebar: sidebar 
+keywords: apply hotfix, install hotfix, replace primary admin node 
+summary: 'Potresti dover applicare una hotfix al tuo sistema StorageGRID se vengono rilevati e risolti problemi con il software tra una release di funzionalità e l"altra.' 
+---
+= Procedura di hotfix per StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Potresti dover applicare una hotfix al tuo sistema StorageGRID se vengono rilevati e risolti problemi con il software tra una release di funzionalità e l'altra.
+
+Gli hotfix di StorageGRID contengono modifiche software rese disponibili al di fuori di una release di funzionalità o di una patch. Le stesse modifiche sono incluse in una release successiva. Inoltre, ogni hotfix include un riepilogo di tutti gli hotfix precedenti all'interno della stessa release di funzionalità o patch.
+
+
+
+[[considerations-for-applying-a-hotfix]]
+== Considerazioni sull'applicazione di una hotfix
+
+Non puoi applicare un hotfix StorageGRID mentre è in corso un'altra procedura di manutenzione. Ad esempio, non puoi applicare un hotfix mentre è in corso una procedura di decommission, espansione o recovery.
+
+
+NOTE: Se una procedura di decommission di un nodo o di un sito viene messa in pausa, puoi applicare un hotfix in tutta sicurezza. Inoltre, potresti riuscire ad applicare un hotfix durante le fasi finali di una procedura di upgrade di StorageGRID. Consulta le istruzioni per l'upgrade del software StorageGRID per i dettagli.
+
+Dopo aver caricato l'hotfix in Grid Manager, l'hotfix viene applicato automaticamente al nodo Admin primario. Poi puoi approvare l'applicazione dell'hotfix agli altri nodi del tuo sistema StorageGRID.
+
+Se un hotfix non riesce a essere applicato a uno o più nodi, il motivo del fallimento viene visualizzato nella colonna Dettagli della tabella di avanzamento dell'hotfix. Devi risolvere i problemi che hanno causato i fallimenti e poi riprovare l'intero processo. I nodi su cui l'hotfix è stato applicato con successo in precedenza verranno saltati nelle applicazioni successive. Puoi riprovare il processo di hotfix tutte le volte che vuoi finché tutti i nodi non sono stati aggiornati. L'hotfix deve essere installato correttamente su tutti i nodi della griglia perché l'applicazione sia completa.
+
+Mentre i nodi della griglia vengono aggiornati con la nuova versione dell'hotfix, le modifiche effettive di un hotfix potrebbero riguardare solo servizi specifici su tipi specifici di nodi. Ad esempio, un hotfix potrebbe riguardare solo il servizio LDR sui Storage Node.
+
+
+
+[[how-hotfixes-are-applied-for-recovery-and-expansion]]
+== Come si applicano le hotfix per il ripristino e l'espansione
+
+Dopo che un hotfix è stato applicato alla tua griglia, il nodo di amministrazione primario installa automaticamente la stessa versione dell'hotfix su tutti i nodi ripristinati tramite operazioni di recupero o aggiunti durante un'espansione.
+
+Tuttavia, se devi ripristinare il nodo Admin primario, devi installare manualmente la versione corretta di StorageGRID e poi applicare l'hotfix. La versione finale di StorageGRID del nodo Admin primario deve corrispondere alla versione degli altri nodi nella grid.
+
+Il seguente esempio mostra come applicare una hotfix durante il ripristino del nodo Admin primario:
+
+. Supponi che la grid stia eseguendo StorageGRID versione 11._A.B_ con l'ultimo hotfix. La "versione della grid" è 11._A.B.y_.
+. Il nodo Admin primario non funziona.
+. Ridistribuisci il nodo Admin primario utilizzando StorageGRID 11._A.B_ e esegui la procedura di ripristino.
++
+
+NOTE: Come richiesto per corrispondere alla versione della griglia, puoi usare una versione secondaria quando distribuisci il nodo; non devi distribuire prima la versione principale.
+
+. Poi applichi l'hotfix 11._A.B.y_ al nodo Admin primario.
+
+
+Per ulteriori informazioni, vedi link:configuring-replacement-primary-admin-node.html["Configura il nodo Admin primario sostitutivo"].

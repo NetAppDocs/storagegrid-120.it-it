@@ -1,0 +1,36 @@
+---
+permalink: monitor/managing-alerts.html 
+sidebar: sidebar 
+keywords: alert rules, managing alerts, alerts, alert notifications. edit alert rules 
+summary: 'Il sistema di allerta fornisce un"interfaccia intuitiva per rilevare, valutare e risolvere i problemi che possono verificarsi durante il funzionamento di StorageGRID.' 
+---
+= Gestisci gli avvisi in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Il sistema di allerta fornisce un'interfaccia intuitiva per rilevare, valutare e risolvere i problemi che possono verificarsi durante il funzionamento di StorageGRID.
+
+Gli avvisi vengono attivati a specifici livelli di gravità quando le condizioni della regola di avviso risultano vere. Quando viene attivato un avviso, si verificano le seguenti azioni:
+
+* Un'icona che indica la gravità dell'avviso viene mostrata nella dashboard del Grid Manager e il conteggio degli avvisi correnti viene incrementato.
+* L'avviso viene visualizzato nella pagina di riepilogo *Nodi* e nella scheda *Nodi* > *_nodo_* > *Panoramica*.
+* Viene inviata una notifica via email, se hai configurato un server SMTP e fornito gli indirizzi email dei destinatari.
+* Viene inviata una notifica Simple Network Management Protocol (SNMP), se hai configurato l'agente SNMP di StorageGRID.
+
+
+Puoi creare avvisi personalizzati, modificare o disattivare gli avvisi e gestire le notifiche di avviso.
+
+Per saperne di più:
+
+* Guarda i video:
++
+.Panoramica degli avvisi
+video::2eea81c5-8323-417f-b0a0-b1ff008506c1[panopto]
++
+.Avvisi personalizzati
+video::54af90c4-9a38-4136-9621-b1ff008604a3[panopto]
+* Fai riferimento a link:alerts-reference.html["Riferimento agli avvisi"].
+

@@ -1,0 +1,7 @@
+= 
+:allow-uri-read: 
+
+
+Utilizzare un nodo di archiviazione esclusivamente per i dati può avere senso se i tuoi nodi di archiviazione hanno caratteristiche prestazionali diverse. Ad esempio, per aumentare potenzialmente le prestazioni, potresti avere nodi di archiviazione solo dati ad elevata capacità con dischi rotanti, accompagnati da nodi di archiviazione solo metadati dalle performance elevate.
+
+Inoltre, puoi ottenere una maggiore capacità di metadati rimuovendo i nodi con poca RAM da Cassandra, il che aumenta il limite di capacità di metadati per nodo. Consulta link:../admin/managing-object-metadata-storage.html["Gestisci l'archiviazione dei metadati degli oggetti"].

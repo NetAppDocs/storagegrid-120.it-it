@@ -1,0 +1,29 @@
+---
+permalink: expand/adding-storage-capacity-for-erasure-coded-objects.html 
+sidebar: sidebar 
+keywords: erasure coding, capacity, storage nodes, ec, expand, expansion, StorageGRID 
+summary: Se la policy ILM include una regola che crea copie con codifica di cancellazione, devi pianificare dove aggiungere nuovo storage e quando aggiungerlo. La quantità di storage che aggiungi e il momento in cui lo aggiungi possono influire sulla capacità di storage utilizzabile della grid. 
+---
+= Pianificazione dell'espansione per i dati con codifica di cancellazione (EC) in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se la policy ILM include una regola che crea copie con codifica di cancellazione, devi pianificare dove aggiungere nuovo storage e quando aggiungerlo. La quantità di storage che aggiungi e il momento in cui lo aggiungi possono influire sulla capacità di storage utilizzabile della grid.
+
+Il primo passo nella pianificazione di un'espansione dello storage è esaminare le regole della tua policy ILM che creano oggetti con codifica di cancellazione. Poiché StorageGRID crea _k+m_ frammenti per ogni oggetto con codifica di cancellazione e memorizza ciascun frammento su un diverso nodo di storage, devi assicurarti che almeno _k+m_ nodi di storage abbiano spazio per i nuovi dati con codifica di cancellazione dopo l'espansione. Se il profilo di codifica di cancellazione offre protezione contro la perdita del sito, devi aggiungere storage a ciascun sito. Vedi link:../ilm/what-erasure-coding-schemes-are.html["Cosa sono gli schemi di codifica a cancellazione"] per informazioni sui profili di codifica di cancellazione.
+
+Il numero di nodi che devi aggiungere dipende anche da quanto sono pieni i nodi esistenti quando esegui l'espansione.
+
+
+
+[[general-recommendation-for-adding-storage-capacity-for-erasure-coded-objects]]
+== Raccomandazione generale per l'aggiunta di capacità di storage per oggetti con codifica a cancellazione
+
+Se vuoi evitare calcoli dettagliati, puoi aggiungere due Storage Node per sito quando i Storage Node esistenti raggiungono il 70% della capacità.
+
+Questa raccomandazione generale fornisce risultati ragionevoli per un'ampia gamma di schemi di codifica di cancellazione, sia per griglie a sito singolo che per griglie in cui la codifica di cancellazione offre protezione contro la perdita di sito.
+
+Per comprendere meglio i fattori che hanno portato a questa raccomandazione o per sviluppare un piano più preciso per il tuo sito, consulta link:considerations-for-rebalancing-erasure-coded-data.html["Considerazioni per il ribilanciamento dei dati codificati con cancellazione"]. Per una raccomandazione personalizzata ottimizzata per la tua situazione, contatta il tuo consulente dei Servizi Professionali NetApp.

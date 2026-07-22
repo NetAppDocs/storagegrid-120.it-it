@@ -1,0 +1,20 @@
+---
+permalink: maintain/all-node-types-replacing-linux-node.html 
+sidebar: sidebar 
+keywords: replace linux node 
+summary: 'Se un errore richiede che tu distribuisca uno o più nuovi host fisici o virtuali oppure che reinstalli Linux su un host esistente, distribuisci e configura l"host sostitutivo prima di poter ripristinare il nodo della griglia. Questa procedura è una fase del processo di ripristino del nodo della griglia per tutti i tipi di nodi della griglia.' 
+---
+= Sostituire un nodo Linux in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se un errore richiede che tu distribuisca uno o più nuovi host fisici o virtuali oppure che reinstalli Linux su un host esistente, distribuisci e configura l'host sostitutivo prima di poter ripristinare il nodo della griglia. Questa procedura è una fase del processo di ripristino del nodo della griglia per tutti i tipi di nodi della griglia.
+
+"Linux" si riferisce a una distribuzione Red Hat® Enterprise Linux® (RHEL), Ubuntu® o Debian®. Per un elenco delle versioni supportate, vedi la  https://imt.netapp.com/matrix/#welcome["NetApp Interoperability Matrix Tool (IMT)"^].
+
+Questa procedura viene eseguita solo come una fase del processo di ripristino dei nodi di archiviazione basati su software, dei nodi di amministrazione primari o non primari o dei nodi gateway. I passaggi sono identici indipendentemente dal tipo di nodo della griglia che stai ripristinando.
+
+Se su un host Linux fisico o virtuale sono ospitati più nodi della griglia, puoi ripristinare i nodi della griglia in qualsiasi ordine. Tuttavia, se ripristini prima un nodo Admin primario, se presente, eviti che il ripristino degli altri nodi della griglia si blocchi mentre cercano di contattare il nodo Admin primario per registrarsi al ripristino.

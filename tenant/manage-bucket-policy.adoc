@@ -1,0 +1,37 @@
+---
+permalink: tenant/manage-bucket-policy.html 
+sidebar: sidebar 
+keywords: bucket policy, S3 bucket policy, manage bucket policy 
+summary: 'Puoi controllare l"accesso degli utenti a un bucket S3 e agli oggetti in quel bucket.' 
+---
+= Gestisci la policy dei bucket di StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puoi controllare l'accesso degli utenti a un bucket S3 e agli oggetti in quel bucket.
+
+.Prima di iniziare
+* Hai effettuato l'accesso al Tenant Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Appartieni a un gruppo di utenti che ha le link:tenant-management-permissions.html["Permesso di accesso root"]. Le autorizzazioni Visualizza tutti i bucket e Gestisci tutti i bucket consentono solo la visualizzazione.
+* Hai verificato che il numero richiesto di Storage Node e siti sia disponibile. Se due o più Storage Node non sono disponibili in un sito, o se un sito non è disponibile, potrebbe non essere possibile modificare queste impostazioni.
+
+
+.Passaggi
+. Seleziona *Buckets*, quindi seleziona il bucket che desideri gestire.
+. Nella pagina dei dettagli del bucket, seleziona *Accesso al bucket* > *Criteri del bucket*.
+. Esegui una delle seguenti operazioni:
++
+** Inserisci una bucket policy selezionando la casella di controllo *Abilita policy*. Quindi inserisci una stringa valida in formato JSON.
++
+${post_edited_translations.segment}
+
+** Modifica una policy esistente modificando la stringa.
+** ${post_edited_translations.segment}
+
+
+
+
+Per informazioni dettagliate sulle policy dei bucket, inclusa la sintassi del linguaggio ed esempi, vedi link:../s3/example-bucket-policies.html["Esempi di policy dei bucket"].

@@ -1,0 +1,25 @@
+---
+permalink: maintain/checking-storage-state-after-recovering-storage-volumes.html 
+sidebar: sidebar 
+keywords: storagegrid, storage volume recovery, storage state, storage volume 
+summary: Dopo aver ripristinato i volumi di archiviazione, devi verificare che lo stato desiderato del nodo di archiviazione sia impostato su online e assicurarti che lo stato sarà online per impostazione predefinita ogni volta che il server del nodo di archiviazione viene riavviato. 
+---
+= Verifica lo stato dello storage dopo il ripristino dei volumi di storage StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Dopo aver ripristinato i volumi di archiviazione, devi verificare che lo stato desiderato del nodo di archiviazione sia impostato su online e assicurarti che lo stato sarà online per impostazione predefinita ogni volta che il server del nodo di archiviazione viene riavviato.
+
+.Prima di iniziare
+* Sei connesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Il nodo di archiviazione è stato ripristinato e il recovery di dati è completo.
+
+
+.Passaggi
+. ${post_edited_translations.segment}
+. ${post_edited_translations.segment}
+. Seleziona *Salva*.
+
