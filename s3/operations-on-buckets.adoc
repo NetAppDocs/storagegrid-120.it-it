@@ -15,7 +15,7 @@ Il sistema StorageGRID supporta un massimo di 5.000 bucket per ogni account tena
 
 Ogni grid può contenere un massimo di 100.000 bucket.
 
-Per supportare 5.000 bucket, ogni Storage Node nella griglia deve avere almeno 64 GB di RAM.
+Se più tenant dispongono ciascuno di un massimo di 5.000 bucket, ogni Storage Node nella griglia deve avere un minimo di 64 GB di RAM.
 
 Le restrizioni sui nomi dei bucket seguono le restrizioni standard della regione AWS US, ma dovresti limitarle ulteriormente alle convenzioni di denominazione DNS per supportare le richieste S3 in stile virtual hosted.
 
@@ -27,7 +27,7 @@ Per ulteriori informazioni, consulta quanto segue:
 
 Le operazioni ListObjects (GET Bucket) e ListObjectVersions (GET Bucket object versions) supportano StorageGRID link:consistency.html["valori di coerenza"].
 
-Puoi verificare se gli aggiornamenti all'ora dell'ultimo accesso sono abilitati o disabilitati per i singoli bucket. Vedi link:get-bucket-last-access-time-request.html["Ora dell'ultimo accesso GET Bucket"].
+Puoi verificare se gli aggiornamenti all'ora dell'ultimo accesso sono abilitati o disabilitati per i singoli bucket. Fai riferimento a link:get-bucket-last-access-time-request.html["Ora dell'ultimo accesso GET Bucket"].
 
 La tabella seguente descrive come StorageGRID implementa le operazioni sui bucket dell'API REST di S3. Per eseguire una qualsiasi di queste operazioni, devi fornire le credenziali di accesso appropriate per l'account.
 
@@ -55,7 +55,7 @@ Crea un nuovo bucket. Creando il bucket, ne diventi il proprietario.
 +
 *Nota*: Si verificherà un errore se la richiesta CreateBucket utilizza una regione non definita in StorageGRID.
 
-* Puoi includere l' `x-amz-bucket-object-lock-enabled`intestazione della richiesta per creare un bucket con S3 Object Lock abilitato. Vedi link:../s3/use-s3-api-for-s3-object-lock.html["Utilizza l'API REST S3 per configurare S3 Object Lock"].
+* Puoi includere l' `x-amz-bucket-object-lock-enabled`intestazione della richiesta per creare un bucket con S3 Object Lock abilitato. Fai riferimento a link:../s3/use-s3-api-for-s3-object-lock.html["Utilizza l'API REST S3 per configurare S3 Object Lock"].
 +
 Devi abilitare S3 Object Lock quando crei il bucket. Non puoi aggiungere o disabilitare S3 Object Lock dopo che il bucket è stato creato. S3 Object Lock richiede il versioning del bucket, che viene abilitato automaticamente quando crei il bucket.
 
@@ -87,7 +87,7 @@ Elimina la crittografia predefinita dal bucket. Gli oggetti crittografati esiste
  a| 
 DeleteBucketLifecycle
  a| 
-Elimina la configurazione del ciclo di vita dal bucket. Vedi link:create-s3-lifecycle-configuration.html["Crea configurazione del ciclo di vita S3"].
+Elimina la configurazione del ciclo di vita dal bucket. Fai riferimento a link:create-s3-lifecycle-configuration.html["Crea configurazione del ciclo di vita S3"].
 
 
 
@@ -110,7 +110,7 @@ DeleteBucketTagging
  a| 
 Utilizza la  `tagging` sottorisorsa per rimuovere tutti i tag da un bucket.
 
-*Attenzione*: se per questo bucket è impostato un tag di policy ILM non predefinito, sarà presente un  `NTAP-SG-ILM-BUCKET-TAG` tag del bucket con un valore assegnato. Non inviare una richiesta DeleteBucketTagging se è presente un  `NTAP-SG-ILM-BUCKET-TAG` tag del bucket. Invece, invia una richiesta PutBucketTagging con solo il  `NTAP-SG-ILM-BUCKET-TAG` tag e il valore assegnato per rimuovere tutti gli altri tag dal bucket. Non modificare o rimuovere il  `NTAP-SG-ILM-BUCKET-TAG` tag del bucket.
+*Attenzione*: se per questo bucket è impostato un tag di policy ILM non predefinito, ci sarà un tag di bucket  `NTAP-SG-ILM-BUCKET-TAG` con un valore assegnato. Non inviare una richiesta DeleteBucketTagging se è presente un  `NTAP-SG-ILM-BUCKET-TAG` tag del bucket. Invece, invia una richiesta PutBucketTagging con solo il  `NTAP-SG-ILM-BUCKET-TAG` tag e il valore assegnato per rimuovere tutti gli altri tag dal bucket. Non modificare o rimuovere il  `NTAP-SG-ILM-BUCKET-TAG` tag del bucket.
 
 
 
@@ -140,7 +140,7 @@ GetBucketLifecycleConfiguration
 
 (precedentemente denominato GET Bucket lifecycle)
  a| 
-Restituisce la configurazione del ciclo di vita per il bucket. Vedi link:create-s3-lifecycle-configuration.html["Crea configurazione del ciclo di vita S3"].
+Restituisce la configurazione del ciclo di vita per il bucket. Fai riferimento a link:create-s3-lifecycle-configuration.html["Crea configurazione del ciclo di vita S3"].
 
 
 
@@ -179,7 +179,7 @@ GetBucketTagging
  a| 
 Utilizza la  `tagging` sottorisorsa per restituire tutti i tag per un bucket.
 
-*Attenzione*: se per questo bucket è impostato un tag di policy ILM diverso da quello predefinito, ci sarà un tag del bucket  `NTAP-SG-ILM-BUCKET-TAG` con un valore assegnato. Non modificare o rimuovere questo tag.
+*Attenzione*: se per questo bucket è impostato un tag di policy ILM non predefinito, ci sarà un tag di bucket  `NTAP-SG-ILM-BUCKET-TAG` con un valore assegnato. Non modificare o rimuovere questo tag.
 
 
 
@@ -200,7 +200,7 @@ GetObjectLockConfiguration
  a| 
 Restituisce la modalità di conservazione predefinita del bucket e il periodo di conservazione predefinito, se configurati.
 
-Vedi link:../s3/use-s3-api-for-s3-object-lock.html["Utilizza l'API REST S3 per configurare S3 Object Lock"].
+Fai riferimento a link:../s3/use-s3-api-for-s3-object-lock.html["Utilizza l'API REST S3 per configurare S3 Object Lock"].
 
 
 
@@ -285,7 +285,7 @@ StorageGRID non supporta queste azioni:
 * Transizione
 
 
-Vedi link:create-s3-lifecycle-configuration.html["Crea configurazione del ciclo di vita S3"]. Per capire come l'azione di scadenza nel ciclo di vita di un bucket interagisce con le istruzioni di posizionamento ILM, vedi link:../ilm/how-ilm-operates-throughout-objects-life.html["Come funziona ILM durante l'intero ciclo di vita di un oggetto"].
+Fai riferimento a link:create-s3-lifecycle-configuration.html["Crea configurazione del ciclo di vita S3"]. Per capire come l'azione di Expiration nel ciclo di vita di un bucket interagisce con le istruzioni di posizionamento ILM, fai riferimento a link:../ilm/how-ilm-operates-throughout-objects-life.html["Come funziona ILM durante l'intero ciclo di vita di un oggetto"].
 
 *Nota*: la configurazione del ciclo di vita del bucket può essere utilizzata con i bucket che hanno S3 Object Lock abilitato, ma la configurazione del ciclo di vita del bucket non è supportata per i bucket Compliant legacy.
 
@@ -336,7 +336,7 @@ non incluso
  a| 
 PutBucketPolicy
  a| 
-Imposta i criteri associati al bucket. Vedi link:use-access-policies.html["Usa le policy di accesso per bucket e gruppi"].
+Imposta i criteri associati al bucket. Fai riferimento a link:use-access-policies.html["Usa le policy di accesso per bucket e gruppi"].
 
 
 
@@ -348,7 +348,7 @@ Configura link:../tenant/understanding-cloudmirror-replication-service.html["Rep
 * StorageGRID supporta solo la V1 della configurazione di replica. Questo significa che StorageGRID non supporta l'uso dell'elemento  `Filter` per le regole e segue le convenzioni V1 per l'eliminazione delle versioni degli oggetti. Per dettagli, vedi  https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication-add-config.html["Guida utente di Amazon Simple Storage Service: configurazione della replica"^].
 * La replica dei bucket può essere configurata su bucket con versione o senza versione.
 * Puoi specificare un bucket di destinazione diverso in ciascuna regola del file XML di configurazione della replica. Un bucket di origine può replicare su più di un bucket di destinazione.
-* I bucket di destinazione devono essere specificati come URN degli endpoint StorageGRID come specificato in Tenant Manager o nell'API di gestione del tenant. Vedi link:../tenant/configuring-cloudmirror-replication.html["Configura la replica CloudMirror"].
+* I bucket di destinazione devono essere specificati come URN degli endpoint StorageGRID come specificato in Tenant Manager o nell'API di gestione del tenant. Fai riferimento a link:../tenant/configuring-cloudmirror-replication.html["Configura la replica CloudMirror"].
 +
 L'endpoint deve esistere affinché la configurazione della replica abbia successo. Se l'endpoint non esiste, la richiesta fallisce come  `400 Bad Request`. Il messaggio di errore indica: `Unable to save the replication policy. The specified endpoint URN does not exist: _URN_.`
 

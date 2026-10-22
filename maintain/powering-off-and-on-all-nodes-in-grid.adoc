@@ -151,9 +151,6 @@ La grid StorageGRID è stata ora disattivata.
 [[start-up-grid-nodes]]
 == Avvia i nodi della griglia
 
-
-CAUTION: Se l'intera griglia è rimasta spenta per più di 15 giorni, devi contattare il supporto tecnico prima di avviare qualsiasi nodo della griglia. Non tentare le procedure di ripristino che ricostruiscono i dati di Cassandra. Facendolo, potresti perdere dei dati.
-
 Se possibile, accendi i nodi della grid in questo ordine:
 
 * Alimenta prima i nodi Admin.

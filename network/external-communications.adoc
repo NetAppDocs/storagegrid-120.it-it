@@ -315,6 +315,21 @@ Le richieste dei Cloud Storage Pools vengono inviate alle destinazioni AWS che u
 
 
  a| 
+636
+ a| 
+TCP/UDP
+ a| 
+LDAP
+ a| 
+Nodi di storage con ADC
+ a| 
+Active Directory/LDAP
+ a| 
+Utilizzato per connettersi a un Active Directory o LDAP server per la federazione delle identità.
+
+
+
+ a| 
 5353
  a| 
 UDP
